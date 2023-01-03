@@ -1,0 +1,263 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_AdminTemplate.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+
+<button type="button" class="btn btn-primary" data-target="#exampleModal" id="AddJobPosition">
+    Add New Job Position
+</button>
+
+<div class="modal" id="AddNewJobPositionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Job Position</h5>
+            </div>
+            <div class="modal-body">
+                <form class="JobPositionForm" name="JobPositionForm">
+                    <input type="hidden" class="form-control" id="CareerId">
+                    <div class="form-group">
+                        <label for="JobTitle"> Job Title</label>
+                        <input type="text" class="form-control" id="JobTitle" placeholder="Job Title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Experience">Experience</label>
+                        <input type="text" class="form-control" id="Experience" placeholder="Experience">
+                    </div>
+                    <div class="form-group">
+                        <label for="Location">Location</label>
+                        <input type="text" class="form-control" id="Location" placeholder="Location">
+                    </div>
+                    <div class="form-group">
+                        <label for="NoOfPosition">No of Position</label>
+                        <input id="NoOfPosition" type="number" class="form-control" placeholder="No Of Position" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Responsibilities">Responsibilities</label>
+                        <textarea type="text" class="ckeditor" id="Responsibilities"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="Qualification">Qualification</label>
+                        <input type="text" class="form-control" id="Qualification" placeholder="Qualification">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="ResetJobPositionForm();">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="SaveJobPosition()">Save</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="table-responsive pt-3">
+    <table id="CurrentOpeningsList" class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                @*<th> Id </th>*@
+                <th> Job Title </th>
+                <th> Experience </th>
+                <th> Location </th>
+                <th> No of Position </th>
+                <th>Qualification</th>
+                <th>Order Position</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        GetJobPositionList();
+    })
+    $('#AddJobPosition').click(function () {
+        $("#AddNewJobPositionModal").modal('show');
+    });
+
+    function SaveJobPosition() {
+        var data = {
+            Id: $("#CareerId").val(),
+            JobTitle: $("#JobTitle").val(),
+            Experience: $("#Experience").val(),
+            Location: $("#Location").val(),
+            NoOfPosition: $("#NoOfPosition").val(),
+            Responsibilities: CKEDITOR.instances['Responsibilities'].getData(),
+            Qualification: $("#Qualification").val(),
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/api/Admin/SaveJobPosition",
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data),
+            success: function (result) {
+                alert("success");
+                GetJobPositionList();
+                ResetJobPositionForm();
+
+            },
+            error: function (result) {
+                alert("failure");
+            },
+        })
+
+    }
+
+    function GetJobPositionList() {
+        $.ajax({
+            type: "Get",
+             url: "@Url.Action("GetJobPositionList", "BlogVacancy")",
+            success: function (result) {
+                $('#CurrentOpeningsList').dataTable({
+                    destroy: true,
+                    data: result,
+                    order: [[5, 'asc']],
+                    "columns": [
+                        //{
+                        //    "data": "Id"
+                        //},
+                        { "data": "JobTitle" },
+                        { "data": "Experience"},
+                        { "data": "Location" },
+                        { "data": "NoOfPosition" },
+                        { "data": "Qualification" },
+                        { "data": "OrderPosition" },
+                        {
+                            "data": "Id",
+                            "render": function (data, type, row) {
+                                return '<a class="btn btn-info btn-sm" style="color: white;" onclick="EditCareerOption(' + data + ')"><i class="mdi mdi-pencil"></i></a>';
+                            }
+                        },
+                        {
+                            "data": "Id",
+                            "render": function (data, type, row) {
+                                return '<a class="btn btn-danger btn-sm" style="color: white;" onclick="DeleteCareerOption(' + data + ')"><i class="mdi mdi-delete"></i></a>';
+                            }
+                        }
+                    ]
+                });
+
+
+            },
+            error: function (result) {
+                alert("failure");
+            }
+        });
+    }
+
+
+    function DeleteCareerOption(id) {
+        if (confirm('Are you sure want to delete Career Option?')) {
+            $.ajax({
+                url: '@Url.Action("DeleteCareer", "BlogVacancy")',
+                contentType: 'application/json',
+                data: { Id: id },
+                type: "GET",
+                success: function (result) {
+                    GetJobPositionList();
+                    alert('Delete Successully!');
+
+                },
+                error: function () {
+                    alert('failure');
+                }
+            });
+        }
+        else {
+            return;
+        }
+    }
+
+    function EditCareerOption(id) {
+        $("#AddNewJobPositionModal").modal('show');
+        $.ajax({
+            url: '@Url.Action("GetCareerById", "BlogVacancy")',
+            contentType: 'application/json',
+            data: { Id: id },
+            type: "GET",
+            success: function (result) {
+                $("#CareerId").val(result.Id);
+                $("#JobTitle").val(result.JobTitle);
+                $("#Experience").val(result.Experience);
+                $("#Location").val(result.Location);
+                $("#NoOfPosition").val(result.NoOfPosition);
+                CKEDITOR.instances['Responsibilities'].setData(result.Responsibilities);
+                $("#Qualification").val(result.Qualification);
+            },
+            error: function () {
+                alert('failure');
+            }
+        });
+    }
+
+    function ResetJobPositionForm() {
+        $("#AddNewJobPositionModal").modal('hide');
+        $("#CareerId").val(0);
+        $("#JobTitle").val('');
+        $("#Experience").val('');
+        $("#Location").val('');
+        $("#NoOfPosition").val('');
+        /* $("#Responsibilities").val('');*/
+        CKEDITOR.instances['Responsibilities'].setData('');
+        $("#Qualification").val('');
+    }
+
+    $("#CurrentOpeningsList").sortable({
+        items: 'tr',
+        cursor: 'pointer',
+        axis: 'y',
+        dropOnEmpty: false,
+        start: function (e, ui) {
+            ui.item.addClass("selected");
+        },
+        stop: function (e, ui) {
+            ui.item.removeClass("selected");
+            UpdateOrderPosition();
+        }
+    });
+
+    function UpdateOrderPosition() {
+           var selectedData = new Array();
+        var j = 1;
+        $('#CurrentOpeningsList > tbody > tr').each(function () {
+            var Id = $(this).find("td:eq(0)");
+            var order = j;
+            j++;
+            var UpdatedOrder =  {
+                Name: Id[0].innerHTML,
+                Order: order
+            }
+            
+            selectedData.push(UpdatedOrder);
+        })
+        $.ajax({
+            url: '/api/Admin/UpdateOrder',
+            contentType: 'application/json',
+            data: JSON.stringify(selectedData),
+            type: "POST",
+            success: function (result) {
+                GetJobPositionList();
+            },
+            error: function () {
+                alert('failure');
+            }
+        });
+
+        console.log(selectedData);
+    }
+
+
+
+</script>

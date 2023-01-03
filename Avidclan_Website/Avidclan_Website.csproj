@@ -1,0 +1,806 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{17DB5EC4-1758-416E-86D5-0193BBC91606}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Avidclan_Website</RootNamespace>
+    <AssemblyName>Avidclan_Website</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44357</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.3.4.3\lib\net47\MailKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MimeKit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.3.4.3\lib\net47\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGrid, Version=9.28.1.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\SendGrid.9.28.1\lib\net452\SendGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="StarkbankEcdsa, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b2e6337a5d77bfbc, processorArchitecture=MSIL">
+      <HintPath>..\packages\starkbank-ecdsa.1.3.3\lib\net452\StarkbankEcdsa.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.9\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.9\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.1\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AvidclanController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MailController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Blog.cs" />
+    <Compile Include="Models\CandidateDetails.cs" />
+    <Compile Include="Models\Career.cs" />
+    <Compile Include="Models\HeaderMenu.cs" />
+    <Compile Include="Models\ProjectDetail.cs" />
+    <Compile Include="Models\UserDetail.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\all.css" />
+    <Content Include="assets\css\animate.css" />
+    <Content Include="assets\css\bootstrap-select.min.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\color.css" />
+    <Content Include="assets\css\custom-animate.css" />
+    <Content Include="assets\css\flaticon.css" />
+    <Content Include="assets\css\hover.css" />
+    <Content Include="assets\css\intlTelInput.css" />
+    <Content Include="assets\css\jquery-ui.css" />
+    <Content Include="assets\css\jquery.fancybox.min.css" />
+    <Content Include="assets\css\jquery.touchspin.css" />
+    <Content Include="assets\css\mCSB_buttons.html" />
+    <Content Include="assets\css\owl.css" />
+    <Content Include="assets\css\owl.video.play.html" />
+    <Content Include="assets\css\responsive.css" />
+    <Content Include="assets\css\scrollbar.css" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="assets\css\swiper.min.css" />
+    <Content Include="assets\fonts\fa-brands-400.svg" />
+    <Content Include="assets\fonts\fa-regular-400.svg" />
+    <Content Include="assets\fonts\fa-solid-900.svg" />
+    <Content Include="assets\images\5-days.svg" />
+    <Content Include="assets\images\about-us-img.svg" />
+    <Content Include="assets\images\about-us.png" />
+    <Content Include="assets\images\admin-ic.png" />
+    <Content Include="assets\images\adobe_illustrator.svg" />
+    <Content Include="assets\images\adobe_photoshop.svg" />
+    <Content Include="assets\images\adobe_xd.svg" />
+    <Content Include="assets\images\agile-img.svg" />
+    <Content Include="assets\images\android-app-dev.jpg" />
+    <Content Include="assets\images\android-app-tech.jpg" />
+    <Content Include="assets\images\android-img.svg" />
+    <Content Include="assets\images\android.svg" />
+    <Content Include="assets\images\angular-img.svg" />
+    <Content Include="assets\images\angular.svg" />
+    <Content Include="assets\images\angularjs-tech.jpg" />
+    <Content Include="assets\images\api-testing-automation.jpg" />
+    <Content Include="assets\images\aws-img.svg" />
+    <Content Include="assets\images\aws-tech.jpg" />
+    <Content Include="assets\images\aws.svg" />
+    <Content Include="assets\images\azure-cosmos-db-img.svg" />
+    <Content Include="assets\images\azure-cosmos-DB.svg" />
+    <Content Include="assets\images\azure-cosmosdb-tech.jpg" />
+    <Content Include="assets\images\azure-img.svg" />
+    <Content Include="assets\images\backend.jpg" />
+    <Content Include="assets\images\banking.jpg" />
+    <Content Include="assets\images\BI-tech.jpg" />
+    <Content Include="assets\images\blog.jpg" />
+    <Content Include="assets\images\blog1.jpg" />
+    <Content Include="assets\images\blog2.jpg" />
+    <Content Include="assets\images\blogger.svg" />
+    <Content Include="assets\images\blog\author-2.jpg" />
+    <Content Include="assets\images\blog\blog-1.jpg" />
+    <Content Include="assets\images\blog\blog-2.jpg" />
+    <Content Include="assets\images\blog\blog-3.jpg" />
+    <Content Include="assets\images\blog\blog-4.jpg" />
+    <Content Include="assets\images\blog\blog-5.jpg" />
+    <Content Include="assets\images\blog\blog-6.jpg" />
+    <Content Include="assets\images\blog\blog-s-1.jpg" />
+    <Content Include="assets\images\blog\p-post-1.jpg" />
+    <Content Include="assets\images\blog\r-post-1.jpg" />
+    <Content Include="assets\images\blog\r-post-2.jpg" />
+    <Content Include="assets\images\blog\r-post-3.jpg" />
+    <Content Include="assets\images\bonus.svg" />
+    <Content Include="assets\images\bugzilla.svg" />
+    <Content Include="assets\images\build.svg" />
+    <Content Include="assets\images\cakephp.svg" />
+    <Content Include="assets\images\career-img.svg" />
+    <Content Include="assets\images\codeigniter.svg" />
+    <Content Include="assets\images\company.svg" />
+    <Content Include="assets\images\consumer.svg" />
+    <Content Include="assets\images\contact-us-img.svg" />
+    <Content Include="assets\images\content-management-system.jpg" />
+    <Content Include="assets\images\content-marketing.jpg" />
+    <Content Include="assets\images\cross-platform.png" />
+    <Content Include="assets\images\cucumber.svg" />
+    <Content Include="assets\images\custom-web-design.jpg" />
+    <Content Include="assets\images\custom-web-dev.jpg" />
+    <Content Include="assets\images\deliver.svg" />
+    <Content Include="assets\images\design-analysis.jpg" />
+    <Content Include="assets\images\design.svg" />
+    <Content Include="assets\images\dev.png" />
+    <Content Include="assets\images\dev.svg" />
+    <Content Include="assets\images\discover.svg" />
+    <Content Include="assets\images\door-policy.svg" />
+    <Content Include="assets\images\dot-net-img.svg" />
+    <Content Include="assets\images\dot-net-tech.jpg" />
+    <Content Include="assets\images\dot_net.svg" />
+    <Content Include="assets\images\drupal.svg" />
+    <Content Include="assets\images\dynamodb.svg" />
+    <Content Include="assets\images\ecommerce.jpg" />
+    <Content Include="assets\images\ecommerce.svg" />
+    <Content Include="assets\images\education.svg" />
+    <Content Include="assets\images\email-marketing.jpg" />
+    <Content Include="assets\images\employees.svg" />
+    <Content Include="assets\images\enterprise-solutions.jpg" />
+    <Content Include="assets\images\favicon.png" />
+    <Content Include="assets\images\figma_logo.svg" />
+    <Content Include="assets\images\finance.svg" />
+    <Content Include="assets\images\firebase-img.svg" />
+    <Content Include="assets\images\firebase-tech.jpg" />
+    <Content Include="assets\images\firebase.svg" />
+    <Content Include="assets\images\flexible-time.svg" />
+    <Content Include="assets\images\flutter-app-tech.jpg" />
+    <Content Include="assets\images\flutter-img.svg" />
+    <Content Include="assets\images\flutter.svg" />
+    <Content Include="assets\images\gallery\bladeportM-portfolio.jpg" />
+    <Content Include="assets\images\gallery\boltwellM-portfolio.jpg" />
+    <Content Include="assets\images\gallery\cavinessandcates-portfolio.jpg" />
+    <Content Include="assets\images\gallery\e-shala-portfolio.jpg" />
+    <Content Include="assets\images\gallery\eargoprise-portfolio.jpg" />
+    <Content Include="assets\images\gallery\ecafe360-portfolio.jpg" />
+    <Content Include="assets\images\gallery\elite-portfolio.jpg" />
+    <Content Include="assets\images\gallery\expo-mobile-portfolio.jpg" />
+    <Content Include="assets\images\gallery\grizzlybolt-portfolio.jpg" />
+    <Content Include="assets\images\gallery\hotel-lemonade-portfolio.jpg" />
+    <Content Include="assets\images\gallery\improve-portfolio.jpg" />
+    <Content Include="assets\images\gallery\klixters-portfolio.jpg" />
+    <Content Include="assets\images\gallery\klixtersM-portfolio.jpg" />
+    <Content Include="assets\images\gallery\medicinedeck-portfolio.jpg" />
+    <Content Include="assets\images\gallery\ondeck-portfolio.jpg" />
+    <Content Include="assets\images\gallery\prizai-portfolio.jpg" />
+    <Content Include="assets\images\gallery\progress-retail-portfolio.jpg" />
+    <Content Include="assets\images\gallery\reebonz-portfolio.jpg" />
+    <Content Include="assets\images\gallery\salon-portfolio.jpg" />
+    <Content Include="assets\images\gallery\SRG-portfolio.jpg" />
+    <Content Include="assets\images\google-cloud-img.svg" />
+    <Content Include="assets\images\google-cloud-tech.jpg" />
+    <Content Include="assets\images\google_cloud.svg" />
+    <Content Include="assets\images\healthcare.jpg" />
+    <Content Include="assets\images\healthcare.svg" />
+    <Content Include="assets\images\hire-developer.svg" />
+    <Content Include="assets\images\html5-img.svg" />
+    <Content Include="assets\images\html5-tech.jpg" />
+    <Content Include="assets\images\html5.svg" />
+    <Content Include="assets\images\hybrid-app-dev.jpg" />
+    <Content Include="assets\images\icn-linkedin.png" />
+    <Content Include="assets\images\icn-web.png" />
+    <Content Include="assets\images\icons\adobe-xd.svg" />
+    <Content Include="assets\images\icons\AI.svg" />
+    <Content Include="assets\images\icons\android.svg" />
+    <Content Include="assets\images\icons\angular.svg" />
+    <Content Include="assets\images\icons\arrow_right.svg" />
+    <Content Include="assets\images\icons\authentication-libraries-ic.svg" />
+    <Content Include="assets\images\icons\availability-ic.svg" />
+    <Content Include="assets\images\icons\aws.svg" />
+    <Content Include="assets\images\icons\azure-cosmos-DB.svg" />
+    <Content Include="assets\images\icons\azure.svg" />
+    <Content Include="assets\images\icons\Bugzilla.svg" />
+    <Content Include="assets\images\icons\build-ic.svg" />
+    <Content Include="assets\images\icons\business-overview-ic.svg" />
+    <Content Include="assets\images\icons\check-square.svg" />
+    <Content Include="assets\images\icons\clean-markup-ic.svg" />
+    <Content Include="assets\images\icons\cloud-ic.svg" />
+    <Content Include="assets\images\icons\cloud-messaging-ic.svg" />
+    <Content Include="assets\images\icons\code-share-ic.svg" />
+    <Content Include="assets\images\icons\code-splitting-ic.svg" />
+    <Content Include="assets\images\icons\community-support-ic.svg" />
+    <Content Include="assets\images\icons\compatible-ic.svg" />
+    <Content Include="assets\images\icons\component-based-ic.svg" />
+    <Content Include="assets\images\icons\consistent-ic.svg" />
+    <Content Include="assets\images\icons\content-management-ic.svg" />
+    <Content Include="assets\images\icons\core-values.svg" />
+    <Content Include="assets\images\icons\cost-effective-ic.svg" />
+    <Content Include="assets\images\icons\cross-platform-ic.svg" />
+    <Content Include="assets\images\icons\cucumber.svg" />
+    <Content Include="assets\images\icons\customizable-ic.svg" />
+    <Content Include="assets\images\icons\data-handling-icsvg.svg" />
+    <Content Include="assets\images\icons\database-ic.svg" />
+    <Content Include="assets\images\icons\declarative-ic.svg" />
+    <Content Include="assets\images\icons\document-management-ic.svg" />
+    <Content Include="assets\images\icons\documentation-ic.svg" />
+    <Content Include="assets\images\icons\dotnet.svg" />
+    <Content Include="assets\images\icons\easy-refactoring-ic.svg" />
+    <Content Include="assets\images\icons\easy-to-use-ic.svg" />
+    <Content Include="assets\images\icons\fast-timer-ic.svg" />
+    <Content Include="assets\images\icons\faster-deployment-ic.svg" />
+    <Content Include="assets\images\icons\feature-rich-ic.svg" />
+    <Content Include="assets\images\icons\figma.svg" />
+    <Content Include="assets\images\icons\firebase.svg" />
+    <Content Include="assets\images\icons\flexible-ic.svg" />
+    <Content Include="assets\images\icons\flutter.svg" />
+    <Content Include="assets\images\icons\google-cloud.svg" />
+    <Content Include="assets\images\icons\high-performance-ic.svg" />
+    <Content Include="assets\images\icons\high-quality-ic.svg" />
+    <Content Include="assets\images\icons\high-speed-ic.svg" />
+    <Content Include="assets\images\icons\html5.svg" />
+    <Content Include="assets\images\icons\icon-bar.png" />
+    <Content Include="assets\images\icons\install-ic.svg" />
+    <Content Include="assets\images\icons\interactive-ic.svg" />
+    <Content Include="assets\images\icons\invision.svg" />
+    <Content Include="assets\images\icons\ionic.svg" />
+    <Content Include="assets\images\icons\ios.svg" />
+    <Content Include="assets\images\icons\java.svg" />
+    <Content Include="assets\images\icons\jenkins-.svg" />
+    <Content Include="assets\images\icons\jenkins.svg" />
+    <Content Include="assets\images\icons\jira.svg" />
+    <Content Include="assets\images\icons\language-ic.svg" />
+    <Content Include="assets\images\icons\list-ic.svg" />
+    <Content Include="assets\images\icons\load-balancing-ic.svg" />
+    <Content Include="assets\images\icons\low-cost-ic.svg" />
+    <Content Include="assets\images\icons\maintenance-ic.svg" />
+    <Content Include="assets\images\icons\mantis.png" />
+    <Content Include="assets\images\icons\mature-framework-ic.svg" />
+    <Content Include="assets\images\icons\maven.svg" />
+    <Content Include="assets\images\icons\memory-ic.svg" />
+    <Content Include="assets\images\icons\mongodb.svg" />
+    <Content Include="assets\images\icons\monitor-ic.svg" />
+    <Content Include="assets\images\icons\multi-user-ic.svg" />
+    <Content Include="assets\images\icons\mysql.svg" />
+    <Content Include="assets\images\icons\native-ux-ic.svg" />
+    <Content Include="assets\images\icons\nodejs.svg" />
+    <Content Include="assets\images\icons\oops-ic.svg" />
+    <Content Include="assets\images\icons\open-source-ic.svg" />
+    <Content Include="assets\images\icons\optional-static-typing-ic.svg" />
+    <Content Include="assets\images\icons\oracle.svg" />
+    <Content Include="assets\images\icons\our-mission-ic.svg" />
+    <Content Include="assets\images\icons\performance-ic.svg" />
+    <Content Include="assets\images\icons\phonegap.svg" />
+    <Content Include="assets\images\icons\photoshop.svg" />
+    <Content Include="assets\images\icons\php.svg" />
+    <Content Include="assets\images\icons\postgresql.svg" />
+    <Content Include="assets\images\icons\predictable-syntax-ic.svg" />
+    <Content Include="assets\images\icons\preloader-2.svg" />
+    <Content Include="assets\images\icons\preloader-3.svg" />
+    <Content Include="assets\images\icons\preloader-4.svg" />
+    <Content Include="assets\images\icons\preloader-5.svg" />
+    <Content Include="assets\images\icons\preloader.svg" />
+    <Content Include="assets\images\icons\privacy-ic.svg" />
+    <Content Include="assets\images\icons\productive-ic.svg" />
+    <Content Include="assets\images\icons\python.svg" />
+    <Content Include="assets\images\icons\react-native.svg" />
+    <Content Include="assets\images\icons\redis.svg" />
+    <Content Include="assets\images\icons\redmine.png" />
+    <Content Include="assets\images\icons\redmine.svg" />
+    <Content Include="assets\images\icons\reliable-ic.svg" />
+    <Content Include="assets\images\icons\reload-ic.svg" />
+    <Content Include="assets\images\icons\rendering-ic.svg" />
+    <Content Include="assets\images\icons\reporting-insights-ic.svg" />
+    <Content Include="assets\images\icons\revenue-ic.svg" />
+    <Content Include="assets\images\icons\sales-max-ic.svg" />
+    <Content Include="assets\images\icons\scalable-ic.svg" />
+    <Content Include="assets\images\icons\secure-hosting-ic.svg" />
+    <Content Include="assets\images\icons\secure-ic.svg" />
+    <Content Include="assets\images\icons\secure-os-ic.svg" />
+    <Content Include="assets\images\icons\selenium.svg" />
+    <Content Include="assets\images\icons\server-ic.svg" />
+    <Content Include="assets\images\icons\sharepoint.svg" />
+    <Content Include="assets\images\icons\single-tech-ic.svg" />
+    <Content Include="assets\images\icons\sketch.svg" />
+    <Content Include="assets\images\icons\sql-server.svg" />
+    <Content Include="assets\images\icons\swift.svg" />
+    <Content Include="assets\images\icons\two-way-binding-ic.svg" />
+    <Content Include="assets\images\icons\typescript.svg" />
+    <Content Include="assets\images\icons\universal-ui-ic.svg" />
+    <Content Include="assets\images\icons\update-ic.svg" />
+    <Content Include="assets\images\icons\usable-ic.svg" />
+    <Content Include="assets\images\icons\user-experience-ic.svg" />
+    <Content Include="assets\images\icons\vision-ic.svg" />
+    <Content Include="assets\images\icons\vuejs.svg" />
+    <Content Include="assets\images\icons\web-development-ic.svg" />
+    <Content Include="assets\images\icons\xamarin.svg" />
+    <Content Include="assets\images\industrial-iot.jpg" />
+    <Content Include="assets\images\infrastructure.svg" />
+    <Content Include="assets\images\Internet-marketing.svg" />
+    <Content Include="assets\images\interview.svg" />
+    <Content Include="assets\images\invision.svg" />
+    <Content Include="assets\images\ionic-app-tech.jpg" />
+    <Content Include="assets\images\ionic-img.svg" />
+    <Content Include="assets\images\ionic.svg" />
+    <Content Include="assets\images\ios-app-dev.jpg" />
+    <Content Include="assets\images\ios-app-tech.jpg" />
+    <Content Include="assets\images\ios-img.svg" />
+    <Content Include="assets\images\iOS.svg" />
+    <Content Include="assets\images\IoT-.svg" />
+    <Content Include="assets\images\iot-for-automative.jpg" />
+    <Content Include="assets\images\iot-for-retail.jpg" />
+    <Content Include="assets\images\iot-service.jpg" />
+    <Content Include="assets\images\IoT.svg" />
+    <Content Include="assets\images\java-img.svg" />
+    <Content Include="assets\images\java-tech.jpg" />
+    <Content Include="assets\images\java.svg" />
+    <Content Include="assets\images\jcgmt-5-clock_face.png" />
+    <Content Include="assets\images\jcgmt-5-clock_hour.png" />
+    <Content Include="assets\images\jcgmt-5-clock_hour.svg" />
+    <Content Include="assets\images\jcgmt-5-clock_min.png" />
+    <Content Include="assets\images\jcgmt-5-clock_min.svg" />
+    <Content Include="assets\images\jcgmt-5-clock_sec.png" />
+    <Content Include="assets\images\jcgmt-5-clock_sec.svg" />
+    <Content Include="assets\images\jenkins-img.svg" />
+    <Content Include="assets\images\jenkins-tech.jpg" />
+    <Content Include="assets\images\jenkins.svg" />
+    <Content Include="assets\images\jira.svg" />
+    <Content Include="assets\images\joomla.svg" />
+    <Content Include="assets\images\l-and-d.svg" />
+    <Content Include="assets\images\laravel.svg" />
+    <Content Include="assets\images\logistics.jpg" />
+    <Content Include="assets\images\logo-light.svg" />
+    <Content Include="assets\images\logo.svg" />
+    <Content Include="assets\images\logo3.png" />
+    <Content Include="assets\images\magento-tech.jpg" />
+    <Content Include="assets\images\magento.svg" />
+    <Content Include="assets\images\mantis.svg" />
+    <Content Include="assets\images\manual-qa-testing.jpg" />
+    <Content Include="assets\images\manufacturing.jpg" />
+    <Content Include="assets\images\maven.svg" />
+    <Content Include="assets\images\media.jpg" />
+    <Content Include="assets\images\medical-insurance.svg" />
+    <Content Include="assets\images\meeting.svg" />
+    <Content Include="assets\images\menu-bg.jpg" />
+    <Content Include="assets\images\menu-left-bg.png" />
+    <Content Include="assets\images\microsoft-ic.svg" />
+    <Content Include="assets\images\microsoftsharepoint.svg" />
+    <Content Include="assets\images\microsoft_azure.svg" />
+    <Content Include="assets\images\mobile-app-testing.jpg" />
+    <Content Include="assets\images\mobile-app.svg" />
+    <Content Include="assets\images\mobile-dev-service.jpg" />
+    <Content Include="assets\images\mobile-ui-design.jpg" />
+    <Content Include="assets\images\mongodb-img.svg" />
+    <Content Include="assets\images\mongodb-tech.jpg" />
+    <Content Include="assets\images\mongodb.svg" />
+    <Content Include="assets\images\ms-azure-tech-.jpg" />
+    <Content Include="assets\images\ms-azure-tech.jpg" />
+    <Content Include="assets\images\ms-crm.svg" />
+    <Content Include="assets\images\ms-d-ax-img.svg" />
+    <Content Include="assets\images\ms-d-crm-img.svg" />
+    <Content Include="assets\images\ms-sql-img.svg" />
+    <Content Include="assets\images\ms-sql.svg" />
+    <Content Include="assets\images\MSD-AX-tech.jpg" />
+    <Content Include="assets\images\MSD-CRM-tech.jpg" />
+    <Content Include="assets\images\mssql-tech.jpg" />
+    <Content Include="assets\images\my-sql-img.svg" />
+    <Content Include="assets\images\mysql-tech.jpg" />
+    <Content Include="assets\images\mysql-tech.png" />
+    <Content Include="assets\images\mysql.svg" />
+    <Content Include="assets\images\no-contract.svg" />
+    <Content Include="assets\images\node-img.svg" />
+    <Content Include="assets\images\nodejs-tech.jpg" />
+    <Content Include="assets\images\nodejs.svg" />
+    <Content Include="assets\images\offer.svg" />
+    <Content Include="assets\images\office-building.svg" />
+    <Content Include="assets\images\office-culture.svg" />
+    <Content Include="assets\images\oil-and-gas.jpg" />
+    <Content Include="assets\images\oracle-tech.jpg" />
+    <Content Include="assets\images\oracle.svg" />
+    <Content Include="assets\images\our-mission.jpg" />
+    <Content Include="assets\images\our-mission.svg" />
+    <Content Include="assets\images\our-vision.jpg" />
+    <Content Include="assets\images\our-vision.svg" />
+    <Content Include="assets\images\performance-testing.jpg" />
+    <Content Include="assets\images\petroleum.svg" />
+    <Content Include="assets\images\phonegap.svg" />
+    <Content Include="assets\images\php-img.svg" />
+    <Content Include="assets\images\php-tech.jpg" />
+    <Content Include="assets\images\PHP.svg" />
+    <Content Include="assets\images\portfolio.svg" />
+    <Content Include="assets\images\portfolio\CCC.jpg" />
+    <Content Include="assets\images\portfolio\elite.jpg" />
+    <Content Include="assets\images\portfolio\ergoprise.jpg" />
+    <Content Include="assets\images\portfolio\expo-mobile-banner.jpg" />
+    <Content Include="assets\images\portfolio\ondeck.jpg" />
+    <Content Include="assets\images\portfolio\progress-retail.jpg" />
+    <Content Include="assets\images\portfolio\reebonz.png" />
+    <Content Include="assets\images\POS.svg" />
+    <Content Include="assets\images\postgresql-img.svg" />
+    <Content Include="assets\images\postgresql-tech.jpg" />
+    <Content Include="assets\images\postgresql.svg" />
+    <Content Include="assets\images\Power_BI.svg" />
+    <Content Include="assets\images\python-tech.jpg" />
+    <Content Include="assets\images\python.svg" />
+    <Content Include="assets\images\QA-service.jpg" />
+    <Content Include="assets\images\QA-services.svg" />
+    <Content Include="assets\images\react-app-tech.jpg" />
+    <Content Include="assets\images\react-native-img.svg" />
+    <Content Include="assets\images\react-native.svg" />
+    <Content Include="assets\images\reactjs-img.svg" />
+    <Content Include="assets\images\reactjs-tech.jpg" />
+    <Content Include="assets\images\redis-img.svg" />
+    <Content Include="assets\images\redis-tech.jpg" />
+    <Content Include="assets\images\redis.svg" />
+    <Content Include="assets\images\redmine.svg" />
+    <Content Include="assets\images\remote-working.svg" />
+    <Content Include="assets\images\retail.jpg" />
+    <Content Include="assets\images\rewards.svg" />
+    <Content Include="assets\images\selenium-img.svg" />
+    <Content Include="assets\images\selenium-tech.jpg" />
+    <Content Include="assets\images\selenium.svg" />
+    <Content Include="assets\images\seo.jpg" />
+    <Content Include="assets\images\services-img.svg" />
+    <Content Include="assets\images\sharepoint-img.svg" />
+    <Content Include="assets\images\sharepoint-tech.jpg" />
+    <Content Include="assets\images\shopify-tech.jpg" />
+    <Content Include="assets\images\shopify.svg" />
+    <Content Include="assets\images\sitecore-tech.jpg" />
+    <Content Include="assets\images\sketch.svg" />
+    <Content Include="assets\images\smart-healthcare.jpg" />
+    <Content Include="assets\images\smart-home.jpg" />
+    <Content Include="assets\images\social-media-marketing.jpg" />
+    <Content Include="assets\images\swift.svg" />
+    <Content Include="assets\images\task-list.svg" />
+    <Content Include="assets\images\tech-backend.jpg" />
+    <Content Include="assets\images\tech-databse.jpg" />
+    <Content Include="assets\images\tech-devops.jpg" />
+    <Content Include="assets\images\tech-frontend.jpg" />
+    <Content Include="assets\images\tech-microsoft.jpg" />
+    <Content Include="assets\images\tech-mobile.jpg" />
+    <Content Include="assets\images\technologies-img.svg" />
+    <Content Include="assets\images\telecommunications.jpg" />
+    <Content Include="assets\images\testimonial_bg.png" />
+    <Content Include="assets\images\typescript-img.svg" />
+    <Content Include="assets\images\typescript-tech.jpg" />
+    <Content Include="assets\images\typescript.svg" />
+    <Content Include="assets\images\UI-design.svg" />
+    <Content Include="assets\images\ui-ux-design.jpg" />
+    <Content Include="assets\images\uiux-design.jpg" />
+    <Content Include="assets\images\UIUX-design.png" />
+    <Content Include="assets\images\umbraco-tech.jpg" />
+    <Content Include="assets\images\user\1.jpg" />
+    <Content Include="assets\images\user\2.jpg" />
+    <Content Include="assets\images\user\3.jpg" />
+    <Content Include="assets\images\user\4.jpg" />
+    <Content Include="assets\images\user\5.jpg" />
+    <Content Include="assets\images\vue-img.svg" />
+    <Content Include="assets\images\vuejs-tech.jpg" />
+    <Content Include="assets\images\vuejs.svg" />
+    <Content Include="assets\images\web-dev-service.jpg" />
+    <Content Include="assets\images\web-dev.svg" />
+    <Content Include="assets\images\web-testing-automation.jpg" />
+    <Content Include="assets\images\wireframe.jpg" />
+    <Content Include="assets\images\wordpress-tech.jpg" />
+    <Content Include="assets\images\wordpress.svg" />
+    <Content Include="assets\images\wpf-tech.jpg" />
+    <Content Include="assets\images\wpf.svg" />
+    <Content Include="assets\images\xamarin-app-tech.jpg" />
+    <Content Include="assets\images\xamarin-img.svg" />
+    <Content Include="assets\images\xamarin.svg" />
+    <Content Include="assets\images\zend.svg" />
+    <Content Include="assets\js\additional-methods.min.js" />
+    <Content Include="assets\js\appear.js" />
+    <Content Include="assets\js\bootstrap-select.min.js" />
+    <Content Include="assets\js\bootstrap.min.js" />
+    <Content Include="assets\js\CareerModalPopup.js" />
+    <Content Include="assets\js\contact.js" />
+    <Content Include="assets\js\iconify.min.js" />
+    <Content Include="assets\js\intlTelInput.js" />
+    <Content Include="assets\js\isotope.js" />
+    <Content Include="assets\js\jClocksGMT.js" />
+    <Content Include="assets\js\jquery-ui.js" />
+    <Content Include="assets\js\jquery.bootstrap-touchspin.js" />
+    <Content Include="assets\js\jquery.fancybox.js" />
+    <Content Include="assets\js\jquery.js" />
+    <Content Include="assets\js\jquery.rotate.js" />
+    <Content Include="assets\js\jquery.validate.min.js" />
+    <Content Include="assets\js\js.cookie.min.js" />
+    <Content Include="assets\js\lazyload.js" />
+    <Content Include="assets\js\owl.js" />
+    <Content Include="assets\js\popper.min-.js" />
+    <Content Include="assets\js\popper.min.js" />
+    <Content Include="assets\js\script.js" />
+    <Content Include="assets\js\scrollbar.js" />
+    <Content Include="assets\js\swiper.min.js" />
+    <Content Include="assets\js\TweenMax.min.js" />
+    <Content Include="assets\js\utils.js" />
+    <Content Include="assets\js\wow.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="assets\fonts\fa-brands-400.eot" />
+    <Content Include="assets\fonts\fa-brands-400.ttf" />
+    <Content Include="assets\fonts\fa-brands-400.woff" />
+    <Content Include="assets\fonts\fa-brands-400.woff2" />
+    <Content Include="assets\fonts\fa-regular-400.eot" />
+    <Content Include="assets\fonts\fa-regular-400.ttf" />
+    <Content Include="assets\fonts\fa-regular-400.woff" />
+    <Content Include="assets\fonts\fa-regular-400.woff2" />
+    <Content Include="assets\fonts\fa-solid-900.eot" />
+    <Content Include="assets\fonts\fa-solid-900.ttf" />
+    <Content Include="assets\fonts\fa-solid-900.woff" />
+    <Content Include="assets\fonts\fa-solid-900.woff2" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Avidclan\Index.cshtml" />
+    <Content Include="Views\Avidclan\AboutUs.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Avidclan\Services.cshtml" />
+    <Content Include="Views\Avidclan\Technologies.cshtml" />
+    <Content Include="Views\Avidclan\Portfolio.cshtml" />
+    <Content Include="Views\Avidclan\Career.cshtml" />
+    <Content Include="Views\Avidclan\ContactUs.cshtml" />
+    <Content Include="Views\Avidclan\WebDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\MobileApplication.cshtml" />
+    <Content Include="Views\Avidclan\Design.cshtml" />
+    <Content Include="Views\Avidclan\InternetMarketing.cshtml" />
+    <Content Include="Views\Avidclan\QualityAssurance.cshtml" />
+    <Content Include="Views\Avidclan\InternetofThings.cshtml" />
+    <Content Include="Views\Shared\_ContactUs.cshtml" />
+    <Content Include="Views\Avidclan\AngularDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\ReactJsDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\VueJsDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\TypeScriptDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\Html5Development.cshtml" />
+    <Content Include="Views\Avidclan\DotNetDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\JavaDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\PhpDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\NodeJsDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\IosAppDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\AndroidAppDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\ReactNativeDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\FlutterAppDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\IonicAppDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\XamarinAppDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\AwsDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\GoogleCloudServices.cshtml" />
+    <Content Include="Views\Avidclan\MicrosoftAzureDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\JenkinsManagementServices.cshtml" />
+    <Content Include="Views\Avidclan\SeleniumAutomationTestingService.cshtml" />
+    <Content Include="Views\Avidclan\MicrosoftSqlServerManage.cshtml" />
+    <Content Include="Views\Avidclan\MySqlDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\PostgreSqlDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\FirebaseDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\MongodbDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\RedisDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\MicrosoftAzureCosmos.cshtml" />
+    <Content Include="Views\Avidclan\MicrosoftDynamicsAXDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\MicrosoftDynamicsCRMDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\SharePointDevelopment.cshtml" />
+    <Content Include="Views\Shared\_ClientFeedback.cshtml" />
+    <Content Include="Views\Avidclan\LifeAtAvidclan.cshtml" />
+    <Content Include="Views\Avidclan\ThankYou.cshtml" />
+    <Content Include="Views\Avidclan\Blog.cshtml" />
+    <Content Include="Views\Avidclan\BlogDetails.cshtml" />
+    <Content Include="Views\Home\Example.cshtml" />
+    <Content Include="Views\Shared\_JobDescription.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="BlogImages\Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>62418</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44357/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

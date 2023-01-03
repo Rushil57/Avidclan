@@ -1,0 +1,93 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminTemplate.cshtml";
+}
+
+<div class="container">
+    <form id="signupForm">
+        <input type="hidden" id="hdnId" />
+        <div class="form-group">
+            <label for="txtFromMail">From Mail</label>
+            <input type="text" class="form-control" required name="txtFromMail" id="txtFromMail" placeholder="From Mail">
+        </div>
+        <div class="form-group">
+            <label for="txtToMail">To Mail</label>
+            <input type="text" class="form-control" required name="txtToMail" id="txtToMail" placeholder="To Mail">
+        </div>
+        <div class="form-group">
+            <label for="txtPassword">From Password</label>
+            <input type="text" class="form-control" required id="txtPassword" placeholder="From Password">
+        </div>
+        <div class="form-group">
+            <label for="txtHost">Host</label>
+            <input type="text" class="form-control" required id="txtHost" placeholder="Host">
+        </div>
+        <div class="form-group">
+            <label for="txtPort">Port</label>
+            <input type="text" class="form-control" required id="txtPort" placeholder="Port">
+        </div>
+        <div class="form-group">
+            <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        ReadConfiguration();
+    });
+
+    function ReadConfiguration() {
+         $.ajax({
+              type: "GET",
+              url: '@Url.Action("ReadConfiguration", "EMailConfiguration")',
+              contentType: 'application/json',
+              success: function (result) {
+                  $("#txtFromMail").val(result.FromMail);
+                  $("#txtToMail").val(result.ToMail);
+                  $("#txtPassword").val(result.Password);
+                  $("#txtHost").val(result.Host);
+                  $("#txtPort").val(result.Port);
+                  $("#hdnId").val(result.Id);
+              },
+              error: function () {
+                    alert('failure');
+                }
+         });
+    }
+
+    $("#signupForm").submit(function (e) {
+        e.preventDefault();
+        var fromMail = $("#txtFromMail").val();
+        var toMail = $("#txtToMail").val();
+        var password = $("#txtPassword").val();
+        var host = $("#txtHost").val();
+        var port = $("#txtPort").val();
+        var id = $("#hdnId").val();
+
+        var email = {
+            FromMail:fromMail,
+            ToMail:toMail,
+            Password:password,
+            Host:host,
+            Port: port,
+            Id: id
+        }
+
+        $.ajax({
+              type: "POST",
+              url: '@Url.Action("SaveConfiguration", "EMailConfiguration")',
+              contentType: 'application/json',
+              data: JSON.stringify(email),
+            success: function (result) {
+                alert('Configuration Update Successully!');
+                ReadConfiguration();
+              },
+              error: function () {
+                    alert('failure');
+                }
+            });
+        });
+
+</script>
+
+

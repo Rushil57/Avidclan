@@ -1,0 +1,166 @@
+﻿@model IEnumerable<Avidclan_Website.Models.Career>
+
+@{
+    ViewBag.Title = "Career";
+}
+<title>Top Software, Web & Mobile App Development Company in India</title>
+<meta name="title" content="Top Software, Web & Mobile App Development Company in India" />
+
+
+
+
+<section class="inner-page contact-section">
+    <div class="container">
+        <div class="content-box">
+            <div class="row">
+                <div class="col-md-12 col-lg-8">
+                    <div>
+                        <h1>Grab the <span class="primary-color">opportunity</span> to work for the best in the industry!</h1>
+                        <div class="text">
+                            Want to work in the IT industry and looking for a job? You came to the right place. Show us what you
+                            got and the job is yours!
+                        </div>
+                    </div>
+                </div>
+                <div class="image col-md-12 col-lg-4">
+                    <img src="~/assets/images/career-img.svg" alt="" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="career-section" id="career-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="avidclan_section_title text-center mb-5">
+                    <h5 class="avidclan_sub_title primary-color">OPENINGS</h5>
+                    <div class="sec-title mb-0">
+                        <h2>Current Openings</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="career-block">
+                        <div class="job-block">
+                            <h5 class="job-title">@item.JobTitle</h5>
+                            <span class="position-count" data-bs-toggle="tooltip" title="Position Available">@item.NoOfPosition</span>
+                        </div>
+                        <div class="desc">
+                            <div class="exp me-4">
+                                <span class="lbl"><span class="iconify me-1 text-primary" data-icon="ic:twotone-work-outline"></span>Exp:</span>
+                                @item.Experience
+                            </div>
+                            <div class="loc">
+                                <span class="lbl"><span class="iconify me-1 text-primary" data-icon="ep:location"></span>Location:</span>
+                                @item.Location
+                            </div>
+                        </div>
+                        <div class="devider"></div>
+                        <div class="footer">
+                            <div class="btn-box me-3">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#ModalApplyJob" class="theme-btn btn-style-one"><span class="btn-title">Apply Now</span></a>
+                            </div>
+                            <div class="btn-box">
+                                <button data-bs-toggle="modal"
+                                        data-bs-target="#ModalJobDescDotNet"
+                                        class="theme-btn btn-style-one jobdes-link" id="OpenModalPopup" onclick="OpenRolesModal(@item.Id)">
+                                    <span class="btn-title">Job Description</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</section>
+
+<!--  Process Section -->
+<section class="process-section hiring-process testimonial-section-two">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="avidclan_section_title text-center mb-50">
+                    <h5 class="avidclan_sub_title primary-color">WORKING PROCESS</h5>
+                    <div class="sec-title"><h2>Our Tech Hiring Process</h2></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-2 process-block-one">
+                <div class="inner-box">
+                    <div class="icon"><img src="~/assets/images/meeting.svg" alt="" /></div>
+                    <h4>
+                        Initial<br />
+                        Interaction
+                    </h4>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-2 process-block-one">
+                <div class="inner-box">
+                    <div class="icon"><img src="~/assets/images/task-list.svg" alt="" /></div>
+                    <h4>
+                        Technical<br />
+                        Interview
+                    </h4>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-2 process-block-one">
+                <div class="inner-box">
+                    <div class="icon"><img src="~/assets/images/blogger.svg" alt="" /></div>
+                    <h4>
+                        Real-time<br />
+                        Assignment
+                    </h4>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-2 process-block-one">
+                <div class="inner-box">
+                    <div class="icon"><img src="~/assets/images/interview.svg" alt="" /></div>
+                    <h4>
+                        Final HR<br />
+                        Discussion
+                    </h4>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-2 process-block-one">
+                <div class="inner-box">
+                    <div class="icon"><img src="~/assets/images/offer.svg" alt="" /></div>
+                    <h4>
+                        Offer<br />
+                        Rollout !
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@Html.Partial("_Footer")
+
+<script type="text/javascript">
+    function OpenRolesModal(id) {
+         $.ajax({
+            url: '@Url.Action("GetRolesResponsiblity", "Avidclan")',
+            contentType: 'application/json',
+            data: { Id: id },
+            type: "GET",
+            success: function (result) {
+                $(".sec-title h3").html(result.JobTitle);
+                $('<li />', { html: result.Responsibilities }).appendTo('ul.list');
+                $(".Qualification").html(result.Qualification);
+            },
+            error: function () {
+                alert('failure');
+            }
+        });
+    }
+</script>

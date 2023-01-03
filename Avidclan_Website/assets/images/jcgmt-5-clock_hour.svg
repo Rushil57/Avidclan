@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>ic-clocl-hour</title>
+    <desc>Created with Sketch.</desc>
+    <g id="ic-clocl-hour" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M30,12 C31.1045695,12 32,12.8954305 32,14 L32,23 C32,23.7398375 31.5982846,24.3858493 31.0010775,24.7318119 L31,27 C31,27.0565551 30.9953052,27.1120136 30.986284,27.1660072 C32.1580438,27.5730503 33,28.6882004 33,30 C33,31.6568542 31.6568542,33 30,33 C28.3431458,33 27,31.6568542 27,30 C27,28.6882004 27.8419562,27.5730503 29.0149527,27.1654654 C29.0046948,27.1120136 29,27.0565551 29,27 L28.9999275,24.7323937 C28.4021661,24.3865739 28,23.7402524 28,23 L28,14 C28,12.8954305 28.8954305,12 30,12 Z" id="Combined-Shape" fill="#252B33"></path>
+    </g>
+</svg>

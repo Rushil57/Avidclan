@@ -1,0 +1,346 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_AdminTemplate.cshtml";
+}
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-target="#exampleModal" id="AddBlog">
+    Add New Blog
+</button>
+<label class="BlogStatus">
+    <input type="checkbox" id="switchCheckbox">
+    <span class="BlogStatusSlider round"></span>
+</label>
+
+<!-- Modal -->
+<div class="modal" id="AddNewBlogModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Blog</h5>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" class="form-control" id="BlogId">
+                    <div class="form-group">
+                        <label for="Title">Title</label>
+                        <input type="text" class="form-control" id="Title" placeholder="Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="Description">Description</label>
+                        <input type="text" class="form-control" id="Description" placeholder="Description">
+                    </div>
+                    <div class="form-group">
+                        <label for="BlogType">Blog Type</label>
+                        <input type="text" class="form-control" id="BlogType" placeholder="Blog Type">
+                    </div>
+                    <div class="form-group">
+                        <label for="Image">Image</label>
+                        <input id="Image" type="file" class="form-control" />
+                        <div id="preview"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Date">Posting Date</label>
+                        <input type="text" class="form-control" id="PostingDate" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="PostedBy">Posted By</label>
+                        <input type="text" class="form-control" id="PostedBy" placeholder="Posted By">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="ResetBlogData()">Close</button>
+                <button type="button" class="btn btn-primary" onclick="SaveBlog()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive pt-3">
+    <table id="BlogList" class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th> Title </th>
+                <th> Description </th>
+                <th> Blog Type </th>
+                <th> PostingDate </th>
+                <th> PostBy </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var Postingdate = new Date();
+        var FormatPostingDate = moment(Postingdate).format('MM/DD/YYYY HH:mm:ss');
+        $("#PostingDate").val(FormatPostingDate);
+        GetBlogStatusByName();
+        GetBlogList();
+    })
+
+    $('#AddBlog').click(function () {
+        $("#AddNewBlogModal").modal('show');
+    });
+
+    function SaveBlog() {
+        var Id = $("#BlogId").val();
+        var Title = $("#Title").val();
+        var Description = $("#Description").val();
+        var BlogType = $("#BlogType").val();
+        var PostingDate = $("#PostingDate").val();
+        var Resume = $("#Image").get(0);
+        var files = Resume.files;
+        var PostedBy = $("#PostedBy").val();
+
+        var fileData = new FormData();
+        fileData.append("Id",Id);
+        fileData.append("Image", files[0]);
+        fileData.append('Description', Description);
+        fileData.append('BlogType', BlogType);
+        fileData.append('PostingDate', PostingDate);
+        fileData.append('PostedBy', PostedBy);
+        fileData.append('Title', Title);
+        $.ajax({
+            type: "POST",
+            url: "/api/Admin/SaveBlog",
+            data: fileData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                alert("success");
+                GetBlogList();
+                ResetBlogData();
+                $("#AddNewBlogModal").modal('hide');
+
+            },
+            error: function (result) {
+                alert("failure");
+            }
+        });
+    }
+
+    function GetBlogList() {
+        $.ajax({
+            type: "Get",
+             url: "@Url.Action("GetBlogList", "BlogVacancy")",
+            success: function (result) {
+                $('#BlogList').dataTable({
+                    destroy: true,
+                    data: result,
+                    "columns": [
+                        {
+                            "data": "Title",
+                            "render": function (data, type, row) {
+                                var reviewName = data.length > 35 ? data.substring(0, 35) + "..." : data;
+                                return "<span title='" + data + "'>" + reviewName + "</span>";
+                            }
+                        },
+                        {
+                            "data": "Description",
+                            "render": function (data, type, row) {
+                                var reviewName = data.length > 35 ? data.substring(0, 35) + "..." : data;
+                                return "<span title='" + data + "'>" + reviewName + "</span>";
+                            }
+                        },
+                        {"data": "BlogType"},
+                        {
+                            "data": "PostingDate",
+                            "render": function (data) {
+                                const dateValue = new Date(parseInt(data.substr(6)));
+                                return moment(dateValue).format('DD/MM/YYYY HH:mm');
+                            }
+                        },
+                        { "data": "PostedBy" },
+                        {
+                            "data": "Id",
+                            "render": function (data, type, row) {
+                                return '<a class="btn btn-info btn-sm" style="color: white;" onclick="GetBlogDetailsById(' + data + ')"><i class="mdi mdi-pencil"></i></a>';
+                            }
+                        },
+                        {
+                            "data": "Id",
+                            "render": function (data, type, row) {
+                                return '<a class="btn btn-danger btn-sm" style="color: white;" onclick="DeleteBlog(' + data + ')"><i class="mdi mdi-delete"></i></a>';
+                            }
+                        }
+                    ]
+                });
+
+
+            },
+            error: function (result) {
+                alert("failure");
+            }
+        });
+    }
+
+    function DeleteBlog(id) {
+        if (confirm('Are you sure want to delete Blog?')) {
+            $.ajax({
+                url: '@Url.Action("DeleteBlog", "BlogVacancy")',
+                contentType: 'application/json',
+                data: { Id: id },
+                type: "GET",
+                success: function (result) {
+                    GetBlogList();
+                    alert('Delete Successully!');
+
+                },
+                error: function () {
+                    alert('failure');
+                }
+            });
+        }
+        else {
+            return;
+        }
+    }
+
+    function GetBlogDetailsById(id) {
+        $("#AddNewBlogModal").modal('show');
+        $.ajax({
+            url: '@Url.Action("GetBlogById", "BlogVacancy")',
+            contentType: 'application/json',
+            data: { Id: id },
+            type: "GET",
+            success: function (result) {
+                $("#BlogId").val(result.Id);
+                $("#Title").val(result.Title);
+                $("#Description").val(result.Description);
+                $("#BlogType").val(result.BlogType);
+                loadURLToInputFiled(result.Image);
+                var date = moment(result.PostingDate).format('MM/DD/YYYY HH:mm:ss');
+                $("#PostingDate").val(date);
+                $("#PostedBy").val(result.PostedBy);
+
+            },
+            error: function () {
+                alert('failure');
+            }
+        });
+    }
+
+    function loadURLToInputFiled(url) {
+        getImgURL(url, (imgBlob) => {
+            var Imageurl = url;
+            var arr = Imageurl.split('/');
+            var Imagename = arr[arr.length - 1];
+            let fileName = Imagename;
+            let file = new File([imgBlob], fileName, { type: "image/jpeg", lastModified: new Date().getTime() }, 'utf-8');
+            let container = new DataTransfer();
+            container.items.add(file);
+            document.querySelector('#Image').files = container.files;
+            $("#preview").find("span").first().remove();
+            $('#preview').show();
+            var span = document.createElement('span');
+            span.innerHTML =
+                ['<img class="thumb" src="', url, '"/><span class="remove_img_preview"></span>']
+                    .join('');
+            document.getElementById('preview').insertBefore(span, null);
+
+        })
+    }
+
+    function getImgURL(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            callback(xhr.response);
+        };
+        xhr.open('GET', url);
+        xhr.responseType = 'blob';
+        xhr.send();
+    }
+
+    function ResetBlogData() {
+        $("#AddNewBlogModal").modal('hide');
+        $("#BlogId").val('');
+        $("#Title").val('');
+        $("#Description").val('');
+        $("#BlogType").val('');
+       /* $("#PostingDate").val('');*/
+        $(".thumb").attr('src', '');
+        $('#preview').hide();
+        $("#Image").val('');
+        $("#PostedBy").val('');
+    }
+
+    function handleFileSelect(event) {
+        console.log(event)
+        var input = this;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            console.log(reader)
+            reader.onload = (function (e) {
+                $("#preview").find("span").first().remove();
+                $('#preview').show();
+                var span = document.createElement('span');
+                span.innerHTML =
+                    ['<img class="thumb" src="', e.target.result, '" title="', escape(e.name), '"/><span class="remove_img_preview"></span>']
+                        .join('');
+                document.getElementById('preview').insertBefore(span, null);
+            });
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $('#Image').change(handleFileSelect);
+    $('#preview').on('click', '.remove_img_preview', function () {
+        $(this).parent('span').remove();
+        $(this).val("");
+        $("#Image").val("");
+    });
+    $('.BlogStatus input[type="checkbox"]').on('change', function () {
+        var status = $("#switchCheckbox").is(':checked');
+        var menu = {
+            MenuName: "blog",
+            Status: status
+        }
+        $.ajax({
+            type: "POST",
+                url: '@Url.Action("BlogStatus", "BlogVacancy")',
+             contentType: 'application/json',
+             data: JSON.stringify(menu),
+                success: function (result) {
+                    alert('Status Update Successully!');
+
+                },
+                error: function () {
+                    alert('failure');
+                }
+            });
+    });
+    function GetBlogStatusByName() {
+         $.ajax({
+            url: '@Url.Action("GetBlogStatusByName", "BlogVacancy")',
+            contentType: 'application/json',
+             data: { name: "blog" },
+            type: "GET",
+             success: function (result) {
+                if (result != null) {
+                    if (result.Status) {
+                        $("#switchCheckbox").prop("checked", true);
+                    }
+                }
+
+            },
+            error: function () {
+                alert('failure');
+            }
+        });
+    }
+
+
+</script>

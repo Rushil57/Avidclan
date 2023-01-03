@@ -1,0 +1,59 @@
+/* Default Color File  */
+
+/* Background */
+.btn-style-one,
+.bootstrap-select .dropdown-menu li a.active,
+.main-header .sidemenu-nav-toggler,
+.about-section .text-block:before,
+.case-block-one .overlay:after,
+.nav-outer .mobile-nav-toggler,
+.mobile-menu .menu-backdrop,
+.main-footer .links-widget ul li a:before,
+.main-footer .links-widget ul li a:after,
+.service-block-four .icon-box h4:before,
+.filter-tabs.filter-btns li:before,
+.project-block-five .link-btn a,
+.team-block-four .social-links-wrapper:hover .icon,
+.scroll-to-top,
+.banner-section .owl-theme .owl-nav button:hover:before {
+  background-color: #007bfc;
+}
+
+/* Color */
+
+.about-section .text-block h5,
+.process-block-one h5,
+.case-block-one .overlay .link-btn a,
+.main-menu .navigation > li > ul > li:hover > a,
+.main-menu .navigation > li > ul > li > ul > li:hover > a,
+.footer-bottom .scroll-to-top,
+.footer-bottom .copyright a,
+.project-block .link-btn a,
+.award-section .bottom-text a,
+.filter-tabs.filter-btns li span.count,
+.service-block-five .inner-box:hover .icon,
+.team-block-four .social-links li a:hover,
+.about-section-six .whay-choose-block .icon span,
+.contact-form-section .btn-style-one:hover .btn-title,
+.main-menu .navigation > li:hover > a,
+.main-menu .navigation > li.current > a,
+.navbar-right-info .faq-btn a span,
+.sec-title h4,
+a:hover,
+a,
+.mobile-menu a.active {
+  color: #007bfc;
+}
+
+/* Border Color */
+
+.main-menu .navigation > li > ul > li > ul,
+.main-menu .navigation > li > ul,
+.header-middle .btn-style-one,
+.service-block-four .overlay:after,
+.service-block-four .overlay:before,
+.filter-tabs.filter-btns li span.count,
+.team-block-four .author-title,
+.about-section .logo {
+  border-color: #007bfc;
+}

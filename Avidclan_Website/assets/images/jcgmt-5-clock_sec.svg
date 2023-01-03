@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>ic-clock-second</title>
+    <desc>Created with Sketch.</desc>
+    <g id="ic-clock-second" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M31,6 L31.0010775,28.2583664 C31.5982846,28.6052394 32,29.2529515 32,29.9947362 C32,30.7365209 31.5982846,31.384233 31.0010775,31.731106 L31,38 L29,38 L28.9999275,31.7316894 C28.4021661,31.3849595 28,30.7369369 28,29.9947362 C28,29.2525355 28.4021661,28.6045129 28.9999275,28.257783 L29,6 L31,6 Z" id="Combined-Shape" fill="#F13C31"></path>
+        <ellipse id="Top-Oval" fill="#FFFFFF" transform="translate(30.000000, 29.997368) rotate(180.000000) translate(-30.000000, -29.997368) " cx="30" cy="29.9973681" rx="1" ry="1.00263191"></ellipse>
+    </g>
+</svg>

@@ -1,0 +1,307 @@
+﻿@model Avidclan_Website.Models.BlogViewModel
+
+@{
+    ViewBag.Title = "Blog";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+
+<section class="banner-section-two">
+    <div class="container">
+        <div class="content-box">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 text-center">
+                    <div class="pl-2">
+                        <h1>Our <span class="primary-color">Blog</span></h1>
+                        <div class="text mb-0">
+                            Avidclan is a renowned and leading web and mobile app development company with a vision to fulfill
+                            business requirements using innovative solutions. We assist our clients in a way that they can
+                            provide a superior digital experience for their clients worldwide.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End Banner Section -->
+<!-- Blog Section -->
+<section class="blog-section">
+    <div class="container">
+        <div class="blog-grid-wrap">
+            <div class="row" id="demo">
+            </div>
+        </div>
+
+        <!-- Blog Pagination Start -->
+        <div class="blog-pagination">
+            <ul class="pagination justify-content-center" id="pagination" style="margin-top: 70px;">
+            </ul>
+        </div>
+        <!-- Blog Pagination End -->
+    </div>
+</section>
+
+
+<section class="lets-talk">
+    <div class="container">
+        <div class="inner-block">
+            <div class="row align-items-center">
+                <div class="col-md-12 col-lg-8 col-xl-7">
+                    <div class="sec-title mb-0">
+                        <p class="m-1">Require a solution to your software problems?</p>
+                        <h2>Want to get in touch?</h2>
+                        <div>
+                            <span class="b-txt"><b>Have an idea?</b></span> Do you need some help with it? Avidclan would love
+                            to help you! Kindly click on ‘Contact Us’ to reach us and share your query.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4 col-xl-5 text-end">
+                    <div class="btn-box">
+                        <a href="~/Avidclan/ContactUs" class="theme-btn btn-style-one btn-light">
+                            <span class="btn-title"><span class="iconify me-2" data-icon="ion:call-sharp" data-height="25"></span>Contact Us</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="main-footer sp-two">
+    <div class="container">
+        <div class="widgets-section mt-190">
+            <div class="row clearfix">
+                <div class="column col-lg-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="footer-widget logo-widget">
+                                <div class="widget-content">
+                                    <div class="number">
+                                        <div class="num-icon">
+                                            <i class="fas fa-phone-alt"></i>
+                                        </div>
+                                        <div class="phone">
+                                            <h5 class="title-lbl">Call Us On</h5>
+                                            <a href="tel:+919558450670">+91 95584 50670</a>
+                                            <a href="tel:+917046618869">+91 70466 18869</a>
+                                        </div>
+                                    </div>
+                                    <div class="office-mail">
+                                        <div class="mail-icon">
+                                            <i class="fas fa-envelope"></i>
+                                        </div>
+                                        <div class="email">
+                                            <h5 class="title-lbl">Mail Us @@</h5>
+                                            <a href="mailto:info@avidclan.com">info@avidclan.com</a>
+                                        </div>
+                                    </div>
+                                    <div class="address">
+                                        <div class="address-icon">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="title-lbl">Visit Us On</h5>
+                                            <p>1101, Shivalik Shilp, Iskcon Cross Roads, <br />S.G. Highway, Ahmedabad - 380015</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column col-lg-8">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="footer-widget links-widget">
+                                <h3 class="widget-title">Company</h3>
+                                <div class="widget-content">
+                                    <ul>
+                                        <li><a href="~/Avidclan/AboutUs">About</a></li>
+                                        <li><a href="~/Avidclan/Career">Careers</a></li>
+                                        <li><a href="~/Avidclan/Career#career-section">Current Openings</a></li>
+                                        <li><a href="~/Avidclan/LifeAtAvidclan">Life@Avidclan</a></li>
+                                        <li><a href="#testimonials">Testimonials</a></li>
+                                        <li><a href="~/Avidclan/ContactUs">Contact</a></li>
+                                    </ul>
+                                </div>
+
+                                <h3 class="widget-title mt-4">Follow Us On</h3>
+                                <ul class="social-links clearfix">
+                                    <li>
+                                        <a href="https://www.facebook.com/avidclan/" rel="nofollow" target="_blank">
+                                            <span class="fab fa-facebook-f"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.linkedin.com/company/avidclan-technologies/"
+                                           rel="nofollow"
+                                           target="_blank">
+                                            <span class="fab fa-linkedin-in"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://twitter.com/AvidclanT" rel="nofollow" target="_blank">
+                                            <span class="fab fa-twitter"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.instagram.com/avidclan_technologies/" rel="nofollow" target="_blank">
+                                            <span class="fab fa-instagram"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="footer-widget links-widget sm-mb0">
+                                <h3 class="widget-title">Services</h3>
+                                <div class="widget-content">
+                                    <ul>
+                                        <li><a href="~/Avidclan/WebDevelopment">Web Development</a></li>
+                                        <li><a href="~/Avidclan/MobileApplication">Mobile Apps</a></li>
+                                        <li><a href="~/Avidclan/Design">Design</a></li>
+                                        <li><a href="~/Avidclan/InternetMarketing">Internet Marketing</a></li>
+                                        <li><a href="~/Avidclan/QualityAssurance">QA</a></li>
+                                        <li><a href="~/Avidclan/InternetofThings">IoT</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column col-md-4">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="footer-widget links-widget">
+                                        <h3 class="widget-title">Technologies</h3>
+                                        <div class="widget-content">
+                                            <ul>
+                                                <li><a href="~/Avidclan/AngularDevelopment">Angular</a></li>
+                                                <li><a href="~/Avidclan/ReactJsDevelopment">ReactJs</a></li>
+                                                <li><a href="~/Avidclan/VueJsDevelopment">Vue</a></li>
+                                                <li><a href="~/Avidclan/TypeScriptDevelopment">TypeScript</a></li>
+                                                <li><a href="~/Avidclan/Html5Development">HTML5</a></li>
+                                                <li><a href="~/Avidclan/DotNetDevelopment">.NET</a></li>
+                                                <li><a href="~/Avidclan/JavaDevelopment">Java</a></li>
+                                                <li><a href="~/Avidclan/PhpDevelopment">PHP</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column col-lg-6">
+                                    <h3 class="widget-title d-none d-lg-block">&nbsp;</h3>
+                                    <div class="footer-widget links-widget">
+                                        <div class="widget-content">
+                                            <ul>
+                                                <li><a href="~/Avidclan/NodeJsDevelopment">Node</a></li>
+                                                <li><a href="~/Avidclan/IosAppDevelopment">iOS</a></li>
+                                                <li><a href="~/Avidclan/AndroidAppDevelopment">Android</a></li>
+                                                <li><a href="~/Avidclan/ReactNativeDevelopment">React Native</a></li>
+                                                <li><a href="~/Avidclan/FlutterAppDevelopment">Flutter</a></li>
+                                                <li><a href="~/Avidclan/IonicAppDevelopment">Ionic</a></li>
+                                                <li><a href="~/Avidclan/XamarinAppDevelopment">Xamarin</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="footer-bottom row no-gutters">
+            <div class="col-md-12">
+                <div class="copyright">© 2022 <a href="#">Avidclan Technologies</a>, All Rights Reserved.</div>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="cookies-infobar">
+    We use cookies to ensure that we give you the best experience on our website.
+    <div class="cookies-infobar_wrapper">
+        <a href="#" id="cookies-infobar-close" class="cookies-infobar_btn">Accept</a>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        GetSectionData(1);
+    });
+    function GetSectionData(id) {
+        $.ajax({
+            type: "GET",
+            url: "/Avidclan/GetSectionData?page=" + id,
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            success: function (data) {
+                $("#demo").html("");
+                var sectionblog = "";
+                var paginationData = "";
+                var imageURL = "https://cms.avidclan.com";
+                $.each(data.data.ListBlog, function (k, v) {
+                    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+                    var PostingDate = new Date(v.PostingDate);
+                    var longDt = PostingDate.toLocaleDateString("en-US", options);
+                    var Descriptionlength = v.Description.length > 55 ? v.Description.substring(0, 55) + "…" : v.Description;
+                    debugger;
+                    var url = imageURL + v.Image;
+                    sectionblog += '<div class="col-lg-4 col-md-6">' +
+                        '<div class="single-blog">' +
+                        '<div class="blog-img">' +
+                        '<a href="/Avidclan/BlogDetails"><img src="' + url +'" alt="" /></a>' +
+                        '<div class="top-meta">' +
+                        '<span class="tag">' + v.BlogType + '</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="blog-content">' +
+                        '<div class="blog-meta">' +
+                        '<span><i class="fas fa-user"></i> <a href="#">' + v.PostedBy + '</a></span>' +
+                        '<span><i class="far fa-calendar-alt"></i>' + longDt + '</span>' +
+                        '</div>' +
+                        '<h3 class="title"><a href="/Avidclan/BlogDetails">' + v.Title + '</a></h3>' +
+                        '<p>' + Descriptionlength + '</p>' +
+                        '</div>' +
+                        '<div class="blog-btn">' +
+                        '<a class="blog-btn-link" href="/Avidclan/BlogDetails">' +
+                        'Read Full Article <i class="fas fa-long-arrow-alt-right"></i>' +
+                        '</a>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
+
+
+                })
+                $('#demo').html(sectionblog);
+                if (data.data.pager.EndPage > 1) {
+                    paginationData += '<ul class="pagination">'
+                    if (data.data.pager.CurrentPage > 1) {
+                        let previousPage = (data.data.pager.CurrentPage) - 1;
+                        paginationData += '<li class="page-item">' + '<a class="page-link" onclick="GetSectionData(' + previousPage + ')"  href="#"><i class="fas fa-chevron-left"></i></a>' + '</li>'
+                    }
+                    for (var page = data.data.pager.StartPage; page <= data.data.pager.EndPage; page++) {
+                        var isActive = (page == data.data.pager.CurrentPage) ? "active" : "";
+                        paginationData += '<li class="' + isActive + ' page-item">' +
+                            '<a class="page-link" onclick="GetSectionData(' + page + ')" href="#">' + page + '</a>' +
+                            '</li>'
+                    }
+                    if (data.data.pager.CurrentPage < data.data.pager.TotalPages) {
+                        let nextPage = (data.data.pager.CurrentPage) + 1;
+                        paginationData += '<li class="page-item">' +
+                            '<a class="page-link" onclick="GetSectionData(' + nextPage + ')" href="#"><i class="fas fa-chevron-right"></i></a>' +
+                            '</li>'
+                    }
+                    paginationData += '</ul>'
+                }
+                $('#pagination').html(paginationData);
+            },
+            error: function () {
+                alert("Error occured!!")
+            }
+        });
+    }
+</script>
