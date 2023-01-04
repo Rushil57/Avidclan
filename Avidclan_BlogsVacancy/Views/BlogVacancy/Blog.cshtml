@@ -220,7 +220,15 @@
                 $("#Title").val(result.Title);
                 $("#Description").val(result.Description);
                 $("#BlogType").val(result.BlogType);
-                loadURLToInputFiled(result.Image);
+                 loadURLToInputFiled(result.ImageName);
+               /* $('#Image').val(result.ImageName);*/
+                $("#preview").find("span").first().remove();
+                $('#preview').show();
+                var span = document.createElement('span');
+                span.innerHTML =
+                    ['<img class="thumb" src="', result.Image, '"/><span class="remove_img_preview"></span>']
+                        .join('');
+                document.getElementById('preview').insertBefore(span, null);
                 var date = moment(result.PostingDate).format('MM/DD/YYYY HH:mm:ss');
                 $("#PostingDate").val(date);
                 $("#PostedBy").val(result.PostedBy);
@@ -232,24 +240,13 @@
         });
     }
 
+
     function loadURLToInputFiled(url) {
         getImgURL(url, (imgBlob) => {
-            var Imageurl = url;
-            var arr = Imageurl.split('/');
-            var Imagename = arr[arr.length - 1];
-            let fileName = Imagename;
-            let file = new File([imgBlob], fileName, { type: "image/jpeg", lastModified: new Date().getTime() }, 'utf-8');
+            let file = new File([imgBlob], url, { type: "image/jpeg", lastModified: new Date().getTime() }, 'utf-8');
             let container = new DataTransfer();
             container.items.add(file);
             document.querySelector('#Image').files = container.files;
-            $("#preview").find("span").first().remove();
-            $('#preview').show();
-            var span = document.createElement('span');
-            span.innerHTML =
-                ['<img class="thumb" src="', url, '"/><span class="remove_img_preview"></span>']
-                    .join('');
-            document.getElementById('preview').insertBefore(span, null);
-
         })
     }
 

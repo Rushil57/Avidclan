@@ -39,14 +39,14 @@ namespace Avidclan_BlogsVacancy.Controllers
         [HttpPost]
         public async Task<string> SaveBlog()
         {
-            string ImagePath = "";
+            string ImageUrl = "";
             var Id = HttpContext.Current.Request["Id"];
             var Title = HttpContext.Current.Request["Title"];
             var Description = HttpContext.Current.Request["Description"];
             var BlogType = HttpContext.Current.Request["BlogType"];
             var PostingDate = HttpContext.Current.Request["PostingDate"];
             var PostedBy = HttpContext.Current.Request["PostedBy"];
-            var Image = HttpContext.Current.Request.Files["Image"];
+            var Images = HttpContext.Current.Request.Files["Image"];
 
             try
             {
@@ -61,45 +61,42 @@ namespace Avidclan_BlogsVacancy.Controllers
                     mode = 7;
                     BlogId = Convert.ToInt32(Id);
                 }
-                if (Image != null)
+                string ImageName = "";
+                if (Images != null)
                 {
-                    ImagePath = "/BlogImages/Images/" + Image.FileName;
+                    System.IO.Stream fs = Images.InputStream;
+                    System.IO.BinaryReader br = new System.IO.BinaryReader(fs);
+                    Byte[] bytes = br.ReadBytes((Int32)fs.Length);
+                    string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
+                    ImageUrl = "data:image/png;base64," + base64String;
+                    ImageName = Images.FileName;
                 }
-
-                
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id", BlogId, DbType.Int32, ParameterDirection.Input);
                 parameters.Add("@Title", Title, DbType.String, ParameterDirection.Input);
                 parameters.Add("@Description", Description, DbType.String, ParameterDirection.Input);
                 parameters.Add("@BlogType", BlogType, DbType.String, ParameterDirection.Input);
-                parameters.Add("@Image", ImagePath, DbType.String, ParameterDirection.Input);
+                parameters.Add("@Image", ImageUrl, DbType.String, ParameterDirection.Input);
                 parameters.Add("@PostingDate", PostingDate, DbType.DateTime, ParameterDirection.Input);
                 parameters.Add("@PostedBy", PostedBy, DbType.String, ParameterDirection.Input);
+                parameters.Add("@ImageName", ImageName, DbType.String, ParameterDirection.Input);
                 parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
                 using (IDbConnection connection = new SqlConnection(connectionString))
                 {
                     var SaveBlogDetails = connection.ExecuteScalar("sp_Blog", parameters, commandType: CommandType.StoredProcedure);
-                    if (SaveBlogDetails != null)
-                    {
-                        SaveImage(SaveBlogDetails, Image, Image.FileName);
-                    }
-                    else
-                    {
-                        SaveImage(Id, Image, Image.FileName);
-                    }
                 }
             }
             catch(Exception ex)
             {
                 throw ex;
             }
-           
+
             return "";
         }
 
         public async void SaveImage(object id, HttpPostedFile file, string filename)
         {
-           
+
             string path = System.Web.Hosting.HostingEnvironment.MapPath(String.Format("/BlogImages/Images/{0}", id));
             System.IO.DirectoryInfo myDirInfo = new DirectoryInfo(path);
             if (!Directory.Exists(path))

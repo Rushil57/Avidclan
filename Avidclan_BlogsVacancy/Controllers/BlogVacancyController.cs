@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -99,19 +100,6 @@ namespace Avidclan_BlogsVacancy.Controllers
             parameters.Add("@Id", id, DbType.Int32, ParameterDirection.Input);
             parameters.Add("@Mode", 5, DbType.Int32, ParameterDirection.Input);
             var DeleteBlog = con.Query<Blog>("sp_Blog", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
-            if (DeleteBlog == null)
-            {
-                string path = Server.MapPath(String.Format("/BlogImages/Images/{0}", id));
-                System.IO.DirectoryInfo myDirInfo = new DirectoryInfo(path);
-                if (Directory.Exists(path))
-                {
-                    foreach (FileInfo fileed in myDirInfo.GetFiles())
-                    {
-                        fileed.Delete();
-                    }
-                    Directory.Delete(path, true);
-                }
-            }
             //return Json(DeleteBlog, JsonRequestBehavior.AllowGet);
             return RedirectToAction("blog");
         }

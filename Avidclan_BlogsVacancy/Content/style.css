@@ -14589,7 +14589,7 @@ table.dataTable{
 }
 
     .remove_img_preview:before {
-        content: "×";
+        content: "x";
     }
 
 .BlogStatus {

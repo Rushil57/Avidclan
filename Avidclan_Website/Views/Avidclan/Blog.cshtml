@@ -248,12 +248,12 @@
                     var PostingDate = new Date(v.PostingDate);
                     var longDt = PostingDate.toLocaleDateString("en-US", options);
                     var Descriptionlength = v.Description.length > 55 ? v.Description.substring(0, 55) + "…" : v.Description;
-                    debugger;
-                    var url = imageURL + v.Image;
+                  
+                   /* var url = imageURL + v.Image;*/
                     sectionblog += '<div class="col-lg-4 col-md-6">' +
                         '<div class="single-blog">' +
                         '<div class="blog-img">' +
-                        '<a href="/Avidclan/BlogDetails"><img src="' + url +'" alt="" /></a>' +
+                        '<a href="/Avidclan/BlogDetails"><img src="' + v.Image +'" alt="" /></a>' +
                         '<div class="top-meta">' +
                         '<span class="tag">' + v.BlogType + '</span>' +
                         '</div>' +

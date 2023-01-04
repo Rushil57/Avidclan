@@ -58,6 +58,7 @@
                         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
                             <span class="mdi mdi-menu"></span>
                         </button>
+                        <button type="button" class="btn btn-primary" style="margin-left: auto;" onclick="LogOut()">Log Out</button>
                     </div>
                     @RenderBody()
                 </div>
@@ -76,7 +77,13 @@
     <script src="~/Scripts/misc.js"></script>
     <script src="~/Scripts/dashboard.js"></script>
     <script src="~/Scripts/todolist.js"></script>
-   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        function LogOut() {
+            $.removeCookie("EmailId")
+            window.location.href = '/BlogVacancy/UserLogin'
+        }
+    </script>
 </body>
 </html>
