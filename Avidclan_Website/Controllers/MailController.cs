@@ -131,7 +131,7 @@ namespace Avidclan_Website.Controllers
                                           "</div>" +
                                            "<div style='padding: 15px 30px;background: #f8f8f8;'>" +
                                                 "<p>Dear " + projectDetail.FirstName + ",<br/><br/>" +
-                                                    "Thank you for the interest in <strong>" + projectDetail.Service + "</strong> <br/><br/> Please follow the link below to apply for relevant position.<br/> <a href='https://www.avidclan.com/Avidclan/Services'>Apply Now</a><br/></br>We always love to hear from you. Our inbox can't wait to get your messages, so talk to us anytime you like! <br/><br/>Regards,<br/><br/>" +
+                                                    "Thank you for the interest in <strong>" + projectDetail.Service + "</strong> <br/><br/> Please follow the link below to apply for relevant position.<br/> <a href='https://www.avidclan.com/services'>Apply Now</a><br/></br>We always love to hear from you. Our inbox can't wait to get your messages, so talk to us anytime you like! <br/><br/>Regards,<br/><br/>" +
                                                            "Team,<a href='https://www.avidclan.com'> Avidclan Technologies </a><br/><a href='mailto:info@avidclan.com'> info@avidclan.com </a><br/> +91 9624679717 <br/><br/> This mail is sent via portfolio form on Avidclan Technologies Site<br/><a href='https://www.avidclan.com'> https://www.avidclan.com</a>" +
                                                   "</p></div>" +
                                       "</body></html>";
@@ -215,7 +215,7 @@ namespace Avidclan_Website.Controllers
                                          "<div style='padding: 15px 30px;background: #f8f8f8;'>" +
                                              "<p>Dear " + Name + ",<br/><br/> Thank you for the interest in <strong>" + Position + "</strong> " +
                                                 "Position <br/><br/> Please follow the link below to apply for relevant position.<br/>" +
-                                                "<a href='https://www.avidclan.com/Avidclan/ContactUs'>Apply Now</a><br/></br>" +
+                                                "<a href='https://www.avidclan.com/contactus'>Apply Now</a><br/></br>" +
                                                 "We always love to hear from you. Our inbox can't wait to get your messages, so talk to us anytime you like! <br/><br/>Regards,<br/><br/>" +
                                                  "Team,<a href='https://www.avidclan.com/'> Avidclan Technologies </a><br/><a href='mailto:info@avidclan.com'> info@avidclan.com </a><br/> +91 9624679717 <br/><br/> This mail is sent via portfolio form on Avidclan Technologies Site<br/><a href='https://www.avidclan.com'> https://www.avidclan.com</a>" +
                                              "</p></div>" +

@@ -25,32 +25,43 @@ namespace Avidclan_Website.Controllers
             con = new SqlConnection(connectionString);
         }
 
+        public ActionResult AvidclanAction()
+        {
+            return View("Index");
+        }
+
         // GET: Avidclan
+        [Route("index")]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Route("aboutus")]
         public ActionResult AboutUs()
         {
             return View();
         }
 
+        [Route("services")]
         public ActionResult Services()
         {
             return View();
         }
 
+        [Route("technologies")]
         public ActionResult Technologies()
         {
             return View();
         }
 
+        [Route("portfolio")]
         public ActionResult Portfolio()
         {
             return View();
         }
 
+        [Route("career")]
         public ActionResult Career()
         {
             var parameters = new DynamicParameters();
@@ -59,200 +70,241 @@ namespace Avidclan_Website.Controllers
             return View(CareerList);
         }
 
+        [Route("contactus")]
         public ActionResult ContactUs()
         {
             return View();
         }
+
+        [Route("webdevelopment")]
         public ActionResult WebDevelopment()
         {
             return View();
         }
 
+        [Route("mobileapplication")]
         public ActionResult MobileApplication()
         {
             return View();
         }
 
+        [Route("design")]
         public ActionResult Design()
         {
             return View();
         }
 
+        [Route("internetmarketing")]
         public ActionResult InternetMarketing()
         {
             return View();
         }
 
+        [Route("qualityassurance")]
         public ActionResult QualityAssurance()
         {
             return View();
         }
 
+        [Route("internetofthings")]
         public ActionResult InternetofThings()
         {
             return View();
         }
 
+        [Route("angulardevelopment")]
         public ActionResult AngularDevelopment()
         {
             return View();
         }
 
+        [Route("reactjsdevelopment")]
         public ActionResult ReactJsDevelopment()
         {
             return View();
         }
 
+        [Route("vuejsdevelopment")]
         public ActionResult VueJsDevelopment()
         {
             return View();
         }
 
+        [Route("typescriptdevelopment")]
         public ActionResult TypeScriptDevelopment()
         {
             return View();
         }
 
+        [Route("html5development")]
         public ActionResult Html5Development()
         {
             return View();
         }
 
+        [Route("dotnetdevelopment")]
         public ActionResult DotNetDevelopment()
         {
             return View();
         }
 
+        [Route("javadevelopment")]
         public ActionResult JavaDevelopment()
         {
             return View();
         }
 
+        [Route("phpdevelopment")]
         public ActionResult PhpDevelopment()
         {
             return View();
         }
 
+        [Route("nodejsdevelopment")]
         public ActionResult NodeJsDevelopment()
         {
             return View();
         }
 
+        [Route("iosappdevelopment")]
         public ActionResult IosAppDevelopment()
         {
             return View();
         }
 
+        [Route("androidappdevelopment")]
         public ActionResult AndroidAppDevelopment()
         {
             return View();
         }
 
+        [Route("reactnativedevelopment")]
         public ActionResult ReactNativeDevelopment()
         {
             return View();
         }
 
+        [Route("flutterappdevelopment")]
         public ActionResult FlutterAppDevelopment()
         {
             return View();
         }
 
+        [Route("ionicappdevelopment")]
         public ActionResult IonicAppDevelopment()
         {
             return View();
         }
 
+        [Route("xamarinappdevelopment")]
         public ActionResult XamarinAppDevelopment()
         {
             return View();
         }
 
+        [Route("awsdevelopment")]
         public ActionResult AwsDevelopment()
         {
             return View();
         }
 
+        [Route("googlecloudservices")]
         public ActionResult GoogleCloudServices()
         {
             return View();
         }
 
+        [Route("microsoftazuredevelopment")]
         public ActionResult MicrosoftAzureDevelopment()
         {
             return View();
         }
 
+        [Route("jenkinsmanagementservices")]
         public ActionResult JenkinsManagementServices()
         {
             return View();
         }
 
+        [Route("seleniumautomationtestingservice")]
         public ActionResult SeleniumAutomationTestingService()
         {
             return View();
         }
 
+        [Route("microsoftsqlservermanage")]
         public ActionResult MicrosoftSqlServerManage()
         {
             return View();
         }
 
+        [Route("mysqldevelopment")]
         public ActionResult MySqlDevelopment()
         {
             return View();
         }
 
+        [Route("postgresqldevelopment")]
         public ActionResult PostgreSqlDevelopment()
         {
             return View();
         }
 
+        [Route("firebasedevelopment")]
         public ActionResult FirebaseDevelopment()
         {
             return View();
         }
 
+        [Route("mongodbdevelopment")]
         public ActionResult MongodbDevelopment()
         {
             return View();
         }
 
+        [Route("redisdevelopment")]
         public ActionResult RedisDevelopment()
         {
             return View();
         }
 
+        [Route("microsoftazurecosmos")]
         public ActionResult MicrosoftAzureCosmos()
         {
             return View();
         }
 
+        [Route("microsoftdynamicsaxdevelopment")]
         public ActionResult MicrosoftDynamicsAXDevelopment()
         {
             return View();
         }
 
+        [Route("microsoftdynamicscrmdevelopment")]
         public ActionResult MicrosoftDynamicsCRMDevelopment()
         {
             return View();
         }
 
+        [Route("sharepointdevelopment")]
         public ActionResult SharePointDevelopment()
         {
             return View();
         }
 
+        [Route("lifeatavidclan")]
         public ActionResult LifeAtAvidclan()
         {
             return View();
         }
 
+        [Route("thankyou")]
         public ActionResult ThankYou()
         {
             return View();
         }
 
+        [Route("blog")]
         public ActionResult Blog(int page = 1)
         {
             int PageSize = 6;
@@ -285,7 +337,6 @@ namespace Avidclan_Website.Controllers
             }
             return View(obj);
         }
-
 
         public string GetSectionData(int page = 1)
         {
@@ -320,6 +371,7 @@ namespace Avidclan_Website.Controllers
             return JsonConvert.SerializeObject(new { Isvalid = true, data = obj });
         }
 
+        [Route("blogdetails")]
         public ActionResult BlogDetails()
         {
             return View();
