@@ -6631,7 +6631,7 @@ textarea.form-control-lg {
   align-items: center;
   min-height: calc(100% - 20px); }
 
-.error, .emailcheck {
+.emailcheck {
     display: none;
 }
 

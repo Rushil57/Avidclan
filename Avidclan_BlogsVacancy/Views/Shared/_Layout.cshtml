@@ -7,12 +7,12 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
-   
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
+    <script src="~/Scripts/jquery.validate.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
@@ -23,7 +23,7 @@
     <div class="container">
         @RenderBody()
     </div>
-
+    <link href="~/Content/Site.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 

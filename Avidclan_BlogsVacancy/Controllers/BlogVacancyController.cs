@@ -43,21 +43,29 @@ namespace Avidclan_BlogsVacancy.Controllers
             var logindata = con.ExecuteScalar("sp_User", parameters, commandType: CommandType.StoredProcedure);
             if(logindata!= null)
             {
-                //Session["EmailId"] = logindata;
-                HttpCookie nameCookie = new HttpCookie("EmailId",logindata.ToString());
-                nameCookie.Expires = DateTime.Now.AddDays(30);
-                Response.Cookies.Add(nameCookie);
+                Session["EmailId"] = logindata;
+                //HttpCookie nameCookie = new HttpCookie("EmailId",logindata.ToString());
+                //nameCookie.Expires = DateTime.Now.AddDays(30);
+                //Response.Cookies.Add(nameCookie);
             }
             return Json(logindata,JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Blog()
         {
+            if (Session["EmailId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
             return View();
         }
 
         public ActionResult Careers()
         {
+            if (Session["EmailId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
             return View();
         }
 
@@ -133,6 +141,11 @@ namespace Avidclan_BlogsVacancy.Controllers
                 menuDetail = new HeaderMenu();
             }
             return Json(menuDetail, JsonRequestBehavior.AllowGet);
+        }
+
+        public void Logout()
+        {
+            Session["EmailId"] = null;
         }
 
 

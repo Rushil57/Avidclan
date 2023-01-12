@@ -21,23 +21,23 @@
                 <h5 class="modal-title" id="exampleModalLabel">Add New Blog</h5>
             </div>
             <div class="modal-body">
-                <form>
+                <form name="BlogDetails">
                     <input type="hidden" class="form-control" id="BlogId">
                     <div class="form-group">
                         <label for="Title">Title</label>
-                        <input type="text" class="form-control" id="Title" placeholder="Title">
+                        <input type="text" class="form-control" id="Title" name="title" placeholder="Title">
                     </div>
                     <div class="form-group">
                         <label for="Description">Description</label>
-                        <input type="text" class="form-control" id="Description" placeholder="Description">
+                        <input type="text" class="form-control" id="Description" name="description" placeholder="Description">
                     </div>
                     <div class="form-group">
                         <label for="BlogType">Blog Type</label>
-                        <input type="text" class="form-control" id="BlogType" placeholder="Blog Type">
+                        <input type="text" class="form-control" id="BlogType" name="blogtype" placeholder="Blog Type">
                     </div>
                     <div class="form-group">
                         <label for="Image">Image</label>
-                        <input id="Image" type="file" class="form-control" />
+                        <input id="Image" type="file" class="form-control" name="attachmentFile" />
                         <div id="preview"></div>
                     </div>
                     <div class="form-group">
@@ -46,14 +46,15 @@
                     </div>
                     <div class="form-group">
                         <label for="PostedBy">Posted By</label>
-                        <input type="text" class="form-control" id="PostedBy" placeholder="Posted By">
+                        <input type="text" class="form-control" id="PostedBy" name="PostedBy" placeholder="Posted By">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="ResetBlogData()">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="ResetBlogData()">Close</button>
-                <button type="button" class="btn btn-primary" onclick="SaveBlog()">Save</button>
-            </div>
+
         </div>
     </div>
 </div>
@@ -75,19 +76,40 @@
 </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
-        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"></script>
+
+
+
+
 
 <script type="text/javascript">
-    $(document).ready(function () {
+    var validator;
+    $(function () {
+         validator = $("form[name='BlogDetails']").validate({
+            rules: {
+                title: { required: true, },
+                description: { required: true, },
+                blogtype: { required: true, },
+                attachmentFile: { required: true, },
+                PostedBy: { required: true, }
+            },
+            messages: {
+                title: { required: "Please enter a title", },
+                description: { required: "Please enter description", },
+                blogtype: { required: "Please enter blogtype", },
+                attachmentFile: { required: "Please choose a file", },
+                PostedBy: { required: "Please enter PostedBy", }
+            },
+            submitHandler: function (form) {
+                SaveBlog()
+            }
+        });
+
         var Postingdate = new Date();
         var FormatPostingDate = moment(Postingdate).format('MM/DD/YYYY HH:mm:ss');
         $("#PostingDate").val(FormatPostingDate);
         GetBlogStatusByName();
         GetBlogList();
-    })
+    });
 
     $('#AddBlog').click(function () {
         $("#AddNewBlogModal").modal('show');
@@ -261,6 +283,7 @@
     }
 
     function ResetBlogData() {
+        validator.resetForm();
         $("#AddNewBlogModal").modal('hide');
         $("#BlogId").val('');
         $("#Title").val('');

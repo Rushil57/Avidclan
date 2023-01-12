@@ -28,6 +28,10 @@ namespace Avidclan_BlogsVacancy.Controllers
         }
         public ActionResult EMailConfiguration()
         {
+            if (Session["EmailId"] == null)
+            {
+                return RedirectToAction("UserLogin", "BlogVacancy");
+            }
             return View();
         }
 

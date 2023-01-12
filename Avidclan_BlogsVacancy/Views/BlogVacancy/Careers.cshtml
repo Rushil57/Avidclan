@@ -20,31 +20,31 @@
                     <input type="hidden" class="form-control" id="CareerId">
                     <div class="form-group">
                         <label for="JobTitle"> Job Title</label>
-                        <input type="text" class="form-control" id="JobTitle" placeholder="Job Title" required>
+                        <input type="text" class="form-control" id="JobTitle" name="jobtitle" placeholder="Job Title" required>
                     </div>
                     <div class="form-group">
                         <label for="Experience">Experience</label>
-                        <input type="text" class="form-control" id="Experience" placeholder="Experience">
+                        <input type="text" class="form-control" id="Experience" name="experience" placeholder="Experience">
                     </div>
                     <div class="form-group">
                         <label for="Location">Location</label>
-                        <input type="text" class="form-control" id="Location" placeholder="Location">
+                        <input type="text" class="form-control" id="Location" name="location" placeholder="Location">
                     </div>
                     <div class="form-group">
                         <label for="NoOfPosition">No of Position</label>
-                        <input id="NoOfPosition" type="number" class="form-control" placeholder="No Of Position" />
+                        <input id="NoOfPosition" type="number" class="form-control" name="position" placeholder="No Of Position" />
                     </div>
                     <div class="form-group">
                         <label for="Responsibilities">Responsibilities</label>
-                        <textarea type="text" class="ckeditor" id="Responsibilities"></textarea>
+                        <textarea type="text" class="ckeditor" id="Responsibilities" name="responsibilties"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="Qualification">Qualification</label>
-                        <input type="text" class="form-control" id="Qualification" placeholder="Qualification">
+                        <input type="text" class="form-control" id="Qualification" name="qualification" placeholder="Qualification">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" onclick="ResetJobPositionForm();">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="SaveJobPosition()">Save</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>
@@ -72,20 +72,45 @@
     </table>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
-        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"></script>
-
 <script type="text/javascript">
-    $(document).ready(function () {
+    var validator;
+    $(function () {
+        validator = $("form[name='JobPositionForm']").validate({
+            ignore: [],
+            rules: {
+                jobtitle: { required: true, },
+                experience: { required: true, },
+                location: { required: true, },
+                position: { required: true, },
+                qualification: { required: true, }
+            },
+            messages: {
+                jobtitle: { required: "Please enter a jobtitle", },
+                experience: { required: "Please enter experience", },
+                location: { required: "Please enter location", },
+                position: { required: "Please enter a position", },
+                qualification: { required: "Please enter qualification", }
+            },
+
+            submitHandler: function (form) {
+                SaveJobPosition();
+            }
+
+        });
         GetJobPositionList();
-    })
+    });
+
+
+
     $('#AddJobPosition').click(function () {
         $("#AddNewJobPositionModal").modal('show');
     });
 
     function SaveJobPosition() {
+        if (CKEDITOR.instances['Responsibilities'].getData().length == 0) {
+            $("<label id='Responsibility-error' class='error' for='Responsibilty'>Please enter Responsibilties</label>").insertAfter("#cke_Responsibilities");
+            return
+        }
         var data = {
             Id: $("#CareerId").val(),
             JobTitle: $("#JobTitle").val(),
@@ -167,7 +192,7 @@
                 type: "GET",
                 success: function (result) {
                     GetJobPositionList();
-                    alert('Delete Successully!');
+                    alert('Delete Successfully!');
 
                 },
                 error: function () {
@@ -203,6 +228,7 @@
     }
 
     function ResetJobPositionForm() {
+        validator.resetForm();
         $("#AddNewJobPositionModal").modal('hide');
         $("#CareerId").val(0);
         $("#JobTitle").val('');
@@ -239,7 +265,7 @@
                 Name: Id[0].innerHTML,
                 Order: order
             }
-            
+
             selectedData.push(UpdatedOrder);
         })
         $.ajax({

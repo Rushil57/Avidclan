@@ -127,7 +127,8 @@ namespace Avidclan_BlogsVacancy.Controllers
         [HttpPost]
         public async Task<string> SaveJobPosition(Careers data)
         {
-            var userName = Request.Headers.GetCookies("EmailId").FirstOrDefault()?["EmailId"].Value;
+          //  var userName = Request.Headers.GetCookies("EmailId").FirstOrDefault()?["EmailId"].Value;
+               var userName = HttpContext.Current.Session["EmailId"];
             var mode = 0;
             var parameters = new DynamicParameters();
             if (data.Id == 0)
