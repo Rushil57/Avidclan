@@ -31,7 +31,7 @@ namespace Avidclan_Website.Controllers
         }
 
         // GET: Avidclan
-        [Route("index")]
+        [Route("home")]
         public ActionResult Index()
         {
             return View();

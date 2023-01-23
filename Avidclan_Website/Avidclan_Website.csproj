@@ -205,6 +205,7 @@
     <Content Include="assets\fonts\fa-solid-900.svg" />
     <Content Include="assets\images\5-days.svg" />
     <Content Include="assets\images\about-us-img.svg" />
+    <Content Include="assets\images\about-us.jpg" />
     <Content Include="assets\images\about-us.png" />
     <Content Include="assets\images\admin-ic.png" />
     <Content Include="assets\images\adobe_illustrator.svg" />
@@ -590,6 +591,7 @@
     <Content Include="assets\images\tech-mobile.jpg" />
     <Content Include="assets\images\technologies-img.svg" />
     <Content Include="assets\images\telecommunications.jpg" />
+    <Content Include="assets\images\testimonial_bg.jpg" />
     <Content Include="assets\images\testimonial_bg.png" />
     <Content Include="assets\images\typescript-img.svg" />
     <Content Include="assets\images\typescript-tech.jpg" />
@@ -668,6 +670,7 @@
     <Content Include="assets\fonts\fa-solid-900.ttf" />
     <Content Include="assets\fonts\fa-solid-900.woff" />
     <Content Include="assets\fonts\fa-solid-900.woff2" />
+    <Content Include="assets\images\about-us.webp" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
