@@ -2005,7 +2005,7 @@ img {
 /* Testimonail Section Two */
 
 .testimonial-section-two {
-    background-image: url("../images/testimonial_bg.png");
+    background-image: url("../images/testimonial_bg.jpg");
     padding: 100px 0;
 }
 
@@ -3049,7 +3049,7 @@ img {
     padding: 70px 0;
     position: relative;
     z-index: 1;
-    background-image: url(../images/testimonial_bg.png);
+    background-image: url(../images/testimonial_bg.jpg);
 }
 
     .project-inquiry::after {

@@ -1,4 +1,4 @@
-﻿
+﻿@using reCAPTCHA.MVC
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,14 +8,13 @@
         <meta name="title" content="We specialzed in digital transformation of businesses with top notch software solutions. Get in touch with Avidclan technologies for Software, Web App Development." />*@
     <meta name="description" content="" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/8.4.6/css/intlTelInput.css" />
-        <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
-
-        <link href="~/assets/css/style.css" rel="stylesheet" />
-        <link href="~/assets/css/responsive.css" rel="stylesheet" />
-        <link href="~/assets/css/color.css" rel="stylesheet" />
-        <link href="~/assets/css/swiper.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/assets/css/intlTelInput.css" rel="stylesheet" />
+    <link href="~/assets/css/style.css" rel="stylesheet" />
+    <link href="~/assets/css/responsive.css" rel="stylesheet" />
+    <link href="~/assets/css/color.css" rel="stylesheet" />
+    <link href="~/assets/css/swiper.min.css" rel="stylesheet" />
+    @*<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />*@
     <link rel="shortcut icon" href="~/assets/images/favicon.png" type="image/x-icon" />
     <link rel="icon" href="~/assets/images/favicon.png" type="image/x-icon" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-72R4P6376Q"></script>
@@ -36,7 +35,7 @@
         gtag('config', 'UA-190354516-1');
     </script>
     <meta name="msvalidate.01" content="C6EA7291CCD22012F734D3C6649F2F3F" />
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    @*<script src="https://www.google.com/recaptcha/api.js" async defer></script>*@
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -641,7 +640,8 @@
                             <div class="row">
                                 <div class="col-md-6 form-group mb-0">
                                     <label for="captcha">Please Verify You Are a Human</label>
-                                    <div class="g-recaptcha" data-sitekey="6Lc7VFgjAAAAAJQuEw_pFI_HgbdU6SVsO5uc4QIt"></div>
+                                    @Html.Recaptcha()
+                                    @*<div class="g-recaptcha" data-sitekey="6Lc7VFgjAAAAAJQuEw_pFI_HgbdU6SVsO5uc4QIt"></div>*@
                                 </div>
                                 <div class="col-md-6 form-group my-auto text-center">
                                     <button type="submit" class="theme-btn btn-style-one" name="submit">
@@ -672,7 +672,6 @@
                 <div class="modal-header">
                     <div class="sec-title w-100">
                         <h3>
-
                         </h3>
                     </div>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" onclick="ClearModalPopup()">
@@ -682,7 +681,6 @@
                 <div class="modal-body job-desc">
                     <h5 class="title">Roles &amp; Responsibilities</h5>
                     <ul class="list">
-
                     </ul>
 
                     <h5 class="title">Required Qualification</h5>

@@ -1,4 +1,4 @@
-﻿
+﻿@using reCAPTCHA.MVC
 @{
     ViewBag.Title = "Services";
 }
@@ -446,12 +446,14 @@
 
                         <div class="col-md-4 form-group">
                             <label>Please verify you are a human</label>
-                            <div class="g-recaptcha" data-sitekey="6Lc7VFgjAAAAAJQuEw_pFI_HgbdU6SVsO5uc4QIt"></div>
+                            @Html.Recaptcha()
+                            @*<div class="g-recaptcha" data-sitekey="6Lc7VFgjAAAAAJQuEw_pFI_HgbdU6SVsO5uc4QIt"></div>*@
                         </div>
 
                         <div class="col-md-6 form-group my-auto text-end">
                             <button class="theme-btn btn-style-one" type="submit" name="submit">
-                                <span class="btn-title">Let's Talk
+                                <span class="btn-title">
+                                    Let's Talk
                                     <div id="button-spinner" style="margin-left: 10px; width: 15px; height: 15px; display: none" class="spinner-border"></div>
                                 </span>
                             </button>
