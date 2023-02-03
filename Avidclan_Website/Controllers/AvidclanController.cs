@@ -31,37 +31,37 @@ namespace Avidclan_Website.Controllers
         }
 
         // GET: Avidclan
-        [Route("home")]
+        [Route("home/")]
         public ActionResult Index()
         {
             return View();
         }
 
-        [Route("aboutus")]
+        [Route("about-us/")]
         public ActionResult AboutUs()
         {
             return View();
         }
 
-        [Route("services")]
+        [Route("services/")]
         public ActionResult Services()
         {
             return View();
         }
 
-        [Route("technologies")]
+        [Route("technologies/")]
         public ActionResult Technologies()
         {
             return View();
         }
 
-        [Route("portfolio")]
+        [Route("portfolio/")]
         public ActionResult Portfolio()
         {
             return View();
         }
 
-        [Route("career")]
+        [Route("career/")]
         public ActionResult Career()
         {
             var parameters = new DynamicParameters();
@@ -70,241 +70,241 @@ namespace Avidclan_Website.Controllers
             return View(CareerList);
         }
 
-        [Route("contactus")]
+        [Route("contact-us/")]
         public ActionResult ContactUs()
         {
             return View();
         }
 
-        [Route("webdevelopment")]
+        [Route("web-development-services/")]
         public ActionResult WebDevelopment()
         {
             return View();
         }
 
-        [Route("mobileapplication")]
+        [Route("mobile-application-development/")]
         public ActionResult MobileApplication()
         {
             return View();
         }
 
-        [Route("design")]
+        [Route("design/")]
         public ActionResult Design()
         {
             return View();
         }
 
-        [Route("internetmarketing")]
+        [Route("internet-marketing-services/")]
         public ActionResult InternetMarketing()
         {
             return View();
         }
 
-        [Route("qualityassurance")]
+        [Route("quality-assurance-services/")]
         public ActionResult QualityAssurance()
         {
             return View();
         }
 
-        [Route("internetofthings")]
+        [Route("iot-service-providers/")]
         public ActionResult InternetofThings()
         {
             return View();
         }
 
-        [Route("angulardevelopment")]
+        [Route("angular-development-services/")]
         public ActionResult AngularDevelopment()
         {
             return View();
         }
 
-        [Route("reactjsdevelopment")]
+        [Route("reactjs-development-services/")]
         public ActionResult ReactJsDevelopment()
         {
             return View();
         }
 
-        [Route("vuejsdevelopment")]
+        [Route("vuejs-development-services/")]
         public ActionResult VueJsDevelopment()
         {
             return View();
         }
 
-        [Route("typescriptdevelopment")]
+        [Route("typescript-web-development/")]
         public ActionResult TypeScriptDevelopment()
         {
             return View();
         }
 
-        [Route("html5development")]
+        [Route("html5-development/")]
         public ActionResult Html5Development()
         {
             return View();
         }
 
-        [Route("dotnetdevelopment")]
+        [Route("dot-net-development-company/")]
         public ActionResult DotNetDevelopment()
         {
             return View();
         }
 
-        [Route("javadevelopment")]
+        [Route("java-development-company/")]
         public ActionResult JavaDevelopment()
         {
             return View();
         }
 
-        [Route("phpdevelopment")]
+        [Route("php-development-company/")]
         public ActionResult PhpDevelopment()
         {
             return View();
         }
 
-        [Route("nodejsdevelopment")]
+        [Route("nodejs-development-services/")]
         public ActionResult NodeJsDevelopment()
         {
             return View();
         }
 
-        [Route("iosappdevelopment")]
+        [Route("ios-app-development-company/")]
         public ActionResult IosAppDevelopment()
         {
             return View();
         }
 
-        [Route("androidappdevelopment")]
+        [Route("android-app-development-company/")]
         public ActionResult AndroidAppDevelopment()
         {
             return View();
         }
 
-        [Route("reactnativedevelopment")]
+        [Route("react-native-app-development/")]
         public ActionResult ReactNativeDevelopment()
         {
             return View();
         }
 
-        [Route("flutterappdevelopment")]
+        [Route("flutter-app-development-company/")]
         public ActionResult FlutterAppDevelopment()
         {
             return View();
         }
 
-        [Route("ionicappdevelopment")]
+        [Route("ionic-app-development-company/")]
         public ActionResult IonicAppDevelopment()
         {
             return View();
         }
 
-        [Route("xamarinappdevelopment")]
+        [Route("xamarin-app-development-company/")]
         public ActionResult XamarinAppDevelopment()
         {
             return View();
         }
 
-        [Route("awsdevelopment")]
+        [Route("aws-development-services/")]
         public ActionResult AwsDevelopment()
         {
             return View();
         }
 
-        [Route("googlecloudservices")]
+        [Route("google-cloud-services/")]
         public ActionResult GoogleCloudServices()
         {
             return View();
         }
 
-        [Route("microsoftazuredevelopment")]
+        [Route("microsoft-azure-development/")]
         public ActionResult MicrosoftAzureDevelopment()
         {
             return View();
         }
 
-        [Route("jenkinsmanagementservices")]
+        [Route("jenkins-management-services/")]
         public ActionResult JenkinsManagementServices()
         {
             return View();
         }
 
-        [Route("seleniumautomationtestingservice")]
+        [Route("selenium-automation-testing-services/")]
         public ActionResult SeleniumAutomationTestingService()
         {
             return View();
         }
 
-        [Route("microsoftsqlservermanage")]
+        [Route("microsoft-sql-server-manage/")]
         public ActionResult MicrosoftSqlServerManage()
         {
             return View();
         }
 
-        [Route("mysqldevelopment")]
+        [Route("mysql-development-company/")]
         public ActionResult MySqlDevelopment()
         {
             return View();
         }
 
-        [Route("postgresqldevelopment")]
+        [Route("postgresql-development-company/")]
         public ActionResult PostgreSqlDevelopment()
         {
             return View();
         }
 
-        [Route("firebasedevelopment")]
+        [Route("firebase-development-company/")]
         public ActionResult FirebaseDevelopment()
         {
             return View();
         }
 
-        [Route("mongodbdevelopment")]
+        [Route("mongodb-development-company/")]
         public ActionResult MongodbDevelopment()
         {
             return View();
         }
 
-        [Route("redisdevelopment")]
+        [Route("redis-development/")]
         public ActionResult RedisDevelopment()
         {
             return View();
         }
 
-        [Route("microsoftazurecosmos")]
+        [Route("microsoft-azure-cosmos-db/")]
         public ActionResult MicrosoftAzureCosmos()
         {
             return View();
         }
 
-        [Route("microsoftdynamicsaxdevelopment")]
+        [Route("microsoft-dynamics-ax-development/")]
         public ActionResult MicrosoftDynamicsAXDevelopment()
         {
             return View();
         }
 
-        [Route("microsoftdynamicscrmdevelopment")]
+        [Route("microsoft-dynamics-crm-development/")]
         public ActionResult MicrosoftDynamicsCRMDevelopment()
         {
             return View();
         }
 
-        [Route("sharepointdevelopment")]
+        [Route("sharepoint-development-company/")]
         public ActionResult SharePointDevelopment()
         {
             return View();
         }
 
-        [Route("lifeatavidclan")]
+        [Route("life-at-avidclan/")]
         public ActionResult LifeAtAvidclan()
         {
             return View();
         }
 
-        [Route("thankyou")]
+        [Route("thank-you/")]
         public ActionResult ThankYou()
         {
             return View();
         }
 
-        [Route("blog")]
+        [Route("blog/")]
         public ActionResult Blog(int page = 1)
         {
             int PageSize = 6;
@@ -371,7 +371,7 @@ namespace Avidclan_Website.Controllers
             return JsonConvert.SerializeObject(new { Isvalid = true, data = obj });
         }
 
-        [Route("blogdetails")]
+        [Route("blog-details/")]
         public ActionResult BlogDetails()
         {
             return View();
