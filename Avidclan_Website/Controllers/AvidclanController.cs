@@ -298,7 +298,7 @@ namespace Avidclan_Website.Controllers
             return View();
         }
 
-        [Route("thank-you/")]
+        [Route("thankyou")]
         public ActionResult ThankYou()
         {
             return View();

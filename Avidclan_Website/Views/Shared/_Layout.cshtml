@@ -4,9 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @*<title>Top Software, Web & Mobile App Development Company in India</title>
-        <meta name="title" content="We specialzed in digital transformation of businesses with top notch software solutions. Get in touch with Avidclan technologies for Software, Web App Development." />*@
-    <meta name="description" content="" />
+    @RenderSection("AdditionalMeta", false)
 
     <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/assets/css/intlTelInput.css" rel="stylesheet" />
@@ -59,14 +57,14 @@
                         <!--Logo-->
                         <div class="logo-box">
                             <div class="logo">
-                                <a href="~/home/"><img src="~/assets/images/logo.svg" alt="" /></a>
+                                <a href="~/home/"><img src="~/assets/images/logo.svg" alt="Avidclan-Logo" /></a>
                             </div>
                         </div>
                         <!--Nav Box-->
                         <div class="nav-outer clearfix">
                             <!--Mobile Navigation Toggler-->
                             <div class="mobile-nav-toggler">
-                                <img src="~/assets/images/icons/icon-bar.png" alt="" />
+                                <img src="~/assets/images/icons/icon-bar.png" alt="icon-bar" />
                             </div>
                         </div>
                     </div>
@@ -81,14 +79,14 @@
                             <!--Logo-->
                             <div class="logo-box">
                                 <div class="logo">
-                                    <a href="~/home/"><img src="~/assets/images/logo.svg" alt="" /></a>
+                                    <a href="~/home/"><img src="~/assets/images/logo.svg" alt="Avidclan-Logo" /></a>
                                 </div>
                             </div>
                             <!--Nav Box-->
                             <div class="nav-outer clearfix">
                                 <!--Mobile Navigation Toggler-->
                                 <div class="mobile-nav-toggler">
-                                    <img src="~/assets/images/icons/icon-bar.png" alt="" />
+                                    <img src="~/assets/images/icons/icon-bar.png" alt="icon-bar" />
                                 </div>
 
                                 <!-- Main Menu -->
@@ -749,14 +747,14 @@
 
         function done_func(response) {
             console.log(response);
-            if (response == "Sent") {
-                window.location.replace("/thank-you/");
+            //if (response == "Sent") {
+                window.location.replace("/thankyou");
                 grecaptcha.reset();
                 setTimeout(function () {
                     message.fadeOut();
                 }, 3000);
                 Contactform.find('input:not([type="submit"]), textarea').val("");
-            }
+            //}
 
             $('#button-spinner').hide();
 
@@ -870,7 +868,7 @@
 
         function Application_Form(response) {
             if (response == "Sent") {
-                window.location.replace("/thank-you/");
+                window.location.replace("/thankyou");
                 message.fadeIn().removeClass("alert-danger").addClass("alert-success");
                 message.text(response);
                 grecaptcha.reset();
@@ -995,7 +993,7 @@
 
         function ProjectSuccess(response) {
             if (response == "Sent123") {
-                window.location.replace("/thank-you/");
+                window.location.replace("/thankyou");
                 message.fadeIn().removeClass("alert-danger").addClass("alert-success");
                 message.text(response);
                 grecaptcha.reset();
