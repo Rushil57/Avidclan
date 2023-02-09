@@ -1,0 +1,159 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PageNotFound</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/assets/css/intlTelInput.css" rel="stylesheet" />
+    <link href="~/assets/css/style.css" rel="stylesheet" />
+    <link href="~/assets/css/responsive.css" rel="stylesheet" />
+    <link href="~/assets/css/color.css" rel="stylesheet" />
+    <link href="~/assets/css/swiper.min.css" rel="stylesheet" />
+    <style type="text/css">
+
+        @@keyframes floating {
+            from {
+                transform: translateY(0px);
+            }
+
+            65% {
+                transform: translateY(15px);
+            }
+
+            to {
+                transform: translateY(-0px);
+            }
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            /*background-image: url('https://assets.codepen.io/1538474/star.svg'),linear-gradient(to bottom, #05007A, #4D007D);*/
+            /* background-image: linear-gradient(0deg, rgba(237, 240, 255, 70%), rgba(237, 240, 255, 0%));*/
+            height: 100%;
+            margin: 0;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        .mars {
+            left: 0;
+            right: 0;
+            bottom: 0;
+            position: absolute;
+            height: 27vmin;
+            background: url('https://assets.codepen.io/1538474/mars.svg') no-repeat bottom center;
+            background-size: cover;
+        }
+
+        .logo-404 {
+            position: absolute;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            top: 16vmin;
+            width: 30vmin;
+
+            @@include breakpoint(mobile) {
+                top: 45vmin;
+            }
+        }
+
+        .meteor {
+            position: absolute;
+            right: 2vmin;
+            top: 16vmin;
+        }
+
+        .title {
+            color: #142149;
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+            text-align: center;
+            font-size: 5vmin;
+            margin-top: 35vmin;
+
+            @@include breakpoint(mobile) {
+                margin-top: 65vmin;
+            }
+        }
+
+        .subtitle {
+            color: #142149;
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            text-align: center;
+            font-size: 3.5vmin;
+            margin-top: -1vmin;
+            margin-bottom: 9vmin;
+        }
+
+
+
+        .astronaut {
+            position: absolute;
+            top: 18vmin;
+            left: 10vmin;
+            height: 30vmin;
+            animation: floating 3s infinite ease-in-out;
+
+            @@include breakpoint(mobile) {
+                top: 2vmin;
+            }
+        }
+
+        .spaceship {
+            position: absolute;
+            bottom: 15vmin;
+            right: 24vmin;
+
+            @@include breakpoint(mobile) {
+                width: 45vmin;
+                bottom: 18vmin;
+            }
+        }
+
+        .not-found {
+            position: absolute;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            top: 30vmin;
+            text-align: center;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mars"></div>
+    <img src="~/assets/images/404.svg" class="logo-404" />
+    <h2 class="not-found">Page Not Found</h2>
+    <p class="title">Oh no!!</p>
+    <p class="subtitle">
+        You’re either misspelling the URL <br /> or requesting a page that's no longer here.
+    </p>
+    <div align="center">
+        <div class="link-btn">
+            <a href="/home/" class="theme-btn btn-style-one">
+                <span class="btn-title">
+                    <span class="iconify me-2" data-icon="ion:call-sharp" data-height="25"></span>Back to previous page
+                </span>
+            </a>
+        </div>
+        @*<a class="btn-back" href="~/home/">Back to previous page</a>*@
+    </div>
+    <img src="https://assets.codepen.io/1538474/astronaut.svg" class="astronaut" />
+    <img src="https://assets.codepen.io/1538474/spaceship.svg" class="spaceship" />
+</body>
+</html>

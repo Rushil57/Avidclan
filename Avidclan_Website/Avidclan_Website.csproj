@@ -206,6 +206,7 @@
     <Content Include="assets\fonts\fa-brands-400.svg" />
     <Content Include="assets\fonts\fa-regular-400.svg" />
     <Content Include="assets\fonts\fa-solid-900.svg" />
+    <Content Include="assets\images\404.svg" />
     <Content Include="assets\images\5-days.svg" />
     <Content Include="assets\images\about-us-img.svg" />
     <Content Include="assets\images\about-us.jpg" />
@@ -752,6 +753,7 @@
     <Content Include="Views\Avidclan\BlogDetails.cshtml" />
     <Content Include="Views\Home\Example.cshtml" />
     <Content Include="Views\Shared\_JobDescription.cshtml" />
+    <Content Include="Views\Avidclan\PageNotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

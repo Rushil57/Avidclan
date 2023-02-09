@@ -407,5 +407,11 @@ namespace Avidclan_Website.Controllers
             return Json(menuDetail, JsonRequestBehavior.AllowGet);
         }
 
+        [Route("pagenotfound/")]
+        public ActionResult PageNotFound()
+        {
+            return View();
+        }
+
     }
 }
