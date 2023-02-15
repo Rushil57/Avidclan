@@ -12,6 +12,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Mail;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Runtime.Remoting.Contexts;
@@ -86,7 +88,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     var SaveBlogDetails = connection.ExecuteScalar("sp_Blog", parameters, commandType: CommandType.StoredProcedure);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -127,8 +129,8 @@ namespace Avidclan_BlogsVacancy.Controllers
         [HttpPost]
         public async Task<string> SaveJobPosition(Careers data)
         {
-          //  var userName = Request.Headers.GetCookies("EmailId").FirstOrDefault()?["EmailId"].Value;
-               var userName = HttpContext.Current.Session["EmailId"];
+            //  var userName = Request.Headers.GetCookies("EmailId").FirstOrDefault()?["EmailId"].Value;
+            var userName = HttpContext.Current.Session["EmailId"];
             var mode = 0;
             var parameters = new DynamicParameters();
             if (data.Id == 0)
@@ -189,6 +191,144 @@ namespace Avidclan_BlogsVacancy.Controllers
                     throw ex;
                 }
 
+            }
+        }
+
+        [Route("api/Admin/RequestForLeave")]
+        [HttpPost]
+        public async Task<string> RequestForLeave(LeaveViewModel leaveViewModel)
+        {
+            SendLeaveMail(leaveViewModel.Leaves);
+            var UserId = HttpContext.Current.Session["UserId"];
+            var mode = 0;
+            if (leaveViewModel.Id == 0)
+            {
+                mode = 1;
+            }
+            else
+            {
+                mode = 3;
+            }
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id", leaveViewModel.Id, DbType.Int64, ParameterDirection.Input);
+                parameters.Add("@Fromdate", leaveViewModel.Fromdate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
+                parameters.Add("@Todate", leaveViewModel.Todate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
+                parameters.Add("@LeaveStatus", "Pending", DbType.String, ParameterDirection.Input);
+                parameters.Add("@UserId", UserId, DbType.Int16, ParameterDirection.Input);
+                parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
+                var SaveLeave = con.ExecuteScalar("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure);
+                if (SaveLeave != null)
+                {
+                    leaveViewModel.Id = Convert.ToInt16(SaveLeave);
+                }
+                if (mode == 3)
+                {
+                    var parameter = new DynamicParameters();
+                    parameter = new DynamicParameters();
+                    parameter.Add("@LeaveId", leaveViewModel.Id, DbType.Int32, ParameterDirection.Input);
+                    parameter.Add("@Mode", 3, DbType.Int32, ParameterDirection.Input);
+                    var deletelist = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure).ToList();
+                }
+                if (leaveViewModel.Leaves != null)
+                {
+                    foreach (var item in leaveViewModel.Leaves)
+                    {
+                        var parameter = new DynamicParameters();
+                        parameter.Add("@LeaveDate", item.LeaveDate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
+                        parameter.Add("@Halfday", item.Halfday, DbType.String, ParameterDirection.Input);
+                        parameter.Add("@LeaveId", leaveViewModel.Id, DbType.Int64, ParameterDirection.Input);
+                        parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
+                        var SaveLeaveDetails = con.ExecuteScalar("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return "";
+        }
+
+        public void SendLeaveMail(List<LeaveDetailsViewModel> leaveDetailsViews)
+        {
+            var userName = HttpContext.Current.Session["EmailId"];
+            var mailbody = "<p>Respected Ma'am,<br>  I would like to request for leave for the following day(s).Hoping to receive a positive response from you.<br><br></p>" +
+            "<html><body>" +
+                "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
+                "<thead><tr style='background: #eee;'><th>Leave Date</th><th>Leave Day</th><th>Half Day</th></tr></thead>" +
+                "<tbody class='leaveTable'>";
+                foreach (var leavedetails in leaveDetailsViews)
+                {
+                    string WeekDay = leavedetails.LeaveDate.DayOfWeek.ToString();
+                    var addrow = "<tr><td style='background: #fff;'>" + leavedetails.LeaveDate.ToShortDateString() + "</td><td>"+ WeekDay +"</td><td>" + leavedetails.Halfday + "</td></tr>";
+                    mailbody += addrow;
+                }
+            mailbody += "</tbody></table><br><br>" +
+            "<p>Yours Sincerely,<br>" + userName + "</p></body></html>";
+            try
+            {
+                var message = new MailMessage();
+                message.To.Add(new MailAddress("pooja.avidclan@gmail.com"));
+                message.Subject = "Leave Application";
+                message.Body = mailbody;
+                message.IsBodyHtml = true;
+                using (var smtp = new SmtpClient())
+                {
+                    smtp.Send(message);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [Route("api/Admin/ReplyToLeaveRequest")]
+        [HttpPost]
+        public async Task<string> ReplyToLeaveRequest(LeaveViewModel leaveViewModel)
+        {
+            SendReplyForLeave(leaveViewModel.Leaves, leaveViewModel.LeaveStatus,leaveViewModel.FirstName,leaveViewModel.EmailId);
+            var parameters = new DynamicParameters();
+            parameters.Add("@LeaveStatus", leaveViewModel.LeaveStatus, DbType.String, ParameterDirection.Input);
+            parameters.Add("@Id", leaveViewModel.Id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@Mode", 5, DbType.Int32, ParameterDirection.Input);
+            var UpdateLeave = con.Query<LeaveViewModel>("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure);
+            return "";
+        }
+
+        public void SendReplyForLeave(List<LeaveDetailsViewModel> leaveDetailsViews, string status,string name,string EmailId)
+        {
+            var mailbody = "<p>Hello "+ name +"<br>  Your leave has been<b> " + status + " </b>for the following day(s).<br><br></p>" +
+            "<html><body>" +
+                "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
+                "<thead><tr style='background: #eee;'><th>Leave Date</th><th>Leave Day</th><th>Half Day</th></tr></thead>" +
+                "<tbody class='leaveTable'>";
+            foreach (var leavedetails in leaveDetailsViews)
+            {
+                string WeekDay = leavedetails.LeaveDate.DayOfWeek.ToString();
+                var addrow = "<tr><td style='background: #fff;'>" + leavedetails.LeaveDate.ToShortDateString() + "</td><td>" + WeekDay + "</td><td>" + leavedetails.Halfday + "</td></tr>";
+                mailbody += addrow;
+            }
+            mailbody += "</tbody></table><br><br>" +
+            "<p>Thanks & Regards,<br>XYZ</p></body></html>";
+            try
+            {
+                var message = new MailMessage();
+                message.To.Add(new MailAddress(EmailId));
+                message.Subject = "Reply For Leave Application";
+                message.Body = mailbody;
+                message.IsBodyHtml = true;
+                using (var smtp = new SmtpClient())
+                {
+                    smtp.Send(message);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

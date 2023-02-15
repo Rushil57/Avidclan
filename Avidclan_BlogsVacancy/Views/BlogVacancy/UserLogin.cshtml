@@ -64,10 +64,13 @@
                 contentType: 'application/json',
                 data: JSON.stringify(Userdata),
                 success: function (result) {
-                    if (result != null) {
+                    if (result.RoleName == "Admin") {
                         window.location.href = '/BlogVacancy/blog'
                     }
-                    else {
+                    if (result.RoleName == "Employee") {
+                        window.location.href = '/Leave/Index'
+                    }
+                    if(result == null) {
                         alert("Enter Correct EmailId or Password");
                     }
 

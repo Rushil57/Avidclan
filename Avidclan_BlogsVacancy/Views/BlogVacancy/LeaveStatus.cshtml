@@ -1,0 +1,229 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminTemplate.cshtml";
+}
+
+<div class="col-sm-2" style="margin: auto;">
+    <select name="Status" id="StatusId" class="form-control select2 cls-Status" onchange="GetLeaveList()">
+        <option value='status'>Status</option>
+        <option value='pending'>Pending</option>
+        <option value='approved'>Approved</option>
+        <option value='rejected'>Rejected</option>
+    </select>
+</div>
+
+<table id="LeaveTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>From Date</th>
+            <th>To Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody class="LeaveTableBody">
+    </tbody>
+</table>
+
+@*MODAL START FOR APPLY LEAVE*@
+<div class="modal" id="ApplyLeaveModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Leave</h5>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="LeaveId" value="0">
+                <input type="hidden" id="EmailId">
+                <input type="hidden" id="FirstName">
+                <div class="form-group">
+                    <label for="txtFromDate">From Date</label>
+                    <input type="text" class="form-control" name="txtFromDate" id="txtFromDate" placeholder="From Date" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="txtToDate">To Date</label>
+                    <input type="text" class="form-control" name="txtToDate" id="txtToDate" placeholder="To Date" readonly>
+                </div>
+
+                <div id="TotalLeaveDates">
+                    <table class="table" id="LeaveDateTable">
+                        <thead>
+                            <tr>
+                                <th style="width:33%">Date</th>
+                                <th style="width:23%">Half Day?</th>
+                                <th style="width:44%"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="LeaveDatebody">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="Rejected" onclick="ApprovedOrRejectLeave(this.id)">Rejected</button>
+                    <button type="button" class="btn btn-success" id="Approved" onclick="ApprovedOrRejectLeave(this.id)">Approved</button>
+                    <button type="button" class="btn btn-secondary" onclick="ResetModel()">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@*MODAL END FOR APPLY LEAVE*@
+
+<script>
+    $(function () {
+        GetLeaveList();
+    });
+
+    var table;
+    function GetLeaveList() {
+        var Statusid = $("#StatusId").val();
+         $.ajax({
+            url: "@Url.Action("GetLeaves", "Leave")",
+            contentType: 'application/json',
+             type: "GET",
+             data: { LeaveStatus: Statusid },
+            success: function (data) {
+              table = $('#LeaveTable').DataTable({
+                    destroy: true,
+                    data: data,
+                    "columns": [
+                        {
+                            "data": "Id", visible : false
+                        },
+                        { "data": "FirstName" },
+                        {
+                            "data": "Fromdate",
+                            "render": function (data) {
+                                const dateValue = new Date(parseInt(data.substr(6)));
+                                return moment(dateValue).format('DD/MM/YYYY');
+                            }
+                        },
+                        {
+                            "data": "Todate",
+                            "render": function (data) {
+                                const dateValue = new Date(parseInt(data.substr(6)));
+                                return moment(dateValue).format('DD/MM/YYYY');
+                            }
+                        },
+                        {"data": "LeaveStatus"}
+                    ]
+                });
+            },
+            error: function () {
+                alert('failure');
+            }
+        });
+    }
+
+    $('#LeaveTable tbody').on('click', 'tr', function () {
+        var data = table.row($(this).closest('tr')).data();
+        var id = data[Object.keys(data)[0]];
+         $.ajax({
+                url: "@Url.Action("GetLeaveDetails", "Leave")",
+                type: "GET",
+                data: {
+                    Id: id,
+                },
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    $("#ApplyLeaveModel").show();
+                    var fromdate = moment(data[0].Fromdate).format('MM/DD/YYYY');
+                    var todate = moment(data[0].Todate).format('MM/DD/YYYY');
+                    $("#txtFromDate").val(fromdate);
+                    $("#txtToDate").val(todate);
+                    $("#LeaveId").val(data[0].Id)
+                    $("#EmailId").val(data[0].EmailId)
+                    $("#FirstName").val(data[0].FirstName)
+                    var arr = new Array();
+                    $.each(data, function (key, val) {
+                        var LeaveDetails = {
+                            LeaveDates: val.LeaveDates,
+                            Halfday: val.Halfday
+                        }
+
+                        arr.push(LeaveDetails);
+                    })
+                    BindLeaveTable(arr);
+                }
+            });
+    });
+
+    function BindLeaveTable(arr) {
+        $("#TotalLeaveDates").show();
+        $("#LeaveDateTable .LeaveDatebody").html("");
+        var count = 1
+        for (var i = 0; i < arr.length; i++) {
+            var addcontrols = "<tr id=" + count + ">" + count + ">"
+            addcontrols += "<td>" + moment(arr[i].LeaveDates).format('MM/DD/YYYY') + "</td>" +
+                "<td>" + '<input type="checkbox" id="HalfDaycheck_' + count + '" name="HalfDaycheck" onclick="return false">' + "</td>" +
+                "<td>" + '<div class="HalfDaydiv_' + count + '"><input type="radio" id="FirstHalf" name="HalfDayLeave_' + count + '" value="FirstHalf" onclick="return false"> <label for="firsthalf">First Half</label>&nbsp;&nbsp;' +
+                '<input type="radio" id="SecondHalf" name="HalfDayLeave_' + count + '" value="SecondHalf" onclick="return false"> <label for="secondhalf">Second Half</label></div>' + "</td>"
+            "</tr>";
+            $("#LeaveDateTable .LeaveDatebody").append(addcontrols);
+            if (arr[i].Halfday != null && arr[i].Halfday != "") {
+                $(".HalfDaydiv_" + count).show();
+                $("#HalfDaycheck_" + count).prop("checked", true);
+                $("input[name=HalfDayLeave_" + count + "][value=" + arr[i].Halfday + "]").prop("checked", true);
+
+            }
+            else {
+                $(".HalfDaydiv_" + count).hide();
+            }
+            count++;
+        }
+    }
+
+    function ResetModel() {
+        $("#ApplyLeaveModel").hide();
+        $("#LeaveId").val(0)
+        $("#txtFromDate").val("");
+        $("#txtToDate").val("");
+        $("#LeaveDateTable .LeaveDatebody").html("");
+        $("#TotalLeaveDates").hide();
+        $("#EmailId").val("");
+        $("#FirstName").val("");
+        GetLeaveList();
+    }
+
+    function ApprovedOrRejectLeave(leave) {
+        var LeaveDetails = new Array();
+        $("#LeaveDateTable tbody tr").each(function () {
+            var row = $(this);
+            var Leave = {};
+            Leave.LeaveDate = row.find("td:eq(0)").text();
+            var checked = row.find("td:eq(1) input:checkbox").is(':checked');
+            if (checked) {
+                var Radiochecked = row.find("td:eq(2) input[type='radio']:checked").is(':checked');
+                if (Radiochecked) {
+                    Leave.Halfday = row.find("td:eq(2) input[type='radio']:checked").val();
+                }
+            }
+            LeaveDetails.push(Leave);
+        })
+
+        var Leavedata = {
+            Id: $("#LeaveId").val(),
+            LeaveStatus: leave,
+            EmailId: $("#EmailId").val(),
+            FirstName :$("#FirstName").val(),
+            Leaves: LeaveDetails
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/api/Admin/ReplyToLeaveRequest",
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(Leavedata),
+            success: function (result) {
+                alert("success");
+                ResetModel();
+            },
+            error: function (result) {
+                alert("failure");
+            },
+        })
+    }
+</script>
+

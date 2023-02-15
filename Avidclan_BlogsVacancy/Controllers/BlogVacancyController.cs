@@ -40,10 +40,11 @@ namespace Avidclan_BlogsVacancy.Controllers
             parameters.Add("@EmailId", userLogin.EmailId, DbType.String, ParameterDirection.Input);
             parameters.Add("@Password", userLogin.Password, DbType.String, ParameterDirection.Input);
             parameters.Add("@Mode", 1, DbType.Int32, ParameterDirection.Input);
-            var logindata = con.ExecuteScalar("sp_User", parameters, commandType: CommandType.StoredProcedure);
+            var logindata = con.Query<UserLogin>("sp_User", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
             if(logindata!= null)
             {
-                Session["EmailId"] = logindata;
+                Session["EmailId"] = logindata.EmailId;
+                Session["UserId"] = logindata.Id;
                 //HttpCookie nameCookie = new HttpCookie("EmailId",logindata.ToString());
                 //nameCookie.Expires = DateTime.Now.AddDays(30);
                 //Response.Cookies.Add(nameCookie);
@@ -146,6 +147,16 @@ namespace Avidclan_BlogsVacancy.Controllers
         public void Logout()
         {
             Session["EmailId"] = null;
+            Session["UserId"] = 0;
+        }
+
+        public ActionResult LeaveStatus()
+        {
+            if (Session["EmailId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
+            return View();
         }
 
 

@@ -137,6 +137,7 @@
     <Compile Include="Controllers\BlogVacancyController.cs" />
     <Compile Include="Controllers\EMailConfigurationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeaveController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -144,6 +145,7 @@
     <Compile Include="ViewModel\Blog.cs" />
     <Compile Include="ViewModel\Careers.cs" />
     <Compile Include="ViewModel\HeaderMenu.cs" />
+    <Compile Include="ViewModel\LeaveViewModel.cs" />
     <Compile Include="ViewModel\UserLogin.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +185,8 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\dashboard.js" />
     <Content Include="Scripts\hoverable-collapse.js" />
+    <Content Include="Scripts\index.global.js" />
+    <Content Include="Scripts\index.global.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -216,6 +220,9 @@
     <Content Include="Views\Shared\_AdminTemplate.cshtml" />
     <Content Include="Views\BlogVacancy\Careers.cshtml" />
     <Content Include="Views\EMailConfiguration\EMailConfiguration.cshtml" />
+    <Content Include="Views\Leave\Index.cshtml" />
+    <Content Include="Views\Shared\_LeaveTemplate.cshtml" />
+    <Content Include="Views\BlogVacancy\LeaveStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
