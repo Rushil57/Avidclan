@@ -24,7 +24,14 @@ namespace Avidclan_Website
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/assets/css/bootstrap.min.css",
+                      "~/assets/css/intlTelInput.css",
+                      "~/assets/css/style.css",
+                      "~/assets/css/responsive.css",
+                      "~/assets/css/color.css",
+                      "~/assets/css/swiper.min.css"
+                      ));
         }
     }
 }
