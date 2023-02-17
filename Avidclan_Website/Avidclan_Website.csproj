@@ -676,6 +676,7 @@
     <Content Include="assets\fonts\fa-solid-900.woff" />
     <Content Include="assets\fonts\fa-solid-900.woff2" />
     <Content Include="assets\images\about-us.webp" />
+    <Content Include="assets\js\commonScript.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
