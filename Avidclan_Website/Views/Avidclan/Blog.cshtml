@@ -5,7 +5,13 @@
 }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-
+@section AdditionalMeta
+{
+    <title>Avidclan Blogs: Web and Mobile App Development News and Tips</title>
+    <meta name="description"
+          content="Explore the Avidclan blog for the latest news, tips, and insights on the worlds of web and mobile app development, IoT, QA, and Internet marketing. Stay updated. " />
+    <link rel="canonical" href="https://www.avidclan.com/blog/" />
+}
 <section class="banner-section-two">
     <div class="container">
         <div class="content-box">
@@ -248,12 +254,12 @@
                     var PostingDate = new Date(v.PostingDate);
                     var longDt = PostingDate.toLocaleDateString("en-US", options);
                     var Descriptionlength = v.Description.length > 55 ? v.Description.substring(0, 55) + "…" : v.Description;
-                  
-                   /* var url = imageURL + v.Image;*/
+
+                    /* var url = imageURL + v.Image;*/
                     sectionblog += '<div class="col-lg-4 col-md-6">' +
                         '<div class="single-blog">' +
                         '<div class="blog-img">' +
-                        '<a href="/blogdetails"><img src="' + v.Image +'" alt="" /></a>' +
+                        '<a href="/blogdetails"><img src="' + v.Image + '" alt="" /></a>' +
                         '<div class="top-meta">' +
                         '<span class="tag">' + v.BlogType + '</span>' +
                         '</div>' +
