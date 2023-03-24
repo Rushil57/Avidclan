@@ -170,6 +170,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AvidclanController.cs" />
+    <Compile Include="Controllers\BlogPagesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Global.asax.cs">
@@ -755,9 +756,13 @@
     <Content Include="Views\Home\Example.cshtml" />
     <Content Include="Views\Shared\_JobDescription.cshtml" />
     <Content Include="Views\Avidclan\PageNotFound.cshtml" />
+    <Content Include="Views\Shared\_blogdetail.cshtml" />
+    <Content Include="Views\BlogPages\Index.cshtml" />
+    <Content Include="Views\BlogPages\blog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\BlogPages\" />
     <Folder Include="BlogImages\Images\" />
   </ItemGroup>
   <ItemGroup>

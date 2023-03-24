@@ -1,54 +1,126 @@
-﻿@model Avidclan_Website.Models.BlogViewModel
-
-@{
-    ViewBag.Title = "Blog";
+﻿@model IEnumerable<Avidclan_Website.Models.Blog>
+@{ 
+    var context = "@context";
+    var type = "@type";
 }
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 @section AdditionalMeta
 {
-    <title>Avidclan Blogs: Web and Mobile App Development News and Tips</title>
-    <meta name="description"
-          content="Explore the Avidclan blog for the latest news, tips, and insights on the worlds of web and mobile app development, IoT, QA, and Internet marketing. Stay updated. " />
-    <link rel="canonical" href="https://www.avidclan.com/blog/" />
+    <title id="htmltitle">@ViewBag.MetaTitle</title>
+    <meta name="description" content="@ViewBag.MetaData">
+    <link rel="canonical" href="@ViewBag.Url" />
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org/",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Avidclan",
+            "item": "https://www.avidclan.com/"
+          },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://www.avidclan.com/blog/"
+          },
+           {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "A Guide To Integrate Your ML Models into Your .NET Applications",
+            "item": "https://www.avidclan.com/blog/guide-to-integrate-your-ml-models-into-your-dotnet-application/"
+          }]
+        }
+            </script>
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [{
+            "@type": "Question",
+            "name": "What is machine learning and why is it important for .NET applications?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Machine learning is a subfield of artificial intelligence that involves the development of algorithms and statistical models that enable computer systems to learn from data without being explicitly programmed. Machine learning is important for .NET applications because it enables developers to build intelligent systems that can learn and improve over time."
+            }
+          },{
+            "@type": "Question",
+            "name": "How do .NET development companies ensure the quality of their work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": ".NET development companies ensure the quality of their work by following established software development processes and utilizing industry-standard quality assurance techniques."
+            }
+          },{
+            "@type": "Question",
+            "name": "What are some best practices for integrating ML models into .NET applications?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Define clear objectives, Choose the right ML model, Prepare your data, Train your model, Optimize your model, Integrate your model, Monitor your model,  and Maintain and update your model."
+            }
+          }]
+        }
+    </script>
 }
-<section class="banner-section-two">
-    <div class="container">
-        <div class="content-box">
-            <div class="row">
-                <div class="col-md-12 col-lg-12 text-center">
-                    <div class="pl-2">
-                        <h1>Our <span class="primary-color">Blog</span></h1>
-                        <div class="text mb-0">
-                            Avidclan is a renowned and leading web and mobile app development company with a vision to fulfill
-                            business requirements using innovative solutions. We assist our clients in a way that they can
-                            provide a superior digital experience for their clients worldwide.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--End Banner Section -->
-<!-- Blog Section -->
+
+<style>
+    h3 {
+        margin-bottom: 0px !important;
+    }
+</style>
+
 <section class="blog-section">
     <div class="container">
-        <div class="blog-grid-wrap">
-            <div class="row" id="demo">
-            </div>
-        </div>
+        <div class="blog-details-wrap">
+            <!-- Blog Details Post Start -->
+            <div class="blog-details-post">
+                <!-- Single Blog Start -->
+                <div class="single-blog">
+                    <h1 class="title" id="Blogtitle"></h1>
+                    <div class="blog-img">
+                        <a href="#"><img id="blogImage" src="" alt="" /></a>
 
-        <!-- Blog Pagination Start -->
-        <div class="blog-pagination">
-            <ul class="pagination justify-content-center" id="pagination" style="margin-top: 70px;">
-            </ul>
+                        <div class="top-meta">
+                            <span class="tag" id="blogTag"></span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta" style="padding: 10px;">
+                            <span id="admin"><i class="fas fa-user"></i> <a href="#"></a></span>
+                            <span id="spanDate"><i class="far fa-calendar-alt"></i></span>
+                        </div>
+                        @Html.Raw(ViewBag.HtmlData)
+
+                        <section class="FAQ-section testimonial-section-two">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="avidclan_section_title text-center mb-50">
+                                            <h5 class="avidclan_sub_title primary-color">FIND USEFUL</h5>
+                                            <div class="sec-title"><h2>Frequently Asked Questions</h2></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="accordion" id="accordionExample">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                </div>
+                <!-- Single Blog End -->
+
+            </div>
+            <!-- Blog Details Post End -->
         </div>
-        <!-- Blog Pagination End -->
     </div>
 </section>
-
-
 <section class="lets-talk">
     <div class="container">
         <div class="inner-block">
@@ -233,90 +305,65 @@
     </div>
 </div>
 
-
 <script type="text/javascript">
     $(document).ready(function () {
-        GetSectionData(1);
+        GetBlogDetails();
     });
-    function GetSectionData(id) {
+    function GetBlogDetails() {
+        var id = localStorage.getItem("BlogId");
+        var date = localStorage.getItem("BlogDate");
         $.ajax({
-            type: "GET",
-            url: "/Avidclan/GetSectionData?page=" + id,
-            contentType: 'application/json; charset=utf-8',
-            dataType: "json",
-            success: function (data) {
-                $("#demo").html("");
-                var sectionblog = "";
-                var paginationData = "";
-                var imageURL = "https://cms.avidclan.com";
-                $.each(data.data.ListBlog, function (k, v) {
-                    var options = { year: 'numeric', month: 'long', day: 'numeric' };
-                    var PostingDate = new Date(v.PostingDate);
-                    var longDt = PostingDate.toLocaleDateString("en-US", options);
-                    var Descriptionlength = v.Description.length > 80 ? v.Description.substring(0, 80) + "…" : v.Description;
+                url: '@Url.Action("GetBlogData", "Avidclan")',
+                contentType: 'application/json',
+                data: { Id: id },
+                type: "GET",
+                success: function (result) {
+                    if (result != null) {
+                        var fromdate = moment(result.bloglist[0].PostingDate).format('MM/DD/YYYY  HH:mm:ss');
+                        var options = { year: 'numeric', month: 'long', day: 'numeric' };
+                        var PostingDate = new Date(fromdate);
+                        var longDt = PostingDate.toLocaleDateString("en-US", options);
 
-                    /* var url = imageURL + v.Image;*/
-                    sectionblog += '<div class="col-lg-4 col-md-6">' +
-                        '<div class="single-blog">' +
-                        '<div class="blog-img">' +
-                        '<a onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl +'")><img src="' + v.Image + '" alt="" style=height:216px; ></a>' +
-                        '<div class="top-meta">' +
-                        '<span class="tag">' + v.BlogType + '</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '<div class="blog-content">' +
-                        '<div class="blog-meta">' +
-                        '<span><i class="fas fa-user"></i> <a href="#">' + v.PostedBy + '</a></span>' +
-                        '<span id="admindateid_' + v.Id + '"><i class="far fa-calendar-alt"></i>' + longDt + '</span>' +
-                        '</div>' +
-                        '<h3 class="title"><a onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl +'")>' + v.Title + '</a></h3>' +
-                        '<p>' + Descriptionlength + '</p>' +
-                        '</div>' +
-                        '<div class="blog-btn">' +
-                        '<a class="blog-btn-link" onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl +'")>' +
-                        'Read Full Article <i class="fas fa-long-arrow-alt-right"></i>' +
-                        '</a>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>';
+                        $("#blogTag").html(result.bloglist[0].BlogType)
+                        $("#Blogtitle").html(result.bloglist[0].Title)
+                        $("#admin a").html(result.bloglist[0].PostedBy)
+                        $('#blogImage').attr('src', result.bloglist[0].Image);
+                        $("#spanDate").html(longDt)
+                        var sectionblog = "";
+                        var count = 1;
+                        if (result.blogfaqslist == 0) {
+                            $(".FAQ-section").css("display", "none")
+                        }
+                        else {
+                            $(".FAQ-section").css("display", "block")
+                            $.each(result.blogfaqslist, function (key, val) {
+                                sectionblog = '<div class="accordion-item" style="margin-bottom: 20px">' +
+                                    '<h2 class="accordion-header" id="heading' + count + '">' +
+                                    '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"' +
+                                    'data-bs-target="#collapse' + count + '" aria-expanded="true" aria-controls="collapse' + count + '">' +
+                                    '' + val.Questions + '' +
+                                    '</button>' +
+                                    '</h2>' +
+                                    '<div id="collapse' + count + '" class="accordion-collapse collapse" aria-labelledby="headingOne"' +
+                                    'data-bs-parent="#accordionExample">' +
+                                    '<div class="accordion-body">' +
+                                    val.Answers +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>'
+                                count++;
+                                $('#accordionExample').append(sectionblog);
+                            });
+                        }
 
 
-                })
-                $('#demo').html(sectionblog);
-                if (data.data.pager.EndPage > 1) {
-                    paginationData += '<ul class="pagination">'
-                    if (data.data.pager.CurrentPage > 1) {
-                        let previousPage = (data.data.pager.CurrentPage) - 1;
-                        paginationData += '<li class="page-item">' + '<a class="page-link" onclick="GetSectionData(' + previousPage + ')"  href="#"><i class="fas fa-chevron-left"></i></a>' + '</li>'
+
                     }
-                    for (var page = data.data.pager.StartPage; page <= data.data.pager.EndPage; page++) {
-                        var isActive = (page == data.data.pager.CurrentPage) ? "active" : "";
-                        paginationData += '<li class="' + isActive + ' page-item">' +
-                            '<a class="page-link" onclick="GetSectionData(' + page + ')" href="#">' + page + '</a>' +
-                            '</li>'
-                    }
-                    if (data.data.pager.CurrentPage < data.data.pager.TotalPages) {
-                        let nextPage = (data.data.pager.CurrentPage) + 1;
-                        paginationData += '<li class="page-item">' +
-                            '<a class="page-link" onclick="GetSectionData(' + nextPage + ')" href="#"><i class="fas fa-chevron-right"></i></a>' +
-                            '</li>'
-                    }
-                    paginationData += '</ul>'
+
+                },
+                error: function () {
+                    alert('failure');
                 }
-                $('#pagination').html(paginationData);
-            },
-            error: function (result) {
-                  alert("Error Ocurred!");
-            }
-        });
+            });
     }
-
-    function GetBlogDetails(id,url) {
-        localStorage.setItem("BlogId", id);
-        var date = $("#admindateid_" + id).text();
-        localStorage.setItem("BlogDate", date);
-        window.location.href = "/blog/"+ url + "/";
-        /*window.location.href = "/blogs/";*/
-    }
-
 </script>

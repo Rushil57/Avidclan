@@ -1,14 +1,12 @@
 ﻿using Avidclan_BlogsVacancy.ViewModel;
 using Dapper;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Avidclan_BlogsVacancy.Controllers
@@ -109,7 +107,13 @@ namespace Avidclan_BlogsVacancy.Controllers
             parameters.Add("@Id", id, DbType.Int32, ParameterDirection.Input);
             parameters.Add("@Mode", 5, DbType.Int32, ParameterDirection.Input);
             var DeleteBlog = con.Query<Blog>("sp_Blog", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
-            //return Json(DeleteBlog, JsonRequestBehavior.AllowGet);
+            if(DeleteBlog == null)
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("@BlogId", id, DbType.Int32, ParameterDirection.Input);
+                parameter.Add("@Mode", 2, DbType.Int32, ParameterDirection.Input);
+                var DeleteBlogFaqs = con.Query<BlogFaqs>("sp_BlogFaqs", parameter, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
             return RedirectToAction("blog");
         }
         public JsonResult GetBlogById(int id)
@@ -117,8 +121,16 @@ namespace Avidclan_BlogsVacancy.Controllers
             var parameters = new DynamicParameters();
             parameters.Add("@Id", id, DbType.Int32, ParameterDirection.Input);
             parameters.Add("@Mode", 6, DbType.Int32, ParameterDirection.Input);
-            var GetBlogDetails = con.Query<Blog>("sp_Blog", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
-            return Json(GetBlogDetails, JsonRequestBehavior.AllowGet);
+            //var GetBlogDetails = con.Query<Blog>("sp_Blog", parameters, commandType: CommandType.StoredProcedure).ToList();
+            var reader = con.QueryMultiple("sp_Blog", parameters, commandType: CommandType.StoredProcedure);
+            var bloglist = reader.Read<Blog>().ToList();
+            var blogfaqslist = reader.Read<BlogFaqs>().ToList();
+            var dynamiclist = new
+            {
+                bloglist = bloglist,
+                blogfaqslist = blogfaqslist
+            };
+            return Json(dynamiclist, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public void BlogStatus(HeaderMenu menu)
@@ -159,6 +171,15 @@ namespace Avidclan_BlogsVacancy.Controllers
             return View();
         }
 
+        public ActionResult SalarySlips()
+        {
+            if (Session["EmailId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
+            return View();
+        }
 
+      
     }
 }

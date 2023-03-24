@@ -1,0 +1,626 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_AdminTemplate.cshtml";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<style>
+    .ui-datepicker-calendar {
+        display: none !important;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <input type="file" id="files" name="files" />
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" name="txtDateselection" id="txtsalaryDate" placeholder="Select Date" onchange="HolidaysDateList()">
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm">
+            <button id="excelupload" class="btn btn-primary btn-md btn-sm" onclick="SalarySlipData()">Upload Excel</button>
+        </div>
+        <div class="col-sm">
+            <button id="downLoadZipfile" class="btn btn-primary btn-md btn-sm" style="display:none" onclick="getEmployeeData()">Download Zip File</button>
+        </div>
+        <div class="col-sm">
+            <button id="sendMail" class="btn btn-primary btn-md btn-sm" style="display:none" onclick="SendSalarySlipMail()">Send Mail</button>
+        </div>
+    </div>
+
+
+    <div id="SalaryDiv" style="margin-top: 50px;display:none;">
+        <table class="table" id="SalaryTable">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" name="select_all" value="1" id="example-select-all"></th>
+                    <th>Full Name</th>
+                    <th>Working Days</th>
+                    <th>Salary</th>
+                    <th>Leave Without Pay</th>
+                    <th>Emp Id</th>
+                    <th>Designation</th>
+                    <th>DateOfJoining</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="SalaryTablebody">
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="SlipDetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="margin-top: 5%; width: 165%">
+            <input type="hidden" id="FullName" />
+            <input type="hidden" id="MonthYear" />
+            <input type="hidden" id="SalaryInWords" />
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="CloseModelPopup()">Close</button>
+                <button type="button" class="btn btn-primary" onclick="DownloadSlipInPdf()" id="create_PDF">Download As Pdf</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#txtsalaryDate').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            dateFormat: 'MM yy',
+            onClose: function (dateText, inst) {
+                function isDonePressed() {
+                    return ($('#ui-datepicker-div').html().indexOf('ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all ui-state-hover') > -1);
+                }
+                if (isDonePressed()) {
+                    var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                    var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                    $(this).datepicker('setDate', new Date(year, month, 1));
+                    HolidaysDateList();
+                }
+            }
+        });
+    })
+
+    function SalarySlipData() {
+        var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xlsx|.xls)$/;
+        if (regex.test($("#files").val().toLowerCase())) {
+
+            //VALIDATION FOR SELECTING MONTH
+            var slipdate = $("#txtsalaryDate").val();
+            if(slipdate == "")
+            {
+                alert("Please Select Date")
+                return
+            }
+
+
+            var xlsxflag = false;
+            if ($("#files").val().toLowerCase().indexOf(".xlsx") > 0) {
+                xlsxflag = true;
+            }
+            if (typeof (FileReader) != "undefined") {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var data = e.target.result;
+                    if (xlsxflag) {
+                        var workbook = XLSX.read(data, { type: 'binary' });
+                    }
+                    else {
+                        var workbook = XLS.read(data, { type: 'binary' });
+                    }
+                    var sheet_name_list = workbook.SheetNames;
+
+                    var cnt = 0;
+                    sheet_name_list.forEach(function (y) {
+                        if (xlsxflag) {
+                            var exceljson = XLSX.utils.sheet_to_json(workbook.Sheets[y]);
+                        }
+                        else {
+                            var exceljson = XLS.utils.sheet_to_row_object_array(workbook.Sheets[y]);
+                        }
+                        if (exceljson.length > 0 && cnt == 0) {
+                            BindTable(exceljson);
+                            cnt++;
+                        }
+                    });
+                    /*$('#SalaryDiv').show();*/
+                    $('#SalaryDiv').css("display", "block");
+
+                }
+                if (xlsxflag) {
+                    reader.readAsArrayBuffer($("#files")[0].files[0]);
+                }
+                else {
+                    reader.readAsBinaryString($("#files")[0].files[0]);
+                }
+            }
+            else {
+                alert("Sorry! Your browser does not support HTML5!");
+            }
+        }
+        else {
+            alert("Please upload a valid Excel file!");
+            $('#files').val('');
+        }
+    }
+
+    var table;
+    function BindTable(jsondata) {
+        var count = 0
+        table = $('#SalaryTable').DataTable({
+            destroy: true,
+            data: jsondata,
+            "columns": [
+                {
+                    'targets': 0,
+                    'searchable': false,
+                    'orderable': false,
+                    'className': 'dt-body-center',
+                    'render': function (data, type, full, meta) {
+                        count++;
+                        return '<input type="checkbox" class="CheckBoxButton" name="id[]" value="' + full.FullName + '" onchange="showDownloadButton()">';
+                    }
+                },
+                { "data": "FullName" },
+                { "data": "WorkingDays", },
+                { "data": "Salary" },
+                { "data": "LeaveWithoutpay" },
+                { "data": "EmpId" },
+                {
+                    "data": "Designation",
+                    "render": function (data, type, row) {
+                        var designation = data.length > 20 ? data.substring(0, 20) + "..." : data;
+                        return "<span title='" + data + "'>" + designation + "</span>";
+                    }
+                },
+                { "data": "DateOfJoining" },
+                {
+                    "data": "Id",
+                    "render": function (data, type, row) {
+                        return '<button type="button" class="btn btn-info btn-sm slipdetails" id="Slip_' + count + '">View Slip</button>';
+
+                    }
+                },
+                {
+                    "data": "Id",
+                    "render": function (data, type, row) {
+                        return '<button type="button" class="btn btn-primary btn-sm downloadSalarySlip" id="Slipdownload_' + count + '">Download Slip</button>';
+                    }
+                },
+            ]
+        });
+    }
+
+    $('#SalaryTable').on('click', 'tbody .slipdetails', function () {
+        var data_row = table.row($(this).closest('tr')).data();
+        $("#SlipDetailsModal").show();
+        SlipDetails(data_row);
+    });
+
+    function SlipDetails(data_row) {
+        var slipdate = $("#txtsalaryDate").val();
+        var monthname = slipdate.split(' ')[0];
+        var year = slipdate.split(' ')[1];
+
+        $("#FullName").val(data_row.FullName); // storing name to add name in naming convention of pdf.
+        $("#MonthYear").val(slipdate);
+
+        /*GET TOTAL DAYS IN A MONTH*/
+        var monthnumber = new Date('1 ' + monthname + year);
+        monthnumber = monthnumber.getMonth() + 1;
+        var daysInMonths = new Date(year, monthnumber, 0).getDate();
+        /*GET TOTAL DAYS IN A MONTH*/
+
+        /*Count Weekends of months*/
+        var monthvalue = monthnumber - 1
+        var firstDayInMonth = new Date(year, monthvalue, 1);
+        var lastDayInMonth = new Date(year, monthvalue + 1, 0);
+        var weekendDays = 0;
+        var dt = new Date(firstDayInMonth);
+        while (dt <= lastDayInMonth) {
+            var WeekDay = dt.getDay();
+            if (WeekDay == 6 || WeekDay == 0) {
+                weekendDays++;
+            }
+            dt.setDate(dt.getDate() + 1);
+        }
+        /*Count Weekends of months*/
+
+        /*Count Paid Leaves*/
+            var paidDays = daysInMonths - weekendDays - HolidayList.length
+        /*Count Paid Leaves*/
+
+        /*Basic Salary Count*/
+        var salary = data_row.Salary.split(",").join("");
+        var basicsalary = (salary * 0.5);
+        /*Basic Salary Count*/
+
+        /*HRA Salary Count*/
+        var hrasalary = (salary * 20)/100;
+        /*HRA Salary Count*/
+
+        /*Special Allowance*/
+        var specialallownace = salary - (basicsalary + hrasalary + 240 + 300);
+        /*Special Allowance*/
+
+        /*Total Earnings*/
+        var totalEarnings = basicsalary + hrasalary + 240 + 300 + specialallownace;
+        /*Total Earnings*/
+
+
+        /*Net Salary In Words*/
+        ConvertSalarydigitsToWords(data_row.Salary)
+        var salaryInwords = $("#SalaryInWords").val();
+        /*Net Salary In Words*/
+
+
+        var str = "<div id='slipdetails' class='slipdetail'>"
+                    + "<div id='slipheader'><p id='header'>AVIDCLAN TECHNOLOGIES</p>"
+                            + "<p id='companyaddress'>1101 Shivalik Shilp Iskcon Cross Rd, Sarkhej - Gandhinagar Hwy, Ahmedabad, Gujarat 380015</p>"
+                            + "<p id='payslipmonth'>Pay Slip for the Month of " + slipdate + "</p>"
+                            + "<p class='blankspace'></p>"
+                    + "</div > "
+                    + "<div class='EmployeeInformation'>"
+                    + "<div class='container'>"
+                        + "<div class='row' style='margin-top: 1%;'> "
+                            + "<div class='col'> <b>Name</b></div>"
+                            + "<div class='col'>: " + data_row.FullName + "</div>"
+                            + "<div class='col'><b>Calender Days</b></div>"
+                            + "<div class='col'>: " + daysInMonths + "</div>"
+                        + "</div>"
+                        + "<div class='row' style='margin-top: 1%;'> "
+                            + "<div class='col'> <b>Emp Id</b></div>"
+                            + "<div class='col'>: " +  data_row.EmpId +"</div>"
+                            + "<div class='col'><b>Weekly Off</b></div>"
+                            + "<div class='col'>: " + weekendDays +"</div>"
+                        + "</div>"
+                        + "<div class='row' style='margin-top: 1%;'> "
+                            + "<div class='col'> <b>Designation</b></div>"
+                            + "<div class='col'>: "+ data_row.Designation +"</div>"
+                            + "<div class='col'><b>Leave Without Pay</b></div>"
+                            + "<div class='col'>: " + data_row.LeaveWithoutpay + "</div>"
+                        + "</div>"
+                        + "<div class='row' style='margin-top: 1%;'> "
+                            + "<div class='col'> <b>Date of Joining</b></div>"
+                            + "<div class='col'>: "+ data_row.DateOfJoining +"</div>"
+                            + "<div class='col'><b>Paid Days</b></div>"
+                            + "<div class='col'>: "+paidDays+"</div>"
+                        + "</div>"
+                        + "<div class='row' style='margin-top: 1%;'> "
+                            + "<div class='col-sm-4' style='width: 25%;'> <b>CTC(Per Month)</b></div>"
+                            + "<div class='col'>: " + data_row.Salary + "</div>"
+                        + "</div>"
+                    + "</div>"
+                    + "</div>"
+                    + "<p class='blankspace'></p>"
+                    + "<div class='EmployeeSalaryInformation'>"
+                    + "<div class='container'>"
+                    + "<div class='row'>"
+                        + "<div class='table1' id='earningTable'>"
+                            + "<table id='earning'>"
+                                + "<thead><tr>"
+                                    + "<th>Earnings</th><th>Amount (&#x20B9;)</th>"
+                                + "</tr></thead>"
+                                + "<tbody><tr>"
+                                  + "<td>Basic</td><td>" + basicsalary + "</td>"
+                                + "</tr>"
+                                + "<tr>"
+                                    + "<td>HRA</td><td>" + hrasalary + "</td>"
+                                + "</tr>"
+                                + "<tr>"
+                                     + "<td>CLA</td><td>240</td>"
+                                + "</tr>"
+                                + "<tr>"
+                                     + "<td>Medical Allowance</td><td>300</td>"
+                                + "</tr>"
+                                + "<tr>"
+                                     + "<td>Special Allowance</td><td>" + specialallownace + "</td>"
+                                + "</tr></tbody>"
+                            + "<tfoot><tr>"
+                            + "<td><b>Total Earnings</b></td><td style='padding-left: 71%;'>" + totalEarnings + "</td>"
+                            + "</tr></tfoot>"
+                            + "</table>"
+                        + "</div>"
+                        + "<div class='table1' id='taxDiv'>"
+                            + "<table id='taxTable'>"
+                                + "<thead><tr>"
+                                     + "<th>Deductions</th><th>Amount (&#x20B9;)</th>"
+                                + "</tr></thead>"
+                                + "<tbody><tr>"
+                                     + "<td>Professional Tax</td><td>200.00</td>"
+                                + "</tr></tbody>"
+                                + "<tfoot><tr>"
+                                     + "<td><b>Total Deductions</b></td><td style='padding-left: 58%;'>200.00</td>"
+                                + "</tr></tfoot>"
+                            + "</table>"
+                        + "</div>"
+                    + "</div>"
+                    + "</div>"
+                    + "</div> "
+                    + "<div id='netSalarydiv'>"
+                        + "<div class='row'>"
+                            + "<div class='col-sm-2 netsalary'><b>Net Salary</b></div>"
+                            + "<div class='col'>" + data_row.Salary + "/-</div>"
+                        + "</div>"
+                        + "<div class='row'>"
+                            + "<div class='col-sm-2'><b>In Words</b></div>"
+                            + "<div class='col'>"+salaryInwords+" Rupees Only</div>"
+                        + "</div>"
+                    + "</div>"
+                    + "<div id='slipfooter'>"
+                        + "<p>* This is computer generated payslip and does not require any signature/company stamp.</p>"
+                    + "</div>"
+            + "</div>"
+
+        $(".modal-body").html(str);
+    }
+
+    function CloseModelPopup() {
+        $("#SlipDetailsModal").hide();
+    }
+
+    var HolidayList=[];
+    function GetHolidaysDate(month, year) {
+        $.ajax({
+            url: "@Url.Action("HolidaysDate", "SalarySlip")",
+            contentType: 'application/json',
+            type: "GET",
+            data: {
+                Month: month,
+                Year : year
+            },
+            success: function (data) {
+                HolidayList = [];
+                $.each(data, function (key, val) {
+                    var date = moment(val.HolidaysDate).format('YYYY-MM-DD');
+                    var dt = new Date(date); // Converting object into date so it can check about weekday.
+                    var WeekDay = dt.getDay();
+                    if (WeekDay != 6 && WeekDay != 0) {
+                        HolidayList.push(date);
+                    }
+
+                })
+                console.log(HolidayList)
+            },
+            error: function () {
+                alert('failure');
+            }
+        });
+    }
+
+    function HolidaysDateList() {
+        var slipdate = $("#txtsalaryDate").val();
+        var monthname = slipdate.split(' ')[0];
+        var year = slipdate.split(' ')[1];
+
+        var monthnumber = new Date('1 ' + monthname + year);
+        monthnumber = monthnumber.getMonth() + 1;
+
+       GetHolidaysDate(monthnumber, year);
+    }
+
+    var form = $('.modal-body'), cache_width = form.width();
+    a4 = [595.28, 841.89];
+    function DownloadSlipInPdf() {
+        $('#SlipDetailsModal').scrollTop(0);
+        createPDF();
+    };
+    function createPDF() {
+        var fullname = $("#FullName").val();
+        var monthyear = $("#MonthYear").val();
+
+        getCanvas().then(function (canvas) {
+            var img = canvas.toDataURL("image/png"),
+                doc = new jsPDF({
+                    unit: 'px',
+                    format: 'a4'
+                });
+            doc.addImage(img, 'JPEG', 20, 20);
+            doc.save(fullname + ' Salary Slip ' + monthyear + '.pdf');
+            //form.width(cache_width);
+            $('#taxDiv tfoot').css('margin-top', '60%');
+            $('.modal-body').css('width', '822px');
+        });
+    }
+    function getCanvas() {
+         form.width((a4[0] * 1.33333) - 80).css('max-width', 'none');
+            $('#taxDiv tfoot').css('margin-top', '67.5%');
+            $('#netSalarydiv .netsalary').css('padding-right', 0)
+
+
+        return html2canvas(form, {
+            imageTimeout: 2000,
+            removeContainer: true
+        });
+    }
+
+    function ConvertSalarydigitsToWords(salaryIndigit) {
+        var th = ['', 'Thousand', 'Million', 'Billion', 'Trillion'];
+
+        var dg = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
+
+        var tn = ['Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+
+        var tw = ['Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+
+        salaryIndigit = salaryIndigit.toString();
+        salaryIndigit = salaryIndigit.replace(/[\, ]/g, '');
+        if (salaryIndigit != parseFloat(salaryIndigit)) return 'not a number';
+        var x = salaryIndigit.indexOf('.');
+        if (x == -1) x = salaryIndigit.length;
+        if (x > 15) return 'too big';
+        var n = salaryIndigit.split('');
+        var str = '';
+        var sk = 0;
+        for (var i = 0; i < x; i++) {
+            if ((x - i) % 3 == 2) {
+                if (n[i] == '1') {
+                    str += tn[Number(n[i + 1])] + ' ';
+                    i++;
+                    sk = 1;
+                } else if (n[i] != 0) {
+                    str += tw[n[i] - 2] + ' ';
+                    sk = 1;
+                }
+            } else if (n[i] != 0) {
+                str += dg[n[i]] + ' ';
+                if ((x - i) % 3 == 0) str += 'hundred ';
+                sk = 1;
+            }
+            if ((x - i) % 3 == 1) {
+                if (sk) str += th[(x - i - 1) / 3] + ' ';
+                sk = 0;
+            }
+        }
+        if (x != salaryIndigit.length) {
+            var y = salaryIndigit.length;
+            str += 'point ';
+            for (var i = x + 1; i < y; i++) str += dg[n[i]] + ' ';
+        }
+        $("#SalaryInWords").val(str)
+    }
+
+
+
+
+
+    $('#SalaryTable').on('click', 'tbody .downloadSalarySlip', function () {
+        var slipdate = $("#txtsalaryDate").val();
+
+        var data_row = table.row($(this).closest('tr')).data();
+        var values = new Array();
+        values.push({
+            'FullName': data_row.FullName,
+            'Salary': data_row.Salary,
+            'LeaveWithoutpay': data_row.LeaveWithoutpay,
+            'Date': slipdate,
+            'EmpId': data_row.EmpId,
+            'Designation': data_row.Designation,
+            'DateOfJoining': data_row.DateOfJoining,
+            'Type' : "SinglePdfDownload"
+        });
+        var EmployesData = JSON.stringify(values);
+        window.location = "@Url.Action("DownloadSalarySlip", "SalarySlip")?EmployesData=" + EmployesData;
+    });
+
+    $('#example-select-all').on('click', function () {
+        var selectAll = $("#example-select-all:checked").length;
+        if (selectAll != 0) {
+            $("#downLoadZipfile").css("display", "block")
+            $("#sendMail").css("display", "block")
+        }
+        else {
+            $("#downLoadZipfile").css("display", "none")
+            $("#sendMail").css("display", "none")
+        }
+        var rows = table.rows({ 'search': 'applied' }).nodes();
+        $('input[type="checkbox"]', rows).prop('checked', this.checked);
+    });
+
+    $('#SalaryTable tbody').on('change', 'input[type="checkbox"]', function () {
+        if (!this.checked) {
+            var el = $('#example-select-all').get(0);
+            if (el && el.checked && ('indeterminate' in el)) {
+                el.indeterminate = true;
+            }
+        }
+    });
+
+    function getEmployeeData() {
+        var slipdate = $("#txtsalaryDate").val();
+        var rowcollection = table.$(".CheckBoxButton:checked", { "page": "all" });
+        var values = new Array();
+        rowcollection.each(function (index, elem) {
+            var data = $(this).parents('tr:eq(0)');
+            values.push({
+                'FullName': $(data).find('td:eq(1)').text(),
+                'WorkingDays': $(data).find('td:eq(2)').text(),
+                'Salary': $(data).find('td:eq(3)').text(),
+                'LeaveWithoutpay': $(data).find('td:eq(4)').text(),
+                'Date': slipdate,
+                 'EmpId': $(data).find('td:eq(5)').text(),
+                'Designation': $(data).find('td:eq(6)').text(),
+                  'DateOfJoining': $(data).find('td:eq(7)').text(),
+                'Type' : "ZipFile"
+            });
+        });
+
+        var EmployesData = JSON.stringify(values);
+        window.location = "@Url.Action("DownloadSalarySlip", "SalarySlip")?EmployesData=" + EmployesData;
+        $('.CheckBoxButton').prop('checked', false);
+        $('#example-select-all').prop('checked', false);
+        $("#downLoadZipfile").css("display", "none")
+        $("#sendMail").css("display", "none")
+    }
+
+    function showDownloadButton() {
+        var checked = table.$(".CheckBoxButton:checked", { "page": "all" }).length;
+        if (checked != 0) {
+            $("#downLoadZipfile").css("display", "block")
+            $("#sendMail").css("display", "block")
+        }
+        else {
+            $("#downLoadZipfile").css("display", "none")
+            $("#sendMail").css("display", "none")
+        }
+    }
+
+
+     function SendSalarySlipMail() {
+        var slipdate = $("#txtsalaryDate").val();
+        var rowcollection = table.$(".CheckBoxButton:checked", { "page": "all" });
+        var values = new Array();
+        rowcollection.each(function (index, elem) {
+            var data = $(this).parents('tr:eq(0)');
+            values.push({
+                'FullName': $(data).find('td:eq(1)').text(),
+                'WorkingDays': $(data).find('td:eq(2)').text(),
+                'Salary': $(data).find('td:eq(3)').text(),
+                'LeaveWithoutpay': $(data).find('td:eq(4)').text(),
+                'Date': slipdate,
+                'EmpId': $(data).find('td:eq(5)').text(),
+                'Designation': $(data).find('td:eq(6)').text(),
+                'DateOfJoining': $(data).find('td:eq(7)').text(),
+                'Type' : "SendMail"
+            });
+        });
+        var EmployesData = JSON.stringify(values);
+         @* window.location = "@Url.Action("DownloadSalarySlip", "SalarySlip")?EmployesData=" + EmployesData;*@
+
+         $.ajax({
+             @*url: "@Url.Action("DownloadSalarySlip", "SalarySlip")?EmployesData=" + EmployesData,*@
+             type : "Post",
+             url: "/api/SalaryWebApiController/DownloadSalarySlip?EmployesData=" + EmployesData,
+            success: function (data) {
+                alert("Mail Sent Successfully");
+                $('.CheckBoxButton').prop('checked', false);
+                $('#example-select-all').prop('checked', false);
+                $("#downLoadZipfile").css("display", "none")
+                $("#sendMail").css("display", "none")
+            },
+            error: function () {
+                alert('failure');
+            }
+        });
+    }
+
+</script>

@@ -7,11 +7,15 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
+using System.Web.Http.Results;
 using System.Web.Mvc;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace Avidclan_Website.Controllers
 {
@@ -355,21 +359,59 @@ namespace Avidclan_Website.Controllers
                 for (int i = 0; i < BlogList.Count; i++)
                 {
                     Blog blog = new Blog();
+                    blog.Id = BlogList[i].Id;
                     blog.Title = BlogList[i].Title;
                     blog.Description = BlogList[i].Description;
                     blog.BlogType = BlogList[i].BlogType;
                     blog.Image = BlogList[i].Image;
                     blog.PostingDate = BlogList[i].PostingDate;
                     blog.PostedBy = BlogList[i].PostedBy;
+                    blog.PageUrl = BlogList[i].PageUrl;
+                    blog.MetaTitle = BlogList[i].MetaTitle;
+                    blog.MetaDescription = BlogList[i].MetaDescription;
                     listBlog.Add(blog);
                 }
 
                 var pager = new Pager((BlogList != null && BlogList.Count > 0) ? Convert.ToInt32(BlogList[0].TotalRecords) : 0, page, PageSize);
                 obj.ListBlog = listBlog;
                 obj.pager = pager;
+
+                 //result = CreateBlogPage(BlogList);
             }
             return JsonConvert.SerializeObject(new { Isvalid = true, data = obj });
         }
+
+        public string CreateBlogPage(List<Blog> blogList)
+        {
+            string result = string.Empty;
+            try
+            {
+                foreach (var blog in blogList)
+                {
+                    //string path = @"P:\Avidclan\Avidclan\Avidclan_Website\Views\BlogPages\" + blog.PageUrl + ".cshtml";
+                    //string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/BlogPages/");
+                    //string targetPath = Path.Combine(targetFolder, blog.PageUrl + ".cshtml");
+                    blog.Description += "@{Layout = \"~/Views/Shared/_blogdetail.cshtml\";}";
+                    blog.Description += "@section AdditionalMeta{<title>" + blog.MetaTitle + "</title><meta name=\"description\" content=\" " + blog.MetaDescription + " \">}";
+                     var mappedPath = HostingEnvironment.MapPath("~/Views/BlogPages/" + blog.PageUrl + ".cshtml");
+                    //var mappedPath = @"https://www.avidclan.com/";
+
+                    using (StreamWriter sw = new StreamWriter(mappedPath))
+                    {
+                        sw.Write(blog.Description);
+                    }
+                    result = "true";
+                }
+            }
+            catch(Exception ex)
+            {
+                result = ex.Message+ex.StackTrace;
+                
+            }
+            return result;
+
+        }
+
 
         [Route("blog-details/")]
         public ActionResult BlogDetails()
@@ -411,6 +453,24 @@ namespace Avidclan_Website.Controllers
         public ActionResult PageNotFound()
         {
             return View();
+        }
+
+        public JsonResult GetBlogData(int id)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@Mode", 8, DbType.Int32, ParameterDirection.Input);
+            //var blogList = con.Query<Blog>("sp_Blog", parameters, commandType: CommandType.StoredProcedure).ToList();
+            //return Json(blogList, JsonRequestBehavior.AllowGet);
+            var reader = con.QueryMultiple("sp_Blog", parameters, commandType: CommandType.StoredProcedure);
+            var bloglist = reader.Read<Blog>().ToList();
+            var blogfaqslist = reader.Read<BlogFaqs>().ToList();
+            var dynamiclist = new
+            {
+                bloglist = bloglist,
+                blogfaqslist = blogfaqslist
+            };
+            return Json(dynamiclist, JsonRequestBehavior.AllowGet);
         }
 
     }

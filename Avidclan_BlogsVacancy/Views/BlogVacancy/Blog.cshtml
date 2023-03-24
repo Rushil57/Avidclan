@@ -23,13 +23,15 @@
             <div class="modal-body">
                 <form name="BlogDetails">
                     <input type="hidden" class="form-control" id="BlogId">
+                    <input type="hidden" class="form-control" id="ImageUrl">
                     <div class="form-group">
                         <label for="Title">Title</label>
                         <input type="text" class="form-control" id="Title" name="title" placeholder="Title">
                     </div>
                     <div class="form-group">
                         <label for="Description">Description</label>
-                        <input type="text" class="form-control" id="Description" name="description" placeholder="Description">
+                        @*<input type="text" class="form-control" id="Description" name="description" placeholder="Description">*@
+                        <textarea type="text" class="ckeditor" id="Description" name="description"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="BlogType">Blog Type</label>
@@ -48,6 +50,39 @@
                         <label for="PostedBy">Posted By</label>
                         <input type="text" class="form-control" id="PostedBy" name="PostedBy" placeholder="Posted By">
                     </div>
+                    <div class="form-group">
+                        <label for="PageUrl">PageUrl</label>
+                        <input type="text" class="form-control" id="PageUrl" name="PageUrl" placeholder="Page Url" />
+                    </div>
+                    <div class="form-group">
+                        <label for="MetaTitle">Meta Title</label>
+                        <input type="text" class="form-control" id="MetaTitle" name="MetaTitle" placeholder="Meta Title" />
+                    </div>
+                    <div class="form-group">
+                        <label for="MetaDescription">Meta Description</label>
+                        <textarea class="form-control" id="MetaDescription" name="MetaDescription" placeholder="Meta Description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="FaqQuestion">Add FAQ Questions</label><br />
+                        <button type="button" class="btn btn-dark btn-sm" id="newrows" onclick="AddNewRows('','')"><b>Add Questions</b></button>
+                        <div style="padding-top:10px;" class="table-responsive-sm">
+                            <table class="table table-bordered" id="tblFaqs">
+                                <thead>
+                                    <tr>
+                                        <th>Add Question</th>
+                                        <th>Add Answer</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="FaqTableclass">
+                                    @*<tr id="RowId_1">
+                                        <td><input type="text" class="form-control clsfaqQuestion" name="faqTitle" placeholder="Add question" /></td>
+                                        <td><input type="text" class="form-control clsfaqAnswers" name="faqanswer" placeholder="Add Answer" /></td>
+                                    </tr>*@
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" onclick="ResetBlogData()">Close</button>
                         <button type="submit" class="btn btn-primary">Save</button>
@@ -64,7 +99,7 @@
         <thead>
             <tr>
                 <th> Title </th>
-                <th> Description </th>
+                @*<th> Description </th>*@
                 <th> Blog Type </th>
                 <th> PostingDate </th>
                 <th> PostBy </th>
@@ -90,14 +125,20 @@
                 description: { required: true, },
                 blogtype: { required: true, },
                 attachmentFile: { required: true, },
-                PostedBy: { required: true, }
+                 PostedBy: { required: true, },
+                 PageUrl: { required: true },
+                 MetaTitle: { required: true },
+                 MetaDescription: { required: true }
             },
             messages: {
                 title: { required: "Please enter a title", },
                 description: { required: "Please enter description", },
                 blogtype: { required: "Please enter blogtype", },
                 attachmentFile: { required: "Please choose a file", },
-                PostedBy: { required: "Please enter PostedBy", }
+                PostedBy: { required: "Please enter PostedBy", },
+                PageUrl: { required: "Please enter Url", },
+                MetaTitle: { required: "Please enter Meta Title", },
+                MetaDescription: { required: "Please enter Meta Description", }
             },
             submitHandler: function (form) {
                 SaveBlog()
@@ -105,7 +146,8 @@
         });
 
         var Postingdate = new Date();
-        var FormatPostingDate = moment(Postingdate).format('MM/DD/YYYY HH:mm:ss');
+       // var FormatPostingDate = moment(Postingdate).format('MM/DD/YYYY HH:mm:ss');
+        var FormatPostingDate = (new Date()).toISOString().split('T')[0];
         $("#PostingDate").val(FormatPostingDate);
         GetBlogStatusByName();
         GetBlogList();
@@ -116,14 +158,36 @@
     });
 
     function SaveBlog() {
+
+        var Blogs = new Array();
+        $("#tblFaqs tbody tr").each(function () {
+            var row = $(this);
+            var Blog = {};
+            Blog.Questions = row.find(".clsfaqQuestion").val();
+            Blog.Answers = row.find(".clsfaqAnswers").val();
+            Blogs.push(Blog);
+            
+        });
+        
+
         var Id = $("#BlogId").val();
         var Title = $("#Title").val();
-        var Description = $("#Description").val();
+        /* var Description = $("#Description").val();*/
+        var Description = CKEDITOR.instances['Description'].getData();
         var BlogType = $("#BlogType").val();
         var PostingDate = $("#PostingDate").val();
         var Resume = $("#Image").get(0);
         var files = Resume.files;
         var PostedBy = $("#PostedBy").val();
+        var ImageUrl = $("#ImageUrl").val();
+        var PageUrl = $("#PageUrl").val();
+        if (PageUrl != undefined && Id == 0) {
+            var arr = PageUrl.split('/');
+            PageUrl = arr[3];
+        }
+        var MetaTitle = $("#MetaTitle").val();
+        var MetaDescription = $("#MetaDescription").val();
+       // var BlogFaqs = Blogs;
 
         var fileData = new FormData();
         fileData.append("Id",Id);
@@ -133,6 +197,13 @@
         fileData.append('PostingDate', PostingDate);
         fileData.append('PostedBy', PostedBy);
         fileData.append('Title', Title);
+        fileData.append('ImageUrl', ImageUrl);
+        fileData.append('PageUrl', PageUrl);
+        fileData.append('MetaTitle', MetaTitle);
+        fileData.append('MetaDescription', MetaDescription);
+        fileData.append('BlogFaqs', JSON.stringify(Blogs));
+
+        
         $.ajax({
             type: "POST",
             url: "/api/Admin/SaveBlog",
@@ -169,13 +240,13 @@
                                 return "<span title='" + data + "'>" + reviewName + "</span>";
                             }
                         },
-                        {
-                            "data": "Description",
-                            "render": function (data, type, row) {
-                                var reviewName = data.length > 35 ? data.substring(0, 35) + "..." : data;
-                                return "<span title='" + data + "'>" + reviewName + "</span>";
-                            }
-                        },
+                        //{
+                        //    "data": "Description",
+                        //    "render": function (data, type, row) {
+                        //        var reviewName = data.length > 35 ? data.substring(0, 35) + "..." : data;
+                        //        return "<span title='" + data + "'>" + reviewName + "</span>";
+                        //    }
+                        //},
                         {"data": "BlogType"},
                         {
                             "data": "PostingDate",
@@ -194,7 +265,7 @@
                         {
                             "data": "Id",
                             "render": function (data, type, row) {
-                                return '<a class="btn btn-danger btn-sm" style="color: white;" onclick="DeleteBlog(' + data + ')"><i class="mdi mdi-delete"></i></a>';
+                                return '<a class="btn btn-danger btn-sm" style="color: white;" onclick=DeleteBlog(' +data +')><i class="mdi mdi-delete"></i></a>';
                             }
                         }
                     ]
@@ -238,23 +309,34 @@
             data: { Id: id },
             type: "GET",
             success: function (result) {
-                $("#BlogId").val(result.Id);
-                $("#Title").val(result.Title);
-                $("#Description").val(result.Description);
-                $("#BlogType").val(result.BlogType);
-                 loadURLToInputFiled(result.ImageName);
-               /* $('#Image').val(result.ImageName);*/
+                $("#BlogId").val(result.bloglist[0].Id);
+                $("#Title").val(result.bloglist[0].Title);
+                CKEDITOR.instances['Description'].setData(result.bloglist[0].Description);
+                $("#BlogType").val(result.bloglist[0].BlogType);
+                loadURLToInputFiled(result.bloglist[0].ImageName);
                 $("#preview").find("span").first().remove();
                 $('#preview').show();
                 var span = document.createElement('span');
                 span.innerHTML =
-                    ['<img class="thumb" src="', result.Image, '"/><span class="remove_img_preview"></span>']
+                    ['<img class="thumb" src="', result.bloglist[0].Image, '"/><span class="remove_img_preview"></span>']
                         .join('');
                 document.getElementById('preview').insertBefore(span, null);
-                var date = moment(result.PostingDate).format('MM/DD/YYYY HH:mm:ss');
+                var date = moment(result.bloglist[0].PostingDate).format('MM/DD/YYYY HH:mm:ss');
                 $("#PostingDate").val(date);
-                $("#PostedBy").val(result.PostedBy);
-
+                $("#PostedBy").val(result.bloglist[0].PostedBy);
+                $("#ImageUrl").val(result.bloglist[0].Image);
+                $("#PageUrl").val(result.bloglist[0].PageUrl);
+                $("#MetaTitle").val(result.bloglist[0].MetaTitle);
+                $("#MetaDescription").val(result.bloglist[0].MetaDescription);
+                $.each(result.blogfaqslist, function (key, val) {
+                    AddNewRows(val.Questions, val.Answers);
+                    //var addcontrols = '<tr id="RowId_' + count + '>" + count + ">'
+                    //addcontrols += '<td><input type="text" class="form-control clsfaqQuestion" value="' + val.Questions + '" name="faqTitle" placeholder="Add question"/></td>'
+                    //addcontrols += '<td><input type="text" class="form-control clsfaqAnswers" value="' + val.Answers + '" name="faqTitle" placeholder="Add answer"/></td>'
+                    //addcontrols += "</tr>";
+                    //count++;
+                    //$("table .FaqTableclass").append(addcontrols);
+                });
             },
             error: function () {
                 alert('failure');
@@ -287,17 +369,24 @@
         $("#AddNewBlogModal").modal('hide');
         $("#BlogId").val('');
         $("#Title").val('');
-        $("#Description").val('');
+        /*$("#Description").val('');*/
+        CKEDITOR.instances['Description'].setData('');
         $("#BlogType").val('');
-       /* $("#PostingDate").val('');*/
         $(".thumb").attr('src', '');
         $('#preview').hide();
         $("#Image").val('');
         $("#PostedBy").val('');
+        $("#ImageUrl").val('');
+        $("#PageUrl").val('');
+        $("#tblFaqs .FaqTableclass").html("");
+        $("#MetaDescription").val("");
+        $("#MetaTitle").val("");
+        console.clear();
     }
 
     function handleFileSelect(event) {
         console.log(event)
+        $("#ImageUrl").val('');
         var input = this;
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -362,5 +451,19 @@
         });
     }
 
+    var count = 1;
+    function AddNewRows(Questions,Answers) {
+        var addcontrols = '<tr id="RowId_' +count+ '>" + count + ">'
+        addcontrols += '<td><textarea type="text" class="form-control clsfaqQuestion" name="faqTitle" placeholder="Add question">' + Questions +'</textarea></td>'
+        addcontrols += '<td><textarea type="text" class="form-control clsfaqAnswers" name="faqTitle" placeholder="Add answer"/>'+Answers+'</textarea></td>'
+        addcontrols += "<td><input type='button' id='btnDelete' class='btn btn-danger btn-sm deleteFaqquestion' Value='Delete'></td>"
+        addcontrols += "</tr>";
+        count++;
+        $("table .FaqTableclass").append(addcontrols);
+    }
 
+
+    $("table .FaqTableclass").on('click', '.deleteFaqquestion', function () {
+        $(this).closest('tr').remove();
+    });
 </script>

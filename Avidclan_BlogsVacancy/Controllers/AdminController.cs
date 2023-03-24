@@ -1,6 +1,8 @@
 ﻿using Avidclan_BlogsVacancy.ViewModel;
 using Dapper;
+using iTextSharp.text.pdf.qrcode;
 using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -42,18 +44,29 @@ namespace Avidclan_BlogsVacancy.Controllers
         public async Task<string> SaveBlog()
         {
             string ImageUrl = "";
-            var Id = HttpContext.Current.Request["Id"];
-            var Title = HttpContext.Current.Request["Title"];
-            var Description = HttpContext.Current.Request["Description"];
-            var BlogType = HttpContext.Current.Request["BlogType"];
-            var PostingDate = HttpContext.Current.Request["PostingDate"];
-            var PostedBy = HttpContext.Current.Request["PostedBy"];
-            var Images = HttpContext.Current.Request.Files["Image"];
-
             try
             {
+                var Id = HttpContext.Current.Request["Id"];
+                var Title = HttpContext.Current.Request["Title"];
+                var Description = HttpContext.Current.Request["Description"];
+                var BlogType = HttpContext.Current.Request["BlogType"];
+                var PostingDate = HttpContext.Current.Request["PostingDate"];
+                var PostedBy = HttpContext.Current.Request["PostedBy"];
+                var Images = HttpContext.Current.Request.Files["Image"];
+                var ImageUrls = HttpContext.Current.Request["ImageUrl"];
+                var PageUrl = HttpContext.Current.Request["PageUrl"];
+                var MetaTitle = HttpContext.Current.Request["MetaTitle"];
+                var MetaDescription = HttpContext.Current.Request["MetaDescription"];
+                var Faqs = HttpContext.Current.Request["BlogFaqs"];
+
+
+                BlogFaqs[] Faqarr = JsonConvert.DeserializeObject<BlogFaqs[]>(Faqs);
+                //   CreateBlogPage(Description,PageUrl,MetaTitle,MetaDescription);
+
+                //SaveBlogFaqs(Faqs);
                 var mode = 0;
                 var BlogId = 0;
+                string ImageName = "";
                 if (Id == null || Id == "")
                 {
                     mode = 1;
@@ -62,9 +75,10 @@ namespace Avidclan_BlogsVacancy.Controllers
                 {
                     mode = 7;
                     BlogId = Convert.ToInt32(Id);
+                    ImageUrl = ImageUrls;
+                    ImageName = Images.FileName;
                 }
-                string ImageName = "";
-                if (Images != null)
+                if (Images != null && ImageUrls == "")
                 {
                     System.IO.Stream fs = Images.InputStream;
                     System.IO.BinaryReader br = new System.IO.BinaryReader(fs);
@@ -72,6 +86,13 @@ namespace Avidclan_BlogsVacancy.Controllers
                     string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
                     ImageUrl = "data:image/png;base64," + base64String;
                     ImageName = Images.FileName;
+                }
+                if(mode == 7)
+                {
+                    var parameter = new DynamicParameters();
+                    parameter.Add("@BlogId", BlogId, DbType.Int32, ParameterDirection.Input);
+                    parameter.Add("@Mode", 2, DbType.Int32, ParameterDirection.Input);
+                    var DeleteBlogFaqs = con.Query<BlogFaqs>("sp_BlogFaqs", parameter, commandType: CommandType.StoredProcedure).FirstOrDefault();
                 }
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id", BlogId, DbType.Int32, ParameterDirection.Input);
@@ -82,10 +103,22 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@PostingDate", PostingDate, DbType.DateTime, ParameterDirection.Input);
                 parameters.Add("@PostedBy", PostedBy, DbType.String, ParameterDirection.Input);
                 parameters.Add("@ImageName", ImageName, DbType.String, ParameterDirection.Input);
+                parameters.Add("@PageUrl", PageUrl, DbType.String, ParameterDirection.Input);
+                parameters.Add("@MetaTitle", MetaTitle, DbType.String, ParameterDirection.Input);
+                parameters.Add("@MetaDescription", MetaDescription, DbType.String, ParameterDirection.Input);
                 parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
                 using (IDbConnection connection = new SqlConnection(connectionString))
                 {
                     var SaveBlogDetails = connection.ExecuteScalar("sp_Blog", parameters, commandType: CommandType.StoredProcedure);
+                    if(SaveBlogDetails != null)
+                    {
+                        SaveBlogFaqs(Faqarr, SaveBlogDetails);
+                    }
+                    else
+                    {
+                        SaveBlogDetails = BlogId;
+                        SaveBlogFaqs(Faqarr, SaveBlogDetails);
+                    }
                 }
             }
             catch (Exception ex)
@@ -260,12 +293,12 @@ namespace Avidclan_BlogsVacancy.Controllers
                 "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
                 "<thead><tr style='background: #eee;'><th>Leave Date</th><th>Leave Day</th><th>Half Day</th></tr></thead>" +
                 "<tbody class='leaveTable'>";
-                foreach (var leavedetails in leaveDetailsViews)
-                {
-                    string WeekDay = leavedetails.LeaveDate.DayOfWeek.ToString();
-                    var addrow = "<tr><td style='background: #fff;'>" + leavedetails.LeaveDate.ToShortDateString() + "</td><td>"+ WeekDay +"</td><td>" + leavedetails.Halfday + "</td></tr>";
-                    mailbody += addrow;
-                }
+            foreach (var leavedetails in leaveDetailsViews)
+            {
+                string WeekDay = leavedetails.LeaveDate.DayOfWeek.ToString();
+                var addrow = "<tr><td style='background: #fff;'>" + leavedetails.LeaveDate.ToShortDateString() + "</td><td>"+ WeekDay +"</td><td>" + leavedetails.Halfday + "</td></tr>";
+                mailbody += addrow;
+            }
             mailbody += "</tbody></table><br><br>" +
             "<p>Yours Sincerely,<br>" + userName + "</p></body></html>";
             try
@@ -330,6 +363,54 @@ namespace Avidclan_BlogsVacancy.Controllers
             {
                 throw ex;
             }
+        }
+
+        public void CreateBlogPage(string Description,string PageUrl,string MetaTitle,string MetaDescription)
+        {
+            //// create a new web client
+            //WebClient client = new WebClient();
+
+            //// set the credentials for the main domain
+            //client.Credentials = new NetworkCredential("main_domain_username", "main_domain_password");
+
+            //// set the URL of the file to be saved
+            //string subdomainUrl = "http://subdomain.example.com/path/to/file.txt";
+
+            //// set the local path where the file will be saved on the main domain
+            //string mainDomainPath = "http://www.example.com/path/to/saved/file.txt";
+
+            //// download the file and save it to the main domain
+            //client.DownloadFile(subdomainUrl, mainDomainPath);
+
+
+            Description += "@{Layout = \"~/Views/Shared/_blogdetail.cshtml\";}";
+            Description += "@section AdditionalMeta{<title>"+ MetaTitle + "</title><meta name=\"description\" content=\" " + MetaDescription +" \">}";
+            //string path = @"P:\Avidclan\Avidclan\Avidclan_Website\Views\BlogPages\" + PageUrl + ".cshtml";
+            // string path = @"www.avidclan.com/BlogPages/" + PageUrl + ".cshtml";
+            var mappedPath = System.Web.Hosting.HostingEnvironment.MapPath("~/BlogImages/" + PageUrl + ".cshtml");
+
+            using (StreamWriter sw = new StreamWriter(mappedPath))
+            {
+                sw.Write(Description);
+            }
+        }
+
+        public void SaveBlogFaqs(BlogFaqs[] blogFaqs,object id)
+        {
+            if(blogFaqs.Length>0)
+            {
+                foreach (var blog in blogFaqs)
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@Questions", blog.Questions, DbType.String, ParameterDirection.Input);
+                    parameters.Add("@Answers", blog.Answers, DbType.String, ParameterDirection.Input);
+                    parameters.Add("@BlogId", id, DbType.Int64, ParameterDirection.Input);
+                    parameters.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
+                    var SaveBlogDetails = con.ExecuteScalar("sp_BlogFaqs", parameters, commandType: CommandType.StoredProcedure);
+
+                }
+            }
+            
         }
     }
 

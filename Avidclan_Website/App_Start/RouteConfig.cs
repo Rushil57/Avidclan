@@ -15,10 +15,18 @@ namespace Avidclan_Website
             routes.MapMvcAttributeRoutes();
 
             routes.MapRoute(
+            name: "BlogPages",
+            url: "blog/{id}",
+            defaults: new { controller = "BlogPages", action = "blog" }
+        );
+
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Avidclan", action = "AvidclanAction", id = UrlParameter.Optional }
             );
+            
         }
     }
 }

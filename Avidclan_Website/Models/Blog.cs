@@ -15,6 +15,13 @@ namespace Avidclan_Website.Models
         public DateTime PostingDate { get; set; }
         public string PostedBy { get; set; }
         public int TotalRecords { get; set; }
+        public string PageUrl { get; set; }
+        public string MetaTitle { get; set; }
+        public string MetaDescription { get; set; }
+        public string BlogPostingDate { get; set; }
+
+        public string Questions { get; set; }
+        public string Answers { get; set; }
     }
     public class BlogViewModel
     {
@@ -56,5 +63,16 @@ namespace Avidclan_Website.Models
         public int TotalPages { get; set; }
         public int StartPage { get; set; }
         public int EndPage { get; set; }
+    }
+
+
+    public class BlogFaqs
+    {
+        public int Id { get; set; }
+        public string Questions { get; set; }
+
+        public string Answers { get; set; }
+
+        public int BlogId { get; set; }
     }
 }
