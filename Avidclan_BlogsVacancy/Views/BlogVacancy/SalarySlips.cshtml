@@ -245,7 +245,7 @@
         /*Count Weekends of months*/
 
         /*Count Paid Leaves*/
-            var paidDays = daysInMonths - weekendDays - HolidayList.length
+            var paidDays = daysInMonths - weekendDays - HolidayList.length - data_row.LeaveWithoutpay
         /*Count Paid Leaves*/
 
         /*Basic Salary Count*/
@@ -265,12 +265,56 @@
         var totalEarnings = basicsalary + hrasalary + 240 + 300 + specialallownace;
         /*Total Earnings*/
 
+        /*Non Working days*/
+        var nonWorkingDays = 0;
+        var joiningdate = data_row.DateOfJoining.split("-");
+        var joindate = joiningdate[0]
+        var joinMonth = joiningdate[1]
+        var joinYear = joiningdate[2]
+        if (joinYear == year && joinMonth == monthname) {
+            var monthnumber = new Date('1 ' + joinMonth + joinYear);
+            monthnumber = monthnumber.getMonth() + 1;
+
+            var monthvalue = monthnumber - 1
+            var firstDayInMonth = new Date(joinYear, monthvalue, 1);
+            var end = new Date(joiningdate);
+
+            while (firstDayInMonth < end) {
+                var WeekDay = firstDayInMonth.getDay();
+                if (WeekDay != 6 && WeekDay != 0) {
+                    console.log(new Date(firstDayInMonth));
+                    nonWorkingDays++;
+                }
+              //  firstDayInMonth.setMonth(firstDayInMonth.getMonth() + 1);
+                firstDayInMonth.setDate(firstDayInMonth.getDate() + 1);
+            }
+        }
+        /*Non Working days*/
+
+        /*Unpaid Days*/
+        var totalworkingdays = daysInMonths - weekendDays;
+        var totalpaidDays = totalworkingdays - data_row.LeaveWithoutpay - nonWorkingDays
+        var salaryperday = salary / totalworkingdays
+        var deductionofleave = salaryperday * data_row.LeaveWithoutpay
+        deductionofleave = deductionofleave.toFixed();
+        var deductionofNonworkingdays = salaryperday * nonWorkingDays
+        deductionofNonworkingdays = deductionofNonworkingdays.toFixed();
+        var totalsalary = salaryperday * totalpaidDays
+        totalsalary = totalsalary.toFixed();
+        /*Unpaid Days*/
+
+        /*Net Salary In Numbers*/
+        var netsalaryInnumbers = totalsalary - 200
+        /*Net Salary In Numbers*/
 
         /*Net Salary In Words*/
-        ConvertSalarydigitsToWords(data_row.Salary)
+        ConvertSalarydigitsToWords(netsalaryInnumbers)
         var salaryInwords = $("#SalaryInWords").val();
         /*Net Salary In Words*/
 
+        /*Total dedections*/
+        var TotalDeductions = parseInt(deductionofleave) + 200 + parseInt(deductionofNonworkingdays);
+        /*Total dedections*/
 
         var str = "<div id='slipdetails' class='slipdetail'>"
                     + "<div id='slipheader'><p id='header'>AVIDCLAN TECHNOLOGIES</p>"
@@ -345,10 +389,12 @@
                                      + "<th>Deductions</th><th>Amount (&#x20B9;)</th>"
                                 + "</tr></thead>"
                                 + "<tbody><tr>"
-                                     + "<td>Professional Tax</td><td>200.00</td>"
+                                     + "<td>Professional Tax</td><td>200.00</td></tr>"
+                                     + "<tr><td>Leave Without Pay</td><td>"+deductionofleave+"</td>"
+                                     + "<tr><td>Non Working Days</td><td>" + deductionofNonworkingdays + "</td>"
                                 + "</tr></tbody>"
                                 + "<tfoot><tr>"
-                                     + "<td><b>Total Deductions</b></td><td style='padding-left: 58%;'>200.00</td>"
+                                     + "<td><b>Total Deductions</b></td><td style='padding-left: 58%;'>"+TotalDeductions+"</td>"
                                 + "</tr></tfoot>"
                             + "</table>"
                         + "</div>"
@@ -358,7 +404,7 @@
                     + "<div id='netSalarydiv'>"
                         + "<div class='row'>"
                             + "<div class='col-sm-2 netsalary'><b>Net Salary</b></div>"
-                            + "<div class='col'>" + data_row.Salary + "/-</div>"
+                            + "<div class='col'>" + netsalaryInnumbers + "/-</div>"
                         + "</div>"
                         + "<div class='row'>"
                             + "<div class='col-sm-2'><b>In Words</b></div>"
@@ -604,21 +650,21 @@
             });
         });
         var EmployesData = JSON.stringify(values);
-         @* window.location = "@Url.Action("DownloadSalarySlip", "SalarySlip")?EmployesData=" + EmployesData;*@
-
+         console.log("sent to controller")
          $.ajax({
-             @*url: "@Url.Action("DownloadSalarySlip", "SalarySlip")?EmployesData=" + EmployesData,*@
              type : "Post",
              url: "/api/SalaryWebApiController/DownloadSalarySlip?EmployesData=" + EmployesData,
             success: function (data) {
-                alert("Mail Sent Successfully");
+                alert(data)
                 $('.CheckBoxButton').prop('checked', false);
                 $('#example-select-all').prop('checked', false);
                 $("#downLoadZipfile").css("display", "none")
                 $("#sendMail").css("display", "none")
+                console.log("success")
             },
-            error: function () {
-                alert('failure');
+             error: function (result) {
+                 alert(result);
+                console.log("failure")
             }
         });
     }

@@ -75,10 +75,6 @@
                                     </tr>
                                 </thead>
                                 <tbody class="FaqTableclass">
-                                    @*<tr id="RowId_1">
-                                        <td><input type="text" class="form-control clsfaqQuestion" name="faqTitle" placeholder="Add question" /></td>
-                                        <td><input type="text" class="form-control clsfaqAnswers" name="faqanswer" placeholder="Add Answer" /></td>
-                                    </tr>*@
                                 </tbody>
                             </table>
                         </div>
@@ -99,7 +95,6 @@
         <thead>
             <tr>
                 <th> Title </th>
-                @*<th> Description </th>*@
                 <th> Blog Type </th>
                 <th> PostingDate </th>
                 <th> PostBy </th>
@@ -183,11 +178,10 @@
         var PageUrl = $("#PageUrl").val();
         if (PageUrl != undefined && Id == 0) {
             var arr = PageUrl.split('/');
-            PageUrl = arr[3];
+            PageUrl = arr[4];
         }
         var MetaTitle = $("#MetaTitle").val();
         var MetaDescription = $("#MetaDescription").val();
-       // var BlogFaqs = Blogs;
 
         var fileData = new FormData();
         fileData.append("Id",Id);

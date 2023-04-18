@@ -22,6 +22,12 @@ using System.Web.Services.Description;
 using iTextSharp.tool.xml.html;
 using Org.BouncyCastle.Asn1.Ocsp;
 using System.Xml.Linq;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Util.Store;
+using System.Threading;
+using System.Web.Helpers;
+using MimeKit;
+using System.Web.Http.Results;
 
 namespace Avidclan_BlogsVacancy.Controllers
 {
@@ -42,7 +48,7 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         [System.Web.Http.Route("api/SalaryWebApiController/DownloadSalarySlip")]
         [System.Web.Http.HttpPost]
-        public async void DownloadSalarySlip(string EmployesData)
+        public async Task<string> DownloadSalarySlip(string EmployesData)
         {
             SalarySlipViewModel[] arr = JsonConvert.DeserializeObject<SalarySlipViewModel[]>(EmployesData);
             ZipFile zipFile = new ZipFile();
@@ -276,66 +282,34 @@ namespace Avidclan_BlogsVacancy.Controllers
 
                     doc.Add(table);
                     doc.Close();
-                    if (arr[i].Type == "ZipFile")
-                    {
-                        //fileType = arr[i].Type;
-                        fileName = string.Format("salaryslip of " + arr[i].FullName + ".pdf", i);
-                        Stream memoryStreamForZipFile = new MemoryStream(memoryStream.ToArray());
-                        memoryStreamForZipFile.Seek(0, SeekOrigin.Begin);
-                        zipFile.AddEntry(fileName, memoryStreamForZipFile);
-                    }
+                   
                     if (arr[i].Type == "SendMail")
                     {
-                        //await ReadConfiguration();
-                        //byte[] bytes = memoryStream.ToArray();
-                        //MailMessage mail = new MailMessage();
-                        //mail.To.Add("pooja.avidclan@gmail.com");
-                        //mail.From = new MailAddress("avidclan.technologies@gmail.com");
-                        //mail.Subject = "Below is your salary slip of month " + Slipdate;
-                        //mail.Body = "Salary Slip";
-                        //mail.IsBodyHtml = true;
-                        //mail.Attachments.Add(new Attachment(new MemoryStream(bytes), fileName + ".pdf"));
-                        //SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-                        //smtp.EnableSsl = true;
-                        //smtp.UseDefaultCredentials = false;
-                        //smtp.Credentials = new NetworkCredential("avidclan.technologies@gmail.com", "tpzgcukuhglpzjch");
-                        //smtp.Send(mail);
-
-
-                        var fromAddress = new MailAddress("avidclan.technologies@gmail.com", "Avidclan Technologies");
-                        var toAddress = new MailAddress("pooja.avidclan@gmail.com", "Pooja Thakkar");
-                        const string fromPassword = "tpzgcukuhglpzjch";
-                        const string subject = "Subject";
-                        const string body = "test Body";
-                        System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
-                        var smtp = new SmtpClient
-                        {
-                            Host = "smtp.gmail.com",
-                            //Host = "relay-hosting.secureserver.net",
-                            Port = 25,
-                            EnableSsl = true,
-                            DeliveryMethod = SmtpDeliveryMethod.Network,
-                            UseDefaultCredentials = true,
-                            Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-                        };
-
-                        using (var message = new MailMessage(fromAddress, toAddress)
-                        {
-                            Priority = MailPriority.High,
-                            Subject = subject,
-                            Body = body
-                        })
-                        {
-                            smtp.Send(message);
-                        }
+                        await ReadConfiguration();
+                        byte[] bytes = memoryStream.ToArray();
+                        MailMessage mail = new MailMessage();
+                        mail.To.Add("pooja.avidclan@gmail.com");
+                        mail.From = new MailAddress(senderEmail);
+                        mail.Subject = "Below is your salary slip of month " + Slipdate;
+                        mail.Body = "Salary Slip";
+                        mail.IsBodyHtml = true;
+                        mail.Attachments.Add(new Attachment(new MemoryStream(bytes), fileName + ".pdf"));
+                        SmtpClient smtp = new SmtpClient(host, port);
+                        smtp.EnableSsl = true;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
+                        smtp.Send(mail);
 
                     }
                 }
                 catch (Exception ex)
                 {
-                    var result = ex.Message;
+                    var result = ex.Message + ex.StackTrace;
+                    return result;
                 }
             }
+
+            return "Mail Send Successfully";
 
         }
 
@@ -429,9 +403,6 @@ namespace Avidclan_BlogsVacancy.Controllers
 
             return holidaysweekendDays;
         }
-
-
-
         public async Task<bool> ReadConfiguration()
         {
             var result = false;
@@ -461,6 +432,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             return result;
         }
-
     }
+
 }
+

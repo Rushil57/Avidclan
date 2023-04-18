@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Avidclan_Website.Models.Blog>
-@{ 
+@{
     var context = "@context";
     var type = "@type";
 }
@@ -29,39 +29,12 @@
            {
             "@type": "ListItem",
             "position": 3,
-            "name": "A Guide To Integrate Your ML Models into Your .NET Applications",
-            "item": "https://www.avidclan.com/blog/guide-to-integrate-your-ml-models-into-your-dotnet-application/"
-          }]
-        }
-            </script>
-    <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [{
-            "@type": "Question",
-            "name": "What is machine learning and why is it important for .NET applications?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Machine learning is a subfield of artificial intelligence that involves the development of algorithms and statistical models that enable computer systems to learn from data without being explicitly programmed. Machine learning is important for .NET applications because it enables developers to build intelligent systems that can learn and improve over time."
-            }
-          },{
-            "@type": "Question",
-            "name": "How do .NET development companies ensure the quality of their work?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": ".NET development companies ensure the quality of their work by following established software development processes and utilizing industry-standard quality assurance techniques."
-            }
-          },{
-            "@type": "Question",
-            "name": "What are some best practices for integrating ML models into .NET applications?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Define clear objectives, Choose the right ML model, Prepare your data, Train your model, Optimize your model, Integrate your model, Monitor your model,  and Maintain and update your model."
-            }
+            "name": "@ViewBag.MetaTitle",
+            "item": "@ViewBag.Url"
           }]
         }
     </script>
+    @Html.Raw(ViewBag.FaqSchema)
 }
 
 <style>
@@ -355,15 +328,12 @@
                                 $('#accordionExample').append(sectionblog);
                             });
                         }
-
-
-
                     }
-
                 },
                 error: function () {
                     alert('failure');
                 }
-            });
+        });
     }
+
 </script>

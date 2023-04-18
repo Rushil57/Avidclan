@@ -5374,7 +5374,6 @@ form.contact-form label.error {
         }
 
             .single-blog .blog-img a img {
-                image-rendering: pixelated;
                 height: 350px;
                 width: 100%;
                 transition: all 0.3s linear;
@@ -6008,4 +6007,8 @@ form.contact-form label.error {
 #Blogtitle {
     font-weight: bold;
     padding: 10px;
+}
+
+.BlogImages {
+    image-rendering: pixelated;
 }
