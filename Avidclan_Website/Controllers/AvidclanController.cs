@@ -460,8 +460,6 @@ namespace Avidclan_Website.Controllers
             var parameters = new DynamicParameters();
             parameters.Add("@Id", id, DbType.Int32, ParameterDirection.Input);
             parameters.Add("@Mode", 8, DbType.Int32, ParameterDirection.Input);
-            //var blogList = con.Query<Blog>("sp_Blog", parameters, commandType: CommandType.StoredProcedure).ToList();
-            //return Json(blogList, JsonRequestBehavior.AllowGet);
             var reader = con.QueryMultiple("sp_Blog", parameters, commandType: CommandType.StoredProcedure);
             var bloglist = reader.Read<Blog>().ToList();
             var blogfaqslist = reader.Read<BlogFaqs>().ToList();

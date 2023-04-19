@@ -20859,13 +20859,13 @@ table.dataTable{
     width: 100% !important;
 }
 
-.thumb {
+.thumb, .BlogImage {
     width: 80px;
     height: 80px;
     margin: 0.2em -0.7em 0 0;
 }
 
-.remove_img_preview {
+.remove_img_preview, .remove_BlogDetailimg_preview {
     position: relative;
     /*top: -25px;*/
     top: -32px;
@@ -20880,7 +20880,7 @@ table.dataTable{
     cursor: pointer;
 }
 
-    .remove_img_preview:before {
+    .remove_img_preview:before, .remove_BlogDetailimg_preview:before {
         content: "x";
     }
 

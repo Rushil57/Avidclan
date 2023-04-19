@@ -35,6 +35,12 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string Questions { get; set; }
 
         public string Answers { get; set; }
+
+        public string BlogDetailImage { get; set; }
+
+        public string BlogDetailImageUrl { get; set; }
+
+        public string BlogDetailImageName { get; set; }
     }
 
     public class BlogFaqs

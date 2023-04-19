@@ -44,6 +44,9 @@ namespace Avidclan_BlogsVacancy.Controllers
         public async Task<string> SaveBlog()
         {
             string ImageUrl = "";
+            string BlogDetailImageUrl = string.Empty;
+            string BlogDetailImageName = string.Empty;
+
             try
             {
                 var Id = HttpContext.Current.Request["Id"];
@@ -57,13 +60,12 @@ namespace Avidclan_BlogsVacancy.Controllers
                 var PageUrl = HttpContext.Current.Request["PageUrl"];
                 var MetaTitle = HttpContext.Current.Request["MetaTitle"];
                 var MetaDescription = HttpContext.Current.Request["MetaDescription"];
+                var BlogDetailImage = HttpContext.Current.Request.Files["BlogDetailImage"];
+                var BlogDetailImageString = HttpContext.Current.Request["BlogDetailImageUrl"];
+
                 var Faqs = HttpContext.Current.Request["BlogFaqs"];
 
-
                 BlogFaqs[] Faqarr = JsonConvert.DeserializeObject<BlogFaqs[]>(Faqs);
-                //   CreateBlogPage(Description,PageUrl,MetaTitle,MetaDescription);
-
-                //SaveBlogFaqs(Faqs);
                 var mode = 0;
                 var BlogId = 0;
                 string ImageName = "";
@@ -77,6 +79,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     BlogId = Convert.ToInt32(Id);
                     ImageUrl = ImageUrls;
                     ImageName = Images.FileName;
+                    BlogDetailImageUrl = BlogDetailImageString;
                 }
                 if (Images != null && ImageUrls == "")
                 {
@@ -87,7 +90,16 @@ namespace Avidclan_BlogsVacancy.Controllers
                     ImageUrl = "data:image/png;base64," + base64String;
                     ImageName = Images.FileName;
                 }
-                if(mode == 7)
+                if (BlogDetailImage != null && BlogDetailImageUrl == "")
+                {
+                    System.IO.Stream fs = BlogDetailImage.InputStream;
+                    System.IO.BinaryReader br = new System.IO.BinaryReader(fs);
+                    Byte[] bytes = br.ReadBytes((Int32)fs.Length);
+                    string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
+                    BlogDetailImageUrl = "data:image/png;base64," + base64String;
+                    BlogDetailImageName = BlogDetailImage.FileName;
+                }
+                if (mode == 7)
                 {
                     var parameter = new DynamicParameters();
                     parameter.Add("@BlogId", BlogId, DbType.Int32, ParameterDirection.Input);
@@ -106,6 +118,8 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@PageUrl", PageUrl, DbType.String, ParameterDirection.Input);
                 parameters.Add("@MetaTitle", MetaTitle, DbType.String, ParameterDirection.Input);
                 parameters.Add("@MetaDescription", MetaDescription, DbType.String, ParameterDirection.Input);
+                parameters.Add("@BlogDetailImage", BlogDetailImageUrl, DbType.String, ParameterDirection.Input);
+                parameters.Add("@BlogDetailImageName", BlogDetailImageName, DbType.String, ParameterDirection.Input);
                 parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
                 using (IDbConnection connection = new SqlConnection(connectionString))
                 {
@@ -362,36 +376,6 @@ namespace Avidclan_BlogsVacancy.Controllers
             catch (Exception ex)
             {
                 throw ex;
-            }
-        }
-
-        public void CreateBlogPage(string Description,string PageUrl,string MetaTitle,string MetaDescription)
-        {
-            //// create a new web client
-            //WebClient client = new WebClient();
-
-            //// set the credentials for the main domain
-            //client.Credentials = new NetworkCredential("main_domain_username", "main_domain_password");
-
-            //// set the URL of the file to be saved
-            //string subdomainUrl = "http://subdomain.example.com/path/to/file.txt";
-
-            //// set the local path where the file will be saved on the main domain
-            //string mainDomainPath = "http://www.example.com/path/to/saved/file.txt";
-
-            //// download the file and save it to the main domain
-            //client.DownloadFile(subdomainUrl, mainDomainPath);
-
-
-            Description += "@{Layout = \"~/Views/Shared/_blogdetail.cshtml\";}";
-            Description += "@section AdditionalMeta{<title>"+ MetaTitle + "</title><meta name=\"description\" content=\" " + MetaDescription +" \">}";
-            //string path = @"P:\Avidclan\Avidclan\Avidclan_Website\Views\BlogPages\" + PageUrl + ".cshtml";
-            // string path = @"www.avidclan.com/BlogPages/" + PageUrl + ".cshtml";
-            var mappedPath = System.Web.Hosting.HostingEnvironment.MapPath("~/BlogImages/" + PageUrl + ".cshtml");
-
-            using (StreamWriter sw = new StreamWriter(mappedPath))
-            {
-                sw.Write(Description);
             }
         }
 
