@@ -1,5 +1,6 @@
 ﻿using Avidclan_BlogsVacancy.ViewModel;
 using Dapper;
+using iTextSharp.text;
 using iTextSharp.text.pdf.qrcode;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
@@ -23,8 +24,11 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
+using System.Web.Services.Description;
 using System.Web.UI.WebControls;
+using System.Web.WebPages;
 using System.Xml.Linq;
+using static iTextSharp.text.pdf.AcroFields;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Avidclan_BlogsVacancy.Controllers
@@ -32,6 +36,12 @@ namespace Avidclan_BlogsVacancy.Controllers
 
     public class AdminController : ApiController
     {
+        string senderEmail = "";
+        string senderEmailPassword = "";
+        string host = "";
+        int port = 0;
+        string receiverEmail = "";
+
         string connectionString = ConfigurationManager.ConnectionStrings["DbEntities"].ToString();
         SqlConnection con;
         public AdminController()
@@ -245,9 +255,16 @@ namespace Avidclan_BlogsVacancy.Controllers
         [HttpPost]
         public async Task<string> RequestForLeave(LeaveViewModel leaveViewModel)
         {
-            SendLeaveMail(leaveViewModel.Leaves);
+            //SendLeaveMail(leaveViewModel.Leaves,leaveViewModel.ReportingPerson);
             var UserId = HttpContext.Current.Session["UserId"];
             var mode = 0;
+            var ReportingPersons = string.Empty;
+            if (leaveViewModel.ReportingPerson.Count > 0)
+            {
+                ReportingPersons = String.Join(",", leaveViewModel.ReportingPerson);
+            }
+           
+
             if (leaveViewModel.Id == 0)
             {
                 mode = 1;
@@ -264,6 +281,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@Todate", leaveViewModel.Todate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
                 parameters.Add("@LeaveStatus", "Pending", DbType.String, ParameterDirection.Input);
                 parameters.Add("@UserId", UserId, DbType.Int16, ParameterDirection.Input);
+                parameters.Add("@ReportingPerson", ReportingPersons, DbType.String, ParameterDirection.Input);
                 parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
                 var SaveLeave = con.ExecuteScalar("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure);
                 if (SaveLeave != null)
@@ -289,6 +307,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                         parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
                         var SaveLeaveDetails = con.ExecuteScalar("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
                     }
+                    var result = new LeaveController().CheckTypeOfLeave(leaveViewModel.Leaves, leaveViewModel.Fromdate, leaveViewModel.Id, UserId);
                 }
 
             }
@@ -299,9 +318,10 @@ namespace Avidclan_BlogsVacancy.Controllers
             return "";
         }
 
-        public void SendLeaveMail(List<LeaveDetailsViewModel> leaveDetailsViews)
+        public void SendLeaveMail(List<LeaveDetailsViewModel> leaveDetailsViews,List<string> ReportingPerson)
         {
-            var userName = HttpContext.Current.Session["EmailId"];
+            var userName = HttpContext.Current.Session["EmailId"].ToString();
+            ReadConfiguration();
             var mailbody = "<p>Respected Ma'am,<br>  I would like to request for leave for the following day(s).Hoping to receive a positive response from you.<br><br></p>" +
             "<html><body>" +
                 "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
@@ -310,22 +330,34 @@ namespace Avidclan_BlogsVacancy.Controllers
             foreach (var leavedetails in leaveDetailsViews)
             {
                 string WeekDay = leavedetails.LeaveDate.DayOfWeek.ToString();
-                var addrow = "<tr><td style='background: #fff;'>" + leavedetails.LeaveDate.ToShortDateString() + "</td><td>"+ WeekDay +"</td><td>" + leavedetails.Halfday + "</td></tr>";
+                var addrow = "<tr><td style='background: #fff;'>" + leavedetails.LeaveDate.ToShortDateString() + "</td><td>" + WeekDay + "</td><td>" + leavedetails.Halfday + "</td></tr>";
                 mailbody += addrow;
             }
             mailbody += "</tbody></table><br><br>" +
             "<p>Yours Sincerely,<br>" + userName + "</p></body></html>";
             try
             {
-                var message = new MailMessage();
-                message.To.Add(new MailAddress("pooja.avidclan@gmail.com"));
-                message.Subject = "Leave Application";
-                message.Body = mailbody;
-                message.IsBodyHtml = true;
-                using (var smtp = new SmtpClient())
+                MailMessage mail = new MailMessage();
+                mail.To.Add(receiverEmail);
+                //mail.CC.Add("chintan.s@avidclan.com");
+                //mail.CC.Add("rushil@avidclan.com");
+                if(ReportingPerson.Count > 0)
                 {
-                    smtp.Send(message);
+                    foreach(var person in ReportingPerson)
+                    {
+                        mail.CC.Add(person);
+                    }
                 }
+                
+                mail.From = new MailAddress(senderEmail);
+                mail.Subject = "Leave Application";
+                mail.Body = mailbody;
+                mail.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient(host, port);
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
+                smtp.Send(mail);
             }
             catch (Exception ex)
             {
@@ -337,18 +369,28 @@ namespace Avidclan_BlogsVacancy.Controllers
         [HttpPost]
         public async Task<string> ReplyToLeaveRequest(LeaveViewModel leaveViewModel)
         {
-            SendReplyForLeave(leaveViewModel.Leaves, leaveViewModel.LeaveStatus,leaveViewModel.FirstName,leaveViewModel.EmailId);
-            var parameters = new DynamicParameters();
-            parameters.Add("@LeaveStatus", leaveViewModel.LeaveStatus, DbType.String, ParameterDirection.Input);
-            parameters.Add("@Id", leaveViewModel.Id, DbType.Int32, ParameterDirection.Input);
-            parameters.Add("@Mode", 5, DbType.Int32, ParameterDirection.Input);
-            var UpdateLeave = con.Query<LeaveViewModel>("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure);
-            return "";
+            try
+            {
+                SendReplyForLeave(leaveViewModel.Leaves, leaveViewModel.LeaveStatus, leaveViewModel.FirstName, leaveViewModel.EmailId);
+                var parameters = new DynamicParameters();
+                parameters.Add("@LeaveStatus", leaveViewModel.LeaveStatus, DbType.String, ParameterDirection.Input);
+                parameters.Add("@Id", leaveViewModel.Id, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@Mode", 5, DbType.Int32, ParameterDirection.Input);
+                var UpdateLeave = con.Query<LeaveViewModel>("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure);
+                return "Reply Send Successfully";
+            }
+            catch (Exception ex)
+            {
+                var MessageException = ex.InnerException + ex.StackTrace;
+                return MessageException;
+            }
+
         }
 
-        public void SendReplyForLeave(List<LeaveDetailsViewModel> leaveDetailsViews, string status,string name,string EmailId)
+        public void SendReplyForLeave(List<LeaveDetailsViewModel> leaveDetailsViews, string status, string name, string EmailId)
         {
-            var mailbody = "<p>Hello "+ name +"<br>  Your leave has been<b> " + status + " </b>for the following day(s).<br><br></p>" +
+            ReadConfiguration();
+            var mailbody = "<p>Hello " + name + "<br>  Your leave has been<b> " + status + " </b>for the following day(s).<br><br></p>" +
             "<html><body>" +
                 "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
                 "<thead><tr style='background: #eee;'><th>Leave Date</th><th>Leave Day</th><th>Half Day</th></tr></thead>" +
@@ -363,15 +405,19 @@ namespace Avidclan_BlogsVacancy.Controllers
             "<p>Thanks & Regards,<br>XYZ</p></body></html>";
             try
             {
-                var message = new MailMessage();
-                message.To.Add(new MailAddress(EmailId));
-                message.Subject = "Reply For Leave Application";
-                message.Body = mailbody;
-                message.IsBodyHtml = true;
-                using (var smtp = new SmtpClient())
-                {
-                    smtp.Send(message);
-                }
+                MailMessage mail = new MailMessage();
+                mail.To.Add(EmailId);
+                //mail.CC.Add("chintan.s@avidclan.com");
+                //mail.CC.Add("rushil@avidclan.com");
+                mail.From = new MailAddress(senderEmail);
+                mail.Subject = "Reply For Leave Application";
+                mail.Body = mailbody;
+                mail.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient(host, port);
+                smtp.EnableSsl = false;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
+                smtp.Send(mail);
             }
             catch (Exception ex)
             {
@@ -379,9 +425,9 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
         }
 
-        public void SaveBlogFaqs(BlogFaqs[] blogFaqs,object id)
+        public void SaveBlogFaqs(BlogFaqs[] blogFaqs, object id)
         {
-            if(blogFaqs.Length>0)
+            if (blogFaqs.Length > 0)
             {
                 foreach (var blog in blogFaqs)
                 {
@@ -394,7 +440,90 @@ namespace Avidclan_BlogsVacancy.Controllers
 
                 }
             }
-            
+
+        }
+        public async Task<bool> ReadConfiguration()
+        {
+            var result = false;
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Mode", 2, DbType.Int32, ParameterDirection.Input);
+                var resultConfiguration = con.Query<EMailConfiguration>("sp_EmailConfiguration", parameters, commandType: CommandType.StoredProcedure).ToList().FirstOrDefault();
+                if (resultConfiguration != null)
+                {
+                    senderEmail = resultConfiguration.FromMail;
+                    senderEmailPassword = resultConfiguration.Password;
+                    host = resultConfiguration.Host;
+                    port = Convert.ToInt32(resultConfiguration.Port);
+                    receiverEmail = resultConfiguration.ToMail;
+                    result = true;
+                }
+                else
+                {
+                    result = false;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return result;
+        }
+
+        [Route("api/Admin/SaveFeedBack")]
+        [HttpPost]
+        public async Task<string> SaveFeedBack(FeedBack feedback)
+        {
+            //try
+            //{
+            //    var userId = HttpContext.Current.Session["UserId"];
+            //    var parameters = new DynamicParameters();
+            //    parameters.Add("@Id", feedback.Id, DbType.Int32, ParameterDirection.Input);
+            //    parameters.Add("@Feedback", feedback.Feedback, DbType.String, ParameterDirection.Input);
+            //    parameters.Add("@UserId", userId, DbType.Int32, ParameterDirection.Input);
+            //    parameters.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
+            //    using (IDbConnection connection = new SqlConnection(connectionString))
+            //    {
+            //        var savefeedback = connection.ExecuteScalar("sp_FeedBack", parameters, commandType: CommandType.StoredProcedure);
+            //        if(savefeedback != null)
+            //        {
+            //            return "FeedBack Saved Succesfully !";
+            //        }
+            //    }
+            //    return "";
+            //}
+            //catch (Exception ex)
+            //{
+            //    string Error = ex.Message + ex.StackTrace;
+            //    return Error;
+            //}
+
+            try
+            {
+                var userName = HttpContext.Current.Session["EmailId"].ToString();
+                ReadConfiguration();
+                MailMessage mail = new MailMessage();
+                mail.To.Add(receiverEmail);
+                //mail.CC.Add("chintan.s@avidclan.com");
+                //mail.CC.Add("rushil@avidclan.com");
+                mail.From = new MailAddress(senderEmail);
+                mail.Subject = "FeedBack";
+                mail.Body = feedback.Feedback;
+                mail.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient(host, port);
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
+                smtp.Send(mail);
+                return "FeedBack Send Succesfully !";
+            }
+            catch (Exception ex)
+            {
+                string Error = ex.Message + ex.StackTrace;
+                return Error;
+            }
         }
     }
 
@@ -402,5 +531,12 @@ namespace Avidclan_BlogsVacancy.Controllers
     {
         public string Name { get; set; }
         public string Order { get; set; }
+    }
+
+    public class FeedBack
+    {
+        public int Id { get; set; }
+        public string Feedback { get; set; }
+        public int UserId { get; set; }
     }
 }

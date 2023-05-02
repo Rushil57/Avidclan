@@ -23,6 +23,10 @@ namespace Avidclan_BlogsVacancy.ViewModel
 
         public string EmailId { get; set; }
 
+        public List<string> ReportingPerson { get; set; }
+
+        public string Persons { get; set; }
+
         public List<LeaveDetailsViewModel> Leaves { get;set; }
     }
 
@@ -35,7 +39,21 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string Halfday { get; set; }
 
         public int LeaveId { get; set; }
+    }
 
-        
+    public class TypeOfLeave
+    {
+       // public int SickLeaves { get; set; }
+
+        public string SickLeave { get; set; }
+        public string PersonalLeave { get; set; }
+        public string LwpLeave { get; set; }
+
+        public string Year { get; set; }
+
+        public string Month { get; set; }
+        //public int PersonalLeaves { get; set; }
+
+        //public int Lwp { get; set; }
     }
 }

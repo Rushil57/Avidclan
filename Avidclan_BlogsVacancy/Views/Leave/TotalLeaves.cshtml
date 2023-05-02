@@ -1,0 +1,96 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LeaveTemplate.cshtml";
+}
+
+<table id="TotalLeaveTable">
+    <thead>
+        <tr>
+            <th>Year</th>
+            <th>Month</th>
+            <th>SickLeave</th>
+            <th>Personal Leave</th>
+            <th>Leave Without Pay</th>
+        </tr>
+    </thead>
+    <tbody class="TotalLeaveTableBody">
+    </tbody>
+</table>
+
+<script>
+    $(function () {
+        GetTotalLeave();
+    });
+
+    function GetTotalLeave() {
+         $.ajax({
+            url: "@Url.Action("GetTotalLeaveList", "Leave")",
+            contentType: 'application/json',
+             type: "GET",
+            success: function (data) {
+                $('#TotalLeaveTable').DataTable({
+                    destroy: true,
+                    data: data,
+                    "columns": [
+                        {
+                            "data": "Year",
+                        },
+                        {
+                            "data": "Month",
+                            "render": function (data, type, row) {
+                                if (data != null) {
+                                    var Month = GetMonthName(data);
+                                    return "<span>"+Month+"</span>";
+                                }
+                            }
+                        },
+                        {
+                            "data": "SickLeave",
+                            "render": function (data, type, row) {
+                                if (data == null) {
+                                    return "<span>0.0</span>";
+                                }
+                                else {
+                                    return "<span>" + data + "</span>"
+                                }
+
+                            }
+                        },
+                        {
+                            "data": "PersonalLeave",
+                            "render": function (data, type, row) {
+                                if (data == null) {
+                                    return "<span>0.0</span>";
+                                }
+                                else {
+                                    return "<span>" + data + "</span>"
+                                }
+
+                            }
+                        },
+                        {
+                            "data": "LwpLeave",
+                            "render": function (data, type, row) {
+                                if (data == null) {
+                                    return "<span>0.0</span>";
+                                }
+                                else {
+                                    return "<span>" + data + "</span>"
+                                }
+
+                            }
+                        }
+                    ]
+                });
+            },
+            error: function () {
+                alert('failure');
+            }
+        });
+    }
+
+    function GetMonthName(monthNumber) {
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        return months[monthNumber - 1];
+    }
+</script>

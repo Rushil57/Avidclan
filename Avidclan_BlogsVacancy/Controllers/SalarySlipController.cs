@@ -29,6 +29,7 @@ using iTextSharp.text.pdf.qrcode;
 using static System.Net.Mime.MediaTypeNames;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls.WebParts;
+using Avidclan_BlogsVacancy.Methods;
 
 namespace Avidclan_BlogsVacancy.Controllers
 {
@@ -42,6 +43,7 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         string connectionString = ConfigurationManager.ConnectionStrings["DbEntities"].ToString();
         SqlConnection con;
+        FrequentMethod frequentMethod = new FrequentMethod();
         public SalarySlipController()
         {
             con = new SqlConnection(connectionString);
@@ -78,7 +80,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 int totalDaysInMonth = DateTime.DaysInMonth(Convert.ToInt16(year), month);
 
                 //COUNT WEEKENDS OF THE MONTH
-                var totalWeekendsinMonths = CountWeekends(Convert.ToInt16(year), month);
+                var totalWeekendsinMonths = frequentMethod.CountWeekends(Convert.ToInt16(year), month);
 
                 //COUNT PAID DAYS
                 //var HolidayList = HolidaysDate(month, Convert.ToInt16(year));
@@ -106,7 +108,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 if (JoinYear == year && Joinmonth == monthName)
                 {
                     int joinmonthnumber = DateTime.ParseExact(Joinmonth, "MMMM", CultureInfo.CurrentCulture).Month;
-                    NonWorkingDays = CountNonWorkingDays(joinmonthnumber, Convert.ToInt16(JoinYear), DateofJoining);
+                    NonWorkingDays = frequentMethod.CountNonWorkingDays(joinmonthnumber, Convert.ToInt16(JoinYear), DateofJoining);
                 }
                 /*Non Working days*/
 
@@ -132,7 +134,7 @@ namespace Avidclan_BlogsVacancy.Controllers
 
 
                 /*CONVERTING SALARY NUMBERS TO WORDS*/
-                var SalaryInWords = NumberToWords(netSalaryInnumbers);
+                var SalaryInWords = frequentMethod.NumberToWords(netSalaryInnumbers);
 
                 var TotalamountDeductions = deductionofleave + 200 + deductionofnonworkingdays;
 
@@ -351,28 +353,10 @@ namespace Avidclan_BlogsVacancy.Controllers
                     doc.Close();
                     if (arr[i].Type == "ZipFile")
                     {
-                        //fileType = arr[i].Type;
                         fileName = string.Format("salaryslip of " + arr[i].FullName + ".pdf", i);
                         Stream memoryStreamForZipFile = new MemoryStream(memoryStream.ToArray());
                         memoryStreamForZipFile.Seek(0, SeekOrigin.Begin);
                         zipFile.AddEntry(fileName, memoryStreamForZipFile);
-                    }
-                    if (arr[i].Type == "SendMail")
-                    {
-                        await ReadConfiguration();
-                        byte[] bytes = memoryStream.ToArray();
-                        MailMessage mail = new MailMessage();
-                        mail.To.Add("pooja.avidclan@gmail.com");
-                        mail.From = new MailAddress(senderEmail);
-                        mail.Subject = "Below is your salary slip of month " + Slipdate;
-                        mail.Body = "Salary Slip";
-                        mail.IsBodyHtml = true;
-                        mail.Attachments.Add(new Attachment(new MemoryStream(bytes), fileName + ".pdf"));
-                        SmtpClient smtp = new SmtpClient(host, port);
-                        smtp.EnableSsl = false;
-                        smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
-                        smtp.Send(mail);
                     }
                 }
                 catch (Exception ex)
@@ -401,73 +385,7 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         }
 
-        public int CountWeekends(int year, int month)
-        {
-            var firstDayOfMonth = new DateTime(year, month, 1);
-            var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
-            var weekendDays = 0;
-            while (firstDayOfMonth <= lastDayOfMonth)
-            {
-                var weekday = firstDayOfMonth.DayOfWeek.ToString();
-                if (weekday == "Saturday" || weekday == "Sunday")
-                {
-                    weekendDays++;
-                }
-                firstDayOfMonth = firstDayOfMonth.AddDays(1);
-            }
-
-            //throw new NotImplementedException();
-            return weekendDays;
-        }
-
-        public static string NumberToWords(int number)
-        {
-            if (number == 0)
-                return "Zero";
-
-            if (number < 0)
-                return "Minus " + NumberToWords(Math.Abs(number));
-
-            string words = "";
-
-            if ((number / 1000000) > 0)
-            {
-                words += NumberToWords(number / 1000000) + " Million ";
-                number %= 1000000;
-            }
-
-            if ((number / 1000) > 0)
-            {
-                words += NumberToWords(number / 1000) + " Thousand ";
-                number %= 1000;
-            }
-
-            if ((number / 100) > 0)
-            {
-                words += NumberToWords(number / 100) + " Hundred ";
-                number %= 100;
-            }
-
-            if (number > 0)
-            {
-                if (words != "")
-                    words += "and ";
-
-                var unitsMap = new[] { "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen" };
-                var tensMap = new[] { "Zero", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
-
-                if (number < 20)
-                    words += unitsMap[number];
-                else
-                {
-                    words += tensMap[number / 10];
-                    if ((number % 10) > 0)
-                        words += "-" + unitsMap[number % 10];
-                }
-            }
-
-            return words;
-        }
+       
 
 
 
@@ -539,24 +457,7 @@ namespace Avidclan_BlogsVacancy.Controllers
         }
 
 
-        public int CountNonWorkingDays(int Joinmonth, int JoinYear,string Date)
-        {
-            var firstDayOfMonth = new DateTime(JoinYear, Joinmonth, 1);
-            var lastDayOfMonth = DateTime.Parse(Date);
-            var nonWorkingDays = 0;
-            while (firstDayOfMonth < lastDayOfMonth)
-            {
-                var weekday = firstDayOfMonth.DayOfWeek.ToString();
-                if (weekday != "Saturday" && weekday != "Sunday")
-                {
-                    nonWorkingDays++;
-                }
-                firstDayOfMonth = firstDayOfMonth.AddDays(1);
-            }
-
-
-            return nonWorkingDays;
-        }
+        
 
 
     }

@@ -375,41 +375,8 @@ namespace Avidclan_Website.Controllers
                 var pager = new Pager((BlogList != null && BlogList.Count > 0) ? Convert.ToInt32(BlogList[0].TotalRecords) : 0, page, PageSize);
                 obj.ListBlog = listBlog;
                 obj.pager = pager;
-
-                 //result = CreateBlogPage(BlogList);
             }
             return JsonConvert.SerializeObject(new { Isvalid = true, data = obj });
-        }
-
-        public string CreateBlogPage(List<Blog> blogList)
-        {
-            string result = string.Empty;
-            try
-            {
-                foreach (var blog in blogList)
-                {
-                    //string path = @"P:\Avidclan\Avidclan\Avidclan_Website\Views\BlogPages\" + blog.PageUrl + ".cshtml";
-                    //string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/BlogPages/");
-                    //string targetPath = Path.Combine(targetFolder, blog.PageUrl + ".cshtml");
-                    blog.Description += "@{Layout = \"~/Views/Shared/_blogdetail.cshtml\";}";
-                    blog.Description += "@section AdditionalMeta{<title>" + blog.MetaTitle + "</title><meta name=\"description\" content=\" " + blog.MetaDescription + " \">}";
-                     var mappedPath = HostingEnvironment.MapPath("~/Views/BlogPages/" + blog.PageUrl + ".cshtml");
-                    //var mappedPath = @"https://www.avidclan.com/";
-
-                    using (StreamWriter sw = new StreamWriter(mappedPath))
-                    {
-                        sw.Write(blog.Description);
-                    }
-                    result = "true";
-                }
-            }
-            catch(Exception ex)
-            {
-                result = ex.Message+ex.StackTrace;
-                
-            }
-            return result;
-
         }
 
 

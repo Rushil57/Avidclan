@@ -184,6 +184,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Methods\FrequentMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Blog.cs" />
     <Compile Include="ViewModel\Careers.cs" />
@@ -269,6 +270,10 @@
     <Content Include="Views\Shared\_LeaveTemplate.cshtml" />
     <Content Include="Views\BlogVacancy\LeaveStatus.cshtml" />
     <Content Include="Views\BlogVacancy\SalarySlips.cshtml" />
+    <Content Include="Views\Leave\TotalLeaves.cshtml" />
+    <Content Include="Views\Leave\FeedBack.cshtml" />
+    <Content Include="Views\BlogVacancy\UserRegister.cshtml" />
+    <Content Include="Views\Shared\_RegistrationTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

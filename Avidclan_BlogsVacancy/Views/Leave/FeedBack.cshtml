@@ -1,0 +1,54 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LeaveTemplate.cshtml";
+}
+
+<form name="FeedBackdetails">
+    <div class="form-group">
+        <label for="feedback">Feedback</label>
+        <textarea class="form-control" id="FeedBack" name="feedback" placeholder="Enter Your Valuable Feedback" style=" min-height: 6.875rem;width:80%"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<script type="text/javascript">
+    $(function () {
+        validator = $("form[name='FeedBackdetails']").validate({
+            rules: {
+                feedback: { required: true, },
+            },
+            messages: {
+                feedback: { required: "Please enter a feedback", },
+            },
+            submitHandler: function (form) {
+                SavefeedBack()
+            }
+        });
+
+    });
+
+    function SavefeedBack() {
+        var feedback = $("#FeedBack").val();
+        var data = {
+            Feedback: feedback
+        }
+        $.ajax({
+            type: "POST",
+            url: "/api/Admin/SaveFeedBack",
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data),
+            success: function (result) {
+                alert(result);
+                $("#FeedBack").val("");
+            },
+            error: function (result) {
+                debugger
+                alert(result);
+            },
+        })
+    }
+
+
+</script>

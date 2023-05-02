@@ -28,6 +28,7 @@ using System.Threading;
 using System.Web.Helpers;
 using MimeKit;
 using System.Web.Http.Results;
+using Avidclan_BlogsVacancy.Methods;
 
 namespace Avidclan_BlogsVacancy.Controllers
 {
@@ -41,6 +42,7 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         string connectionString = ConfigurationManager.ConnectionStrings["DbEntities"].ToString();
         SqlConnection con;
+        FrequentMethod frequentMethod = new FrequentMethod();
         public SalaryWebApiController()
         {
             con = new SqlConnection(connectionString);
@@ -72,7 +74,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 int totalDaysInMonth = DateTime.DaysInMonth(Convert.ToInt16(year), month);
 
                 //COUNT WEEKENDS OF THE MONTH
-                var totalWeekendsinMonths = CountWeekends(Convert.ToInt16(year), month);
+                var totalWeekendsinMonths = frequentMethod.CountWeekends(Convert.ToInt16(year), month);
 
                 //COUNT PAID DAYS
                 //var HolidayList = HolidaysDate(month, Convert.ToInt16(year));
