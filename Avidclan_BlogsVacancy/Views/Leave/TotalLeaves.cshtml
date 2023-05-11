@@ -3,26 +3,61 @@
     Layout = "~/Views/Shared/_LeaveTemplate.cshtml";
 }
 
+<h4>Current Year Leave Used</h4>
 <table id="TotalLeaveTable">
     <thead>
         <tr>
-            <th>Year</th>
             <th>Month</th>
             <th>SickLeave</th>
             <th>Personal Leave</th>
             <th>Leave Without Pay</th>
+            @*<th>Reason For Leave</th>*@
         </tr>
     </thead>
     <tbody class="TotalLeaveTableBody">
     </tbody>
 </table>
 
+<hr />
+
+<h4>Total Leave Balance Remaining</h4>
+<table id="TotalLeaveBalanceTable">
+    <thead>
+        <tr>
+            <th>SickLeave</th>
+            <th>Personal Leave</th>
+        </tr>
+    </thead>
+    <tbody class="TotalLeaveBalanceTableBody">
+    </tbody>
+</table>
+
+<hr />
+
+@*<h4>Past Leave Balanace</h4>
+    <table id="PastLeaveBalanceTable">
+        <thead>
+            <tr>
+                <th>SickLeave</th>
+                <th>Personal Leave</th>
+            </tr>
+        </thead>
+        <tbody class="PastLeaveBalanceTableBody">
+        </tbody>
+    </table>*@
+
+<input type="hidden" id="PersonalLeave" />
+<input type="hidden" id="SickLeave" />
+
 <script>
     $(function () {
-        GetTotalLeave();
+        GetPastLeaveBalance();
+        GetTotalCurrentYearLeave();
+        GetTotalLeaveBalance();
+
     });
 
-    function GetTotalLeave() {
+    function GetTotalCurrentYearLeave() {
          $.ajax({
             url: "@Url.Action("GetTotalLeaveList", "Leave")",
             contentType: 'application/json',
@@ -31,10 +66,8 @@
                 $('#TotalLeaveTable').DataTable({
                     destroy: true,
                     data: data,
+                  /*  order: [[0, 'desc']],*/
                     "columns": [
-                        {
-                            "data": "Year",
-                        },
                         {
                             "data": "Month",
                             "render": function (data, type, row) {
@@ -80,11 +113,14 @@
 
                             }
                         }
+                        //{
+                        //    "data": "LeaveReason"
+                        //}
                     ]
                 });
             },
             error: function () {
-                alert('failure');
+                alert('failure in table');
             }
         });
     }
@@ -92,5 +128,90 @@
     function GetMonthName(monthNumber) {
         var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         return months[monthNumber - 1];
+    }
+
+    function GetTotalLeaveBalance() {
+        $.ajax({
+            url: "@Url.Action("GetTotalLeaveBalanaceList", "Leave")",
+            contentType: 'application/json',
+             type: "GET",
+            success: function (data) {
+                $('#TotalLeaveBalanceTable').DataTable({
+                    destroy: true,
+                    data: data,
+                    order: [[0, 'desc']],
+                    "columns": [
+                        {
+                            "data": "SickLeave",
+                            "render": function (data, type, row) {
+
+                                var SickLeave = TotalSickLeaveCount(data);
+                                return "<span>" + SickLeave + "</span>"
+
+                            }
+                        },
+                        {
+                            "data": "PersonalLeave",
+                            "render": function (data, type, row) {
+
+                                var personalLeave = TotalPersonalLeaveCount(data);
+                                return "<span>" + personalLeave + "</span>"
+
+                            }
+                        }
+                    ]
+                });
+            },
+            error: function () {
+                alert('failure in table');
+            }
+        });
+    }
+
+     function GetPastLeaveBalance() {
+        $.ajax({
+            url: "@Url.Action("GetTotalPastBalanaceList", "Leave")",
+            contentType: 'application/json',
+             type: "GET",
+            success: function (data) {
+                    $("#PersonalLeave").val(data[0].PersonalLeave);
+                    $("#SickLeave").val(data[0].SickLeave);
+
+
+            },
+            error: function () {
+                alert('failuress');
+            }
+        });
+    }
+
+    function TotalSickLeaveCount(sickleave) {
+        var Pastsickleave = $("#SickLeave").val();
+        if (Pastsickleave == '') {
+            Pastsickleave = 0.0;
+        }
+        var CurrentDate = new Date();
+        var CurrentMonth = CurrentDate.getMonth() + 1;
+        var MonthlySickLeave = CurrentMonth / 2;
+        MonthlySickLeave = (MonthlySickLeave - sickleave) + parseFloat(Pastsickleave);
+        if (MonthlySickLeave < 0) {
+            MonthlySickLeave = 0;
+        }
+        return MonthlySickLeave;
+    }
+
+    function TotalPersonalLeaveCount(personalLeave) {
+        var Pastpersonalleave = $("#PersonalLeave").val();
+        if (Pastpersonalleave == '') {
+            Pastpersonalleave = 0.0;
+        }
+
+        var CurrentDate = new Date();
+        var CurrentMonth = CurrentDate.getMonth() + 1;
+        var TotalPersonalLeave = parseFloat(Pastpersonalleave) + (CurrentMonth - personalLeave) 
+        if (TotalPersonalLeave < 0) {
+            TotalPersonalLeave = 0;
+        }
+        return TotalPersonalLeave;
     }
 </script>

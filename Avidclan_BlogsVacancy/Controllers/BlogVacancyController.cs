@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -51,9 +52,8 @@ namespace Avidclan_BlogsVacancy.Controllers
             {
                 Session["EmailId"] = logindata.EmailId;
                 Session["UserId"] = logindata.Id;
-                //HttpCookie nameCookie = new HttpCookie("EmailId",logindata.ToString());
-                //nameCookie.Expires = DateTime.Now.AddDays(30);
-                //Response.Cookies.Add(nameCookie);
+                Session["JoiningDate"] = logindata.JoiningDate;
+                Session["ProbationPeriod"] = logindata.ProbationPeriod;
             }
             return Json(logindata, JsonRequestBehavior.AllowGet);
         }
@@ -167,7 +167,9 @@ namespace Avidclan_BlogsVacancy.Controllers
         public void Logout()
         {
             Session["EmailId"] = null;
+            Session["JoiningDate"] = null;
             Session["UserId"] = 0;
+            Session["ProbationPeriod"] = 0;
         }
 
         public ActionResult LeaveStatus()
@@ -199,6 +201,8 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@EmailId", userRegister.EmailId, DbType.String, ParameterDirection.Input);
                 parameters.Add("@Password", userRegister.Password, DbType.String, ParameterDirection.Input);
                 parameters.Add("@PhoneNumber", userRegister.PhoneNumber, DbType.String, ParameterDirection.Input);
+                parameters.Add("@JoiningDate", userRegister.JoiningDate.ToShortDateString(), DbType.DateTime, ParameterDirection.Input);
+                parameters.Add("@ProbationPeriod", userRegister.ProbationPeriod, DbType.Int32, ParameterDirection.Input);
                 parameters.Add("@mode", 2, DbType.Int32, ParameterDirection.Input);
                 using (IDbConnection connection = new SqlConnection(connectionString))
                 {
@@ -240,12 +244,98 @@ namespace Avidclan_BlogsVacancy.Controllers
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
                 var CheckEmailId = connection.ExecuteScalar("sp_User", parameters, commandType: CommandType.StoredProcedure);
-                if(CheckEmailId!=null)
+                if (CheckEmailId != null)
                 {
                     return "Please Enter Unique Email Address";
                 }
                 return "";
             }
+        }
+
+        public JsonResult GetRoles()
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Mode", 5, DbType.Int32, ParameterDirection.Input);
+            var RoleList = con.Query<UserLogin>("sp_User", parameters, commandType: CommandType.StoredProcedure).ToList();
+            if (RoleList.Count > 0)
+            {
+                return Json(RoleList, JsonRequestBehavior.AllowGet);
+            }
+            return Json(JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult BalanaceLeave()
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
+            return View();
+        }
+
+        public bool SaveBalanaceLeave(BalanaceLeaveViewModel balanaceLeaveViewModel)
+        {
+            if (balanaceLeaveViewModel != null)
+            {
+                var mode = 0;
+                if (balanaceLeaveViewModel.Id != 0)
+                {
+                    mode = 8;
+                }
+                else
+                {
+                    mode = 4;
+                }
+               // IsNoticePeriod
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id", balanaceLeaveViewModel.Id, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@PersonalLeave", balanaceLeaveViewModel.PersonalLeave, DbType.String, ParameterDirection.Input);
+                parameters.Add("@SickLeave", balanaceLeaveViewModel.SickLeave, DbType.String, ParameterDirection.Input);
+                parameters.Add("@UserId", balanaceLeaveViewModel.UserId, DbType.Int16, ParameterDirection.Input);
+                parameters.Add("@IsNoticePeriod", balanaceLeaveViewModel.NoticePeriod, DbType.Boolean, ParameterDirection.Input);
+                parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
+                try
+                {
+                    using (IDbConnection connection = new SqlConnection(connectionString))
+                    {
+                        var saveLeaves = connection.ExecuteScalar("sp_PastLeaves", parameters, commandType: CommandType.StoredProcedure);
+                    }
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+                return true;
+            }
+            return false;
+        }
+
+        public JsonResult GetEmployeeList()
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Mode", 5, DbType.Int32, ParameterDirection.Input);
+            var EmployeeList = con.Query<UserRegister>("sp_PastLeaves", parameters, commandType: CommandType.StoredProcedure).ToList();
+            return Json(EmployeeList, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult GetEmployees()
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Mode", 6, DbType.Int32, ParameterDirection.Input);
+            var EmployeeList = con.Query<BalanaceLeaveViewModel>("sp_PastLeaves", parameters, commandType: CommandType.StoredProcedure).ToList();
+            return Json(EmployeeList, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult GetEmployeeListById(int Id)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", Id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@Mode", 7, DbType.Int32, ParameterDirection.Input);
+            var EmployeeList = con.Query<BalanaceLeaveViewModel>("sp_PastLeaves", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            return Json(EmployeeList, JsonRequestBehavior.AllowGet);
+
         }
     }
 }

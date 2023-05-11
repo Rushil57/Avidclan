@@ -257,6 +257,9 @@ namespace Avidclan_BlogsVacancy.Controllers
         {
             //SendLeaveMail(leaveViewModel.Leaves,leaveViewModel.ReportingPerson);
             var UserId = HttpContext.Current.Session["UserId"];
+            var JoinigDate = HttpContext.Current.Session["JoiningDate"];
+            var ProbationPeriod = HttpContext.Current.Session["ProbationPeriod"];
+
             var mode = 0;
             var ReportingPersons = string.Empty;
             if (leaveViewModel.ReportingPerson.Count > 0)
@@ -282,6 +285,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@LeaveStatus", "Pending", DbType.String, ParameterDirection.Input);
                 parameters.Add("@UserId", UserId, DbType.Int16, ParameterDirection.Input);
                 parameters.Add("@ReportingPerson", ReportingPersons, DbType.String, ParameterDirection.Input);
+                parameters.Add("@LeaveReason", leaveViewModel.ReasonForLeave, DbType.String, ParameterDirection.Input);
                 parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
                 var SaveLeave = con.ExecuteScalar("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure);
                 if (SaveLeave != null)
@@ -307,7 +311,9 @@ namespace Avidclan_BlogsVacancy.Controllers
                         parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
                         var SaveLeaveDetails = con.ExecuteScalar("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
                     }
-                    var result = new LeaveController().CheckTypeOfLeave(leaveViewModel.Leaves, leaveViewModel.Fromdate, leaveViewModel.Id, UserId);
+                    var result = new LeaveController().CheckTypeOfLeave(
+                            leaveViewModel.Leaves, leaveViewModel.Fromdate,
+                            leaveViewModel.Id, UserId,JoinigDate, ProbationPeriod);
                 }
 
             }
@@ -513,7 +519,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 mail.Body = feedback.Feedback;
                 mail.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient(host, port);
-                smtp.EnableSsl = true;
+                smtp.EnableSsl = false;
                 smtp.UseDefaultCredentials = false;
                 smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
                 smtp.Send(mail);

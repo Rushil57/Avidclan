@@ -16,42 +16,49 @@
                 <h5 class="modal-title" id="exampleModalLabel">Apply Leave</h5>
             </div>
             <div class="modal-body">
-                <input type="hidden" id="LeaveId" value="0">
-                <div class="form-group">
-                    <label for="txtFromDate">From Date</label>
-                    <input type="text" class="form-control" name="txtFromDate" id="txtFromDate" placeholder="From Date" onchange="SetMinDate()">
-                </div>
-                <div class="form-group">
-                    <label for="txtToDate">To Date</label>
-                    <input type="text" class="form-control" name="txtToDate" id="txtToDate" placeholder="To Date" onchange="DateChange()">
-                </div>
-                <div class="form-group">
-                    <label>Select Reporting Person</label>
-                    <select data-placeholder="Select Reporting Person..." id="ReportingPersonId" multiple class="chosen-select" name="test" style="width:100%">
-                        <option value=""></option>
-                        <option value='abhishek@avidclan.com'>abhishek@avidclan.com</option>
-                        <option value='dhaval@avidclan.com'>dhaval@avidclan.com</option>
-                        <option value='ashwin@avidclan.com'>ashwin@avidclan.com</option>
-                        <option value='pooja@avidclan.com'>pooja.avidclan@gmail.com</option>
-                    </select>
-                </div>
-                <div id="TotalLeaveDates">
-                    <table class="table" id="LeaveDateTable">
-                        <thead>
-                            <tr>
-                                <th style="width:33%">Date</th>
-                                <th style="width:23%">Half Day?</th>
-                                <th style="width:44%"></th>
-                            </tr>
-                        </thead>
-                        <tbody class="LeaveDatebody">
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="ResetModel()">Cancel</button>
-                    <button type="button" class="btn btn-primary" onclick="SendLeaveRequest()">Submit Request</button>
-                </div>
+                <form name="LeaveForm">
+                    <input type="hidden" id="LeaveId" value="0">
+                    <div class="form-group">
+                        <label for="txtFromDate">From Date</label>
+                        <input type="text" class="form-control" name="txtFromDate" id="txtFromDate" placeholder="From Date" onchange="SetMinDate()">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtToDate">To Date</label>
+                        <input type="text" class="form-control" name="txtToDate" id="txtToDate" placeholder="To Date" onchange="DateChange()">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtReason">Reason For Leave</label>
+                        <textarea type="text" class="form-control" name="txtReason" id="txtReason" placeholder="Reason For Leave" style="min-height: 5.875rem;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Reporting Person</label>
+                        <select data-placeholder="Select Reporting Person..." id="ReportingPersonId" multiple class="chosen-select" name="test" style="width:100%">
+                            <option value=""></option>
+                            <option value='abhishek@avidclan.com'>abhishek@avidclan.com</option>
+                            <option value='dhaval@avidclan.com'>dhaval@avidclan.com</option>
+                            <option value='ashwin@avidclan.com'>ashwin@avidclan.com</option>
+                            <option value='pooja@avidclan.com'>pooja.avidclan@gmail.com</option>
+                        </select>
+                    </div>
+                    <div id="TotalLeaveDates">
+                        <table class="table" id="LeaveDateTable">
+                            <thead>
+                                <tr>
+                                    <th style="width:33%">Date</th>
+                                    <th style="width:23%">Half Day?</th>
+                                    <th style="width:44%"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="LeaveDatebody">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="ResetModel()">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                    </div>
+                </form>
+              
             </div>
 
         </div>
@@ -61,6 +68,19 @@
 
 <script type="text/javascript">
     $(function () {
+        $("form[name='LeaveForm']").validate({
+            rules: {
+                txtReason: { required: true, },
+            },
+            messages: {
+                txtReason: { required: "Please enter a reason", },
+              
+            },
+            submitHandler: function (form) {
+                SendLeaveRequest()
+            }
+        });
+
         $(".chosen-select").chosen({
             no_results_text: "Oops, nothing found!"
         })
@@ -79,6 +99,10 @@
             selectable: true,
             dateClick: function (info) {
                 var responseDate = moment(info.dateStr).format('MM/DD/YYYY');
+                var getDateday = new Date(responseDate)
+                if (getDateday.getDay() === 6 || getDateday.getDay() === 0) {
+                    return
+                }
                 $("#ApplyLeaveModel").show();
                 $("#txtFromDate").val(responseDate);
                 $("#txtToDate").val(responseDate);
@@ -159,6 +183,12 @@
     }
 
     function SendLeaveRequest() {
+        //var Reason = $("#txtReason").val();
+        //if (Reason.length == 0) {
+        //    $("<label id='Reason-error' class='error' style='color:red' for='Responsibilty'>Please enter reasons for leave</label>").insertAfter("#txtReason");
+        //    return
+        //}
+
         var LeaveDetails = new Array();
         var exit = false;
         $("#LeaveDateTable tbody tr").each(function () {
@@ -188,7 +218,8 @@
             Fromdate: $("#txtFromDate").val(),
             Todate: $("#txtToDate").val(),
             Leaves: LeaveDetails,
-            ReportingPerson: $("#ReportingPersonId").val()
+            ReportingPerson: $("#ReportingPersonId").val(),
+            ReasonForLeave: $("#txtReason").val()
         }
 
         $.ajax({
@@ -208,6 +239,7 @@
     }
 
     function ResetModel() {
+        console.clear();
         $("#ApplyLeaveModel").hide();
         $("#LeaveId").val(0)
         $("#txtFromDate").val("");
@@ -216,6 +248,7 @@
         $("#TotalLeaveDates").hide();
         $("#ReportingPersonId").val('');
         $('#ReportingPersonId').trigger("chosen:updated");
+        $("#txtReason").val('')
         GetLeaveDates();
     }
 

@@ -13,6 +13,10 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string Password { get; set; }
 
         public string RoleName { get; set; }
+
+        public DateTime JoiningDate { get; set; }
+
+        public int ProbationPeriod { get; set; }
     }
 
     public class UserRegister
@@ -24,6 +28,9 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string EmailId { get; set; }
         public string Password { get; set; }
         public int Role { get; set; }
+
+        public int ProbationPeriod { get; set; }
+        public DateTime JoiningDate { get; set; }
     }
 
 }

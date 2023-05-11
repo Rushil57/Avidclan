@@ -1,0 +1,201 @@
+﻿
+@{
+    ViewBag.Title = "BalanaceLeave";
+    Layout = "~/Views/Shared/_AdminTemplate.cshtml";
+}
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-target="#exampleModal" id="AddEmployee" onclick="ShowModalPopUp()">
+    Add Employee Leaves
+</button>
+
+<!-- Modal -->
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            </div>
+            <div class="modal-body">
+                <form name="BalanaceLeaveForm">
+                    <input type="hidden" id="EmployeeId" />
+                    <div class="form-group">
+                        <label for="personalLeave">Personal Leave</label>
+                        <input type="text" class="form-control" id="PersonalLeave" name="personalleave" placeholder="Enter Personal Leave">
+                    </div>
+                    <div class="form-group">
+                        <label for="sickLeave">Sick Leave</label>
+                        <input type="text" class="form-control" id="SickLeave" name="sickleave" placeholder="Enter Sick Leave">
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="NoticePeriod" name="noticePeriod"> &nbsp;
+                        <label for="NoticePeriod">Notice Period</label>
+                    </div>
+                    @*<div class="form-group">
+                        <label for="NoticePerioddate">Notice Period Date</label>
+                        <input type="text" class="form-control" name="dateofNoticePeriod" id="DateOfNoticePeriod" placeholder="Notice Period Date">
+                    </div>*@
+                    <div class="form-group">
+                        <label for="employee">Select Employee</label>
+                        <select class="form-control cls-employee" name="employee" id="Employee">
+                            <option value="">Select Employess</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm btn-block">Submit</button>
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="ResetForm()">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive pt-3">
+    <table id="EmployeeList" class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th> Personal Leave </th>
+                <th> Sick Leave </th>
+                <th> FirstName </th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<script>
+    var validator;
+    $(function () {
+        $("#DateOfNoticePeriod").datepicker();
+        validator =   $("form[name='BalanaceLeaveForm']").validate({
+            rules: {
+                personalleave: { required: true },
+                sickleave: {  required: true },
+                employee: { required: true,}
+            },
+            messages: {
+                personalleave: { required: "Please enter a Personal Leave" },
+                sickleave: { required: "Please enter a Sick Leave" },
+                employee: {required: "Select Valid Employee",},
+            },
+            submitHandler: function (form) {
+                SaveBalanceLeave();
+            }
+        });
+        BindEmployessNameList();
+        BindEmployessList();
+    });
+
+    function SaveBalanceLeave() {
+        var data = {
+            Id: $("#EmployeeId").val(),
+            PersonalLeave: $("#PersonalLeave").val(),
+            SickLeave: $("#SickLeave").val(),
+            UserId: $("#Employee").val(),
+            NoticePeriod: $("#NoticePeriod").prop('checked')
+        }
+
+         $.ajax({
+         type: "POST",
+         url: "@Url.Action("SaveBalanaceLeave", "BlogVacancy")",
+         contentType: 'application/json',
+         data: JSON.stringify(data),
+         success: function (result) {
+              if (result == "True") {
+                  alert("Save Succesfully")
+                  ResetForm();
+                  BindEmployessList();
+              }
+              else {
+               alert("Something went wrong")
+              }
+            },
+         error: function (result) {
+            alert("Failure");
+         }
+      });
+    }
+
+    function ResetForm() {
+        validator.resetForm();
+        $("#PersonalLeave").val('');
+        $("#SickLeave").val('');
+        $("#Employee").val('');
+        $("#exampleModal").modal('hide');
+        $("#EmployeeId").val(0);
+    }
+
+    function BindEmployessNameList() {
+          $.ajax({
+            type: "GET",
+            url: "@Url.Action("GetEmployeeList", "BlogVacancy")",
+            contentType: 'application/json',
+            success: function (result) {
+                if (result != null) {
+                    $.each(result, function (index, item) {
+                        var opt = new Option(item.FirstName, item.Id);
+                        $('.cls-employee').append(opt);
+
+                    });
+                }
+            },
+            error: function (result) {
+                    alert("Failure");
+            }
+        });
+    }
+
+    function BindEmployessList() {
+         $.ajax({
+            type: "GET",
+            url: "@Url.Action("GetEmployees", "BlogVacancy")",
+            contentType: 'application/json',
+            success: function (result) {
+                if (result != null) {
+                    $('#EmployeeList').dataTable({
+                        destroy: true,
+                        data: result,
+                        "columns": [
+                            { "data": "PersonalLeave",},
+                            { "data": "SickLeave" },
+                            { "data": "FirstName", },
+                            {
+                                "data": "Id",
+                                "render": function (data, type, row) {
+                                    return '<a class="btn btn-info btn-sm" style="color: white;" onclick="GetEmployeesDetailsById(' + data + ')"><i class="mdi mdi-pencil"></i></a>';
+                                }
+                            },
+                        ]
+                    });
+                }
+            },
+            error: function (result) {
+                    alert("Failure");
+            }
+        });
+    }
+
+    function ShowModalPopUp() {
+        $("#exampleModal").modal('show');
+    }
+
+    function GetEmployeesDetailsById(id) {
+        $("#exampleModal").modal('show');
+         $.ajax({
+            type: "GET",
+            url: "@Url.Action("GetEmployeeListById", "BlogVacancy")",
+             contentType: 'application/json',
+             data: { Id : id},
+            success: function (result) {
+                if (result != null) {
+                    $("#PersonalLeave").val(result.PersonalLeave);
+                    $("#SickLeave").val(result.SickLeave);
+                    $("#Employee").val(result.UserId);
+                    $("#EmployeeId").val(result.Id);
+                }
+            },
+            error: function (result) {
+                    alert("Failure");
+            }
+        });
+    }
+</script>

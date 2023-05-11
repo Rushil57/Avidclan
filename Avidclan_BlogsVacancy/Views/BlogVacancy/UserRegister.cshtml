@@ -27,12 +27,17 @@
                 <input type="password" class="form-control" name="password" id="PassWord" placeholder="Pass Word">
             </div>
             <div class="form-group">
+                <label for="joiningDate">Joining Date</label>
+                <input type="text" class="form-control" name="txtjoiningDate" id="JoiningDate" placeholder="Select Joining Date">
+            </div>
+            <div class="form-group">
+                <label for="probationPeriod">Probation Months</label>
+                <input type="text" class="form-control" name="txtprobationmonth" id="ProbationMonth" placeholder="Probation Month">
+            </div>
+            <div class="form-group">
                 <label for="role">Select Role</label>
-                <select class="form-control" name="role" id="RoleName">
+                <select class="form-control cls-role" name="role" id="RoleName">
                     <option value="">Roles</option>
-                    <option value="1">Admin</option>
-                    <option value="2">Managers</option>
-                    <option value="3">Employee</option>
                 </select>
             </div>
             <br />
@@ -63,6 +68,7 @@
                 password: {
                     required: true,
                 },
+                txtjoiningDate: { required: true, },
                 role: {
                     required: true,
                 }
@@ -82,12 +88,16 @@
                 password: {
                     required: "Please enter a password",
                 },
+                txtjoiningDate: { required: "Select valid Date", },
                 role: { required: "Please Select valid role" },
             },
             submitHandler: function (form) {
                 SaveNewUser();
             }
         });
+
+        BindRoles();
+        $('#JoiningDate').datepicker();
     });
 
     function SaveNewUser() {
@@ -98,6 +108,8 @@
             EmailId: $("#EmailAddress").val(),
             Password: $("#PassWord").val(),
             Role: $("#RoleName").val(),
+            JoiningDate: $("#JoiningDate").val(),
+            ProbationPeriod: $("#ProbationMonth").val()
         }
             $.ajax({
                 type: "POST",
@@ -137,6 +149,26 @@
                 else {
                     alert(result)
                     $("#EmailAddress").val('');
+                }
+            },
+            error: function (result) {
+                    alert("Failure");
+            }
+        });
+    }
+
+    function BindRoles() {
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("GetRoles", "BlogVacancy")",
+            contentType: 'application/json',
+            success: function (result) {
+                if (result != null) {
+                    $.each(result, function (index, item) {
+                        var opt = new Option(item.RoleName, item.Id);
+                        $('.cls-role').append(opt);
+
+                    });
                 }
             },
             error: function (result) {

@@ -186,6 +186,7 @@
     </Compile>
     <Compile Include="Methods\FrequentMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\BalanaceLeaveViewModel.cs" />
     <Compile Include="ViewModel\Blog.cs" />
     <Compile Include="ViewModel\Careers.cs" />
     <Compile Include="ViewModel\HeaderMenu.cs" />
@@ -274,6 +275,7 @@
     <Content Include="Views\Leave\FeedBack.cshtml" />
     <Content Include="Views\BlogVacancy\UserRegister.cshtml" />
     <Content Include="Views\Shared\_RegistrationTemplate.cshtml" />
+    <Content Include="Views\BlogVacancy\BalanaceLeave.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

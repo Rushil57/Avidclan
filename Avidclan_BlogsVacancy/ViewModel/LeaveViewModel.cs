@@ -27,6 +27,8 @@ namespace Avidclan_BlogsVacancy.ViewModel
 
         public string Persons { get; set; }
 
+        public string ReasonForLeave { get; set; }
+
         public List<LeaveDetailsViewModel> Leaves { get;set; }
     }
 
@@ -52,6 +54,10 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string Year { get; set; }
 
         public string Month { get; set; }
+
+        public string LeaveReason { get; set; }
+
+        public bool IsNoticePeriod { get; set; }
         //public int PersonalLeaves { get; set; }
 
         //public int Lwp { get; set; }
