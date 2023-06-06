@@ -377,6 +377,7 @@
     <Content Include="assets\images\icons\high-speed-ic.svg" />
     <Content Include="assets\images\icons\html5.svg" />
     <Content Include="assets\images\icons\icon-bar.png" />
+    <Content Include="assets\images\icons\ind-flag.svg" />
     <Content Include="assets\images\icons\install-ic.svg" />
     <Content Include="assets\images\icons\interactive-ic.svg" />
     <Content Include="assets\images\icons\invision.svg" />
@@ -445,6 +446,7 @@
     <Content Include="assets\images\icons\typescript.svg" />
     <Content Include="assets\images\icons\universal-ui-ic.svg" />
     <Content Include="assets\images\icons\update-ic.svg" />
+    <Content Include="assets\images\icons\usa-flag.svg" />
     <Content Include="assets\images\icons\usable-ic.svg" />
     <Content Include="assets\images\icons\user-experience-ic.svg" />
     <Content Include="assets\images\icons\vision-ic.svg" />

@@ -82,10 +82,10 @@ namespace Avidclan_BlogsVacancy.Controllers
                 //COUNT WEEKENDS OF THE MONTH
                 var totalWeekendsinMonths = frequentMethod.CountWeekends(Convert.ToInt16(year), month);
 
-                //COUNT PAID DAYS
-                //var HolidayList = HolidaysDate(month, Convert.ToInt16(year));
-                var LeaveDays = CountWeekendsInholiday(month, Convert.ToInt16(year));
-                LeaveDays = totalDaysInMonth - totalWeekendsinMonths - LeaveDays- arr[i].LeaveWithoutpay;
+                ////COUNT PAID DAYS
+                ////var HolidayList = HolidaysDate(month, Convert.ToInt16(year));
+                //var LeaveDays = CountWeekendsInholiday(month, Convert.ToInt16(year));
+                //LeaveDays = totalDaysInMonth - totalWeekendsinMonths - LeaveDays- arr[i].LeaveWithoutpay;
 
                 /*Basic Salary Count*/
                 int SalaryToInt = int.Parse(arr[i].Salary.Replace(",", ""));
@@ -99,33 +99,36 @@ namespace Avidclan_BlogsVacancy.Controllers
                 /*Special Allowance*/
                 var specialallownace = SalaryToInt - (basicsalary + hrasalary + 240 + 300);
 
-                /*Non Working days*/
-                var NonWorkingDays = 0;
-                var DateofJoining = arr[i].DateOfJoining;
-                string joindate = DateofJoining.Split('-')[0];
-                string Joinmonth = DateofJoining.Split('-')[1];
-                string JoinYear = DateofJoining.Split('-')[2];
-                if (JoinYear == year && Joinmonth == monthName)
-                {
-                    int joinmonthnumber = DateTime.ParseExact(Joinmonth, "MMMM", CultureInfo.CurrentCulture).Month;
-                    NonWorkingDays = frequentMethod.CountNonWorkingDays(joinmonthnumber, Convert.ToInt16(JoinYear), DateofJoining);
-                }
-                /*Non Working days*/
+                    /*Non Working days*/
+                    var NonWorkingDays = 0;
+                    var DateofJoining = arr[i].DateOfJoining;
+                    string joindate = DateofJoining.Split('-')[0];
+                    string Joinmonth = DateofJoining.Split('-')[1];
+                    string JoinYear = DateofJoining.Split('-')[2];
+                    if (JoinYear == year && Joinmonth == monthName)
+                    {
+                        int joinmonthnumber = DateTime.ParseExact(Joinmonth, "MMMM", CultureInfo.CurrentCulture).Month;
+                        NonWorkingDays = frequentMethod.CountNonWorkingDays(joinmonthnumber, Convert.ToInt16(JoinYear), DateofJoining);
+                    }
+                    /*Non Working days*/
 
-                /*Total Earnings*/
-                var totalEarning = basicsalary + hrasalary + 240 + 300 + specialallownace;
+                    /*Total Earnings*/
+                    var totalEarning = basicsalary + hrasalary + 240 + 300 + specialallownace;
 
-                /*Unpaid Days*/
-                var totalworkingdays = totalDaysInMonth - totalWeekendsinMonths ;
-                var totalpaidDays = totalworkingdays - arr[i].LeaveWithoutpay - NonWorkingDays;
+                    //COUNT PAID DAYS
+                    //var HolidayList = HolidaysDate(month, Convert.ToInt16(year));
+                    var LeaveDays = CountWeekendsInholiday(month, Convert.ToInt16(year));
+                    LeaveDays = totalDaysInMonth - totalWeekendsinMonths - LeaveDays - arr[i].LeaveWithoutpay - NonWorkingDays;
+
+                    /*Unpaid Days*/
+                    var totalworkingdays = totalDaysInMonth - totalWeekendsinMonths ;
+                // var totalpaidDays = totalworkingdays - arr[i].LeaveWithoutpay - NonWorkingDays;
+                
                 var salaryperday = SalaryToInt / totalworkingdays;
-                //salaryperday = (int)Decimal.Truncate(salaryperday);
                 salaryperday = (int)Decimal.Round(salaryperday);
-                var TotalsalaryCount = salaryperday * totalpaidDays;
+                var TotalsalaryCount = salaryperday * LeaveDays;
                 var deductionofleave = salaryperday * arr[i].LeaveWithoutpay;
-               // deductionofleave = (int)Decimal.Truncate(deductionofleave);
                 var deductionofnonworkingdays = salaryperday * NonWorkingDays;
-                //deductionofnonworkingdays = (int)Decimal.Truncate(deductionofnonworkingdays);
                 /*Unpaid Days*/
 
                 /*Net Salary In Numbers*/
@@ -380,8 +383,6 @@ namespace Avidclan_BlogsVacancy.Controllers
                 Response.AddHeader("content-disposition", "attachment;filename=Salary Slip of " + fileName + ".pdf");
                 Response.OutputStream.Write(memoryStream.GetBuffer(), 0, memoryStream.GetBuffer().Length);
             }
-
-
 
         }
 

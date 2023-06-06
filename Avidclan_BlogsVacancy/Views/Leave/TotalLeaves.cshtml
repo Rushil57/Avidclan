@@ -7,11 +7,12 @@
 <table id="TotalLeaveTable">
     <thead>
         <tr>
-            <th>Month</th>
+            @*<th>FromDate</th>*@
+            <th>Dates</th>
             <th>SickLeave</th>
             <th>Personal Leave</th>
             <th>Leave Without Pay</th>
-            @*<th>Reason For Leave</th>*@
+            <th>Reason For Leave</th>
         </tr>
     </thead>
     <tbody class="TotalLeaveTableBody">
@@ -48,6 +49,8 @@
 
 <input type="hidden" id="PersonalLeave" />
 <input type="hidden" id="SickLeave" />
+<input id="JoiningDate" type="hidden" value='@Session["JoiningDate"]' />
+<input id="ProbationMonth" type="hidden" value='@Session["ProbationPeriod"]' />
 
 <script>
     $(function () {
@@ -66,15 +69,27 @@
                 $('#TotalLeaveTable').DataTable({
                     destroy: true,
                     data: data,
-                  /*  order: [[0, 'desc']],*/
+                    order: [[0, 'asc']],
                     "columns": [
+                        //{
+                        //    "data": "Fromdate",
+                        //    "render": function (data) {
+                        //       var date = moment(data).format('YYYY-MM-DD');
+                        //       return "<span>" + date + "</span>"
+
+
+                        //    }
+                        //},
+                        //{
+                        //    "data": "Todate",
+                        //    "render": function (data) {
+                        //        return moment(data).format('YYYY-MM-DD');
+                        //    }
+                        //},
                         {
-                            "data": "Month",
-                            "render": function (data, type, row) {
-                                if (data != null) {
-                                    var Month = GetMonthName(data);
-                                    return "<span>"+Month+"</span>";
-                                }
+                            "data": null,
+                            "render": function (data, type, full, meta) {
+                                return moment(full["Fromdate"]).format('DD/MM/YYYY') + " - " + moment(full["Todate"]).format('DD/MM/YYYY');
                             }
                         },
                         {
@@ -112,10 +127,10 @@
                                 }
 
                             }
+                        },
+                        {
+                            "data": "LeaveReason"
                         }
-                        //{
-                        //    "data": "LeaveReason"
-                        //}
                     ]
                 });
             },
@@ -186,32 +201,87 @@
     }
 
     function TotalSickLeaveCount(sickleave) {
-        var Pastsickleave = $("#SickLeave").val();
-        if (Pastsickleave == '') {
-            Pastsickleave = 0.0;
-        }
+
+        var getJoiningDate = $('#JoiningDate').val();
+        getJoiningDate = new Date(getJoiningDate);
+        var getProbationMonth = $('#ProbationMonth').val();
+        getProbationMonth = parseInt(getProbationMonth)
+
         var CurrentDate = new Date();
-        var CurrentMonth = CurrentDate.getMonth() + 1;
-        var MonthlySickLeave = CurrentMonth / 2;
-        MonthlySickLeave = (MonthlySickLeave - sickleave) + parseFloat(Pastsickleave);
-        if (MonthlySickLeave < 0) {
-            MonthlySickLeave = 0;
+        var CurrentYear = CurrentDate.getFullYear();
+
+        var months = CurrentDate.getMonth() - getJoiningDate.getMonth() +
+            (12 * (CurrentDate.getFullYear() - getJoiningDate.getFullYear()))
+
+        var MonthlySickLeave;
+        if (months >= getProbationMonth) {
+            var JoiningDateAfterProbation = new Date(getJoiningDate.setMonth(getJoiningDate.getMonth() + getProbationMonth));
+            var JoiningYear = JoiningDateAfterProbation.getFullYear();
+            if (JoiningYear == CurrentYear) {
+                months = (CurrentDate.getMonth() - JoiningDateAfterProbation.getMonth() + 1) +
+                    (12 * (CurrentDate.getFullYear() - getJoiningDate.getFullYear()))
+                MonthlySickLeave = months / 2;
+                return MonthlySickLeave;
+            }
+
+            var Pastsickleave = $("#SickLeave").val();
+            if (Pastsickleave == '') {
+                Pastsickleave = 0.0;
+            }
+
+            var CurrentMonth = CurrentDate.getMonth() + 1;
+            MonthlySickLeave = CurrentMonth / 2;
+            MonthlySickLeave = (MonthlySickLeave - sickleave) + parseFloat(Pastsickleave);
+            if (MonthlySickLeave < 0) {
+                MonthlySickLeave = 0;
+            }
+        }
+        else {
+            MonthlySickLeave = 0.0;
         }
         return MonthlySickLeave;
     }
 
     function TotalPersonalLeaveCount(personalLeave) {
-        var Pastpersonalleave = $("#PersonalLeave").val();
-        if (Pastpersonalleave == '') {
-            Pastpersonalleave = 0.0;
-        }
+        var getJoiningDate = $('#JoiningDate').val();
+        getJoiningDate = new Date(getJoiningDate);
+        var getProbationMonth = $('#ProbationMonth').val();
+        getProbationMonth = parseInt(getProbationMonth)
 
         var CurrentDate = new Date();
-        var CurrentMonth = CurrentDate.getMonth() + 1;
-        var TotalPersonalLeave = parseFloat(Pastpersonalleave) + (CurrentMonth - personalLeave) 
-        if (TotalPersonalLeave < 0) {
-            TotalPersonalLeave = 0;
+        var CurrentYear = CurrentDate.getFullYear();
+
+        var months = CurrentDate.getMonth() - getJoiningDate.getMonth() +
+            (12 * (CurrentDate.getFullYear() - getJoiningDate.getFullYear()))
+
+        var TotalPersonalLeave;
+        if (months >= getProbationMonth) {
+            var JoiningDateAfterProbation = new Date(getJoiningDate.setMonth(getJoiningDate.getMonth() + getProbationMonth));
+            var JoiningYear = JoiningDateAfterProbation.getFullYear();
+            if (JoiningYear == CurrentYear) {
+                months = (CurrentDate.getMonth() - JoiningDateAfterProbation.getMonth() + 1) +
+                    (12 * (CurrentDate.getFullYear() - getJoiningDate.getFullYear()))
+                TotalPersonalLeave = months;
+                return TotalPersonalLeave;
+            }
+
+          
+            var Pastpersonalleave = $("#PersonalLeave").val();
+            if (Pastpersonalleave == '') {
+                Pastpersonalleave = 0.0;
+            }
+
+            var CurrentDate = new Date();
+            var CurrentMonth = CurrentDate.getMonth() + 1;
+            TotalPersonalLeave = parseFloat(Pastpersonalleave) + (CurrentMonth - personalLeave)
+            if (TotalPersonalLeave < 0) {
+                TotalPersonalLeave = 0;
+            }
         }
+        else {
+            TotalPersonalLeave = 0.0;
+        }
+
         return TotalPersonalLeave;
     }
 </script>

@@ -71,7 +71,8 @@
                 txtjoiningDate: { required: true, },
                 role: {
                     required: true,
-                }
+                },
+                txtprobationmonth: { required: true, },
             },
             messages: {
                 firstname: { required: "Please enter a firstname" },
@@ -90,6 +91,7 @@
                 },
                 txtjoiningDate: { required: "Select valid Date", },
                 role: { required: "Please Select valid role" },
+                txtprobationmonth: { required: "Please enter probation months" }
             },
             submitHandler: function (form) {
                 SaveNewUser();

@@ -1,5 +1,6 @@
 ﻿using Avidclan_BlogsVacancy.ViewModel;
 using Dapper;
+using iTextSharp.text.pdf.qrcode;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -101,8 +102,9 @@ namespace Avidclan_BlogsVacancy.Controllers
         {
             try
             {
-               
-                var CurrentYear = FromDate.Year.ToString();
+                List<LeaveDetailsViewModel> datas = new List<LeaveDetailsViewModel>();
+
+                 var CurrentYear = FromDate.Year.ToString();
                 var GivenMonth = FromDate.Month.ToString();
 
                 var parameter = new DynamicParameters();
@@ -112,51 +114,122 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameter.Add("@UserId", UserId, DbType.Int32, ParameterDirection.Input);
                 parameter.Add("@Mode", 4, DbType.Int32, ParameterDirection.Input);
                 var ListOfLeaves = con.Query<TypeOfLeave>("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure).ToList();
-
                
                 var Attribute = new DynamicParameters();
                 Attribute.Add("@LeaveId", Id, DbType.Int32, ParameterDirection.Input);
                 Attribute.Add("@Mode", 8, DbType.Int32, ParameterDirection.Input);
                 var ListLeaves = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", Attribute, commandType: CommandType.StoredProcedure).ToList();
-
-                bool takenleave = AddLeaves((Convert.ToDouble(ListOfLeaves[0].PersonalLeave)), (Convert.ToDouble(ListOfLeaves[0].SickLeave)), ListLeaves, ProbationPeriod, JoinigDate, UserId, FromDate);
-                
-                List<LeaveDetailsViewModel> FutureListLeaves = new List<LeaveDetailsViewModel>();
-                if (takenleave)
+               
+                var Attributes = new DynamicParameters();
+                var GetLastLeaveDate = ListLeaves.LastOrDefault();
+                Attributes.Add("@LeaveDate", GetLastLeaveDate.LeaveDate, DbType.Date, ParameterDirection.Input);
+                Attributes.Add("@UserId", UserId, DbType.Int32, ParameterDirection.Input);
+                Attributes.Add("@Mode", 14, DbType.Int32, ParameterDirection.Input);
+                var FutureListLeaves = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", Attributes, commandType: CommandType.StoredProcedure).ToList();
+                if(FutureListLeaves.Count > 0)
                 {
-                    var Attributes = new DynamicParameters();
-                    var GetLastLeaveDate = ListLeaves.LastOrDefault();
-                    Attributes.Add("@LeaveDate", GetLastLeaveDate.LeaveDate, DbType.Date, ParameterDirection.Input);
-                    Attributes.Add("@UserId", UserId, DbType.Int32, ParameterDirection.Input);
-                    Attributes.Add("@Mode", 13, DbType.Int32, ParameterDirection.Input);
-                     FutureListLeaves = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", Attributes, commandType: CommandType.StoredProcedure).ToList();
+                    var pastPersonalLeave = 0;
+                    var pastSickLeave = 0;
+                    for (int i = 0; i< FutureListLeaves.Count; i++)
+                    {
+                        if(FutureListLeaves[i].PastLeave == "1")
+                        {
+                            if (FutureListLeaves[i].PersonalLeaves != null)
+                            {
+                                pastPersonalLeave++;
+                            }
+                            if(FutureListLeaves[i].SickLeaves != null)
+                            {
+                                pastSickLeave++;
+                            }
+                        }
+                      
+                        LeaveDetailsViewModel dataStore = new LeaveDetailsViewModel();
+                        dataStore.LeaveDate = FutureListLeaves[i].LeaveDate;
+                        dataStore.LeaveId = FutureListLeaves[i].LeaveId;
+                        dataStore.Halfday = FutureListLeaves[i].Halfday;
+                        dataStore.Id = FutureListLeaves[i].Id;
+                        datas.Add(dataStore);
+
+
+                        var parameters = new DynamicParameters();
+                        parameters.Add("@Id", FutureListLeaves[i].Id, DbType.Int16, ParameterDirection.Input);
+                        parameters.Add("@Mode", 15, DbType.Int32, ParameterDirection.Input);
+                        var saveLeaves = con.ExecuteScalar("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure);
+                    }
+
+                    var Attribute1 = new DynamicParameters();
+                    Attribute1.Add("@UserId",UserId, DbType.Int32, ParameterDirection.Input);
+                    Attribute1.Add("@Mode", 9, DbType.Int32, ParameterDirection.Input);
+                    var PastListLeaves = con.Query<TypeOfLeave>("sp_PastLeaves", Attribute1, commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+                    if (pastPersonalLeave != 0)
+                    {
+                        var totalpl = Convert.ToDouble(PastListLeaves.PersonalLeave) + pastPersonalLeave;
+                        var parameters = new DynamicParameters();
+                        parameters.Add("@PersonalLeave", totalpl, DbType.String, ParameterDirection.Input);
+                        parameters.Add("@UserId", UserId, DbType.Int16, ParameterDirection.Input);
+                        parameters.Add("@mode", 2, DbType.Int32, ParameterDirection.Input);
+                        using (IDbConnection connection = new SqlConnection(connectionString))
+                        {
+                            var saveLeaves = connection.ExecuteScalar("sp_PastLeaves", parameters, commandType: CommandType.StoredProcedure);
+                        }
+                    }
+                    if(pastSickLeave != 0)
+                    {
+                        var totalsl = Convert.ToDouble(PastListLeaves.SickLeave) + pastSickLeave;
+                        var parameters = new DynamicParameters();
+                        parameters.Add("@SickLeave", totalsl, DbType.String, ParameterDirection.Input);
+                        parameters.Add("@UserId", UserId, DbType.Int16, ParameterDirection.Input);
+                        parameters.Add("@mode", 3, DbType.Int32, ParameterDirection.Input);
+                        using (IDbConnection connection = new SqlConnection(connectionString))
+                        {
+                            var saveLeaves = connection.ExecuteScalar("sp_PastLeaves", parameters, commandType: CommandType.StoredProcedure);
+                        }
+                    }
                 }
-                else
+                AddLeaves((Convert.ToDouble(ListOfLeaves[0].PersonalLeave)), (Convert.ToDouble(ListOfLeaves[0].SickLeave)), ListLeaves, ProbationPeriod, JoinigDate, UserId, FromDate);
+
+
+                if(datas.Count > 0)
                 {
-                    var Attributes = new DynamicParameters();
-                    var GetLastLeaveDate = ListLeaves.LastOrDefault();
-                    Attributes.Add("@LeaveDate", GetLastLeaveDate.LeaveDate, DbType.Date, ParameterDirection.Input);
-                    Attributes.Add("@UserId", UserId, DbType.Int32, ParameterDirection.Input);
-                    Attributes.Add("@Mode", 7, DbType.Int32, ParameterDirection.Input);
-                    FutureListLeaves = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", Attributes, commandType: CommandType.StoredProcedure).ToList();
+                    var LeaveIds = datas.Select(x => x.LeaveId).Distinct().ToList();
+                    foreach(var leaveid in LeaveIds)
+                    {
+                        var leavelist = datas.Where(x => x.LeaveId == leaveid).ToList();
+
+                        var list = leavelist.FirstOrDefault();
+                        var parameters = new DynamicParameters();
+                        parameters.Add("@Year", CurrentYear, DbType.Int32, ParameterDirection.Input);
+                        parameters.Add("@LeaveDate", list.LeaveDate, DbType.Date, ParameterDirection.Input);
+                        parameters.Add("@UserId", UserId, DbType.Int32, ParameterDirection.Input);
+                        parameters.Add("@Mode", 4, DbType.Int32, ParameterDirection.Input);
+                        var Leaves1 = con.Query<TypeOfLeave>("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure).ToList();
+
+                        foreach (var item in leavelist)
+                        {
+                            var parameters1 = new DynamicParameters();
+                            parameters1.Add("@LeaveDate", item.LeaveDate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
+                            parameters1.Add("@Halfday", item.Halfday, DbType.String, ParameterDirection.Input);
+                            parameters1.Add("@LeaveId", item.LeaveId, DbType.Int64, ParameterDirection.Input);
+                            parameters1.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
+                            var SaveLeaveDetails = con.ExecuteScalar("sp_LeaveApplicationDetails", parameters1, commandType: CommandType.StoredProcedure);
+                        }
+
+                        var Attribute1 = new DynamicParameters();
+                        Attribute1.Add("@LeaveId", leaveid, DbType.Int32, ParameterDirection.Input);
+                        Attribute1.Add("@Mode", 8, DbType.Int32, ParameterDirection.Input);
+                        ListLeaves = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", Attribute1, commandType: CommandType.StoredProcedure).ToList();
+
+
+                        AddLeaves((Convert.ToDouble(Leaves1[0].PersonalLeave)),
+                            (Convert.ToDouble(Leaves1[0].SickLeave)),
+                            ListLeaves, ProbationPeriod, JoinigDate,
+                            UserId, list.LeaveDate);
+                    }
+
+                   
                 }
-                if (FutureListLeaves.Count > 0)
-                {
-                    var list = FutureListLeaves.FirstOrDefault();
-                    var parameters = new DynamicParameters();
-                    parameters.Add("@Year", CurrentYear, DbType.Int32, ParameterDirection.Input);
-                    parameters.Add("@LeaveDate", list.LeaveDate, DbType.Date, ParameterDirection.Input);
-                    parameters.Add("@UserId", UserId, DbType.Int32, ParameterDirection.Input);
-                    parameters.Add("@Mode", 4, DbType.Int32, ParameterDirection.Input);
-                    var Leaves1 = con.Query<TypeOfLeave>("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure).ToList();
-
-                    AddLeaves((Convert.ToDouble(Leaves1[0].PersonalLeave)),
-                        (Convert.ToDouble(Leaves1[0].SickLeave)),
-                        FutureListLeaves, ProbationPeriod, JoinigDate,
-                        UserId, list.LeaveDate);
-                }
-
-
             }
             catch (Exception ex)
             {

@@ -255,19 +255,12 @@ namespace Avidclan_BlogsVacancy.Controllers
         [HttpPost]
         public async Task<string> RequestForLeave(LeaveViewModel leaveViewModel)
         {
-            //SendLeaveMail(leaveViewModel.Leaves,leaveViewModel.ReportingPerson);
+            SendLeaveMail(leaveViewModel.Leaves,leaveViewModel.ReportingPerson,leaveViewModel.ReasonForLeave);
             var UserId = HttpContext.Current.Session["UserId"];
             var JoinigDate = HttpContext.Current.Session["JoiningDate"];
             var ProbationPeriod = HttpContext.Current.Session["ProbationPeriod"];
 
             var mode = 0;
-            var ReportingPersons = string.Empty;
-            if (leaveViewModel.ReportingPerson.Count > 0)
-            {
-                ReportingPersons = String.Join(",", leaveViewModel.ReportingPerson);
-            }
-           
-
             if (leaveViewModel.Id == 0)
             {
                 mode = 1;
@@ -284,7 +277,6 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@Todate", leaveViewModel.Todate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
                 parameters.Add("@LeaveStatus", "Pending", DbType.String, ParameterDirection.Input);
                 parameters.Add("@UserId", UserId, DbType.Int16, ParameterDirection.Input);
-                parameters.Add("@ReportingPerson", ReportingPersons, DbType.String, ParameterDirection.Input);
                 parameters.Add("@LeaveReason", leaveViewModel.ReasonForLeave, DbType.String, ParameterDirection.Input);
                 parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
                 var SaveLeave = con.ExecuteScalar("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure);
@@ -299,6 +291,10 @@ namespace Avidclan_BlogsVacancy.Controllers
                     parameter.Add("@LeaveId", leaveViewModel.Id, DbType.Int32, ParameterDirection.Input);
                     parameter.Add("@Mode", 3, DbType.Int32, ParameterDirection.Input);
                     var deletelist = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure).ToList();
+                }
+                if (leaveViewModel.ReportingPerson.Count > 0)
+                {
+                    SaveReportingPerson(leaveViewModel.ReportingPerson, SaveLeave);
                 }
                 if (leaveViewModel.Leaves != null)
                 {
@@ -324,11 +320,23 @@ namespace Avidclan_BlogsVacancy.Controllers
             return "";
         }
 
-        public void SendLeaveMail(List<LeaveDetailsViewModel> leaveDetailsViews,List<string> ReportingPerson)
+        public void SaveReportingPerson(List<string> ReportingPerson,object Leaveid)
+        {
+            foreach (var person in ReportingPerson)
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("@ReportingPerson", person, DbType.String, ParameterDirection.Input);
+                parameter.Add("@LeaveId", Leaveid, DbType.Int32, ParameterDirection.Input);
+                parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
+                var SaveReportingPerson = con.ExecuteScalar("sp_LeaveReportingPerson", parameter, commandType: CommandType.StoredProcedure);
+            }
+        }
+        public void SendLeaveMail(List<LeaveDetailsViewModel> leaveDetailsViews,List<string> ReportingPerson,string ReasonForLeave)
         {
             var userName = HttpContext.Current.Session["EmailId"].ToString();
+            var FirstName = HttpContext.Current.Session["FirstName"].ToString();
             ReadConfiguration();
-            var mailbody = "<p>Respected Ma'am,<br>  I would like to request for leave for the following day(s).Hoping to receive a positive response from you.<br><br></p>" +
+            var mailbody = "<p>Hello Ma'am/Sir,<br><br>  I would like to request for leave for the following day(s).Hoping to receive a positive response from you.<br><b>Reason : </b>" + ReasonForLeave + "<br><br></p>" +
             "<html><body>" +
                 "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
                 "<thead><tr style='background: #eee;'><th>Leave Date</th><th>Leave Day</th><th>Half Day</th></tr></thead>" +
@@ -340,13 +348,13 @@ namespace Avidclan_BlogsVacancy.Controllers
                 mailbody += addrow;
             }
             mailbody += "</tbody></table><br><br>" +
-            "<p>Yours Sincerely,<br>" + userName + "</p></body></html>";
+            "<p>Yours Sincerely,<br>" + FirstName + "</p></body></html>";
             try
             {
                 MailMessage mail = new MailMessage();
-                mail.To.Add(receiverEmail);
-                //mail.CC.Add("chintan.s@avidclan.com");
-                //mail.CC.Add("rushil@avidclan.com");
+                mail.To.Add("info@avidclan.com");
+                mail.CC.Add("chintan.s@avidclan.com");
+                mail.CC.Add("rushil@avidclan.com");
                 if(ReportingPerson.Count > 0)
                 {
                     foreach(var person in ReportingPerson)
@@ -355,12 +363,12 @@ namespace Avidclan_BlogsVacancy.Controllers
                     }
                 }
                 
-                mail.From = new MailAddress(senderEmail);
+                mail.From = new MailAddress(userName);
                 mail.Subject = "Leave Application";
                 mail.Body = mailbody;
                 mail.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient(host, port);
-                smtp.EnableSsl = true;
+                smtp.EnableSsl = false;
                 smtp.UseDefaultCredentials = false;
                 smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
                 smtp.Send(mail);

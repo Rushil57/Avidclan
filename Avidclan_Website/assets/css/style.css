@@ -3093,6 +3093,35 @@ img {
     position: relative;
 }
 
+.contact-form-section .location-block img {
+    width: 50px;
+}
+
+.contact-form-section .location-block h3 {
+    font-size: 24px;
+    margin-top: 15px;
+}
+
+.contact-info-block.location-block .inner-box {
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+    .contact-info-block.location-block .inner-box p a {
+        color: #5e7290;
+    }
+
+    .contact-info-block.location-block .inner-box .icon {
+        font-size: 28px;
+    }
+
+.contact-info-block.location-block .icon-box {
+    padding-left: 40px;
+    min-height: auto;
+}
+
+
     .contact-info-block .inner-box {
         position: relative;
         padding: 30px;

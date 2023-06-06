@@ -244,9 +244,9 @@
         }
         /*Count Weekends of months*/
 
-        /*Count Paid Leaves*/
-            var paidDays = daysInMonths - weekendDays - HolidayList.length - data_row.LeaveWithoutpay
-        /*Count Paid Leaves*/
+        ///*Count Paid Leaves*/
+        //    var paidDays = daysInMonths - weekendDays - HolidayList.length - data_row.LeaveWithoutpay
+        ///*Count Paid Leaves*/
 
         /*Basic Salary Count*/
         var salary = data_row.Salary.split(",").join("");
@@ -291,15 +291,19 @@
         }
         /*Non Working days*/
 
+        /*Count Paid Leaves*/
+        var paidDays = daysInMonths - weekendDays - HolidayList.length - data_row.LeaveWithoutpay - nonWorkingDays
+        /*Count Paid Leaves*/
+
         /*Unpaid Days*/
         var totalworkingdays = daysInMonths - weekendDays;
-        var totalpaidDays = totalworkingdays - data_row.LeaveWithoutpay - nonWorkingDays
+        //var totalpaidDays = totalworkingdays - data_row.LeaveWithoutpay - nonWorkingDays
         var salaryperday = salary / totalworkingdays
         var deductionofleave = salaryperday * data_row.LeaveWithoutpay
         deductionofleave = deductionofleave.toFixed();
         var deductionofNonworkingdays = salaryperday * nonWorkingDays
         deductionofNonworkingdays = deductionofNonworkingdays.toFixed();
-        var totalsalary = salaryperday * totalpaidDays
+        var totalsalary = salaryperday * paidDays
         totalsalary = totalsalary.toFixed();
         /*Unpaid Days*/
 

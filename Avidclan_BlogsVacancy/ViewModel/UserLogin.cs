@@ -17,6 +17,8 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public DateTime JoiningDate { get; set; }
 
         public int ProbationPeriod { get; set; }
+
+        public string FirstName { get; set; }
     }
 
     public class UserRegister

@@ -3,8 +3,6 @@
     ViewBag.Title = "ContactUs";
 }
 
-
-@*<title>Top Software, Web & Mobile App Development Company in India</title>*@
 @section AdditionalMeta
 {
     <title>Contact Us | Avidclan</title>
@@ -26,7 +24,7 @@
                     </div>
                 </div>
                 <div class="image col-md-12 col-lg-4">
-                    <img src="~/assets/images/contact-us-img.svg" alt="contct-us-img" class="img-fluid" />
+                    <img src="~/assets/images/contact-us-img.svg" alt="" class="img-fluid" />
                 </div>
             </div>
         </div>
@@ -37,121 +35,160 @@
 <section class="contact-form-section">
     <div class="container">
         <div class="row">
-            <div class="col-xl-12">
-                <div class="avidclan_section_title text-center mb-50">
-                    <h5 class="avidclan_sub_title primary-color">CONTACT US</h5>
-                    <div class="sec-title mb-0">
-                        <h2>Leave Us a Little Info, and We'll Be In Touch.</h2>
+            <div class="col-lg-6 pe-0 pe-md-5">
+                <h4 class="avidclan_ralign_subtitle">CONTACT US</h4>
+                <div class="sec-title">
+                    <h2 class="pb-2">Reach Out and Let's Start a Conversation</h2>
+                    <div class="text">
+                        Get in touch with us and let us assist you with your queries and needs. Whether you have specific
+                        requirements, inquiries, or simply want to share your thoughts, we're here to listen and assist you.
+                        <br /><br />
+                        To get started, please fill out the form with your contact details and a brief description of your
+                        inquiry. This will help us understand your requirements better and enable us to respond promptly. We
+                        value your time and look forward to connecting with you to address any questions or concerns you may
+                        have.
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <form method="post"
-                      class="contact-form contact_form"
-                      name="contactinfo"
-                      id="contact_form">
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label for="firstname">First Name</label>
-                            <div class="input-group">
-                                <input type="text" name="firstname" id="firstname" placeholder="First Name" />
+            <div class="col-lg-6">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <form method="post"
+                              action="contact-form-handler.php"
+                              class="contact-form contact_form"
+                              name="contactinfo"
+                              id="contact_form">
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label for="firstname">First Name</label>
+                                    <div class="input-group">
+                                        <input type="text" name="firstname" id="firstname" placeholder="First Name" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 form-group">
+                                    <label for="lastname">Last Name</label>
+                                    <div class="input-group">
+                                        <input type="text" name="lastname" id="lastname" placeholder="Last Name" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 form-group">
+                                    <label for="email">Email</label>
+                                    <div class="input-group">
+                                        <input type="email" name="email" id="email" placeholder="Email Address" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 form-group">
+                                    <label for="phone">Phone</label>
+                                    <div class="input-group">
+                                        <input id="code" value="ccode" type="hidden" name="code" />
+                                        <input type="tel" name="phone" id="phone" class="numberonly" />
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                    <label for="message">Message</label>
+                                    <textarea name="message" id="message"></textarea>
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                    <label for="captcha">Please Verify You Are a Human</label>
+                                    @Html.Recaptcha()
+                                    @*<div class="g-recaptcha" data-sitekey="6LeWHTseAAAAAMQvKFnHOU1KCsIeAhX4LF7EhrCk"></div>*@
+                                </div>
+
+                                <div class="col-md-12 form-group mb-0 text-center">
+                                    <div class="">
+                                        <button class="theme-btn btn-style-one" name="submit" type="submit" id="sbmtbtn">
+                                            <span class="btn-title">
+                                                Send Message <span class="iconify ms-1" data-icon="line-md:email" data-height="25"></span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="col-md-6 form-group">
-                            <label for="lastname">Last Name</label>
-                            <div class="input-group">
-                                <input type="text" name="lastname" id="lastname" placeholder="Last Name" />
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 form-group">
-                            <label for="email">Email</label>
-                            <div class="input-group">
-                                <input type="email" name="email" id="email" placeholder="Email Address" />
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 form-group">
-                            <label for="phone">Phone</label>
-                            <div class="input-group">
-                                <input id="code" value="ccode" type="hidden" name="code" />
-                                <input type="tel" name="phone" id="phone" class="numberonly" />
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 form-group">
-                            <label for="message">Message</label>
-                            <textarea name="message" id="message"></textarea>
-                        </div>
-
-                        <div class="col-md-6 form-group">
-                            <label for="captcha">Please Verify You Are a Human</label>
-                            @Html.Recaptcha()
-                            @*<div class="g-recaptcha" data-sitekey="6Lc7VFgjAAAAAJQuEw_pFI_HgbdU6SVsO5uc4QIt"></div>*@
-                        </div>
-
-                        <div class="col-md-12 form-group mb-0 text-center">
-                            <div class="">
-                                <button class="theme-btn btn-style-one" name="submit" type="submit">
-                                    <span class="btn-title" id="submitbutton">
-                                        Send Message <span class="iconify ms-1" data-icon="line-md:email" data-height="25"></span><span id="button-spinner" style="margin-left: 10px; width: 15px; height: 15px; display: none" class="spinner-border"></span>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
-
         </div>
     </div>
 </section>
 
 <!-- Contact Details Section -->
-<section class="contact-details-section">
+<section class="lightblue-bg contact-form-section">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 contact-info-block">
-                <div class="inner-box">
-                    <div class="icon-box">
-                        <div class="icon"><span class="iconify text-primary" data-icon="bx:map"></span></div>
-                        <h5>Location</h5>
-                        <h4>Visit us on</h4>
-                    </div>
-                    <p>
-                        <a href="https://maps.google.com/maps?ll=23.026911,72.506697&z=12&t=m&hl=en&gl=IN&mapclient=embed&cid=7803470708182172091"
-                           target="_blank">1101, Shivalik Shilp, Iskcon Cross Roads, S.G. Highway, <br />Ahmedabad - 380015</a>
-                    </p>
+            <div class="col-lg-4 pe-0 pe-md-5">
+                <h4 class="avidclan_ralign_subtitle">OUR LOCATIONS</h4>
+                <div class="sec-title">
+                    <h2 class="pb-2">Visit us on</h2>
                 </div>
             </div>
-            <div class="col-lg-4 contact-info-block">
-                <div class="inner-box">
-                    <div class="icon-box">
-                        <div class="icon"><span class="iconify text-primary" data-icon="eva:phone-call-outline"></span></div>
-                        <h5>24/7 service</h5>
-                        <h4>Call us on</h4>
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="location-block contact-info-block">
+                            <img src="~/assets/images/icons/ind-flag.svg" alt="" />
+                            <h3>India Office</h3>
+                            <div class="inner-box">
+                                <div class="icon-box">
+                                    <div class="icon"><span class="iconify text-primary" data-icon="bx:map"></span></div>
+                                    <p>
+                                        <a href="https://maps.google.com/maps?ll=23.026911,72.506697&z=12&t=m&hl=en&gl=IN&mapclient=embed&cid=7803470708182172091"
+                                           target="_blank">1101, Shivalik Shilp, Iskcon Cross Roads, S.G. Highway, Ahmedabad - 380015</a>
+                                    </p>
+                                </div>
+                                <div class="icon-box">
+                                    <div class="icon"><span class="iconify text-primary" data-icon="eva:email-outline"></span></div>
+                                    <p>
+                                        <a href="mailto:info@avidclan.com">info@avidclan.com</a>
+                                    </p>
+                                </div>
+                                <div class="icon-box">
+                                    <div class="icon">
+                                        <span class="iconify text-primary" data-icon="eva:phone-call-outline"></span>
+                                    </div>
+                                    <p>
+                                        <a href="tel:+919558450670">+91 95584 50670</a>,
+                                        <a href="tel:+917046618869">+91 70466 18869</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <p>
-                        <a href="tel:+919558450670">+91 95584 50670</a> <br />
-                        <a href="tel:+917046618869">+91 70466 18869</a><br /><br />
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-4 contact-info-block">
-                <div class="inner-box">
-                    <div class="icon-box">
-                        <div class="icon"><span class="iconify text-primary" data-icon="eva:email-outline"></span></div>
-                        <h5>Drop a line</h5>
-                        <h4>Mail us @@</h4>
+                    <div class="col-lg-6">
+                        <div class="location-block contact-info-block">
+                            <img src="~/assets/images/icons/usa-flag.svg" alt="" />
+                            <h3>USA Office</h3>
+                            <div class="inner-box">
+                                <div class="icon-box">
+                                    <div class="icon"><span class="iconify text-primary" data-icon="bx:map"></span></div>
+                                    <p>
+                                        <a href="#" target="_blank">45570 Silver pond sq, Apt 302, Sterling, VA 20164</a>
+                                    </p>
+                                </div>
+                                <div class="icon-box">
+                                    <div class="icon"><span class="iconify text-primary" data-icon="eva:email-outline"></span></div>
+                                    <p>
+                                        <a href="mailto:info@avidclan.com">info@avidclan.com</a>
+                                    </p>
+                                </div>
+                                <!-- <div class="icon-box">
+                                  <div class="icon">
+                                    <span class="iconify text-primary" data-icon="eva:phone-call-outline"></span>
+                                  </div>
+                                  <p>
+                                    <a href="tel:+919558450670">+91 95584 50670</a>,
+                                    <a href="tel:+917046618869">+91 70466 18869</a>
+                                  </p>
+                                </div> -->
+                            </div>
+                        </div>
                     </div>
-                    <p>
-                        <a href="mailto:info@avidclan.com">info@avidclan.com</a>
-                        <br /><br /><br />
-                    </p>
                 </div>
             </div>
         </div>
@@ -172,6 +209,7 @@
                 tabindex="0"></iframe>
     </div>
 </section>
+
 
 @Html.Partial("_Footer")
 

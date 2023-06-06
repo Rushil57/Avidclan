@@ -29,7 +29,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
 
         public string ReasonForLeave { get; set; }
 
-        public List<LeaveDetailsViewModel> Leaves { get;set; }
+        public List<LeaveDetailsViewModel> Leaves { get;set; }       
     }
 
     public class LeaveDetailsViewModel
@@ -41,6 +41,15 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string Halfday { get; set; }
 
         public int LeaveId { get; set; }
+
+        public string PastLeave { get; set; }
+
+        public string PersonalLeaves { get; set; }
+
+        public string SickLeaves { get; set; }
+
+        public DateTime Fromdate { get; set; }
+        public DateTime Todate { get; set; }
     }
 
     public class TypeOfLeave
@@ -58,8 +67,21 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string LeaveReason { get; set; }
 
         public bool IsNoticePeriod { get; set; }
+
+        public DateTime Fromdate { get; set; }
+        public DateTime Todate { get; set; }
         //public int PersonalLeaves { get; set; }
 
         //public int Lwp { get; set; }
+    }
+
+    public class DataStore
+    {
+        public DateTime FromDate { get; set;}
+        public DateTime ToDate { get; set;}
+
+        public DateTime LeaveDates { get; set; }
+
+        public int LeaveId { get; set; }
     }
 }

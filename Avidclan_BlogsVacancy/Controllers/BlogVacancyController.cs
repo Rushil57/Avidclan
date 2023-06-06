@@ -54,6 +54,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 Session["UserId"] = logindata.Id;
                 Session["JoiningDate"] = logindata.JoiningDate;
                 Session["ProbationPeriod"] = logindata.ProbationPeriod;
+                Session["FirstName"] = logindata.FirstName;
             }
             return Json(logindata, JsonRequestBehavior.AllowGet);
         }

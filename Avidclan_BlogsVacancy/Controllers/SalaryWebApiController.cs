@@ -76,10 +76,10 @@ namespace Avidclan_BlogsVacancy.Controllers
                 //COUNT WEEKENDS OF THE MONTH
                 var totalWeekendsinMonths = frequentMethod.CountWeekends(Convert.ToInt16(year), month);
 
-                //COUNT PAID DAYS
-                //var HolidayList = HolidaysDate(month, Convert.ToInt16(year));
-                var LeaveDays = CountWeekendsInholiday(month, Convert.ToInt16(year));
-                LeaveDays = totalDaysInMonth - totalWeekendsinMonths - LeaveDays;
+                ////COUNT PAID DAYS
+                ////var HolidayList = HolidaysDate(month, Convert.ToInt16(year));
+                //var LeaveDays = CountWeekendsInholiday(month, Convert.ToInt16(year));
+                //LeaveDays = totalDaysInMonth - totalWeekendsinMonths - LeaveDays- arr[i].LeaveWithoutpay;
 
                 /*Basic Salary Count*/
                 int SalaryToInt = int.Parse(arr[i].Salary.Replace(",", ""));
@@ -87,18 +87,53 @@ namespace Avidclan_BlogsVacancy.Controllers
 
 
                 /*HRA Salary Count*/
-                var hrasalary = (SalaryToInt * 10) / 100;
+                var hrasalary = (SalaryToInt * 20) / 100;
 
 
                 /*Special Allowance*/
                 var specialallownace = SalaryToInt - (basicsalary + hrasalary + 240 + 300);
 
+                /*Non Working days*/
+                var NonWorkingDays = 0;
+                var DateofJoining = arr[i].DateOfJoining;
+                string joindate = DateofJoining.Split('-')[0];
+                string Joinmonth = DateofJoining.Split('-')[1];
+                string JoinYear = DateofJoining.Split('-')[2];
+                if (JoinYear == year && Joinmonth == monthName)
+                {
+                    int joinmonthnumber = DateTime.ParseExact(Joinmonth, "MMMM", CultureInfo.CurrentCulture).Month;
+                    NonWorkingDays = frequentMethod.CountNonWorkingDays(joinmonthnumber, Convert.ToInt16(JoinYear), DateofJoining);
+                }
+                /*Non Working days*/
 
                 /*Total Earnings*/
                 var totalEarning = basicsalary + hrasalary + 240 + 300 + specialallownace;
 
+                //COUNT PAID DAYS
+                //var HolidayList = HolidaysDate(month, Convert.ToInt16(year));
+                var LeaveDays = CountWeekendsInholiday(month, Convert.ToInt16(year));
+                LeaveDays = totalDaysInMonth - totalWeekendsinMonths - LeaveDays - arr[i].LeaveWithoutpay - NonWorkingDays;
+
+                /*Unpaid Days*/
+                var totalworkingdays = totalDaysInMonth - totalWeekendsinMonths;
+                // var totalpaidDays = totalworkingdays - arr[i].LeaveWithoutpay - NonWorkingDays;
+
+                var salaryperday = SalaryToInt / totalworkingdays;
+                salaryperday = (int)Decimal.Round(salaryperday);
+                var TotalsalaryCount = salaryperday * LeaveDays;
+                var deductionofleave = salaryperday * arr[i].LeaveWithoutpay;
+                var deductionofnonworkingdays = salaryperday * NonWorkingDays;
+                /*Unpaid Days*/
+
+                /*Net Salary In Numbers*/
+                var netSalaryInnumbers = TotalsalaryCount - 200;
+                /*Net Salary In Numbers*/
+
+
                 /*CONVERTING SALARY NUMBERS TO WORDS*/
-                var SalaryInWords = NumberToWords(SalaryToInt);
+                var SalaryInWords = frequentMethod.NumberToWords(netSalaryInnumbers);
+
+                var TotalamountDeductions = deductionofleave + 200 + deductionofnonworkingdays;
 
                 Document doc = new Document(PageSize.A4, 7f, 5f, 20f, 0f);
 
@@ -140,47 +175,51 @@ namespace Avidclan_BlogsVacancy.Controllers
                     employeeName.PaddingLeft = 10f;
                     table.AddCell(employeeName);
 
-                    PdfPCell Name = new PdfPCell(new Phrase(":" + arr[i].FullName));
+                    PdfPCell Name = new PdfPCell(new Phrase(" " + arr[i].FullName));
                     employeeName.DisableBorderSide(4);
 
                     table.AddCell(Name);
 
                     PdfPCell calendarDays = new PdfPCell(new Phrase("Calendar Days", boldFont));
+                    calendarDays.PaddingLeft = 10f;
                     table.AddCell(calendarDays);
-                    table.AddCell(": " + totalDaysInMonth);
+                    table.AddCell(" " + totalDaysInMonth);
 
                     PdfPCell empId = new PdfPCell(new Phrase("Emp ID", boldFont));
                     empId.PaddingLeft = 10f;
                     table.AddCell(empId);
-                    table.AddCell(": " + arr[i].EmpId);
+                    table.AddCell(" " + arr[i].EmpId);
 
                     PdfPCell weeklyOff = new PdfPCell(new Phrase("Weekly Off", boldFont));
+                    weeklyOff.PaddingLeft = 10f;
                     table.AddCell(weeklyOff);
-                    table.AddCell(": " + totalWeekendsinMonths);
+                    table.AddCell(" " + totalWeekendsinMonths);
 
                     PdfPCell designation = new PdfPCell(new Phrase("Designation", boldFont));
                     designation.PaddingLeft = 10f;
                     table.AddCell(designation);
-                    table.AddCell(": " + arr[i].Designation);
+                    table.AddCell(" " + arr[i].Designation);
 
                     PdfPCell leavewithoutPay = new PdfPCell(new Phrase("Leave Without Pay", boldFont));
+                    leavewithoutPay.PaddingLeft = 10f;
                     table.AddCell(leavewithoutPay);
-                    table.AddCell(": " + arr[i].LeaveWithoutpay);
+                    table.AddCell(" " + arr[i].LeaveWithoutpay);
 
                     PdfPCell dateOfJoining = new PdfPCell(new Phrase("Date of Joining", boldFont));
                     //  var joiningdate = arr[i].DateOfJoining.ToString("dd-MMMM-yyyy");
                     dateOfJoining.PaddingLeft = 10f;
                     table.AddCell(dateOfJoining);
-                    table.AddCell(": " + arr[i].DateOfJoining);
+                    table.AddCell(" " + arr[i].DateOfJoining);
 
                     PdfPCell paidDays = new PdfPCell(new Phrase("Paid Days", boldFont));
+                    paidDays.PaddingLeft = 10f;
                     table.AddCell(paidDays);
-                    table.AddCell(":" + LeaveDays);
+                    table.AddCell(" " + LeaveDays);
 
                     PdfPCell ctcPermonth = new PdfPCell(new Phrase("CTC (Per Month)", boldFont));
                     ctcPermonth.PaddingLeft = 10f;
                     table.AddCell(ctcPermonth);
-                    PdfPCell salary = new PdfPCell(new Phrase(":" + arr[i].Salary));
+                    PdfPCell salary = new PdfPCell(new Phrase(" " + arr[i].Salary));
                     salary.Colspan = 3;
                     table.AddCell(salary);
 
@@ -201,29 +240,42 @@ namespace Avidclan_BlogsVacancy.Controllers
                     amount.BackgroundColor = BaseColor.LIGHT_GRAY;
                     earningNestedTable.AddCell(amount);
 
-                    earningNestedTable.AddCell("Basic");
-                    earningNestedTable.AddCell(basicsalary.ToString());
+                    //earningNestedTable.AddCell("Basic");
+                    PdfPCell basicSalaryAmount = new PdfPCell(new Phrase("Basic"));
+                    basicSalaryAmount.PaddingLeft = 10f;
+                    earningNestedTable.AddCell(basicSalaryAmount);
+                    earningNestedTable.AddCell(" " + basicsalary.ToString());
 
-                    earningNestedTable.AddCell("HRA");
-                    earningNestedTable.AddCell(hrasalary.ToString());
+                    // earningNestedTable.AddCell("HRA");
+                    PdfPCell hraAmount = new PdfPCell(new Phrase("HRA"));
+                    hraAmount.PaddingLeft = 10f;
+                    earningNestedTable.AddCell(hraAmount);
+                    earningNestedTable.AddCell(" " + hrasalary.ToString());
 
-                    earningNestedTable.AddCell("CLA");
-                    earningNestedTable.AddCell("240");
+                    //earningNestedTable.AddCell("CLA");
+                    PdfPCell claAmount = new PdfPCell(new Phrase("CLA"));
+                    claAmount.PaddingLeft = 10f;
+                    earningNestedTable.AddCell(claAmount);
+                    earningNestedTable.AddCell(" 240");
 
-                    earningNestedTable.AddCell("Medical Allowance");
-                    earningNestedTable.AddCell("300");
+                    //earningNestedTable.AddCell("Medical Allowance");
+                    PdfPCell medicalAmount = new PdfPCell(new Phrase("Medical Allowance"));
+                    medicalAmount.PaddingLeft = 10f;
+                    earningNestedTable.AddCell(medicalAmount);
+                    earningNestedTable.AddCell(" 300");
 
                     PdfPCell specialallowance = new PdfPCell(new Phrase("Special Allowance"));
+                    specialallowance.PaddingLeft = 10f;
                     specialallowance.PaddingBottom = 30;
                     earningNestedTable.AddCell(specialallowance);
-                    PdfPCell specialallowanceamount = new PdfPCell(new Phrase(specialallownace.ToString()));
+                    PdfPCell specialallowanceamount = new PdfPCell(new Phrase(" " + specialallownace.ToString()));
                     specialallowanceamount.PaddingBottom = 30;
                     earningNestedTable.AddCell(specialallowanceamount);
 
                     PdfPCell totalEarnings = new PdfPCell(new Phrase("Total Earnings", boldFont));
                     totalEarnings.PaddingLeft = 10f;
                     earningNestedTable.AddCell(totalEarnings);
-                    earningNestedTable.AddCell(totalEarning.ToString());
+                    earningNestedTable.AddCell(" " + totalEarning.ToString());
                     //FINSH ADDING Earning NESTED TABLE
 
                     //ADDING TAX NESTED TABLE
@@ -238,17 +290,29 @@ namespace Avidclan_BlogsVacancy.Controllers
                     taxAmount.BackgroundColor = BaseColor.LIGHT_GRAY;
                     taxNestedTable.AddCell(taxAmount);
 
-                    PdfPCell proffesionaltax = new PdfPCell(new Phrase("Proffesional Tax"));
-                    proffesionaltax.PaddingBottom = 94;
+                    PdfPCell proffesionaltax = new PdfPCell(new Phrase("Professional Tax"));
+                    proffesionaltax.PaddingLeft = 10f;
                     taxNestedTable.AddCell(proffesionaltax);
-                    PdfPCell proffesionaltaxamount = new PdfPCell(new Phrase("200.00"));
-                    proffesionaltaxamount.PaddingBottom = 94;
+                    PdfPCell proffesionaltaxamount = new PdfPCell(new Phrase(" 200.00"));
                     taxNestedTable.AddCell(proffesionaltaxamount);
 
+                    PdfPCell lwp = new PdfPCell(new Phrase("Leave Without Pay"));
+                    lwp.PaddingLeft = 10f;
+                    taxNestedTable.AddCell(lwp);
+                    taxNestedTable.AddCell(" " + deductionofleave.ToString());
+
+                    PdfPCell nonwokingdaycolumn = new PdfPCell(new Phrase("Non Working Days"));
+                    nonwokingdaycolumn.PaddingLeft = 10f;
+                    nonwokingdaycolumn.PaddingBottom = 61;
+                    taxNestedTable.AddCell(nonwokingdaycolumn);
+                    PdfPCell nonwokingdaycolumnamount = new PdfPCell(new Phrase(" " + deductionofnonworkingdays.ToString()));
+                    nonwokingdaycolumnamount.PaddingBottom = 61;
+                    taxNestedTable.AddCell(nonwokingdaycolumnamount);
+
                     PdfPCell totalDeductions = new PdfPCell(new Phrase("Total Deductions", boldFont));
-                    totalDeductions.PaddingLeft = 10f;
+                    // totalDeductions.PaddingLeft = 10f;
                     taxNestedTable.AddCell(totalDeductions);
-                    taxNestedTable.AddCell("200.00");
+                    taxNestedTable.AddCell(" " + TotalamountDeductions.ToString());
 
                     //FINISH ADDING TAX NESTED TABLE
 
@@ -263,7 +327,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     PdfPCell netsalary = new PdfPCell(new Phrase("Net Salary", boldFont));
                     netsalary.PaddingLeft = 30f;
                     table.AddCell(netsalary);
-                    PdfPCell totalsalary = new PdfPCell(new Phrase(":" + arr[i].Salary + "/-"));
+                    PdfPCell totalsalary = new PdfPCell(new Phrase(" " + netSalaryInnumbers + "/-"));
                     totalsalary.PaddingLeft = 10f;
                     totalsalary.Colspan = 3;
                     table.AddCell(totalsalary);
@@ -271,7 +335,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     PdfPCell salaryInwords = new PdfPCell(new Phrase("In Words", boldFont));
                     salaryInwords.PaddingLeft = 30f;
                     table.AddCell(salaryInwords);
-                    PdfPCell totalsalaryInwords = new PdfPCell(new Phrase(":" + SalaryInWords + "Rupees only"));
+                    PdfPCell totalsalaryInwords = new PdfPCell(new Phrase(" " + SalaryInWords + "Rupees only"));
                     totalsalaryInwords.PaddingLeft = 10f;
                     totalsalaryInwords.Colspan = 3;
                     table.AddCell(totalsalaryInwords);
@@ -284,7 +348,6 @@ namespace Avidclan_BlogsVacancy.Controllers
 
                     doc.Add(table);
                     doc.Close();
-                   
                     if (arr[i].Type == "SendMail")
                     {
                         await ReadConfiguration();
@@ -306,14 +369,15 @@ namespace Avidclan_BlogsVacancy.Controllers
                 }
                 catch (Exception ex)
                 {
-                    var result = ex.Message + ex.StackTrace;
+                    var result = ex.Message;
                     return result;
                 }
             }
-
             return "Mail Send Successfully";
-
         }
+
+
+
 
         public int CountWeekends(int year, int month)
         {
