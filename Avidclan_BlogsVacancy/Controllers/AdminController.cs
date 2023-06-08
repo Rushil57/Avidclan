@@ -292,10 +292,14 @@ namespace Avidclan_BlogsVacancy.Controllers
                     parameter.Add("@Mode", 3, DbType.Int32, ParameterDirection.Input);
                     var deletelist = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure).ToList();
                 }
-                if (leaveViewModel.ReportingPerson.Count > 0)
+                if(leaveViewModel.ReportingPerson != null)
                 {
-                    SaveReportingPerson(leaveViewModel.ReportingPerson, SaveLeave);
+                    if (leaveViewModel.ReportingPerson.Count > 0)
+                    {
+                        SaveReportingPerson(leaveViewModel.ReportingPerson, SaveLeave);
+                    }
                 }
+               
                 if (leaveViewModel.Leaves != null)
                 {
                     foreach (var item in leaveViewModel.Leaves)
@@ -352,18 +356,21 @@ namespace Avidclan_BlogsVacancy.Controllers
             try
             {
                 MailMessage mail = new MailMessage();
+                //mail.To.Add("poojathakkar825@gmail.com");
                 mail.To.Add("info@avidclan.com");
                 mail.CC.Add("chintan.s@avidclan.com");
                 mail.CC.Add("rushil@avidclan.com");
-                if(ReportingPerson.Count > 0)
+                if (ReportingPerson != null)
                 {
-                    foreach(var person in ReportingPerson)
+                    if(ReportingPerson.Count > 0)
                     {
-                        mail.CC.Add(person);
+                        foreach(var person in ReportingPerson)
+                        {
+                            mail.CC.Add(person);
+                        }
                     }
                 }
-                
-                mail.From = new MailAddress(userName);
+                mail.From = new MailAddress(userName,FirstName);
                 mail.Subject = "Leave Application";
                 mail.Body = mailbody;
                 mail.IsBodyHtml = true;

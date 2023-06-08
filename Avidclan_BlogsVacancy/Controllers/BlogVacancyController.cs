@@ -171,6 +171,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             Session["JoiningDate"] = null;
             Session["UserId"] = 0;
             Session["ProbationPeriod"] = 0;
+            Session["FirstName"] = null;
         }
 
         public ActionResult LeaveStatus()

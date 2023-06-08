@@ -11,6 +11,7 @@ using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace Avidclan_BlogsVacancy.Controllers
@@ -104,7 +105,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             {
                 List<LeaveDetailsViewModel> datas = new List<LeaveDetailsViewModel>();
 
-                 var CurrentYear = FromDate.Year.ToString();
+                var CurrentYear = FromDate.Year.ToString();
                 var GivenMonth = FromDate.Month.ToString();
 
                 var parameter = new DynamicParameters();
@@ -114,12 +115,12 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameter.Add("@UserId", UserId, DbType.Int32, ParameterDirection.Input);
                 parameter.Add("@Mode", 4, DbType.Int32, ParameterDirection.Input);
                 var ListOfLeaves = con.Query<TypeOfLeave>("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure).ToList();
-               
+
                 var Attribute = new DynamicParameters();
                 Attribute.Add("@LeaveId", Id, DbType.Int32, ParameterDirection.Input);
                 Attribute.Add("@Mode", 8, DbType.Int32, ParameterDirection.Input);
                 var ListLeaves = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", Attribute, commandType: CommandType.StoredProcedure).ToList();
-               
+
                 var Attributes = new DynamicParameters();
                 var GetLastLeaveDate = ListLeaves.LastOrDefault();
                 Attributes.Add("@LeaveDate", GetLastLeaveDate.LeaveDate, DbType.Date, ParameterDirection.Input);
@@ -143,7 +144,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                                 pastSickLeave++;
                             }
                         }
-                      
+
                         LeaveDetailsViewModel dataStore = new LeaveDetailsViewModel();
                         dataStore.LeaveDate = FutureListLeaves[i].LeaveDate;
                         dataStore.LeaveId = FutureListLeaves[i].LeaveId;
@@ -228,7 +229,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                             UserId, list.LeaveDate);
                     }
 
-                   
+
                 }
             }
             catch (Exception ex)
@@ -606,6 +607,41 @@ namespace Avidclan_BlogsVacancy.Controllers
             parameters.Add("@Mode", 1, DbType.Int32, ParameterDirection.Input);
             var TotalPastList = con.Query<TypeOfLeave>("sp_PastLeaves", parameters, commandType: CommandType.StoredProcedure);
             return Json(TotalPastList, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ChangePassword()
+        {
+            if (Session["EmailId"] == null)
+            {
+                return RedirectToAction("UserLogin", "BlogVacancy");
+            }
+            return View();
+        }
+
+        public JsonResult CheckOldPassword()
+        {
+            var Id = Session["UserId"];
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", Id, DbType.Int16, ParameterDirection.Input);
+            parameters.Add("@mode", 6, DbType.Int32, ParameterDirection.Input);
+            using (IDbConnection connection = new SqlConnection(connectionString))
+            {
+                var CheckPassword = connection.ExecuteScalar("sp_User", parameters, commandType: CommandType.StoredProcedure);
+                return Json(CheckPassword, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public void UpdatePassword(string Password)
+        {
+            var Id = Session["UserId"];
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", Id, DbType.Int16, ParameterDirection.Input);
+            parameters.Add("@Password", Password, DbType.String, ParameterDirection.Input);
+            parameters.Add("@mode", 7, DbType.Int32, ParameterDirection.Input);
+            using (IDbConnection connection = new SqlConnection(connectionString))
+            {
+                var UpdatePassword = connection.ExecuteScalar("sp_User", parameters, commandType: CommandType.StoredProcedure);
+            }
         }
     }
 }

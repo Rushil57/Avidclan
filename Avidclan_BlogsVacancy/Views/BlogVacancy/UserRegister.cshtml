@@ -27,6 +27,10 @@
                 <input type="password" class="form-control" name="password" id="PassWord" placeholder="Pass Word">
             </div>
             <div class="form-group">
+                <label for="ConfirmpassWord">Confirm Password</label>
+                <input type="password" class="form-control" name="Confirmpassword" id="ConfirmPassWord" placeholder="Confirm PassWord">
+            </div>
+            <div class="form-group">
                 <label for="joiningDate">Joining Date</label>
                 <input type="text" class="form-control" name="txtjoiningDate" id="JoiningDate" placeholder="Select Joining Date">
             </div>
@@ -73,6 +77,10 @@
                     required: true,
                 },
                 txtprobationmonth: { required: true, },
+                Confirmpassword: {
+                    required: true,
+                    equalTo: "#PassWord"
+                }
             },
             messages: {
                 firstname: { required: "Please enter a firstname" },
@@ -91,7 +99,11 @@
                 },
                 txtjoiningDate: { required: "Select valid Date", },
                 role: { required: "Please Select valid role" },
-                txtprobationmonth: { required: "Please enter probation months" }
+                txtprobationmonth: { required: "Please enter probation months" },
+                Confirmpassword: {
+                    required: 'Confirm Password is required',
+                    equalTo: "Password is not same"
+                }
             },
             submitHandler: function (form) {
                 SaveNewUser();

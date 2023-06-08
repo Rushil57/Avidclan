@@ -98,6 +98,7 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -276,10 +277,11 @@
     <Content Include="Views\BlogVacancy\UserRegister.cshtml" />
     <Content Include="Views\Shared\_RegistrationTemplate.cshtml" />
     <Content Include="Views\BlogVacancy\BalanaceLeave.cshtml" />
+    <Content Include="Views\Leave\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="BlogImages\Images\" />
+    <Folder Include="Image\" />
     <Folder Include="Models\" />
     <Folder Include="Views\SalarySlip\" />
   </ItemGroup>
