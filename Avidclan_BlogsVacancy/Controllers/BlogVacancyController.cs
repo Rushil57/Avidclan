@@ -341,6 +341,10 @@ namespace Avidclan_BlogsVacancy.Controllers
         }
         public ActionResult RegisterEmployee()
         {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
             return View();
         }
     }

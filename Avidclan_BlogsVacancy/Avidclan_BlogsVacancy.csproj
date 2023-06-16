@@ -274,7 +274,6 @@
     <Content Include="Views\BlogVacancy\SalarySlips.cshtml" />
     <Content Include="Views\Leave\TotalLeaves.cshtml" />
     <Content Include="Views\Leave\FeedBack.cshtml" />
-    <Content Include="Views\BlogVacancy\UserRegister.cshtml" />
     <Content Include="Views\Shared\_RegistrationTemplate.cshtml" />
     <Content Include="Views\BlogVacancy\BalanaceLeave.cshtml" />
     <Content Include="Views\Leave\ChangePassword.cshtml" />
