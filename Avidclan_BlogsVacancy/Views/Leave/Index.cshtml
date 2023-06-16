@@ -30,27 +30,33 @@
                     <textarea type="text" class="form-control" name="txtReason" id="txtReason" placeholder="Reason For Leave" style="min-height: 5.875rem;" oninput="CheckReason()"></textarea>
                 </div>
                 @*<div class="form-group">
-                    <label>Select Reporting Person</label>
-                    <select data-placeholder="Select Reporting Person..." id="ReportingPersonId" multiple class="chosen-select" name="test" style="width:100%">
-                        <option value=""></option>
-                        <option value='abhi.avidclan@gmail.com'>abhi.avidclan@gmail.com</option>
-                        <option value='dhaval.avidclan@gmail.com'>dhaval.avidclan@gmail.com</option>
-                        <option value='ashvin0999@gmail.com'>ashvin0999@gmail.com</option>
-                    </select>
-                </div>*@
+                        <label>Select Reporting Person</label>
+                        <select data-placeholder="Select Reporting Person..." id="ReportingPersonId" multiple class="chosen-select" name="test" style="width:100%">
+                            <option value=""></option>
+                            <option value='abhi.avidclan@gmail.com'>abhi.avidclan@gmail.com</option>
+                            <option value='dhaval.avidclan@gmail.com'>dhaval.avidclan@gmail.com</option>
+                            <option value='ashvin0999@gmail.com'>ashvin0999@gmail.com</option>
+                        </select>
+                    </div>*@
                 <div id="TotalLeaveDates">
                     <table class="table" id="LeaveDateTable">
                         <thead>
                             <tr>
-                                <th style="width:33%">Date</th>
-                                <th style="width:23%">Half Day?</th>
-                                <th style="width:44%"></th>
+                                <th style="width:20%">Date</th>
+                                <th style="width:5%">WFH?</th>
+                                <th style="width:5%">Half Day?</th>
+                                <th style="width:60%"></th>
+                                <th style="width:10%"></th>
                             </tr>
                         </thead>
                         <tbody class="LeaveDatebody">
                         </tbody>
                     </table>
                 </div>
+                @*<div class="form-group">
+                        <input type="checkbox" id="WorkFromHome" name="workfromHome"> &nbsp;
+                        <label for="WorkFromHome">Work From Home?</label>
+                    </div>*@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="ResetModel()">Cancel</button>
                     <button type="button" class="btn btn-primary" onclick=" SendLeaveRequest()">Submit Request</button>
@@ -82,14 +88,38 @@
             selectable: true,
             dateClick: function (info) {
                 var responseDate = moment(info.dateStr).format('MM/DD/YYYY');
-                var getDateday = new Date(responseDate)
-                if (getDateday.getDay() === 6 || getDateday.getDay() === 0) {
+                //var getDateday = new Date(responseDate)
+                //if (getDateday.getDay() === 6 || getDateday.getDay() === 0) {
+                //    return
+                //}
+                //$("#ApplyLeaveModel").show();
+                //$("#txtFromDate").val(responseDate);
+                //$("#txtToDate").val(responseDate);
+                //SetMinDate();
+
+                 var Eventlist = calendar.getEvents();
+                if (Eventlist.length > 0) {
+                    var existingEvent = false;
+                    for (var i = 0; i < Eventlist.length; i++) {
+                        if (moment(Eventlist[i]._instance.range.start).format('MM/DD/YYYY')
+                            ==  responseDate) {
+                            existingEvent = true;
+                        }
+                    }
+                }
+                if (existingEvent){
                     return
                 }
-                $("#ApplyLeaveModel").show();
-                $("#txtFromDate").val(responseDate);
-                $("#txtToDate").val(responseDate);
-                SetMinDate();          
+                else {
+                    var getDateday = new Date(responseDate)
+                    if (getDateday.getDay() === 6 || getDateday.getDay() === 0) {
+                        return
+                    }
+                    $("#ApplyLeaveModel").show();
+                    $("#txtFromDate").val(responseDate);
+                    $("#txtToDate").val(responseDate);
+                    SetMinDate();
+                }
             },
             events: [],
             //eventClick: function (info) {
@@ -133,11 +163,33 @@
         var count = 1
           for (var i = 0; i < arr.length; i++) {
             var addcontrols = "<tr id=" +count + ">" + count + ">"
+              //addcontrols += "<td>" + moment(arr[i].LeaveDates).format('MM/DD/YYYY') + "</td>" +
+              //      "<td>" + '<input type="checkbox" id="WorkFromcheck_' + count + '" name="WorkFromHomecheck">' + "</td>" +
+              //      "<td>" + '<input type="checkbox" id="HalfDaycheck_' + count + '" name="HalfDaycheck" onchange="HalfDaycheckboxchecked('+ count +')">' + "</td>" +
+              //      "<td>" + '<div class="HalfDaydiv_' + count + '">' +
+              //                  '<input type="radio" id="FirstHalf" name="HalfDayLeave_' + count + '" value="FirstHalf" onchange="checkRadioButton(' + count + ')"> <label for="firsthalf">First Half</label>&nbsp;&nbsp;' +
+              //                  '<input type="radio" id="SecondHalf" name="HalfDayLeave_' + count + '" value="SecondHalf" onchange="checkRadioButton(' + count + ')"> <label for= "secondhalf" > Second Half</label>' +
+              //              '</div>' +
+              //              '<label class="error" id="error_' + count + '" for="errormessage" style="display: none;color: red;padding-top: 5px;">Please select one of the options</label>' + "</td>" +
+              //    "<td>" + '<input type="checkbox" id="LeaveWorkFromcheck_' + count + '" name="LeaveWorkFromcheck">&nbsp;&nbsp;<label for= "LeaveWorkFromcheck">HalfDay Leave & WFH?</label>' +"</td>"
+              //"</tr>";
+
               addcontrols += "<td>" + moment(arr[i].LeaveDates).format('MM/DD/YYYY') + "</td>" +
-                "<td>" + '<input type="checkbox" id="HalfDaycheck_' + count + '" name="HalfDaycheck" onchange="HalfDaycheckboxchecked('+ count +')">' + "</td>" +
-                  "<td>" + '<div class="HalfDaydiv_' + count + '"><input type="radio" id="FirstHalf" name="HalfDayLeave_' + count + '" value="FirstHalf" onchange="checkRadioButton('+ count +')"> <label for="firsthalf">First Half</label>&nbsp;&nbsp;' +
-                  '<input type="radio" id="SecondHalf" name="HalfDayLeave_' + count + '" value="SecondHalf" onchange="checkRadioButton(' + count + ')"> <label for="secondhalf">Second Half</label></div><label class="error" id="error_' + count +'" for="errormessage" style="display: none;color: red;padding-top: 5px;">Please select one of the options</label>' +"</td>"
-                        "</tr>";
+                  "<td>" + '<input type="checkbox" id="WorkFromcheck_' + count + '" name="WorkFromHomecheck" onchange="WorkFromHomecheckboxchecked(' + count + ')">' + "</td>" +
+                  "<td>" + '<input type="checkbox" id="HalfDaycheck_' + count + '" name="HalfDaycheck" onchange="HalfDaycheckboxchecked(' + count + ')">' + "</td>" +
+                  "<td>" + '<div class="HalfDaydiv_' + count + '">' +
+                  '<input type="radio" id="FirstHalf" name="HalfDayLeave_' + count + '" value="FirstHalf" onchange="checkRadioButton(' + count + ')"> <label for="firsthalf">First Half</label>&nbsp;&nbsp;' +
+                  '<input type="radio" id="SecondHalf" name="HalfDayLeave_' + count + '" value="SecondHalf" onchange="checkRadioButton(' + count + ')"> <label for= "secondhalf" > Second Half</label>' +
+                  '</div>' +
+                  '<label class="error" id="error_' + count + '" for="errormessage" style="display: none;color: red;padding-top: 5px;">Please select one of the options</label>' + "</td>" +
+                  "<td>" +
+                  '<div class="WorkAndLeave_' + count + '" style="display:none";>' +
+                  '<input type="checkbox" id="LeaveWorkFromcheck_' + count + '" name="LeaveWorkFromcheck">&nbsp;&nbsp;<label for= "LeaveWorkFromcheck">HalfDay Leave & WFH?</label>' +
+                  "</div></td>" +
+
+                  "</tr >";
+                 
+
               $("#LeaveDateTable .LeaveDatebody").append(addcontrols);
               if (arr[i].Halfday != null && arr[i].Halfday != "") {
                   $(".HalfDaydiv_" + count).show();
@@ -159,10 +211,25 @@
         }
         else {
             $(".HalfDaydiv_" + id).hide();
+            $(".WorkAndLeave_" + id).hide();
             $("#error_" + id).css("display", "none");
             $("input[name=HalfDayLeave_" + id + "]").prop("checked", false);
         }
 
+    }
+
+    function WorkFromHomecheckboxchecked(id) {
+        var checked = $("#WorkFromcheck_" + id).is(':checked');
+        if (checked) {
+            var halfdaycheckbox = $(".HalfDaydiv_" + id).is(":visible");
+            if (halfdaycheckbox) {
+                $(".WorkAndLeave_" + id).show();
+            }
+        }
+        else {
+            $(".WorkAndLeave_" + id).hide();
+            $("#LeaveWorkFromcheck_" + id).prop("checked", false);
+        }
     }
 
     function SendLeaveRequest() {
@@ -175,8 +242,6 @@
                 $("<label id='Reason-error' class='error' style=' color: #ff0000;font-weight: normal!important;' for='reason'>Please enter reasons for leave</label>").insertAfter("#txtReason");
                 return
             }
-            
-            
         }
 
         var LeaveDetails = new Array();
@@ -184,16 +249,22 @@
         $("#LeaveDateTable tbody tr").each(function () {
             var row = $(this);
             var Leave = {};
+           
             Leave.LeaveDate = row.find("td:eq(0)").text();
-            var checked = row.find("td:eq(1) input:checkbox").is(':checked');
+            Leave.WorkFromHome = row.find("td:eq(1) input:checkbox").is(':checked');
+            var checked = row.find("td:eq(2) input:checkbox").is(':checked');
             if (checked) {
                // Leave.Halfday = row.find("td:eq(2) input[type='radio']:checked").val();
-                var Radiochecked = row.find("td:eq(2) input[type='radio']:checked").is(':checked');
+                var Radiochecked = row.find("td:eq(3) input[type='radio']:checked").is(':checked');
                 if (Radiochecked) {
-                    Leave.Halfday = row.find("td:eq(2) input[type='radio']:checked").val();
+                    Leave.Halfday = row.find("td:eq(3) input[type='radio']:checked").val();
+                    var workhomechecked = row.find("td:eq(4) input:checkbox").is(':checked');
+                    if (workhomechecked) {
+                        Leave.WorkAndHalfLeave = workhomechecked
+                    }
                 }
                 else {
-                    var radiounchecked = row.find("td:eq(2) .error").css("display","block");
+                    var radiounchecked = row.find("td:eq(3) .error").css("display","block");
                     exit = true;
                     return
                 }
@@ -209,7 +280,8 @@
             Todate: $("#txtToDate").val(),
             Leaves: LeaveDetails,
             ReportingPerson: $("#ReportingPersonId").val(),
-            ReasonForLeave: $("#txtReason").val()
+            ReasonForLeave: $("#txtReason").val(),
+            WorkFromHome: $("#WorkFromHome").prop('checked')
         }
 
         $.ajax({
@@ -219,7 +291,8 @@
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(Leavedata),
             success: function (result) {
-                alert("Leave Request Sent..");
+                /*alert("Request Sent..");*/
+                alert(result)
                 ResetModel();
             },
             error: function (result) {
@@ -227,7 +300,7 @@
             },
         })
     }
-
+    
     function ResetModel() {
         console.clear();
         $("#ApplyLeaveModel").hide();
@@ -250,7 +323,7 @@
             type: "GET",
             success: function (data) {
                 calendar.removeAllEvents();
-                $.each(data, function (key, val) {
+                $.each(data.leavelist, function (key, val) {
                     var fromdate = moment(val.LeaveDate).format('YYYY-MM-DD');
                     if (val.Halfday != null && val.Halfday != "") {
                         if (val.Halfday == "FirstHalf") {
@@ -275,6 +348,38 @@
                             id: val.Id,
                             title: 'Leave',
                             start: fromdate,
+                            allDay: true
+                        });
+                    }
+
+                });
+
+                $.each(data.wfhdetaillist, function (key, val) {
+                    var fromdate = moment(val.LeaveDate).format('YYYY-MM-DD');
+                    if (val.HalfDay != null && val.HalfDay!="") {
+                        if (val.HalfDay == "FirstHalf") {
+                            calendar.addEvent({
+                                id: val.Id,
+                                title: "WFH " + val.HalfDay,
+                                start: fromdate,
+                                className: "Wfhfirsthalf",
+                            }), true;
+                        }
+                        else {
+                            calendar.addEvent({
+                                id: val.Id,
+                                title: "WFH " + val.HalfDay,
+                                start: fromdate,
+                                className: "Wfhsecondhalf",
+                            }), true;
+                        }
+                    }
+                    else {
+                        calendar.addEvent({
+                            id: val.Id,
+                            title: 'Work From Home',
+                            start: fromdate,
+                            className: "Wfh",
                             allDay: true
                         });
                     }
@@ -325,6 +430,12 @@
         if (checked) {
             $("#error_" + id).css("display", "none");
         }
+
+        var wfhcheckboxccheck = $('#WorkFromcheck_' + id).is(":checked")
+        if (wfhcheckboxccheck) {
+            $(".WorkAndLeave_" + id).css("display", "block")
+        }
+
     }
 
     function CheckReason() {

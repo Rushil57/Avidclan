@@ -278,6 +278,7 @@
     <Content Include="Views\Shared\_RegistrationTemplate.cshtml" />
     <Content Include="Views\BlogVacancy\BalanaceLeave.cshtml" />
     <Content Include="Views\Leave\ChangePassword.cshtml" />
+    <Content Include="Views\BlogVacancy\RegisterEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

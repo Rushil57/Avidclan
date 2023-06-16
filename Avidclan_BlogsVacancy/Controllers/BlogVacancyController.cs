@@ -339,5 +339,9 @@ namespace Avidclan_BlogsVacancy.Controllers
             return Json(EmployeeList, JsonRequestBehavior.AllowGet);
 
         }
+        public ActionResult RegisterEmployee()
+        {
+            return View();
+        }
     }
 }

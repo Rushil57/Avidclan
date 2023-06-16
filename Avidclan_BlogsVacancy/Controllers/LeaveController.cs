@@ -40,8 +40,16 @@ namespace Avidclan_BlogsVacancy.Controllers
             var parameters = new DynamicParameters();
             parameters.Add("@Id", UserId, DbType.Int64, ParameterDirection.Input);
             parameters.Add("@Mode", 2, DbType.Int32, ParameterDirection.Input);
-            var GetLeaveDates = con.Query<LeaveDetailsViewModel>("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure);
-            return Json(GetLeaveDates.ToArray(), JsonRequestBehavior.AllowGet);
+            //var GetLeaveDates = con.Query<LeaveDetailsViewModel>("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure);
+            var reader = con.QueryMultiple("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure);
+            var leavelist = reader.Read<LeaveDetailsViewModel>().ToList();
+            var wfhdetaillist = reader.Read<WorkFromHomeViewModel>().ToList();
+            var dynamiclist = new
+            {
+                leavelist = leavelist,
+                wfhdetaillist = wfhdetaillist
+            };
+            return Json(dynamiclist, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetLeaveDetails(int Id)
@@ -99,7 +107,7 @@ namespace Avidclan_BlogsVacancy.Controllers
         }
 
         //
-        public async Task<string> CheckTypeOfLeave(List<LeaveDetailsViewModel> Leaves, DateTime FromDate, int Id, object UserId, object JoinigDate, object ProbationPeriod)
+        public async Task<string> CheckTypeOfLeave(List<LeaveDetailsViewModel> Leaves, DateTime FromDate, object Id, object UserId, object JoinigDate, object ProbationPeriod)
         {
             try
             {
@@ -129,19 +137,35 @@ namespace Avidclan_BlogsVacancy.Controllers
                 var FutureListLeaves = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", Attributes, commandType: CommandType.StoredProcedure).ToList();
                 if(FutureListLeaves.Count > 0)
                 {
-                    var pastPersonalLeave = 0;
-                    var pastSickLeave = 0;
+                    var pastPersonalLeave = 0.0;
+                    var pastSickLeave = 0.0;
                     for (int i = 0; i< FutureListLeaves.Count; i++)
                     {
                         if(FutureListLeaves[i].PastLeave == "1")
                         {
                             if (FutureListLeaves[i].PersonalLeaves != null)
                             {
-                                pastPersonalLeave++;
+                                if(FutureListLeaves[i].Halfday != null)
+                                {
+                                    pastPersonalLeave += 0.5;
+                                }
+                                else
+                                {
+                                    pastPersonalLeave++;
+                                }
+                                    
                             }
                             if(FutureListLeaves[i].SickLeaves != null)
                             {
-                                pastSickLeave++;
+                                if (FutureListLeaves[i].Halfday != null)
+                                {
+                                    pastSickLeave += 0.5;
+                                }
+                                else
+                                {
+                                    pastSickLeave++;
+                                }
+                              
                             }
                         }
 

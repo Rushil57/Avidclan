@@ -261,19 +261,19 @@
                         '<div class="blog-img">' +
                         '<a onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl +'")><img class="BlogImages" src="' + v.Image + '" alt="" style=height:216px; ></a>' +
                         '<div class="top-meta">' +
-                        '<span class="tag">' + v.BlogType + '</span>' +
+                        '<span class="tag" style="font-style: normal;">' + v.BlogType + '</span>' +
                         '</div>' +
                         '</div>' +
                         '<div class="blog-content">' +
                         '<div class="blog-meta">' +
-                        '<span><i class="fas fa-user"></i> <a href="#">' + v.PostedBy + '</a></span>' +
-                        '<span id="admindateid_' + v.Id + '"><i class="far fa-calendar-alt"></i>' + longDt + '</span>' +
+                        '<span><i class="fas fa-user"></i> <a style="font-style: normal;" href="#">' + v.PostedBy + '</a></span>' +
+                        '<span id="admindateid_' + v.Id + '" style="font-style: normal;"><i class="far fa-calendar-alt"></i>' + longDt + '</span>' +
                         '</div>' +
-                        '<h3 class="title"><a onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl +'")>' + v.Title + '</a></h3>' +
+                        '<h3 class="title" ><a style="font-style: normal;" onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl +'")>' + v.Title + '</a></h3>' +
                         '<p>' + Descriptionlength + '</p>' +
                         '</div>' +
                         '<div class="blog-btn">' +
-                        '<a class="blog-btn-link" onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl +'")>' +
+                        '<a class="blog-btn-link" style="font-style: normal;" onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl +'")>' +
                         'Read Full Article <i class="fas fa-long-arrow-alt-right"></i>' +
                         '</a>' +
                         '</div>' +

@@ -1,10 +1,12 @@
-﻿using Avidclan_BlogsVacancy.ViewModel;
+﻿using Avidclan_BlogsVacancy.Methods;
+using Avidclan_BlogsVacancy.ViewModel;
 using Dapper;
 using iTextSharp.text;
 using iTextSharp.text.pdf.qrcode;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -134,7 +136,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 using (IDbConnection connection = new SqlConnection(connectionString))
                 {
                     var SaveBlogDetails = connection.ExecuteScalar("sp_Blog", parameters, commandType: CommandType.StoredProcedure);
-                    if(SaveBlogDetails != null)
+                    if (SaveBlogDetails != null)
                     {
                         SaveBlogFaqs(Faqarr, SaveBlogDetails);
                     }
@@ -147,39 +149,10 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                ErrorLog("AdminController - SaveBlog", ex.Message, ex.StackTrace);
             }
 
             return "";
-        }
-
-        public async void SaveImage(object id, HttpPostedFile file, string filename)
-        {
-
-            string path = System.Web.Hosting.HostingEnvironment.MapPath(String.Format("/BlogImages/Images/{0}", id));
-            System.IO.DirectoryInfo myDirInfo = new DirectoryInfo(path);
-            if (!Directory.Exists(path))
-            {
-                DirectoryInfo di = Directory.CreateDirectory(path);
-                file.SaveAs(Path.Combine(path, filename));
-            }
-            else
-            {
-                foreach (FileInfo fileed in myDirInfo.GetFiles())
-                {
-                    fileed.Delete();
-                    file.SaveAs(Path.Combine(path, file.FileName));
-                }
-            }
-            string targetPath = @"/BlogImages/Images/" + id + "/" + filename;
-            var Attribute = new DynamicParameters();
-            Attribute.Add("@Id", id, DbType.String, ParameterDirection.Input);
-            Attribute.Add("@Image", targetPath, DbType.String, ParameterDirection.Input);
-            Attribute.Add("@mode", 2, DbType.Int32, ParameterDirection.Input);
-            using (IDbConnection connections = new SqlConnection(connectionString))
-            {
-                var UpdateData = connections.ExecuteScalar("sp_Blog", Attribute, commandType: CommandType.StoredProcedure);
-            }
         }
 
         [Route("api/Admin/SaveJobPosition")]
@@ -187,7 +160,7 @@ namespace Avidclan_BlogsVacancy.Controllers
         public async Task<string> SaveJobPosition(Careers data)
         {
             //  var userName = Request.Headers.GetCookies("EmailId").FirstOrDefault()?["EmailId"].Value;
-            var userName = HttpContext.Current.Session["EmailId"];
+            var userName = HttpContext.Current.Session["FirstName"];
             var mode = 0;
             var parameters = new DynamicParameters();
             if (data.Id == 0)
@@ -218,7 +191,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                ErrorLog("AdminController - SaveJobPosition", ex.Message, ex.StackTrace);
             }
 
             return "";
@@ -245,7 +218,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    ErrorLog("AdminController - UpdateOrder", ex.Message, ex.StackTrace);
                 }
 
             }
@@ -255,87 +228,85 @@ namespace Avidclan_BlogsVacancy.Controllers
         [HttpPost]
         public async Task<string> RequestForLeave(LeaveViewModel leaveViewModel)
         {
-            SendLeaveMail(leaveViewModel.Leaves,leaveViewModel.ReportingPerson,leaveViewModel.ReasonForLeave);
             var UserId = HttpContext.Current.Session["UserId"];
-            var JoinigDate = HttpContext.Current.Session["JoiningDate"];
-            var ProbationPeriod = HttpContext.Current.Session["ProbationPeriod"];
+            List<LeaveViewModel> LeaveDataList = new List<LeaveViewModel>();
 
-            var mode = 0;
-            if (leaveViewModel.Id == 0)
-            {
-                mode = 1;
-            }
-            else
-            {
-                mode = 3;
-            }
             try
             {
-                var parameters = new DynamicParameters();
-                parameters.Add("@Id", leaveViewModel.Id, DbType.Int64, ParameterDirection.Input);
-                parameters.Add("@Fromdate", leaveViewModel.Fromdate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
-                parameters.Add("@Todate", leaveViewModel.Todate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
-                parameters.Add("@LeaveStatus", "Pending", DbType.String, ParameterDirection.Input);
-                parameters.Add("@UserId", UserId, DbType.Int16, ParameterDirection.Input);
-                parameters.Add("@LeaveReason", leaveViewModel.ReasonForLeave, DbType.String, ParameterDirection.Input);
-                parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
-                var SaveLeave = con.ExecuteScalar("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure);
-                if (SaveLeave != null)
+                var LeaveData = leaveViewModel.Leaves.Where(x => x.WorkAndHalfLeave == false && x.WorkFromHome == false).ToList();
+                if (LeaveData.Count > 0)
                 {
-                    leaveViewModel.Id = Convert.ToInt16(SaveLeave);
-                }
-                if (mode == 3)
-                {
-                    var parameter = new DynamicParameters();
-                    parameter = new DynamicParameters();
-                    parameter.Add("@LeaveId", leaveViewModel.Id, DbType.Int32, ParameterDirection.Input);
-                    parameter.Add("@Mode", 3, DbType.Int32, ParameterDirection.Input);
-                    var deletelist = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure).ToList();
-                }
-                if(leaveViewModel.ReportingPerson != null)
-                {
-                    if (leaveViewModel.ReportingPerson.Count > 0)
-                    {
-                        SaveReportingPerson(leaveViewModel.ReportingPerson, SaveLeave);
-                    }
-                }
-               
-                if (leaveViewModel.Leaves != null)
-                {
-                    foreach (var item in leaveViewModel.Leaves)
-                    {
-                        var parameter = new DynamicParameters();
-                        parameter.Add("@LeaveDate", item.LeaveDate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
-                        parameter.Add("@Halfday", item.Halfday, DbType.String, ParameterDirection.Input);
-                        parameter.Add("@LeaveId", leaveViewModel.Id, DbType.Int64, ParameterDirection.Input);
-                        parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
-                        var SaveLeaveDetails = con.ExecuteScalar("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
-                    }
-                    var result = new LeaveController().CheckTypeOfLeave(
-                            leaveViewModel.Leaves, leaveViewModel.Fromdate,
-                            leaveViewModel.Id, UserId,JoinigDate, ProbationPeriod);
+                    GetConsecutiveLeaveDates(LeaveData, leaveViewModel.ReasonForLeave);
                 }
 
+                var WorkHomeData = leaveViewModel.Leaves.Where(x => x.WorkAndHalfLeave == false && x.WorkFromHome == true).ToList();
+                if (WorkHomeData.Count > 0)
+                {
+                    GetConsecutiveWorkFromHomeDates(WorkHomeData, leaveViewModel.ReasonForLeave, false);
+                }
+
+                var LeaveAndWfhData = leaveViewModel.Leaves.Where(x => x.WorkAndHalfLeave == true && x.WorkFromHome == true).ToList();
+                if (LeaveAndWfhData.Count > 0)
+                {
+                    GetConsecutiveWorkFromHomeDates(LeaveAndWfhData, leaveViewModel.ReasonForLeave, true);
+                    GetConsecutiveLeaveDates(LeaveAndWfhData, leaveViewModel.ReasonForLeave);
+                }
+
+                if (LeaveData.Count > 0 && WorkHomeData.Count == 0 && LeaveAndWfhData.Count == 0)
+                {
+                    SendLeaveMail(LeaveData, leaveViewModel.ReasonForLeave);
+                }
+                if (LeaveData.Count == 0 && WorkHomeData.Count > 0 && LeaveAndWfhData.Count == 0)
+                {
+                    SendWorkFromHomeMail(WorkHomeData, leaveViewModel.ReportingPerson, leaveViewModel.ReasonForLeave);
+                }
+                if (LeaveData.Count == 0 && WorkHomeData.Count == 0 && LeaveAndWfhData.Count > 0)
+                {
+                    SendWorkFromHomeAndLeaveMail(LeaveAndWfhData, leaveViewModel.ReasonForLeave);
+                }
+                if (LeaveData.Count > 0 && WorkHomeData.Count > 0 && LeaveAndWfhData.Count == 0)
+                {
+                    var leaveAndWfhData = LeaveData.Concat(WorkHomeData).ToList();
+                    SendWorkFromHomeAndLeaveMail(leaveAndWfhData, leaveViewModel.ReasonForLeave);
+                }
+                if (LeaveData.Count > 0 && WorkHomeData.Count == 0 && LeaveAndWfhData.Count > 0)
+                {
+                    var leaveAndWfhData = LeaveData.Concat(LeaveAndWfhData).ToList();
+                    leaveAndWfhData.Sort();
+                    SendWorkFromHomeAndLeaveMail(leaveAndWfhData, leaveViewModel.ReasonForLeave);
+                }
+                if (LeaveData.Count > 0 && WorkHomeData.Count > 0 && LeaveAndWfhData.Count > 0)
+                {
+                    SendWorkFromHomeAndLeaveMail(leaveViewModel.Leaves, leaveViewModel.ReasonForLeave);
+                }
+                return "Request Send Successfully!";
             }
             catch (Exception ex)
             {
-                throw ex;
+                ErrorLog("AdminController - RequestForLeave", ex.Message, ex.StackTrace);
+                return "Something Went Wrong!";
             }
-            return "";
         }
-
-        public void SaveReportingPerson(List<string> ReportingPerson,object Leaveid)
+        public void SaveReportingPerson(List<string> ReportingPerson, object Leaveid)
         {
-            foreach (var person in ReportingPerson)
+            try
             {
-                var parameter = new DynamicParameters();
-                parameter.Add("@ReportingPerson", person, DbType.String, ParameterDirection.Input);
-                parameter.Add("@LeaveId", Leaveid, DbType.Int32, ParameterDirection.Input);
-                parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
-                var SaveReportingPerson = con.ExecuteScalar("sp_LeaveReportingPerson", parameter, commandType: CommandType.StoredProcedure);
+                foreach (var person in ReportingPerson)
+                {
+                    var parameter = new DynamicParameters();
+                    parameter.Add("@ReportingPerson", person, DbType.String, ParameterDirection.Input);
+                    parameter.Add("@LeaveId", Leaveid, DbType.Int32, ParameterDirection.Input);
+                    parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
+                    var SaveReportingPerson = con.ExecuteScalar("sp_LeaveReportingPerson", parameter, commandType: CommandType.StoredProcedure);
+                }
             }
+            catch(Exception ex)
+            {
+                ErrorLog("AdminController - SaveReportingPerson", ex.Message, ex.StackTrace);
+            }
+            
         }
-        public void SendLeaveMail(List<LeaveDetailsViewModel> leaveDetailsViews,List<string> ReportingPerson,string ReasonForLeave)
+        public void SendLeaveMail(List<LeaveDetailsViewModel> leaveDetailsViews, string ReasonForLeave)
         {
             var userName = HttpContext.Current.Session["EmailId"].ToString();
             var FirstName = HttpContext.Current.Session["FirstName"].ToString();
@@ -356,25 +327,26 @@ namespace Avidclan_BlogsVacancy.Controllers
             try
             {
                 MailMessage mail = new MailMessage();
-                //mail.To.Add("poojathakkar825@gmail.com");
+                 //mail.To.Add("pooja.avidclan@gmail.com");
+              //  mail.To.Add("career@avidclan.com");
                 mail.To.Add("info@avidclan.com");
-                mail.CC.Add("chintan.s@avidclan.com");
-                mail.CC.Add("rushil@avidclan.com");
-                if (ReportingPerson != null)
-                {
-                    if(ReportingPerson.Count > 0)
-                    {
-                        foreach(var person in ReportingPerson)
-                        {
-                            mail.CC.Add(person);
-                        }
-                    }
-                }
-                mail.From = new MailAddress(userName,FirstName);
+                //mail.CC.Add("chintan.s@avidclan.com");
+                //mail.CC.Add("rushil@avidclan.com");
+                //if (ReportingPerson != null)
+                //{
+                //    if (ReportingPerson.Count > 0)
+                //    {
+                //        foreach (var person in ReportingPerson)
+                //        {
+                //            mail.CC.Add(person);
+                //        }
+                //    }
+                //}
+                mail.From = new MailAddress(userName, FirstName);
                 mail.Subject = "Leave Application";
                 mail.Body = mailbody;
                 mail.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient(host, port);
+                SmtpClient smtp = new SmtpClient(host, 465);
                 smtp.EnableSsl = false;
                 smtp.UseDefaultCredentials = false;
                 smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
@@ -382,7 +354,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                ErrorLog("AdminController - SendLeaveMail", ex.Message, ex.StackTrace);
             }
         }
 
@@ -402,6 +374,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             catch (Exception ex)
             {
+                ErrorLog("AdminController - ReplyToLeaveRequest", ex.Message, ex.StackTrace);
                 var MessageException = ex.InnerException + ex.StackTrace;
                 return MessageException;
             }
@@ -442,26 +415,32 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                ErrorLog("AdminController - SendReplyForLeave", ex.Message, ex.StackTrace);
             }
         }
 
         public void SaveBlogFaqs(BlogFaqs[] blogFaqs, object id)
         {
-            if (blogFaqs.Length > 0)
+            try
             {
-                foreach (var blog in blogFaqs)
+                if (blogFaqs.Length > 0)
                 {
-                    var parameters = new DynamicParameters();
-                    parameters.Add("@Questions", blog.Questions, DbType.String, ParameterDirection.Input);
-                    parameters.Add("@Answers", blog.Answers, DbType.String, ParameterDirection.Input);
-                    parameters.Add("@BlogId", id, DbType.Int64, ParameterDirection.Input);
-                    parameters.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
-                    var SaveBlogDetails = con.ExecuteScalar("sp_BlogFaqs", parameters, commandType: CommandType.StoredProcedure);
+                    foreach (var blog in blogFaqs)
+                    {
+                        var parameters = new DynamicParameters();
+                        parameters.Add("@Questions", blog.Questions, DbType.String, ParameterDirection.Input);
+                        parameters.Add("@Answers", blog.Answers, DbType.String, ParameterDirection.Input);
+                        parameters.Add("@BlogId", id, DbType.Int64, ParameterDirection.Input);
+                        parameters.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
+                        var SaveBlogDetails = con.ExecuteScalar("sp_BlogFaqs", parameters, commandType: CommandType.StoredProcedure);
 
+                    }
                 }
             }
-
+            catch(Exception ex)
+            {
+                ErrorLog("AdminController - SaveBlogFaqs", ex.Message, ex.StackTrace);
+            }
         }
         public async Task<bool> ReadConfiguration()
         {
@@ -485,10 +464,9 @@ namespace Avidclan_BlogsVacancy.Controllers
                     result = false;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ErrorLog("AdminController - ReadConfiguration", ex.Message, ex.StackTrace);
             }
             return result;
         }
@@ -542,10 +520,378 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             catch (Exception ex)
             {
+                ErrorLog("AdminController - SaveFeedBack", ex.Message, ex.StackTrace);
                 string Error = ex.Message + ex.StackTrace;
                 return Error;
             }
         }
+
+
+        public void SendWorkFromHomeMail(List<LeaveDetailsViewModel> leaveDetailsViews, List<string> ReportingPerson, string ReasonForLeave)
+        {
+            var userName = HttpContext.Current.Session["EmailId"].ToString();
+            var FirstName = HttpContext.Current.Session["FirstName"].ToString();
+            ReadConfiguration();
+            var mailbody = "<p>Hello Ma'am/Sir,<br><br> I kindly request permission to work from home for following day(s). I am confident in my ability to fulfill my responsibilities effectively, ensuring continued productivity and maintaining regular communication with the team.<br>Thank you for considering my request. I look forward to your favorable response.<br><b>Reason : </b>" + ReasonForLeave + "<br><br></p>" +
+            "<html><body>" +
+                "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
+                "<thead><tr style='background: #eee;'><th>Work From Home Date</th><th>Work From Home Day</th><th>Half Day</th></tr></thead>" +
+                "<tbody class='leaveTable'>";
+            foreach (var leavedetails in leaveDetailsViews)
+            {
+                string WeekDay = leavedetails.LeaveDate.DayOfWeek.ToString();
+                var addrow = "<tr><td style='background: #fff;'>" + leavedetails.LeaveDate.ToShortDateString() + "</td><td>" + WeekDay + "</td><td>" + leavedetails.Halfday + "</td></tr>";
+                mailbody += addrow;
+            }
+            mailbody += "</tbody></table><br><br>" +
+            "<p>Yours Sincerely,<br>" + FirstName + "</p></body></html>";
+            try
+            {
+                MailMessage mail = new MailMessage();
+                //mail.To.Add("pooja.avidclan@gmail.com");
+                mail.To.Add("info@avidclan.com");
+               // mail.CC.Add("chintan.s@avidclan.com");
+                //mail.CC.Add("rushil@avidclan.com");
+                if (ReportingPerson != null)
+                {
+                    if (ReportingPerson.Count > 0)
+                    {
+                        foreach (var person in ReportingPerson)
+                        {
+                            mail.CC.Add(person);
+                        }
+                    }
+                }
+                mail.From = new MailAddress(userName, FirstName);
+                mail.Subject = "Request For Work From Home";
+                mail.Body = mailbody;
+                mail.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient(host, port);
+                smtp.EnableSsl = false;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
+                smtp.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                ErrorLog("AdminController - SendWorkFromHomeMail", ex.Message, ex.StackTrace);
+            }
+        }
+        public void GetConsecutiveLeaveDates(List<LeaveDetailsViewModel> range, string ReasonForLeave)
+        {
+            var CheckElsexcute = false;
+            var startDate = range.FirstOrDefault();
+            DateTime dateTime = startDate.LeaveDate;
+            try
+            {
+                List<LeaveDetailsViewModel> LeaveDataList = new List<LeaveDetailsViewModel>();
+                List<LeaveDetailsViewModel> leaveDataDetails = new List<LeaveDetailsViewModel>();
+                var wantedDate = startDate.LeaveDate;
+
+                foreach (var day in range.OrderBy(d => d.LeaveDate))
+                {
+                    LeaveDetailsViewModel leaveViewDetails = new LeaveDetailsViewModel();
+                    leaveViewDetails.Fromdate = day.LeaveDate;
+                    leaveViewDetails.Todate = day.LeaveDate;
+                    leaveViewDetails.Halfday = day.Halfday;
+                    leaveDataDetails.Add(leaveViewDetails);
+
+                    if (day.LeaveDate != wantedDate || LeaveDataList.Count == 0)
+                    {
+                        LeaveDetailsViewModel leaveView = new LeaveDetailsViewModel();
+                        leaveView.Id = day.Id;
+                        leaveView.Fromdate = day.LeaveDate;
+                        leaveView.Todate = day.LeaveDate;
+                        LeaveDataList.Add(leaveView);
+                    }
+                    else
+                    {
+                        var lastRecord = LeaveDataList.LastOrDefault();
+                        lastRecord.Todate = day.LeaveDate;
+                    }
+                    wantedDate = day.LeaveDate.AddDays(1);
+
+                }
+                foreach (var leaveData in LeaveDataList)
+                {
+                    var list = leaveDataDetails.Where(x => x.Fromdate >= leaveData.Fromdate && x.Fromdate <= leaveData.Todate).ToList();
+                    SaveLeaveApplicationData(leaveData.Id, leaveData.Fromdate, leaveData.Todate, ReasonForLeave, list);
+                }
+            }
+            catch(Exception ex)
+            {
+                ErrorLog("AdminController - GetConsecutiveLeaveDates", ex.Message, ex.StackTrace);
+            }
+          
+        }
+        public void SaveLeaveApplicationData(int Id, DateTime FromDate, DateTime ToDate, string ReasonForLeave, List<LeaveDetailsViewModel> leaveDataDetails)
+        {
+            var UserId = HttpContext.Current.Session["UserId"];
+
+            var mode = 0;
+            if (Id == 0)
+            {
+                mode = 1;
+            }
+            else
+            {
+                mode = 3;
+            }
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id", Id, DbType.Int64, ParameterDirection.Input);
+                parameters.Add("@Fromdate", FromDate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
+                parameters.Add("@Todate", ToDate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
+                parameters.Add("@LeaveStatus", "Pending", DbType.String, ParameterDirection.Input);
+                parameters.Add("@UserId", UserId, DbType.Int16, ParameterDirection.Input);
+                parameters.Add("@LeaveReason", ReasonForLeave, DbType.String, ParameterDirection.Input);
+                parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
+                var SaveLeave = con.ExecuteScalar("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure);
+                if (SaveLeave != null)
+                {
+                    //leaveViewModel[0].Id = Convert.ToInt16(SaveLeave);
+                    SaveLeaveApplicationDetailsData(leaveDataDetails, SaveLeave, UserId);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog("AdminController - SaveLeaveApplicationData", ex.Message, ex.StackTrace);
+            }
+
+        }
+        public void SaveLeaveApplicationDetailsData(List<LeaveDetailsViewModel> leaveViewModel, object Leaveid, object UserId)
+        {
+            var JoinigDate = HttpContext.Current.Session["JoiningDate"];
+            var ProbationPeriod = HttpContext.Current.Session["ProbationPeriod"];
+            var GetFromDate = leaveViewModel.FirstOrDefault();
+            var mode = 0;
+            if (Leaveid != null)
+            {
+                mode = 1;
+            }
+            else
+            {
+                mode = 3;
+            }
+            try
+            {
+                if (mode == 3)
+                {
+                    var parameter = new DynamicParameters();
+                    parameter = new DynamicParameters();
+                    parameter.Add("@LeaveId", Leaveid, DbType.Int32, ParameterDirection.Input);
+                    parameter.Add("@Mode", 3, DbType.Int32, ParameterDirection.Input);
+                    var deletelist = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure).ToList();
+                }
+                if (leaveViewModel[0].ReportingPerson != null)
+                {
+                    if (leaveViewModel[0].ReportingPerson.Count > 0)
+                    {
+                        SaveReportingPerson(leaveViewModel[0].ReportingPerson, Leaveid);
+                    }
+                }
+
+                if (leaveViewModel != null)
+                {
+                    foreach (var item in leaveViewModel)
+                    {
+                        var parameter = new DynamicParameters();
+                        parameter.Add("@LeaveDate", item.Fromdate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
+                        parameter.Add("@Halfday", item.Halfday, DbType.String, ParameterDirection.Input);
+                        parameter.Add("@LeaveId", Leaveid, DbType.Int64, ParameterDirection.Input);
+                        parameter.Add("@UserId", UserId, DbType.Int64, ParameterDirection.Input);
+                        parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
+                        var SaveLeaveDetails = con.ExecuteScalar("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
+                    }
+                    var result = new LeaveController().CheckTypeOfLeave(
+                            leaveViewModel, GetFromDate.Fromdate,
+                            Leaveid, UserId, JoinigDate, ProbationPeriod);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ErrorLog("AdminController - SaveLeaveApplicationDetailsData", ex.Message, ex.StackTrace);
+            }
+        }
+
+        public void GetConsecutiveWorkFromHomeDates(List<LeaveDetailsViewModel> range, string ReasonForLeave, bool checkLeaveAndWfh)
+        {
+            var CheckElsexcute = false;
+            var startDate = range.FirstOrDefault();
+            DateTime dateTime = startDate.LeaveDate;
+
+            try
+            {
+                List<LeaveDetailsViewModel> LeaveDataList = new List<LeaveDetailsViewModel>();
+                List<LeaveDetailsViewModel> leaveDataDetails = new List<LeaveDetailsViewModel>();
+                var wantedDate = startDate.LeaveDate;
+
+                foreach (var day in range.OrderBy(d => d.LeaveDate))
+                {
+                    LeaveDetailsViewModel leaveViewDetails = new LeaveDetailsViewModel();
+                    leaveViewDetails.Fromdate = day.LeaveDate;
+                    leaveViewDetails.Todate = day.LeaveDate;
+                    leaveViewDetails.Halfday = day.Halfday;
+                    leaveDataDetails.Add(leaveViewDetails);
+
+                    if (day.LeaveDate != wantedDate || LeaveDataList.Count == 0)
+                    {
+                        LeaveDetailsViewModel leaveView = new LeaveDetailsViewModel();
+                        leaveView.Id = day.Id;
+                        leaveView.Fromdate = day.LeaveDate;
+                        leaveView.Todate = day.LeaveDate;
+                        LeaveDataList.Add(leaveView);
+                    }
+                    else
+                    {
+                        var lastRecord = LeaveDataList.LastOrDefault();
+                        lastRecord.Todate = day.LeaveDate;
+                    }
+                    wantedDate = day.LeaveDate.AddDays(1);
+                }
+                foreach (var leaveData in LeaveDataList)
+                {
+                    var list = leaveDataDetails.Where(x => x.Fromdate >= leaveData.Fromdate && x.Fromdate <= leaveData.Todate).ToList();
+                    SaveworkFromData(list, ReasonForLeave, leaveData.Id, leaveData.Fromdate, leaveData.Todate, checkLeaveAndWfh);
+
+                }
+            }
+            catch(Exception ex)
+            {
+                ErrorLog("AdminController - GetConsecutiveWorkFromHomeDates", ex.Message, ex.StackTrace);
+            }
+           
+        }
+        public void SaveworkFromData(List<LeaveDetailsViewModel> leaveViewModel, string ReasonForLeave, object Id, DateTime FromDate, DateTime ToDate, bool checkLeaveAndWfh)
+        {
+
+            var UserId = HttpContext.Current.Session["UserId"];
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id", Id, DbType.Int64, ParameterDirection.Input);
+                parameters.Add("@Fromdate", FromDate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
+                parameters.Add("@Todate", ToDate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
+                parameters.Add("@WFHStatus", "Pending", DbType.String, ParameterDirection.Input);
+                parameters.Add("@UserId", UserId, DbType.Int16, ParameterDirection.Input);
+                parameters.Add("@WFHReason", ReasonForLeave, DbType.String, ParameterDirection.Input);
+                parameters.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
+                var SaveWFH = con.ExecuteScalar("sp_WorkFromHome", parameters, commandType: CommandType.StoredProcedure);
+
+                if (leaveViewModel != null)
+                {
+                    foreach (var item in leaveViewModel)
+                    {
+                        if (checkLeaveAndWfh)
+                        {
+                            if (item.Halfday == "SecondHalf")
+                            {
+                                item.Halfday = "FirstHalf";
+                            }
+                            else
+                            {
+                                item.Halfday = "SecondHalf";
+                            }
+                        }
+                        var parameter = new DynamicParameters();
+                        parameter.Add("@WFHDates", item.Fromdate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
+                        parameter.Add("@Halfday", item.Halfday, DbType.String, ParameterDirection.Input);
+                        parameter.Add("@WFHId", SaveWFH, DbType.Int64, ParameterDirection.Input);
+                        parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
+                        var SaveLeaveDetails = con.ExecuteScalar("sp_WorkFromHomeDetails", parameter, commandType: CommandType.StoredProcedure);
+
+                        if (checkLeaveAndWfh)
+                        {
+                            if (item.Halfday == "SecondHalf")
+                            {
+                                item.Halfday = "FirstHalf";
+                            }
+                            else
+                            {
+                                item.Halfday = "SecondHalf";
+                            }
+                        }
+
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog("AdminController - SaveworkFromData", ex.Message, ex.StackTrace);
+            }
+        }
+
+
+        public void SendWorkFromHomeAndLeaveMail(List<LeaveDetailsViewModel> leaveDetailsViews, string ReasonForLeave)
+        {
+            var userName = HttpContext.Current.Session["EmailId"].ToString();
+            var FirstName = HttpContext.Current.Session["FirstName"].ToString();
+            ReadConfiguration();
+            var mailbody = "<p>Hello Ma'am/Sir,<br><br>  I would like to request leave & Work From Home for the following day(s).Hoping to receive a positive response from you.<br><b>Reason : </b>" + ReasonForLeave + "<br><br></p>" +
+            "<html><body>" +
+                "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
+                "<thead><tr style='background: #eee;'><th>Leave Date</th><th>Leave Day</th><th>Work From Home</th><th>Half Day</th></tr></thead>" +
+                "<tbody class='leaveTable'>";
+            foreach (var leavedetails in leaveDetailsViews)
+            {
+                var WorkfromHome = false;
+                if (leavedetails.WorkFromHome)
+                {
+                    WorkfromHome = true;
+                }
+                string WeekDay = leavedetails.LeaveDate.DayOfWeek.ToString();
+                var addrow = "<tr><td style='background: #fff;'>" + leavedetails.LeaveDate.ToShortDateString() + "</td><td>" + WeekDay + "</td><td>" + WorkfromHome + "</td><td>" + leavedetails.Halfday + "</td></tr>";
+                mailbody += addrow;
+            }
+            mailbody += "</tbody></table><br><br>" +
+            "<p>Yours Sincerely,<br>" + FirstName + "</p></body></html>";
+            try
+            {
+                MailMessage mail = new MailMessage();
+                //mail.To.Add("pooja.avidclan@gmail.com");
+                mail.To.Add("info@avidclan.com");
+                //mail.CC.Add("chintan.s@avidclan.com");
+                //mail.CC.Add("rushil@avidclan.com");
+                //if (ReportingPerson != null)
+                //{
+                //    if (ReportingPerson.Count > 0)
+                //    {
+                //        foreach (var person in ReportingPerson)
+                //        {
+                //            mail.CC.Add(person);
+                //        }
+                //    }
+                //}
+                mail.From = new MailAddress(userName, FirstName);
+                mail.Subject = "Request For Leave and WFH";
+                mail.Body = mailbody;
+                mail.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient(host, port);
+                smtp.EnableSsl = false;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
+                smtp.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                ErrorLog("AdminController - SendWorkFromHomeAndLeaveMail", ex.Message, ex.StackTrace);
+            }
+        }
+
+        public void ErrorLog(string ControllerName, string ErrorMessage, string StackTrace)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@ControllerName", ControllerName, DbType.String, ParameterDirection.Input);
+            parameters.Add("@ErrorMessage", ErrorMessage, DbType.String, ParameterDirection.Input);
+            parameters.Add("@StackTrace", StackTrace, DbType.String, ParameterDirection.Input);
+            parameters.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
+            var SaveError = con.ExecuteScalar("sp_Errorlog", parameters, commandType: CommandType.StoredProcedure);
+        }
+
+
     }
 
     public class UpdateOrder

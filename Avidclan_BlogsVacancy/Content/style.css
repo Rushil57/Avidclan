@@ -21110,3 +21110,20 @@ table {
 .clearfix{
     background-color: green;
 }
+
+.Wfhsecondhalf {
+    margin-left: 40px !important;
+    background-color: #37d873cc !important;
+    border: 1px solid WHITE !important;
+}
+
+.Wfhfirsthalf {
+    margin-right: 40px !important;
+    background-color: #37d873cc !important;
+    border: 1px solid WHITE !important;
+}
+
+.Wfh {
+    background-color: #37d873cc !important;
+    border: 1px solid WHITE !important;
+}

@@ -1,0 +1,306 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_AdminTemplate.cshtml";
+}
+
+<style>
+    body {
+        color: #999;
+        background: #f5f5f5;
+        font-family: 'Varela Round', sans-serif;
+    }
+
+    .form-control {
+        box-shadow: none;
+        border-color: #ddd;
+    }
+
+        .form-control:focus {
+            border-color: #4aba70;
+        }
+
+    .login-form {
+        width: 350px;
+        margin: 0 auto;
+      /*  padding: 30px 0;*/
+    }
+
+        .login-form form {
+            color: #434343;
+            border-radius: 1px;
+            margin-bottom: 15px;
+            background: #fff;
+            border: 1px solid #f3f3f3;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+
+        .login-form h4 {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .login-form .avatar {
+            color: #fff;
+            margin: 0px 70px 50px;
+            text-align: center;
+            width: 100px;
+            height: 120px;
+            padding: 15px;
+        }
+
+            .login-form .avatar i {
+                font-size: 62px;
+            }
+
+        .login-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .login-form .form-control, .login-form .btn {
+            min-height: 40px;
+            border-radius: 2px;
+            transition: all 0.5s;
+        }
+
+        .login-form .close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .login-form .btn {
+            background: #4aba70;
+            border: none;
+            line-height: normal;
+        }
+
+            .login-form .btn:hover, .login-form .btn:focus {
+                background: #42ae68;
+            }
+
+        .login-form .checkbox-inline {
+            float: left;
+        }
+
+        .login-form input[type="checkbox"] {
+            margin-top: 2px;
+        }
+
+        .login-form .forgot-link {
+            float: right;
+        }
+
+        .login-form .small {
+            font-size: 13px;
+        }
+
+        .login-form a {
+            color: #4aba70;
+        }
+</style>
+<body>
+    <div class="login-form" style=" width: 500px;">
+        <form name="registration">
+            <h4 class="modal-title">Register Your Account</h4>
+            <div class="form-group">
+                <label for="firstName">FirstName</label>
+                <input type="text" class="form-control" name="firstname" id="FirstName" placeholder="First Name">
+            </div>
+            <div class="form-group">
+                <label for="lastName">LastName</label>
+                <input type="text" class="form-control" name="lastname" id="LastName" placeholder="Last Name">
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="text" class="form-control" name="phonenumber" id="PhoneNumber" placeholder="Phone Number">
+            </div>
+            <div class="form-group">
+                <label for="emaillAddress">Email Address</label>
+                <input type="email" class="form-control" name="emailaddress" id="EmailAddress" placeholder="Email Address" onfocusout="CheckExistingEmailAddress()">
+            </div>
+            <div class="form-group">
+                <label for="passWord">Password</label>
+                <input type="password" class="form-control" name="password" id="PassWord" placeholder="Pass Word">
+            </div>
+            <div class="form-group">
+                <label for="ConfirmpassWord">Confirm Password</label>
+                <input type="password" class="form-control" name="Confirmpassword" id="ConfirmPassWord" placeholder="Confirm PassWord">
+            </div>
+            <div class="form-group">
+                <label for="joiningDate">Joining Date</label>
+                <input type="text" class="form-control" name="txtjoiningDate" id="JoiningDate" placeholder="Select Joining Date">
+            </div>
+            <div class="form-group">
+                <label for="probationPeriod">Probation Months</label>
+                <input type="text" class="form-control" name="txtprobationmonth" id="ProbationMonth" placeholder="Probation Month">
+            </div>
+            <div class="form-group">
+                <label for="role">Select Role</label>
+                <select class="form-control cls-role" name="role" id="RoleName">
+                    <option value="">Roles</option>
+                </select>
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary btn-sm btn-block">Submit</button>
+        </form>
+    </div>
+</body>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("form[name='registration']").validate({
+            rules: {
+                firstname: {required: true},
+                lastname: {required: true,
+                },
+                phonenumber: {
+                    required: true,
+                    minlength: 10,
+                    maxlength: 10
+                },
+                emailaddress: {
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required: true,
+                },
+                txtjoiningDate: { required: true, },
+                role: {
+                    required: true,
+                },
+                txtprobationmonth: { required: true, },
+                Confirmpassword: {
+                    required: true,
+                    equalTo: "#PassWord"
+                }
+            },
+            messages: {
+                firstname: { required: "Please enter a firstname" },
+                lastname: { required: "Please enter a lastname" },
+                phonenumber: {
+                    required: "Please enter a phonenumber",
+                    minlength: "Please enter valid phone number",
+                    maxlength: "Please enter valid phone number",
+                },
+                emailaddress: {
+                    required: "Please enter email address",
+                    email: "Please enter a valid email address"
+                },
+                password: {
+                    required: "Please enter a password",
+                },
+                txtjoiningDate: { required: "Select valid Date", },
+                role: { required: "Please Select valid role" },
+                txtprobationmonth: { required: "Please enter probation months" },
+                Confirmpassword: {
+                    required: 'Confirm Password is required',
+                    equalTo: "Password is not same"
+                }
+            },
+            submitHandler: function (form) {
+                SaveNewUser();
+            }
+        });
+
+        BindRoles();
+        $('#JoiningDate').datepicker();
+    });
+
+    function SaveNewUser() {
+        var data = {
+            FirstName: $("#FirstName").val(),
+            LastName: $("#LastName").val(),
+            PhoneNumber: $("#PhoneNumber").val(),
+            EmailId: $("#EmailAddress").val(),
+            Password: $("#PassWord").val(),
+            Role: $("#RoleName").val(),
+            JoiningDate: $("#JoiningDate").val(),
+            ProbationPeriod: $("#ProbationMonth").val()
+        }
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("AddNewUser", "BlogVacancy")",
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function (result) {
+                    if (result == "True") {
+                        alert("User Created Successfully!")
+                        ResetForm()
+                    }
+                    else {
+                        alert("Something Went Wrong!")
+                    }
+                },
+                error: function (result) {
+                    alert("Failure");
+                }
+            });
+
+    }
+
+
+    function CheckExistingEmailAddress() {
+        debugger
+        var emailId = $("#EmailAddress").val();
+        if (emailId == null || emailId == "") {
+            return
+        }
+       
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("CheckEmailAdress", "BlogVacancy")",
+            contentType: 'application/json',
+            data: {Email : emailId},
+            success: function (result) {
+                if (result == "") {
+
+                }
+                else {
+                    alert(result)
+                    $("#EmailAddress").val('');
+                }
+            },
+            error: function (result) {
+                    alert("Failure");
+            }
+        });
+    }
+
+    function BindRoles() {
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("GetRoles", "BlogVacancy")",
+            contentType: 'application/json',
+            success: function (result) {
+                if (result != null) {
+                    $.each(result, function (index, item) {
+                        var opt = new Option(item.RoleName, item.Id);
+                        $('.cls-role').append(opt);
+
+                    });
+                }
+            },
+            error: function (result) {
+                    alert("Failure");
+            }
+        });
+    }
+
+    function ResetForm() {
+      $("#FirstName").val(''),
+      $("#LastName").val(''),
+      $("#PhoneNumber").val(''),
+      $("#EmailAddress").val(''),
+      $("#PassWord").val(''),
+      $("#ConfirmPassWord").val('')
+      $("#RoleName").val(''),
+      $("#JoiningDate").val(''),
+      $("#ProbationMonth").val('')
+    }
+</script>
+
+
