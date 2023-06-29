@@ -29,6 +29,9 @@ using System.Web.Helpers;
 using MimeKit;
 using System.Web.Http.Results;
 using Avidclan_BlogsVacancy.Methods;
+using SendGrid.Helpers.Mail;
+using SendGrid;
+using System.Web.Configuration;
 
 namespace Avidclan_BlogsVacancy.Controllers
 {
@@ -40,6 +43,7 @@ namespace Avidclan_BlogsVacancy.Controllers
         int port = 0;
         string receiverEmail = "";
 
+        string ApiKey = WebConfigurationManager.AppSettings["SendGridMailApiKey"];
         string connectionString = ConfigurationManager.ConnectionStrings["DbEntities"].ToString();
         SqlConnection con;
         FrequentMethod frequentMethod = new FrequentMethod();
@@ -147,8 +151,10 @@ namespace Avidclan_BlogsVacancy.Controllers
                     doc.Open();
                     PdfPTable table = new PdfPTable(4);
 
-                    PdfPCell companyname = new PdfPCell(new Phrase("AVIDCLAN TECHNOLOGIES", boldFont));
-
+					var ImagePath = AppDomain.CurrentDomain.BaseDirectory;
+					iTextSharp.text.Image myImage = iTextSharp.text.Image.GetInstance(ImagePath + "/Image/Official-Avidclan-Technologies-Full.png");
+					myImage.ScaleAbsolute(159f, 80f);
+					PdfPCell companyname = new PdfPCell(myImage);
                     companyname.Colspan = 4;
                     companyname.HorizontalAlignment = 1;
                     table.AddCell(companyname);
@@ -352,19 +358,19 @@ namespace Avidclan_BlogsVacancy.Controllers
                     {
                         await ReadConfiguration();
                         byte[] bytes = memoryStream.ToArray();
-                        MailMessage mail = new MailMessage();
-                        mail.To.Add("pooja.avidclan@gmail.com");
-                        mail.From = new MailAddress(senderEmail);
-                        mail.Subject = "Below is your salary slip of month " + Slipdate;
-                        mail.Body = "Salary Slip";
-                        mail.IsBodyHtml = true;
-                        mail.Attachments.Add(new Attachment(new MemoryStream(bytes), fileName + ".pdf"));
-                        SmtpClient smtp = new SmtpClient(host, port);
-                        smtp.EnableSsl = true;
-                        smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
-                        smtp.Send(mail);
 
+                        var client = new SendGridClient(ApiKey);
+                        var subject = "Salary Slip for the month of " + Slipdate;
+                        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                        var msg = new SendGridMessage()
+                        {
+                            From = new EmailAddress(senderEmail, "Avidclan Technologies"),
+                            Subject = subject,
+                            HtmlContent = "<p>Hello,<br><br> Greetings for the day!<br><br>Please find the attached salary slip for the month of " + Slipdate,
+                        };
+                        msg.AddTo(new EmailAddress(arr[i].EmailId));
+                        await msg.AddAttachmentAsync(fileName + ".pdf", new MemoryStream(bytes));
+                        var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
                     }
                 }
                 catch (Exception ex)

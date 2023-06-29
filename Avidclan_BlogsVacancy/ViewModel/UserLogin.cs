@@ -19,6 +19,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public int ProbationPeriod { get; set; }
 
         public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 
     public class UserRegister

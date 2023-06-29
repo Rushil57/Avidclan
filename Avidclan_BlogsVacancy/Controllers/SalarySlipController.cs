@@ -153,8 +153,10 @@ namespace Avidclan_BlogsVacancy.Controllers
                     doc.Open();
                     PdfPTable table = new PdfPTable(4);
 
-                    PdfPCell companyname = new PdfPCell(new Phrase("AVIDCLAN TECHNOLOGIES", boldFont));
-
+                    var ImagePath = AppDomain.CurrentDomain.BaseDirectory;
+					iTextSharp.text.Image myImage = iTextSharp.text.Image.GetInstance(ImagePath + "/Image/Official-Avidclan-Technologies-Full.png");
+					myImage.ScaleAbsolute(159f,80f);
+					PdfPCell companyname = new PdfPCell(myImage);
                     companyname.Colspan = 4;
                     companyname.HorizontalAlignment = 1;
                     table.AddCell(companyname);
@@ -385,11 +387,6 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
 
         }
-
-       
-
-
-
         public JsonResult HolidaysDate(int Month, int Year)
         {
             var parameters = new DynamicParameters();

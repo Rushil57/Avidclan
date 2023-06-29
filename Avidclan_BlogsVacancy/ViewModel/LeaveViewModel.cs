@@ -89,4 +89,11 @@ namespace Avidclan_BlogsVacancy.ViewModel
 
         public string HalfDay { get; set; }
     }
+
+    public class ReportingPersons
+    {
+        public int Id { get; set; }
+
+        public string ReportingPerson { get; set; }
+    }
 }

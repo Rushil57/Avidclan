@@ -55,6 +55,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 Session["JoiningDate"] = logindata.JoiningDate;
                 Session["ProbationPeriod"] = logindata.ProbationPeriod;
                 Session["FirstName"] = logindata.FirstName;
+                Session["LastName"] = logindata.LastName;
             }
             return Json(logindata, JsonRequestBehavior.AllowGet);
         }
@@ -172,6 +173,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             Session["UserId"] = 0;
             Session["ProbationPeriod"] = 0;
             Session["FirstName"] = null;
+            Session["LastName"] = null;
         }
 
         public ActionResult LeaveStatus()

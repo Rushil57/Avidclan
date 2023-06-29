@@ -35,5 +35,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string Designation { get; set; }
 
         public string DateOfJoining { get; set; }
+
+        public string EmailId { get; set; }
     }
 }
