@@ -8,14 +8,14 @@
     <thead>
         <tr>
             @*<th>FromDate</th>*@
-            <th>Dates</th>
-            <th>SickLeave</th>
-            <th>Personal Leave</th>
-            <th>Leave Without Pay</th>
-            <th>Reason For Leave</th>
+            <th style="width: 263px;" class="dt-head-center">Dates</th>
+            <th style="width: 130px;" class="dt-head-center">Sick Leave (SL)</th>
+            <th style="width: 175px;" class="dt-head-center">Personal Leave (PL)</th>
+            <th style="width: 216px;" class="dt-head-center">Leave Without Pay (LWP)</th>
+            <th style="width: 203px;" class="dt-head-center">Reason For Leave</th>
         </tr>
     </thead>
-    <tbody class="TotalLeaveTableBody">
+    <tbody class="TotalLeaveTableBody" style="text-align: center;">
     </tbody>
 </table>
 
@@ -25,11 +25,11 @@
 <table id="TotalLeaveBalanceTable">
     <thead>
         <tr>
-            <th>SickLeave</th>
-            <th>Personal Leave</th>
+            <th class="dt-head-center">Sick Leave</th>
+            <th class="dt-head-center">Personal Leave</th>
         </tr>
     </thead>
-    <tbody class="TotalLeaveBalanceTableBody">
+    <tbody class="TotalLeaveBalanceTableBody" style="text-align: center;">
     </tbody>
 </table>
 
@@ -154,6 +154,9 @@
                 $('#TotalLeaveBalanceTable').DataTable({
                     destroy: true,
                     data: data,
+                    searching: false,
+                    paging: false,
+                    info: false ,
                     order: [[0, 'desc']],
                     "columns": [
                         {
@@ -189,10 +192,10 @@
             contentType: 'application/json',
              type: "GET",
             success: function (data) {
+                if (data.length > 0) {
                     $("#PersonalLeave").val(data[0].PersonalLeave);
                     $("#SickLeave").val(data[0].SickLeave);
-
-
+                }
             },
             error: function () {
                 alert('failuress');

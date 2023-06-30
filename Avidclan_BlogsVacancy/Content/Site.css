@@ -60,3 +60,9 @@ form .error {
     color: #ff0000;
     font-weight: normal!important;
 }
+
+label.required::after {
+    content: '*';
+    margin-left: 1px;
+    color: #ff0000d1;
+}

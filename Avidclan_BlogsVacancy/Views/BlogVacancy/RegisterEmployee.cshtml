@@ -99,45 +99,51 @@
         .login-form a {
             color: #4aba70;
         }
+
+    label.required::after {
+        content: '*';
+        margin-left: 1px;
+        color: #ff0000d1;
+    }
 </style>
 <body>
     <div class="login-form" style=" width: 500px;">
         <form name="registration">
             <h4 class="modal-title">Register Your Account</h4>
             <div class="form-group">
-                <label for="firstName">FirstName</label>
+                <label for="firstName" class="required">FirstName</label>
                 <input type="text" class="form-control" name="firstname" id="FirstName" placeholder="First Name">
             </div>
             <div class="form-group">
-                <label for="lastName">LastName</label>
+                <label for="lastName" class="required">LastName</label>
                 <input type="text" class="form-control" name="lastname" id="LastName" placeholder="Last Name">
             </div>
             <div class="form-group">
-                <label for="phoneNumber">Phone Number</label>
+                <label for="phoneNumber" class="required">Phone Number</label>
                 <input type="text" class="form-control" name="phonenumber" id="PhoneNumber" placeholder="Phone Number">
             </div>
             <div class="form-group">
-                <label for="emaillAddress">Email Address</label>
+                <label for="emaillAddress" class="required">Email Address</label>
                 <input type="email" class="form-control" name="emailaddress" id="EmailAddress" placeholder="Email Address" onfocusout="CheckExistingEmailAddress()">
             </div>
             <div class="form-group">
-                <label for="passWord">Password</label>
+                <label for="passWord" class="required">Password</label>
                 <input type="password" class="form-control" name="password" id="PassWord" placeholder="Pass Word">
             </div>
             <div class="form-group">
-                <label for="ConfirmpassWord">Confirm Password</label>
+                <label for="ConfirmpassWord" class="required">Confirm Password</label>
                 <input type="password" class="form-control" name="Confirmpassword" id="ConfirmPassWord" placeholder="Confirm PassWord">
             </div>
             <div class="form-group">
-                <label for="joiningDate">Joining Date</label>
+                <label for="joiningDate" class="required">Joining Date</label>
                 <input type="text" class="form-control" name="txtjoiningDate" id="JoiningDate" placeholder="Select Joining Date">
             </div>
             <div class="form-group">
-                <label for="probationPeriod">Probation Months</label>
+                <label for="probationPeriod" class="required">Probation Months</label>
                 <input type="text" class="form-control" name="txtprobationmonth" id="ProbationMonth" placeholder="Probation Month">
             </div>
             <div class="form-group">
-                <label for="role">Select Role</label>
+                <label for="role" class="required">Select Role</label>
                 <select class="form-control cls-role" name="role" id="RoleName">
                     <option value="">Roles</option>
                 </select>

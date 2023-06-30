@@ -9157,7 +9157,7 @@ fieldset:disabled .btn {
 }
 
 .modal-content {
-    /* width: 800px;*/
+     width: 700px;
     position: relative;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -19553,6 +19553,7 @@ dl {
         font-size: 0.875rem;
         line-height: 1;
         white-space: nowrap;
+        border: 1px solid #e8e8e8;
         /*padding: 0.9375rem;*/
     }
 
@@ -20978,11 +20979,16 @@ input:checked + .BlogStatusSlider:before {
 #LeaveDateTable thead tr th {
     position: sticky;
     top: 0;
+    text-align: center;
+}
+
+#LeaveDateTable .LeaveDatebody tr {
+    text-align: center;
 }
 
 #LeaveDateTable th {
     /*    padding: 16px;*/
-    padding-left: 15px;
+   /* padding-left: 15px;*/
     border-bottom: 1px solid #e8e8e8;
     background: white;
     text-align: left;
@@ -21126,4 +21132,11 @@ table {
 .Wfh {
     background-color: #37d873cc !important;
     border: 1px solid WHITE !important;
+}
+
+
+label.required::after {
+    content: '*';
+    margin-left: 1px;
+    color: #ff0000d1;
 }

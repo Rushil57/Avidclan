@@ -35,6 +35,7 @@ using SendGrid;
 using SendGrid.Helpers.Mail;
 using System.Web.Configuration;
 using SendGrid.Helpers.Mail.Model;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace Avidclan_BlogsVacancy.Controllers
 {
@@ -240,35 +241,41 @@ namespace Avidclan_BlogsVacancy.Controllers
                 var LeaveData = leaveViewModel.Leaves.Where(x => x.WorkAndHalfLeave == false && x.WorkFromHome == false).ToList();
                 if (LeaveData.Count > 0)
                 {
-                    GetConsecutiveLeaveDates(LeaveData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
+                    GetConsecutiveLeaveDates(LeaveData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson,false);
                 }
 
                 var WorkHomeData = leaveViewModel.Leaves.Where(x => x.WorkAndHalfLeave == false && x.WorkFromHome == true).ToList();
                 if (WorkHomeData.Count > 0)
                 {
-                    GetConsecutiveWorkFromHomeDates(WorkHomeData, leaveViewModel.ReasonForLeave, false);
+                    GetConsecutiveWorkFromHomeDates(WorkHomeData, leaveViewModel.ReasonForLeave);
                 }
 
                 var LeaveAndWfhData = leaveViewModel.Leaves.Where(x => x.WorkAndHalfLeave == true && x.WorkFromHome == true).ToList();
                 if (LeaveAndWfhData.Count > 0)
                 {
-                    GetConsecutiveWorkFromHomeDates(LeaveAndWfhData, leaveViewModel.ReasonForLeave, true);
-                    GetConsecutiveLeaveDates(LeaveAndWfhData, leaveViewModel.ReasonForLeave,leaveViewModel.ReportingPerson);
+                    GetConsecutiveWorkFromHomeDates(LeaveAndWfhData, leaveViewModel.ReasonForLeave);
+                    GetConsecutiveLeaveDates(LeaveAndWfhData, leaveViewModel.ReasonForLeave,leaveViewModel.ReportingPerson, true);
                 }
 
                 if (LeaveData.Count > 0 && WorkHomeData.Count == 0 && LeaveAndWfhData.Count == 0)
                 {
-                    await SendLeaveMail(LeaveData, leaveViewModel.ReasonForLeave,leaveViewModel.ReportingPerson);
+                    await SendLeaveMail(LeaveData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
                 }
                 if (LeaveData.Count == 0 && WorkHomeData.Count > 0 && LeaveAndWfhData.Count == 0)
                 {
-                    await SendWorkFromHomeMail(WorkHomeData, leaveViewModel.ReportingPerson, leaveViewModel.ReasonForLeave);
-                }
+					//await SendWorkFromHomeMail(WorkHomeData, leaveViewModel.ReportingPerson, leaveViewModel.ReasonForLeave);
+					await SendWorkFromHomeAndLeaveMail(WorkHomeData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
+				}
                 if (LeaveData.Count == 0 && WorkHomeData.Count == 0 && LeaveAndWfhData.Count > 0)
                 {
                     await SendWorkFromHomeAndLeaveMail(LeaveAndWfhData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
                 }
-                if (LeaveData.Count > 0 && WorkHomeData.Count > 0 && LeaveAndWfhData.Count == 0)
+				if (LeaveData.Count == 0 && WorkHomeData.Count > 0 && LeaveAndWfhData.Count > 0)
+				{
+					var leaveAndWfhData = WorkHomeData.Concat(LeaveAndWfhData).ToList();
+					await SendWorkFromHomeAndLeaveMail(leaveAndWfhData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
+				}
+				if (LeaveData.Count > 0 && WorkHomeData.Count > 0 && LeaveAndWfhData.Count == 0)
                 {
                     var leaveAndWfhData = LeaveData.Concat(WorkHomeData).ToList();
                     await SendWorkFromHomeAndLeaveMail(leaveAndWfhData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
@@ -276,14 +283,14 @@ namespace Avidclan_BlogsVacancy.Controllers
                 if (LeaveData.Count > 0 && WorkHomeData.Count == 0 && LeaveAndWfhData.Count > 0)
                 {
                     var leaveAndWfhData = LeaveData.Concat(LeaveAndWfhData).ToList();
-                    leaveAndWfhData.Sort();
+                    //leaveAndWfhData.Sort();
                     await SendWorkFromHomeAndLeaveMail(leaveAndWfhData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
                 }
                 if (LeaveData.Count > 0 && WorkHomeData.Count > 0 && LeaveAndWfhData.Count > 0)
                 {
                     await SendWorkFromHomeAndLeaveMail(leaveViewModel.Leaves, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
                 }
-                return "Request Send Successfully!";
+                return "Request Sent Successfully!";
             }
             catch (Exception ex)
             {
@@ -316,7 +323,35 @@ namespace Avidclan_BlogsVacancy.Controllers
             var LastName = HttpContext.Current.Session["LastName"].ToString();
 
             await ReadConfiguration();
-            var mailbody = "<p>Hello Ma'am/Sir,<br><br>"+ FirstName +"&nbsp;"+ LastName +" would like to request for leave for the following day(s).Hoping to receive a positive response from you.<br><b>Reason : </b>" + ReasonForLeave + "<br><br></p>" +
+
+            var HalfDay = string.Empty;
+			var Leave = string.Empty;
+
+            if(leaveDetailsViews.Count == 1)
+            {
+				var checkHalfDay = leaveDetailsViews.All(item => item.Halfday is null);
+				if (checkHalfDay == false)
+				{
+					HalfDay = " Half-Day leave";
+                    Leave = "";
+				}
+			}
+            else
+            {
+				var result = leaveDetailsViews.All(item => item.Halfday is null);
+				if (result == false)
+				{
+					Leave = "leave";
+					HalfDay = " & Half-Day leave";
+				}
+                else
+                {
+					Leave = "leave";
+					HalfDay = "";
+				}
+			}
+			
+			var mailbody = "<p>Hello Ma'am/Sir,<br><br>"+ FirstName +"&nbsp;"+ LastName +" would like to request "+ Leave + HalfDay + " for the following day(s).Hoping to receive a positive response from you.<br><b>Reason : </b>" + ReasonForLeave + "<br><br></p>" +
             "<html><body>" +
                 "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
                 "<thead><tr style='background: #eee;'><th>Leave Date</th><th>Leave Day</th><th>Half Day</th></tr></thead>" +
@@ -354,6 +389,18 @@ namespace Avidclan_BlogsVacancy.Controllers
                     }
                 }
                 var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
+
+                //MailMessage mail = new MailMessage();
+                //mail.To.Add("pooja.avidclan@gmail.com");
+                //mail.From = new MailAddress(senderEmail);
+                //mail.Subject = "test";
+                //mail.Body = mailbody;
+                //mail.IsBodyHtml = true;
+                //SmtpClient smtp = new SmtpClient(host, port);
+                //smtp.EnableSsl = true;
+                //smtp.UseDefaultCredentials = true;
+                //smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
+                //smtp.Send(mail);
 
             }
             catch (Exception ex)
@@ -536,7 +583,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             var FirstName = HttpContext.Current.Session["FirstName"].ToString();
             await ReadConfiguration();
 
-            var mailbody = "<p>Hello Ma'am/Sir,<br><br>" + FirstName + "&nbsp;" + LastName  +" request to work from home for following day(s). I am confident in my ability to fulfill my responsibilities effectively, ensuring continued productivity and maintaining regular communication with the team.<br>Thank you for considering my request. I look forward to your favorable response.<br><b>Reason : </b>" + ReasonForLeave + "<br><br></p>" +
+            var mailbody = "<p>Hello Ma'am/Sir,<br><br>" + FirstName + "&nbsp;" + LastName  +" request work from home for following day(s). Hoping to receive a positive response from you.<br><b>Reason : </b>" + ReasonForLeave + "<br><br></p>" +
             "<html><body>" +
                 "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
                 "<thead><tr style='background: #eee;'><th>Work From Home Date</th><th>Work From Home Day</th><th>Half Day</th></tr></thead>" +
@@ -574,13 +621,25 @@ namespace Avidclan_BlogsVacancy.Controllers
                     }
                 }
                 var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
-            }
+
+    //            MailMessage mail = new MailMessage();
+				//mail.To.Add("pooja.avidclan@gmail.com");
+				//mail.From = new MailAddress(senderEmail);
+				//mail.Subject = "test";
+				//mail.Body = mailbody;
+				//mail.IsBodyHtml = true;
+				//SmtpClient smtp = new SmtpClient(host, port);
+				//smtp.EnableSsl = true;
+				//smtp.UseDefaultCredentials = true;
+				//smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
+				//smtp.Send(mail);
+			}
             catch (Exception ex)
             {
                 ErrorLog("AdminController - SendWorkFromHomeMail", ex.Message, ex.StackTrace);
             }
         }
-        public void GetConsecutiveLeaveDates(List<LeaveDetailsViewModel> range, string ReasonForLeave,List<string> ReportingPerson)
+        public void GetConsecutiveLeaveDates(List<LeaveDetailsViewModel> range, string ReasonForLeave,List<string> ReportingPerson, bool checkLeaveAndWfh)
         {
             var CheckElsexcute = false;
             var startDate = range.FirstOrDefault();
@@ -597,6 +656,8 @@ namespace Avidclan_BlogsVacancy.Controllers
                     leaveViewDetails.Fromdate = day.LeaveDate;
                     leaveViewDetails.Todate = day.LeaveDate;
                     leaveViewDetails.Halfday = day.Halfday;
+                    leaveViewDetails.WorkFromHome = day.WorkFromHome;
+                    leaveViewDetails.WorkAndHalfLeave = day.WorkAndHalfLeave;
                     leaveDataDetails.Add(leaveViewDetails);
 
                     if (day.LeaveDate != wantedDate || LeaveDataList.Count == 0)
@@ -605,7 +666,10 @@ namespace Avidclan_BlogsVacancy.Controllers
                         leaveView.Id = day.Id;
                         leaveView.Fromdate = day.LeaveDate;
                         leaveView.Todate = day.LeaveDate;
-                        LeaveDataList.Add(leaveView);
+						leaveView.Halfday = day.Halfday;
+						leaveView.WorkFromHome = day.WorkFromHome;
+						leaveView.WorkAndHalfLeave = day.WorkAndHalfLeave;
+						LeaveDataList.Add(leaveView);
                     }
                     else
                     {
@@ -618,7 +682,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 foreach (var leaveData in LeaveDataList)
                 {
                     var list = leaveDataDetails.Where(x => x.Fromdate >= leaveData.Fromdate && x.Fromdate <= leaveData.Todate).ToList();
-                    SaveLeaveApplicationData(leaveData.Id, leaveData.Fromdate, leaveData.Todate, ReasonForLeave, list, ReportingPerson);
+                    SaveLeaveApplicationData(leaveData.Id, leaveData.Fromdate, leaveData.Todate, ReasonForLeave, list, ReportingPerson, checkLeaveAndWfh);
                 }
             }
             catch(Exception ex)
@@ -627,7 +691,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
           
         }
-        public void SaveLeaveApplicationData(int Id, DateTime FromDate, DateTime ToDate, string ReasonForLeave, List<LeaveDetailsViewModel> leaveDataDetails, List<string> ReportingPerson)
+        public void SaveLeaveApplicationData(int Id, DateTime FromDate, DateTime ToDate, string ReasonForLeave, List<LeaveDetailsViewModel> leaveDataDetails, List<string> ReportingPerson,bool checkLeaveAndWfh)
         {
             var UserId = HttpContext.Current.Session["UserId"];
 
@@ -661,7 +725,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                         }
                     }
                     //leaveViewModel[0].Id = Convert.ToInt16(SaveLeave);
-                    SaveLeaveApplicationDetailsData(leaveDataDetails, SaveLeave, UserId);
+                    SaveLeaveApplicationDetailsData(leaveDataDetails, SaveLeave, UserId, checkLeaveAndWfh);
                 }
             }
             catch (Exception ex)
@@ -670,7 +734,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
 
         }
-        public void SaveLeaveApplicationDetailsData(List<LeaveDetailsViewModel> leaveViewModel, object Leaveid, object UserId)
+        public void SaveLeaveApplicationDetailsData(List<LeaveDetailsViewModel> leaveViewModel, object Leaveid, object UserId,bool checkLeaveAndWfh)
         {
             var JoinigDate = HttpContext.Current.Session["JoiningDate"];
             var ProbationPeriod = HttpContext.Current.Session["ProbationPeriod"];
@@ -698,6 +762,18 @@ namespace Avidclan_BlogsVacancy.Controllers
                 {
                     foreach (var item in leaveViewModel)
                     {
+                        if (checkLeaveAndWfh)
+                        {
+                            if (item.Halfday == "SecondHalf")
+                            {
+                                item.Halfday = "FirstHalf";
+                            }
+                            else
+                            {
+                                item.Halfday = "SecondHalf";
+                            }
+                        }
+
                         var parameter = new DynamicParameters();
                         parameter.Add("@LeaveDate", item.Fromdate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
                         parameter.Add("@Halfday", item.Halfday, DbType.String, ParameterDirection.Input);
@@ -705,8 +781,20 @@ namespace Avidclan_BlogsVacancy.Controllers
                         parameter.Add("@UserId", UserId, DbType.Int64, ParameterDirection.Input);
                         parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
                         var SaveLeaveDetails = con.ExecuteScalar("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
-                    }
-                    var result = new LeaveController().CheckTypeOfLeave(
+
+						if (checkLeaveAndWfh)
+						{
+						    if (item.Halfday == "SecondHalf")
+						    {
+						        item.Halfday = "FirstHalf";
+						    }
+						    else
+						    {
+						        item.Halfday = "SecondHalf";
+						    }
+						}
+					}
+					var result = new LeaveController().CheckTypeOfLeave(
                             leaveViewModel, GetFromDate.Fromdate,
                             Leaveid, UserId, JoinigDate, ProbationPeriod);
                 }
@@ -718,7 +806,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
         }
 
-        public void GetConsecutiveWorkFromHomeDates(List<LeaveDetailsViewModel> range, string ReasonForLeave, bool checkLeaveAndWfh)
+        public void GetConsecutiveWorkFromHomeDates(List<LeaveDetailsViewModel> range, string ReasonForLeave)
         {
             var CheckElsexcute = false;
             var startDate = range.FirstOrDefault();
@@ -736,6 +824,8 @@ namespace Avidclan_BlogsVacancy.Controllers
                     leaveViewDetails.Fromdate = day.LeaveDate;
                     leaveViewDetails.Todate = day.LeaveDate;
                     leaveViewDetails.Halfday = day.Halfday;
+                    leaveViewDetails.WorkFromHome = day.WorkFromHome;
+                    leaveViewDetails.WorkAndHalfLeave = day.WorkAndHalfLeave;
                     leaveDataDetails.Add(leaveViewDetails);
 
                     if (day.LeaveDate != wantedDate || LeaveDataList.Count == 0)
@@ -744,6 +834,9 @@ namespace Avidclan_BlogsVacancy.Controllers
                         leaveView.Id = day.Id;
                         leaveView.Fromdate = day.LeaveDate;
                         leaveView.Todate = day.LeaveDate;
+                        leaveView.Halfday = day.Halfday;
+                        leaveView.WorkFromHome = day.WorkFromHome;
+                        leaveView.WorkAndHalfLeave = day.WorkAndHalfLeave;
                         LeaveDataList.Add(leaveView);
                     }
                     else
@@ -756,7 +849,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 foreach (var leaveData in LeaveDataList)
                 {
                     var list = leaveDataDetails.Where(x => x.Fromdate >= leaveData.Fromdate && x.Fromdate <= leaveData.Todate).ToList();
-                    SaveworkFromData(list, ReasonForLeave, leaveData.Id, leaveData.Fromdate, leaveData.Todate, checkLeaveAndWfh);
+                    SaveworkFromData(list, ReasonForLeave, leaveData.Id, leaveData.Fromdate, leaveData.Todate);
 
                 }
             }
@@ -766,7 +859,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
            
         }
-        public void SaveworkFromData(List<LeaveDetailsViewModel> leaveViewModel, string ReasonForLeave, object Id, DateTime FromDate, DateTime ToDate, bool checkLeaveAndWfh)
+        public void SaveworkFromData(List<LeaveDetailsViewModel> leaveViewModel, string ReasonForLeave, object Id, DateTime FromDate, DateTime ToDate)
         {
 
             var UserId = HttpContext.Current.Session["UserId"];
@@ -786,17 +879,17 @@ namespace Avidclan_BlogsVacancy.Controllers
                 {
                     foreach (var item in leaveViewModel)
                     {
-                        if (checkLeaveAndWfh)
-                        {
-                            if (item.Halfday == "SecondHalf")
-                            {
-                                item.Halfday = "FirstHalf";
-                            }
-                            else
-                            {
-                                item.Halfday = "SecondHalf";
-                            }
-                        }
+                        //if (checkLeaveAndWfh)
+                        //{
+                        //    if (item.Halfday == "SecondHalf")
+                        //    {
+                        //        item.Halfday = "FirstHalf";
+                        //    }
+                        //    else
+                        //    {
+                        //        item.Halfday = "SecondHalf";
+                        //    }
+                        //}
                         var parameter = new DynamicParameters();
                         parameter.Add("@WFHDates", item.Fromdate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
                         parameter.Add("@Halfday", item.Halfday, DbType.String, ParameterDirection.Input);
@@ -804,17 +897,17 @@ namespace Avidclan_BlogsVacancy.Controllers
                         parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
                         var SaveLeaveDetails = con.ExecuteScalar("sp_WorkFromHomeDetails", parameter, commandType: CommandType.StoredProcedure);
 
-                        if (checkLeaveAndWfh)
-                        {
-                            if (item.Halfday == "SecondHalf")
-                            {
-                                item.Halfday = "FirstHalf";
-                            }
-                            else
-                            {
-                                item.Halfday = "SecondHalf";
-                            }
-                        }
+                        //if (checkLeaveAndWfh)
+                        //{
+                        //    if (item.Halfday == "SecondHalf")
+                        //    {
+                        //        item.Halfday = "FirstHalf";
+                        //    }
+                        //    else
+                        //    {
+                        //        item.Halfday = "SecondHalf";
+                        //    }
+                        //}
 
 
                     }
@@ -833,20 +926,63 @@ namespace Avidclan_BlogsVacancy.Controllers
             var FirstName = HttpContext.Current.Session["FirstName"].ToString();
 
             await ReadConfiguration();
-            var mailbody = "<p>Hello Ma'am/Sir,<br><br>" + FirstName + "&nbsp;" + LastName +" would like to request leave & Work From Home for the following day(s).Hoping to receive a positive response from you.<br><b>Reason : </b>" + ReasonForLeave + "<br><br></p>" +
+            var mailbody = "<p>Hello Ma'am/Sir,<br><br>" + FirstName + "&nbsp;" + LastName +" would like to request leave & Work From Home for the following day(s). Hoping to receive a positive response from you.<br><b>Reason : </b>" + ReasonForLeave + "<br><br></p>" +
             "<html><body>" +
                 "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
-                "<thead><tr style='background: #eee;'><th>Leave Date</th><th>Leave Day</th><th>Work From Home</th><th>Half Day</th></tr></thead>" +
+				"<thead><tr style='background: #eee;'><th>Date</th><th>Day</th><th>Work From Home</th><th>WFH Half Day</th><th></th></tr></thead>" +
                 "<tbody class='leaveTable'>";
             foreach (var leavedetails in leaveDetailsViews)
             {
-                var WorkfromHome = false;
-                if (leavedetails.WorkFromHome)
+                var WorkfromHome = string.Empty;
+                var Leave = string.Empty;
+                var WFHHalfDay = string.Empty;
+                var LeaveHalfDay = string.Empty;
+
+                if (leavedetails.WorkFromHome == true && leavedetails.WorkAndHalfLeave == false)
                 {
-                    WorkfromHome = true;
+                    if(leavedetails.Halfday != null)
+                    {
+                        WFHHalfDay = leavedetails.Halfday;
+						if (leavedetails.Halfday == "FirstHalf")
+						{
+							LeaveHalfDay = "Second Half WFO";
+						}
+						else
+						{
+							LeaveHalfDay = "First Half WFO";
+						}
+					}
+                    WorkfromHome = "Yes";
+                }
+                if(leavedetails.WorkFromHome == true && leavedetails.WorkAndHalfLeave == true && leavedetails.Halfday != null)
+                {
+                    Leave = "Yes";
+					WorkfromHome = "Yes";
+                    if(leavedetails.Halfday == "FirstHalf")
+                    {
+						WFHHalfDay = leavedetails.Halfday;
+                        LeaveHalfDay = "Second Half Leave";
+					}
+                    else
+                    {
+						WFHHalfDay = leavedetails.Halfday;
+						LeaveHalfDay = "First Half Leave";
+					}
+				}
+                if(leavedetails.WorkFromHome == false && leavedetails.WorkAndHalfLeave == false)
+                {
+                    if (leavedetails.Halfday != null)
+                    {
+                        LeaveHalfDay = leavedetails.Halfday + " Leave";
+                    }
+                    else
+                    {
+                        LeaveHalfDay = "Full Day Leave";
+
+					}
                 }
                 string WeekDay = leavedetails.LeaveDate.DayOfWeek.ToString();
-                var addrow = "<tr><td style='background: #fff;'>" + leavedetails.LeaveDate.ToShortDateString() + "</td><td>" + WeekDay + "</td><td>" + WorkfromHome + "</td><td>" + leavedetails.Halfday + "</td></tr>";
+                var addrow = "<tr><td style='background: #fff;'>" + leavedetails.LeaveDate.ToShortDateString() + "</td><td>" + WeekDay + "</td><td>" + WorkfromHome + "</td><td>" + WFHHalfDay + "</td><td>" + LeaveHalfDay + "</td></tr>";
                 mailbody += addrow;
             }
             mailbody += "</tbody></table><br><br>" +
@@ -876,6 +1012,18 @@ namespace Avidclan_BlogsVacancy.Controllers
                     }
                 }
                 var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
+
+                //MailMessage mail = new MailMessage();
+                //mail.To.Add("pooja.avidclan@gmail.com");
+                //mail.From = new MailAddress(senderEmail);
+                //mail.Subject = "test";
+                //mail.Body = mailbody;
+                //mail.IsBodyHtml = true;
+                //SmtpClient smtp = new SmtpClient(host, port);
+                //smtp.EnableSsl = true;
+                //smtp.UseDefaultCredentials = true;
+                //smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
+                //smtp.Send(mail);
             }
             catch (Exception ex)
             {
