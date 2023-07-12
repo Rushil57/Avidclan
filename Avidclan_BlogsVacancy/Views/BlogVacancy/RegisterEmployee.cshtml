@@ -3,161 +3,96 @@
     Layout = "~/Views/Shared/_AdminTemplate.cshtml";
 }
 
-<style>
-    body {
-        color: #999;
-        background: #f5f5f5;
-        font-family: 'Varela Round', sans-serif;
-    }
+<button type="button" class="btn btn-primary" onclick="ShowEmployeRegisterModel()">
+    Add New Employee
+</button>
 
-    .form-control {
-        box-shadow: none;
-        border-color: #ddd;
-    }
-
-        .form-control:focus {
-            border-color: #4aba70;
-        }
-
-    .login-form {
-        width: 350px;
-        margin: 0 auto;
-      /*  padding: 30px 0;*/
-    }
-
-        .login-form form {
-            color: #434343;
-            border-radius: 1px;
-            margin-bottom: 15px;
-            background: #fff;
-            border: 1px solid #f3f3f3;
-            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-            padding: 30px;
-        }
-
-        .login-form h4 {
-            text-align: center;
-            font-size: 22px;
-            margin-bottom: 20px;
-        }
-
-        .login-form .avatar {
-            color: #fff;
-            margin: 0px 70px 50px;
-            text-align: center;
-            width: 100px;
-            height: 120px;
-            padding: 15px;
-        }
-
-            .login-form .avatar i {
-                font-size: 62px;
-            }
-
-        .login-form .form-group {
-            margin-bottom: 20px;
-        }
-
-        .login-form .form-control, .login-form .btn {
-            min-height: 40px;
-            border-radius: 2px;
-            transition: all 0.5s;
-        }
-
-        .login-form .close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-        }
-
-        .login-form .btn {
-            background: #4aba70;
-            border: none;
-            line-height: normal;
-        }
-
-            .login-form .btn:hover, .login-form .btn:focus {
-                background: #42ae68;
-            }
-
-        .login-form .checkbox-inline {
-            float: left;
-        }
-
-        .login-form input[type="checkbox"] {
-            margin-top: 2px;
-        }
-
-        .login-form .forgot-link {
-            float: right;
-        }
-
-        .login-form .small {
-            font-size: 13px;
-        }
-
-        .login-form a {
-            color: #4aba70;
-        }
-
-    label.required::after {
-        content: '*';
-        margin-left: 1px;
-        color: #ff0000d1;
-    }
-</style>
-<body>
-    <div class="login-form" style=" width: 500px;">
-        <form name="registration">
-            <h4 class="modal-title">Register Your Account</h4>
-            <div class="form-group">
-                <label for="firstName" class="required">FirstName</label>
-                <input type="text" class="form-control" name="firstname" id="FirstName" placeholder="First Name">
+<div class="modal" id="EmployeeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width:100%">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Employee Registration</h5>
+                <button type="button" class="btn-close" aria-label="Close" onclick="ResetForm()"></button>
             </div>
-            <div class="form-group">
-                <label for="lastName" class="required">LastName</label>
-                <input type="text" class="form-control" name="lastname" id="LastName" placeholder="Last Name">
+            <div class="modal-body">
+                @*<body>*@
+                <div class="login-form">
+                    <form name="registration">
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="EmployeeId">
+
+                            <label for="firstName" class="required">FirstName</label>
+                            <input type="text" class="form-control" name="firstname" id="FirstName" placeholder="First Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="required">LastName</label>
+                            <input type="text" class="form-control" name="lastname" id="LastName" placeholder="Last Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber" class="required">Phone Number</label>
+                            <input type="text" class="form-control" name="phonenumber" id="PhoneNumber" placeholder="Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <label for="emaillAddress" class="required">Email Address</label>
+                            <input type="email" class="form-control" name="emailaddress" id="EmailAddress" placeholder="Email Address" onfocusout="CheckExistingEmailAddress()">
+                        </div>
+                        <div class="form-group">
+                            <label for="passWord" class="required">Password</label>
+                            <input type="password" class="form-control" name="password" id="PassWord" placeholder="Pass Word">
+                        </div>
+                        <div class="form-group">
+                            <label for="ConfirmpassWord" class="required">Confirm Password</label>
+                            <input type="password" class="form-control" name="Confirmpassword" id="ConfirmPassWord" placeholder="Confirm PassWord">
+                        </div>
+                        <div class="form-group">
+                            <label for="joiningDate" class="required">Joining Date</label>
+                            <input type="text" class="form-control" name="txtjoiningDate" id="JoiningDate" placeholder="Select Joining Date">
+                        </div>
+                        <div class="form-group">
+                            <label for="probationPeriod" class="required">Probation Months</label>
+                            <input type="text" class="form-control" name="txtprobationmonth" id="ProbationMonth" placeholder="Probation Month">
+                        </div>
+                        <div class="form-group">
+                            <label for="role" class="required">Select Role</label>
+                            <select class="form-control cls-role" name="role" id="RoleName">
+                                <option value="">Roles</option>
+                            </select>
+                        </div>
+                        <br />
+                        @*<button type="submit" class="btn btn-primary btn-sm btn-block">Submit</button>*@
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-sm" onclick="ResetForm()">Close</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                        </div>
+                    </form>
+                </div>
+                @*</body>*@
             </div>
-            <div class="form-group">
-                <label for="phoneNumber" class="required">Phone Number</label>
-                <input type="text" class="form-control" name="phonenumber" id="PhoneNumber" placeholder="Phone Number">
-            </div>
-            <div class="form-group">
-                <label for="emaillAddress" class="required">Email Address</label>
-                <input type="email" class="form-control" name="emailaddress" id="EmailAddress" placeholder="Email Address" onfocusout="CheckExistingEmailAddress()">
-            </div>
-            <div class="form-group">
-                <label for="passWord" class="required">Password</label>
-                <input type="password" class="form-control" name="password" id="PassWord" placeholder="Pass Word">
-            </div>
-            <div class="form-group">
-                <label for="ConfirmpassWord" class="required">Confirm Password</label>
-                <input type="password" class="form-control" name="Confirmpassword" id="ConfirmPassWord" placeholder="Confirm PassWord">
-            </div>
-            <div class="form-group">
-                <label for="joiningDate" class="required">Joining Date</label>
-                <input type="text" class="form-control" name="txtjoiningDate" id="JoiningDate" placeholder="Select Joining Date">
-            </div>
-            <div class="form-group">
-                <label for="probationPeriod" class="required">Probation Months</label>
-                <input type="text" class="form-control" name="txtprobationmonth" id="ProbationMonth" placeholder="Probation Month">
-            </div>
-            <div class="form-group">
-                <label for="role" class="required">Select Role</label>
-                <select class="form-control cls-role" name="role" id="RoleName">
-                    <option value="">Roles</option>
-                </select>
-            </div>
-            <br />
-            <button type="submit" class="btn btn-primary btn-sm btn-block">Submit</button>
-        </form>
+        </div>
     </div>
-</body>
+</div>
 
+
+<div class="table-responsive pt-3">
+    <table id="EmployeeList" class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th> FirstName </th>
+                <th> LastName </th>
+                <th> JoiningDate </th>
+                <th> Password </th>
+                <th> ProbationPeriod </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
 
 <script type="text/javascript">
+    var validator;
     $(function () {
-        $("form[name='registration']").validate({
+        validator = $("form[name='registration']").validate({
             rules: {
                 firstname: {required: true},
                 lastname: {required: true,
@@ -214,10 +149,12 @@
 
         BindRoles();
         $('#JoiningDate').datepicker();
+        GetEmployeeList();
     });
 
     function SaveNewUser() {
         var data = {
+            Id: $("#EmployeeId").val(),
             FirstName: $("#FirstName").val(),
             LastName: $("#LastName").val(),
             PhoneNumber: $("#PhoneNumber").val(),
@@ -236,6 +173,7 @@
                     if (result == "True") {
                         alert("User Created Successfully!")
                         ResetForm()
+                        GetEmployeeList()
                     }
                     else {
                         alert("Something Went Wrong!")
@@ -247,35 +185,36 @@
             });
 
     }
-
-
     function CheckExistingEmailAddress() {
-        debugger
-        var emailId = $("#EmailAddress").val();
-        if (emailId == null || emailId == "") {
-            return
+        var Id = $("#EmployeeId").val();
+        if (Id == 0) {
+             var emailId = $("#EmailAddress").val();
+                if (emailId == null || emailId == "") {
+                    return
+                }
+
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("CheckEmailAdress", "BlogVacancy")",
+                    contentType: 'application/json',
+                    data: {Email : emailId},
+                    success: function (result) {
+                        if (result == "") {
+
+                        }
+                        else {
+                            alert(result)
+                            $("#EmailAddress").val('');
+                        }
+                    },
+                    error: function (result) {
+                            alert("Failure");
+                    }
+                });
         }
-       
-        $.ajax({
-            type: "GET",
-            url: "@Url.Action("CheckEmailAdress", "BlogVacancy")",
-            contentType: 'application/json',
-            data: {Email : emailId},
-            success: function (result) {
-                if (result == "") {
 
-                }
-                else {
-                    alert(result)
-                    $("#EmailAddress").val('');
-                }
-            },
-            error: function (result) {
-                    alert("Failure");
-            }
-        });
+
     }
-
     function BindRoles() {
         $.ajax({
             type: "GET",
@@ -295,8 +234,9 @@
             }
         });
     }
-
     function ResetForm() {
+      validator.resetForm();
+      $("#EmployeeId").val(0);
       $("#FirstName").val(''),
       $("#LastName").val(''),
       $("#PhoneNumber").val(''),
@@ -306,6 +246,100 @@
       $("#RoleName").val(''),
       $("#JoiningDate").val(''),
       $("#ProbationMonth").val('')
+      $("#EmployeeModal").modal('hide')
+    }
+    function ShowEmployeRegisterModel() {
+        $("#EmployeeModal").modal('show')
+    }
+    function GetEmployeeList() {
+         $.ajax({
+            type: "Get",
+             url: "@Url.Action("GetAllEmployees", "BlogVacancy")",
+            success: function (result) {
+                $('#EmployeeList').dataTable({
+                    destroy: true,
+                    data: result,
+                    "columns": [
+                        {
+                            "data": "FirstName",
+                        },
+                        { "data": "LastName"},
+                        {
+                            "data": "JoiningDate",
+                            "render": function (data) {
+                                const dateValue = new Date(parseInt(data.substr(6)));
+                                return moment(dateValue).format('DD/MM/YYYY');
+                            }
+                        },
+                        { "data": "Password" },
+                        { "data": "ProbationPeriod" },
+                        {
+                            "data": "Id",
+                            "render": function (data, type, row) {
+                                return '<a class="btn btn-info btn-sm" style="color: white;" onclick="GetEmployeeDetailsById(' + data + ')"><i class="mdi mdi-pencil"></i></a>';
+                            }
+                        },
+                        {
+                            "data": "Id",
+                            "render": function (data, type, row) {
+                                return '<a class="btn btn-danger btn-sm" style="color: white;" onclick=DeleteEmployee(' +data +')><i class="mdi mdi-delete"></i></a>';
+                            }
+                        }
+                    ]
+                });
+
+
+            },
+            error: function (result) {
+                alert("failure");
+            }
+        });
+    }
+    function GetEmployeeDetailsById(id) {
+        $("#EmployeeModal").modal('show');
+        $.ajax({
+            url: '@Url.Action("GetEmployeeById", "BlogVacancy")',
+            contentType: 'application/json',
+            data: { Id: id },
+            type: "GET",
+            success: function (result) {
+                if (result != null) {
+                    $("#EmployeeId").val(result.Id);
+                    $("#FirstName").val(result.FirstName);
+                    $("#LastName").val(result.LastName)
+                    $("#PhoneNumber").val(result.PhoneNumber)
+                    $("#EmailAddress").val(result.EmailId)
+                    $("#PassWord").val(result.Password)
+                    $("#ConfirmPassWord").val(result.Password)
+                    var date = moment(result.JoiningDate).format('MM/DD/YYYY');
+                    $("#JoiningDate").val(date)
+                    $("#ProbationMonth").val(result.ProbationPeriod)
+                    $("#RoleName").val(result.Role);
+                }
+            },
+            error: function () {
+                alert('failure');
+            }
+        });
+    }
+
+    function DeleteEmployee(id) {
+         if (confirm('Are you sure want to delete Employee?')) {
+            $.ajax({
+                url: '@Url.Action("DeleteEmployee", "BlogVacancy")',
+                contentType: 'application/json',
+                data: { Id: id },
+                type: "GET",
+                success: function (result) {
+                    GetEmployeeList();
+                    alert('Delete Successully!');
+
+                },
+                error: function () {
+                    alert('failure');
+                }
+            });
+        }
     }
 </script>
 

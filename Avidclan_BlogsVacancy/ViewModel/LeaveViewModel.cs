@@ -95,5 +95,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public int Id { get; set; }
 
         public string ReportingPerson { get; set; }
+
+        public string ReportingPersonEmail { get; set; }
     }
 }

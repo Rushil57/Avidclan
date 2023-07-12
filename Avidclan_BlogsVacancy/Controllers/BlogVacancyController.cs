@@ -198,6 +198,15 @@ namespace Avidclan_BlogsVacancy.Controllers
         {
             try
             {
+                var mode = 0;
+                if (userRegister.Id == 0)
+                {
+                    mode = 2;
+                }
+                else
+                {
+                    mode = 10;
+                }
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id", userRegister.Id, DbType.Int32, ParameterDirection.Input);
                 parameters.Add("@FirstName", userRegister.FirstName, DbType.String, ParameterDirection.Input);
@@ -207,13 +216,17 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@PhoneNumber", userRegister.PhoneNumber, DbType.String, ParameterDirection.Input);
                 parameters.Add("@JoiningDate", userRegister.JoiningDate.ToShortDateString(), DbType.DateTime, ParameterDirection.Input);
                 parameters.Add("@ProbationPeriod", userRegister.ProbationPeriod, DbType.Int32, ParameterDirection.Input);
-                parameters.Add("@mode", 2, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
                 using (IDbConnection connection = new SqlConnection(connectionString))
                 {
                     var saveUserData = connection.ExecuteScalar("sp_User", parameters, commandType: CommandType.StoredProcedure);
                     if (saveUserData != null)
                     {
-                        SaveUserRole(saveUserData, userRegister.Role);
+                        SaveUserRole(saveUserData, userRegister.Role, false);
+                    }
+                    else
+                    {
+                        SaveUserRole(userRegister.Id, userRegister.Role, true);
                     }
                 }
                 return true;
@@ -224,15 +237,21 @@ namespace Avidclan_BlogsVacancy.Controllers
                 return false;
             }
         }
-
-
-
-        public void SaveUserRole(object UserId, int RoleId)
+        public void SaveUserRole(object UserId, int RoleId, bool CheckUpdate)
         {
+            var mode = 0;
+            if (CheckUpdate)
+            {
+                mode = 11;
+            }
+            else
+            {
+                mode = 3;
+            }
             var parameters = new DynamicParameters();
             parameters.Add("@UserId", UserId, DbType.Int32, ParameterDirection.Input);
             parameters.Add("@RoleId", RoleId, DbType.Int32, ParameterDirection.Input);
-            parameters.Add("@mode", 3, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
                 var saveUserRole = connection.ExecuteScalar("sp_User", parameters, commandType: CommandType.StoredProcedure);
@@ -255,7 +274,6 @@ namespace Avidclan_BlogsVacancy.Controllers
                 return "";
             }
         }
-
         public JsonResult GetRoles()
         {
             var parameters = new DynamicParameters();
@@ -290,7 +308,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 {
                     mode = 4;
                 }
-               // IsNoticePeriod
+                // IsNoticePeriod
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id", balanaceLeaveViewModel.Id, DbType.Int32, ParameterDirection.Input);
                 parameters.Add("@PersonalLeave", balanaceLeaveViewModel.PersonalLeave, DbType.String, ParameterDirection.Input);
@@ -348,6 +366,123 @@ namespace Avidclan_BlogsVacancy.Controllers
                 return RedirectToAction("UserLogin");
             }
             return View();
+        }
+
+        public ActionResult GetAllEmployees()
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
+            var parameters = new DynamicParameters();
+            parameters.Add("@Mode", 8, DbType.Int32, ParameterDirection.Input);
+            var EmployeeList = con.Query<UserRegister>("sp_User", parameters, commandType: CommandType.StoredProcedure).ToList();
+            return Json(EmployeeList, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetEmployeeById(int Id)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", Id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@Mode", 9, DbType.Int32, ParameterDirection.Input);
+            var EmployeeData = con.Query<UserRegister>("sp_User", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            return Json(EmployeeData, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DeleteEmployee(int id)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@Mode", 12, DbType.Int32, ParameterDirection.Input);
+            var DeleteBlog = con.Query<UserLogin>("sp_User", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            return RedirectToAction("RegisterEmployee");
+        }
+
+        public ActionResult ReportingPerson()
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public bool SaveReportingperson(string person, int Id)
+        {
+            var mode=0;
+            if(Id == 0)
+            {
+                mode = 3;
+            }
+            else
+            {
+                mode = 7;
+            }
+
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id", Id, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@ReportingPersonEmail", person, DbType.String, ParameterDirection.Input);
+                parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
+                using (IDbConnection connection = new SqlConnection(connectionString))
+                {
+                    var saveUserData = connection.ExecuteScalar("sp_LeaveReportingPerson", parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch
+            {
+                return false;
+            }
+         
+            return true;
+        }
+
+        public ActionResult GetListOfReportingPerson()
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
+            var parameters = new DynamicParameters();
+            parameters.Add("@Mode", 4, DbType.Int32, ParameterDirection.Input);
+            var ReportingpersonList = con.Query<ReportingPersons>("sp_LeaveReportingPerson", parameters, commandType: CommandType.StoredProcedure).ToList();
+            return Json(ReportingpersonList, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DeleteReportingPerson(int id)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@Mode", 5, DbType.Int32, ParameterDirection.Input);
+            var Deleteperson = con.Query<UserLogin>("sp_LeaveReportingPerson", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            return RedirectToAction("RegisterEmployee");
+        }
+
+        public ActionResult GetReportingPersonById(int id)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@Mode", 6, DbType.Int32, ParameterDirection.Input);
+            var EmployeeData = con.Query<ReportingPersons>("sp_LeaveReportingPerson", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            return Json(EmployeeData, JsonRequestBehavior.AllowGet);
         }
     }
 }

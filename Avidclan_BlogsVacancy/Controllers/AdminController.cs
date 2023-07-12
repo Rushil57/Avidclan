@@ -263,19 +263,19 @@ namespace Avidclan_BlogsVacancy.Controllers
                 }
                 if (LeaveData.Count == 0 && WorkHomeData.Count > 0 && LeaveAndWfhData.Count == 0)
                 {
-					//await SendWorkFromHomeMail(WorkHomeData, leaveViewModel.ReportingPerson, leaveViewModel.ReasonForLeave);
-					await SendWorkFromHomeAndLeaveMail(WorkHomeData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
-				}
+                    //await SendWorkFromHomeMail(WorkHomeData, leaveViewModel.ReportingPerson, leaveViewModel.ReasonForLeave);
+                    await SendWorkFromHomeAndLeaveMail(WorkHomeData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
+                }
                 if (LeaveData.Count == 0 && WorkHomeData.Count == 0 && LeaveAndWfhData.Count > 0)
                 {
                     await SendWorkFromHomeAndLeaveMail(LeaveAndWfhData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
                 }
-				if (LeaveData.Count == 0 && WorkHomeData.Count > 0 && LeaveAndWfhData.Count > 0)
-				{
-					var leaveAndWfhData = WorkHomeData.Concat(LeaveAndWfhData).ToList();
-					await SendWorkFromHomeAndLeaveMail(leaveAndWfhData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
-				}
-				if (LeaveData.Count > 0 && WorkHomeData.Count > 0 && LeaveAndWfhData.Count == 0)
+                if (LeaveData.Count == 0 && WorkHomeData.Count > 0 && LeaveAndWfhData.Count > 0)
+                {
+                    var leaveAndWfhData = WorkHomeData.Concat(LeaveAndWfhData).ToList();
+                    await SendWorkFromHomeAndLeaveMail(leaveAndWfhData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
+                }
+                if (LeaveData.Count > 0 && WorkHomeData.Count > 0 && LeaveAndWfhData.Count == 0)
                 {
                     var leaveAndWfhData = LeaveData.Concat(WorkHomeData).ToList();
                     await SendWorkFromHomeAndLeaveMail(leaveAndWfhData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
@@ -335,6 +335,11 @@ namespace Avidclan_BlogsVacancy.Controllers
 					HalfDay = " Half-Day leave";
                     Leave = "";
 				}
+                else
+                {
+                    HalfDay = "";
+                    Leave = "leave";
+                }
 			}
             else
             {

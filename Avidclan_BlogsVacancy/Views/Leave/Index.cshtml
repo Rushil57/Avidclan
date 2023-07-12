@@ -31,11 +31,7 @@
                 </div>
                 <div class="form-group">
                     <label>Select Reporting Person</label>
-                    <select data-placeholder="Select Reporting Person..." id="ReportingPersonId" multiple class="chosen-select" name="test" style="width:100%">
-                        <option value="0"></option>
-                        <option value='abhi.avidclan@gmail.com'>abhi.avidclan@gmail.com</option>
-                        <option value='dhaval.avidclan@gmail.com'>dhaval.avidclan@gmail.com</option>
-                        <option value='ashvin0999@gmail.com'>ashvin0999@gmail.com</option>
+                    <select data-placeholder="Select Reporting Person..." id="ReportingPersonId" multiple class="chosen-select cls-reportingdrp" name="test" style="width:100%">
                     </select>
                 </div>
                 <div id="TotalLeaveDates">
@@ -77,6 +73,7 @@
         $("#txtToDate").datepicker();
         $("#TotalLeaveDates").hide();
         GetLeaveDates();
+        GetReportingPerson();
     });
 
     var calendar;
@@ -165,8 +162,8 @@
               addcontrols += "<td>" + moment(arr[i].LeaveDates).format('MM/DD/YYYY') + "</td>" +
                   "<td>" + '<input type="checkbox" id="WorkFromcheck_' + count + '" name="WorkFromHomecheck" onchange="WorkFromHomecheckboxchecked(' + count + ')">' + "</td>" +
                   "<td>" + '<div class="HalfDaydiv_' + count + '">' +
-                  '<input type="radio" id="FirstHalf_' + count + '" name="HalfDayLeave_' + count + '" value="FirstHalf" onchange="checkRadioButton(FirstHalf_' + count + ')"> <label for="firsthalf">First Half</label>&nbsp;&nbsp;' +
-                  '<input type="radio" id="SecondHalf_' + count + '" name="HalfDayLeave_' + count + '" value="SecondHalf" onchange="checkRadioButton(SecondHalf_' + count + ')"> <label for= "secondhalf" > Second Half</label>' +
+                  '<input type="radio" id="FirstHalf_' + count + '" name="HalfDayLeave_' + count + '" value="FirstHalf" onclick="checkRadioButton(FirstHalf_' + count + ')" data-checked="false"> <label for="firsthalf">First Half</label>&nbsp;&nbsp;' +
+                  '<input type="radio" id="SecondHalf_' + count + '" name="HalfDayLeave_' + count + '" value="SecondHalf" onclick="checkRadioButton(SecondHalf_' + count + ')" data-checked="false"> <label for= "secondhalf" > Second Half</label>' +
                   '</div>' +
                   "<td>" +
                   '<label id="WFHHalfLeave_' + count + '" style="float:left;"></label>&nbsp;' +
@@ -214,6 +211,7 @@
         else {
             $('input[type=radio][name=WFHHalfDay_' + id).prop("checked", false);
             $(".WorkAndLeave_" + id).hide();
+            $("#WFHHalfLeave_" + id).text("")
         }
     }
 
@@ -254,7 +252,7 @@
                         exit = true
                         row.find("td:eq(3) .error").css("display", "block");
                     }
-                } 
+                }
             }
             Leave.Halfday = row.find("td:eq(2) input[type='radio']:checked").val();
             LeaveDetails.push(Leave);
@@ -271,7 +269,7 @@
             ReasonForLeave: $("#txtReason").val(),
             WorkFromHome: $("#WorkFromHome").prop('checked')
         }
-        
+
         $.ajax({
             type: "POST",
             url: "/api/Admin/RequestForLeave",
@@ -421,9 +419,26 @@
             $("#error_" + id).css("display", "none");
         }
 
+        var checkRadio = $(data).attr('data-checked');
+        if (checkRadio == "true") {
+            $(data).attr('data-checked', "false")
+            $("#" + data.id).prop('checked', false);
+        }
+        else {
+            $(data).attr('data-checked', "true")
+        }
+
+        if (data.value == 'SecondHalf') {
+            $("#FirstHalf_" + id).attr('data-checked', "false")
+        }
+        else {
+            $("#SecondHalf_" + id).attr('data-checked', "false")
+
+        }
         var wfhcheckboxccheck = $('#WorkFromcheck_' + id).is(":checked")
         if (wfhcheckboxccheck) {
-            if (checked) {
+            var checkhalfdayradiobutton = $(data).attr('data-checked');
+            if (checkhalfdayradiobutton == "true") {
                 $(".WorkAndLeave_" + id).css("display", "block")
                 if (data.value == "SecondHalf") {
                     $("#WFHHalfLeave_" + id).text("First Half")
@@ -431,7 +446,12 @@
                 else {
                     $("#WFHHalfLeave_" + id).text("Second Half")
                 }
-                
+
+            }
+            else {
+                $('input[type=radio][name=WFHHalfDay_' + id).prop("checked", false);
+                $(".WorkAndLeave_" + id).hide();
+                $("#WFHHalfLeave_" + id).text("")
             }
         }
 
@@ -454,4 +474,21 @@
             $("#error_" + id).css("display", "none");
         }
     }
+
+    function GetReportingPerson() {
+         $.ajax({
+            type: "Get",
+             url: "@Url.Action("GetListOfReportingPerson", "BlogVacancy")",
+             success: function (result) {
+                 $.each(result, function (index, item) {
+                     $('.cls-reportingdrp').append('<option value="' + item.ReportingPersonEmail + '"> ' + item.ReportingPersonEmail + ' </option>');
+                     $('.cls-reportingdrp').trigger('chosen:updated');
+
+                 });
+            },
+            error: function (result) {
+                alert("failure");
+            }
+        });
+    } 
 </script>

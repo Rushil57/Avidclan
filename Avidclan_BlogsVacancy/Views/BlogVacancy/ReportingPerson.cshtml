@@ -1,0 +1,181 @@
+﻿
+@{
+    ViewBag.Title = "ReportingPerson";
+    Layout = "~/Views/Shared/_AdminTemplate.cshtml";
+}
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" onclick="ShowReportingModalPopup()">
+    Add Reporting Person
+</button>
+
+<!-- Modal -->
+<div class="modal" id="ReportingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: auto;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Reporting Person</h5>
+                <button type="button" class="btn-close" onclick="ResetForm()" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form name="ReportingPersonForm">
+                    <div class="form-group">
+                        <input type="hidden" id="ReportingPersonId" value="0" />
+                        <label>Reporting Person</label>
+                        <input type="email" id="txtReportingPerson" name="reportingPerson" class="form-control" />
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="ResetForm()">Close</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive pt-3">
+    <table id="ReportingList" class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th> Reporting person </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<script>
+    var validator;
+    $(function () {
+        validator = $("form[name='ReportingPersonForm']").validate({
+            rules: {
+                reportingPerson: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                reportingPerson: {
+                    required: "Please enter a reporting person",
+                    email: "Please enter a valid email address"
+                }
+            },
+            submitHandler: function (form) {
+                SaveReportingPerson();
+            }
+        })
+
+        GetEmployees()
+    })
+
+    function SaveReportingPerson() {
+        var person = $("#txtReportingPerson").val();
+        var Id = $("#ReportingPersonId").val();
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("SaveReportingperson", "BlogVacancy")",
+            data: { 'Person': person, 'Id' : Id},
+                success: function (result) {
+                    if (result == "True") {
+                        alert("Added Successfully!")
+                        ResetForm()
+                        GetEmployees();
+                    }
+                    else {
+                        alert("Something Went Wrong!")
+                    }
+                },
+                error: function (result) {
+                    alert("Failure");
+                }
+            });
+    }
+
+    function ResetForm() {
+        validator.resetForm();
+        $("#ReportingPersonId").val(0);
+        $("#txtReportingPerson").val("");
+        $("#ReportingModal").modal('hide')
+    }
+
+    function GetEmployees() {
+        $.ajax({
+            type: "Get",
+             url: "@Url.Action("GetListOfReportingPerson", "BlogVacancy")",
+            success: function (result) {
+                $('#ReportingList').dataTable({
+                    destroy: true,
+                    data: result,
+                    "columns": [
+                        {
+                            "data": "ReportingPersonEmail",
+                        },
+                        {
+                            "data": "Id",
+                            "render": function (data, type, row) {
+                                return '<a class="btn btn-info btn-sm" style="color: white;" onclick="GetReportingPersonById(' + data + ')"><i class="mdi mdi-pencil"></i></a>';
+                            }
+                        },
+                        {
+                            "data": "Id",
+                            "render": function (data, type, row) {
+                                return '<a class="btn btn-danger btn-sm" style="color: white;" onclick=DeleteReportingPerson(' +data +')><i class="mdi mdi-delete"></i></a>';
+                            }
+                        }
+                    ]
+                });
+
+
+            },
+            error: function (result) {
+                alert("failure");
+            }
+        });
+    }
+
+    function DeleteReportingPerson(id) {
+         if (confirm('Are you sure want to delete?')) {
+            $.ajax({
+                url: '@Url.Action("DeleteReportingPerson", "BlogVacancy")',
+                contentType: 'application/json',
+                data: { Id: id },
+                type: "GET",
+                success: function (result) {
+                    GetEmployees();
+                    alert('Delete Successully!');
+
+                },
+                error: function () {
+                    alert('failure');
+                }
+            });
+        }
+    }
+
+    function GetReportingPersonById(id) {
+        $("#ReportingModal").modal('show');
+        $.ajax({
+            url: '@Url.Action("GetReportingPersonById", "BlogVacancy")',
+            contentType: 'application/json',
+            data: { Id: id },
+            type: "GET",
+            success: function (result) {
+                if (result != null) {
+                    $("#ReportingPersonId").val(result.Id);
+                    $("#txtReportingPerson").val(result.ReportingPersonEmail);
+                }
+            },
+            error: function () {
+                alert('failure');
+            }
+        });
+    }
+    function ShowReportingModalPopup() {
+        $("#ReportingModal").modal('show')
+    }
+</script>
+

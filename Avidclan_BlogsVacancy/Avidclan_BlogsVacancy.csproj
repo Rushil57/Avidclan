@@ -299,6 +299,7 @@
     <Content Include="Views\BlogVacancy\BalanaceLeave.cshtml" />
     <Content Include="Views\Leave\ChangePassword.cshtml" />
     <Content Include="Views\BlogVacancy\RegisterEmployee.cshtml" />
+    <Content Include="Views\BlogVacancy\ReportingPerson.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
