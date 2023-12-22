@@ -28,51 +28,39 @@ namespace Avidclan_BlogsVacancy.Methods
 
         public string NumberToWords(int number)
         {
-            if (number == 0)
-                return "Zero";
+            var units = new[] { "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen" };
+            var tens = new[] { "Zero", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
 
-            if (number < 0)
-                return "Minus " + NumberToWords(Math.Abs(number));
-
-            string words = "";
-
-            if ((number / 1000000) > 0)
+            if (number < 20)
             {
-                words += NumberToWords(number / 1000000) + " Million ";
-                number %= 1000000;
+                return units[number];
             }
-
-            if ((number / 1000) > 0)
+            if (number < 100)
             {
-                words += NumberToWords(number / 1000) + " Thousand ";
-                number %= 1000;
+                return tens[number / 10] + ((number % 10 > 0) ? " " + NumberToWords(number % 10) : "");
             }
-
-            if ((number / 100) > 0)
+            if (number < 1000)
             {
-                words += NumberToWords(number / 100) + " Hundred ";
-                number %= 100;
+                return units[number / 100] + " Hundred"
+                        + ((number % 100 > 0) ? " And " + NumberToWords(number % 100) : "");
             }
-
-            if (number > 0)
+            if (number < 100000)
             {
-                if (words != "")
-                    words += "and ";
-
-                var unitsMap = new[] { "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen" };
-                var tensMap = new[] { "Zero", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
-
-                if (number < 20)
-                    words += unitsMap[number];
-                else
-                {
-                    words += tensMap[number / 10];
-                    if ((number % 10) > 0)
-                        words += "-" + unitsMap[number % 10];
-                }
+                return NumberToWords(number / 1000) + " Thousand "
+                        + ((number % 1000 > 0) ? " " + NumberToWords(number % 1000) : "");
             }
-
-            return words;
+            if (number < 10000000)
+            {
+                return NumberToWords(number / 100000) + " Lakh "
+                        + ((number % 100000 > 0) ? " " + NumberToWords(number % 100000) : "");
+            }
+            if (number < 1000000000)
+            {
+                return NumberToWords(number / 10000000) + " Crore "
+                        + ((number % 10000000 > 0) ? " " + NumberToWords(number % 10000000) : "");
+            }
+            return NumberToWords(number / 1000000000) + " Arab "
+                    + ((number % 1000000000 > 0) ? " " + NumberToWords(number % 1000000000) : "");
         }
 
         public int CountNonWorkingDays(int Joinmonth, int JoinYear, string Date)

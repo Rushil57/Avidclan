@@ -343,7 +343,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     PdfPCell salaryInwords = new PdfPCell(new Phrase("In Words", boldFont));
                     salaryInwords.PaddingLeft = 30f;
                     table.AddCell(salaryInwords);
-                    PdfPCell totalsalaryInwords = new PdfPCell(new Phrase(" " + SalaryInWords + "Rupees only"));
+                    PdfPCell totalsalaryInwords = new PdfPCell(new Phrase(" " + SalaryInWords + " Rupees only"));
                     totalsalaryInwords.PaddingLeft = 10f;
                     totalsalaryInwords.Colspan = 3;
                     table.AddCell(totalsalaryInwords);
