@@ -290,6 +290,7 @@
     <Content Include="assets\images\firebase-img.svg" />
     <Content Include="assets\images\firebase-tech.jpg" />
     <Content Include="assets\images\firebase.svg" />
+    <Content Include="assets\images\flags%402x.png" />
     <Content Include="assets\images\flags.png" />
     <Content Include="assets\images\flexible-time.svg" />
     <Content Include="assets\images\flutter-app-tech.jpg" />
@@ -680,6 +681,14 @@
     <Content Include="assets\fonts\fa-solid-900.woff2" />
     <Content Include="assets\images\about-us.webp" />
     <Content Include="assets\js\commonScript.json" />
+    <Content Include="assets\webfonts\fa-brands-400.ttf" />
+    <Content Include="assets\webfonts\fa-brands-400.woff2" />
+    <Content Include="assets\webfonts\fa-regular-400.ttf" />
+    <Content Include="assets\webfonts\fa-regular-400.woff2" />
+    <Content Include="assets\webfonts\fa-solid-900.ttf" />
+    <Content Include="assets\webfonts\fa-solid-900.woff2" />
+    <Content Include="assets\webfonts\fa-v4compatibility.ttf" />
+    <Content Include="assets\webfonts\fa-v4compatibility.woff2" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -761,6 +770,7 @@
     <Content Include="Views\Shared\_blogdetail.cshtml" />
     <Content Include="Views\BlogPages\Index.cshtml" />
     <Content Include="Views\BlogPages\blog.cshtml" />
+    <Content Include="Views\Shared\_FooterWith190.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

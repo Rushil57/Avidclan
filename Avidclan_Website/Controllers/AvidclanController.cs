@@ -38,7 +38,8 @@ namespace Avidclan_Website.Controllers
         [Route("home/")]
         public ActionResult Index()
         {
-            return View();
+            //return View();
+            return RedirectToAction("AvidclanAction", "Avidclan");
         }
 
         [Route("about-us/")]
@@ -102,6 +103,7 @@ namespace Avidclan_Website.Controllers
         public ActionResult InternetMarketing()
         {
             return View();
+            //return RedirectToAction("AvidclanAction", "Avidclan");
         }
 
         [Route("quality-assurance-services/")]
@@ -227,7 +229,8 @@ namespace Avidclan_Website.Controllers
         [Route("jenkins-management-services/")]
         public ActionResult JenkinsManagementServices()
         {
-            return View();
+            //return View();
+            return RedirectToAction("AvidclanAction", "Avidclan");
         }
 
         [Route("selenium-automation-testing-services/")]
@@ -281,19 +284,22 @@ namespace Avidclan_Website.Controllers
         [Route("microsoft-dynamics-ax-development/")]
         public ActionResult MicrosoftDynamicsAXDevelopment()
         {
-            return View();
+            //return View();
+            return RedirectToAction("AvidclanAction", "Avidclan");
         }
 
         [Route("microsoft-dynamics-crm-development/")]
         public ActionResult MicrosoftDynamicsCRMDevelopment()
         {
-            return View();
+            //return View();
+            return RedirectToAction("AvidclanAction", "Avidclan");
         }
 
         [Route("sharepoint-development-company/")]
         public ActionResult SharePointDevelopment()
         {
-            return View();
+            //return View();
+            return RedirectToAction("AvidclanAction", "Avidclan");
         }
 
         [Route("life-at-avidclan/")]

@@ -21,7 +21,9 @@
 }
 
 @media only screen and (max-width: 1440px) {
-  .inner-page, .banner-section-two, .banner-section-two .content-box{
+  .inner-page,
+  .banner-section-two,
+  .banner-section-two .content-box {
     height: auto;
   }
 }
@@ -41,8 +43,8 @@
   }
 }
 
-@media only screen and (max-width: 1366px){}
-
+@media only screen and (max-width: 1366px) {
+}
 
 @media only screen and (max-width: 1199px) {
 }
@@ -73,7 +75,9 @@
 }
 
 @media only screen and (max-width: 991px) {
-  .banner-section-two h2, .inner-page h2, .inner-page h1{
+  .banner-section-two h2,
+  .inner-page h2,
+  .inner-page h1 {
     font-size: 42px;
   }
   .about-section-six .image {
@@ -96,7 +100,9 @@
   .main-footer .links-widget .widget-content {
     padding-left: 0px;
   }
-  .banner-section-two .content-box .row, .order-change, .inner-page .content-box .row {
+  .banner-section-two .content-box .row,
+  .order-change,
+  .inner-page .content-box .row {
     flex-direction: column-reverse;
   }
   .banner-section-two .content-box .image {
@@ -111,8 +117,12 @@
   .contact-form-section .contact-form {
     padding: 15px;
   }
-  .avidclan_ralign_subtitle{
+  .avidclan_ralign_subtitle {
     margin-top: 30px;
+  }
+  .OurTeam .member-block,
+  .ourfacts .count-box {
+    margin-bottom: 20px;
   }
 }
 
@@ -125,8 +135,8 @@
   }
 }
 
-@media (max-width: 767px), only screen and (min-width: 768px) and (max-width: 991px){
-  .our-mission br{
+@media (max-width: 767px), only screen and (min-width: 768px) and (max-width: 991px) {
+  .our-mission br {
     display: block;
   }
   .our-mission .content-block {
@@ -147,36 +157,38 @@
     margin-bottom: 25px;
     margin-right: 0px;
   }
-  .service-section .section-view.right img.ser_img, .service-section .section-view img.ser_img, .technology-section .section-view img.ser_img, .technology-section .section-view.right img.ser_img{
+  .service-section .section-view.right img.ser_img,
+  .service-section .section-view img.ser_img,
+  .technology-section .section-view img.ser_img,
+  .technology-section .section-view.right img.ser_img {
     border-radius: 30px 30px 0 0;
   }
   .service-section .sec-title {
     margin-bottom: 30px;
   }
-  .inner-page .image{
+  .inner-page .image {
     text-align: center;
     margin-bottom: 15px;
   }
 }
 
-
 @media only screen and (max-width: 767px) {
-  .cookies-infobar{
+  .cookies-infobar {
     flex-direction: column;
   }
-  .contact-form-section{
+  .contact-form-section {
     padding-bottom: 0;
   }
-  .career-block{
+  .career-block {
     margin-bottom: 15px;
   }
-  .technology-section .sec-title{
+  .technology-section .sec-title {
     padding: 15px !important;
   }
   .technology-section {
     padding: 20px 0;
   }
-  .banner-section-two .content-box{
+  .banner-section-two .content-box {
     padding: 20px;
     border-radius: 8px;
   }
@@ -184,14 +196,15 @@
     font-size: 30px;
     padding-bottom: 0;
   }
-  .lets-talk .sec-title h2{
+  .lets-talk .sec-title h2 {
     font-size: 30px;
     padding-bottom: 20px;
   }
-  .about-section .sec-title h2, .about-section.technologies-sub .sec-title h2{
+  .about-section .sec-title h2,
+  .about-section.technologies-sub .sec-title h2 {
     padding-bottom: 20px;
   }
-  .about-section .text{
+  .about-section .text {
     margin-bottom: 20px;
   }
   .banner-section-two .text:before,
@@ -220,7 +233,7 @@
   .career-section {
     padding: 35px 0px;
   }
-  .services-section-four.homesec{
+  .services-section-four.homesec {
     padding: 150px 0px 0;
   }
   .about-section .sec-title {
@@ -246,15 +259,19 @@
     font-size: 40px;
     padding-top: 40px;
   }
-  .banner-section-two h1, .inner-page h1{
+  .banner-section-two h1,
+  .inner-page h1 {
     font-size: 40px;
     line-height: 1.2;
     margin-top: 40px;
   }
-  .banner-section-two .content-box .image img, .inner-page .image img {
+  .banner-section-two .content-box .image img,
+  .inner-page .image img {
     max-width: 100%;
   }
-  .about-section-six .content-column .text, .banner-section-two .text, .inner-page .text {
+  .about-section-six .content-column .text,
+  .banner-section-two .text,
+  .inner-page .text {
     font-size: 18px;
   }
   .section-main-header {
@@ -279,7 +296,7 @@
     padding: 20px !important;
     margin-bottom: 0;
   }
-  .contact-form{
+  .contact-form {
     padding: 20px;
   }
   .mb-sm-30 {
@@ -313,29 +330,30 @@
     text-align: center !important;
     margin-top: 5px;
   }
-  .process-block-one .inner-box::after{
+  .process-block-one .inner-box::after {
     content: "";
     display: none;
   }
-  .lets-talk .inner-block{
+  .lets-talk .inner-block {
     padding: 20px;
   }
-  .lets-talk .inner-block .btn-box{
+  .lets-talk .inner-block .btn-box {
     text-align: center;
     margin-top: 20px;
   }
-  .expertise-section .expertise-block{
+  .expertise-section .expertise-block {
     height: auto;
     margin-top: 20px;
   }
-  .tech-services-section .tech-service-block, .key-benefit-section .key-block{
+  .tech-services-section .tech-service-block,
+  .key-benefit-section .key-block {
     height: auto;
     margin-bottom: 20px;
   }
   .key-benefit-section {
     padding: 0;
   }
-  .cinkes_testimonial_spage_wrapper{
+  .cinkes_testimonial_spage_wrapper {
     padding: 50px 30px;
     padding-bottom: 60px;
   }
@@ -345,16 +363,16 @@
   .tech-services-section {
     padding: 45px 0;
   }
-  .service-block .inner-box{
+  .service-block .inner-box {
     margin-bottom: 50px;
   }
-  .our-mission{
+  .our-mission {
     margin-bottom: 20px;
   }
-  .our-mission.vision .content-block{
+  .our-mission.vision .content-block {
     margin-top: 20px;
   }
-  .ourmission{
+  .ourmission {
     padding: 40px 0;
   }
 }
@@ -410,7 +428,7 @@
     margin: 0px 10px 10px 10px;
     border-bottom: 2px solid transparent;
   }
-  .filter-tabs.filter-btns{
+  .filter-tabs.filter-btns {
     justify-content: flex-start;
     width: 100%;
     border-radius: 5px;

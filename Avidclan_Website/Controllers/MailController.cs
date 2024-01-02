@@ -18,6 +18,11 @@ using System.Data;
 using System.Drawing;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
+using System.Xml.Linq;
+using System.IO;
+using MimeKit;
+using Microsoft.Ajax.Utilities;
 //using System.Net.Mail;
 
 namespace Avidclan_Website.Controllers
@@ -60,20 +65,25 @@ namespace Avidclan_Website.Controllers
                                    "</table>" +
                                    "</body></html>";
 
-                MailMessage mail = new MailMessage();
-                mail.To.Add(receiverEmail);
-                mail.From = new MailAddress(senderEmail);
-                mail.Subject = "Contact Inquiry From Avidclan Technologies";
-                mail.Body = messagebody;
-                mail.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient(host, port);
-                smtp.EnableSsl = false;
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
-                smtp.Send(mail);
+                //MailMessage mail = new MailMessage();
+                //mail.To.Add(receiverEmail);
+                //mail.From = new MailAddress(senderEmail);
+                //mail.Subject = "Contact Inquiry From Avidclan Technologies";
+                //mail.Body = messagebody;
+                //mail.IsBodyHtml = true;
+                //SmtpClient smtp = new SmtpClient(host, port);
+                //smtp.EnableSsl = true;
+                //smtp.UseDefaultCredentials = false;
+                //smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
+                //smtp.Send(mail);
+
+                await sendEmail(senderEmail, receiverEmail, (obj.FirstName + " " + obj.LastName), "Contact Inquiry From Avidclan Technologies", messagebody);
+
+                ErrorLog("Mail", "Execution Success", "Success");
             }
             catch (Exception ex)
             {
+                ErrorLog("Mail", ex.Message.ToString() + ex.InnerException, ex.StackTrace.ToString());
                 return "Error: " + ex.Message.ToString() + " " + ex.StackTrace.ToString();
                 throw ex.InnerException;
             }
@@ -104,18 +114,20 @@ namespace Avidclan_Website.Controllers
                                  "</body></html>";
             try
             {
-                MailMessage mail = new MailMessage();
-                mail.To.Add(receiverEmail);
-                mail.From = new MailAddress(senderEmail);
-                mail.Subject = "Project Inquiry From Avidclan Technologies";
-                mail.Body = messagebody;
-                mail.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient(host, port);
-                smtp.EnableSsl = false;
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
-                smtp.Send(mail);
-                smtp.Dispose();
+                //MailMessage mail = new MailMessage();
+                //mail.To.Add(receiverEmail);
+                //mail.From = new MailAddress(senderEmail);
+                //mail.Subject = "Project Inquiry From Avidclan Technologies";
+                //mail.Body = messagebody;
+                //mail.IsBodyHtml = true;
+                //SmtpClient smtp = new SmtpClient(host, port);
+                //smtp.EnableSsl = true;
+                //smtp.UseDefaultCredentials = false;
+                //smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
+                //smtp.Send(mail);
+                //smtp.Dispose();
+
+                await sendEmail(senderEmail, receiverEmail, (projectDetail.FirstName + " " + projectDetail.LastName), "Project Inquiry From Avidclan Technologies", messagebody);
             }
             catch (System.Net.Mail.SmtpException myEx)
             {
@@ -137,20 +149,20 @@ namespace Avidclan_Website.Controllers
                                       "</body></html>";
             try
             {
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
-                MailMessage replymail = new MailMessage();
-                replymail.To.Add(new MailAddress(projectDetail.Email));
-                replymail.From = new MailAddress(senderEmail, "Avidclan Technologies");
-                replymail.Subject = "Project Inquiry From Avidclan Technologies";
-                replymail.Body = MesaageReply;
-                replymail.IsBodyHtml = true;
-                SmtpClient smtpreplymail = new SmtpClient(host, 25);
-                smtpreplymail.EnableSsl = true;
-                smtpreplymail.UseDefaultCredentials = false;
-                smtpreplymail.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
-                smtpreplymail.Send(replymail);
+                //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                //MailMessage replymail = new MailMessage();
+                //replymail.To.Add(new MailAddress(projectDetail.Email));
+                //replymail.From = new MailAddress(senderEmail, "Avidclan Technologies");
+                //replymail.Subject = "Project Inquiry From Avidclan Technologies";
+                //replymail.Body = MesaageReply;
+                //replymail.IsBodyHtml = true;
+                //SmtpClient smtpreplymail = new SmtpClient(host, 25);
+                //smtpreplymail.EnableSsl = true;
+                //smtpreplymail.UseDefaultCredentials = false;
+                //smtpreplymail.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
+                //smtpreplymail.Send(replymail);
 
-
+                await sendEmail(senderEmail, receiverEmail, (projectDetail.FirstName + " " + projectDetail.LastName), "Project Inquiry From Avidclan Technologies", MesaageReply);
             }
             catch (System.Net.Mail.SmtpException myEx)
             {
@@ -189,18 +201,21 @@ namespace Avidclan_Website.Controllers
                                 "</body></html>";
             try
             {
-                MailMessage mail = new MailMessage();
-                mail.To.Add(receiverEmail);
-                mail.From = new MailAddress(senderEmail);
-                mail.Subject = "Career Inquiry From Avidclan Technologies";
-                mail.Body = messagebody;
-                mail.IsBodyHtml = true;
-                mail.Attachments.Add(new System.Net.Mail.Attachment(Resume.InputStream, Resume.FileName));
-                SmtpClient smtp = new SmtpClient(host, port);
-                smtp.EnableSsl = false;
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
-                smtp.Send(mail);
+                //MailMessage mail = new MailMessage();
+                //mail.To.Add(receiverEmail);
+                //mail.From = new MailAddress(senderEmail);
+                //mail.Subject = "Career Inquiry From Avidclan Technologies";
+                //mail.Body = messagebody;
+                //mail.IsBodyHtml = true;
+                //mail.Attachments.Add(new System.Net.Mail.Attachment(Resume.InputStream, Resume.FileName));
+                //SmtpClient smtp = new SmtpClient(host, port);
+                //smtp.EnableSsl = true;
+                //smtp.UseDefaultCredentials = false;
+                //smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
+                //smtp.Send(mail);
+
+                string base64Attachment = ConvertAttachmentToBase64(Resume.InputStream, Resume.FileName);
+                await sendEmail(senderEmail, receiverEmail, Name, "Career Inquiry From Avidclan Technologies", messagebody, base64Attachment, Resume.ContentType);
             }
             catch (System.Net.Mail.SmtpException myEx)
             {
@@ -222,17 +237,19 @@ namespace Avidclan_Website.Controllers
                                 "</body></html>";
             try
             {
-                MailMessage replymail = new MailMessage();
-                replymail.To.Add(Email);
-                replymail.From = new MailAddress(senderEmail);
-                replymail.Subject = "Career Inquiry From Avidclan Technologies";
-                replymail.Body = MessageReply;
-                replymail.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient(host, port);
-                smtp.EnableSsl = true;
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
-                smtp.Send(replymail);
+                //MailMessage replymail = new MailMessage();
+                //replymail.To.Add(Email);
+                //replymail.From = new MailAddress(senderEmail);
+                //replymail.Subject = "Career Inquiry From Avidclan Technologies";
+                //replymail.Body = MessageReply;
+                //replymail.IsBodyHtml = true;
+                //SmtpClient smtp = new SmtpClient(host, port);
+                //smtp.EnableSsl = true;
+                //smtp.UseDefaultCredentials = false;
+                //smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
+                //smtp.Send(replymail);
+
+                await sendEmail(senderEmail, Email, Name, "Career Inquiry From Avidclan Technologies", MessageReply);
             }
             catch (System.Net.Mail.SmtpException myEx)
             {
@@ -272,6 +289,67 @@ namespace Avidclan_Website.Controllers
                 throw;
             }
             return result;
+        }
+
+        public void ErrorLog(string ControllerName, string ErrorMessage, string StackTrace)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@ControllerName", ControllerName, DbType.String, ParameterDirection.Input);
+            parameters.Add("@ErrorMessage", ErrorMessage, DbType.String, ParameterDirection.Input);
+            parameters.Add("@StackTrace", StackTrace, DbType.String, ParameterDirection.Input);
+            parameters.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
+            var SaveError = con.ExecuteScalar("sp_Errorlog", parameters, commandType: CommandType.StoredProcedure);
+        }
+
+        public async Task sendEmail(string fromEmail, string toEmail, string reciverName, string subject, string message, string base64 = "", string fileType = "")
+        {
+            string apiKey = "a101ac38119207e6774e78a74701c990";
+            string apiSecret = "fc46b6850d50f957b087e2ba1bf2c0ee";
+            string apiUrl = "https://api.mailjet.com/v3.1/send";
+            using (HttpClient client = new HttpClient())
+            {
+                string base64Auth = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{apiKey}:{apiSecret}"));
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", base64Auth);
+                //string emailPayload = "{\"Messages\":[{\"From\":{\"Email\":\""+fromEmail+"\",\"Name\":\"avidclan\"},\"To\":[{\"Email\":\""+toEmail+"\",\"Name\":\"avidclan\"}],\"Subject\":\""+ subject + "\",\"HTMLPart\":\"" + message+"\"}]}";
+                string emailPayload = "";
+                if (!base64.IsNullOrWhiteSpace())
+                {
+                    if (fileType == "application/msword" || fileType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+                    {
+                        emailPayload = $"{{\"Messages\":[{{\"From\":{{\"Email\":\"{fromEmail}\",\"Name\":\"Avidclan Technologies\"}},\"To\":[{{\"Email\":\"{toEmail}\",\"Name\":\"{reciverName}\"}}],\"Subject\":\"{subject}\",\"HTMLPart\":\"{message}\",\"Attachments\":[{{\"ContentType\":\"application/msword\",\"Filename\":\"attachment.doc\",\"Base64Content\":\"{base64}\"}}] }}]}}";
+                    }
+                    else if (fileType == "application/pdf")
+                    {
+                        emailPayload = $"{{\"Messages\":[{{\"From\":{{\"Email\":\"{fromEmail}\",\"Name\":\"Avidclan Technologies\"}},\"To\":[{{\"Email\":\"{toEmail}\",\"Name\":\"{reciverName}\"}}],\"Subject\":\"{subject}\",\"HTMLPart\":\"{message}\",\"Attachments\":[{{\"ContentType\":\"application/pdf\",\"Filename\":\"attachment.pdf\",\"Base64Content\":\"{base64}\"}}] }}]}}";
+                    }
+                }
+                else
+                {
+                    emailPayload = $"{{\"Messages\":[{{\"From\":{{\"Email\":\"{fromEmail}\",\"Name\":\"Avidclan Technologies\"}},\"To\":[{{\"Email\":\"{toEmail}\",\"Name\":\"{reciverName}\"}}],\"Subject\":\"{subject}\",\"HTMLPart\":\"{message}\"}}]}}";
+                }
+
+                StringContent content = new StringContent(emailPayload, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine("Email sent successfully!");
+                }
+                else
+                {
+                    Console.WriteLine($"Error: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}");
+                }
+            }
+        }
+
+        static string ConvertAttachmentToBase64(Stream attachmentStream, string fileName)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                attachmentStream.CopyTo(memoryStream);
+                byte[] attachmentBytes = memoryStream.ToArray();
+                string base64Attachment = Convert.ToBase64String(attachmentBytes);
+                return base64Attachment;
+            }
         }
     }
     public class EMailConfiguration

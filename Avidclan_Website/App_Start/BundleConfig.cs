@@ -26,12 +26,41 @@ namespace Avidclan_Website
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/assets/css/bootstrap.min.css",
-                      "~/assets/css/intlTelInput.css",
-                      "~/assets/css/style.css",
-                      "~/assets/css/responsive.css",
-                      "~/assets/css/color.css",
+                      //"~/assets/css/intlTelInput.css",
+                      //"~/assets/css/style.css",
+                      //"~/assets/css/responsive.css",
+                      //"~/assets/css/color.css",
                       "~/assets/css/swiper.min.css"
                       ));
+
+            bundles.Add(new StyleBundle("~/Content/stylecss").Include(
+                      "~/assets/css/intlTelInput.css",
+                      "~/assets/css/all.css",
+                      "~/assets/css/style.css",
+                      "~/assets/css/responsive.css",
+                      "~/assets/css/color.css"
+                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/js").Include(
+                    "~/assets/js/jquery.js",
+                    "~/Scripts/bootstrap.min.js",
+                    "~/assets/js/popper.min.js",
+                    "~/assets/js/bootstrap-select.min.js"
+                    //"~/assets/js/isotope.js",
+                    //"~/assets/js/owl.js",
+                    //"~/assets/js/appear.js",
+                    //"~/assets/js/wow.js",
+                    //"~/assets/js/lazyload.js",
+                    //"~/assets/js/scrollbar.js",
+                    //"~/assets/js/TweenMax.min.js"
+                    //"~/assets/js/swiper.min.js",
+                    //"~/assets/js/jquery.validate.min.js",
+                    //"~/assets/js/contact.js",
+                    //"~/assets/js/js.cookie.min.js",
+                    //"~/assets/js/iconify.min.js",
+                    //"~/assets/js/intlTelInput.js",
+                    //"~/assets/js/script.js"
+                    ));
         }
     }
 }
