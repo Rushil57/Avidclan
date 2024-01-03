@@ -26,9 +26,8 @@
         gtag('config', 'UA-190354516-1');
     </script>
     <meta name="msvalidate.01" content="C6EA7291CCD22012F734D3C6649F2F3F" />
-    @*<script src="https://www.google.com/recaptcha/api.js" async defer></script>*@
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/stylecss")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -801,28 +800,11 @@
 </body>
 </html>
 
-<!--Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/js")
 <script src="~/assets/js/popper.min.js"></script>
 <script src="~/assets/js/bootstrap.min.js"></script>
-<script src="~/assets/js/iconify.min.js"></script>-->
-@*<script src="~/assets/js/script.js"></script>*@
-<!--Scripts.Render("~/bundles/js")
-<script src="~/assets/js/script.js"></script>-->
-
-@Scripts.Render("~/bundles/js")
-@*<script src="~/assets/js/bootstrap-select.min.js"></script>*@
-@*<script src="~/assets/js/jquery.fancybox.js"></script>*@
-@*<script src="~/assets/js/isotope.js"></script>*@
-<script src="~/assets/js/owl.js"></script>
-<script src="~/assets/js/appear.js"></script>
-<script src="~/assets/js/wow.js"></script>
-<script src="~/assets/js/lazyload.js"></script>
-<script src="~/assets/js/scrollbar.js"></script>
-<script src="~/assets/js/TweenMax.min.js"></script>
+<script src="~/assets/js/isotope.js"></script>
 <script src="~/assets/js/swiper.min.js"></script>
-<script src="~/assets/js/jquery.validate.min.js"></script>
-<script src="~/assets/js/contact.js"></script>
-<script src="~/assets/js/js.cookie.min.js"></script>
 <script src="~/assets/js/iconify.min.js"></script>
 <script src="~/assets/js/intlTelInput.js"></script>
 <script src="~/assets/js/script.js"></script>
@@ -831,8 +813,6 @@
         integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
-@*<script src="~/Scripts/bootstrap.min.js"></script>*@
-@*@Scripts.Render("~/bundles/bootstrap")*@
 @RenderSection("scripts", required: false)
 
 <script type="text/javascript">
