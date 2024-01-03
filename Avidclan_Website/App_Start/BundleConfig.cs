@@ -43,7 +43,14 @@ namespace Avidclan_Website
                     "~/assets/js/TweenMax.min.js",
                     "~/assets/js/jquery.validate.min.js",
                     "~/assets/js/contact.js",
-                    "~/assets/js/js.cookie.min.js"
+                    "~/assets/js/js.cookie.min.js",
+                    "~/assets/js/popper.min.js"
+                    ));
+
+            bundles.Add(new ScriptBundle("~/bundles/js2").Include(
+                    "~/assets/js/isotope.js",
+                    "~/assets/js/swiper.min.js",
+                    "~/assets/js/intlTelInput.js"
                     ));
         }
     }

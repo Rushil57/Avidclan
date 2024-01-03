@@ -629,13 +629,10 @@
         </div>
     </div>
 
-    @Scripts.Render("~/bundles/js")
-    <script src="~/assets/js/popper.min.js"></script>
+    <script src="@Url.Content("~/bundles/js")"></script>
     <script src="~/assets/js/bootstrap.min.js"></script>
-    <script src="~/assets/js/isotope.js"></script>
-    <script src="~/assets/js/swiper.min.js"></script>
+    <script src="@Url.Content("~/bundles/js2")"></script>
     <script src="~/assets/js/iconify.min.js"></script>
-    <script src="~/assets/js/intlTelInput.js"></script>
     <script src="~/assets/js/script.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
