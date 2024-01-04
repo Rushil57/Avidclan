@@ -1,272 +1,247 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-  <loc>https://www.avidclan.com/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>1.00</priority>
+<loc>https://www.avidclan.com/</loc>
+<changefreq>weekly</changefreq>
+<priority>1.00</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/home/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/about-us/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.60</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/about-us/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/services/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/services/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/web-development-company/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/web-development-services/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/mobile-app-development-company/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/mobile-application-development/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/ui-ux-design-company/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/design/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/quality-assurance-services/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/internet-marketing-services/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/iot-service-providers/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/quality-assurance-services/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/technologies/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/iot-service-providers/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/angular-development-company/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/technologies/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/reactjs-development-services/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/angular-development-services/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/vuejs-development-company/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/reactjs-development-services/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/typescript-web-development/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/vuejs-development-services/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/html5-development-services/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/typescript-web-development/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/dot-net-development-company/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/html5-development/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/java-development-company/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/dot-net-development-company/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/php-development-company/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/java-development-company/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/nodejs-development-company/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/php-development-company/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/ios-app-development-services/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/nodejs-development-services/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/android-app-development-company/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/ios-app-development-company/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/react-native-app-development-company/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/android-app-development-company/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/flutter-app-development-company/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/react-native-app-development/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/ionic-app-development-company/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/flutter-app-development-company/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/xamarin-development-company/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/ionic-app-development-company/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/aws-development-services/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/xamarin-app-development-company/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/google-cloud-platform-services/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/aws-development-services/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/microsoft-azure-devops/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/google-cloud-services/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/microsoft-sql-server-integration-services/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/microsoft-azure-development/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/selenium-automation-testing-services/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/jenkins-management-services/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/mysql-development-company/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/selenium-automation-testing-services/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/postgresql-database-management /</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/microsoft-sql-server-manage/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/firebase-development-company/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/mysql-development-company/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/mongodb-development-services/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/postgresql-development-company/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/redis-database-development-company/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/firebase-development-company/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/microsoft-azure-cosmos-db/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/mongodb-development-company/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/portfolio/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.60</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/redis-development/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/blog/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.60</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/microsoft-azure-cosmos-db/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/career/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.60</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/microsoft-dynamics-ax-development/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/life-at-avidclan/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.60</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/microsoft-dynamics-crm-development/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/contact-us/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.60</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/sharepoint-development-company/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/digital-marketing-services/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/portfolio/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/blog/the-advantages-of-choosing-dot-net-core-for-modern-web-applications/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.60</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/blog/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/blog/flutter-cross-platform-app-development-an-profitable-business-strategy/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.60</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/career/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/blog/ten-essential-ui-design-principles-for-a-better-user-experience/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.60</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/life-at-avidclan/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/blog/top-ten-flutter-widgets-for-improving-user-experience/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.60</priority>
 </url>
 <url>
-  <loc>https://www.avidclan.com/contact-us/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/blog/top-features-of-dot-net-7-what-is-new-and-improved/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.60</priority>
 </url>
-	<url>
-		<loc>https://www.avidclan.com/blog/guide-to-integrate-your-ml-models-into-your-dotnet-application/</loc>
-		<lastmod>2023-02-03T09:42:20+00:00</lastmod>
-		<priority>0.80</priority>
-	</url>
-	<url>
-		<loc>https://www.avidclan.com/blog/why-hiring-dedicated-developers-is-a-smart-investment-for-your-business/</loc>
-		<lastmod>2023-02-03T09:42:20+00:00</lastmod>
-		<priority>0.80</priority>
-	</url>
-	<url>
-		<loc>https://www.avidclan.com/blog/react-native-vs-flutter-which-cross-platform-development-framework-to-choose/</loc>
-		<lastmod>2023-02-03T09:42:20+00:00</lastmod>
-		<priority>0.80</priority>
-	</url>
-  <url>
-    <loc>https://www.avidclan.com/blog/top-features-of-dot-net-7-what-is-new-and-improved/</loc>
-    <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
 <url>
-  <loc>https://www.avidclan.com/blog/top-ten-flutter-widgets-for-improving-user-experience/</loc>
-  <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://www.avidclan.com/blog/react-native-vs-flutter-which-cross-platform-development-framework-to-choose/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.60</priority>
 </url>
-  <url>
-    <loc>https://www.avidclan.com/blog/flutter-cross-platform-app-development-an-profitable-business-strategy/</loc>
-    <lastmod>2023-02-03T09:42:20+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
-
-
+<url>
+<loc>https://www.avidclan.com/blog/why-hiring-dedicated-developers-is-a-smart-investment-for-your-business/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.60</priority>
+</url>
+<url>
+<loc>https://www.avidclan.com/blog/guide-to-integrate-your-ml-models-into-your-dotnet-application/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.60</priority>
+</url>
 </urlset>

@@ -21,6 +21,10 @@ namespace Avidclan_Website.Controllers
 {
     public class AvidclanController : Controller
     {
+        /*
+            Note : in bellow some multiple redirection added due to seo changes do not change without 
+                   respective persion permition.
+         */
 
         string connectionString = ConfigurationManager.ConnectionStrings["DbEntities"].ToString();
         SqlConnection con;
@@ -82,24 +86,48 @@ namespace Avidclan_Website.Controllers
         }
 
         [Route("web-development-services/")]
+        public ActionResult WebDevelopmentRedirect()
+        {
+            return RedirectToAction("WebDevelopment", "Avidclan");
+        }
+
+        [Route("web-development-company/")]
         public ActionResult WebDevelopment()
         {
             return View();
         }
 
         [Route("mobile-application-development/")]
+        public ActionResult MobileApplicationRedirect()
+        {
+            return RedirectToAction("MobileApplication", "Avidclan");
+        }
+
+        [Route("mobile-app-development-company/")]
         public ActionResult MobileApplication()
         {
             return View();
         }
 
         [Route("design/")]
+        public ActionResult DesignRedirect()
+        {
+            return RedirectToAction("Design", "Avidclan");
+        }
+
+        [Route("ui-ux-design-company/")]
         public ActionResult Design()
         {
             return View();
         }
 
         [Route("internet-marketing-services/")]
+        public ActionResult InternetMarketingRedirect()
+        {
+            return RedirectToAction("InternetMarketing", "Avidclan");
+        }
+
+        [Route("digital-marketing-services/")]
         public ActionResult InternetMarketing()
         {
             return View();
@@ -119,6 +147,12 @@ namespace Avidclan_Website.Controllers
         }
 
         [Route("angular-development-services/")]
+        public ActionResult AngularDevelopmentRedirect()
+        {
+            return RedirectToAction("AngularDevelopment", "Avidclan");
+        }
+
+        [Route("angular-development-company/")]
         public ActionResult AngularDevelopment()
         {
             return View();
@@ -131,6 +165,12 @@ namespace Avidclan_Website.Controllers
         }
 
         [Route("vuejs-development-services/")]
+        public ActionResult VueJsDevelopmentRedirect()
+        {
+            return RedirectToAction("VueJsDevelopment", "Avidclan");
+        }
+
+        [Route("vuejs-development-company/")]
         public ActionResult VueJsDevelopment()
         {
             return View();
@@ -143,6 +183,12 @@ namespace Avidclan_Website.Controllers
         }
 
         [Route("html5-development/")]
+        public ActionResult Html5DevelopmentRedirect()
+        {
+            return RedirectToAction("Html5Development", "Avidclan");
+        }
+
+        [Route("html5-development-services/")]
         public ActionResult Html5Development()
         {
             return View();
@@ -167,12 +213,24 @@ namespace Avidclan_Website.Controllers
         }
 
         [Route("nodejs-development-services/")]
+        public ActionResult NodeJsDevelopmentRedirect()
+        {
+            return RedirectToAction("NodeJsDevelopment", "Avidclan");
+        }
+
+        [Route("nodejs-development-company/")]
         public ActionResult NodeJsDevelopment()
         {
             return View();
         }
 
         [Route("ios-app-development-company/")]
+        public ActionResult IosAppDevelopmentRedirect()
+        {
+            return RedirectToAction("IosAppDevelopment", "Avidclan");
+        }
+
+        [Route("ios-app-development-services/")]
         public ActionResult IosAppDevelopment()
         {
             return View();
@@ -185,6 +243,12 @@ namespace Avidclan_Website.Controllers
         }
 
         [Route("react-native-app-development/")]
+        public ActionResult ReactNativeDevelopmentRedirect()
+        {
+            return RedirectToAction("ReactNativeDevelopment", "Avidclan");
+        }
+
+        [Route("react-native-app-development-company/")]
         public ActionResult ReactNativeDevelopment()
         {
             return View();
@@ -203,6 +267,12 @@ namespace Avidclan_Website.Controllers
         }
 
         [Route("xamarin-app-development-company/")]
+        public ActionResult XamarinAppDevelopmentRedirect()
+        {
+            return RedirectToAction("XamarinAppDevelopment", "Avidclan");
+        }
+
+        [Route("xamarin-development-company/")]
         public ActionResult XamarinAppDevelopment()
         {
             return View();
@@ -215,12 +285,24 @@ namespace Avidclan_Website.Controllers
         }
 
         [Route("google-cloud-services/")]
+        public ActionResult GoogleCloudServicesRedirect()
+        {
+            return RedirectToAction("GoogleCloudServices", "Avidclan");
+        }
+
+        [Route("google-cloud-platform-services/")]
         public ActionResult GoogleCloudServices()
         {
             return View();
         }
 
         [Route("microsoft-azure-development/")]
+        public ActionResult MicrosoftAzureDevelopmentRedirect()
+        {
+            return RedirectToAction("MicrosoftAzureDevelopment", "Avidclan");
+        }
+
+        [Route("microsoft-azure-devops/")]
         public ActionResult MicrosoftAzureDevelopment()
         {
             return View();
@@ -240,6 +322,12 @@ namespace Avidclan_Website.Controllers
         }
 
         [Route("microsoft-sql-server-manage/")]
+        public ActionResult MicrosoftSqlServerManageRedirect()
+        {
+            return RedirectToAction("MicrosoftSqlServerManage", "Avidclan");
+        }
+
+        [Route("microsoft-sql-server-integration-services/")]
         public ActionResult MicrosoftSqlServerManage()
         {
             return View();
@@ -252,6 +340,12 @@ namespace Avidclan_Website.Controllers
         }
 
         [Route("postgresql-development-company/")]
+        public ActionResult PostgreSqlDevelopmentRedirect()
+        {
+            return RedirectToAction("PostgreSqlDevelopment", "Avidclan");
+        }
+
+        [Route("postgresql-database-management/")]
         public ActionResult PostgreSqlDevelopment()
         {
             return View();
@@ -264,12 +358,24 @@ namespace Avidclan_Website.Controllers
         }
 
         [Route("mongodb-development-company/")]
+        public ActionResult MongodbDevelopmentRedirect()
+        {
+            return RedirectToAction("MongodbDevelopment", "Avidclan");
+        }
+
+        [Route("mongodb-development-services/")]
         public ActionResult MongodbDevelopment()
         {
             return View();
         }
 
         [Route("redis-development/")]
+        public ActionResult RedisDevelopmentRedirect()
+        {
+            return RedirectToAction("RedisDevelopment", "Avidclan");
+        }
+
+        [Route("redis-database-development-company/")]
         public ActionResult RedisDevelopment()
         {
             return View();

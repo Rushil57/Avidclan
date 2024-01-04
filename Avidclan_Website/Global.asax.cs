@@ -19,5 +19,19 @@ namespace Avidclan_Website
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        /*
+            Note : Add bellow code for reduce canonicle error in seo.
+         */
+        //protected void Application_BeginRequest(object sender, EventArgs e)
+        //{
+        //    string rawUrl = HttpContext.Current.Request.RawUrl;
+
+        //    if (!rawUrl.EndsWith("/") && !System.IO.Path.HasExtension(rawUrl))
+        //    {
+        //        HttpContext.Current.Response.RedirectPermanent(rawUrl + "/");
+        //        HttpContext.Current.Response.End();
+        //    }
+        //}
     }
 }

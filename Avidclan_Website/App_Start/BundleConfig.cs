@@ -23,6 +23,7 @@ namespace Avidclan_Website
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      //"~/Content/bootstrap.css",
                       "~/assets/css/bootstrap.min.css",
                       "~/assets/css/swiper.min.css",
                       "~/assets/css/intlTelInput.css",
