@@ -162,7 +162,7 @@ namespace Avidclan_Website.Controllers
                 //smtpreplymail.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
                 //smtpreplymail.Send(replymail);
 
-                await sendEmail(senderEmail, receiverEmail, (projectDetail.FirstName + " " + projectDetail.LastName), "Project Inquiry From Avidclan Technologies", MesaageReply);
+                //await sendEmail(senderEmail, receiverEmail, (projectDetail.FirstName + " " + projectDetail.LastName), "Project Inquiry From Avidclan Technologies", MesaageReply);
             }
             catch (System.Net.Mail.SmtpException myEx)
             {
@@ -249,7 +249,7 @@ namespace Avidclan_Website.Controllers
                 //smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
                 //smtp.Send(replymail);
 
-                await sendEmail(senderEmail, Email, Name, "Career Inquiry From Avidclan Technologies", MessageReply);
+                //await sendEmail(senderEmail, Email, Name, "Career Inquiry From Avidclan Technologies", MessageReply);
             }
             catch (System.Net.Mail.SmtpException myEx)
             {

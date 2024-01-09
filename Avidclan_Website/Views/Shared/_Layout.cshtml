@@ -534,7 +534,7 @@
                             <div class="row">
                                 <div class="col-md-12 form-group">
                                     <label for="caseOption">Applying for</label>
-                                    <select class="dropdownjobtitle" name="dropdownJobTitle">
+                                    <select class="dropdownjobtitle" name="dropdownJobTitle" id="caseOption">
                                         <option value=0>--Select a Position--</option>
                                     </select>
                                 </div>
@@ -629,11 +629,13 @@
         </div>
     </div>
 
-    @*<script src="@Url.Content("~/bundles/js")"></script>
-    <script src="~/assets/js/bootstrap.min.js"></script>
-    <script src="@Url.Content("~/bundles/js2")"></script>
+    <!--<script src="~/assets/js/bootstrap.min.js"></script>
     <script src="~/assets/js/iconify.min.js"></script>
-    <script src="~/assets/js/script.js"></script>*@
+    <script src="~/assets/js/bootstrap-select.min.js"></script>
+    @Scripts.Render("~/bundles/js")
+    <script src="~/assets/js/intlTelInput.js"></script>-->
+    @*<script src="~/assets/js/contact.js"></script>*@
+    <!--<script src="~/assets/js/script.js"></script>-->
 
     <!--Scripts.Render("~/bundles/js")
     <script src="~/assets/js/bootstrap.min.js"></script>-->
@@ -643,7 +645,6 @@
     <script src="~/assets/js/iconify.min.js"></script>
     <script src="~/assets/js/intlTelInput.js"></script>
     <script src="~/assets/js/script.js"></script>-->
-
     <script src="~/assets/js/jquery.js"></script>
         <script src="~/assets/js/popper.min.js"></script>
         <script src="~/assets/js/bootstrap.min.js"></script>
@@ -729,12 +730,12 @@
                 return false;
             }
             var response = grecaptcha.getResponse();
-            //if (response.length == 0) {
-            //    //reCaptcha not verified
-            //    alert("Please Verify Captcha!");
-            //    e.preventDefault();
-            //    return false;
-            //}
+            if (response.length == 0) {
+                //reCaptcha not verified
+                alert("Please Verify Captcha!");
+                e.preventDefault();
+                return false;
+            }
 
 
             $('#button-spinner').show();
@@ -853,7 +854,8 @@
             }
 
             $('#button-spinner').show();
-            var Position = $("#caseOption").val();
+            //var Position = $("#caseOption").val();
+            var Position = $("#caseOption option:selected").text();
             var Name = $("#name").val();
             var Email = $("#email").val();
             var ContactNumber = $("#contactno").val();

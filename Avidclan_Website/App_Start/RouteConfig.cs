@@ -26,7 +26,6 @@ namespace Avidclan_Website
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Avidclan", action = "AvidclanAction", id = UrlParameter.Optional }
             );
-            
         }
     }
 }

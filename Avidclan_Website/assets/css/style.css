@@ -4359,7 +4359,7 @@ a.elink {
 
 .service-list ul li::before {
   content: "";
-  background: url(../images/icons/check-square.svg);
+  background: url(../../assets/images/icons/check-square.svg);
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
