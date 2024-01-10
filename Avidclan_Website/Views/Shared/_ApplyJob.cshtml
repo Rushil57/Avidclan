@@ -1,0 +1,119 @@
+﻿@using reCAPTCHA.MVC
+
+<div class="modal fade ModalApplyJob"
+     id="ModalApplyJob"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="ModalApplyJob"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content contact-form-section">
+            <div class="modal-header mb-0">
+                <div class="sec-title w-100">
+                    <h2>Submit below details to apply position</h2>
+                </div>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="iconify" data-icon="ep:circle-close-filled" data-height="32"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="contact-form career_form"
+                      method="post"
+                      id="career-form"
+                      name="career_form_data">
+                    <div class="controls">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="caseOption">Applying for</label>
+                                <select class="dropdownjobtitle" name="dropdownJobTitle" id="caseOption">
+                                    <option value=0>--Select a Position--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="name">Name</label>
+                                <div class="input-group">
+                                    <input type="text" name="name" id="name" placeholder="Name" />
+                                </div>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="email">Email</label>
+                                <div class="input-group">
+                                    <input type="email" name="email" id="email" placeholder="Email" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="contactno">Contact No.</label>
+                                <div class="input-group">
+                                    <input type="text" name="contactno" id="contactno" placeholder="Contact No." />
+                                </div>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="contactno">Attach File <small> (Only .pdf, .doc, .docx)</small></label>
+                                <input type="file" name="attachmentFile" id="attachmentFile" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="message">Message</label>
+                                <div class="input-group">
+                                    <textarea name="message" id="message" placeholder="" rows="4"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group mb-0">
+                                <label for="captcha">Please Verify You Are a Human</label>
+                                @Html.Recaptcha()
+                                @*<div class="g-recaptcha" data-sitekey="6Lc7VFgjAAAAAJQuEw_pFI_HgbdU6SVsO5uc4QIt"></div>*@
+                            </div>
+                            <div class="col-md-6 form-group my-auto text-center">
+                                <button type="submit" class="theme-btn btn-style-one" name="submit">
+                                    <span class="btn-title">
+                                        Apply Now
+                                        <div id="button-spinner" style="margin-left: 10px; width: 15px; height: 15px; display: none" class="spinner-border"></div>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade ModalApplyJob"
+     id="ModalJobDescDotNet"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="ModalJobDescDotNet"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content contact-form-section">
+            <div class="modal-header">
+                <div class="sec-title w-100">
+                    <h3>
+                    </h3>
+                </div>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" onclick="ClearModalPopup()">
+                    <span class="iconify" data-icon="ep:circle-close-filled" data-height="32"></span>
+                </button>
+            </div>
+            <div class="modal-body job-desc">
+                <h5 class="title">Roles &amp; Responsibilities</h5>
+                <ul class="list">
+                </ul>
+
+                <h5 class="title">Required Qualification</h5>
+                <p class="Qualification">
+
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

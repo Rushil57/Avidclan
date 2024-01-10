@@ -33,23 +33,23 @@ namespace Avidclan_Website
                       "~/Content/site.css"
                       ));
 
-            bundles.Add(new ScriptBundle("~/bundles/js").Include(
-                    "~/assets/js/jquery.js",
-                    "~/assets/js/lazyload.js",
-                    "~/assets/js/owl.js",
-                    "~/assets/js/appear.js",
-                    "~/assets/js/wow.js",
-                    "~/assets/js/scrollbar.js",
-                    "~/assets/js/TweenMax.min.js",
-                    "~/assets/js/jquery.validate.min.js",
-                    "~/assets/js/contact.js",
-                    "~/assets/js/js.cookie.min.js",
-                    "~/assets/js/popper.min.js",
-                    "~/assets/js/isotope.js",
-                    "~/assets/js/swiper.min.js"
-                    ));
+            //bundles.Add(new ScriptBundle("~/bundles/js").Include(
+            //        "~/assets/js/jquery.js",
+            //        "~/assets/js/lazyload.js",
+            //        "~/assets/js/owl.js",
+            //        "~/assets/js/appear.js",
+            //        "~/assets/js/wow.js",
+            //        "~/assets/js/scrollbar.js",
+            //        "~/assets/js/TweenMax.min.js",
+            //        "~/assets/js/jquery.validate.min.js",
+            //        "~/assets/js/contact.js",
+            //        "~/assets/js/js.cookie.min.js",
+            //        "~/assets/js/popper.min.js",
+            //        "~/assets/js/isotope.js",
+            //        "~/assets/js/swiper.min.js"
+            //        ));
             
-            BundleTable.EnableOptimizations = false;
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

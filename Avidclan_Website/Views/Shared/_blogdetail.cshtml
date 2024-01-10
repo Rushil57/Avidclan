@@ -8,8 +8,8 @@
 
     <link rel="shortcut icon" href="~/assets/images/favicon.png" type="image/x-icon" />
     <link rel="icon" href="~/assets/images/favicon.png" type="image/x-icon" />
-    <script src="https://www.googletagmanager.com/gtag/js?id=G-72R4P6376Q" defer></script>
-    <script defer>
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-72R4P6376Q" async></script>
+    <script async>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
@@ -17,8 +17,8 @@
         gtag('config', 'G-72R4P6376Q');
     </script>
     <!-- Google tag (gtag.js) -->
-    <script src="https://www.googletagmanager.com/gtag/js?id=UA-190354516-1" defer></script>
-    <script defer>
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-190354516-1" async></script>
+    <script async>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
@@ -838,10 +838,6 @@
     <script src="~/assets/js/intlTelInput.js"></script>
     <script src="~/assets/js/script.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
-        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"></script>
 @RenderSection("scripts", required: false)
 
 <script type="text/javascript">

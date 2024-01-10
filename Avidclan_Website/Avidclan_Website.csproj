@@ -771,6 +771,7 @@
     <Content Include="Views\BlogPages\Index.cshtml" />
     <Content Include="Views\BlogPages\blog.cshtml" />
     <Content Include="Views\Shared\_FooterWith190.cshtml" />
+    <Content Include="Views\Shared\_ApplyJob.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
