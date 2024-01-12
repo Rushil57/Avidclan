@@ -27,8 +27,11 @@
     </script>
     <meta name="msvalidate.01" content="C6EA7291CCD22012F734D3C6649F2F3F" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+
+    <link rel="stylesheet" href="@Styles.Url("~/Content/css")" async />
+    <link rel="stylesheet" href="@Styles.Url("~/bundles/modernizr")" async />
 </head>
 <body>
 
@@ -819,15 +822,15 @@
 <script src="~/assets/js/jquery.js"></script>
     <script src="~/assets/js/popper.min.js"></script>
     <script src="~/assets/js/bootstrap.min.js"></script>
-    <script src="~/assets/js/bootstrap-select.min.js"></script>
-    <script src="~/assets/js/jquery.fancybox.js"></script>
+    @*<script src="~/assets/js/bootstrap-select.min.js"></script>*@
+    @*<script src="~/assets/js/jquery.fancybox.js"></script>*@
     <script src="~/assets/js/isotope.js"></script>
     <script src="~/assets/js/owl.js"></script>
     <script src="~/assets/js/appear.js"></script>
     <script src="~/assets/js/wow.js"></script>
     <script src="~/assets/js/lazyload.js"></script>
     <script src="~/assets/js/scrollbar.js"></script>
-    <script src="~/assets/js/TweenMax.min.js"></script>
+    @*<script src="~/assets/js/TweenMax.min.js"></script>*@
     <script src="~/assets/js/swiper.min.js"></script>
     <script src="~/assets/js/jClocksGMT.js"></script>
     <script src="~/assets/js/jquery.rotate.js"></script>

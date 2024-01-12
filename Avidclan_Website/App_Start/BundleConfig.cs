@@ -48,7 +48,7 @@ namespace Avidclan_Website
             //        "~/assets/js/isotope.js",
             //        "~/assets/js/swiper.min.js"
             //        ));
-            
+
             BundleTable.EnableOptimizations = true;
         }
     }
