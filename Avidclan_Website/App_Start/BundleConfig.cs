@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace Avidclan_Website
 {
@@ -23,10 +22,6 @@ namespace Avidclan_Website
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/assets/css/bootstrap.min.css",
-                      "~/assets/css/swiper.min.css",
-                      "~/assets/css/intlTelInput.css",
-                      "~/assets/css/all.css",
                       "~/assets/css/style.css",
                       "~/assets/css/responsive.css",
                       "~/assets/css/color.css",

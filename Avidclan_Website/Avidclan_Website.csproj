@@ -186,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\all.css" />
+    <Content Include="assets\css\all-min.css" />
     <Content Include="assets\css\animate.css" />
     <Content Include="assets\css\bootstrap-select.min.css" />
     <Content Include="assets\css\bootstrap.min.css" />
@@ -203,6 +204,7 @@
     <Content Include="assets\css\responsive.css" />
     <Content Include="assets\css\scrollbar.css" />
     <Content Include="assets\css\style.css" />
+    <Content Include="assets\css\swiper.css" />
     <Content Include="assets\css\swiper.min.css" />
     <Content Include="assets\fonts\fa-brands-400.svg" />
     <Content Include="assets\fonts\fa-regular-400.svg" />
@@ -275,6 +277,7 @@
     <Content Include="assets\images\dev.jpg" />
     <Content Include="assets\images\dev.png" />
     <Content Include="assets\images\dev.svg" />
+    <Content Include="assets\images\dev1.svg" />
     <Content Include="assets\images\discover.svg" />
     <Content Include="assets\images\door-policy.svg" />
     <Content Include="assets\images\dot-net-img.svg" />
@@ -693,6 +696,7 @@
     <Content Include="assets\webfonts\fa-solid-900.woff2" />
     <Content Include="assets\webfonts\fa-v4compatibility.ttf" />
     <Content Include="assets\webfonts\fa-v4compatibility.woff2" />
+    <Content Include="assets\css\bootstrap.min.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -1,28 +1,17 @@
-﻿using Antlr.Runtime;
-using Avidclan_Website.Models;
-using Newtonsoft.Json.Linq;
+﻿using Avidclan_Website.Models;
+using Dapper;
+using Microsoft.Ajax.Utilities;
 using System;
-using System.Net;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
+using System.Linq;
 using System.Net.Http;
-using System.Net.Mail;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using SendGrid;
-using SendGrid.Helpers.Mail;
-using System.ComponentModel;
-using System.Configuration;
-using System.Web.Services.Description;
-using Dapper;
-using System.Data;
-using System.Drawing;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-using System.IO;
-using MimeKit;
-using Microsoft.Ajax.Utilities;
 //using System.Net.Mail;
 
 namespace Avidclan_Website.Controllers
@@ -53,7 +42,7 @@ namespace Avidclan_Website.Controllers
         {
             try
             {
-                await ReadConfiguration();
+                await ReadConfiguration("other");
                 var messagebody = "<html><body>" +
                                     "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
                                     "<tr style='background: #eee;'><td colspan='2'><strong>Contact Inquiry Details</strong></td></tr>" +
@@ -94,7 +83,7 @@ namespace Avidclan_Website.Controllers
         [HttpPost]
         public async Task<string> SendProjectDetails(ProjectDetail projectDetail)
         {
-            await ReadConfiguration();
+            await ReadConfiguration("other");
             var messagebody = "<html>" +
                                  "<body style='font-family: lato, Helvetica, sans-serif;font-size: 16px;width:600px;'>" +
                                      "<div style='padding: 15px 30px;background: #1d5fa5;color: #fff;'>" +
@@ -179,7 +168,7 @@ namespace Avidclan_Website.Controllers
         [HttpPost]
         public async Task<string> SendCandidateDetails()
         {
-            await ReadConfiguration();
+            await ReadConfiguration("career");
             var Name = HttpContext.Current.Request["Name"];
             var Email = HttpContext.Current.Request["Email"];
             var ContactNumber = HttpContext.Current.Request["ContactNumber"];
@@ -261,13 +250,14 @@ namespace Avidclan_Website.Controllers
             return "Sent";
 
         }
-        public async Task<bool> ReadConfiguration()
+        public async Task<bool> ReadConfiguration(string type)
         {
             var result = false;
             try
             {
                 var parameters = new DynamicParameters();
                 parameters.Add("@Mode", 2, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@Type", type, DbType.String, ParameterDirection.Input);
                 var resultConfiguration = con.Query<EMailConfiguration>("sp_EmailConfiguration", parameters, commandType: CommandType.StoredProcedure).ToList().FirstOrDefault();
                 if (resultConfiguration != null)
                 {

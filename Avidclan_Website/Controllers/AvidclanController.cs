@@ -6,16 +6,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing.Printing;
-using System.IO;
 using System.Linq;
-using System.Web;
-using System.Web.Hosting;
-using System.Web.Http.Results;
 using System.Web.Mvc;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml.Linq;
 
 namespace Avidclan_Website.Controllers
 {
