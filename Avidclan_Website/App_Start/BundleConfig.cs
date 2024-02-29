@@ -21,12 +21,24 @@ namespace Avidclan_Website
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
+            bundles.Add(new StyleBundle("~/Content/bootstrapcss").Include(
+                          "~/assets/css/Avidclan/bootstrap-custom.css"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/assets/css/style.css",
                       "~/assets/css/responsive.css",
                       "~/assets/css/color.css",
                       "~/Content/site.css"
                       ));
+
+            bundles.Add(new ScriptBundle("~/Content/js").Include(
+                    "~/assets/js/isotope.js",
+                    "~/assets/js/appear.js",
+                    "~/assets/js/wow.js",
+                    "~/assets/js/lazyload.js",
+                    "~/assets/js/scrollbar.js",
+                    "~/assets/js/jClocksGMT.js",
+                    "~/assets/js/jquery.rotate.js"
+                ));
 
             //bundles.Add(new ScriptBundle("~/bundles/js").Include(
             //        "~/assets/js/jquery.js",
@@ -43,7 +55,6 @@ namespace Avidclan_Website
             //        "~/assets/js/isotope.js",
             //        "~/assets/js/swiper.min.js"
             //        ));
-
             BundleTable.EnableOptimizations = true;
         }
     }

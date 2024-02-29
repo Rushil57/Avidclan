@@ -1,0 +1,134 @@
+﻿.technologies-sub .icon-content {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+    .technologies-sub .icon-content .icon {
+        position: relative;
+        min-width: 50px
+    }
+
+    .technologies-sub .icon-content .txt-content {
+        position: relative;
+        margin-left: 8px
+    }
+
+        .technologies-sub .icon-content .txt-content h3 {
+            font-size: 18px;
+            margin-top: 5px
+        }
+
+    .technologies-sub .icon-content .icon .i-block {
+        background-color: #f3f5ff;
+        width: 42px;
+        height: 42px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        color: #007bfc
+    }
+
+.expertise-section {
+    padding: 160px 0 90px
+}
+
+    .expertise-section .expertise-block {
+        background-color: #fff;
+        border: 1px solid #007bfc;
+        border-radius: 10px;
+        padding: 25px;
+        text-align: center;
+        position: relative;
+        margin-top: 40px;
+        height: calc(100% - 40px)
+    }
+
+        .expertise-section .expertise-block span.title {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            display: block
+        }
+
+        .expertise-section .expertise-block .ex-ic {
+            background-color: #fff;
+            border-radius: 50%;
+            display: block;
+            height: 78px;
+            width: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 4px 0 rgb(0 0 0 / 25%);
+            position: absolute;
+            top: -37px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            border: 10px solid #007bfc
+        }
+
+.tech-services-section {
+    padding: 90px 0;
+    position: relative
+}
+
+    .tech-services-section .tech-service-block {
+        background-color: #fff;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 0 10px 0 rgb(0 0 0 / 15%);
+        margin-bottom: 40px;
+        border-bottom: 5px solid #007bfc;
+        height: calc(100% - 40px)
+    }
+
+        .tech-services-section .tech-service-block .content {
+            padding: 10px 0
+        }
+
+            .tech-services-section .tech-service-block .content p {
+                font-size: 14px;
+                margin-top: 23px;
+                padding: 0 15px
+            }
+
+        .tech-services-section .tech-service-block .title {
+            font-weight: 700;
+            color: #007bfc;
+            font-size: 18px;
+            margin-top: 18px
+        }
+
+        .tech-services-section .tech-service-block.CTA .btn-style-one .btn-title {
+            padding: 8px 20px
+        }
+
+.key-benefit-section .key-block {
+    background-color: #f2f5fe;
+    border-radius: 10px;
+    padding: 30px 20px;
+    text-align: center;
+    height: calc(100% - 40px);
+    margin-bottom: 40px
+}
+
+    .key-benefit-section .key-block img {
+        margin-bottom: 25px;
+        width: 45px;
+        height: 45px
+    }
+
+    .key-benefit-section .key-block .title {
+        font-weight: 700;
+        font-size: 18px;
+        margin-bottom: 10px
+    }
+
+    .key-benefit-section .key-block p, .portfolio-general .case-block-one p {
+        font-size: 14px;
+        margin: 0
+    }

@@ -1,0 +1,565 @@
+﻿.process-section .pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-position: center bottom;
+    background-repeat: no-repeat
+}
+
+.process-section .sec-top .text {
+    font-size: 20px;
+    font-weight: 500;
+    position: relative
+}
+
+.process-block-one .inner-box {
+    position: relative;
+    margin-bottom: 30px;
+    text-align: center
+}
+
+    .process-block-one .inner-box::before {
+        content: "";
+        border-top: 3px dashed #007bfc;
+        width: 50%;
+        position: absolute;
+        top: 24%;
+        left: 235px;
+        transform: translateY(-50%)
+    }
+
+    .process-block-one .inner-box::after {
+        content: "";
+        background-image: url(../../assets/images/icons/arrow_right.svg);
+        background-repeat: no-repeat;
+        background-size: 10px;
+        background-position: center center;
+        height: 40px;
+        width: 40px;
+        position: absolute;
+        top: 16%;
+        left: 95%
+    }
+
+.process-section.hiring-process .process-block-one .inner-box::after {
+    content: none
+}
+
+.process-section.hiring-process .process-block-one .icon img {
+    width: 72px;
+    height: 72px
+}
+
+.process-block-one h5 {
+    position: relative;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 30px
+}
+
+    .process-block-one h5:before {
+        position: absolute;
+        content: "";
+        left: -105px;
+        top: 6px;
+        background: #dcdfe3;
+        width: 75px;
+        height: 1px
+    }
+
+    .process-block-one h5:after {
+        position: absolute;
+        content: "";
+        right: -105px;
+        top: 6px;
+        background: #dcdfe3;
+        width: 75px;
+        height: 1px
+    }
+
+    .process-block-one h5 .count {
+        font-size: 28px;
+        font-weight: 900
+    }
+
+.process-block-one .icon {
+    position: relative;
+    margin-bottom: 30px;
+    line-height: 125px;
+    text-align: center;
+    display: flex;
+    justify-content: center
+}
+
+    .process-block-one .icon .ic-block {
+        background-color: rgba(0,123,252,10%);
+        border: 3px dashed #007bfc;
+        width: 125px;
+        height: 125px;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+
+        .process-block-one .icon .ic-block .ic-bg {
+            background-color: #fff;
+            box-shadow: 0 0 40px -8px rgb(0 123 252 / 9%);
+            border-radius: 100%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+.process-block-one h4 {
+    position: relative;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px
+}
+
+.process-block-one .text {
+    font-size: 16px;
+    font-weight: 400;
+    padding-right: 10px;
+    color: #5e7290
+}
+
+.career-block .job-title, .panel-title {
+    font-size: 20px;
+    font-weight: 700
+}
+
+    .panel-title > a {
+        display: block;
+        padding: 10px
+    }
+
+.more-less {
+    float: right;
+    font-size: 20px
+}
+
+.panel-default > .panel-heading + .panel-collapse > .panel-body {
+    border-top-color: #eee
+}
+
+.benefits .inner-box .icon, .panel-body .iconlist, .recruitment .section-box .s-title {
+    margin-bottom: 20px
+}
+
+.jobpost .panel-body .iconlist li, .jobpost .panel-body p {
+    font-weight: 500;
+    font-size: 16px;
+    color: #5e7290
+}
+
+.panel-body .iconlist li i, .panel-body p > i {
+    margin-right: 10px;
+    color: #007bfc
+}
+
+.jobpost {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #eee
+}
+
+    .jobpost h6, .jobpost p span {
+        display: block;
+        font-weight: 700;
+        font-size: 18px;
+        color: #142149
+    }
+
+.location-box {
+    font-size: 1rem;
+    background: rgb(0 123 252);
+    color: #fff;
+    padding: 0;
+    margin-left: 10px;
+    border-radius: 100%;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    display: inline-block;
+    text-align: center
+}
+
+.jobpost .c-info {
+    color: #142149;
+    font-weight: 500
+}
+
+    .jobpost .c-info:hover {
+        color: #fd4a36
+    }
+
+    .jobpost .c-info::after {
+        content: "|";
+        padding: 0 8px
+    }
+
+    .jobpost .c-info:last-child::after {
+        content: ""
+    }
+
+.applybtn {
+    background-color: #f1f5f8 !important;
+    text-transform: uppercase
+}
+
+.ModalApplyJob .contact-form-section {
+    padding: 0;
+    position: inherit;
+    border: 0;
+    border-radius: 20px
+}
+
+.ModalApplyJob .modal-header {
+    border: 0;
+    padding: 15px 20px;
+    margin-bottom: 15px
+}
+
+.ModalApplyJob .modal-body {
+    padding: 0 20px 20px
+}
+
+    .ModalApplyJob .modal-body.job-desc .title {
+        font-weight: 600;
+        font-size: 18px;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ccc
+    }
+
+    .ModalApplyJob .modal-body.job-desc .list {
+        color: #5e7290;
+        font-size: 14px;
+        padding-left: 15px;
+        margin-bottom: 30px
+    }
+
+    .ModalApplyJob .modal-body.job-desc p {
+        font-size: 14px;
+        margin-bottom: 0
+    }
+
+    .ModalApplyJob .modal-body.job-desc .list li {
+        list-style-type: square
+    }
+
+.ModalApplyJob .contact-form-section h2 {
+    font-size: 28px;
+    padding-bottom: 0
+}
+
+.ModalApplyJob .close {
+    background-color: transparent;
+    color: #e10c0c
+}
+
+#uploaded_file + label {
+    display: inline-block;
+    background-color: #142149;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: .3rem;
+    cursor: pointer;
+    margin-bottom: 0;
+    margin-top: 15px
+}
+
+    #uploaded_file + label + span {
+        font-size: 12px;
+        display: inline-block;
+        line-height: 20px;
+        margin-left: 12px;
+        position: absolute;
+        top: 20px
+    }
+
+.recruitment .section-box {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 3px;
+    margin: 0;
+    border: 1px solid #eee;
+    cursor: pointer
+}
+
+.recruitment .flowchart {
+    position: absolute;
+    max-width: 700px;
+    margin-top: 150px;
+    margin-left: 325px
+}
+
+.recruitment .section-box:hover {
+    background-color: #142149;
+    border: 1px solid #142149
+}
+
+.recruitment .section-box.right {
+    margin-top: 100px
+}
+
+.recruitment .section-box .s-title h2 {
+    display: inline-block;
+    margin-bottom: 0;
+    font-size: 60px;
+    font-weight: 800;
+    color: #007bfc
+}
+
+.recruitment .section-box .s-title span {
+    color: #142149;
+    display: inline-block;
+    line-height: 1.2;
+    font-weight: 800
+}
+
+.career-block {
+    background-color: #f2f5fe;
+    border-radius: 8px;
+    padding: 30px;
+    position: relative;
+    margin-top: 2%
+}
+
+    .career-block .desc {
+        font-size: 14px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center
+    }
+
+        .career-block .desc .exp .lbl, .career-block .desc .loc .lbl {
+            font-weight: 600;
+            color: #5e7290
+        }
+
+    .career-block .devider {
+        background-color: #ddd;
+        height: 1px;
+        width: 100%;
+        margin: 20px 0
+    }
+
+    .career-block .position-count {
+        background-color: #007bfc;
+        color: #fff;
+        border-radius: 50%;
+        height: 35px;
+        width: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        position: absolute;
+        right: -15px;
+        top: -15px;
+        border: 4px solid #fff
+    }
+
+    .career-block .job-block {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px
+    }
+
+    .career-block .footer .btn-style-one.jobdes-link {
+        background-color: #5e7290
+    }
+
+    .career-block .footer .btn-style-one {
+        border-radius: 5px
+    }
+
+        .career-block .footer .btn-style-one .btn-title {
+            padding: 5px 15px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 10px
+        }
+
+.contact-details-section {
+    position: relative;
+    padding: 50px 0
+}
+
+.contact-section.inner-page {
+    height: auto
+}
+
+.contact-details-section .sec-title .text {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 16px;
+    font-weight: 400;
+    color: inherit
+}
+
+.process-section .pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-position: center bottom;
+    background-repeat: no-repeat
+}
+
+.process-section .sec-top .text {
+    font-size: 20px;
+    font-weight: 500;
+    position: relative
+}
+
+.process-block-one .inner-box {
+    position: relative;
+    margin-bottom: 30px;
+    text-align: center
+}
+
+    .process-block-one .inner-box::before {
+        content: "";
+        border-top: 3px dashed #007bfc;
+        width: 50%;
+        position: absolute;
+        top: 24%;
+        left: 235px;
+        transform: translateY(-50%)
+    }
+
+    .process-block-one .inner-box::after {
+        content: "";
+        background-image: url(../../assets/images/icons/arrow_right.svg);
+        background-repeat: no-repeat;
+        background-size: 10px;
+        background-position: center center;
+        height: 40px;
+        width: 40px;
+        position: absolute;
+        top: 16%;
+        left: 95%
+    }
+
+.process-section.hiring-process .process-block-one .inner-box::after {
+    content: none
+}
+
+.process-section.hiring-process .process-block-one .icon img {
+    width: 72px;
+    height: 72px
+}
+
+.process-block-one h5 {
+    position: relative;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 30px
+}
+
+    .process-block-one h5:before {
+        position: absolute;
+        content: "";
+        left: -105px;
+        top: 6px;
+        background: #dcdfe3;
+        width: 75px;
+        height: 1px
+    }
+
+    .process-block-one h5:after {
+        position: absolute;
+        content: "";
+        right: -105px;
+        top: 6px;
+        background: #dcdfe3;
+        width: 75px;
+        height: 1px
+    }
+
+    .process-block-one h5 .count {
+        font-size: 28px;
+        font-weight: 900
+    }
+
+.process-block-one .icon {
+    position: relative;
+    margin-bottom: 30px;
+    line-height: 125px;
+    text-align: center;
+    display: flex;
+    justify-content: center
+}
+
+    .process-block-one .icon .ic-block {
+        background-color: rgba(0,123,252,10%);
+        border: 3px dashed #007bfc;
+        width: 125px;
+        height: 125px;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+
+        .process-block-one .icon .ic-block .ic-bg {
+            background-color: #fff;
+            box-shadow: 0 0 40px -8px rgb(0 123 252 / 9%);
+            border-radius: 100%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+.process-block-one h4 {
+    position: relative;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px
+}
+
+.process-block-one .text {
+    font-size: 16px;
+    font-weight: 400;
+    padding-right: 10px;
+    color: #5e7290
+}
+
+.benefits, .widget + .widget {
+    margin-top: 50px
+}
+
+    .benefits .inner-box .icon, .panel-body .iconlist, .recruitment .section-box .s-title {
+        margin-bottom: 20px
+    }
+
+    .benefits .inner-box img {
+        width: 72px
+    }
+
+    .benefits .inner-box {
+        text-align: center;
+        margin-bottom: 80px
+    }
+
+        .benefits .inner-box h4 {
+            font-size: 16px;
+            font-weight: 600
+        }

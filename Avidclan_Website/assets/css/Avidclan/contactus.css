@@ -1,0 +1,222 @@
+﻿.contact-details-section {
+    position: relative;
+    padding: 50px 0
+}
+
+.contact-section.inner-page {
+    height: auto
+}
+
+.contact-details-section .sec-title .text {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 16px;
+    font-weight: 400;
+    color: inherit
+}
+
+.contact-form-section .location-block img {
+    width: 50px
+}
+
+.contact-form-section .location-block h3 {
+    font-size: 20px;
+    margin-top: 15px;
+    margin-bottom: 10px
+}
+
+.contact-info-block.location-block .inner-box {
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 0
+}
+
+    .contact-info-block .icon-box + p a, .contact-info-block.location-block .inner-box p a {
+        color: #5e7290
+    }
+
+    .contact-info-block.location-block .inner-box .icon, .menu-icon.icon-ic-backend-technology-node-js, .menu-icon.icon-ic-backend-technology-php, .menu-icon.icon-ic-database-technology-oracle, .menu-icon.icon-ic-front-end-technology-wpf {
+        font-size: 28px
+    }
+
+.contact-info-block.location-block .icon-box {
+    padding-left: 40px;
+    min-height: auto
+}
+
+.contact-info-block .inner-box {
+    position: relative;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    background-color: #f8f9fa
+}
+
+.contact-info-block .icon-box {
+    position: relative;
+    padding-left: 70px;
+    min-height: 70px
+}
+
+    .contact-info-block .icon-box + p {
+        padding-left: 70px;
+        margin-bottom: 0;
+        line-height: normal
+    }
+
+.contact-info-block .icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 50px;
+    line-height: 0
+}
+
+    .contact-info-block .icon i {
+        font-size: 42px
+    }
+
+i.call {
+    transform: rotate(90deg)
+}
+
+.contact-info-block h5 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    line-height: normal;
+    color: #142149
+}
+
+.contact-info-block h4 {
+    font-size: 20px;
+    font-weight: 800
+}
+
+.contact-info-block ul li {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 5px
+}
+
+.contact-form-section {
+    position: relative;
+    padding: 70px 0
+}
+
+    .contact-form-section .contact-form {
+        padding: 35px
+    }
+
+        .contact-form-section .contact-form.career_form {
+            padding: 15px 5px
+        }
+
+        .contact-form-section .contact-form .form-group, .sidebar-widget .widget-title {
+            margin-bottom: 25px
+        }
+
+    .contact-form-section .bootstrap-select .dropdown-toggle .filter-option {
+        line-height: 1.4
+    }
+
+        .contact-form-section .bootstrap-select .dropdown-toggle .filter-option:after {
+            right: 10px;
+            top: 10px;
+            line-height: 22px
+        }
+
+    .contact-form-section .contact-form .bootstrap-select > .dropdown-toggle, .contact-form-section .contact-form .form-group input[type=email], .contact-form-section .contact-form .form-group input[type=tel], .contact-form-section .contact-form .form-group input[type=text], .contact-form-section .contact-form .form-group select, .contact-form-section .contact-form .form-group textarea {
+        position: relative;
+        flex: 1 1 auto;
+        width: 100%;
+        min-width: 0
+    }
+
+    .contact-form-section .contact-form .form-group textarea {
+        height: 100px;
+        resize: none
+    }
+
+    .contact-form-section .note p {
+        font-size: 18px;
+        font-weight: 500;
+        font-style: italic
+    }
+
+    .contact-form-section .contact-form .input-group-text {
+        background-color: #f2f5fe;
+        border: 0;
+        color: #007bfc
+    }
+
+
+.contact-form .form-group {
+    position: relative;
+    margin-bottom: 20px
+}
+
+    .contact-form .form-group label {
+        font-size: 16px;
+        font-weight: 500;
+        color: #142149;
+        margin-bottom: 5px
+    }
+
+    .contact-form .bootstrap-select > .dropdown-toggle, .contact-form .form-group input[type=email], .contact-form .form-group input[type=tel], .contact-form .form-group input[type=text], .contact-form .form-group select, .contact-form .form-group textarea {
+        position: relative;
+        display: block;
+        height: 45px;
+        width: 100%;
+        font-size: 15px;
+        color: #142149;
+        line-height: 30px;
+        font-weight: 400;
+        border: 0;
+        background-color: #f2f5fe;
+        border-radius: 5px;
+        padding: 10px;
+        -webkit-transition: .3s;
+        -o-transition: .3s;
+        transition: .3s
+    }
+
+    .contact-form .form-group textarea {
+        height: 100px
+    }
+
+.contact-form {
+    background-color: #fff;
+    box-shadow: 0 3px 16px 0 rgba(0,0,0,.05);
+    -webkit-box-shadow: 0 3px 16px 0 rgba(0,0,0,.05);
+    border-radius: 25px;
+    padding: 40px
+}
+
+    .contact-form .bootstrap-select .dropdown-menu {
+        padding: 0;
+        min-height: auto !important
+    }
+
+        .contact-form .bootstrap-select .dropdown-menu .inner {
+            min-height: auto !important
+        }
+
+        .contact-form .bootstrap-select .dropdown-menu li a span.text {
+            margin-bottom: 0 !important;
+            font-size: 14px
+        }
+
+        .contact-form .bootstrap-select .dropdown-menu li a {
+            padding: 0 10px
+        }
+
+    .contact-form .btn-light:not(:disabled):not(.disabled).active:focus, .contact-form .btn-light:not(:disabled):not(.disabled):active:focus, .contact-form .show > .btn-light.dropdown-toggle:focus, .contact-form button:focus {
+        -webkit-box-shadow: none;
+        outline: 0 !important;
+        box-shadow: none
+    }
+
+    .contact-form .btn-light:not(:disabled):not(.disabled).active, .contact-form .btn-light:not(:disabled):not(.disabled):active, .contact-form .show > .btn-light.dropdown-toggle {
+        color: #9a9b9c
+    }

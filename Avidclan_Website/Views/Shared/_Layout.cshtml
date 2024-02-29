@@ -27,22 +27,22 @@
     </script>-->
     <meta name="msvalidate.01" content="C6EA7291CCD22012F734D3C6649F2F3F" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link rel="stylesheet" media="all" href="~/assets/css/bootstrap.min.css" defer />
-    <link rel="stylesheet" media="all" href="~/assets/css/swiper.min.css" defer/>
-    <link rel="stylesheet" media="all" href="~/assets/css/all-min.css" defer />
-    <link rel="stylesheet" media="all" href="@Styles.Url("~/Content/css")" defer async />
+    <link rel="stylesheet" media="all" href="~/assets/css/swiper.min.css" defer />
+    <link rel="stylesheet" media="all" href="~/assets/css/all-min.css" defer async />
+    <link rel="stylesheet" media="all" href="~/assets/css/Avidclan/bootstrap-custom.css" defer async />
+    <link rel="stylesheet" media="all" href="~/assets/css/Avidclan/home.css" />
+    <link rel="stylesheet" media="all" href="@Styles.Url("~/Content/css")" />
     @*<link rel="stylesheet" media="all" href="@Styles.Url("~/bundles/modernizr")" defer />*@
 
     <!-- Google Tag Manager -->
     <script>
         (function (w, d, s, l, i) {
-        w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-        new Date().getTime(), event: 'gtm.js'
-        }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-5HZ8ZV4Q');</script>
     <!-- End Google Tag Manager -->
 </head>
@@ -58,11 +58,11 @@
     <div class="page-wrapper">
         <!-- Preloader -->
         @*<div class="loader-wrap">
-            <div class="preloader"></div>
-            <div class="layer layer-one"><span class="overlay"></span></div>
-            <div class="layer layer-two"><span class="overlay"></span></div>
-            <div class="layer layer-three"><span class="overlay"></span></div>
-        </div>*@
+                <div class="preloader"></div>
+                <div class="layer layer-one"><span class="overlay"></span></div>
+                <div class="layer layer-two"><span class="overlay"></span></div>
+                <div class="layer layer-three"><span class="overlay"></span></div>
+            </div>*@
         <!-- Main Header -->
         <header class="main-header header-style-one">
             <!-- Header Upper -->
@@ -537,12 +537,12 @@
     Scripts.Render("~/bundles/js")
     <script src="~/assets/js/intlTelInput.js"></script>-->
     @*
-    <script src="~/assets/js/contact.js"></script>*@
+        <script src="~/assets/js/contact.js"></script>*@
     <!--<script src="~/assets/js/script.js"></script>-->
     <!--Scripts.Render("~/bundles/js")
     <script src="~/assets/js/bootstrap.min.js"></script>-->
     @*
-    <script src="~/assets/js/popper.min.js"></script>*@
+        <script src="~/assets/js/popper.min.js"></script>*@
     <!--<script src="~/assets/js/isotope.js"></script>
     <script src="~/assets/js/swiper.min.js"></script>
     <script src="~/assets/js/iconify.min.js"></script>
@@ -552,9 +552,9 @@
     <script src="~/assets/js/popper.min.js"></script>
     <script src="~/assets/js/bootstrap.min.js"></script>-->
     @*
-    <script src="~/assets/js/bootstrap-select.min.js"></script>*@
+        <script src="~/assets/js/bootstrap-select.min.js"></script>*@
     @*
-    <script src="~/assets/js/jquery.fancybox.js"></script>*@
+        <script src="~/assets/js/jquery.fancybox.js"></script>*@
     <!--<script src="~/assets/js/isotope.js"></script>
     <script src="~/assets/js/owl.js"></script>
     <script src="~/assets/js/appear.js"></script>
@@ -562,7 +562,7 @@
     <script src="~/assets/js/lazyload.js"></script>
     <script src="~/assets/js/scrollbar.js"></script>-->
     @*
-    <script src="~/assets/js/TweenMax.min.js"></script>*@
+        <script src="~/assets/js/TweenMax.min.js"></script>*@
     <!--<script src="~/assets/js/jClocksGMT.js"></script>
     <script src="~/assets/js/jquery.rotate.js"></script>
     <script src="~/assets/js/js.cookie.min.js"></script>
@@ -571,36 +571,36 @@
     <script src="~/assets/js/additional-methods.min.js"></script>
     <script src="~/assets/js/intlTelInput.js"></script>
     <script src="~/assets/js/script.js"></script>-->
-
+    <script src="~/assets/js/swiper.min.js" defer></script>
     <script src="~/assets/js/jquery.js"></script>
-    <script src="~/assets/js/popper.min.js"></script>
-    <script src="~/assets/js/bootstrap.min.js"></script>
+    @Scripts.Render("~/Content/js")
+    @*<script src="~/assets/js/jquery.js"></script>*@
+    <script src="~/assets/js/popper.min.js" defer></script>
+    <script src="~/assets/js/bootstrap.min.js" defer></script>
     @*
-    <script src="~/assets/js/bootstrap-select.min.js"></script>*@
+        <script src="~/assets/js/bootstrap-select.min.js"></script>*@
     @*
-    <script src="~/assets/js/jquery.fancybox.js"></script>*@
-    <script src="~/assets/js/isotope.js"></script>
+        <script src="~/assets/js/jquery.fancybox.js"></script>*@
+    @*<script src="~/assets/js/isotope.js"></script>*@
     @*
-    <script src="~/assets/js/owl.js"></script>*@
-    <script src="~/assets/js/appear.js"></script>
-    <script src="~/assets/js/wow.js"></script>
-    <script src="~/assets/js/lazyload.js"></script>
-    <script src="~/assets/js/scrollbar.js"></script>
+        <script src="~/assets/js/owl.js"></script>*@
+    @*<script src="~/assets/js/appear.js"></script>*@
+    @*<script src="~/assets/js/wow.js"></script>*@
+    @*<script src="~/assets/js/lazyload.js"></script>*@
+    @*<script src="~/assets/js/scrollbar.js"></script>*@
     @*
-    <script src="~/assets/js/TweenMax.min.js"></script>*@
-    <script src="~/assets/js/swiper.min.js"></script>
-    <script src="~/assets/js/jClocksGMT.js"></script>
-    <script src="~/assets/js/jquery.rotate.js"></script>
-    <script src="~/assets/js/js.cookie.min.js"></script>
-    <script src="~/assets/js/iconify.min.js"></script>
+        <script src="~/assets/js/TweenMax.min.js"></script>*@
+    @*<script src="~/assets/js/jClocksGMT.js"></script>*@
+    @*<script src="~/assets/js/jquery.rotate.js"></script>*@
+    <script src="~/assets/js/js.cookie.min.js" defer></script>
+    <script src="~/assets/js/iconify.min.js" defer></script>
     <script src="~/assets/js/jquery.validate.min.js"></script>
-    <script src="~/assets/js/additional-methods.min.js"></script>
+    <script src="~/assets/js/additional-methods.min.js" defer></script>
     <script src="~/assets/js/intlTelInput.js"></script>
-    <script src="~/assets/js/script.js"></script>
-
+    <script src="~/assets/js/script.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" async></script>
 
-    <script type="text/javascript">
+    <script type="text/javascript" defer>
         (function ($) {
         GetBlogStatusByName("blog");
         CareerOption();

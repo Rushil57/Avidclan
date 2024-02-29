@@ -1,0 +1,204 @@
+﻿.service-block-five .inner-box {
+    position: relative;
+    background-color: #f2f5fe;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    -webkit-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s
+}
+
+    .service-block-five .inner-box .content-box {
+        position: relative;
+        padding: 30px 30px 30px 35px;
+        border-radius: 3px;
+        -webkit-transition: .5s;
+        -o-transition: .5s;
+        transition: .5s;
+        z-index: 9;
+        min-height: 120px;
+        text-align: center
+    }
+
+.service-block-five .icon {
+    padding: 30px 0 50px;
+    -webkit-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s
+}
+
+    .service-block-five .icon img {
+        max-height: 220px
+    }
+
+.service-block-five h4 {
+    position: relative;
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    -webkit-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s
+}
+
+.style-three .service-block-five .inner-box .content-box:before, .style-three .service-block-five .inner-box:after, .style-three .service-block-five .inner-box:before {
+    background-color: #201630
+}
+
+.our-mission .content-block .icon {
+    position: relative;
+    display: block;
+    margin-bottom: 20px
+}
+
+    .our-mission .content-block .icon img {
+        width: 60px;
+        height: 60px;
+        line-height: 60px
+    }
+
+.our-mission .img-block {
+    height: 264px
+}
+
+.our-mission .content-block, .our-mission .img-block {
+    background-color: #fff;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 2px 16px -2px rgba(0,0,0,.05);
+    box-shadow: 0 2px 16px -2px rgba(0,0,0,.05)
+}
+
+.our-mission.vision .content-block p {
+    color: #92a2bb
+}
+
+.our-mission .content-block {
+    padding: 30px 45px
+}
+
+.our-mission .img-block img {
+    width: 100% !important;
+    height: 100% !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-radius: 10px;
+    -o-object-fit: cover;
+    object-fit: cover
+}
+
+.our-mission .title {
+    font-size: 24px;
+    color: #142149;
+    font-weight: 600;
+    margin-bottom: 10px
+}
+
+.our-mission ul {
+    margin: 30px 0 35px;
+    padding: 0
+}
+
+    .our-mission ul li {
+        text-align: left;
+        list-style: none;
+        padding-left: 20px;
+        position: relative;
+        margin-bottom: 10px
+    }
+
+        .our-mission ul li::before {
+            position: absolute;
+            content: "";
+            width: 12px;
+            height: 12px;
+            border-radius: 20px;
+            border: 2px solid rgba(94,114,144,.2);
+            left: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto
+        }
+
+.OurTeam .member-block {
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 15%);
+    border-radius: 10px;
+    margin-bottom: 30px
+}
+
+    .OurTeam .member-block .profile-pic {
+        background-color: #f2f5fe;
+        border-radius: 10px 10px 0 0;
+        text-align: center
+    }
+
+    .OurTeam .member-block .m-info, .single-blog .blog-content {
+        padding: 15px
+    }
+
+        .OurTeam .member-block .m-info .header-box .heading .name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px
+        }
+
+        .OurTeam .member-block .m-info .header-box {
+            margin-bottom: 12px
+        }
+
+            .OurTeam .member-block .m-info .header-box .heading .position {
+                font-size: 20px;
+                font-weight: 700;
+                color: #007bfc;
+                display: block
+            }
+
+            .OurTeam .member-block .m-info .header-box .social-ics > a {
+                background-color: #007bfc;
+                width: 28px;
+                height: 28px;
+                color: #fff;
+                display: block;
+                text-align: center;
+                line-height: 31px;
+                border-radius: 2px
+            }
+
+        .OurTeam .member-block .m-info .m-desc {
+            border-top: 1px solid #e8e8e8;
+            padding-top: 12px
+        }
+
+            .OurTeam .member-block .m-info .m-desc > p {
+                margin-bottom: 0;
+                font-size: 15px
+            }
+
+.ourfacts .count-box {
+    border-radius: 24px;
+    padding: 20px;
+    border: 1px solid #142149;
+    background-color: #fff
+}
+
+    .ourfacts .count-box.even {
+        background-color: #e6f2ff
+    }
+
+    .ourfacts .count-box img {
+        width: 70px;
+        margin-bottom: 15px
+    }
+
+    .ourfacts .count-box .c-number {
+        font-size: 24px;
+        font-weight: 700;
+        color: #142149
+    }
+
+    .ourfacts .count-box p {
+        font-size: 20px;
+        font-weight: 400;
+        color: #9399ab;
+        margin-bottom: 0
+    }
