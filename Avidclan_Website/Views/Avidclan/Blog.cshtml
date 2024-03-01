@@ -32,6 +32,7 @@
     </div>
 </section>
 <!--End Banner Section -->
+<div class="loader"></div>
 <!-- Blog Section -->
 <section class="blog-section">
     <div class="container">
@@ -128,6 +129,7 @@
 
                 })
                 $('#demo').html(sectionblog);
+                document.querySelector('.loader').style.display = 'none';
                 if (data.data.pager.EndPage > 1) {
                     paginationData += '<ul class="pagination">'
                     if (data.data.pager.CurrentPage > 1) {
