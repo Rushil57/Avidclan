@@ -667,6 +667,7 @@
 
 
         $('#button-spinner').show();
+        $('#sbmtbtn').attr("disabled", true);
         var data = {
         FirstName: $("#firstname").val(),
         LastName: $("#lastname").val(),
@@ -780,8 +781,8 @@
         evt.preventDefault();
         return false;
         }
-
         $('#button-spinner').show();
+        $('#btnSendEmail').attr("disabled",true);
         //var Position = $("#caseOption").val();
         var Position = $("#caseOption option:selected").text();
         var Name = $("#name").val();
@@ -912,6 +913,7 @@
         }
 
         $('#button-spinner').show();
+        $('#btnSendEmail').attr("disabled", true);
         var Projectdata = {
         FirstName: $("#firstname").val(),
         LastName: $("#lastname").val(),

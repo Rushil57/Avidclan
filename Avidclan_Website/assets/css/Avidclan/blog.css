@@ -108,7 +108,7 @@
     }
 
         .single-blog .blog-img a img {
-            height: 350px;
+             height: 370px;
             width: 100%;
             transition: .3s linear
         }
@@ -602,7 +602,7 @@
     }
 
     .single-blog .blog-img a img {
-        height: 200px;
+        height: 140px;
         width: 100%;
         transition: .3s linear
     }
@@ -633,7 +633,7 @@
     }
 
     .single-blog .blog-img a img {
-        height: 200px;
+        height: 140px;
         width: 100%;
         transition: .3s linear
     }
@@ -658,7 +658,7 @@
         }
 
     .single-blog .blog-img a img {
-        height: 200px;
+        height: 120px;
         width: 100%;
         transition: .3s linear
     }

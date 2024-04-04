@@ -99,7 +99,7 @@
                     var options = { year: 'numeric', month: 'long', day: 'numeric' };
                     var PostingDate = new Date(v.PostingDate);
                     var longDt = PostingDate.toLocaleDateString("en-US", options);
-                    var Descriptionlength = v.Description.length > 80 ? v.Description.substring(0, 80) + "…" : v.Description;
+                    var Descriptionlength = v.MetaDescription.length > 80 ? v.MetaDescription.substring(0, 80) + "…" : v.MetaDescription;
 
                     /* var url = imageURL + v.Image;*/
                     sectionblog += '<div class="col-lg-4 col-md-6">' +
@@ -115,8 +115,8 @@
                         '<span><i class="fas fa-user"></i> <a style="font-style: normal;" href="#">' + v.PostedBy + '</a></span>' +
                         '<span id="admindateid_' + v.Id + '" style="font-style: normal;"><i class="far fa-calendar-alt"></i>' + longDt + '</span>' +
                         '</div>' +
-                        '<h3 class="title" ><a style="font-style: normal;" onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl + '")>' + v.Title + '</a></h3>' +
-                        '<p>' + Descriptionlength + '</p>' +
+                        '<h3 class="title" style="height:100px; overflow:hidden;"><a style="font-style: normal;" onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl + '")>' + v.Title + '</a></h3>' +
+                        '<p class="display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; width: 100%;">' + Descriptionlength + '</p>' +
                         '</div>' +
                         '<div class="blog-btn">' +
                         '<a class="blog-btn-link" style="font-style: normal;" onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl + '")>' +
