@@ -108,7 +108,7 @@
     }
 
         .single-blog .blog-img a img {
-             height: 370px;
+            height: 370px;
             width: 100%;
             transition: .3s linear
         }
@@ -589,6 +589,11 @@
     .blog-details-post .blog-details-content .techmax-post-pagination .blog-pagination-post .post-content .title {
         font-size: 15px
     }
+
+    .blog-title {
+        height: 100px !important;
+        overflow: hidden !important;
+    }
 }
 
 @media only screen and (max-width:991px) {
@@ -610,6 +615,11 @@
     .blog-section {
         padding-top: 75px;
         padding-bottom: 100px
+    }
+
+    .blog-title {
+        height: 90px !important;
+        overflow: hidden !important;
     }
 }
 
@@ -641,6 +651,11 @@
     .blog-section {
         padding-top: 75px;
         padding-bottom: 100px
+    }
+
+    .blog-title {
+        height: 90px !important;
+        overflow: hidden !important;
     }
 }
 
@@ -777,4 +792,25 @@
     100% {
         box-shadow: 200px 0 rgba(0, 123, 252, 0), 200px 0 rgba(0, 123, 252, 0), 200px 0 rgba(0, 123, 252, 0), 200px 0 rgba(0, 123, 252, 0);
     }
+}
+
+.blog-title {
+    height: 100px;
+    overflow: hidden;
+}
+
+.blog-meta-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    width: 100%;
+}
+
+.blog-content ul li, .blog-content ol li, .blog-content ul {
+    list-style: inherit;
+}
+
+.blog-content ul {
+    padding-left: 2rem;
 }

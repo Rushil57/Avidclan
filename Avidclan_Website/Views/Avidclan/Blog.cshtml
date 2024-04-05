@@ -105,7 +105,7 @@
                     sectionblog += '<div class="col-lg-4 col-md-6">' +
                         '<div class="single-blog">' +
                         '<div class="blog-img">' +
-                        '<a onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl + '")><img class="BlogImages" src="' + v.Image + '" alt="" style=height:216px; ></a>' +
+                        '<a href="/blog/' + v.PageUrl + '" onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl + '")><img class="BlogImages" src="' + v.Image + '" alt="" style=height:216px; ></a>' +
                         '<div class="top-meta">' +
                         '<span class="tag" style="font-style: normal;">' + v.BlogType + '</span>' +
                         '</div>' +
@@ -115,18 +115,16 @@
                         '<span><i class="fas fa-user"></i> <a style="font-style: normal;" href="#">' + v.PostedBy + '</a></span>' +
                         '<span id="admindateid_' + v.Id + '" style="font-style: normal;"><i class="far fa-calendar-alt"></i>' + longDt + '</span>' +
                         '</div>' +
-                        '<h3 class="title" style="height:100px; overflow:hidden;"><a style="font-style: normal;" onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl + '")>' + v.Title + '</a></h3>' +
-                        '<p class="display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; width: 100%;">' + Descriptionlength + '</p>' +
+                        '<h3 class="title blog-title"><a href="/blog/' + v.PageUrl + '" style="font-style: normal;" onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl + '")>' + v.Title + '</a></h3>' +
+                        '<p class="blog-meta-desc">' + Descriptionlength + '</p>' +
                         '</div>' +
                         '<div class="blog-btn">' +
-                        '<a class="blog-btn-link" style="font-style: normal;" onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl + '")>' +
+                        '<a href="/blog/' + v.PageUrl + '" class="blog-btn-link" style="font-style: normal;" onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl + '")>' +
                         'Read Full Article <i class="fas fa-long-arrow-alt-right"></i>' +
                         '</a>' +
                         '</div>' +
                         '</div>' +
                         '</div>';
-
-
                 })
                 $('#demo').html(sectionblog);
                 document.querySelector('.loader').style.display = 'none';
@@ -134,23 +132,35 @@
                     paginationData += '<ul class="pagination">'
                     if (data.data.pager.CurrentPage > 1) {
                         let previousPage = (data.data.pager.CurrentPage) - 1;
-                        paginationData += '<li class="page-item">' + '<a class="page-link" onclick="GetSectionData(' + previousPage + ')"  href="#"><i class="fas fa-chevron-left"></i></a>' + '</li>'
+                        paginationData += '<li class="page-item">' + '<a class="page-link" onclick="GetSectionData(' + previousPage + ')"  href="javascript:void(0);"><i class="fas fa-chevron-left"></i></a>' + '</li>'
                     }
                     for (var page = data.data.pager.StartPage; page <= data.data.pager.EndPage; page++) {
                         var isActive = (page == data.data.pager.CurrentPage) ? "active" : "";
                         paginationData += '<li class="' + isActive + ' page-item">' +
-                            '<a class="page-link" onclick="GetSectionData(' + page + ')" href="#">' + page + '</a>' +
+                            '<a class="page-link" onclick="GetSectionData(' + page + ')" href="javascript:void(0);">' + page + '</a>' +
                             '</li>'
                     }
                     if (data.data.pager.CurrentPage < data.data.pager.TotalPages) {
                         let nextPage = (data.data.pager.CurrentPage) + 1;
                         paginationData += '<li class="page-item">' +
-                            '<a class="page-link" onclick="GetSectionData(' + nextPage + ')" href="#"><i class="fas fa-chevron-right"></i></a>' +
+                            '<a class="page-link" onclick="GetSectionData(' + nextPage + ')" href="javascript:void(0);"><i class="fas fa-chevron-right"></i></a>' +
                             '</li>'
                     }
                     paginationData += '</ul>'
                 }
                 $('#pagination').html(paginationData);
+
+                var uri = window.location.href.toString();
+                if (uri.indexOf("?") > 0) {
+                    var clean_uri = uri.substring(0, uri.indexOf("?"));
+                    window.history.replaceState({}, document.title, clean_uri);
+                }
+
+                if (id > 1) {
+                    var currentURL = window.location.href;
+                    var newURL = currentURL + (currentURL.indexOf('?') !== -1 ? '&' : '?') + 'page=' + id;
+                    history.pushState({ path: newURL }, '', newURL);
+                }
             },
             error: function (result) {
                 alert("Error Ocurred!");

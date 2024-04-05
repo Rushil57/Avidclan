@@ -657,13 +657,13 @@
         if (!$(".contact_form").valid()) {
         return false;
         }
-        var response = grecaptcha.getResponse();
-        if (response.length == 0) {
-        //reCaptcha not verified
-        alert("Please Verify Captcha!");
-        e.preventDefault();
-        return false;
-        }
+        //var response = grecaptcha.getResponse();
+        //if (response.length == 0) {
+        ////reCaptcha not verified
+        //alert("Please Verify Captcha!");
+        //e.preventDefault();
+        //return false;
+        //}
 
 
         $('#button-spinner').show();
@@ -775,12 +775,12 @@
         return false;
         }
 
-        var response = grecaptcha.getResponse();
-        if (response.length == 0) {
-        alert("Please Verify Captcha!");
-        evt.preventDefault();
-        return false;
-        }
+        //var response = grecaptcha.getResponse();
+        //if (response.length == 0) {
+        //alert("Please Verify Captcha!");
+        //evt.preventDefault();
+        //return false;
+        //}
         $('#button-spinner').show();
         $('#btnSendEmail').attr("disabled",true);
         //var Position = $("#caseOption").val();
@@ -904,13 +904,13 @@
         if (!$(".project_form").valid()) {
         return false;
         }
-        var response = grecaptcha.getResponse();
-        if (response.length == 0) {
-        //reCaptcha not verified
-        alert("Please Verify Captcha!");
-        evt.preventDefault();
-        return false;
-        }
+        //var response = grecaptcha.getResponse();
+        //if (response.length == 0) {
+        ////reCaptcha not verified
+        //alert("Please Verify Captcha!");
+        //evt.preventDefault();
+        //return false;
+        //}
 
         $('#button-spinner').show();
         $('#btnSendEmail').attr("disabled", true);
