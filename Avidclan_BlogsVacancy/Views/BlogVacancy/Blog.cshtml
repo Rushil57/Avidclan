@@ -3,7 +3,6 @@
     Layout = "~/Views/Shared/_AdminTemplate.cshtml";
 }
 
-
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-target="#exampleModal" id="AddBlog">
     Add New Blog
@@ -31,7 +30,55 @@
                     </div>
                     <div class="form-group">
                         <label for="Description">Description</label>
-                        <textarea type="text" class="ckeditor" id="Description" name="description"></textarea>
+                        @*<textarea type="text" class="ckeditor" id="Description" name="description"></textarea>*@
+                        @*<div type="text" class="" id="Description" name="description"></div>*@
+                        <div id="toolbar-container">
+                            <span class="ql-formats">
+                                <select class="ql-font"></select>
+                                <select class="ql-size"></select>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-bold"></button>
+                                <button class="ql-italic"></button>
+                                <button class="ql-underline"></button>
+                                <button class="ql-strike"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <select class="ql-color"></select>
+                                <select class="ql-background"></select>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-script" value="sub"></button>
+                                <button class="ql-script" value="super"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-header" value="1"></button>
+                                <button class="ql-header" value="2"></button>
+                                <button class="ql-blockquote"></button>
+                                <button class="ql-code-block"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-list" value="ordered"></button>
+                                <button class="ql-list" value="bullet"></button>
+                                <button class="ql-indent" value="-1"></button>
+                                <button class="ql-indent" value="+1"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-direction" value="rtl"></button>
+                                <select class="ql-align"></select>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-link"></button>
+                                <button class="ql-image"></button>
+                                <button class="ql-video"></button>
+                                <button class="ql-formula"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-clean"></button>
+                            </span>
+                        </div>
+                        <div id="editor" style="height:250px;">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="BlogType">Blog Type</label>
@@ -111,6 +158,17 @@
 </div>
 
 <script type="text/javascript">
+
+    // init quill editor.
+    const quill = new Quill('#editor', {
+        modules: {
+            syntax: true,
+            toolbar: '#toolbar-container',
+        },
+        placeholder: 'Compose an epic...',
+        theme: 'snow',
+    });
+
     var validator;
     $(function () {
          validator = $("form[name='BlogDetails']").validate({
@@ -159,12 +217,13 @@
             Blog.Questions = row.find(".clsfaqQuestion").val();
             Blog.Answers = row.find(".clsfaqAnswers").val();
             Blogs.push(Blog);
-            
+
         });
 
         var Id = $("#BlogId").val();
         var Title = $("#Title").val();
-        var Description = CKEDITOR.instances['Description'].getData();
+        //var Description = CKEDITOR.instances['Description'].getData();
+        var Description = quill.root.innerHTML;
         var BlogType = $("#BlogType").val();
         var PostingDate = $("#PostingDate").val();
         var Resume = $("#Image").get(0);
@@ -176,10 +235,10 @@
         var PostedBy = $("#PostedBy").val();
         var ImageUrl = $("#ImageUrl").val();
         var PageUrl = $("#PageUrl").val();
-        if (PageUrl != undefined && Id == 0) {
-            var arr = PageUrl.split('/');
-            PageUrl = arr[4];
-        }
+        //if (PageUrl != undefined && Id == 0) {
+        //    var arr = PageUrl.split('/');
+        //    PageUrl = arr[4];
+        //}
         var MetaTitle = $("#MetaTitle").val();
         var MetaDescription = $("#MetaDescription").val();
         var BlogDetailUrl = $("#BlogDetailImageUrl").val();
@@ -199,8 +258,8 @@
         fileData.append('MetaDescription', MetaDescription);
         fileData.append('BlogDetailImageUrl', BlogDetailUrl);
         fileData.append('BlogFaqs', JSON.stringify(Blogs));
-     
-        
+
+
         $.ajax({
             type: "POST",
             url: "/api/Admin/SaveBlog",
@@ -308,7 +367,9 @@
             success: function (result) {
                 $("#BlogId").val(result.bloglist[0].Id);
                 $("#Title").val(result.bloglist[0].Title);
-                CKEDITOR.instances['Description'].setData(result.bloglist[0].Description);
+                //CKEDITOR.instances['Description'].setData(result.bloglist[0].Description);
+                quill.root.innerHTML = result.bloglist[0].Description;
+
                 $("#BlogType").val(result.bloglist[0].BlogType);
                 loadURLToInputFiled(result.bloglist[0].ImageName);
                 $("#preview").find("span").first().remove();
@@ -381,7 +442,8 @@
         $("#BlogId").val('');
         $("#Title").val('');
         /*$("#Description").val('');*/
-        CKEDITOR.instances['Description'].setData('');
+        //CKEDITOR.instances['Description'].setData('');
+        quill.setText();
         $("#BlogType").val('');
         $(".thumb").attr('src', '');
         $('#preview').hide();
