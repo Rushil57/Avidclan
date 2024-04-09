@@ -814,3 +814,11 @@
 .blog-content ul {
     padding-left: 2rem;
 }
+
+.blog-content ol [data-list="ordered"] {
+    list-style-type: decimal !important;
+}
+
+.blog-content ol [data-list="bullet"] {
+    list-style-type: disc !important;
+}
