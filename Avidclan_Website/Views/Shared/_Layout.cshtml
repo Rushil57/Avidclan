@@ -744,7 +744,113 @@
 
         /*CONTACT FORM END*/
 
+        /*Contact Us FORM START*/
+        var Contactform = $("#form_contact"),
+            message = $(".contact_msg"),
+            form_data;
 
+        function done_func(response) {
+            console.log(response);
+            if (response == "Sent") {
+            window.location.replace("/thankyou");
+            /*grecaptcha.reset();*/
+            setTimeout(function () {
+                message.fadeOut();
+            }, 3000);
+            Contactform.find('input:not([type="submit"]), textarea').val("");
+            }
+
+            $('#button-spinner').hide();
+
+        }
+
+        Contactform.submit(function (e) {
+            e.preventDefault();
+            var countrycode = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
+            $("#CountryCode").val(countrycode);
+
+            form_data = $(this).serialize();
+
+            if (!$(".form_contact").valid()) {
+                return false;
+            }
+            //var response = grecaptcha.getResponse();
+            //if (response.length == 0) {
+            ////reCaptcha not verified
+            //alert("Please Verify Captcha!");
+            //e.preventDefault();
+            //return false;
+            //}
+
+
+            $('#button-spinner').show();
+            $('#btnSubmit').attr("disabled", true);
+            var data = {
+                FirstName: $("#firstname").val(),
+                /*LastName: $("#lastname").val(),*/
+                Email: $("#email").val(),
+                Phoneumber: $("#phone").val(),
+                Message: $("#message").val(),
+                CountryCode: countrycode,
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/api/Mail/SendContactDetails",
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+            }).done(done_func);
+        });
+
+        $("form[name='contactDetail']").validate({
+            errorPlacement: function (error, element) {
+                if ($(element).is("#phone")) {
+                    element.closest(".intl-tel-input").after(error);
+                } else {
+                    error.insertAfter(element);
+                }
+            },
+            rules: {
+                firstname: "required",
+                email: {
+                    required: true,
+                    email: true,
+                },
+                phone: {
+                    required: true,
+                    digits: true,
+                    minlength: 10,
+                    maxlength: 10
+                },
+                message: {
+                    required: true,
+                    minlength: 25,
+                }
+            },
+            messages: {
+                firstname: "Please enter your First Name",
+                email: {
+                    required: "Please enter email address",
+                    email: "Please enter a valid email address.",
+                },
+                phone: {
+                    required: "Please enter phone number",
+                    digits: "Please enter valid phone number",
+                    minlength: "Please enter valid phone number",
+                    maxlength: "Please enter valid phone number",
+                },
+                message: {
+                    required: "Please write your Message",
+                    minlength: "Please write at least 25 characters",
+                }
+            },
+            submitHandler: function (Contactform) {
+                /*Contactform.submit();*/
+                Contactform.submit();
+            },
+        });
+
+        /*Contact Us FORM END*/
 
         /*APPLICATION FORM START*/
 
