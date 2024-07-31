@@ -105,7 +105,7 @@
                     sectionblog += '<div class="col-lg-4 col-md-6">' +
                         '<div class="single-blog">' +
                         '<div class="blog-img img img-fluid">' +
-                        '<a href="/blog/' + v.PageUrl + '" onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl + '")><img class="BlogImages" src="' + v.Image + '" alt="" style=height:216px; ></a>' +
+                        '<a href="/blog/' + v.PageUrl + '"><img class="BlogImages" src="' + v.Image + '" alt="" style=height:216px; ></a>' +
                         '<div class="top-meta">' +
                         '<span class="tag" style="font-style: normal;">' + v.BlogType + '</span>' +
                         '</div>' +
@@ -115,11 +115,11 @@
                         '<span><i class="fas fa-user"></i> <a style="font-style: normal;" href="#">' + v.PostedBy + '</a></span>' +
                         '<span id="admindateid_' + v.Id + '" style="font-style: normal;"><i class="far fa-calendar-alt"></i>' + longDt + '</span>' +
                         '</div>' +
-                        '<h3 class="title blog-title"><a href="/blog/' + v.PageUrl + '" style="font-style: normal;" onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl + '")>' + v.Title + '</a></h3>' +
+                        '<h3 class="title blog-title"><a href="/blog/' + v.PageUrl + '" style="font-style: normal;">' + v.Title + '</a></h3>' +
                         '<p class="blog-meta-desc">' + Descriptionlength + '</p>' +
                         '</div>' +
                         '<div class="blog-btn">' +
-                        '<a href="/blog/' + v.PageUrl + '" class="blog-btn-link" style="font-style: normal;" onclick=GetBlogDetails(' + v.Id + ',"' + v.PageUrl + '")>' +
+                        '<a href="/blog/' + v.PageUrl + '" class="blog-btn-link" style="font-style: normal;")>' +
                         'Read Full Article <i class="fas fa-long-arrow-alt-right"></i>' +
                         '</a>' +
                         '</div>' +
@@ -167,13 +167,4 @@
             }
         });
     }
-
-    function GetBlogDetails(id, url) {
-        localStorage.setItem("BlogId", id);
-        var date = $("#admindateid_" + id).text();
-        localStorage.setItem("BlogDate", date);
-        window.location.href = "/blog/" + url + "/";
-        /*window.location.href = "/blogs/";*/
-    }
-
 </script>

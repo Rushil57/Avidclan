@@ -76,8 +76,13 @@
         GetBlogDetails();
     });
     function GetBlogDetails() {
-        var id = localStorage.getItem("BlogId");
-        var date = localStorage.getItem("BlogDate");
+        var id;
+        let searchParams = new URLSearchParams(window.location.search)
+        if (searchParams.has('Id')) {
+            id = searchParams.get('Id');
+        }
+        //var id = localStorage.getItem("BlogId");
+        //var date = localStorage.getItem("BlogDate");
         $.ajax({
                 url: '@Url.Action("GetBlogData", "Avidclan")',
                 contentType: 'application/json',
@@ -100,7 +105,7 @@
                         $(".blog-content p").html(result.Description)
                         $("#admin a").html(result.PostedBy)
                         $('#blogImage').attr('src', result.Image);
-                        $("#spanDate").html(date)
+                        $("#spanDate").html(longDt)
                     }
 
                 },

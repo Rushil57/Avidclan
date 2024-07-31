@@ -188,6 +188,7 @@
     <Content Include="assets\css\all.css" />
     <Content Include="assets\css\all-min.css" />
     <Content Include="assets\css\animate.css" />
+    <Content Include="assets\css\Avidclan\blogDetails.css" />
     <Content Include="assets\css\Avidclan\bootstrap-custom.css" />
     <Content Include="assets\css\Avidclan\contactus.css" />
     <Content Include="assets\css\Avidclan\career.css" />
@@ -215,6 +216,7 @@
     <Content Include="assets\css\responsive.css" />
     <Content Include="assets\css\scrollbar.css" />
     <Content Include="assets\css\style.css" />
+    <Content Include="assets\css\swiper-bundle-min.css" />
     <Content Include="assets\css\swiper.css" />
     <Content Include="assets\css\swiper.min.css" />
     <Content Include="assets\fonts\fa-brands-400.svg" />
@@ -257,6 +259,7 @@
     <Content Include="assets\images\blog1.jpg" />
     <Content Include="assets\images\blog2.jpg" />
     <Content Include="assets\images\blogger.svg" />
+    <Content Include="assets\images\blog\arrow_forward_ios.svg" />
     <Content Include="assets\images\blog\author-2.jpg" />
     <Content Include="assets\images\blog\blog-1.jpg" />
     <Content Include="assets\images\blog\blog-2.jpg" />
@@ -265,6 +268,7 @@
     <Content Include="assets\images\blog\blog-5.jpg" />
     <Content Include="assets\images\blog\blog-6.jpg" />
     <Content Include="assets\images\blog\blog-s-1.jpg" />
+    <Content Include="assets\images\blog\connect-with-us-image.jpg" />
     <Content Include="assets\images\blog\p-post-1.jpg" />
     <Content Include="assets\images\blog\r-post-1.jpg" />
     <Content Include="assets\images\blog\r-post-2.jpg" />
@@ -318,6 +322,7 @@
     <Content Include="assets\images\flutter-app-tech.jpg" />
     <Content Include="assets\images\flutter-img.svg" />
     <Content Include="assets\images\flutter.svg" />
+    <Content Include="assets\images\forming-team-leadership-concept-illustration.jpg" />
     <Content Include="assets\images\gallery\bladeportM-portfolio.jpg" />
     <Content Include="assets\images\gallery\boltwellM-portfolio.jpg" />
     <Content Include="assets\images\gallery\cavinessandcates-portfolio.jpg" />
@@ -343,6 +348,7 @@
     <Content Include="assets\images\google_cloud.svg" />
     <Content Include="assets\images\healthcare.jpg" />
     <Content Include="assets\images\healthcare.svg" />
+    <Content Include="assets\images\helping-partner-concept-illustration.jpg" />
     <Content Include="assets\images\hire-developer.svg" />
     <Content Include="assets\images\html5-img.svg" />
     <Content Include="assets\images\html5-tech.jpg" />
@@ -354,6 +360,7 @@
     <Content Include="assets\images\icons\AI.svg" />
     <Content Include="assets\images\icons\android.svg" />
     <Content Include="assets\images\icons\angular.svg" />
+    <Content Include="assets\images\icons\arrow-down-3101.svg" />
     <Content Include="assets\images\icons\arrow_right.svg" />
     <Content Include="assets\images\icons\authentication-libraries-ic.svg" />
     <Content Include="assets\images\icons\availability-ic.svg" />
@@ -387,6 +394,7 @@
     <Content Include="assets\images\icons\dotnet.svg" />
     <Content Include="assets\images\icons\easy-refactoring-ic.svg" />
     <Content Include="assets\images\icons\easy-to-use-ic.svg" />
+    <Content Include="assets\images\icons\entypo_arrow-long-right.svg" />
     <Content Include="assets\images\icons\fast-timer-ic.svg" />
     <Content Include="assets\images\icons\faster-deployment-ic.svg" />
     <Content Include="assets\images\icons\feature-rich-ic.svg" />
@@ -410,6 +418,7 @@
     <Content Include="assets\images\icons\jenkins-.svg" />
     <Content Include="assets\images\icons\jenkins.svg" />
     <Content Include="assets\images\icons\jira.svg" />
+    <Content Include="assets\images\icons\keyboard_arrow_down.png" />
     <Content Include="assets\images\icons\language-ic.svg" />
     <Content Include="assets\images\icons\list-ic.svg" />
     <Content Include="assets\images\icons\load-balancing-ic.svg" />
@@ -465,6 +474,7 @@
     <Content Include="assets\images\icons\sketch.svg" />
     <Content Include="assets\images\icons\sql-server.svg" />
     <Content Include="assets\images\icons\swift.svg" />
+    <Content Include="assets\images\icons\toc.svg" />
     <Content Include="assets\images\icons\two-way-binding-ic.svg" />
     <Content Include="assets\images\icons\typescript.svg" />
     <Content Include="assets\images\icons\universal-ui-ic.svg" />
@@ -472,6 +482,7 @@
     <Content Include="assets\images\icons\usa-flag.svg" />
     <Content Include="assets\images\icons\usable-ic.svg" />
     <Content Include="assets\images\icons\user-experience-ic.svg" />
+    <Content Include="assets\images\icons\Vector.svg" />
     <Content Include="assets\images\icons\vision-ic.svg" />
     <Content Include="assets\images\icons\vuejs.svg" />
     <Content Include="assets\images\icons\web-development-ic.svg" />
@@ -510,6 +521,7 @@
     <Content Include="assets\images\joomla.svg" />
     <Content Include="assets\images\l-and-d.svg" />
     <Content Include="assets\images\laravel.svg" />
+    <Content Include="assets\images\locations\flutter-working_process_path_light.png" />
     <Content Include="assets\images\logistics.jpg" />
     <Content Include="assets\images\logo-light.svg" />
     <Content Include="assets\images\logo.svg" />
@@ -603,7 +615,6 @@
     <Content Include="assets\images\selenium.svg" />
     <Content Include="assets\images\seo.jpg" />
     <Content Include="assets\images\services-img.svg" />
-    <Content Include="assets\images\locations\flutter-working_process_path_light.png" />
     <Content Include="assets\images\locations\flutter-working_process_path_light_mobile.png" />
     <Content Include="assets\images\locations\food_and_recipes_bg.png" />
     <Content Include="assets\images\locations\food_and_restaurant_bg.png" />
@@ -635,7 +646,6 @@
     <Content Include="assets\images\locations\our_blogs-3.svg" />
     <Content Include="assets\images\locations\Profile_1.png" />
     <Content Include="assets\images\locations\Profile_2.png" />
-    <Content Include="assets\images\locations\working_process_path_light.png" />
     <Content Include="assets\images\locations\working_process_path_light_mobile.png" />
     <Content Include="assets\images\sharepoint-img.svg" />
     <Content Include="assets\images\sharepoint-tech.jpg" />
@@ -671,6 +681,14 @@
     <Content Include="assets\images\user\3.jpg" />
     <Content Include="assets\images\user\4.jpg" />
     <Content Include="assets\images\user\5.jpg" />
+    <Content Include="assets\images\user\ashvin.png" />
+    <Content Include="assets\images\user\chintan.png" />
+    <Content Include="assets\images\user\dhaval.png" />
+    <Content Include="assets\images\user\jay.png" />
+    <Content Include="assets\images\user\jimmy.png" />
+    <Content Include="assets\images\user\krunal.png" />
+    <Content Include="assets\images\user\maulik.png" />
+    <Content Include="assets\images\user\rushil.png" />
     <Content Include="assets\images\vue-img.svg" />
     <Content Include="assets\images\vuejs-tech.jpg" />
     <Content Include="assets\images\vuejs.svg" />
@@ -709,6 +727,7 @@
     <Content Include="assets\js\popper.min.js" />
     <Content Include="assets\js\script.js" />
     <Content Include="assets\js\scrollbar.js" />
+    <Content Include="assets\js\swiper-bundle-min.js" />
     <Content Include="assets\js\swiper.min.js" />
     <Content Include="assets\js\TweenMax.min.js" />
     <Content Include="assets\js\utils.js" />

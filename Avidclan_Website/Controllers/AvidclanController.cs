@@ -6,8 +6,11 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing.Printing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web.Mvc;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Avidclan_Website.Controllers
@@ -21,6 +24,7 @@ namespace Avidclan_Website.Controllers
 
         string connectionString = ConfigurationManager.ConnectionStrings["DbEntities"].ToString();
         SqlConnection con;
+        private static string ImageServerUrl = "https://images.weserv.nl/?url=";
         public AvidclanController()
         {
             con = new SqlConnection(connectionString);
@@ -436,11 +440,19 @@ namespace Avidclan_Website.Controllers
             {
                 for (int i = 0; i < BlogList.Count; i++)
                 {
+                    var thumbnailImageString = BlogList[i].Image;
+
+                    var thumbnailImageCDN = thumbnailImageString;
+                    if (thumbnailImageString.Contains("https"))
+                    {
+                        thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString : ImageServerUrl + thumbnailImageString;
+                    }
+
                     Blog blog = new Blog();
                     blog.Title = BlogList[i].Title;
                     blog.Description = BlogList[i].Description;
                     blog.BlogType = BlogList[i].BlogType;
-                    blog.Image = BlogList[i].Image;
+                    blog.Image = thumbnailImageCDN;
                     blog.PostingDate = BlogList[i].PostingDate;
                     blog.PostedBy = BlogList[i].PostedBy;
                     listBlog.Add(blog);
@@ -469,12 +481,20 @@ namespace Avidclan_Website.Controllers
             {
                 for (int i = 0; i < BlogList.Count; i++)
                 {
+                    var thumbnailImageString = BlogList[i].Image;
+
+                    var thumbnailImageCDN = thumbnailImageString;
+                    if (thumbnailImageString.Contains("https"))
+                    {
+                        thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString : ImageServerUrl + thumbnailImageString;
+                    }
+
                     Blog blog = new Blog();
                     blog.Id = BlogList[i].Id;
                     blog.Title = BlogList[i].Title;
                     blog.Description = BlogList[i].Description;
                     blog.BlogType = BlogList[i].BlogType;
-                    blog.Image = BlogList[i].Image;
+                    blog.Image = thumbnailImageCDN;
                     blog.PostingDate = BlogList[i].PostingDate;
                     blog.PostedBy = BlogList[i].PostedBy;
                     blog.PageUrl = BlogList[i].PageUrl;
@@ -490,6 +510,47 @@ namespace Avidclan_Website.Controllers
             return JsonConvert.SerializeObject(new { Isvalid = true, data = obj });
         }
 
+        public string GetRelatedPosts(int blogId)
+        {
+            int PageSize = 3;
+            BlogViewModel obj = new BlogViewModel();
+            List<Blog> listBlog = new List<Blog>();
+            con.Open();
+            var parameters = new DynamicParameters();
+            parameters.Add("@Mode", 12, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@Id", blogId);
+            parameters.Add("@Offset", 0);
+            parameters.Add("@PagingSize", PageSize);
+            var BlogList = con.Query<Blog>("sp_Blog", parameters, commandType: CommandType.StoredProcedure).ToList();
+            con.Close();
+            if (BlogList != null && BlogList.Count > 0)
+            {
+                for (int i = 0; i < BlogList.Count; i++)
+                {
+                    var thumbnailImageString = BlogList[i].Image;
+
+                    var thumbnailImageCDN = thumbnailImageString;
+                    if (thumbnailImageString.Contains("https"))
+                    {
+                        thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString : ImageServerUrl + thumbnailImageString;
+                    }
+
+                    Blog blog = new Blog();
+                    blog.Id = BlogList[i].Id;
+                    blog.Title = BlogList[i].Title;
+                    blog.Description = BlogList[i].Description;
+                    blog.BlogType = BlogList[i].BlogType;
+                    blog.Image = thumbnailImageCDN;
+                    blog.PostingDate = BlogList[i].PostingDate;
+                    blog.PostedBy = BlogList[i].PostedBy;
+                    blog.PageUrl = BlogList[i].PageUrl;
+                    blog.MetaTitle = BlogList[i].MetaTitle;
+                    blog.MetaDescription = BlogList[i].MetaDescription;
+                    listBlog.Add(blog);
+                }
+            }
+            return JsonConvert.SerializeObject(new { Isvalid = true, data = listBlog });
+        }
 
         [Route("blog-details/")]
         public ActionResult BlogDetails()
@@ -541,6 +602,21 @@ namespace Avidclan_Website.Controllers
             var reader = con.QueryMultiple("sp_Blog", parameters, commandType: CommandType.StoredProcedure);
             var bloglist = reader.Read<Blog>().ToList();
             var blogfaqslist = reader.Read<BlogFaqs>().ToList();
+            if (bloglist != null && bloglist.Count > 0)
+            {
+                for (int i = 0; i < bloglist.Count; i++)
+                {
+                    var thumbnailImageString = bloglist[i].Image;
+
+                    var thumbnailImageCDN = thumbnailImageString;
+                    if (thumbnailImageString.Contains("https"))
+                    {
+                        thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString : ImageServerUrl + thumbnailImageString;
+                    }
+                    bloglist[i].Image = thumbnailImageCDN;
+                }
+
+            }
             var dynamiclist = new
             {
                 bloglist = bloglist,

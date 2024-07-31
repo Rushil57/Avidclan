@@ -420,7 +420,7 @@
                                                             </div>
                                                             <div class="col-sm-6">
                                                                 <a href="~/life-at-avidclan/">
-                                                                    <h3 class="title">Life @@ Avidclan</h3>
+                                                                    <h3 class="title">Life @@ Avidclan Technologies</h3>
                                                                     <div class="content">
                                                                         <p>
                                                                             Being a great place to work is the difference between being a good company and a
@@ -577,7 +577,7 @@
                                 <div>Back <i class="fa icon fa-angle-left"></i></div>
                             </li>
                             <li><a href="~/career#career-section">Current Openings</a></li>
-                            <li><a href="~/life-at-avidclan/">Life @@ Avidclan</a></li>
+                            <li><a href="~/life-at-avidclan/">Life @@ Avidclan Technologies</a></li>
                         </ul>
                     </li>
                     <li><a href="/contact-us/">Contact Us</a></li>
@@ -743,7 +743,7 @@
                                                 <li><a href="~/about-us/">About</a></li>
                                                 <li><a href="~/career/">Careers</a></li>
                                                 <li><a href="~/career#career-section">Current Openings</a></li>
-                                                <li><a href="~/life-at-avidclan/">Life@Avidclan</a></li>
+                                                <li><a href="~/life-at-avidclan/">Life@Avidclan Technologies</a></li>
                                                 <li><a href="#testimonials">Testimonials</a></li>
                                                 <li><a href="~/contact-us/">Contact</a></li>
                                             </ul>
@@ -874,8 +874,13 @@
         GetBlogDetails();
     });
     function GetBlogDetails() {
-        var id = localStorage.getItem("BlogId");
-        var date = localStorage.getItem("BlogDate");
+        var id;
+        let searchParams = new URLSearchParams(window.location.search)
+        if (searchParams.has('Id')) {
+            id = searchParams.get('Id');
+        }
+        /*var id = localStorage.getItem("BlogId");
+        var date = localStorage.getItem("BlogDate");*/
         $.ajax({
                 url: '@Url.Action("GetBlogData", "Avidclan")',
                 contentType: 'application/json',

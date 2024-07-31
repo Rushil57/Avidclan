@@ -2,99 +2,259 @@
 @{
     var context = "@context";
     var type = "@type";
+    var blog_id = ViewBag.BlogId;
 }
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 @section AdditionalMeta
 {
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Avidclan Technologies" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="@ViewBag.MetaTitle" />
+    <meta property="og:description" content="@ViewBag.MetaData" />
+    <meta property="og:url" content="@ViewBag.Url" />
+    <meta property="article:published_time" content="2024-05-17T04:45:30+00:00" />
+    <meta property="article:modified_time" content="2024-05-17T04:45:30+00:00" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="AvidclanTechnologies" />
+    <meta name="twitter:title" content="@ViewBag.MetaTitle" />
+    <meta name="twitter:description" content="@ViewBag.MetaData" />
+
     <title id="htmltitle">@ViewBag.MetaTitle</title>
     <meta name="description" content="@ViewBag.MetaData">
     <link rel="canonical" href="@ViewBag.Url" />
-    <link rel="stylesheet" href="~/assets/css/Avidclan/blog.css" />
-    <script type="application/ld+json">
-        {
-          "@context": "https://schema.org/",
-          "@type": "BreadcrumbList",
-          "itemListElement": [{
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Avidclan",
-            "item": "https://www.avidclan.com/"
-          },{
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Blog",
-            "item": "https://www.avidclan.com/blog/"
-          },
-           {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "@ViewBag.MetaTitle",
-            "item": "@ViewBag.Url"
-          }]
-        }
-    </script>
-    @Html.Raw(ViewBag.FaqSchema)
+    <link rel="stylesheet" href="~/assets/css/Avidclan/blogDetails.css" />
+    @Html.Raw(ViewBag.SchemaCode)
 }
-
-<style>
-    h3 {
-        margin-bottom: 0px !important;
-    }
-</style>
-
 <section class="blog-section">
     <div class="container">
-        <div class="blog-details-wrap">
+        <div class="row">
             <!-- Blog Details Post Start -->
-            <div class="blog-details-post">
+            <div class="col blog-details-post">
                 <!-- Single Blog Start -->
                 <div class="single-blog">
-                    <h1 class="title" id="Blogtitle"></h1>
+                    @*<h1 class="title" id="Blogtitle"></h1>*@
                     <div class="blog-img">
-                        <a href="#"><img id="blogImage" src="" alt="" /></a>
-
-                        <div class="top-meta">
-                            <span class="tag" id="blogTag"></span>
+                        <a href="#">
+                            <img id="blogImage" src="" alt="" />
+                        </a>
+                    </div>
+                    <div class="page-breadcrumb lg_only">
+                        <div class="breadcrumbs-item breadcrumb-font font-20">
+                            <a href="/"><span property="name" class="name-item d-flex align-items-center">Home</span></a>
+                            <a href="/blog"><span property="name" class="name-item d-flex align-items-center">Blog</span></a>
+                            <span property="name" class="name-item d-flex align-items-center" id="BlogCategory">Blog Category</span>
+                            <span property="name" class="active-item d-flex" id="ShortTitle">Blog Title</span>
                         </div>
                     </div>
-                    <div class="blog-content">
-                        <div class="blog-meta" style="padding: 10px;">
-                            <span id="admin"><i class="fas fa-user"></i> <a href="#"></a></span>
-                            <span id="spanDate"><i class="far fa-calendar-alt"></i></span>
-                        </div>
-                        @Html.Raw(ViewBag.HtmlData)
-
-                        <section class="FAQ-section testimonial-section-two">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-xl-12">
-                                        <div class="avidclan_section_title text-center mb-50">
-                                            <h5 class="avidclan_sub_title primary-color">FIND USEFUL</h5>
-                                            <div class="sec-title"><h2>Frequently Asked Questions</h2></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="accordion" id="accordionExample">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-
                 </div>
                 <!-- Single Blog End -->
 
             </div>
             <!-- Blog Details Post End -->
         </div>
+        <div class="row" id="blogContent">
+            <div class="col-lg-8 col-md-8 col-xl-8">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <div id="BlogType" class="blog-type font-20 text-center"></div> @*Predictive and Date Analytics*@
+                        <span class="after-separator"> | </span>
+                        <div id="publishDate" class="span-date font-16 text-center"></div> @*May 17, 2024*@
+                        <span class="after-separator"> | </span>
+                        <div class="publisher-name">
+                            <div class="user-image">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="text-content d-block font-16 text-center">
+                                <span>by</span>
+                                <a href="#" id="AuthorName"></a> @*Rushil Bhuptani*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-content sm_only">
+                        <div class="title mb-4">
+                            <img class="pe-3" src="~/assets/images/icons/toc.svg">Table of Content
+                        </div>
+                        <div class="table-content-list">
+                            <ul>
+                                @{
+                                    if (ViewBag.TableContent != "" && ViewBag.TableContent != null)
+                                    {
+                                        @Html.Raw(ViewBag.TableContent);
+                                    }
+                                    else
+                                    {
+                                        <li>No Data Available</li>
+                                    }
+                                }
+                                @*<li>What is Predictive Analytics in Machine Learning?</li>
+                                    <li>Difference Between Data Analytics and Predictive Analytics.</li>
+                                    <li>How Big Data and Predictive Analytics Help Businesses?</li>
+                                    <li>Data mining and predictive analytics are the same?</li>
+                                    <li>Why Do We Need Predictive Analytics?</li>
+                                    <li>Conclusion</li>*@
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h2 class="blog-title-internal font-40" id="Blogtitle">
+                                @*@ViewBag.MetaTitle*@
+                            </h2>
+                        </div>
+                    </div>
+
+                    @Html.Raw(ViewBag.HtmlData)
+
+                    <div class="related-services sm_only">
+                        <div class="title-24 mb-4">
+                            RELATED SERVICES
+                        </div>
+                        <div class="services-list">
+                            <div class="list-item">
+                                <a href="~/web-development-company/">
+                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_arrow-long-right.svg" /></span>
+                                    Web Development
+                                </a>
+                            </div>
+                            <hr />
+                            <div class="list-item">
+                                <a href="~/mobile-app-development-company/">
+                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_arrow-long-right.svg" /></span>
+                                    Mobile Application
+                                </a>
+                            </div>
+                            <hr />
+                            <div class="list-item">
+                                <a href="~/ui-ux-design-company/">
+                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_arrow-long-right.svg" /></span>
+                                    UI / UX Design
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <section class="FAQ-section testimonial-section-two bg-img-none pb-0">
+                        <div class="container-fluid px-0">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="avidclan_section_title text-center mb-5">
+                                        <div class="text-start"><h2 class="title-24">FREQUENTLY ASKED QUESTIONS (FAQs)</h2></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="accordion" id="accordionExample">
+                                        @ViewBag.sectionFAQ
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="lets-connect sm_only">
+                        <div class="bg-image"><img class="h-100" src="~/assets/images/blog/connect-with-us-image.jpg" /></div>
+                        <div class="content">
+                            <span class="text">To revolutionize your business with digital innovation.</span>
+                            <a href="~/contact-us/" class="theme-btn btn-style-two btn-light">
+                                <span class="btn-title"><span class="iconify me-2" data-icon="ion:call-sharp" data-height="25"></span>Let's connect!</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xl-4 sidebar-wrap lg_only">
+                <div class="sidebar lg_only" id="sidebar">
+                    <div class="table-content">
+                        <div class="title mb-4">
+                            <img class="pe-3" src="~/assets/images/icons/toc.svg">Table of Content
+                        </div>
+                        <div class="table-content-list">
+                            <ul>
+                                @{
+                                    if (ViewBag.TableContent != "" && ViewBag.TableContent != null)
+                                    {
+                                        @Html.Raw(ViewBag.TableContent);
+                                    }
+                                    else
+                                    {
+                                        <li>No Data Available</li>
+                                    }
+                                }
+                                @*<li>What is Predictive Analytics in Machine Learning?</li>
+                                    <li>Difference Between Data Analytics and Predictive Analytics.</li>
+                                    <li>How Big Data and Predictive Analytics Help Businesses?</li>
+                                    <li>Data mining and predictive analytics are the same?</li>
+                                    <li>Why Do We Need Predictive Analytics?</li>
+                                    <li>Conclusion</li>*@
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="related-services">
+                        <div class="title-24 mb-4">
+                            RELATED SERVICES
+                        </div>
+                        <div class="services-list">
+                            <div class="list-item">
+                                <a href="~/web-development-company/">
+                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_arrow-long-right.svg" /></span>
+                                    Web Development
+                                </a>
+                            </div>
+                            <hr />
+                            <div class="list-item">
+                                <a href="~/mobile-app-development-company/">
+                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_arrow-long-right.svg" /></span>
+                                    Mobile Application
+                                </a>
+                            </div>
+                            <hr />
+                            <div class="list-item">
+                                <a href="~/ui-ux-design-company/">
+                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_arrow-long-right.svg" /></span>
+                                    UI / UX Design
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lets-connect">
+                        <div class="bg-image"><img class="h-100" src="~/assets/images/blog/connect-with-us-image.jpg" /></div>
+                        <div class="content">
+                            <span class="text">To revolutionize your business with digital innovation.</span>
+                            <a href="~/contact-us/" class="theme-btn btn-style-two btn-light">
+                                <span class="btn-title"><span class="iconify me-2" data-icon="ion:call-sharp" data-height="25"></span>Let's connect!</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
-<section class="lets-talk">
+
+<section class="related-posts mt-lg-5 mt-xl-5 mt-md-3 mt-sm-3" id="relatedPosts">
+    <div class="container">
+        <div class="blog-grid-wrap">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="avidclan_section_title text-center mb-50">
+                        <div class="title-24 mb-2">
+                            RELATED POSTS
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="related-blogs">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="lets-talk" id="foot-top">
     <div class="container">
         <div class="inner-block">
             <div class="row align-items-center">
@@ -122,63 +282,195 @@
 
 @Html.Partial("_FooterWith190")
 
+<script type="text/javascript" defer>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        GetBlogDetails();
-    });
-    function GetBlogDetails() {
-        var id = localStorage.getItem("BlogId");
-        var date = localStorage.getItem("BlogDate");
-        $.ajax({
-                url: '@Url.Action("GetBlogData", "Avidclan")',
-                contentType: 'application/json',
-                data: { Id: id },
-                type: "GET",
-                success: function (result) {
-                    if (result != null) {
-                        var fromdate = moment(result.bloglist[0].PostingDate).format('MM/DD/YYYY  HH:mm:ss');
-                        var options = { year: 'numeric', month: 'long', day: 'numeric' };
-                        var PostingDate = new Date(fromdate);
-                        var longDt = PostingDate.toLocaleDateString("en-US", options);
+    $(function () {
+        var headerH = $('.header-upper').outerHeight() + 'px';
+        var top = $('#sidebar').offset().top - parseFloat($('#sidebar').css('marginTop').replace(/auto/, 0)) - $('.header-upper').outerHeight();
+        var footTop = $('#relatedPosts').offset().top - parseFloat($('#relatedPosts').css('marginTop').replace(/auto/, 0));
 
-                        $("#blogTag").html(result.bloglist[0].BlogType)
-                        $("#Blogtitle").html(result.bloglist[0].Title)
-                        $("#admin a").html(result.bloglist[0].PostedBy)
-                        $('#blogImage').attr('src', result.bloglist[0].Image);
-                        $("#spanDate").html(longDt)
-                        var sectionblog = "";
-                        var count = 1;
-                        if (result.blogfaqslist == 0) {
-                            $(".FAQ-section").css("display", "none")
-                        }
-                        else {
-                            $(".FAQ-section").css("display", "block")
-                            $.each(result.blogfaqslist, function (key, val) {
-                                sectionblog = '<div class="accordion-item" style="margin-bottom: 20px">' +
-                                    '<h2 class="accordion-header" id="heading' + count + '">' +
-                                    '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"' +
-                                    'data-bs-target="#collapse' + count + '" aria-expanded="true" aria-controls="collapse' + count + '">' +
-                                    '' + val.Questions + '' +
-                                    '</button>' +
-                                    '</h2>' +
-                                    '<div id="collapse' + count + '" class="accordion-collapse collapse" aria-labelledby="headingOne"' +
-                                    'data-bs-parent="#accordionExample">' +
-                                    '<div class="accordion-body">' +
-                                    val.Answers +
-                                    '</div>' +
-                                    '</div>' +
-                                    '</div>'
-                                count++;
-                                $('#accordionExample').append(sectionblog);
-                            });
-                        }
-                    }
-                },
-                error: function () {
-                    alert('failure');
+        var maxY = footTop - $('#sidebar').outerHeight();
+        var headerH = $('.header-upper').outerHeight() + 'px';
+
+        var screenWidth = $(window).width();
+        var rowWidth = $('#blogContent').width();
+        var colPadding = ($('.sidebar-wrap').innerWidth() - $('.sidebar-wrap').width()) / 2;
+        var spaceRight = ((screenWidth - rowWidth) / 2) + colPadding;
+
+        $(window).scroll(function (evt) {
+            var headerHeight = $('#relatedPosts .avidclan_section_title').outerHeight();
+            var footTop = $('#relatedPosts').offset().top - parseFloat($('#relatedPosts').css('marginTop').replace(/auto/, 0)) - headerHeight;
+            var maxY = footTop - $('#sidebar').outerHeight();
+
+            var y = $(this).scrollTop();
+            if (y > top) {
+                if (y < maxY) {
+                    $('#sidebar').removeAttr('style');
+                    $('#sidebar').addClass('fixed').css({
+                        marginRight: spaceRight,
+                        top: headerH
+                    });
+                } else {
+                    $('#sidebar').removeAttr('style');
+                    $('#sidebar').removeClass('fixed').css({
+                        position: 'relative',
+                        top: (maxY - top) + 'px'
+                    });
                 }
+            } else {
+                $('#sidebar').removeAttr('style');
+                $('#sidebar').removeClass('fixed');
+            }
         });
-    }
+        $('.table-content-list ul li a').click(function (event) {
+            var divId = $(this).attr('href');
+            $('html, body').animate({
+                scrollTop: $(divId).offset().top - 110
+            }, 100);
+        });
+    });
+    $(document).ready(function () {
+    var id = @blog_id;
+    $.ajax({
+        url: '@Url.Action("GetBlogData", "Avidclan")',
+        contentType: 'application/json',
+        data: { Id: id },
+        type: "GET",
+        success: function (result) {
+            if (result != null) {
+                var fromdate = moment(result.bloglist[0].PostingDate).format('MM/DD/YYYY  HH:mm:ss');
+                var options = { year: 'numeric', month: 'long', day: 'numeric' };
+                var PostingDate = new Date(fromdate);
+                var longDt = PostingDate.toLocaleDateString("en-US", options);
 
+                $("#ShortTitle").html(result.bloglist[0].ShortTitle)
+                $("#BlogCategory").html(result.bloglist[0].BlogType)
+                $("#BlogType").html(result.bloglist[0].BlogType)
+                $("#Blogtitle").html(result.bloglist[0].Title)
+                $("#AuthorName").html(result.bloglist[0].PostedBy)
+                $('#blogImage').attr('src', result.bloglist[0].Image);
+                $("#publishDate").html(longDt)
+                var sectionblog = "";
+                var count = 1;
+                if (result.blogfaqslist == 0) {
+                    $(".FAQ-section").css("display", "none")
+                }
+                else {
+                    $(".FAQ-section").css("display", "block")
+                    $('#accordionExample').html('');
+                    $.each(result.blogfaqslist, function (key, val) {
+                        sectionblog = '<div class="accordion-item" style="margin-bottom: 20px">' +
+                            '<h2 class="accordion-header" id="heading' + count + '">' +
+                            '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"' +
+                            'data-bs-target="#collapse' + count + '" aria-expanded="true" aria-controls="collapse' + count + '">' +
+                            '' + val.Questions + '' +
+                            '</button>' +
+                            '</h2>' +
+                            '<div id="collapse' + count + '" class="accordion-collapse collapse" aria-labelledby="headingOne"' +
+                            'data-bs-parent="#accordionExample">' +
+                            '<div class="accordion-body">' +
+                            val.Answers +
+                            '</div>' +
+                            '</div>' +
+                            '</div>'
+                        count++;
+                        $('#accordionExample').append(sectionblog);
+                    });
+                }
+            }
+        },
+        error: function () {
+            alert('failure');
+        }
+    });
+
+    //$.ajax({
+    //    type: "GET",
+    //    url: "/Avidclan/GetSectionData?page=1",
+    //    contentType: 'application/json; charset=utf-8',
+    //    dataType: "json",
+    //    success: function (data) {
+    //        $("#related-blogs").html("");
+    //        var incrementor = 0;
+    //        var sectionblog = "";
+    //        var paginationData = "";
+    //        var imageURL = "https://cms.avidclan.com";
+    //        $.each(data.data.ListBlog, function (k, v) {
+    //            if (incrementor < 3) {
+    //                incrementor++;
+    //                var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    //                var PostingDate = new Date(v.PostingDate);
+    //                var longDt = PostingDate.toLocaleDateString("en-US", options);
+    //                var Descriptionlength = v.MetaDescription.length > 80 ? v.MetaDescription.substring(0, 80) + "…" : v.MetaDescription;
+
+    //                sectionblog += '<div class="col-lg-4 col-md-6">' +
+    //                    '<div class="single-blog">' +
+    //                    '<div class="blog-img img img-fluid">' +
+    //                    '<a href="/blogDetails/' + v.PageUrl + '"><img class="BlogImages" src="' + v.Image + '" alt="" style="height:216px;"></a>' +
+    //                    '</div> ' +
+    //                    '<div class="blog-content">' +
+    //                    '<h3 class="title blog-title"><a href="/blogDetails/' + v.PageUrl + '">' + v.Title + '</a></h3>' +
+    //                    '<div class="blog-meta"><span><i class="fas fa-user icon-image"></i><span class="by-separator">by</span><a href="#">' + v.PostedBy + '</a></span><span id="admindateid_36"><i class="far fa-calendar-alt"></i>' + longDt + '</span></div>' +
+    //                    '<div class="read-article">' +
+    //                    '<div class="blog-btn">' +
+    //                    '<a href="/blogDetails/' + v.PageUrl + '" class="blog-btn-link">Read Full Article<img src="/assets/images/icons/Vector.svg" /></a>' +
+    //                    '</div>' +
+    //                    '</div>' +
+    //                    '</div>' +
+    //                    '</div>' +
+    //                    '</div>';
+    //            }
+    //        })
+    //        $('#related-blogs').html(sectionblog);
+    //        $('.loader').css("display","none");
+    //    },
+    //    error: function (result) {
+    //        console.log("Error Ocurred!");
+    //    }
+        //});
+        $.ajax({
+            type: "GET",
+            url: "/Avidclan/GetRelatedPosts?blogId=" + id,
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            success: function (data) {
+                $("#related-blogs").html("");
+                var incrementor = 0;
+                var sectionblog = "";
+                var paginationData = "";
+                var imageURL = "https://cms.avidclan.com";
+                $.each(data.data, function (k, v) {
+                    if (incrementor < 3) {
+                        incrementor++;
+                        var options = { year: 'numeric', month: 'long', day: 'numeric' };
+                        var PostingDate = new Date(v.PostingDate);
+                        var longDt = PostingDate.toLocaleDateString("en-US", options);
+                        var Descriptionlength = v.MetaDescription.length > 80 ? v.MetaDescription.substring(0, 80) + "…" : v.MetaDescription;
+
+                        sectionblog += '<div class="col-lg-4 col-md-6">' +
+                            '<div class="single-blog">' +
+                            '<div class="blog-img img img-fluid">' +
+                            '<a href="/blog/' + v.PageUrl + '"><img class="BlogImages" src="' + v.Image + '" alt="" style="height:216px;"></a>' +
+                            '</div> ' +
+                            '<div class="blog-content">' +
+                            '<h3 class="title blog-title"><a href="/blog/' + v.PageUrl + '">' + v.Title + '</a></h3>' +
+                            '<div class="blog-meta"><span><i class="fas fa-user icon-image"></i><span class="by-separator">by</span><a href="#">' + v.PostedBy + '</a></span><span id="admindateid_36"><i class="far fa-calendar-alt"></i>' + longDt + '</span></div>' +
+                            '<div class="read-article">' +
+                            '<div class="blog-btn">' +
+                            '<a href="/blog/' + v.PageUrl + '" class="blog-btn-link">Read Full Article<img src="/assets/images/icons/Vector.svg" /></a>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+                    }
+                })
+                $('#related-blogs').html(sectionblog);
+                $('.loader').css("display", "none");
+            },
+            error: function (result) {
+                console.log("Error Ocurred!");
+            }
+        });
+});
 </script>

@@ -146,24 +146,9 @@
                 : i();
         })(),
             $(document).ready(function () {
-                var e = $(".navigation .ser_menu").find("> a").width() / 2,
-                    t = $(".navigation .ser_menu").find(".dropdown-menu").outerWidth() / 2;
-                $(".navigation .ser_menu")
-                    .find(".dropdown-menu.half")
-                    .css({ transform: "translate(" + (-t + e) + "px)" });
-                var i = $(".navigation .tec_menu").find("> a").width() / 2,
-                    n = $(".navigation .tec_menu").find(".dropdown-menu").outerWidth() / 2;
-                $(".navigation .tec_menu")
-                    .find(".dropdown-menu.half")
-                    .css({ transform: "translate(" + (-n + i) + "px)" });
-                var a = $(".navigation .car_menu").find("> a").width() / 2,
-                    o = $(".navigation .car_menu").find(".dropdown-menu").outerWidth() / 2;
-                $(".navigation .car_menu")
-                    .find(".dropdown-menu.half")
-                    .css({ transform: "translate(" + (-o + a) + "px)" }),
-                    $("#btnResetCookiePolicy").on("click", function () {
-                        console.log("btn: reset"), Cookies.remove("acceptedCookiesPolicy"), $("#alertCookiePolicy").show();
-                    });
+                $("#btnResetCookiePolicy").on("click", function () {
+                    console.log("btn: reset"), Cookies.remove("acceptedCookiesPolicy"), $("#alertCookiePolicy").show();
+                });
             }),
             $("#c_openings").click(function () {
                 $("body").hasClass("mobile-menu-visible") && window.location.reload();
@@ -177,8 +162,8 @@
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip();
             });
-    }),
-    console.clear();
+    });
+//console.clear();
 const navExpand = [].slice.call(document.querySelectorAll(".nav-expand")),
     backLink = '<li class="nav-item">\n\t<a class="nav-link nav-back-link1" href="javascript:;">\n  <span class="iconify me-2" data-icon="fa:angle-left"></span> Back\n\t</a>\n</li>';
 function testimonialActive() {

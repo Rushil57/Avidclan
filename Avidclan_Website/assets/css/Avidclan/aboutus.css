@@ -120,16 +120,34 @@
             margin: auto
         }
 
+.OurTeam .inner-col{
+    position:relative;
+    display:grid;
+}
+
 .OurTeam .member-block {
     box-shadow: 0 0 10px 0 rgb(0 0 0 / 15%);
     border-radius: 10px;
+    position: relative;
     margin-bottom: 30px
 }
 
-    .OurTeam .member-block .profile-pic {
-        background-color: #f2f5fe;
-        border-radius: 10px 10px 0 0;
-        text-align: center
+.OurTeam .inner-box {
+    position: relative;
+    height:100%;
+}
+
+.OurTeam .member-block .profile-pic {
+    background-color: #f2f5fe;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    overflow:hidden;
+}
+
+    .OurTeam .member-block .profile-pic img{
+        width:100%;
+        height:100%;
+        margin-top:15px;
     }
 
     .OurTeam .member-block .m-info, .single-blog .blog-content {
@@ -202,3 +220,170 @@
         color: #9399ab;
         margin-bottom: 0
     }
+
+/*------------------------------------------------------------------------------------
+|  About-Us Section  |
+-----------------------------------------------------------------------------------*/
+
+.about-section {
+    padding: 80px 0 0 0 !important;
+}
+
+.about-section .img-col img {
+    width: auto !important;
+    height: 63% !important;
+}
+
+.col-about_description .sec-title {
+    padding-bottom: 25px !important;
+    margin-bottom: 0 !important;
+}
+
+.col-about_description .sec-title h2 {
+    padding-bottom: 25px !important;
+}
+
+.gap-25_description {
+    display: grid;
+    row-gap: 25px;
+}
+
+.description-18 {
+    font-size: 14px;
+}
+
+@media(max-width:767.98px){
+    .lg_only {
+        display: none !important;
+    }
+    .about-section .img-col img {
+        width: auto !important;
+        height: auto !important;
+    }
+}
+
+@media(max-width:467.98px) {
+    .about-section .img-col img {
+        width: auto !important;
+        height: auto !important;
+    }
+
+    .lg_only {
+        display: none !important;
+    }
+
+    .description-18 {
+        font-size: 16px !important;
+        line-height: 29px !important;
+        font-weight: 500 !important;
+    }
+}
+
+@media(min-width:768px) {
+    .about-section .sec-title h2 {
+        font-size: 30px;
+    }
+
+    .about-section .img-col img {
+        width: auto !important;
+        height: auto !important;
+    }
+
+    .sm_only {
+        display: none !important;
+    }
+
+    .description-18 {
+        font-size: 16px !important;
+        line-height: 29px !important;
+        font-weight: 500 !important;
+    }
+}
+
+@media(min-width:992px) {
+    .about-section .sec-title h2 {
+        font-size: 40px;
+    }
+
+    .about-section .sec-title .sub-text {
+        font-size: 18px;
+    }
+
+    .about-section .img-col img {
+        width: auto !important;
+        height: auto !important;
+    }
+
+    .sm_only {
+        display: none !important;
+    }
+
+    .description-18 {
+        font-size: 18px !important;
+        line-height: 29px !important;
+        font-weight: 500 !important;
+    }
+}
+
+@media(min-width:1139px) {
+    .about-section .sec-title h2 {
+        font-size: 40px;
+    }
+
+    .about-section .img-col img {
+        width: auto !important;
+        height: 63% !important;
+    }
+
+    .sm_only {
+        display: none !important;
+    }
+
+    .description-18 {
+        font-size: 18px !important;
+        line-height: 29px !important;
+        font-weight: 500 !important;
+    }
+}
+
+@media(min-width:1392px) {
+    .about-section .sec-title h2 {
+        font-size: 40px;
+    }
+
+    .about-section .img-col img {
+        width: auto !important;
+        height: 63% !important;
+    }
+
+    .sm_only {
+        display: none !important;
+    }
+
+    .description-18 {
+        font-size: 18px !important;
+        line-height: 29px !important;
+        font-weight: 500 !important;
+    }
+}
+
+@media(min-width:1440px) {
+    .about-section .sec-title h2 {
+        font-size: 40px;
+    }
+
+    .about-section .img-col img {
+        width: auto !important;
+        height: 80% !important;
+    }
+
+    .sm_only {
+        display: none !important;
+    }
+
+    .description-18 {
+        font-size: 18px !important;
+        line-height: 29px !important;
+        font-weight: 500 !important;
+    }
+}

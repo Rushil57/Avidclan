@@ -2,6 +2,9 @@
 /*------------------------------------------------------------------------
     Badges Section
 --------------------------------------------------------------------------*/
+.badges-section {
+    background-image: url(../../../assets/images/testimonial_bg.png);
+}
 .badges-row {
     display:flex;
     justify-content:center;
@@ -18,6 +21,18 @@
     border-radius: 10px;
     background-color: transparent;
 }
+
+/*.badge-card .frame-img {
+    height: 155px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    text-decoration: none;
+    margin: 10px;
+    box-shadow: 0 2px 16px -2px rgba(0,0,0,.05);
+}*/
+
 .badge-card .stretched-link {
     text-decoration: none;
     margin: 10px;
@@ -82,3 +97,152 @@
     font-size: 14px !important;
 }
 /*-----------------End Section--------------------------------------------*/
+
+/*------------------------------------------------------------------------------------
+|  Our Facts Section  |
+-----------------------------------------------------------------------------------*/
+    .ourfacts .count-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 24px;
+        padding: 20px;
+        border: 1px solid rgba(37, 111, 190, 0.8);
+        /*border: 1px solid #142149;*/
+        background-color: #fff
+    }
+
+    .ourfacts .count-box.even {
+        background-color: #f2f5fe /*#e6f2ff*/
+    }
+
+    .ourfacts .count-box img {
+        width: 70px;
+        margin-bottom: 15px
+    }
+
+    .ourfacts .count-box .c-number {
+        font-size: 24px;
+        font-weight: 700;
+        color: #142149
+    }
+
+    .ourfacts .count-box p {
+        font-size: 20px;
+        font-weight: 400;
+        color: #9399ab;
+        margin-bottom: 0
+    }
+/*-----------------End Section--------------------------------------------*/
+
+/*------------------------------------------------------------------------------------
+|  Industry Serve Section  |
+-----------------------------------------------------------------------------------*/
+
+.industry-serve .service-block-five{
+    display:grid !important;
+}
+
+.industry-serve .service-block-five .inner-box {
+    position: relative;
+    background-color: #f2f5fe;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    -webkit-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s
+}
+
+    .industry-serve .service-block-five .inner-box .content-box {
+        position: relative;
+        padding: 30px 30px 30px 35px;
+        border-radius: 3px;
+        -webkit-transition: .5s;
+        -o-transition: .5s;
+        transition: .5s;
+        z-index: 9;
+        min-height: 120px;
+        text-align: center
+    }
+
+.industry-serve .service-block-five .icon {
+    padding: 30px 0 50px;
+    -webkit-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s
+}
+
+    .industry-serve .service-block-five .icon img {
+        max-height: 220px
+    }
+
+.industry-serve .service-block-five h4 {
+    position: relative;
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    -webkit-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s
+}
+
+.style-three .service-block-five .inner-box .content-box:before, .style-three .service-block-five .inner-box:after, .style-three .service-block-five .inner-box:before {
+    background-color: #201630
+}
+
+.bg-none{
+    background:none !important;
+}
+/*-----------------End Section--------------------------------------------*/
+
+/*------------------------------------------------------------------------------------
+|  Preloader Section  |
+-----------------------------------------------------------------------------------*/
+
+.loader-wrap {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background-color:#fff;
+}
+
+.preloader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: 4px solid #FFF;
+    border-right: 4px solid transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+    .preloader::after {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border-bottom: 4px solid #007bfc;
+        border-left: 4px solid transparent;
+    }
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+} 

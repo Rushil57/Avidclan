@@ -47,7 +47,10 @@
     <!-- End Google Tag Manager -->
 </head>
 <body>
-
+    <!-- Preloader
+    <div class="loader-wrap">
+        <div class="preloader"></div>
+    </div>-->
     <!-- Google Tag Manager (noscript) -->
     <noscript>
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HZ8ZV4Q"
@@ -112,7 +115,7 @@
                                             <li><a href="~/about-us/">About Us</a></li>
                                             <li class="dropdown w3_megamenu-fw ser_menu">
                                                 <a href="~/services/">Services</a>
-                                                <ul class="dropdown-menu half">
+                                                <ul class="dropdown-menu half" style="transform: translate(-461.5px);">
                                                     <div class="dropdown-arrow"></div>
                                                     <li class="w3_megamenu-content withoutdesc">
                                                         <div class="row">
@@ -234,7 +237,7 @@
                                             </li>
                                             <li class="dropdown w3_megamenu-fw tec_menu">
                                                 <a href="~/technologies/">Technologies</a>
-                                                <ul class="dropdown-menu half">
+                                                <ul class="dropdown-menu half" style="transform: translate(-441.5px);">
                                                     <div class="dropdown-arrow"></div>
                                                     <li class="w3_megamenu-content withoutdesc">
                                                         <div class="row">
@@ -360,7 +363,7 @@
                                             <li class="cls-menu-blog"><a href="~/blog/">Blog</a></li>
                                             <li class="dropdown w3_megamenu-fw car_menu">
                                                 <a href="~/career/">Careers</a>
-                                                <ul class="dropdown-menu half testmenu" style="max-width: 560px">
+                                                <ul class="dropdown-menu half testmenu" style="max-width: 560px; transform: translate(-248px);">
                                                     <div class="dropdown-arrow"></div>
                                                     <li class="w3_megamenu-content withoutdesc">
                                                         <div class="row">
@@ -377,7 +380,7 @@
                                                             </div>
                                                             <div class="col-sm-6">
                                                                 <a href="~/life-at-avidclan/">
-                                                                    <h3 class="title">Life @@ Avidclan</h3>
+                                                                    <h3 class="title">Life @@ Avidclan Technologies</h3>
                                                                     <div class="content">
                                                                         <p>
                                                                             Being a great place to work is the difference between being a good company and a
@@ -521,7 +524,7 @@
                                 <div>Back <i class="fa icon fa-angle-left"></i></div>
                             </li>
                             <li><a href="~/career#career-section">Current Openings</a></li>
-                            <li><a href="~/life-at-avidclan/">Life @@ Avidclan</a></li>
+                            <li><a href="~/life-at-avidclan/">Life @@ Avidclan Technologies</a></li>
                         </ul>
                     </li>
                     <li><a href="/contact-us/">Contact Us</a></li>
@@ -602,8 +605,6 @@
 
     <script type="text/javascript" defer>
         (function ($) {
-        GetBlogStatusByName("blog");
-        CareerOption();
         "use strict";
         $(".numberonly").keypress(function (e) {
         var charCode = e.which ? e.which : event.keyCode;

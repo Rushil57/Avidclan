@@ -10,6 +10,7 @@ namespace Avidclan_Website.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string ShortTitle { get; set; }
         public string BlogType { get; set; }
         public string Image { get; set; }
         public DateTime PostingDate { get; set; }
@@ -18,6 +19,7 @@ namespace Avidclan_Website.Models
         public string PageUrl { get; set; }
         public string MetaTitle { get; set; }
         public string MetaDescription { get; set; }
+        public string SchemaCode { get; set; }
         public string BlogPostingDate { get; set; }
 
         public string Questions { get; set; }
