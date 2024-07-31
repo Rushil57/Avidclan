@@ -366,7 +366,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 }
                 catch (Exception ex)
                 {
-					ErrorLog("AdminController - SaveFeedBack", ex.Message, ex.StackTrace);
+					await ErrorLog("AdminController - SaveFeedBack", ex.Message, ex.StackTrace);
 					var result = ex.Message;
                 }
             }
@@ -456,16 +456,15 @@ namespace Avidclan_BlogsVacancy.Controllers
         }
 
 
-		public void ErrorLog(string ControllerName, string ErrorMessage, string StackTrace)
+		public async Task ErrorLog(string ControllerName, string ErrorMessage, string StackTrace)
 		{
 			var parameters = new DynamicParameters();
 			parameters.Add("@ControllerName", ControllerName, DbType.String, ParameterDirection.Input);
 			parameters.Add("@ErrorMessage", ErrorMessage, DbType.String, ParameterDirection.Input);
 			parameters.Add("@StackTrace", StackTrace, DbType.String, ParameterDirection.Input);
 			parameters.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
-			var SaveError = con.ExecuteScalar("sp_Errorlog", parameters, commandType: CommandType.StoredProcedure);
-		}
+            var SaveError = await con.ExecuteScalarAsync("sp_Errorlog", parameters, commandType: CommandType.StoredProcedure);
+        }
 
-
-	}
+    }
 }

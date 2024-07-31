@@ -22,8 +22,6 @@ using System.Web.Services.Description;
 using iTextSharp.tool.xml.html;
 using Org.BouncyCastle.Asn1.Ocsp;
 using System.Xml.Linq;
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Util.Store;
 using System.Threading;
 using System.Web.Helpers;
 using MimeKit;
@@ -32,6 +30,7 @@ using Avidclan_BlogsVacancy.Methods;
 using SendGrid.Helpers.Mail;
 using SendGrid;
 using System.Web.Configuration;
+using System.Text;
 
 namespace Avidclan_BlogsVacancy.Controllers
 {
@@ -357,20 +356,22 @@ namespace Avidclan_BlogsVacancy.Controllers
                     if (arr[i].Type == "SendMail")
                     {
                         await ReadConfiguration();
-                        byte[] bytes = memoryStream.ToArray();
 
-                        var client = new SendGridClient(ApiKey);
-                        var subject = "Salary Slip for the month of " + Slipdate;
-                        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                        var msg = new SendGridMessage()
+                        byte[] bytes;
+                        string base64Attachment;
+                        string contentType;
+
+                        using (MemoryStream memorystream = new MemoryStream())
                         {
-                            From = new EmailAddress(senderEmail, "Avidclan Technologies"),
-                            Subject = subject,
-                            HtmlContent = "<p>Hello,<br><br> Greetings for the day!<br><br>Please find the attached salary slip for the month of " + Slipdate,
-                        };
-                        msg.AddTo(new EmailAddress(arr[i].EmailId));
-                        await msg.AddAttachmentAsync(fileName + ".pdf", new MemoryStream(bytes));
-                        var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
+                            bytes = memoryStream.ToArray();
+                            base64Attachment = Convert.ToBase64String(bytes);
+                            contentType = "application/pdf"; // Assuming the attachment is a PDF
+                        }
+
+                        string subject = "Salary Slip for the month of " + Slipdate;
+                        string htmlContent = "<p>Hello,<br><br> Greetings for the day!<br><br>Please find the attached salary slip for the month of " + Slipdate;
+
+                        await SendEmailWithAttachment(senderEmail, arr[i].EmailId, fileName, subject, htmlContent, base64Attachment, contentType);
                     }
                 }
                 catch (Exception ex)
@@ -454,6 +455,67 @@ namespace Avidclan_BlogsVacancy.Controllers
                 throw;
             }
             return result;
+        }
+        static string ConvertAttachmentToBase64(Stream attachmentStream, string fileName)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                attachmentStream.CopyTo(memoryStream);
+                byte[] attachmentBytes = memoryStream.ToArray();
+                string base64Attachment = Convert.ToBase64String(attachmentBytes);
+                return base64Attachment;
+            }
+        }
+        public async Task SendEmailWithAttachment(string senderEmail, string toEmail, string fileName, string subject, string htmlContent, string base64Attachment, string contentType)
+        {
+            string apiKey = "a101ac38119207e6774e78a74701c990";
+            string apiSecret = "fc46b6850d50f957b087e2ba1bf2c0ee";
+            string apiUrl = "https://api.mailjet.com/v3.1/send";
+
+            using (HttpClient client = new HttpClient())
+            {
+                string base64Auth = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{apiKey}:{apiSecret}"));
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", base64Auth);
+
+                var emailPayload = new
+                {
+                    Messages = new[]
+                    {
+           new
+           {
+                   From = new { Email = senderEmail, Name = "" },
+                   To = new[] { new { Email = toEmail, Name = "Avidclan Technologies" } },
+                   Subject = subject,
+                   HTMLPart = htmlContent,
+                   Attachments = new[]
+                   {
+                       new
+                       {
+                           ContentType = contentType,
+                           Filename = fileName + ".pdf",
+                           Base64Content = base64Attachment
+                       }
+                   }
+               }
+           }
+                };
+
+                string jsonPayload = JsonConvert.SerializeObject(emailPayload);
+                StringContent content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+
+
+
+                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine("Email sent successfully!");
+                }
+                else
+                {
+                    Console.WriteLine($"Error: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}");
+                }
+            }
         }
     }
 

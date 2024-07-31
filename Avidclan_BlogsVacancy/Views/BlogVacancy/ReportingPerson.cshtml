@@ -68,7 +68,7 @@
             }
         })
 
-        GetEmployees()
+        GetReportingPerson()
     })
 
     function SaveReportingPerson() {
@@ -79,19 +79,7 @@
             type: "POST",
             url: "@Url.Action("SaveReportingperson", "BlogVacancy")",
             data: { 'Person': person, 'Id' : Id},
-                success: function (result) {
-                    if (result == "True") {
-                        alert("Added Successfully!")
-                        ResetForm()
-                        GetEmployees();
-                    }
-                    else {
-                        alert("Something Went Wrong!")
-                    }
-                },
-                error: function (result) {
-                    alert("Failure");
-                }
+                 success: function (result) {     if (result == "Data Saved!") {         alert("Added Successfully!")         ResetForm()         GetReportingPerson();     }     else {         alert(result)     } }, error: function (result) {     alert(result.responsetext); }
             });
     }
 
@@ -102,7 +90,7 @@
         $("#ReportingModal").modal('hide')
     }
 
-    function GetEmployees() {
+    function GetReportingPerson() {
         $.ajax({
             type: "Get",
              url: "@Url.Action("GetListOfReportingPerson", "BlogVacancy")",
@@ -112,7 +100,7 @@
                     data: result,
                     "columns": [
                         {
-                            "data": "ReportingPersonEmail",
+                            "data": "ReportingPerson",
                         },
                         {
                             "data": "Id",
@@ -145,7 +133,7 @@
                 data: { Id: id },
                 type: "GET",
                 success: function (result) {
-                    GetEmployees();
+                    GetReportingPerson();
                     alert('Delete Successully!');
 
                 },
@@ -166,7 +154,7 @@
             success: function (result) {
                 if (result != null) {
                     $("#ReportingPersonId").val(result.Id);
-                    $("#txtReportingPerson").val(result.ReportingPersonEmail);
+                    $("#txtReportingPerson").val(result.ReportingPerson);
                 }
             },
             error: function () {

@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "BalanaceLeave";
     Layout = "~/Views/Shared/_AdminTemplate.cshtml";
 }
@@ -91,7 +90,8 @@
             PersonalLeave: $("#PersonalLeave").val(),
             SickLeave: $("#SickLeave").val(),
             UserId: $("#Employee").val(),
-            NoticePeriod: $("#NoticePeriod").prop('checked')
+            NoticePeriod: $("#NoticePeriod").prop('checked'),
+            FirstName: $("#Employee").val()
         }
 
          $.ajax({
@@ -100,17 +100,17 @@
          contentType: 'application/json',
          data: JSON.stringify(data),
          success: function (result) {
-              if (result == "True") {
+             if (result == "Data Saved!") {
                   alert("Data save successfully")
                   ResetForm();
                   BindEmployessList();
               }
               else {
-               alert("Something went wrong")
+               alert(result)
               }
             },
          error: function (result) {
-            alert("Failure");
+            alert(result.responseText);
          }
       });
     }
@@ -139,7 +139,7 @@
                 }
             },
             error: function (result) {
-                    alert("Failure");
+                alert(result.responseText);
             }
         });
     }
@@ -169,7 +169,7 @@
                 }
             },
             error: function (result) {
-                    alert("Failure");
+                alert(result.responseText);
             }
         });
     }
@@ -194,7 +194,7 @@
                 }
             },
             error: function (result) {
-                    alert("Failure");
+                alert(result.responseText);
             }
         });
     }

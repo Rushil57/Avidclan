@@ -2,8 +2,8 @@
   'use strict';
   $(function() {
 
-    Chart.defaults.global.legend.labels.usePointStyle = true;
-    
+    //Chart.defaults.global.legend.labels.usePointStyle = true;
+
     if ($("#serviceSaleProgress").length) {
       var bar = new ProgressBar.Circle(serviceSaleProgress, {
         color: 'url(#gradient)',

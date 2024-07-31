@@ -169,19 +169,7 @@
                 url: "@Url.Action("AddNewUser", "BlogVacancy")",
                 contentType: 'application/json',
                 data: JSON.stringify(data),
-                success: function (result) {
-                    if (result == "True") {
-                        alert("User Created Successfully!")
-                        ResetForm()
-                        GetEmployeeList()
-                    }
-                    else {
-                        alert("Something Went Wrong!")
-                    }
-                },
-                error: function (result) {
-                    alert("Failure");
-                }
+                success: function (result) {                    if (result == "Data Saved!") {                        alert("User Created Successfully!")                        ResetForm()                        GetEmployeeList()                    }                    else {                        alert(result)                    }                },                error: function (result) {                    alert(result.responseText);                }
             });
 
     }

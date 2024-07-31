@@ -13,6 +13,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
         [Required(ErrorMessage = "Required")]
         public string Title { get; set; }
         public string Description { get; set; }
+        public string ShortTitle { get; set; }
         public string BlogType { get; set; }
         public string Image { get; set; }
         public DateTime PostingDate { get; set; }
@@ -41,6 +42,9 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string BlogDetailImageUrl { get; set; }
 
         public string BlogDetailImageName { get; set; }
+
+        public string SchemaCode { get; set; }
+
     }
 
     public class BlogFaqs

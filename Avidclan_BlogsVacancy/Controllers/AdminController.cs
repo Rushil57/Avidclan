@@ -36,6 +36,8 @@ using SendGrid.Helpers.Mail;
 using System.Web.Configuration;
 using SendGrid.Helpers.Mail.Model;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using Newtonsoft.Json.Linq;
+using System.Text;
 
 namespace Avidclan_BlogsVacancy.Controllers
 {
@@ -47,6 +49,9 @@ namespace Avidclan_BlogsVacancy.Controllers
         string host = "";
         int port = 0;
         string receiverEmail = "";
+
+        private static string thumbnailImageFolder = "Image";
+        private static string blogDetailImagesFolder = "BlogDetailImages";
 
         string ApiKey = WebConfigurationManager.AppSettings["SendGridMailApiKey"];
         string connectionString = ConfigurationManager.ConnectionStrings["DbEntities"].ToString();
@@ -69,16 +74,22 @@ namespace Avidclan_BlogsVacancy.Controllers
                 var Id = HttpContext.Current.Request["Id"];
                 var Title = HttpContext.Current.Request["Title"];
                 var Description = HttpContext.Current.Request["Description"];
+                var ShortTitle = HttpContext.Current.Request["ShortTitle"];
                 var BlogType = HttpContext.Current.Request["BlogType"];
-                var PostingDate = HttpContext.Current.Request["PostingDate"];
+                var PostingDt = HttpContext.Current.Request["PostingDate"].ToString();
+                //DateTime PostingDt = DateTime.Parse(HttpContext.Current.Request["PostingDate"]);
                 var PostedBy = HttpContext.Current.Request["PostedBy"];
                 var Images = HttpContext.Current.Request.Files["Image"];
                 var ImageUrls = HttpContext.Current.Request["ImageUrl"];
                 var PageUrl = HttpContext.Current.Request["PageUrl"];
                 var MetaTitle = HttpContext.Current.Request["MetaTitle"];
                 var MetaDescription = HttpContext.Current.Request["MetaDescription"];
+                var SchemaCode = HttpContext.Current.Request["SchemaCode"];
                 var BlogDetailImage = HttpContext.Current.Request.Files["BlogDetailImage"];
                 var BlogDetailImageString = HttpContext.Current.Request["BlogDetailImageUrl"];
+
+                DateTime dt = DateTime.ParseExact(PostingDt, "MM/dd/yyyy HH:mm:ss", null);
+                System.Data.SqlTypes.SqlDateTime PostingDate = System.Data.SqlTypes.SqlDateTime.Parse(dt.ToString("yyyy/MM/dd"));
 
                 var Faqs = HttpContext.Current.Request["BlogFaqs"];
 
@@ -100,33 +111,71 @@ namespace Avidclan_BlogsVacancy.Controllers
                 }
                 if (Images != null && ImageUrls == "")
                 {
-                    System.IO.Stream fs = Images.InputStream;
-                    System.IO.BinaryReader br = new System.IO.BinaryReader(fs);
-                    Byte[] bytes = br.ReadBytes((Int32)fs.Length);
-                    string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
-                    ImageUrl = "data:image/png;base64," + base64String;
                     ImageName = Images.FileName;
+
+                    //Remove existing blog
+                    if (mode == 7)
+                    {
+                        var Dparameters = new DynamicParameters();
+                        Dparameters.Add("@Id", Id, DbType.Int32, ParameterDirection.Input);
+                        Dparameters.Add("@Mode", 11, DbType.Int32, ParameterDirection.Input);
+                        var blogDetails = con.Query<Blog>("sp_Blog", Dparameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+                        if (!String.IsNullOrEmpty(blogDetails.ImageName))
+                        {
+                            int res = await RemoveImage(blogDetails.ImageName, thumbnailImageFolder);
+                        }
+                    }
+
+                    //Fetch the File.
+                    HttpPostedFile thumbnailImage = HttpContext.Current.Request.Files["Image"];
+                    var FilePath = await UploadImage(thumbnailImage, thumbnailImageFolder);
+                    if (FilePath != null && FilePath != "")
+                    {
+                        ImageUrl = FilePath;
+
+                    }
                 }
+
                 if (BlogDetailImage != null && BlogDetailImageUrl == "")
                 {
-                    System.IO.Stream fs = BlogDetailImage.InputStream;
-                    System.IO.BinaryReader br = new System.IO.BinaryReader(fs);
-                    Byte[] bytes = br.ReadBytes((Int32)fs.Length);
-                    string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
-                    BlogDetailImageUrl = "data:image/png;base64," + base64String;
                     BlogDetailImageName = BlogDetailImage.FileName;
+
+                    if (mode == 7)
+                    {
+                        var Dparameters = new DynamicParameters();
+                        Dparameters.Add("@Id", Id, DbType.Int32, ParameterDirection.Input);
+                        Dparameters.Add("@Mode", 11, DbType.Int32, ParameterDirection.Input);
+                        var blogDetails = con.Query<Blog>("sp_Blog", Dparameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+                        if (!String.IsNullOrEmpty(blogDetails.BlogDetailImageName))
+                        {
+                            int res = await RemoveImage(blogDetails.BlogDetailImageName, blogDetailImagesFolder);
+                        }
+                    }
+
+                    //Fetch the File.
+                    HttpPostedFile BlogDetailsImage = HttpContext.Current.Request.Files["BlogDetailImage"];
+                    var FilePath = await UploadImage(BlogDetailsImage, blogDetailImagesFolder);
+                    if (FilePath != null && FilePath != "")
+                    {
+                        BlogDetailImageUrl = FilePath;
+                    }
+
                 }
+
                 if (mode == 7)
                 {
-                    var parameter = new DynamicParameters();
-                    parameter.Add("@BlogId", BlogId, DbType.Int32, ParameterDirection.Input);
-                    parameter.Add("@Mode", 2, DbType.Int32, ParameterDirection.Input);
-                    var DeleteBlogFaqs = con.Query<BlogFaqs>("sp_BlogFaqs", parameter, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                    var Dynamicparameter = new DynamicParameters();
+                    Dynamicparameter.Add("@BlogId", BlogId, DbType.Int32, ParameterDirection.Input);
+                    Dynamicparameter.Add("@Mode", 2, DbType.Int32, ParameterDirection.Input);
+                    var DeleteBlogFaqs = con.Query<BlogFaqs>("sp_BlogFaqs", Dynamicparameter, commandType: CommandType.StoredProcedure).FirstOrDefault();
                 }
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id", BlogId, DbType.Int32, ParameterDirection.Input);
                 parameters.Add("@Title", Title, DbType.String, ParameterDirection.Input);
                 parameters.Add("@Description", Description, DbType.String, ParameterDirection.Input);
+                parameters.Add("@ShortTitle", ShortTitle, DbType.String, ParameterDirection.Input);
                 parameters.Add("@BlogType", BlogType, DbType.String, ParameterDirection.Input);
                 parameters.Add("@Image", ImageUrl, DbType.String, ParameterDirection.Input);
                 parameters.Add("@PostingDate", PostingDate, DbType.DateTime, ParameterDirection.Input);
@@ -135,6 +184,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@PageUrl", PageUrl, DbType.String, ParameterDirection.Input);
                 parameters.Add("@MetaTitle", MetaTitle, DbType.String, ParameterDirection.Input);
                 parameters.Add("@MetaDescription", MetaDescription, DbType.String, ParameterDirection.Input);
+                parameters.Add("@SchemaCode", SchemaCode, DbType.String, ParameterDirection.Input);
                 parameters.Add("@BlogDetailImage", BlogDetailImageUrl, DbType.String, ParameterDirection.Input);
                 parameters.Add("@BlogDetailImageName", BlogDetailImageName, DbType.String, ParameterDirection.Input);
                 parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
@@ -143,20 +193,19 @@ namespace Avidclan_BlogsVacancy.Controllers
                     var SaveBlogDetails = connection.ExecuteScalar("sp_Blog", parameters, commandType: CommandType.StoredProcedure);
                     if (SaveBlogDetails != null)
                     {
-                        SaveBlogFaqs(Faqarr, SaveBlogDetails);
+                        await SaveBlogFaqs(Faqarr, SaveBlogDetails);
                     }
                     else
                     {
                         SaveBlogDetails = BlogId;
-                        SaveBlogFaqs(Faqarr, SaveBlogDetails);
+                        await SaveBlogFaqs(Faqarr, SaveBlogDetails);
                     }
                 }
             }
             catch (Exception ex)
             {
-                ErrorLog("AdminController - SaveBlog", ex.Message, ex.StackTrace);
+                await ErrorLog("AdminController - SaveBlog", ex.Message, ex.StackTrace);
             }
-
             return "";
         }
 
@@ -165,7 +214,7 @@ namespace Avidclan_BlogsVacancy.Controllers
         public async Task<string> SaveJobPosition(Careers data)
         {
             //  var userName = Request.Headers.GetCookies("EmailId").FirstOrDefault()?["EmailId"].Value;
-            var userName = HttpContext.Current.Session["FirstName"];
+            var userName = HttpContext.Current.Session["FirstName"].ToString();
             var mode = 0;
             var parameters = new DynamicParameters();
             if (data.Id == 0)
@@ -196,12 +245,60 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             catch (Exception ex)
             {
-                ErrorLog("AdminController - SaveJobPosition", ex.Message, ex.StackTrace);
+                await ErrorLog("AdminController - SaveJobPosition", ex.Message, ex.StackTrace);
             }
 
             return "";
         }
 
+        public async Task<string> UploadImage(HttpPostedFile imageFile, string folder)
+        {
+            try
+            {
+                //Get Directory Path.
+                string dirPath = HttpContext.Current.Server.MapPath("~/" + folder + "/");
+                if (!Directory.Exists(dirPath))
+                {
+                    //Create directory if it does't exists..
+                    Directory.CreateDirectory(dirPath);
+                }
+
+                //Fetch the Image File Name.
+                string fileName = Path.GetFileName(imageFile.FileName);
+
+                var filePath = Path.Combine(dirPath, fileName);
+
+                //Save the File.
+                imageFile.SaveAs(filePath);
+
+                var imageUrl = Url.Content($"~/{folder}/{fileName}");
+                return imageUrl;
+            }catch(Exception ex)
+            {
+                ErrorLog("AdminController - UploadImage", ex.Message, ex.StackTrace);
+                return "";
+            }
+        }
+
+        public async Task<int> RemoveImage(string fileName, string folder)
+        {
+            try
+            {
+                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/" + folder), fileName);
+
+                if (System.IO.File.Exists(path))
+                {
+                    await ErrorLog("AdminController - RemoveImageExists", path, path);
+                    System.IO.File.Delete(path);
+                }
+                return 1; // Redirect to an appropriate action
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("AdminController - RemoveImage", ex.Message, ex.StackTrace);
+                return 0;
+            }
+        }
 
         [Route("api/Admin/UpdateOrder")]
         [HttpPost]
@@ -223,9 +320,8 @@ namespace Avidclan_BlogsVacancy.Controllers
                 }
                 catch (Exception ex)
                 {
-                    ErrorLog("AdminController - UpdateOrder", ex.Message, ex.StackTrace);
+                    await ErrorLog("AdminController - UpdateOrder", ex.Message, ex.StackTrace);
                 }
-
             }
         }
 
@@ -234,6 +330,11 @@ namespace Avidclan_BlogsVacancy.Controllers
         public async Task<string> RequestForLeave(LeaveViewModel leaveViewModel)
         {
             var UserId = HttpContext.Current.Session["UserId"];
+            var FirstName = HttpContext.Current.Session["FirstName"].ToString();
+            var LastName = HttpContext.Current.Session["LastName"].ToString();
+            var JoinigDate = HttpContext.Current.Session["UserJoiningDate"];
+            var ProbationPeriod = HttpContext.Current.Session["UserProbationPeriod"];
+
             List<LeaveViewModel> LeaveDataList = new List<LeaveViewModel>();
 
             try
@@ -241,64 +342,65 @@ namespace Avidclan_BlogsVacancy.Controllers
                 var LeaveData = leaveViewModel.Leaves.Where(x => x.WorkAndHalfLeave == false && x.WorkFromHome == false).ToList();
                 if (LeaveData.Count > 0)
                 {
-                    GetConsecutiveLeaveDates(LeaveData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson,false);
+                    await GetConsecutiveLeaveDates(LeaveData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson, false, JoinigDate, ProbationPeriod, UserId);
                 }
 
                 var WorkHomeData = leaveViewModel.Leaves.Where(x => x.WorkAndHalfLeave == false && x.WorkFromHome == true).ToList();
                 if (WorkHomeData.Count > 0)
                 {
-                    GetConsecutiveWorkFromHomeDates(WorkHomeData, leaveViewModel.ReasonForLeave);
+                    await GetConsecutiveWorkFromHomeDates(WorkHomeData, leaveViewModel.ReasonForLeave, UserId);
                 }
 
                 var LeaveAndWfhData = leaveViewModel.Leaves.Where(x => x.WorkAndHalfLeave == true && x.WorkFromHome == true).ToList();
                 if (LeaveAndWfhData.Count > 0)
                 {
-                    GetConsecutiveWorkFromHomeDates(LeaveAndWfhData, leaveViewModel.ReasonForLeave);
-                    GetConsecutiveLeaveDates(LeaveAndWfhData, leaveViewModel.ReasonForLeave,leaveViewModel.ReportingPerson, true);
+                    await GetConsecutiveWorkFromHomeDates(LeaveAndWfhData, leaveViewModel.ReasonForLeave, UserId);
+                    await GetConsecutiveLeaveDates(LeaveAndWfhData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson, true, JoinigDate, ProbationPeriod, UserId);
                 }
 
                 if (LeaveData.Count > 0 && WorkHomeData.Count == 0 && LeaveAndWfhData.Count == 0)
                 {
-                    await SendLeaveMail(LeaveData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
+                    await SendLeaveMail(LeaveData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson, FirstName, LastName);
                 }
                 if (LeaveData.Count == 0 && WorkHomeData.Count > 0 && LeaveAndWfhData.Count == 0)
                 {
-                    //await SendWorkFromHomeMail(WorkHomeData, leaveViewModel.ReportingPerson, leaveViewModel.ReasonForLeave);
-                    await SendWorkFromHomeAndLeaveMail(WorkHomeData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
+                    await SendWorkFromHomeMail(WorkHomeData, leaveViewModel.ReportingPerson, leaveViewModel.ReasonForLeave, FirstName, LastName);
+                    //await SendWorkFromHomeAndLeaveMail(WorkHomeData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
                 }
                 if (LeaveData.Count == 0 && WorkHomeData.Count == 0 && LeaveAndWfhData.Count > 0)
                 {
-                    await SendWorkFromHomeAndLeaveMail(LeaveAndWfhData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
+                    await SendWorkFromHomeAndLeaveMail(LeaveAndWfhData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson, FirstName, LastName);
                 }
                 if (LeaveData.Count == 0 && WorkHomeData.Count > 0 && LeaveAndWfhData.Count > 0)
                 {
                     var leaveAndWfhData = WorkHomeData.Concat(LeaveAndWfhData).ToList();
-                    await SendWorkFromHomeAndLeaveMail(leaveAndWfhData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
+                    await SendWorkFromHomeAndLeaveMail(leaveAndWfhData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson, FirstName, LastName);
                 }
                 if (LeaveData.Count > 0 && WorkHomeData.Count > 0 && LeaveAndWfhData.Count == 0)
                 {
                     var leaveAndWfhData = LeaveData.Concat(WorkHomeData).ToList();
-                    await SendWorkFromHomeAndLeaveMail(leaveAndWfhData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
+                    await SendWorkFromHomeAndLeaveMail(leaveAndWfhData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson, FirstName, LastName);
                 }
                 if (LeaveData.Count > 0 && WorkHomeData.Count == 0 && LeaveAndWfhData.Count > 0)
                 {
                     var leaveAndWfhData = LeaveData.Concat(LeaveAndWfhData).ToList();
                     //leaveAndWfhData.Sort();
-                    await SendWorkFromHomeAndLeaveMail(leaveAndWfhData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
+                    await SendWorkFromHomeAndLeaveMail(leaveAndWfhData, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson, FirstName, LastName);
                 }
                 if (LeaveData.Count > 0 && WorkHomeData.Count > 0 && LeaveAndWfhData.Count > 0)
                 {
-                    await SendWorkFromHomeAndLeaveMail(leaveViewModel.Leaves, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson);
+                    await SendWorkFromHomeAndLeaveMail(leaveViewModel.Leaves, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson, FirstName, LastName);
                 }
                 return "Request Sent Successfully!";
             }
             catch (Exception ex)
             {
-                ErrorLog("AdminController - RequestForLeave", ex.Message, ex.StackTrace);
-                return "Something Went Wrong!";
+                await ErrorLog("AdminController - RequestForLeave", ex.Message, ex.StackTrace);
+                return ex.Message;
             }
         }
-        public void SaveReportingPerson(List<string> ReportingPerson, object Leaveid)
+
+        public async Task SaveReportingPerson(List<string> ReportingPerson, object Leaveid)
         {
             try
             {
@@ -313,18 +415,17 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             catch(Exception ex)
             {
-                ErrorLog("AdminController - SaveReportingPerson", ex.Message, ex.StackTrace);
+                await ErrorLog("AdminController - SaveReportingPerson", ex.Message, ex.StackTrace);
             }
             
         }
-        public async Task SendLeaveMail(List<LeaveDetailsViewModel> leaveDetailsViews, string ReasonForLeave,List<string> ReportingPerson)
+        public async Task SendLeaveMail(List<LeaveDetailsViewModel> leaveDetailsViews, string ReasonForLeave, List<string> ReportingPerson, string FirstName, string LastName)
         {
-            var FirstName = HttpContext.Current.Session["FirstName"].ToString();
-            var LastName = HttpContext.Current.Session["LastName"].ToString();
 
             await ReadConfiguration();
-
-            var HalfDay = string.Empty;
+            try
+            {
+                var HalfDay = string.Empty;
 			var Leave = string.Empty;
 
             if(leaveDetailsViews.Count == 1)
@@ -369,48 +470,14 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             mailbody += "</tbody></table><br><br>" +
             "<p>Yours Sincerely,<br>" + FirstName + "&nbsp;" + LastName + "</p></body></html>";
-            try
-            {
-                var client = new SendGridClient(ApiKey);
+            
                 var subject = "Leave Application";
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                var msg = new SendGridMessage()
-                {
-                    From = new EmailAddress(senderEmail, FirstName + "  " + LastName),
-                    Subject = subject,
-                    HtmlContent = mailbody,
-                };
-                msg.AddTo(new EmailAddress(senderEmail, "Avidclan Technologies"));
-                msg.AddCc("rushil@avidclan.com");
-                msg.AddCc("chintan.s@avidclan.com");
-                if(ReportingPerson != null)
-                {
-                    if(ReportingPerson.Count> 0)
-                    {
-                        foreach(var person in ReportingPerson)
-                        {
-                            msg.AddCc(person);
-                        }
-                    }
-                }
-                var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
-
-                //MailMessage mail = new MailMessage();
-                //mail.To.Add("pooja.avidclan@gmail.com");
-                //mail.From = new MailAddress(senderEmail);
-                //mail.Subject = "test";
-                //mail.Body = mailbody;
-                //mail.IsBodyHtml = true;
-                //SmtpClient smtp = new SmtpClient(host, port);
-                //smtp.EnableSsl = true;
-                //smtp.UseDefaultCredentials = true;
-                //smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
-                //smtp.Send(mail);
+                await sendEmail(senderEmail, senderEmail, FirstName + "  " + LastName, subject, mailbody, ReportingPerson);
 
             }
             catch (Exception ex)
             {
-                ErrorLog("AdminController - SendLeaveMail", ex.Message, ex.StackTrace);
+                await ErrorLog("AdminController - SendLeaveMail", ex.Message, ex.StackTrace);
             }
         }
 
@@ -430,7 +497,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             catch (Exception ex)
             {
-                ErrorLog("AdminController - ReplyToLeaveRequest", ex.Message, ex.StackTrace);
+                await ErrorLog("AdminController - ReplyToLeaveRequest", ex.Message, ex.StackTrace);
                 var MessageException = ex.InnerException + ex.StackTrace;
                 return MessageException;
             }
@@ -440,7 +507,9 @@ namespace Avidclan_BlogsVacancy.Controllers
         public async Task SendReplyForLeave(List<LeaveDetailsViewModel> leaveDetailsViews, string status, string name, string EmailId,object Id)
         {
             await ReadConfiguration();
-            List<ReportingPersons> ReportingPerson = new List<ReportingPersons>();
+            try
+            {
+                List<ReportingPersons> ReportingPerson = new List<ReportingPersons>();
             ReportingPerson = GetReportingPerson(Id);
             var mailbody = "<p>Hello " + name + "<br>  Your leave has been<b> " + status + " </b>for the following day(s).<br><br></p>" +
             "<html><body>" +
@@ -454,36 +523,27 @@ namespace Avidclan_BlogsVacancy.Controllers
                 mailbody += addrow;
             }
             mailbody += "</tbody></table><br><br>" +
-            "<p>Thanks & Regards,<br>XYZ</p></body></html>";
-            try
-            {
-                var client = new SendGridClient(ApiKey);
+            "<p>Thanks & Regards,<br>HR, Avidclan</p></body></html>";
+            
                 var subject = "Reply For Leave Application";
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                var msg = new SendGridMessage()
-                {
-                    From = new EmailAddress(senderEmail, "Avidclan Technologies"),
-                    Subject = subject,
-                    HtmlContent = mailbody,
-                };
-                msg.AddTo(new EmailAddress(EmailId));
-                msg.AddCc("rushil@avidclan.com");
-                msg.AddCc("chintan.s@avidclan.com");
+
+                List<string> reportingpersonList = new List<string>();
                 if (ReportingPerson != null)
                 {
                     if (ReportingPerson.Count > 0)
                     {
                         foreach (var person in ReportingPerson)
                         {
-                            msg.AddCc(person.ReportingPerson);
+                            reportingpersonList.Add(person.ReportingPerson);
                         }
                     }
                 }
-                var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
+
+                await sendEmail(senderEmail, EmailId, name, subject, mailbody, reportingpersonList);
             }
             catch (Exception ex)
             {
-                ErrorLog("AdminController - SendReplyForLeave", ex.Message, ex.StackTrace);
+                await ErrorLog("AdminController - SendReplyForLeave", ex.Message, ex.StackTrace);
             }
         }
 
@@ -496,7 +556,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             ReportingPerson = con.Query<ReportingPersons>("sp_LeaveReportingPerson", parameters, commandType: CommandType.StoredProcedure).ToList();
             return ReportingPerson;
         }
-        public void SaveBlogFaqs(BlogFaqs[] blogFaqs, object id)
+        public async Task SaveBlogFaqs(BlogFaqs[] blogFaqs, object id)
         {
             try
             {
@@ -516,7 +576,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             catch(Exception ex)
             {
-                ErrorLog("AdminController - SaveBlogFaqs", ex.Message, ex.StackTrace);
+                await ErrorLog("AdminController - SaveBlogFaqs", ex.Message, ex.StackTrace);
             }
         }
         public async Task<bool> ReadConfiguration()
@@ -543,7 +603,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             catch (Exception ex)
             {
-                ErrorLog("AdminController - ReadConfiguration", ex.Message, ex.StackTrace);
+                await ErrorLog("AdminController - ReadConfiguration", ex.Message, ex.StackTrace);
             }
             return result;
         }
@@ -555,38 +615,28 @@ namespace Avidclan_BlogsVacancy.Controllers
             try
             {
                 var FirstName = HttpContext.Current.Session["FirstName"].ToString();
-                var LastName = HttpContext.Current.Session["LastName"].ToString();
+                var LastName = HttpContext.Current.Session["FirstName"].ToString();
 
                 await ReadConfiguration();
-                var client = new SendGridClient(ApiKey);
                 var subject = "FeedBack For Avidclan Technology";
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                var msg = new SendGridMessage()
-                {
-                    From = new EmailAddress(senderEmail, "Avidclan Technologies"),
-                    Subject = subject,
-                    PlainTextContent = feedback.Feedback,
-                };
-                msg.AddTo(new EmailAddress(senderEmail, FirstName + "&nbsp;" + LastName));
-                msg.AddCc("rushil@avidclan.com");
-                msg.AddCc("chintan.s@avidclan.com");
-                var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
+
+                List<string> reportingPerson = new List<string>();
+                await sendEmail(senderEmail, senderEmail, FirstName + "&nbsp;" + LastName, subject, feedback.Feedback, reportingPerson);
                 return "FeedBack Send Succesfully !";
             }
             catch (Exception ex)
             {
-                ErrorLog("AdminController - SaveFeedBack", ex.Message, ex.StackTrace);
+                await ErrorLog("AdminController - SaveFeedBack", ex.Message, ex.StackTrace);
                 string Error = ex.Message + ex.StackTrace;
                 return Error;
             }
         }
 
-
-        public async Task SendWorkFromHomeMail(List<LeaveDetailsViewModel> leaveDetailsViews, List<string> ReportingPerson, string ReasonForLeave)
+        public async Task SendWorkFromHomeMail(List<LeaveDetailsViewModel> leaveDetailsViews, List<string> ReportingPerson, string ReasonForLeave, string FirstName, string LastName)
         {
-            var LastName = HttpContext.Current.Session["LastName"].ToString();
-            var FirstName = HttpContext.Current.Session["FirstName"].ToString();
             await ReadConfiguration();
+            try
+            {
 
             var mailbody = "<p>Hello Ma'am/Sir,<br><br>" + FirstName + "&nbsp;" + LastName  +" request work from home for following day(s). Hoping to receive a positive response from you.<br><b>Reason : </b>" + ReasonForLeave + "<br><br></p>" +
             "<html><body>" +
@@ -601,52 +651,16 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             mailbody += "</tbody></table><br><br>" +
             "<p>Yours Sincerely,<br>" + FirstName + "&nbsp;" + LastName + "</p></body></html>";
-            try
-            {
-                var client = new SendGridClient(ApiKey);
                 var subject = "Request For Work From Home";
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                var msg = new SendGridMessage()
-                {
-                    From = new EmailAddress(senderEmail, FirstName + "  " + LastName),
-                    Subject = subject,
-                    HtmlContent = mailbody,
-                };
-                msg.AddTo(new EmailAddress(senderEmail, "Avidclan Technologies"));
-                msg.AddCc("rushil@avidclan.com");
-                msg.AddCc("chintan.s@avidclan.com");
-                if (ReportingPerson != null)
-                {
-                    if (ReportingPerson.Count > 0)
-                    {
-                        foreach (var person in ReportingPerson)
-                        {
-                            msg.AddCc(person);
-                        }
-                    }
-                }
-                var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
-
-    //            MailMessage mail = new MailMessage();
-				//mail.To.Add("pooja.avidclan@gmail.com");
-				//mail.From = new MailAddress(senderEmail);
-				//mail.Subject = "test";
-				//mail.Body = mailbody;
-				//mail.IsBodyHtml = true;
-				//SmtpClient smtp = new SmtpClient(host, port);
-				//smtp.EnableSsl = true;
-				//smtp.UseDefaultCredentials = true;
-				//smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
-				//smtp.Send(mail);
-			}
+                await sendEmail(senderEmail, senderEmail, FirstName + "  " + LastName, subject, mailbody, ReportingPerson);
+            }
             catch (Exception ex)
             {
-                ErrorLog("AdminController - SendWorkFromHomeMail", ex.Message, ex.StackTrace);
+                await ErrorLog("AdminController - SendWorkFromHomeMail", ex.Message, ex.StackTrace);
             }
         }
-        public void GetConsecutiveLeaveDates(List<LeaveDetailsViewModel> range, string ReasonForLeave,List<string> ReportingPerson, bool checkLeaveAndWfh)
+        public async Task GetConsecutiveLeaveDates(List<LeaveDetailsViewModel> range, string ReasonForLeave, List<string> ReportingPerson, bool checkLeaveAndWfh, object JoiningDate, object ProbationPeriod, object UserId)
         {
-            var CheckElsexcute = false;
             var startDate = range.FirstOrDefault();
             DateTime dateTime = startDate.LeaveDate;
             try
@@ -687,18 +701,17 @@ namespace Avidclan_BlogsVacancy.Controllers
                 foreach (var leaveData in LeaveDataList)
                 {
                     var list = leaveDataDetails.Where(x => x.Fromdate >= leaveData.Fromdate && x.Fromdate <= leaveData.Todate).ToList();
-                    SaveLeaveApplicationData(leaveData.Id, leaveData.Fromdate, leaveData.Todate, ReasonForLeave, list, ReportingPerson, checkLeaveAndWfh);
+                    await SaveLeaveApplicationData(leaveData.Id, leaveData.Fromdate, leaveData.Todate, ReasonForLeave, list, ReportingPerson, checkLeaveAndWfh, UserId, JoiningDate, ProbationPeriod);
                 }
             }
             catch(Exception ex)
             {
-                ErrorLog("AdminController - GetConsecutiveLeaveDates", ex.Message, ex.StackTrace);
+                await ErrorLog("AdminController - GetConsecutiveLeaveDates", ex.Message, ex.StackTrace);
             }
           
         }
-        public void SaveLeaveApplicationData(int Id, DateTime FromDate, DateTime ToDate, string ReasonForLeave, List<LeaveDetailsViewModel> leaveDataDetails, List<string> ReportingPerson,bool checkLeaveAndWfh)
+        public async Task SaveLeaveApplicationData(int Id, DateTime FromDate, DateTime ToDate, string ReasonForLeave, List<LeaveDetailsViewModel> leaveDataDetails, List<string> ReportingPerson, bool checkLeaveAndWfh, object UserId, object JoiningDate, object ProbationPeriod)
         {
-            var UserId = HttpContext.Current.Session["UserId"];
 
             var mode = 0;
             if (Id == 0)
@@ -719,31 +732,31 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@UserId", UserId, DbType.Int16, ParameterDirection.Input);
                 parameters.Add("@LeaveReason", ReasonForLeave, DbType.String, ParameterDirection.Input);
                 parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
-                var SaveLeave = con.ExecuteScalar("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure);
+                var SaveLeave = await con.ExecuteScalarAsync("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure);
                 if (SaveLeave != null)
                 {
                     if (ReportingPerson != null)
                     {
                         if (ReportingPerson.Count > 0)
                         {
-                            SaveReportingPerson(ReportingPerson, SaveLeave);
+                            await SaveReportingPerson(ReportingPerson, SaveLeave);
                         }
                     }
                     //leaveViewModel[0].Id = Convert.ToInt16(SaveLeave);
-                    SaveLeaveApplicationDetailsData(leaveDataDetails, SaveLeave, UserId, checkLeaveAndWfh);
+                    await SaveLeaveApplicationDetailsData(leaveDataDetails, SaveLeave, UserId, checkLeaveAndWfh, JoiningDate, ProbationPeriod);
                 }
             }
             catch (Exception ex)
             {
-                ErrorLog("AdminController - SaveLeaveApplicationData", ex.Message, ex.StackTrace);
+                await ErrorLog("AdminController - SaveLeaveApplicationData", ex.Message, ex.StackTrace);
             }
 
         }
-        public void SaveLeaveApplicationDetailsData(List<LeaveDetailsViewModel> leaveViewModel, object Leaveid, object UserId,bool checkLeaveAndWfh)
+        public async Task SaveLeaveApplicationDetailsData(List<LeaveDetailsViewModel> leaveViewModel, object Leaveid, object UserId, bool checkLeaveAndWfh, object JoinigDate, object ProbationPeriod)
         {
-            var JoinigDate = HttpContext.Current.Session["JoiningDate"];
-            var ProbationPeriod = HttpContext.Current.Session["ProbationPeriod"];
-            var GetFromDate = leaveViewModel.FirstOrDefault();
+            try
+            {
+                var GetFromDate = leaveViewModel.FirstOrDefault();
             var mode = 0;
             if (Leaveid != null)
             {
@@ -753,8 +766,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             {
                 mode = 3;
             }
-            try
-            {
+            
                 if (mode == 3)
                 {
                     var parameter = new DynamicParameters();
@@ -785,7 +797,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                         parameter.Add("@LeaveId", Leaveid, DbType.Int64, ParameterDirection.Input);
                         parameter.Add("@UserId", UserId, DbType.Int64, ParameterDirection.Input);
                         parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
-                        var SaveLeaveDetails = con.ExecuteScalar("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
+                        var SaveLeaveDetails = await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
 
 						if (checkLeaveAndWfh)
 						{
@@ -799,7 +811,7 @@ namespace Avidclan_BlogsVacancy.Controllers
 						    }
 						}
 					}
-					var result = new LeaveController().CheckTypeOfLeave(
+					var result = await new LeaveController().CheckTypeOfLeave(
                             leaveViewModel, GetFromDate.Fromdate,
                             Leaveid, UserId, JoinigDate, ProbationPeriod);
                 }
@@ -807,13 +819,12 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             catch (Exception ex)
             {
-                ErrorLog("AdminController - SaveLeaveApplicationDetailsData", ex.Message, ex.StackTrace);
+                await ErrorLog("AdminController - SaveLeaveApplicationDetailsData", ex.Message, ex.StackTrace);
             }
         }
 
-        public void GetConsecutiveWorkFromHomeDates(List<LeaveDetailsViewModel> range, string ReasonForLeave)
+        public async Task GetConsecutiveWorkFromHomeDates(List<LeaveDetailsViewModel> range, string ReasonForLeave, object UserId)
         {
-            var CheckElsexcute = false;
             var startDate = range.FirstOrDefault();
             DateTime dateTime = startDate.LeaveDate;
 
@@ -854,20 +865,19 @@ namespace Avidclan_BlogsVacancy.Controllers
                 foreach (var leaveData in LeaveDataList)
                 {
                     var list = leaveDataDetails.Where(x => x.Fromdate >= leaveData.Fromdate && x.Fromdate <= leaveData.Todate).ToList();
-                    SaveworkFromData(list, ReasonForLeave, leaveData.Id, leaveData.Fromdate, leaveData.Todate);
+                    await SaveworkFromData(list, ReasonForLeave, leaveData.Id, leaveData.Fromdate, leaveData.Todate, UserId);
 
                 }
             }
             catch(Exception ex)
             {
-                ErrorLog("AdminController - GetConsecutiveWorkFromHomeDates", ex.Message, ex.StackTrace);
+                await ErrorLog("AdminController - GetConsecutiveWorkFromHomeDates", ex.Message, ex.StackTrace);
             }
            
         }
-        public void SaveworkFromData(List<LeaveDetailsViewModel> leaveViewModel, string ReasonForLeave, object Id, DateTime FromDate, DateTime ToDate)
+        public async Task SaveworkFromData(List<LeaveDetailsViewModel> leaveViewModel, string ReasonForLeave, object Id, DateTime FromDate, DateTime ToDate, object UserId)
         {
 
-            var UserId = HttpContext.Current.Session["UserId"];
             try
             {
                 var parameters = new DynamicParameters();
@@ -920,18 +930,18 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             catch (Exception ex)
             {
-                ErrorLog("AdminController - SaveworkFromData", ex.Message, ex.StackTrace);
+                await ErrorLog("AdminController - SaveworkFromData", ex.Message, ex.StackTrace);
             }
         }
 
 
-        public async Task SendWorkFromHomeAndLeaveMail(List<LeaveDetailsViewModel> leaveDetailsViews, string ReasonForLeave,List<string> ReportingPerson)
+        public async Task SendWorkFromHomeAndLeaveMail(List<LeaveDetailsViewModel> leaveDetailsViews, string ReasonForLeave, List<string> ReportingPerson, string FirstName, string LastName)
         {
-            var LastName = HttpContext.Current.Session["LastName"].ToString();
-            var FirstName = HttpContext.Current.Session["FirstName"].ToString();
 
             await ReadConfiguration();
-            var mailbody = "<p>Hello Ma'am/Sir,<br><br>" + FirstName + "&nbsp;" + LastName +" would like to request leave & Work From Home for the following day(s). Hoping to receive a positive response from you.<br><b>Reason : </b>" + ReasonForLeave + "<br><br></p>" +
+            try
+            {
+                var mailbody = "<p>Hello Ma'am/Sir,<br><br>" + FirstName + "&nbsp;" + LastName +" would like to request leave & Work From Home for the following day(s). Hoping to receive a positive response from you.<br><b>Reason : </b>" + ReasonForLeave + "<br><br></p>" +
             "<html><body>" +
                 "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
 				"<thead><tr style='background: #eee;'><th>Date</th><th>Day</th><th>Work From Home</th><th>WFH Half Day</th><th></th></tr></thead>" +
@@ -992,51 +1002,17 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             mailbody += "</tbody></table><br><br>" +
             "<p>Yours Sincerely,<br>" + FirstName + "&nbsp;" + LastName + "</p></body></html>";
-            try
-            {
-                var client = new SendGridClient(ApiKey);
+            
                 var subject = "Request For Leave and WFH";
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                var msg = new SendGridMessage()
-                {
-                    From = new EmailAddress(senderEmail, FirstName + "  " + LastName),
-                    Subject = subject,
-                    HtmlContent = mailbody,
-                };
-                msg.AddTo(new EmailAddress(senderEmail, "Avidclan Technologies"));
-                msg.AddCc("rushil@avidclan.com");
-                msg.AddCc("chintan.s@avidclan.com");
-                if (ReportingPerson != null)
-                {
-                    if (ReportingPerson.Count > 0)
-                    {
-                        foreach (var person in ReportingPerson)
-                        {
-                            msg.AddCc(person);
-                        }
-                    }
-                }
-                var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
-
-                //MailMessage mail = new MailMessage();
-                //mail.To.Add("pooja.avidclan@gmail.com");
-                //mail.From = new MailAddress(senderEmail);
-                //mail.Subject = "test";
-                //mail.Body = mailbody;
-                //mail.IsBodyHtml = true;
-                //SmtpClient smtp = new SmtpClient(host, port);
-                //smtp.EnableSsl = true;
-                //smtp.UseDefaultCredentials = true;
-                //smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
-                //smtp.Send(mail);
+                await sendEmail(senderEmail, senderEmail, FirstName + "  " + LastName, subject, mailbody, ReportingPerson);
             }
             catch (Exception ex)
             {
-                ErrorLog("AdminController - SendWorkFromHomeAndLeaveMail", ex.Message, ex.StackTrace);
+                await ErrorLog("AdminController - SendWorkFromHomeAndLeaveMail", ex.Message, ex.StackTrace);
             }
         }
 
-        public void ErrorLog(string ControllerName, string ErrorMessage, string StackTrace)
+        public async Task ErrorLog(string ControllerName, string ErrorMessage, string StackTrace)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@ControllerName", ControllerName, DbType.String, ParameterDirection.Input);
@@ -1045,7 +1021,56 @@ namespace Avidclan_BlogsVacancy.Controllers
             parameters.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
             var SaveError = con.ExecuteScalar("sp_Errorlog", parameters, commandType: CommandType.StoredProcedure);
         }
+        public async Task sendEmail(string fromEmail, string toEmail, string reciverName, string subject, string message, List<string> ReportingPerson)
+        {
+            string apiKey = "a101ac38119207e6774e78a74701c990";
+            string apiSecret = "fc46b6850d50f957b087e2ba1bf2c0ee";
+            string apiUrl = "https://api.mailjet.com/v3.1/send";
+            using (HttpClient client = new HttpClient())
+            {
+                string base64Auth = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{apiKey}:{apiSecret}"));
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", base64Auth);
 
+                var ccList = new List<object>();
+                ReportingPerson.Add("rushil@avidclan.com");
+                ReportingPerson.Add("chintan.s@avidclan.com");
+                if (ReportingPerson.Count > 0)
+                {
+                    foreach (var ccEmail in ReportingPerson)
+                    {
+                        ccList.Add(new { Email = ccEmail, Name = "" });
+                    }
+                }
+
+                var emailPayload = new
+                {
+                    Messages = new[]
+                    {
+                  new
+                  {
+                      From = new { Email = fromEmail, Name = reciverName },
+                      To = new[] { new { Email = toEmail, Name = "Avidclan Technologies" } },
+                      CC = ccList.ToArray(),
+                      Subject = subject,
+                      HTMLPart = message
+                  }
+              }
+                };
+
+                string jsonPayload = JsonConvert.SerializeObject(emailPayload);
+                StringContent content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine("Email sent successfully!");
+                }
+                else
+                {
+                    Console.WriteLine($"Error: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}");
+                }
+            }
+        }
 
     }
 
@@ -1061,4 +1086,5 @@ namespace Avidclan_BlogsVacancy.Controllers
         public string Feedback { get; set; }
         public int UserId { get; set; }
     }
+    
 }

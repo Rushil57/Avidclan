@@ -49,8 +49,8 @@
 
 <input type="hidden" id="PersonalLeave" />
 <input type="hidden" id="SickLeave" />
-<input id="JoiningDate" type="hidden" value='@Session["JoiningDate"]' />
-<input id="ProbationMonth" type="hidden" value='@Session["ProbationPeriod"]' />
+<input id="JoiningDate" type="hidden" value='@Session["UserJoiningDate"]' />
+<input id="ProbationMonth" type="hidden" value='@Session["UserProbationPeriod"]' />
 
 <script>
     $(function () {
@@ -134,8 +134,8 @@
                     ]
                 });
             },
-            error: function () {
-                alert('failure in table');
+            error: function (result) {
+                alert(result.responseText);
             }
         });
     }
@@ -180,8 +180,8 @@
                     ]
                 });
             },
-            error: function () {
-                alert('failure in table');
+            error: function (result) {
+                alert(result.responseText);
             }
         });
     }
@@ -197,8 +197,8 @@
                     $("#SickLeave").val(data[0].SickLeave);
                 }
             },
-            error: function () {
-                alert('failuress');
+            error: function (result) {
+                alert(result.responseText);
             }
         });
     }
@@ -223,7 +223,10 @@
             if (JoiningYear == CurrentYear) {
                 months = (CurrentDate.getMonth() - JoiningDateAfterProbation.getMonth() + 1) +
                     (12 * (CurrentDate.getFullYear() - getJoiningDate.getFullYear()))
-                MonthlySickLeave = months / 2;
+                MonthlySickLeave = months / 2 - sickleave;
+                if (MonthlySickLeave < 0) {
+                    MonthlySickLeave = 0;
+                }
                 return MonthlySickLeave;
             }
 
@@ -264,11 +267,16 @@
             if (JoiningYear == CurrentYear) {
                 months = (CurrentDate.getMonth() - JoiningDateAfterProbation.getMonth() + 1) +
                     (12 * (CurrentDate.getFullYear() - getJoiningDate.getFullYear()))
-                TotalPersonalLeave = months;
+                TotalPersonalLeave = months - personalLeave;
+                if (TotalPersonalLeave < 0 && TotalPersonalLeave != -0.5) {
+                    TotalPersonalLeave = 0;
+                } else {
+                    TotalPersonalLeave = TotalPersonalLeave;
+                }
                 return TotalPersonalLeave;
             }
 
-          
+
             var Pastpersonalleave = $("#PersonalLeave").val();
             if (Pastpersonalleave == '') {
                 Pastpersonalleave = 0.0;
@@ -277,8 +285,10 @@
             var CurrentDate = new Date();
             var CurrentMonth = CurrentDate.getMonth() + 1;
             TotalPersonalLeave = parseFloat(Pastpersonalleave) + (CurrentMonth - personalLeave)
-            if (TotalPersonalLeave < 0) {
+            if (TotalPersonalLeave < 0 && TotalPersonalLeave != -0.5) {
                 TotalPersonalLeave = 0;
+            } else if (TotalPersonalLeave == -0.5) {
+                TotalPersonalLeave = 0.5;
             }
         }
         else {

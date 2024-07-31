@@ -1,6 +1,7 @@
 ﻿using Avidclan_BlogsVacancy.ViewModel;
 using Dapper;
 using iTextSharp.text.pdf.qrcode;
+using MailKit;
 using Org.BouncyCastle.Bcpg;
 using System;
 using System.Configuration;
@@ -17,6 +18,8 @@ namespace Avidclan_BlogsVacancy.Controllers
 {
     public class BlogVacancyController : Controller
     {
+        private static string thumbnailImageFolder = "Image";
+        private static string blogDetailImagesFolder = "BlogDetailImages";
         string connectionString = ConfigurationManager.ConnectionStrings["DbEntities"].ToString();
         SqlConnection con;
         public BlogVacancyController()
@@ -41,7 +44,7 @@ namespace Avidclan_BlogsVacancy.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(UserLogin userLogin)
+        public async Task<ActionResult> Login(UserLogin userLogin)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@EmailId", userLogin.EmailId, DbType.String, ParameterDirection.Input);
@@ -50,10 +53,10 @@ namespace Avidclan_BlogsVacancy.Controllers
             var logindata = con.Query<UserLogin>("sp_User", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
             if (logindata != null)
             {
-                Session["EmailId"] = logindata.EmailId;
+                Session["UserEmailId"] = logindata.EmailId;
                 Session["UserId"] = logindata.Id;
-                Session["JoiningDate"] = logindata.JoiningDate;
-                Session["ProbationPeriod"] = logindata.ProbationPeriod;
+                Session["UserJoiningDate"] = logindata.JoiningDate;
+                Session["UserProbationPeriod"] = logindata.ProbationPeriod;
                 Session["FirstName"] = logindata.FirstName;
                 Session["LastName"] = logindata.LastName;
             }
@@ -62,7 +65,7 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult Blog()
         {
-            if (Session["EmailId"] == null)
+            if (Session["UserEmailId"] == null)
             {
                 return RedirectToAction("UserLogin");
             }
@@ -71,7 +74,7 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult Careers()
         {
-            if (Session["EmailId"] == null)
+            if (Session["UserEmailId"] == null)
             {
                 return RedirectToAction("UserLogin");
             }
@@ -113,6 +116,23 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult DeleteBlog(int id)
         {
+
+            //Remove Existing Image..
+            var Dparameters = new DynamicParameters();
+            Dparameters.Add("@Id", id, DbType.Int32, ParameterDirection.Input);
+            Dparameters.Add("@Mode", 11, DbType.Int32, ParameterDirection.Input);
+            var blogDetails = con.Query<Blog>("sp_Blog", Dparameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+            if (!String.IsNullOrEmpty(blogDetails.ImageName))
+            {
+                int res = RemoveImage(blogDetails.ImageName, thumbnailImageFolder);
+            }
+            if (!String.IsNullOrEmpty(blogDetails.BlogDetailImageName))
+            {
+                int response = RemoveImage(blogDetails.BlogDetailImageName, blogDetailImagesFolder);
+            }
+
+
             var parameters = new DynamicParameters();
             parameters.Add("@Id", id, DbType.Int32, ParameterDirection.Input);
             parameters.Add("@Mode", 5, DbType.Int32, ParameterDirection.Input);
@@ -126,6 +146,26 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             return RedirectToAction("blog");
         }
+
+        public int RemoveImage(string fileName, string folder)
+        {
+            try
+            {
+                var path = Path.Combine(Server.MapPath("~/" + folder), fileName);
+
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                //ErrorLog("AdminController - RemoveImage", ex.Message, ex.StackTrace);
+                return 0;
+            }
+        }
+
         public JsonResult GetBlogById(int id)
         {
             var parameters = new DynamicParameters();
@@ -140,7 +180,9 @@ namespace Avidclan_BlogsVacancy.Controllers
                 bloglist = bloglist,
                 blogfaqslist = blogfaqslist
             };
-            return Json(dynamiclist, JsonRequestBehavior.AllowGet);
+            var jsonResult = Json(dynamiclist, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
         }
         [HttpPost]
         public void BlogStatus(HeaderMenu menu)
@@ -168,17 +210,17 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public void Logout()
         {
-            Session["EmailId"] = null;
-            Session["JoiningDate"] = null;
+            Session["UserEmailId"] = null;
+            Session["UserJoiningDate"] = null;
             Session["UserId"] = 0;
-            Session["ProbationPeriod"] = 0;
+            Session["UserProbationPeriod"] = 0;
             Session["FirstName"] = null;
             Session["LastName"] = null;
         }
 
         public ActionResult LeaveStatus()
         {
-            if (Session["EmailId"] == null)
+            if (Session["UserEmailId"] == null)
             {
                 return RedirectToAction("UserLogin");
             }
@@ -187,14 +229,14 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult SalarySlips()
         {
-            if (Session["EmailId"] == null)
+            if (Session["UserEmailId"] == null)
             {
                 return RedirectToAction("UserLogin");
             }
             return View();
         }
 
-        public bool AddNewUser(UserRegister userRegister)
+        public string AddNewUser(UserRegister userRegister)
         {
             try
             {
@@ -229,12 +271,12 @@ namespace Avidclan_BlogsVacancy.Controllers
                         SaveUserRole(userRegister.Id, userRegister.Role, true);
                     }
                 }
-                return true;
+                return "Data Saved!";
             }
             catch (Exception ex)
             {
                 string message = ex.Message;
-                return false;
+                return message;
             }
         }
         public void SaveUserRole(object UserId, int RoleId, bool CheckUpdate)
@@ -295,7 +337,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             return View();
         }
 
-        public bool SaveBalanaceLeave(BalanaceLeaveViewModel balanaceLeaveViewModel)
+        public string SaveBalanaceLeave(BalanaceLeaveViewModel balanaceLeaveViewModel)
         {
             if (balanaceLeaveViewModel != null)
             {
@@ -323,13 +365,13 @@ namespace Avidclan_BlogsVacancy.Controllers
                         var saveLeaves = connection.ExecuteScalar("sp_PastLeaves", parameters, commandType: CommandType.StoredProcedure);
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    return false;
+                    return ex.Message;
                 }
-                return true;
+                return "Data Saved!";
             }
-            return false;
+            return "No data found";
         }
 
         public JsonResult GetEmployeeList()
@@ -416,12 +458,12 @@ namespace Avidclan_BlogsVacancy.Controllers
         }
 
         [HttpPost]
-        public bool SaveReportingperson(string person, int Id)
+        public async Task<string> SaveReportingperson(string person, int Id)
         {
             var mode=0;
             if(Id == 0)
             {
-                mode = 3;
+                mode = 1;
             }
             else
             {
@@ -432,19 +474,20 @@ namespace Avidclan_BlogsVacancy.Controllers
             {
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id", Id, DbType.Int32, ParameterDirection.Input);
-                parameters.Add("@ReportingPersonEmail", person, DbType.String, ParameterDirection.Input);
+                parameters.Add("@ReportingPerson", person, DbType.String, ParameterDirection.Input);
                 parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
                 using (IDbConnection connection = new SqlConnection(connectionString))
                 {
-                    var saveUserData = connection.ExecuteScalar("sp_LeaveReportingPerson", parameters, commandType: CommandType.StoredProcedure);
+                    var saveUserData = await connection.ExecuteScalarAsync("sp_LeaveReportingPerson", parameters, commandType: CommandType.StoredProcedure);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                return false;
+                await ErrorLog("AdminController - SaveReportingperson", ex.Message, ex.StackTrace);
+                return ex.Message;
             }
-         
-            return true;
+
+            return "Data Saved!";
         }
 
         public ActionResult GetListOfReportingPerson()
@@ -484,5 +527,15 @@ namespace Avidclan_BlogsVacancy.Controllers
             var EmployeeData = con.Query<ReportingPersons>("sp_LeaveReportingPerson", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
             return Json(EmployeeData, JsonRequestBehavior.AllowGet);
         }
+        public async Task ErrorLog(string ControllerName, string ErrorMessage, string StackTrace)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@ControllerName", ControllerName, DbType.String, ParameterDirection.Input);
+            parameters.Add("@ErrorMessage", ErrorMessage, DbType.String, ParameterDirection.Input);
+            parameters.Add("@StackTrace", StackTrace, DbType.String, ParameterDirection.Input);
+            parameters.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
+            var SaveError = await con.ExecuteScalarAsync("sp_Errorlog", parameters, commandType: CommandType.StoredProcedure);
+        }
+
     }
 }

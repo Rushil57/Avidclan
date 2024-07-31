@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/_AdminTemplate.cshtml";
 }
 
@@ -30,8 +29,6 @@
                     </div>
                     <div class="form-group">
                         <label for="Description">Description</label>
-                        @*<textarea type="text" class="ckeditor" id="Description" name="description"></textarea>*@
-                        @*<div type="text" class="" id="Description" name="description"></div>*@
                         <div id="toolbar-container">
                             <span class="ql-formats">
                                 <select class="ql-font"></select>
@@ -81,16 +78,20 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="ShortTitle">Short Title</label>
+                        <input type="text" class="form-control" id="ShortTitle" name="ShortTitle" placeholder="Title">
+                    </div>
+                    <div class="form-group">
                         <label for="BlogType">Blog Type</label>
                         <input type="text" class="form-control" id="BlogType" name="blogtype" placeholder="Blog Type">
                     </div>
                     <div class="form-group">
-                        <label for="Image">Blog Image (Thumbnail)</label>
+                        <label for="Image">Thumbnail Image</label>
                         <input id="Image" type="file" class="form-control" name="attachmentFile" />
                         <div id="preview"></div>
                     </div>
                     <div class="form-group">
-                        <label for="Image">Blog Details Image (Banner)</label>
+                        <label for="Image">Banner Image</label>
                         <input id="BlogDetailsImage" type="file" class="form-control" name="BlogDetailsImage" />
                         <div id="BlogDetailImagepreview"></div>
                     </div>
@@ -113,6 +114,10 @@
                     <div class="form-group">
                         <label for="MetaDescription">Meta Description</label>
                         <textarea class="form-control" id="MetaDescription" name="MetaDescription" placeholder="Meta Description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="SchemaCode">Schema Code</label>
+                        <textarea class="form-control" id="SchemaCode" name="SchemaCode" placeholder="Schema Code" rows="5"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="FaqQuestion">Add FAQ Questions</label><br />
@@ -175,37 +180,52 @@
             rules: {
                 title: { required: true, },
                 description: { required: true, },
+                ShortTitle: {
+                    required: true,
+                    maxlength: 30,
+                },
                 blogtype: { required: true, },
                 attachmentFile: { required: true, },
-                 PostedBy: { required: true, },
-                 PageUrl: { required: true },
-                 MetaTitle: { required: true },
-                 MetaDescription: { required: true }
+                PostedBy: { required: true, },
+                PageUrl: { required: true },
+                MetaTitle: { required: true },
+                MetaDescription: { required: true },
+                SchemaCode: {required:true}
             },
             messages: {
                 title: { required: "Please enter a title", },
                 description: { required: "Please enter description", },
+                ShortTitle: {
+                    required: "Please enter short title",
+                    maxlength: "Title must be less than 30 characters..",
+                },
                 blogtype: { required: "Please enter blogtype", },
                 attachmentFile: { required: "Please choose a file", },
                 PostedBy: { required: "Please enter PostedBy", },
                 PageUrl: { required: "Please enter Url", },
                 MetaTitle: { required: "Please enter Meta Title", },
-                MetaDescription: { required: "Please enter Meta Description", }
+                MetaDescription: { required: "Please enter Meta Description", },
+                SchemaCode: { required: "Please enter Schema Code", }
             },
             submitHandler: function (form) {
                 SaveBlog()
             }
         });
 
-        var Postingdate = new Date();
-       // var FormatPostingDate = moment(Postingdate).format('MM/DD/YYYY HH:mm:ss');
-        var FormatPostingDate = (new Date()).toISOString().split('T')[0];
-        $("#PostingDate").val(FormatPostingDate);
+        //var Postingdate = new Date();
+        //var FormatPostingDate = moment(Postingdate).format('MM/DD/YYYY HH:mm:ss');
+        //var FormatPostingDate = (new Date()).toISOString().split('T')[0];
+        //$("#PostingDate").val(FormatPostingDate);
+
         GetBlogStatusByName();
         GetBlogList();
     });
 
     $('#AddBlog').click(function () {
+        var Postingdate = new Date();
+        var FormatPostingDate = moment(Postingdate).format('MM/DD/YYYY HH:mm:ss');
+        //var FormatPostingDate = (new Date()).toISOString().split('T')[0];
+        $("#PostingDate").val(FormatPostingDate);
         $("#AddNewBlogModal").modal('show');
     });
 
@@ -217,11 +237,11 @@
             Blog.Questions = row.find(".clsfaqQuestion").val();
             Blog.Answers = row.find(".clsfaqAnswers").val();
             Blogs.push(Blog);
-
         });
 
         var Id = $("#BlogId").val();
         var Title = $("#Title").val();
+        var ShortTitle = $('#ShortTitle').val();
         //var Description = CKEDITOR.instances['Description'].getData();
         var Description = quill.root.innerHTML;
         var BlogType = $("#BlogType").val();
@@ -235,18 +255,16 @@
         var PostedBy = $("#PostedBy").val();
         var ImageUrl = $("#ImageUrl").val();
         var PageUrl = $("#PageUrl").val();
-        //if (PageUrl != undefined && Id == 0) {
-        //    var arr = PageUrl.split('/');
-        //    PageUrl = arr[4];
-        //}
         var MetaTitle = $("#MetaTitle").val();
         var MetaDescription = $("#MetaDescription").val();
+        var SchemaCode = $("#SchemaCode").val();
         var BlogDetailUrl = $("#BlogDetailImageUrl").val();
 
         var fileData = new FormData();
         fileData.append("Id",Id);
         fileData.append("Image", files[0]);
         fileData.append('Description', Description);
+        fileData.append('ShortTitle', ShortTitle);
         fileData.append('BlogType', BlogType);
         fileData.append('PostingDate', PostingDate);
         fileData.append('PostedBy', PostedBy);
@@ -256,9 +274,9 @@
         fileData.append('PageUrl', PageUrl);
         fileData.append('MetaTitle', MetaTitle);
         fileData.append('MetaDescription', MetaDescription);
+        fileData.append('SchemaCode', SchemaCode);
         fileData.append('BlogDetailImageUrl', BlogDetailUrl);
         fileData.append('BlogFaqs', JSON.stringify(Blogs));
-
 
         $.ajax({
             type: "POST",
@@ -272,7 +290,6 @@
                 GetBlogList();
                 ResetBlogData();
                 $("#AddNewBlogModal").modal('hide');
-
             },
             error: function (result) {
                 alert("failure");
@@ -296,13 +313,6 @@
                                 return "<span title='" + data + "'>" + reviewName + "</span>";
                             }
                         },
-                        //{
-                        //    "data": "Description",
-                        //    "render": function (data, type, row) {
-                        //        var reviewName = data.length > 35 ? data.substring(0, 35) + "..." : data;
-                        //        return "<span title='" + data + "'>" + reviewName + "</span>";
-                        //    }
-                        //},
                         {"data": "BlogType"},
                         {
                             "data": "PostingDate",
@@ -370,6 +380,7 @@
                 //CKEDITOR.instances['Description'].setData(result.bloglist[0].Description);
                 quill.root.innerHTML = result.bloglist[0].Description;
 
+                $("#ShortTitle").val(result.bloglist[0].ShortTitle);
                 $("#BlogType").val(result.bloglist[0].BlogType);
                 loadURLToInputFiled(result.bloglist[0].ImageName);
                 $("#preview").find("span").first().remove();
@@ -387,7 +398,7 @@
                 $("#BlogDetailImageUrl").val(result.bloglist[0].BlogDetailImage);
                 $("#MetaTitle").val(result.bloglist[0].MetaTitle);
                 $("#MetaDescription").val(result.bloglist[0].MetaDescription);
-
+                $("#SchemaCode").val(result.bloglist[0].SchemaCode);
                 $("#BlogDetailImagepreview").find("span").first().remove();
                 $('#BlogDetailImagepreview').show();
                 var span = document.createElement('span');
@@ -401,7 +412,7 @@
                     AddNewRows(val.Questions, val.Answers);
                 });
             },
-            error: function () {
+            error: function (result) {
                 alert('failure');
             }
         });
@@ -440,11 +451,11 @@
         validator.resetForm();
         $("#AddNewBlogModal").modal('hide');
         $("#BlogId").val('');
+        $("#ShortTitle").val('');
         $("#Title").val('');
-        /*$("#Description").val('');*/
-        //CKEDITOR.instances['Description'].setData('');
         quill.setText();
         $("#BlogType").val('');
+        $("#PostingDate").val('');
         $(".thumb").attr('src', '');
         $('#preview').hide();
         $("#Image").val('');
@@ -458,6 +469,7 @@
         $(".BlogImage").attr('src', '');
         $("#BlogDetailImagepreview").hide()
         $("#BlogDetailImageUrl").val("");
+        $("#SchemaCode").val("");
         console.clear();
     }
 

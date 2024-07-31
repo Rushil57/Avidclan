@@ -282,7 +282,7 @@
                 ResetModel();
             },
             error: function (result) {
-                alert("failure");
+                alert(result.responseText);
             },
         })
     }
@@ -372,9 +372,7 @@
 
                 });
             },
-            error: function () {
-                alert('failure');
-            }
+            error: function (result) {                alert(result.responseText);            }
         });
     }
 
@@ -487,7 +485,7 @@
                  });
             },
             error: function (result) {
-                alert("failure");
+                alert(result.responseText);
             }
         });
     } 
