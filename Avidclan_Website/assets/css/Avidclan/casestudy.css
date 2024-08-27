@@ -1,0 +1,459 @@
+﻿@media(max-width: 1139px) {
+    .primary-header {
+        margin-top: 99px !important;
+    }
+}
+
+.ourmission {
+    padding: 40px 0 !important;
+}
+
+.case-title h2 {
+    position: relative;
+    display: block;
+    font-size: 40px;
+    line-height: 1.2em;
+    font-weight: 900;
+    padding-bottom: 20px;
+    letter-spacing: -.5px;
+}
+
+.app-card {
+    border: 1px #999B9D solid;
+    border-radius: 12px;
+    /*padding: 20px;*/
+    margin-bottom: 20px;
+}
+
+    .app-card img {
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .app-card h3 {
+        font-size: 24px;
+        /*margin-top: 15px;*/
+    }
+
+    .app-card p {
+        font-size: 16px;
+    }
+
+.app-detail {
+    padding: 18px;
+}
+
+.app-card p {
+    font-size: 14px;
+}
+
+.app-detail h3 {
+    /*color: #4D5154;*/
+    color: #007BFC;
+    font-size: 22px;
+    font-family: Poppins;
+    font-weight: 700;
+    line-height: 32px;
+    word-wrap: break-word;
+}
+
+.btn-custom {
+    border: 0.94px #999B9D solid;
+    border-radius: 2.81px;
+    padding: 4px 12px;
+    font-size: 14px;
+    color: #5e7290;
+    background-color: #fff;
+    margin-right: 10px;
+}
+
+
+.row h2 {
+    /*line-height: 0px;*/
+    color: #142149;
+}
+
+.custom-heading {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.customdiv {
+    display: inline-block;
+    padding: 5px 12px 5px 12px;
+    background-color: #E6F0FF;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 24px;
+    color: black;
+    font-weight: 700;
+}
+
+/*.custom-underline {
+    margin: 0.5rem auto 0;
+    border-bottom: 1px solid #ccc;
+}*/
+
+.custom-underline {
+    margin: 0.5rem auto 0;
+    border-bottom: 1px solid #ccc;
+    /*width: 32%;*/
+}
+
+.stat-card {
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.stat-desc {
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 13px;
+}
+
+.divider {
+    border-left: 1px solid #ccc;
+    height: 100%;
+}
+
+.section-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.section-content {
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.testimonial {
+    /*background-color: #f7f9fc;*/
+    /*padding: 2rem;*/
+    border-radius: 0.5rem;
+    margin: 2rem;
+    padding-right: 50px;
+}
+
+.quote {
+    font-size: 2rem;
+    color: #ccc;
+}
+
+.testimonial-content {
+    font-weight: 400;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.testimonial-author {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.custom-bg-1 {
+    background-color: #ffcccc; /* Light red */
+}
+
+.custom-bg-2 {
+    background-color: #ccffcc; /* Light green */
+}
+
+.listst {
+    padding-left: 2rem;
+}
+
+    .listst li {
+        list-style: disc !important;
+    }
+
+.uidHeader {
+    border: 4px solid #142149;
+    border-radius: 9px;
+    padding: 10px 15px 0px 15px;
+}
+
+.business-outcomes .section-title {
+    line-height: 1.2em;
+    font-size: 36px;
+    font-weight: 700;
+    color: rgba(14, 16, 17, 1);
+}
+
+.first-column_content .section-title {
+    display: table-caption;
+}
+
+.BO_row {
+    background-color: #E9E9EA;
+    /*padding: 0 0 0 50px;*/
+}
+
+.light-blue-bg {
+    background-color: #F2F5FE;
+}
+
+hr {
+    background-color: #BABBBD;
+    height: 1px;
+    margin: 10px 0;
+}
+
+.first-column_content {
+    margin: 2rem;
+}
+
+.keyftxt p {
+    font-size: 20px;
+    font-family: "Poppins";
+    font-weight: 500;
+    color: rgba(77, 81, 84, 1);
+    width: 301px;
+    height: 96px;
+}
+
+.first-column-content {
+    display: grid;
+}
+
+.last-column-content {
+    display: grid;
+}
+
+.keyfhed {
+    border-bottom: 1px solid #ccc;
+    width: fit-content;
+}
+
+
+.oursol {
+    padding-top: 0;
+    padding-left: 2.5rem;
+}
+
+.ourapp, .aboutpro {
+    padding: 2.5rem;
+}
+
+.proch {
+    padding-right: 3rem !important;
+}
+
+.mtsix {
+    margin-top: 6rem !important;
+}
+
+.mt5 {
+    margin-top: 3rem !important;
+}
+
+.mb5 {
+    margin-bottom: 3rem !important;
+}
+
+.mt3 {
+    margin-top: 1.5rem !important;
+}
+.dysts {
+    margin-top: 3rem !important;
+}
+.oahidimg {
+    display: block;
+}
+
+.oashwimg {
+    display: none;
+}
+.uidsignhed {
+    width: 73%;
+}
+
+
+@media (min-width: 992px) {
+    .crtxtcls {
+        text-align: right !important;
+    }
+}
+
+@media (max-width: 575px) {
+
+    .first-column_content {
+        margin: 0;
+        margin-top: 2rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .testimonial {
+        /* background-color: #f7f9fc; */
+        /* padding: 2rem; */
+        border-radius: 0.5rem;
+        margin: 31px 0px 0px 0px;
+        padding-right: 0;
+    }
+
+    .keyfhed {
+        /*border-bottom: 1px solid #ccc;*/
+        /*width: auto;*/
+        /*display: block;*/
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .listst li {
+        list-style: disc !important;
+    }
+
+    .aboutpro {
+        padding: 0 !important;
+    }
+
+    .ourapp {
+        padding: 16px !important;
+    }
+
+    .business-outcomes .section-title {
+        line-height: 1.2em;
+        font-size: 27px;
+        font-weight: 700;
+        color: rgba(14, 16, 17, 1);
+    }
+
+    .oursol {
+        padding-top: 2rem !important;
+    }
+
+    .first-column_content .section-title {
+        /* display: table-row;*/
+    }
+
+    .custom-underline {
+        margin: 0.5rem auto 0;
+        border-bottom: 1px solid #ccc;
+        width: fit-content !important;
+    }
+
+    .proch {
+        padding: 0.7rem !important;
+    }
+
+    .mtsix {
+        margin-top: 0 !important;
+    }
+
+    .mtimggg {
+        margin-top: 85px !important;
+    }
+
+    .case-title h2 {
+        font-size: 30px;
+        padding-bottom: 12px !important;
+        /* margin-bottom: 20px;*/
+    }
+
+    .mt5 {
+        margin-top: 1rem !important;
+    }
+
+    .mt3 {
+        margin-top: 1rem !important;
+    }
+
+    .mb5 {
+        margin-bottom: 0 !important;
+    }
+
+
+    .mmt5 {
+        margin-top: 1.5rem !important;
+    }
+
+    /* .testimonial-section-two {
+        background-image: none !important;
+    }*/
+
+    .txtCenter {
+        text-align: center;
+    }
+
+    .keyftxt p {
+        font-size: 17px;
+        font-family: "Poppins";
+        font-weight: 500;
+        color: rgba(77, 81, 84, 1);
+        height: auto;
+        width: auto;
+    }
+
+    /* .BO_row, .light-blue-bg {
+        background-color: transparent;
+    }*/
+
+    .quote {
+        display: none;
+    }
+
+    .Sec h3 {
+        font-size: 20px;
+        font-family: "Poppins";
+        font-weight: 700;
+        line-height: 15px;
+    }
+
+
+
+    .Sec .divi {
+        display: none !important;
+    }
+
+    .uidHeader {
+        border: 3px solid #142149;
+        border-radius: 8px;
+        padding: 10px 15px 0px 15px;
+        text-align: center;
+    }
+
+        .uidHeader h3 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+    .testimonial-author {
+        /* font-weight: 700;
+        font-size: 1rem;*/
+        margin-top: 0.5rem;
+    }
+
+    .ourmission {
+        padding: 17px 0;
+    }
+
+    .oahidimg {
+        display: none;
+    }
+
+    .oashwimg {
+        display: block;
+        margin-top: 1.5rem !important;
+    }
+    .uidsignhed {
+        width: 73%;
+        margin-bottom: 1rem;
+    }
+    .dysts {
+        margin-top: 0rem !important;
+        padding: 2rem;
+    }
+        .dysts .mmt5 {
+            margin-top: 2.5rem !important;
+        }
+}
+
+
+.Sec p {
+    font-size: 17px;
+    font-family: "Poppins";
+    font-weight: 500;
+    line-height: 32px;
+}

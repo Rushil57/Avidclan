@@ -625,5 +625,16 @@ namespace Avidclan_Website.Controllers
             return Json(dynamiclist, JsonRequestBehavior.AllowGet);
         }
 
+
+        [Route("flutter-app-development-company-india/")]
+        public ActionResult FlutterAppDevelopmentINDIA()
+        {
+            return View();
+        }
+        [Route("ui-ux-design-company-usa/")]
+        public ActionResult UiUxDesignCompanyUSA()
+        {
+            return View();
+        }
     }
 }
