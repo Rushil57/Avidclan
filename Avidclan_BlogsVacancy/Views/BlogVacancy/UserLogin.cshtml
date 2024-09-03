@@ -4,16 +4,17 @@
 }
 <div class="login-form">
     <form name="registration">
-        <div class="avatar"><img src="~/Image/LOGO-ONLY-A.png" class="CompanyLogo"/></div>
+        <div class="avatar"><img src="~/Image/LOGO-ONLY-A.png" class="CompanyLogo" /></div>
         <h4 class="modal-title">Login to Your Account</h4>
 
         <div class="form-group">
             <label for="exampleInputEmail1" class="required">Email address</label>
             <input type="email" class="form-control" name="email" id="EmailAddress" placeholder="Email">
         </div>
-        <div class="form-group">
+        <div class="form-group password-container">
             <label for="exampleInputPassword1" class="required">Password</label>
             <input type="password" class="form-control" name="password" id="Password" placeholder="Password">
+            <i class="mdi mdi-eye-off toggle-password"></i>
         </div>
         <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
     </form>
@@ -66,6 +67,16 @@
                 }
             });
             }
+        });
+
+      $(".toggle-password").click(function() {
+            var input = $("#Password");
+            if (input.attr("type") === "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+            $(this).toggleClass("mdi-eye-outline");
         });
     });
 </script>

@@ -1,0 +1,51 @@
+﻿body {
+    
+
+}
+.btn-activetitlebtn {
+    border-radius: 10px;
+    background: var(--Primary-Color, #007BFC);
+}
+.btn-titlebtnborder {
+    border-radius: 12px;
+    background: var(--Primary-Color, #007BFC);
+}
+.blinked {
+    color: #007BFC;
+}
+.divavidclansection {
+    display: flex;
+    padding: 20px 24px;
+    flex-direction: column;
+    align-items:center;
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+}
+.sectionAvidclan {
+    display: flex;
+    margin-top: 50px !important;
+    background-color: #0E1734 !important;
+    height: 136px;
+}
+.center-block {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+.divavidclansection img{
+    margin-left:100px;
+    margin-top:25px;
+}
+.sectitle {
+    color:  #0E1011;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 56px; /* 155.556% */
+}
+.hr-cls {
+    width: 463px;
+    background: #BABBBD;
+}

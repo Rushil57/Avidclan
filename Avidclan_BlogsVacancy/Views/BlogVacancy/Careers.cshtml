@@ -134,7 +134,7 @@
 
             },
             error: function (result) {
-                alert("failure");
+                alert(result.responseText);
             },
         })
 
@@ -177,7 +177,7 @@
 
             },
             error: function (result) {
-                alert("failure");
+                alert(result.responseText);
             }
         });
     }
@@ -195,8 +195,8 @@
                     alert('Delete Successfully!');
 
                 },
-                error: function () {
-                    alert('failure');
+                error: function (result) {
+                    alert(result.responseText);
                 }
             });
         }
@@ -221,8 +221,8 @@
                 CKEDITOR.instances['Responsibilities'].setData(result.Responsibilities);
                 $("#Qualification").val(result.Qualification);
             },
-            error: function () {
-                alert('failure');
+            error: function (result) {
+                alert(result.responseText);
             }
         });
     }
@@ -276,8 +276,8 @@
             success: function (result) {
                 GetJobPositionList();
             },
-            error: function () {
-                alert('failure');
+            error: function (result) {
+                alert(result.responseText);
             }
         });
 

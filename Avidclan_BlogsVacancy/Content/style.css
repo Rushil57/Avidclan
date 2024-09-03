@@ -21140,3 +21140,36 @@ label.required::after {
     margin-left: 1px;
     color: #ff0000d1;
 }
+
+.password-container {
+    position: relative;
+}
+
+.toggle-password, .toggle-confirm-password, .toggle-current-password, .toggle-new-password {
+    position: absolute;
+    top: 35px;
+    right: 10px;
+    cursor: pointer;
+}
+.blur-background {
+    filter: blur(5px);
+    pointer-events: none; /* Prevents interactions with the blurred content */
+}
+#spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*background-color: rgba(255, 255, 255, 0.8);*/ /* Light overlay */
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner-border {
+    width: 4rem;
+    height: 4rem;
+    border-width: 0.5rem;
+}

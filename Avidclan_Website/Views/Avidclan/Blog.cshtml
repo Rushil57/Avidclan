@@ -7,11 +7,15 @@
 
 @section AdditionalMeta
 {
-    <title>Avidclan Blog: Latest Insights on Web and Mobile App Development</title>
+    <title>Avidclan Technologies Blog: Latest Insights on Web and Mobile App Development</title>
     <meta name="description" content="Discover the latest news, valuable tips, and insightful content on web and mobile app development, IoT, QA, and Internet marketing in the Avidclan blog. Stay ahead of the curve." />
     <link rel="canonical" href="https://www.avidclan.com/blog/" />
     <link rel="stylesheet" href="~/assets/css/Avidclan/blog.css" />
 }
+
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.5/dist/quill.snow.css" rel="stylesheet" />
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>*@
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.5/dist/quill.js"></script>
 
 <section class="banner-section-two">
     <div class="container">
@@ -21,7 +25,7 @@
                     <div class="pl-2">
                         <h1>Our <span class="primary-color">Blog</span></h1>
                         <div class="text mb-0">
-                            Avidclan is a renowned and leading web and mobile app development company with a vision to fulfill
+                            Avidclan Technologies is a renowned and leading web and mobile app development company with a vision to fulfill
                             business requirements using innovative solutions. We assist our clients in a way that they can
                             provide a superior digital experience for their clients worldwide.
                         </div>
@@ -60,7 +64,7 @@
                         <p class="m-1">Require a solution to your software problems?</p>
                         <h2>Want to get in touch?</h2>
                         <div>
-                            <span class="b-txt"><b>Have an idea?</b></span> Do you need some help with it? Avidclan would love
+                            <span class="b-txt"><b>Have an idea?</b></span> Do you need some help with it? Avidclan Technologies would love
                             to help you! Kindly click on ‘Contact Us’ to reach us and share your query.
                         </div>
                     </div>
@@ -115,7 +119,7 @@
                         '<span><i class="fas fa-user"></i> <a style="font-style: normal;" href="#">' + v.PostedBy + '</a></span>' +
                         '<span id="admindateid_' + v.Id + '" style="font-style: normal;"><i class="far fa-calendar-alt"></i>' + longDt + '</span>' +
                         '</div>' +
-                        '<h3 class="title blog-title"><a href="/blog/' + v.PageUrl + '" style="font-style: normal;">' + v.Title + '</a></h3>' +
+                        '<h1 class="title blog-title"><a href="/blog/' + v.PageUrl + '" style="font-style: normal;">' + v.Title + '</a></h1>' +
                         '<p class="blog-meta-desc">' + Descriptionlength + '</p>' +
                         '</div>' +
                         '<div class="blog-btn">' +

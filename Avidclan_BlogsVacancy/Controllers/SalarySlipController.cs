@@ -161,7 +161,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     companyname.HorizontalAlignment = 1;
                     table.AddCell(companyname);
 
-                    PdfPCell companyaddress = new PdfPCell(new Phrase("1101 Shivalik Shilp Iskcon Cross Rd, Sarkhej - Gandhinagar Hwy, Ahmedabad, Gujarat 380015", boldFont));
+                    PdfPCell companyaddress = new PdfPCell(new Phrase("1206 Shivalik Shilp Iskcon Cross Rd, Sarkhej - Gandhinagar Hwy, Ahmedabad, Gujarat 380015", boldFont));
                     companyaddress.Colspan = 4;
                     companyaddress.HorizontalAlignment = 1;
                     table.AddCell(companyaddress);

@@ -7,6 +7,7 @@
         <option value='status'>Status</option>
         <option value='pending'>Pending</option>
         <option value='approved'>Approved</option>
+        <option value='noted'>Noted</option>
         <option value='rejected'>Rejected</option>
     </select>
 </div>
@@ -61,6 +62,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" id="Rejected" onclick="ApprovedOrRejectLeave(this.id)">Rejected</button>
                     <button type="button" class="btn btn-success" id="Approved" onclick="ApprovedOrRejectLeave(this.id)">Approved</button>
+                    <button type="button" class="btn btn-success" id="Noted" onclick="ApprovedOrRejectLeave(this.id)">Noted</button>
                     <button type="button" class="btn btn-secondary" onclick="ResetModel()">Cancel</button>
                 </div>
             </div>
@@ -87,6 +89,7 @@
               table = $('#LeaveTable').DataTable({
                     destroy: true,
                     data: data,
+                    order: [[0, 'desc']],
                     "columns": [
                         {
                             "data": "Id", visible : false
@@ -110,8 +113,8 @@
                     ]
                 });
             },
-            error: function () {
-                alert('failure');
+            error: function (result) {
+                alert(result.responsetext);
             }
         });
     }
@@ -221,7 +224,7 @@
                 ResetModel();
             },
             error: function (result) {
-                alert("failure");
+                alert(result.responsetext);
             },
         })
     }

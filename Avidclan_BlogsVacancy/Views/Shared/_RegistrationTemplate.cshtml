@@ -1,19 +1,15 @@
 ﻿<script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <link href="~/Content/Site.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+<link href="~/Content/materialdesignicons.min.css" rel="stylesheet" />
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <link href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css"
       rel="stylesheet" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
-        integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"></script>
 <title>Avidclan Technologies</title>
 <style>
     body {
@@ -84,14 +80,10 @@
         }
 
         .login-form .btn {
-            background: #4aba70;
+            background: #142149;
             border: none;
             line-height: normal;
         }
-
-            .login-form .btn:hover, .login-form .btn:focus {
-                background: #42ae68;
-            }
 
         .login-form .checkbox-inline {
             float: left;
@@ -116,8 +108,25 @@
     .CompanyLogo {
         height: 141%;
     }
-    
+
+    .password-container {
+        position: relative;
+    }
+
+    .toggle-password {
+        position: absolute;
+        top: 35px;
+        right: 10px;
+        cursor: pointer;
+    }
 </style>
 <body>
     @RenderBody()
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+        integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>

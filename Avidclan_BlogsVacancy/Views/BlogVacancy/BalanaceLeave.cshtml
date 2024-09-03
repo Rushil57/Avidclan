@@ -19,8 +19,8 @@
                 <form name="BalanaceLeaveForm">
                     <input type="hidden" id="EmployeeId" />
                     <div class="form-group">
-                        <label for="personalLeave">Personal Leave</label>
-                        <input type="text" class="form-control" id="PersonalLeave" name="personalleave" placeholder="Enter Personal Leave">
+                        <label for="personalLeave">Paid Leave</label>
+                        <input type="text" class="form-control" id="PersonalLeave" name="personalleave" placeholder="Enter Paid Leave">
                     </div>
                     <div class="form-group">
                         <label for="sickLeave">Sick Leave</label>
@@ -52,7 +52,7 @@
     <table id="EmployeeList" class="table table-bordered table-responsive">
         <thead>
             <tr>
-                <th> Personal Leave </th>
+                <th> Paid Leave </th>
                 <th> Sick Leave </th>
                 <th> FirstName </th>
                 <th></th>
@@ -72,7 +72,7 @@
                 employee: { required: true,}
             },
             messages: {
-                personalleave: { required: "Please enter a Personal Leave" },
+                personalleave: { required: "Please enter a Paid Leave" },
                 sickleave: { required: "Please enter a Sick Leave" },
                 employee: {required: "Select Valid Employee",},
             },

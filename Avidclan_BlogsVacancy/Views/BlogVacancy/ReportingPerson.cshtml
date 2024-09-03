@@ -79,7 +79,19 @@
             type: "POST",
             url: "@Url.Action("SaveReportingperson", "BlogVacancy")",
             data: { 'Person': person, 'Id' : Id},
-                 success: function (result) {     if (result == "Data Saved!") {         alert("Added Successfully!")         ResetForm()         GetReportingPerson();     }     else {         alert(result)     } }, error: function (result) {     alert(result.responsetext); }
+                 success: function (result) {
+     if (result == "Data Saved!") {
+         alert("Added Successfully!")
+         ResetForm()
+         GetReportingPerson();
+     }
+     else {
+         alert(result)
+     }
+ },
+ error: function (result) {
+     alert(result.responsetext);
+ }
             });
     }
 
@@ -100,7 +112,7 @@
                     data: result,
                     "columns": [
                         {
-                            "data": "ReportingPerson",
+                            "data": "ReportingPersonEmail",
                         },
                         {
                             "data": "Id",
@@ -120,7 +132,7 @@
 
             },
             error: function (result) {
-                alert("failure");
+                alert(result.responsetext);
             }
         });
     }
@@ -137,8 +149,8 @@
                     alert('Delete Successully!');
 
                 },
-                error: function () {
-                    alert('failure');
+                error: function (result) {
+                    alert(result.responseText);
                 }
             });
         }
@@ -154,11 +166,11 @@
             success: function (result) {
                 if (result != null) {
                     $("#ReportingPersonId").val(result.Id);
-                    $("#txtReportingPerson").val(result.ReportingPerson);
+                    $("#txtReportingPerson").val(result.ReportingPersonEmail);
                 }
             },
-            error: function () {
-                alert('failure');
+            error: function (result) {
+                alert(result.responseText);
             }
         });
     }

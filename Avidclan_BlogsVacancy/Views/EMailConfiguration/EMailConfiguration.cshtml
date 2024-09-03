@@ -49,8 +49,8 @@
                   $("#txtPort").val(result.Port);
                   $("#hdnId").val(result.Id);
               },
-              error: function () {
-                    alert('failure');
+             error: function (result) {
+                  alert(result.responsetext);
                 }
          });
     }
@@ -82,8 +82,8 @@
                 alert('Configuration Update Successully!');
                 ReadConfiguration();
               },
-              error: function () {
-                    alert('failure');
+            error: function (result) {
+                  alert(result.responsetext);
                 }
             });
         });

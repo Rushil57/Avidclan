@@ -68,12 +68,21 @@
         $(".chosen-select").chosen({
             no_results_text: "Oops, nothing found!"
         })
-        SelectCalenderDate();
+        
         $("#txtFromDate").datepicker();
         $("#txtToDate").datepicker();
         $("#TotalLeaveDates").hide();
-        GetLeaveDates();
-        GetReportingPerson();
+       
+        showSpinner();
+        $.when(
+            SelectCalenderDate(),
+            GetLeaveDates(),
+            GetReportingPerson(),
+        ).done(function () {
+            hideSpinner();
+        }).fail(function () {
+            hideSpinner(); // Hide spinner even if there's an error
+        });
     });
 
     var calendar;
@@ -269,7 +278,7 @@
             ReasonForLeave: $("#txtReason").val(),
             WorkFromHome: $("#WorkFromHome").prop('checked')
         }
-
+        showSpinner();
         $.ajax({
             type: "POST",
             url: "/api/Admin/RequestForLeave",
@@ -280,9 +289,11 @@
                 /*alert("Request Sent..");*/
                 alert(result)
                 ResetModel();
+                hideSpinner();
             },
             error: function (result) {
                 alert(result.responseText);
+                hideSpinner();
             },
         })
     }
@@ -372,7 +383,9 @@
 
                 });
             },
-            error: function (result) {                alert(result.responseText);            }
+            error: function (result) {
+                alert(result.responseText);
+            }
         });
     }
 

@@ -172,6 +172,7 @@
     <Compile Include="Controllers\AvidclanController.cs" />
     <Compile Include="Controllers\BlogPagesController.cs" />
     <Compile Include="Controllers\CaseStudyController.cs" />
+    <Compile Include="Controllers\HiringPagesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Global.asax.cs">
@@ -196,6 +197,7 @@
     <Content Include="assets\css\Avidclan\career.css" />
     <Content Include="assets\css\Avidclan\blog.css" />
     <Content Include="assets\css\Avidclan\flutter_app_development_usa.css" />
+    <Content Include="assets\css\Avidclan\hiringpages.css" />
     <Content Include="assets\css\Avidclan\work.css" />
     <Content Include="assets\css\Avidclan\technologies.css" />
     <Content Include="assets\css\Avidclan\services.css" />
@@ -460,6 +462,10 @@
     <Content Include="assets\images\healthcare.svg" />
     <Content Include="assets\images\helping-partner-concept-illustration.jpg" />
     <Content Include="assets\images\hire-developer.svg" />
+    <Content Include="assets\images\hiringpages\Illustration.png" />
+    <Content Include="assets\images\hiringpages\mdi_arrow-left.png" />
+    <Content Include="assets\images\hiringpages\mdi_arrow-left.svg" />
+    <Content Include="assets\images\hiringpages\Vector.png" />
     <Content Include="assets\images\html5-img.svg" />
     <Content Include="assets\images\html5-tech.jpg" />
     <Content Include="assets\images\html5.svg" />
@@ -988,6 +994,7 @@
     <Content Include="Views\CaseStudy\GoolGoalCaseStudyDetail.cshtml" />
     <Content Include="Views\Avidclan\FlutterAppDevelopmentINDIA.cshtml" />
     <Content Include="Views\Avidclan\UiUxDesignCompanyUSA.cshtml" />
+    <Content Include="Views\HiringPages\HiredotNetDevelopers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

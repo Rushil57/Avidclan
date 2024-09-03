@@ -4,8 +4,11 @@
     var type = "@type";
     var blog_id = ViewBag.BlogId;
 }
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.5/dist/quill.snow.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.5/dist/quill.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 @section AdditionalMeta
 {
     <meta property="og:locale" content="en_US" />
@@ -27,6 +30,7 @@
     <link rel="stylesheet" href="~/assets/css/Avidclan/blogDetails.css" />
     @Html.Raw(ViewBag.SchemaCode)
 }
+
 <section class="blog-section">
     <div class="container">
         <div class="row">
@@ -81,11 +85,11 @@
                                 @{
                                     if (ViewBag.TableContent != "" && ViewBag.TableContent != null)
                                     {
-                                        @Html.Raw(ViewBag.TableContent);
+                                    @Html.Raw(ViewBag.TableContent);
                                     }
                                     else
                                     {
-                                        <li>No Data Available</li>
+                                    <li>No Data Available</li>
                                     }
                                 }
                                 @*<li>What is Predictive Analytics in Machine Learning?</li>
@@ -99,13 +103,15 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <h2 class="blog-title-internal font-40" id="Blogtitle">
+                            <h1 class="blog-title-internal font-40" id="Blogtitle">
                                 @*@ViewBag.MetaTitle*@
-                            </h2>
+                            </h1>
                         </div>
                     </div>
-
-                    @Html.Raw(ViewBag.HtmlData)
+                    <div class="ql-editor">
+                        @Html.Raw(ViewBag.HtmlData)
+                    </div>
+                   
 
                     <div class="related-services sm_only">
                         <div class="title-24 mb-4">
@@ -177,11 +183,11 @@
                                 @{
                                     if (ViewBag.TableContent != "" && ViewBag.TableContent != null)
                                     {
-                                        @Html.Raw(ViewBag.TableContent);
+                                    @Html.Raw(ViewBag.TableContent);
                                     }
                                     else
                                     {
-                                        <li>No Data Available</li>
+                                    <li>No Data Available</li>
                                     }
                                 }
                                 @*<li>What is Predictive Analytics in Machine Learning?</li>
@@ -263,7 +269,7 @@
                         <p class="m-1">Require a solution to your software problems?</p>
                         <h2>Want to get in touch?</h2>
                         <div>
-                            <span class="b-txt"><b>Have an idea?</b></span> Do you need some help with it? Avidclan would love
+                            <span class="b-txt"><b>Have an idea?</b></span> Do you need some help with it? Avidclan Technologies would love
                             to help you! Kindly click on ‘Contact Us’ to reach us and share your query.
                         </div>
                     </div>
@@ -446,14 +452,13 @@
                         var PostingDate = new Date(v.PostingDate);
                         var longDt = PostingDate.toLocaleDateString("en-US", options);
                         var Descriptionlength = v.MetaDescription.length > 80 ? v.MetaDescription.substring(0, 80) + "…" : v.MetaDescription;
-
                         sectionblog += '<div class="col-lg-4 col-md-6">' +
                             '<div class="single-blog">' +
                             '<div class="blog-img img img-fluid">' +
                             '<a href="/blog/' + v.PageUrl + '"><img class="BlogImages" src="' + v.Image + '" alt="" style="height:216px;"></a>' +
                             '</div> ' +
                             '<div class="blog-content">' +
-                            '<h3 class="title blog-title"><a href="/blog/' + v.PageUrl + '">' + v.Title + '</a></h3>' +
+                            '<h1 class="title blog-title"><a href="/blog/' + v.PageUrl + '">' + v.Title + '</a></h1>' +
                             '<div class="blog-meta"><span><i class="fas fa-user icon-image"></i><span class="by-separator">by</span><a href="#">' + v.PostedBy + '</a></span><span id="admindateid_36"><i class="far fa-calendar-alt"></i>' + longDt + '</span></div>' +
                             '<div class="read-article">' +
                             '<div class="blog-btn">' +

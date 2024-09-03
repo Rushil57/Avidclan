@@ -82,7 +82,7 @@
                         <input type="text" class="form-control" id="ShortTitle" name="ShortTitle" placeholder="Title">
                     </div>
                     <div class="form-group">
-                        <label for="BlogType">Blog Type</label>
+                        <label for="blogtype">Blog Type</label>
                         <input type="text" class="form-control" id="BlogType" name="blogtype" placeholder="Blog Type">
                     </div>
                     <div class="form-group">
@@ -91,12 +91,12 @@
                         <div id="preview"></div>
                     </div>
                     <div class="form-group">
-                        <label for="Image">Banner Image</label>
+                        <label for="BlogDetailsImage">Banner Image</label>
                         <input id="BlogDetailsImage" type="file" class="form-control" name="BlogDetailsImage" />
                         <div id="BlogDetailImagepreview"></div>
                     </div>
                     <div class="form-group">
-                        <label for="Date">Posting Date</label>
+                        <label for="PostingDate">Posting Date</label>
                         <input type="text" class="form-control" id="PostingDate" disabled>
                     </div>
                     <div class="form-group">
@@ -292,7 +292,7 @@
                 $("#AddNewBlogModal").modal('hide');
             },
             error: function (result) {
-                alert("failure");
+                alert(result.responseText);
             }
         });
     }
@@ -340,7 +340,7 @@
 
             },
             error: function (result) {
-                alert("failure");
+                alert(result.responseText);
             }
         });
     }
@@ -357,8 +357,8 @@
                     alert('Delete Successully!');
 
                 },
-                error: function () {
-                    alert('failure');
+                error: function (result) {
+                    alert(result.responseText);
                 }
             });
         }
@@ -413,7 +413,7 @@
                 });
             },
             error: function (result) {
-                alert('failure');
+                alert(result.responseText);
             }
         });
     }
@@ -516,7 +516,7 @@
 
                 },
                 error: function () {
-                    alert('failure');
+                    alert(result.responseText);
                 }
             });
     });
@@ -534,8 +534,8 @@
                 }
 
             },
-            error: function () {
-                alert('failure');
+            error: function (result) {
+                alert(result.responseText);
             }
         });
     }

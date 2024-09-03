@@ -46,21 +46,30 @@ namespace Avidclan_BlogsVacancy.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(UserLogin userLogin)
         {
-            var parameters = new DynamicParameters();
-            parameters.Add("@EmailId", userLogin.EmailId, DbType.String, ParameterDirection.Input);
-            parameters.Add("@Password", userLogin.Password, DbType.String, ParameterDirection.Input);
-            parameters.Add("@Mode", 1, DbType.Int32, ParameterDirection.Input);
-            var logindata = con.Query<UserLogin>("sp_User", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
-            if (logindata != null)
+            try
             {
-                Session["UserEmailId"] = logindata.EmailId;
-                Session["UserId"] = logindata.Id;
-                Session["UserJoiningDate"] = logindata.JoiningDate;
-                Session["UserProbationPeriod"] = logindata.ProbationPeriod;
-                Session["FirstName"] = logindata.FirstName;
-                Session["LastName"] = logindata.LastName;
+                var parameters = new DynamicParameters();
+                parameters.Add("@EmailId", userLogin.EmailId, DbType.String, ParameterDirection.Input);
+                parameters.Add("@Password", userLogin.Password, DbType.String, ParameterDirection.Input);
+                parameters.Add("@Mode", 1, DbType.Int32, ParameterDirection.Input);
+                var logindata = con.Query<UserLogin>("sp_User", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                if (logindata != null)
+                {
+                    Session["UserEmailId"] = logindata.EmailId;
+                    Session["UserId"] = logindata.Id;
+                    Session["UserJoiningDate"] = logindata.JoiningDate;
+                    Session["UserProbationPeriod"] = logindata.ProbationPeriod;
+                    Session["FirstName"] = logindata.FirstName;
+                    Session["LastName"] = logindata.LastName;
+                }
+                return Json(logindata, JsonRequestBehavior.AllowGet);
             }
-            return Json(logindata, JsonRequestBehavior.AllowGet);
+            catch(Exception ex)
+            {
+                await ErrorLog("UserLogin", ex.Message, ex.StackTrace);
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
+           
         }
 
         public ActionResult Blog()
@@ -463,7 +472,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             var mode=0;
             if(Id == 0)
             {
-                mode = 1;
+                mode = 8;
             }
             else
             {
@@ -474,7 +483,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             {
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id", Id, DbType.Int32, ParameterDirection.Input);
-                parameters.Add("@ReportingPerson", person, DbType.String, ParameterDirection.Input);
+                parameters.Add("@ReportingPersonEmail", person, DbType.String, ParameterDirection.Input);
                 parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
                 using (IDbConnection connection = new SqlConnection(connectionString))
                 {

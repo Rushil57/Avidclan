@@ -317,7 +317,7 @@
 
         var str = "<div id='slipdetails' class='slipdetail'>"
                         + "<div id='slipheader'><p id='header'><img src='/Image/Official-Avidclan-Technologies-Full.png'  alt='Avidclan Logo' style='height: 100px;'></p>"
-                            + "<p id='companyaddress'>1101 Shivalik Shilp Iskcon Cross Rd, Sarkhej - Gandhinagar Hwy, Ahmedabad, Gujarat 380015</p>"
+                            + "<p id='companyaddress'>1206 Shivalik Shilp Iskcon Cross Rd, Sarkhej - Gandhinagar Hwy, Ahmedabad, Gujarat 380015</p>"
                             + "<p id='payslipmonth'>Pay Slip for the Month of " + slipdate + "</p>"
                             + "<p class='blankspace'></p>"
                     + "</div > "
@@ -445,8 +445,8 @@
                 })
                 console.log(HolidayList)
             },
-            error: function () {
-                alert('failure');
+            error: function (result) {
+                alert(result.responseText);
             }
         });
     }
@@ -663,8 +663,7 @@
                 console.log("success")
             },
              error: function (result) {
-                 alert(result);
-                console.log("failure")
+                 alert(result.responseText);
             }
         });
     }

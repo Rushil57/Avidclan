@@ -10,7 +10,7 @@
             @*<th>FromDate</th>*@
             <th style="width: 263px;" class="dt-head-center">Dates</th>
             <th style="width: 130px;" class="dt-head-center">Sick Leave (SL)</th>
-            <th style="width: 175px;" class="dt-head-center">Personal Leave (PL)</th>
+            <th style="width: 175px;" class="dt-head-center">Paid Leave (PL)</th>
             <th style="width: 216px;" class="dt-head-center">Leave Without Pay (LWP)</th>
             <th style="width: 203px;" class="dt-head-center">Reason For Leave</th>
         </tr>
@@ -26,7 +26,7 @@
     <thead>
         <tr>
             <th class="dt-head-center">Sick Leave</th>
-            <th class="dt-head-center">Personal Leave</th>
+            <th class="dt-head-center">Paid Leave</th>
         </tr>
     </thead>
     <tbody class="TotalLeaveBalanceTableBody" style="text-align: center;">
@@ -35,17 +35,6 @@
 
 <hr />
 
-@*<h4>Past Leave Balanace</h4>
-    <table id="PastLeaveBalanceTable">
-        <thead>
-            <tr>
-                <th>SickLeave</th>
-                <th>Personal Leave</th>
-            </tr>
-        </thead>
-        <tbody class="PastLeaveBalanceTableBody">
-        </tbody>
-    </table>*@
 
 <input type="hidden" id="PersonalLeave" />
 <input type="hidden" id="SickLeave" />
@@ -54,91 +43,87 @@
 
 <script>
     $(function () {
-        GetPastLeaveBalance();
-        GetTotalCurrentYearLeave();
-        GetTotalLeaveBalance();
+        showSpinner();
 
+        // Wrap setTimeout in a promise
+        function delay(time) {
+            return new Promise(function (resolve) {
+                setTimeout(resolve, time);
+            });
+        }
+
+        $.when(
+            GetPastLeaveBalance(),
+            GetTotalCurrentYearLeave(),
+            delay(2500).then(GetTotalLeaveBalance)
+        ).done(function () {
+            hideSpinner();
+        }).fail(function () {
+            hideSpinner(); // Hide spinner even if there's an error
+        });
     });
 
-    function GetTotalCurrentYearLeave() {
-         $.ajax({
-            url: "@Url.Action("GetTotalLeaveList", "Leave")",
-            contentType: 'application/json',
-             type: "GET",
-            success: function (data) {
-                $('#TotalLeaveTable').DataTable({
-                    destroy: true,
-                    data: data,
-                    order: [[0, 'asc']],
-                    "columns": [
-                        //{
-                        //    "data": "Fromdate",
-                        //    "render": function (data) {
-                        //       var date = moment(data).format('YYYY-MM-DD');
-                        //       return "<span>" + date + "</span>"
 
+   function GetTotalCurrentYearLeave() {
+    $.ajax({
+        url: '@Url.Action("GetTotalLeaveList", "Leave")',
+        contentType: 'application/json',
+        type: "GET",
+        success: function (data) {
+            $('#TotalLeaveTable').DataTable({
+                destroy: true,
+                data: data,
+                order: [[0, 'asc']], // Ascending order on the first column (Dates)
+                "columns": [
+                    {
+                        "data": null,
+                        "render": function (data, type, full, meta) {
+                            // Format dates for display
+                            var fromDateFormatted = moment(full["Fromdate"]).format('DD/MM/YYYY');
+                            var toDateFormatted = moment(full["Todate"]).format('DD/MM/YYYY');
 
-                        //    }
-                        //},
-                        //{
-                        //    "data": "Todate",
-                        //    "render": function (data) {
-                        //        return moment(data).format('YYYY-MM-DD');
-                        //    }
-                        //},
-                        {
-                            "data": null,
-                            "render": function (data, type, full, meta) {
-                                return moment(full["Fromdate"]).format('DD/MM/YYYY') + " - " + moment(full["Todate"]).format('DD/MM/YYYY');
-                            }
-                        },
-                        {
-                            "data": "SickLeave",
-                            "render": function (data, type, row) {
-                                if (data == null) {
-                                    return "<span>0.0</span>";
-                                }
-                                else {
-                                    return "<span>" + data + "</span>"
-                                }
+                            // Create a hidden value for sorting by formatting the dates as YYYYMMDD
+                            var fromDateSortable = moment(full["Fromdate"]).format('YYYYMMDD');
+                            var toDateSortable = moment(full["Todate"]).format('YYYYMMDD');
 
-                            }
-                        },
-                        {
-                            "data": "PersonalLeave",
-                            "render": function (data, type, row) {
-                                if (data == null) {
-                                    return "<span>0.0</span>";
-                                }
-                                else {
-                                    return "<span>" + data + "</span>"
-                                }
-
-                            }
-                        },
-                        {
-                            "data": "LwpLeave",
-                            "render": function (data, type, row) {
-                                if (data == null) {
-                                    return "<span>0.0</span>";
-                                }
-                                else {
-                                    return "<span>" + data + "</span>"
-                                }
-
-                            }
-                        },
-                        {
-                            "data": "LeaveReason"
+                            // Return the date range with hidden sortable values
+                            return '<span style="display:none;">' + fromDateSortable + toDateSortable + '</span>' +
+                                   fromDateFormatted + " - " + toDateFormatted;
                         }
-                    ]
-                });
-            },
-            error: function (result) {
-                alert(result.responseText);
-            }
-        });
-    }
+                    },
+                    {
+                        "data": "SickLeave",
+                        "render": function (data, type, row) {
+                            return data == null ? "<span>0.0</span>" : "<span>" + data + "</span>";
+                        }
+                    },
+                    {
+                        "data": "PersonalLeave",
+                        "render": function (data, type, row) {
+                            return data == null ? "<span>0.0</span>" : "<span>" + data + "</span>";
+                        }
+                    },
+                    {
+                        "data": "LwpLeave",
+                        "render": function (data, type, row) {
+                            return data == null ? "<span>0.0</span>" : "<span>" + data + "</span>";
+                        }
+                    },
+                    {
+                        "data": "LeaveReason",
+                        "render": function (data, type, row) {
+                            var leaveReason = data.length > 40 ? data.substring(0, 40) + "..." : data;
+                            return "<span title='" + data + "'>" + leaveReason + "</span>";
+                        }
+                    }
+                ]
+            });
+        },
+        error: function (result) {
+            alert(result.responseText);
+        }
+    });
+}
 
     function GetMonthName(monthNumber) {
         var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -237,10 +222,10 @@
 
             var CurrentMonth = CurrentDate.getMonth() + 1;
             MonthlySickLeave = CurrentMonth / 2;
-            MonthlySickLeave = (MonthlySickLeave - sickleave) + parseFloat(Pastsickleave);
+            MonthlySickLeave = (MonthlySickLeave - sickleave);
             if (MonthlySickLeave < 0) {
-                MonthlySickLeave = 0;
-            }
+                MonthlySickLeave = 0 + parseFloat(Pastsickleave);
+            } else { MonthlySickLeave = MonthlySickLeave + parseFloat(Pastsickleave); }
         }
         else {
             MonthlySickLeave = 0.0;
@@ -297,4 +282,15 @@
 
         return TotalPersonalLeave;
     }
+
+    //function showSpinner() {
+    //    $('#spinner-overlay').show();
+    //    $('#content-to-blur').addClass('blur-background');
+    //}
+
+    //function hideSpinner() {
+    //    $('#spinner-overlay').hide();
+    //    $('#content-to-blur').removeClass('blur-background');
+    //}
+
 </script>
