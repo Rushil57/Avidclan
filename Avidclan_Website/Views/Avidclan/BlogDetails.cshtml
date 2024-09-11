@@ -11,7 +11,6 @@
     <link rel="canonical" href="https://www.avidclan.com/blog/" />
     <link rel="stylesheet" href="~/assets/css/Avidclan/blog.css" />
 }
-<h2>blog content</h2>
 <section class="blog-section">
     <div class="container">
         <div class="blog-details-wrap">
@@ -88,7 +87,8 @@
                 contentType: 'application/json',
                 data: { Id: id },
                 type: "GET",
-                success: function (result) {
+            success: function (result) {
+                debugger;
                     if (result != null) {
                         var fromdate = moment(result.PostingDate).format('MM/DD/YYYY  HH:mm:ss');
                         var options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -99,7 +99,7 @@
                         console.log("PostingDate :" + PostingDate);
                         console.log("longDt :" + longDt);
                         console.log("Id :" + result.Id);
-
+                        debugger;
                         $("#blogTag").html(result.BlogType)
                         $("#Blogtitle").html(result.Title)
                         $(".blog-content p").html(result.Description)

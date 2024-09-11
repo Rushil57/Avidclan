@@ -9,11 +9,7 @@ namespace Avidclan_Website.Controllers
     public class HiringPagesController : Controller
     {
         // GET: HiringPages
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+       
         [Route("hire-dot-net-developers/")]
         public ActionResult HiredotNetDevelopers()
         {

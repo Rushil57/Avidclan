@@ -296,6 +296,7 @@
     <Compile Include="ViewModel\UserLogin.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BlogDetailImages\10 Software Development Tools for Streamlined Coding %281%29.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -384,7 +385,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="BlogDetailImages\" />
     <Folder Include="Image\" />
     <Folder Include="Models\" />
     <Folder Include="Views\SalarySlip\" />
