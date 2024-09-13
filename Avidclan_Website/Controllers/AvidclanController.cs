@@ -99,7 +99,11 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
-
+        [Route("ai-development-company/")]
+        public ActionResult AIDevelopment()
+        {
+            return View();
+        }
         [Route("mobile-application-development/")]
         public ActionResult MobileApplicationRedirect()
         {
