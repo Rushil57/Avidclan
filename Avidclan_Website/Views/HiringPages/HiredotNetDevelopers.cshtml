@@ -120,37 +120,44 @@
 </head>
 <body>
     <!-- Banner Section -->
-    <section class="banner-section-two">
-        <div class="container">
+    <section class="banner-section-two section-box-spacing">
+        <div class="container banner-section-box">
             <div class="row">
-                <div class="col-sm-7">
+                <div class="col-lg-7 order-lg-2 order-md-2 order-sm-3 order-2">
                     <div class="pl-3">
                         <h1>HIRE DEDICATED .NET DEVELOPERS</h1>
-                        <h3>Unleash the power of the .NET Development with our expert Solutions</h3>
+                        <h3 class="hiring-section-subtittle">Unleash the power of the .NET Development with our expert Solutions</h3>
                         <p class="text">
                             At Avidclan Technologies, we are a premier .NET development company with a proven legacy of delivering innovative solutions for businesses of all sizes, from web to desktop applications. Transform your business with our expert team, which surpasses your expectations by harnessing the full potential of the .NET framework to ensure your projects, whether enterprise-grade software or cutting-edge applications.
                         </p>
                     </div>
+                    <div class="col-lg-12 col-sm-12 d-flex flex-column flex-md-row">
+                        <div class="btn-box">
+                            <a href="~/services#project_inquiry_form" class="theme-btn btn-style-one">
+                                <span class="btn-title">
+                                    Get Started
+                                    <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="btn-box btn-check-price">
+                            <button onclick="scrollToSection('pricing_section')" class="btn-banner-title btn-title-font">
+                                Check our pricing plans
+                            </button>
+                        </div>                        
+                    </div>
                 </div>
-                <div class="col-sm-5 text-center">
-                    <img src="~/assets/images/hiringpages/Illustration.png" width="400" height="400" alt="development" />
+                <div class="col-lg-5 order-md-2 order-sm-3 order-1 text-center">
+                    <img src="~/assets/images/hiringpages/Illustration.png" class="img-fluid" alt="development" />
                 </div>
-                <div class="col-sm-3"></div>
             </div>
-            <div class="row">
-                <div class="col-md-12 d-flex">
-                    <button class="btn-tech-title btn-techtitle-font me-4" style=" /* display: inline-block; */ ">
-                        Get Started
-                        <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
-                    </button>
-                    <button class="btn-banner-title btn-title-font">Check our pricing plans</button>
-                </div>
-            </div>
+
         </div>
     </section>
+
     <!--End Banner Section-->
     <!--Avidclan Banner div Section-->
-    <section class="custom-bg py-4" style="margin-top: 14px">
+    <section class="custom-bg py-4 section-box-spacing" style="margin-top: 14px">
         <!-- Background color applied to the section -->
         <div class="container">
             <div class="row text-center">
@@ -183,13 +190,10 @@
 
     <!--End Avidclan div Section-->
     <!--    our services Section start-->
-
-    
-
-    <section>
+    <section class="section-box-spacing">
         <div class="container">
             <div class="row">
-                <div class="col-xl-12">
+                <div class="col-md-12 col-lg-12">
                     <div class="service-block">
                         <div class="avidclan_section_title text-center mb-50">
                             <div class="sec-title">
@@ -198,90 +202,74 @@
                                 <p class="text m-0 header_description">At Avidclan Technologies, we harness the power of .NET Technology to create scalable, secure, high-performance applications. From enterprise solutions to dynamic web applications, Our skilled .NET developers provide customized solutions for web, desktop, and cloud platforms that leverage productivity and business growth.</p>
                             </div>
                         </div>
-                    </div>                    
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="card custom-card-box">
-                        <div class="card-body">
-                            <h4 class="servicesubtitle">.Net Microservices and Docker Containerization Deployment</h4>
-                            <p class="custom-card-content">
-                                Hire experts in .NET Microservices and Docker Containerization. We deploy scalable, efficient solutions that streamline operations, enhance performance, and ensure seamless integration for your business needs.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card custom-card-box">
-                        <div class="card-body">
-                            <h4 class="servicesubtitle">End-to-End .NET Core Development</h4>
-                            <p class="custom-card-content">
-                                We offer a full-cycle .NET Core development, from development to deployment. Providing scalable, robust and cross-platform applications as per your needs and integrate seamlessly into your existing systems.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card custom-card-box">
-                        <div class="card-body">
-                            <h4 class="servicesubtitle">.NET Consultancy Services</h4>
-                            <p class="custom-card-content">
-                                Our .NET consultants provides you  expert guidance and insightful strategies to help you make informed decisions regarding optimization, application performance, security, and alignment with your business goals.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card custom-card-box">
-                        <div class="card-body">
-                            <h4 class="servicesubtitle">Migration and Integration services</h4>
-                            <p class="custom-card-content">
-                                Migrate and Integrate your legacy systems to .NET Framework with cloud solutions. Our .Net Developers ensure smooth transitions, enhanced performance and efficient data synchronization, leveraging .NET’s power and cloud scalability for optimal results.
-                            </p>
-                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row mt-5">
-                <div class="col-md-3">
-                    <div class="card custom-card-box">
-                        <div class="card-body">
-                            <h4 class="servicesubtitle">Enterprise App Development</h4>
-                            <p class="custom-card-content">
-                                Specializing in the development of enterprise-grade applications for businesses using .Net technology. Our products are designed to be as efficient, scalable, and integrated as possible, providing precise and dependable answers to challenging business problems.
-                            </p>
-                        </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h4 class="service-card-subtitle">Custom .NET Application Development</h4>
+                        <p class="">
+                            Our .NET experts craft bespoke .NET applications suited to your specific business requirements. From enterprise-level systems to s we ensure your application perfectly corresponds with your operational requirements and growth objectives.
+                        </p>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="card custom-card-box">
-                        <div class="card-body">
-                            <h4 class="servicesubtitle">.NET Web Application Development</h4>
-                            <p class="custom-card-content">
-                                We make use of. NET technologies to develop robust, scalable enterprise applications that put an emphasis on precise and dependable fulfillment of complex business requirements, seamless integration, and high performance.
-                            </p>
-                        </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h4 class="service-card-subtitle">End-to-End .NET Core Development</h4>
+                        <p class="custom-card-content">
+                            We offer a full-cycle .NET Core development, from development to deployment. Providing scalable, robust and cross-platform applications as per your needs and integrate seamlessly into your existing systems.
+                        </p>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="card custom-card-box">
-                        <div class="card-body">
-                            <h4 class="servicesubtitle">.NET Maintenance and Support</h4>
-                            <p class="custom-card-content">
-                                As a top .NET development company, we provide comprehensive maintenance and support services that include safe, quick page loading, automated backups, error-free plugin performance, updated software versions, decreased downtime, security, and more.
-                            </p>
-                        </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h4 class="service-card-subtitle">.NET Consultancy Services</h4>
+                        <p class="custom-card-content">
+                            Our .NET consultants provides you  expert guidance and insightful strategies to help you make informed decisions regarding optimization, application performance, security, and alignment with your business goals.
+                        </p>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="card custom-card-box">
-                        <div class="card-body">
-                            <h4 class="servicesubtitle">Microservices and Docker Containerization</h4>
-                            <p class="custom-card-content">
-                                Hire experts in .NET Microservices and Docker Containerization. We deploy scalable, efficient solutions that streamline operations, enhance performance, and ensure seamless integration for your business needs.
-                            </p>
-                        </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h4 class="service-card-subtitle">Migration and Integration services</h4>
+                        <p class="custom-card-content">
+                            Migrate and Integrate your legacy systems to .NET Framework with cloud solutions. Our .Net Developers ensure smooth transitions, enhanced performance and efficient data synchronization, leveraging .NET’s power and cloud scalability for optimal results.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 mt-2">
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h4 class="service-card-subtitle">Enterprise App Development</h4>
+                        <p class="custom-card-content">
+                            Specializing in the development of enterprise-grade applications for businesses using .Net technology. Our products are designed to be as efficient, scalable, and integrated as possible, providing precise and dependable answers to challenging business problems.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h4 class="service-card-subtitle">.NET Application Development</h4>
+                        <p class="custom-card-content">
+                            We make use of. NET technologies to develop robust, scalable enterprise applications that put an emphasis on precise and dependable fulfillment of complex business requirements, seamless integration, and high performance.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h4 class="service-card-subtitle">.NET Maintenance and Support</h4>
+                        <p class="custom-card-content">
+                            As a top .NET development company, we provide comprehensive maintenance and support services that include safe, quick page loading, automated backups, error-free plugin performance, updated software versions, decreased downtime, security, and more.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h4 class="service-card-subtitle">Microservices and Docker Containerization</h4>
+                        <p class="custom-card-content">
+                            Hire experts in .NET Microservices and Docker Containerization. We deploy scalable, efficient solutions that streamline operations, enhance performance, and ensure seamless integration for your business needs.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -289,24 +277,22 @@
     </section>
     <!-- our services Section end-->
     <!-- CTA Section start-->
-    <section class="lets-talk ctasection">
-        <div class="container">
-            <div class="inner-block ctasection-inner-block">
-                <div class="row align-items-center">
-                    <div class="col-md-12 text-center">
-                        <div class="sec-title mb-0">
-                            <h3 class="ctasectiontexct">"Unlock the Power of .NET for Your Next Project"</h3>
-                            <div>
-                                Start your project with confidence by engaging our experienced .NET developers for reliable and scalable solutions
-                            </div>
+    <section class="ctasection section-box-spacing">
+        <div class="container" style="background: var(--Secondary, #142149) !important;">
+            <div class="row align-items-center">
+                <div class="col-md-12 text-center">
+                    <div class="sec-title mb-0">
+                        <h3 class="ctasectiontexct">"Unlock the Power of .NET for Your Next Project"</h3>
+                        <div class="cta-content-text">
+                            Start your project with confidence by engaging our experienced .NET developers for reliable and scalable solutions
                         </div>
                     </div>
-                    <div class="col-md-12" style="margin-top:8px;" align="center">
-                        <div class="cta-btn-box align-items-center" align="center">
-                            <a href="~/contact-us/" class="btn-style-one btn-light  d-flex align-items-center justify-content-center">
-                                <span class="cta-btn-title"><span class="iconify me-2" data-icon="ion:call-sharp" data-height="25"></span>Let’s Connect</span>
-                            </a>
-                        </div>
+                </div>
+                <div class="col-md-12" align="center">
+                    <div class="cta-btn-box align-items-center" align="center">
+                        <a href="~/contact-us/" class="btn-style-one btn-light  d-flex align-items-center justify-content-center">
+                            <span class="cta-btn-title"><span class="iconify me-2" data-icon="ion:call-sharp" data-height="25"></span>Let’s Connect</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -314,208 +300,208 @@
     </section>
     <!-- CTA Section end-->
     <!--Technologies section start-->
-    <section class="techsection">
+    <section class="techsection section-box-spacing">
         <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="avidclan_section_title text-center mb-50">
-                        <div class="sec-title">
-                            <h2 class="sec-title-h2">Technologies</h2>
-                            <hr class="hr-cls center-block" />
-                            <p class="text m-0 header_description">We exhibit integrity and transparency at the top-notch level by protecting your intellectual ideas through strict NDA rules.</p>
+            <div class="row">                
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Technologies</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">We exhibit integrity and transparency at the top-notch level by protecting your intellectual ideas through strict NDA rules.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12 sec-tech-titlediv" style="margin-top:10px;">
-                    <div class="content-box tech-title-box pull-left">
+            <div class="row sec-tech-titlediv">
+                <div class="col-md-2 col-lg-2">
+                    <div class="tech-title-box tech-box" style="float: left;">
                         <h4>Frameworks</h4>
                     </div>
-                    <div class="content-box">
-                        <p>
-                            <ul class="fa-ul inline-list">
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>ASP.NET</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>WPF</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>WF</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>Blazor</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>SignalR</li>
-                            </ul>
-                        </p>
+                </div>
+                <div class="col-md-9 col-lg-9 my-auto">
+                    <div class="tech-box" style="/* float: left; */">
+                        <ul class=" inline-list">
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>ASP.NET</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>WPF</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>WF</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Blazor</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>SignalR</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12 sec-tech-titlediv" style="margin-top:10px;">
-                    <div class="content-box tech-title-box pull-left">
+            <div class="row sec-tech-titlediv">
+                <div class="col-md-2 col-lg-2">
+                    <div class="tech-title-box tech-box" style="float: left;">
                         <h4>Libraries</h4>
                     </div>
-                    <div class="content-box">
-                        <p>
-                            <ul class="fa-ul inline-list">
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>LINQ</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>ADO.NET</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>System. Data</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>AutoMapper</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>Serilog</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>Nlog</li>
-                            </ul>
-                        </p>
+                </div>
+                <div class="col-md-9 col-lg-9 my-auto">
+                    <div class="tech-box" style="/* float: left; */">
+                        <ul class="inline-list">
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>LINQ</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>ADO.NET</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>System. Data</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>AutoMapper</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Serilog</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Nlog</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12 sec-tech-titlediv" style="margin-top:10px;">
-                    <div class="content-box tech-title-box">
+            <div class="row sec-tech-titlediv">
+                <div class="col-md-2 col-lg-2">
+                    <div class="tech-title-box tech-box" style="float: left;">
                         <h4>Databases</h4>
                     </div>
-                    <div class="content-box">
-                        <p>
-                            <ul class="fa-ul inline-list">
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>SQL Server</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>Oracle</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>MY SQL</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>MongoDB</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>SignalR</li>
-                            </ul>
-                        </p>
+                </div>
+                <div class="col-lg-9 col-md-9 my-auto">
+                    <div class="tech-box" style="/* float: left; */">
+                        <ul class="inline-list">
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>SQL Server</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Oracle</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>MY SQL</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>MongoDB</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>SignalR</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12 sec-tech-titlediv" style="margin-top:10px;">
-                    <div class="content-box tech-title-box">
+            <div class="row sec-tech-titlediv">
+                <div class="col-md-2 col-lg-2">
+                    <div class="tech-title-box tech-box" style="float: left !important;">
                         <h4>Tools and Utilities</h4>
                     </div>
-                    <div class="content-box">
-                        <p>
-                            <ul class="fa-ul inline-list">
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>Visual Studio</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>NuGet</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>Docker</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>Git Hub</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>Jira</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>Azure Devops</li>
-                                <li style="background-color:white;"><span class="fa-li"><i class="fa-solid fa-circle fa-xs"></i></span>Docker</li>
-                            </ul>
-                        </p>
-                    </div>
                 </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-3 align-items-center">
-                    <a>
-                        <span class="btn-tech-title btn-techtitle-font">
-                            Schedule a Developer Interview
-                            <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
-                        </span>
-                    </a>
+                <div class="col-md-9 col-lg-9 my-auto">
+                    <div class="tech-box" style="/* float: left; */">
+                        <ul class="inline-list">
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Visual Studio</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>NuGet</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Docker</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Git Hub</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Jira</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Azure Devops</li>
+                            <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Docker</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
     <!--Technologies section end-->
     <!--company success section start-->
-    <div class="container" style="margin-top:15px;">
-        <div class="row">
-            <!-- First Item -->
-            <div class="col-md-6 col-12 mb-3">
-                <div style="border:none;">
-                    <div class="service-block">
-                        <div class="detail-section-div">
-                            <div class="avidclan_section_title text-wrap">
-                                <div class="sec-title">
-                                    <h2 class="detail-title" style="padding-bottom: 0px !important;">Who are we?</h2>
-                                    <hr class="hr-cls" />
-                                    <p class="detail-content m-0">
-                                        A mindful team of tech innovators transforming bold ideas into digital masterpieces. We at Avidclan fuse creativity with technology, crafting user-centric solutions that captivate and drive the success of global leaders
-                                    </p>
+    <section>
+        <div class="container section-box-spacing" style="margin-top:15px;">
+            <div class="row">
+                <div class="col-md-12 col-lg-6 mb-3">
+                    <div>
+                        <div class="service-block">
+                            <div class="detail-section-div">
+                                <div class="avidclan_section_title text-wrap">
+                                    <div class="sec-title custom-about-box">
+                                        <h2 class="detail-title" style="padding-bottom: 0px !important;">Who are we?</h2>
+                                        <hr class="hr-cls" />
+                                        <p class="detail-content m-0">
+                                            A mindful team of tech innovators transforming bold ideas into digital masterpieces. We at Avidclan fuse creativity with technology, crafting user-centric solutions that captivate and drive the success of global leaders
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>                    
-                    <div class="card-img" style="border:none;">
-                        <img src="~/assets/images/hiringpages/Rectangle 128.png" class="detail-content-img" />
-                    </div>
-                </div>
-            </div>
-            <!-- Second Item -->
-            <div class="col-md-3 col-12 mb-3">
-                <div class="card" style="border: none;">
-                    <div class="card-body">
-                        <div class="detail-contentbox-dark">
-                            <img src="~/assets/images/hiringpages/Office Team.svg" />
-                            <div class="c-number">100+</div>
-                            <p>Clients Served Globally</p>
-                        </div>
-                        <div class="detail-contententbox-light">
-                            <img src="~/assets/images/hiringpages/Team.svg" />
-                            <div class="number-style">30+</div>
-                            <p>Team Strength</p>
+                        <div class="card-img" style="border:none;">
+                            <img src="~/assets/images/hiringpages/Rectangle 128.png" class="detail-content-img" />
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Third Item -->
-            <div class="col-md-3 col-12 mb-3">
-                <div class="card" style="border: none;">
-                    <div class="card-body">
-                        <div class="detail-contententbox-light">
-                            <img src="~/assets/images/hiringpages/Delivered.svg" />
-                            <div class="number-style">150+</div>
-                            <p>Projects Accomplished</p>
+                <div class="col-md-12 col-lg-6 mb-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div>
+                                <div class="detail-contentbox-dark">
+                                    <img src="~/assets/images/hiringpages/Office Team.svg" />
+                                    <div class="c-number">100+</div>
+                                    <p class="detail-contentbox-dark-p">Clients Served Globally</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="detail-contentbox-dark">
-                            <img src="~/assets/images/hiringpages/Satisfaction.svg" />
-                            <div class="c-number">98%</div>
-                            <p>Success Ratio</p>
+                        <div class="col-md-6">
+                            <div>
+                                <div class="detail-contententbox-light">
+                                    <img src="/assets/images/hiringpages/Delivered.svg" />
+                                    <div class="number-style">150+</div>
+                                    <p style="margin-bottom:38px;" class="detail-contententbox-light-p">Projects Delivered</p>
+                                </div>                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div>
+                                <div class="detail-contententbox-light">
+                                    <img src="~/assets/images/hiringpages/Team.svg" />
+                                    <div class="number-style">30+</div>
+                                    <p class="about-avidclan-text detail-contententbox-light-p">Developers</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <div class="detail-contentbox-dark">
+                                    <img src="~/assets/images/hiringpages/Satisfaction.svg" />
+                                    <div class="c-number">90%</div>
+                                    <p class="about-avidclan-text detail-contentbox-dark-p">Satisfaction Rate</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+    
     <!--company sucess section end-->
     <!--hire from avidclan section start-->
-    <section>
+    <section class="section-box-spacing">
         <div class="container">
             <div class="row">
-                <div class="col-md-5">
-                    <img class="hireavidclanImg" src="~/assets/images/hiringpages/Rectangle 124.png" />
+                <div class="col-md-6">
+                    <div class="sticky-md-top">
+                        <img class="hireavidclanImg" src="~/assets/images/hiringpages/Rectangle 124.png" />
+                    </div>
                 </div>
-                <div class="col-md-1"></div>
                 <div class="col-md-6">
                     <div class="row">
-                        <col-md-12>
-                            <div class="service-block">
-                                <div class="detail-section-div">
-                                    <div class="avidclan_section_title text-wrap">
-                                        <div class="sec-title">
-                                            <h2 class="detail-title" style="padding-bottom: 0px !important;">Why Hire from Avidclan Technologies?</h2>
-                                            <hr class="hr-cls" />
-                                            <p class="detail-content m-0">
-                                                At Avidclan we have a well-organized process that allows us to assess each talent's abilities and experience to choose the best talent to meet your needs and assist you in creating a robust, cross-platform and innovative app that will grow your company.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="avidclan_section_title text-wrap">
+                            <div class="sec-title">
+                                <h2 class="detail-title" style="padding-bottom: 0px !important;">Why Hire from Avidclan Technologies?</h2>
+                                <hr class="hr-cls" />
+                                <p class="detail-content m-0" style="box-shadow: 0px 12px 24px 0px rgba(33, 37, 41, 0.06);">
+                                    At Avidclan we have a well-organized process that allows us to assess each talent's abilities and experience to choose the best talent to meet your needs and assist you in creating a robust, cross-platform and innovative app that will grow your company.
+                                </p>
                             </div>
-                        </col-md-12>
+                        </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="card hire-avidclan-card" style="width: 18rem;">
-                                <img src="~/assets/images/hiringpages/dev 2.svg" />
-                                <div class="card-body">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="hire-avidclan-card">
+                                <div class="hire-section-icon-box"><img src="~/assets/images/hiringpages/dev 2.svg" /></div>
+                                <div>
                                     <h5 class="card-title hire-avidclan-card-tittle">Expert team of  Developers</h5>
                                     <p class="card-text">We exhibit integrity and transparency at the top-notch level by protecting your intellectual ideas through strict NDA rules.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="card hire-avidclan-card" style="width: 18rem;">
-                                <img src="~/assets/images/hiringpages/solutions.svg" />
-                                <div class="card-body">
+                        <div class="col-md-6 col-lg-6 tailor-solution-box">
+                            <div class="hire-avidclan-card">
+                                <div class="hire-section-icon-box">
+                                    <img src="~/assets/images/hiringpages/solutions.svg" />
+                                </div>
+                                <div>
                                     <h5 class="card-title hire-avidclan-card-tittle">Tailored Solutions</h5>
                                     <p class="card-text">Our custom solutions guarantee relevance and optimize the impact of your project by perfectly aligning with your business objectives.</p>
                                 </div>
@@ -523,19 +509,23 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="card hire-avidclan-card" style="width: 18rem;">
-                                <img src="~/assets/images/hiringpages/cpo.svg" />
-                                <div class="card-body">
+                        <div class="col-md-6 col-lg-6 mt-3">
+                            <div class="hire-avidclan-card">
+                                <div class="hire-section-icon-box">
+                                    <img src="~/assets/images/hiringpages/cpo.svg" />
+                                </div>
+                                <div>
                                     <h5 class="card-title hire-avidclan-card-tittle">Cost -Performance Optimization</h5>
                                     <p class="card-text">Our primary objective is to provide economical solutions while enhancing efficiency to guarantee optimal return on investment</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="card hire-avidclan-card" style="width: 18rem;">
-                                <img src="~/assets/images/hiringpages/legacy.svg" />
-                                <div class="card-body">
+                        <div class="col-md-6 col-lg-6 mt-3">
+                            <div class="hire-avidclan-card">
+                                <div class="hire-section-icon-box">
+                                    <img src="~/assets/images/hiringpages/legacy.svg" />
+                                </div>
+                                <div>
                                     <h5 class="card-title hire-avidclan-card-tittle">Legacy Modernization</h5>
                                     <p class="card-text">We at Avidclan Technologies skillfully upgrade legacy systems to modern .NET Framework boosting efficiency and scalability.</p>
                                 </div>
@@ -543,24 +533,28 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="card hire-avidclan-card" style="width: 18rem;">
-                                <img src="~/assets/images/hiringpages/track record.svg" />
-                                <div class="card-body">
+                        <div class="col-md-6 col-lg-6 mt-3">
+                            <div class="hire-avidclan-card">
+                                <div class="hire-section-icon-box">
+                                    <img src="~/assets/images/hiringpages/track record.svg" />
+                                </div>
+                                <div>
                                     <h5 class="card-title hire-avidclan-card-tittle">Proven Track Record</h5>
                                     <p class="card-text">Our portfolio highlights successful projects across domains, delivering solutions that drive business growth, enhance productivity, and exceed expectations.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="card hire-avidclan-card" style="width: 18rem;">
-                                <img src="~/assets/images/hiringpages/communication.svg" />
-                                <div class="card-body">
+                        <div class="col-md-6 col-lg-6 mt-3">
+                            <div class="hire-avidclan-card">
+                                <div class="hire-section-icon-box">
+                                    <img src="~/assets/images/hiringpages/communication.svg" />
+                                </div>
+                                <div>
                                     <h5 class="card-title hire-avidclan-card-tittle">Transparent Communication</h5>
                                     <p class="card-text">
-                                        We use an agile development approach 
-                                        and make sure your project has a transparent
-                                        workflow , open lines of communication, and a reliable reporting system.
+                                        We use an agile development approach
+                                        and make sure your project has a transparent
+                                        workflow , open lines of communication, and a reliable reporting system.
                                     </p>
                                 </div>
                             </div>
@@ -572,80 +566,90 @@
     </section>
     <!--hire from avidclan section end-->
     <!--our pricing section start-->
-    <section>
+    <section class="section-box-spacing" id="pricing_section">
         <div class="container">
-            <div class="row">
-                <col-md-12>
+            <div class="row">                
+                <div class="col-md-12 col-lg-12">
                     <div class="service-block">
-                        <div class="detail-section-div">
-                            <div class="avidclan_section_title text-wrap">
-                                <div class="sec-title center-block">
-                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Our Pricing Plans</h2>
-                                    <hr class="hr-cls center-block" />
-                                    <p class="detail-content m-0 center-block text-wrap">
-                                        "Explore our flexible pricing plans and choose the one that fits your needs. Contact us for a custom quote."
-                                    </p>
-                                </div>
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Our Pricing Plans</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">
+                                    "Explore our flexible pricing plans and choose the one that fits your needs. Contact us for a custom quote."
+                                </p>
                             </div>
                         </div>
                     </div>
-                </col-md-12>
+                </div>
             </div>
             <div class="row">
-                <div class="col-4">
-                    <div class="card pricing-card-light">
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-card-light">
                         <div class="card-body center-block">
                             <h5 class="card-title pricing-card-light-heading">Hourly Rate</h5>
                         </div>
                         <ul class="fa-ul">
-                            <li><span class="fa-li"><i class="fa fa-exclamation-circle"></i></span>  2 to 4 years of experience</li>
-                            <li><span class="fa-li"><i class="fa fa-exclamation-circle"></i></span>  Dedicated developer</li>
-                            <li><span class="fa-li"><i class="fa fa-exclamation-circle"></i></span>  Best for short-term engagement</li>
+                            <li><img src="~/assets/images/hiringpages/exclamatory_icon.svg" />  2 to 4 years of experience</li>
+                            <li><img src="~/assets/images/hiringpages/exclamatory_icon.svg" />  Dedicated developer</li>
+                            <li><img src="~/assets/images/hiringpages/exclamatory_icon.svg" /> Best for short-term engagement</li>
                         </ul>
-                        <div class="card-body">
+                        <div style="width:100%;">
                             <h5 class="pricing-card-light-heading center-block">$120/month</h5>
-                            <button class="btn-tech-title btn-techtitle-font me-4" style=" /* display: inline-block; */ ">
-                                Hire Part-Time Developers
-                                <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
-                            </button>
+                            <div class="btn-box  text-center mt-3">
+                                <button onclick="window.location.href='~/services#project_inquiry_form';" class="theme-btn btn-style-one">
+                                    <span class="btn-title" style="padding: 10px 20px!important;">
+                                        Hire Part-Time Developers
+                                        <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                    </span>
+                                </button>
+                            </div>                            
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
-                    <div class="card pricing-card-dark">
+                <div class="col-md-6 col-lg-4">
+                    <div class="pricing-card-dark">
                         <div class="card-body center-block">
                             <h5 class="card-title pricing-card-dark-heading">Monthly Retain</h5>
                         </div>
                         <ul class="fa-ul">
-                            <li><span class="fa-li"><i class="fa fa-exclamation-circle"></i></span>  2 to 4 years of experience</li>
-                            <li><span class="fa-li"><i class="fa fa-exclamation-circle"></i></span>  Dedicated developer</li>
-                            <li><span class="fa-li"><i class="fa fa-exclamation-circle"></i></span>  Best for short-term engagement</li>
+                            <li><img src="~/assets/images/hiringpages/exclamatory_icon_blue.svg" />  2 to 4 years of experience</li>
+                            <li><img src="~/assets/images/hiringpages/exclamatory_icon_blue.svg" />  Dedicated developer</li>
+                            <li><img src="~/assets/images/hiringpages/exclamatory_icon_blue.svg" /> Best for short-term engagement</li>
                         </ul>
-                        <div class="card-body">
+                        <div style="width:100%;">
                             <h5 class="pricing-card-dark-heading center-block">$120/month</h5>
-                            <button class="btn-tech-title btn-techtitle-font me-4">
-                                Hire Part-Time Developers
-                                <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
-                            </button>
+                            <div class="btn-box  text-center mt-3">
+                                <button onclick="window.location.href='~/services#project_inquiry_form';" class="theme-btn btn-style-one">
+                                    <span class="btn-title" style="padding: 10px 20px!important;">
+                                        Hire Part-Time Developers
+                                        <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                    </span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
-                    <div class="card pricing-card-light">
+                <div class="col-md-6 col-lg-4">
+                    <div class="pricing-card-light">
                         <div class="card-body center-block">
                             <h5 class="card-title pricing-card-light-heading">Project Based</h5>
                         </div>
                         <ul class="fa-ul">
-                            <li><span class="fa-li"><i class="fa fa-exclamation-circle"></i></span>  2 to 4 years of experience</li>
-                            <li><span class="fa-li"><i class="fa fa-exclamation-circle"></i></span>  Dedicated developer</li>
-                            <li><span class="fa-li"><i class="fa fa-exclamation-circle"></i></span>  Best for short-term engagement</li>
+                            <li><img src="~/assets/images/hiringpages/exclamatory_icon.svg" />2 to 4 years of experience</li>
+                            <li><img src="~/assets/images/hiringpages/exclamatory_icon.svg" />Dedicated developer</li>
+                            <li><img src="~/assets/images/hiringpages/exclamatory_icon.svg" /> Best for short-term engagement</li>
                         </ul>
-                        <div class="card-body">
+                        <div style="width:100%;">
                             <h5 class="pricing-card-light-heading center-block">$120/month</h5>
-                            <button class="btn-tech-title btn-techtitle-font me-4" style=" /* display: inline-block; */ ">
-                                Hire Part-Time Developers
-                                <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
-                            </button>
+                            <div class="btn-box  text-center mt-3">
+                                <button onclick="window.location.href='~/services#project_inquiry_form';" class="theme-btn btn-style-one">
+                                    <span class="btn-title" style="padding: 10px 20px!important;">
+                                        Hire Part-Time Developers
+                                        <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                    </span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -654,20 +658,18 @@
     </section>
     <!--our pricing section end-->
     <!--benefits of hiring section start-->
-    <section>
+    <section class="section-box-spacing">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
+            <div class="row">                
+                <div class="col-md-12 col-lg-12">
                     <div class="service-block">
-                        <div class="detail-section-div">
-                            <div class="avidclan_section_title text-wrap">
-                                <div class="sec-title center-block">
-                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Benefits of hiring dedicated developers</h2>
-                                    <hr class="center-block" style="width: 500px;" />
-                                    <p class="detail-content m-0 center-block text-wrap">
-                                        Boost Your Business with Our Reliable and Efficient .NET Solutions.
-                                    </p>
-                                </div>
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Benefits of hiring dedicated developers</h2>
+                                <hr class="center-block" style="width: 500px;"/>
+                                <p class="text m-0 header_description">
+                                    Boost Your Business with Our Reliable and Efficient .NET Solutions.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -678,11 +680,11 @@
                     <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/acute.png" alt="Quick Around Time" />
                     <span class="benefits-of-hiring-text">Quick Around Time</span>
                 </div>
-                <div class="col-md-4 d-flex flex-column align-items-center">
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
                     <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/perm_contact_calendar.png" alt="Direct Point of Contact" />
                     <span class="benefits-of-hiring-text">Direct Point of Contact</span>
                 </div>
-                <div class="col-md-4 d-flex flex-column align-items-center">
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
                     <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/architecture.png" alt="Scalable Architecture" />
                     <span class="benefits-of-hiring-text">Scalable Architecture</span>
                 </div>
@@ -692,11 +694,11 @@
                     <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/integration_instructions.png" alt="Seamless Integration" />
                     <span class="benefits-of-hiring-text">Seamless Integration</span>
                 </div>
-                <div class="col-md-4 d-flex flex-column align-items-center">
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
                     <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/category_FILL0_wght400_GRAD0_opsz24.png" alt="Dedicated Resources" />
                     <span class="benefits-of-hiring-text">Dedicated Resources</span>
                 </div>
-                <div class="col-md-4 d-flex flex-column align-items-center">
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
                     <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/payments.png" alt="Cost Effective" />
                     <span class="benefits-of-hiring-text">Cost Effective</span>
                 </div>
@@ -706,28 +708,27 @@
     </section>
     <!--benefits of hiring section end-->
     <!--development process section start-->
-    <section>
+    <section class="section-box-spacing">
         <div class="container">
-            <div class="row mt-5">
-                <div class="col-md-12">
+            <div class="row mt-5">                
+                <div class="col-md-12 col-lg-12">
                     <div class="service-block">
-                        <div class="detail-section-div">
-                            <div class="avidclan_section_title text-wrap">
-                                <div class="sec-title center-block">
-                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Our Development Process</h2>
-                                    <hr class="center-block" style="width: 500px;" />
-                                    <p class="detail-content m-0 center-block text-wrap">
-                                        Streamlined, Efficient, and Transparent: A Step-by-Step Journey Through Our Expert .NET Development Process.
-                                    </p>
-                                </div>
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Our Development Process</h2>
+                                <hr class="center-block" style="width: 500px;"/>
+                                <p class="text m-0 header_description">At Avidclan Technologies, we harness the power of .NET Technology to create scalable, secure, high-performance applications. From enterprise solutions to dynamic web applications, Our skilled .NET developers provide customized solutions for web, desktop, and cloud platforms that leverage productivity and business growth.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
-                    <img src="~/assets/images/hiringpages/development_process.png" class="development-process-imgbox img-fluid" alt="Development Process" />
+                <div class="col-md-12 col-sm-12" style="border:none;" id="develoment-process-div">
+                    <img src="~/assets/images/hiringpages/development_process.png" class="development-process-imgbox img-fluid w-100" alt="Development Process" />
+                </div>
+                <div class="col-md-12 col-sm-12" style="border:none;display:none;" id="develoment-process-div-mobile">
+                    <img src="~/assets/images/hiringpages/working process path.png" class="development-process-imgbox img-fluid w-100" alt="Development Process" />
                 </div>
             </div>
 
@@ -735,40 +736,39 @@
     </section>
     <!--development process section end-->
     <!--Hiring process section start-->
-    <section>
+    <section class="section-box-spacing">
         <div class="container">
-            <div class="row center-block">
-                <div class="col-md-12">
+            <div class="row center-block">                
+                <div class="col-md-12 col-lg-12">
                     <div class="service-block">
-                        <div class="detail-section-div">
-                            <div class="avidclan_section_title text-wrap">
-                                <div class="sec-title center-block">
-                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Hiring Process</h2>
-                                    <hr class="hr-cls center-block" />
-                                    <p class="detail-content m-0 center-block text-wrap">
-                                        Join Our Team: Streamlined Hiring for Talented .NET Developers Ready to Make an Impact.
-                                    </p>
-                                </div>
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Hiring Process</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">
+                                    Join Our Team: Streamlined Hiring for Talented .NET Developers Ready to Make an Impact.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row text-center">
-                <div class="col-md-3 d-flex flex-column align-items-end hiringprocess-content-box">
+            <div class="row">     
+                <div class="col-md-2"></div>
+                <div class="col-md-1 d-flex flex-column align-items-center hiringprocess-content-box">
                     <div class="d-flex align-items-center">
-                        <img class="hiringprocess-img-box " src="~/assets/images/hiringpages/initialConsultation.png" />
+                        <img class="hiringprocess-img-box " src="~/assets/images/hiringpages/initial_cons.svg" />
                     </div>
                     <span class="hiringprocess-text-box text-wrap mt-3">Initial Consultation</span>
                 </div>
                 <div class="col-md-1 d-flex flex-column align-items-center hiringprocess-content-box">
                     <div class="d-flex align-items-center">
-                        <img class="arrow-icon mt-5" src="/assets/images/hiringpages/arrow.png" />
+                        <img class="arrow-icon mt-5" src="~/assets/images/hiringpages/arrow.svg" />
                     </div>
                 </div>
                 <div class="col-md-1 d-flex flex-column align-items-center hiringprocess-content-box">
                     <div class="d-flex align-items-center">
-                        <img class="hiringprocess-img-box " src="~/assets/images/hiringpages/Pricing.png" />
+                        <img class="hiringprocess-img-box " src="~/assets/images/hiringpages/pricing.svg" />
                     </div>
                     <span class="hiringprocess-text-box text-wrap mt-3">
                         Pricing ( Select Model)
@@ -776,23 +776,23 @@
                 </div>
                 <div class="col-md-1 d-flex flex-column align-items-center hiringprocess-content-box">
                     <div class="d-flex align-items-center">
-                        <img class="arrow-icon mt-5" src="/assets/images/hiringpages/arrow.png" />
+                        <img class="arrow-icon mt-5" src="~/assets/images/hiringpages/arrow.svg" />
                     </div>
                 </div>
                 <div class="col-md-1 d-flex flex-column align-items-center hiringprocess-content-box">
                     <div class="d-flex align-items-center">
-                        <img class="hiringprocess-img-box" src="~/assets/images/hiringpages/teamAugamentation.png" />
+                        <img class="hiringprocess-img-box" src="~/assets/images/hiringpages/team_augament.svg" />
                     </div>
                     <span class="hiringprocess-text-box text-wrap mt-3">Team Augmentation</span>
                 </div>
                 <div class="col-md-1 d-flex flex-column align-items-center hiringprocess-content-box">
                     <div class="d-flex align-items-center">
-                        <img class="arrow-icon mt-5" src="/assets/images/hiringpages/arrow.png" />
+                        <img class="arrow-icon mt-5" src="~/assets/images/hiringpages/arrow.svg" />
                     </div>
                 </div>
                 <div class="col-md-1 d-flex flex-column align-items-center hiringprocess-content-box">
                     <div class="d-flex align-items-center">
-                        <img class="hiringprocess-img-box " src="~/assets/images/hiringpages/projectJickoff.png" />
+                        <img class="hiringprocess-img-box " src="~/assets/images/hiringpages/project.svg" />
                     </div>
                     <span class="hiringprocess-text-box text-wrap mt-3">
                         Project
@@ -801,12 +801,12 @@
                 </div>
                 <div class="col-md-1 d-flex flex-column align-items-center hiringprocess-content-box">
                     <div class="d-flex align-items-center">
-                        <img class="arrow-icon mt-5" src="/assets/images/hiringpages/arrow.png" />
+                        <img class="arrow-icon mt-5" src="~/assets/images/hiringpages/arrow.svg" />
                     </div>
                 </div>
                 <div class="col-md-1 d-flex flex-column align-items-center hiringprocess-content-box">
                     <div class="d-flex align-items-center">
-                        <img class="hiringprocess-img-box " src="~/assets/images/hiringpages/DevelopmentandDelivery.png" />
+                        <img class="hiringprocess-img-box " src="~/assets/images/hiringpages/development_delivery.svg" />
                     </div>
                     <span class="hiringprocess-text-box text-wrap mt-3">Development and Delivery</span>
                 </div>
@@ -815,20 +815,18 @@
     </section>
     <!--HiringProces section end-->
     <!--our work section start-->
-    <section>
+    <section class="section-box-spacing">
         <div class="container">
             <div class="row">
-                <div class="col-12">
+                <div class="col-md-12 col-lg-12">
                     <div class="service-block">
-                        <div class="detail-section-div">
-                            <div class="avidclan_section_title text-wrap">
-                                <div class="sec-title center-block">
-                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Benefits of hiring dedicated developers</h2>
-                                    <hr class="center-block" style="width: 500px;" />
-                                    <p class="detail-content m-0 center-block text-wrap">
-                                        Boost Your Business with Our Reliable and Efficient .NET Solutions.
-                                    </p>
-                                </div>
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Our Work</h2>
+                                <hr class="hr-cls" style="width:250px;" />
+                                <p class="text m-0 header_description">
+                                    Our happiness lies in the history we share with our clients and customers! We make every effort to turn your idea into reality that changes user perspective. Have a look at our Portfolio.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -890,20 +888,18 @@
     </section>
     <!--our work section end-->
     <!--Industry section start-->
-    <section>
+    <section class="section-box-spacing">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
+            <div class="row">                
+                <div class="col-md-12 col-lg-12">
                     <div class="service-block">
-                        <div class="detail-section-div">
-                            <div class="avidclan_section_title text-wrap">
-                                <div class="sec-title center-block">
-                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Related Blogs</h2>
-                                    <hr class="center-block" style="width: 350px;" />
-                                    <p class="detail-content m-0 center-block text-wrap">
-                                        Discover More: Explore Our Related Blogs on .NET Development.
-                                    </p>
-                                </div>
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Industries we serve in</h2>
+                                <hr class="center-block"  style="width: 350px;"/>
+                                <p class="text m-0 header_description">
+                                    Transforming diverse industries with innovative, robust, and scalable .NET solutions for seamless digital growth and success.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -960,10 +956,10 @@
     </section>
     <!--Industry section end-->
     <!--testimonials section start-->
-    <section class="testimonial-section-two">
+    <section class="bg-img-none">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 col-lg-12">
                     <div class="service-block">
                         <div class="detail-section-div">
                             <div class="avidclan_section_title text-wrap">
@@ -1117,10 +1113,10 @@
             @Html.Partial("_ClientFeedback")
         </div>*@
     <!--frequently asked question section start-->
-    <section class="FAQ-section testimonial-section-two">
+    <section class="FAQ-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 col-lg-12">
                     <div class="service-block">
                         <div class="detail-section-div">
                             <div class="avidclan_section_title text-wrap">
@@ -1128,7 +1124,7 @@
                                     <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Frequently asked Questions ( FAQs )</h2>
                                     <hr class="center-block" style="width: 682px;" />
                                     <p class="detail-content m-0  text-wrap" style="text-align: center">
-                                        Your Questions Answered: Everything You Need to Know About Our .NET Development Service.
+                                        Your Questions Answered: Everything You Need to Know About Our .NET Development Services.
                                     </p>
                                 </div>
                             </div>
@@ -1147,7 +1143,7 @@
                                         data-bs-target="#collapseOne"
                                         aria-expanded="true"
                                         aria-controls="collapseOne">
-                                    Is Angular for front end development?
+                                    What skills should I look for in a .NET Framework Developer?
                                 </button>
                             </h2>
                             <div id="collapseOne"
@@ -1155,7 +1151,7 @@
                                  aria-labelledby="headingOne"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Yes, Angular is a framework for front end web application development.
+                                    Seek for C and ASP proficiency. web services, MVC, and NET. Knowledge of front-end technologies and SQL Server proficiency are also beneficial.
                                 </div>
                             </div>
                         </div>
@@ -1167,7 +1163,7 @@
                                         data-bs-target="#collapseTwo"
                                         aria-expanded="false"
                                         aria-controls="collapseTwo">
-                                    Is it expensive to build solutions using Angular?
+                                    What is the hiring Process?
                                 </button>
                             </h2>
                             <div id="collapseTwo"
@@ -1175,9 +1171,7 @@
                                  aria-labelledby="headingTwo"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Angular offers relatively low cost and high impact solutions, and is the most popular web front
-                                    end development framework. Being an open-source framework, Angular offers high performance at a
-                                    relatively low price.
+                                    Transparent, Simple, and Straight-forward, from initial consultation to project kickoff
                                 </div>
                             </div>
                         </div>
@@ -1189,7 +1183,7 @@
                                         data-bs-target="#collapseThree"
                                         aria-expanded="false"
                                         aria-controls="collapseThree">
-                                    Is it possible to migrate legacy applications with Angular?
+                                    How do I ensure the developer is a good fit for my project?
                                 </button>
                             </h2>
                             <div id="collapseThree"
@@ -1197,9 +1191,7 @@
                                  aria-labelledby="headingThree"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Absolutely! You can modify, upgrade, customise and fix bugs for your legacy applications with
-                                    version migration to Angular. We at Avidclan Technologies specialise in modernising legacy applications for
-                                    better views, high performance and speed using Angular.
+                                    Interview technical candidates and go over previous project experience. Evaluate their ability to work with your unique technology stack and requirements as well as their problem-solving abilities.
                                 </div>
                             </div>
                         </div>
@@ -1211,7 +1203,7 @@
                                         data-bs-target="#collapseFour"
                                         aria-expanded="false"
                                         aria-controls="collapseFour">
-                                    Does Avidclan Technologies offer post-sales support?
+                                    What are the costs associated with hiring a .NET Framework developer?
                                 </button>
                             </h2>
                             <div id="collapseFour"
@@ -1219,9 +1211,7 @@
                                  aria-labelledby="headingFour"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Yes! At Avidclan Technologies, we support our clients through the full development life cycle of all projects.
-                                    Our expert Angular developers ensure that post-development maintenance support and updates are
-                                    taken care of.
+                                    Based on the developer's background, the project's complexity, and location, costs may change. Generally speaking, contracts, hourly, or full-time employment are available for developers.
                                 </div>
                             </div>
                         </div>
@@ -1233,7 +1223,7 @@
                                         data-bs-target="#collapseFive"
                                         aria-expanded="false"
                                         aria-controls="collapseFive">
-                                    Can we create animations or customised designs with Angular?
+                                    What support you offer?
                                 </button>
                             </h2>
                             <div id="collapseFive"
@@ -1241,10 +1231,7 @@
                                  aria-labelledby="headingFive"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Absolutely, this is what Angular is for! Customised web views are the core strength of this robust
-                                    framework. At Avidclan Technologies we leverage the force of Angular to develop beautiful looking websites,
-                                    with animations, accessibility features, portion views and much more! All that with a lightweight,
-                                    high performance web app.
+                                    24/7 Support and maintenance services
                                 </div>
                             </div>
                         </div>
@@ -1256,7 +1243,7 @@
                                         data-bs-target="#collapseSix"
                                         aria-expanded="false"
                                         aria-controls="collapseSix">
-                                    Does Angular support Dynamic Loading?
+                                    Can I work with a specific .NET developer for projects or hourly work?
                                 </button>
                             </h2>
                             <div id="collapseSix"
@@ -1264,8 +1251,7 @@
                                  aria-labelledby="headingSix"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Yes, Angular supports Dynamic Loading where a program can access the memory on run time, access
-                                    and execute the functions and load and execute the needed libraries.
+                                    Whether you are hiring on an hourly or project-based basis, We at Avidclan provide flexible hiring models that can be tailored to your needs. Our project-specific engagement models, which are focused on your project's goal, include Fixed Price Model, and others.
                                 </div>
                             </div>
                         </div>
@@ -1277,7 +1263,7 @@
                                         data-bs-target="#collapseSeven"
                                         aria-expanded="false"
                                         aria-controls="collapseSeven">
-                                    What is the difference between Angular and AngularJS?
+                                    What our Dot Net programmers can do for you?
                                 </button>
                             </h2>
                             <div id="collapseSeven"
@@ -1285,10 +1271,61 @@
                                  aria-labelledby="headingSeven"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Angular and AngularJS have multiple differences, starting with the language itself. While
-                                    AngularJS uses Javascript, Google recommends using TypeScript for Angular. The architecture for
-                                    AngularJS supports model-view controller design, whereas Angular uses components and directives.
-                                    AngularJS isn’t supported by mobile browsers, Angular is.
+                                    <ul class="fa-ul">
+                                        <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Custom app development</li>
+                                        <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Cloud migration</li>
+                                        <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Framework architecture</li>
+                                        <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Enterprise solutions</li>
+                                        <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Web portal development</li>
+                                    </ul>
+                                    <ul class="fa-ul">
+                                        <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Application modernization</li>
+                                        <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Mobile app development</li>
+                                        <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>CMS website development</li>
+                                        <li class="inline-list-li">
+                                            <span><i class="fa-solid fa-circle fa-xs"></i></span>Remote ASP dot net migration services
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingSeven">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseSeven"
+                                        aria-expanded="false"
+                                        aria-controls="collapseSeven">
+                                    What are the hiring engagement options available at Avidclan?
+                                </button>
+                            </h2>
+                            <div id="collapseSeven"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingSeven"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    At Avidclan, we have three hiring modules. Part-time, Quarterly, and Annual all have their plans and working hours accordingly. You can check that out in our pricing plans section
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingSeven">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseSeven"
+                                        aria-expanded="false"
+                                        aria-controls="collapseSeven">
+                                    What if I am not satisfied with the hired .Net developer's work and would like to exit?
+                                </button>
+                            </h2>
+                            <div id="collapseSeven"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingSeven"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    If you're not satisfied with the hired .NET developer's work, you can opt for a hassle-free exit. We offer flexible terms to ensure your project meets your expectations without any commitment concerns. But we ensure that exit phase will never come.
                                 </div>
                             </div>
                         </div>
@@ -1299,18 +1336,18 @@
     </section>
     <!--frequently asked question section end-->
     <!-- Blog Section -->
-    <section class="blog-content-section">
+    <section class="">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 col-lg-12">
                     <div class="service-block">
                         <div class="detail-section-div">
                             <div class="avidclan_section_title text-wrap">
                                 <div class="sec-title center-block">
-                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Frequently asked Questions ( FAQs )</h2>
-                                    <hr class="center-block" style="width: 682px;" />
+                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Related Blogs</h2>
+                                    <hr class="center-block" style="width: 250px;" />
                                     <p class="detail-content m-0  text-wrap" style="text-align: center">
-                                        Your Questions Answered: Everything You Need to Know About Our .NET Development Service.
+                                        Discover More: Explore Our Related Blogs on .NET Development.
                                     </p>
                                 </div>
                             </div>
@@ -1333,24 +1370,22 @@
     </section>
     <!-- Blog Section -->
     <!--let's talk section start-->
-    <section class="lets-talk">
+    <section class="lets-talk section-box-spacing">
         <div class="container">
-            <div class="inner-block" style="background: var(--Secondary, #142149) !important;">
-                <div class="row align-items-center">
-                    <div class="col-md-12 col-lg-8 col-xl-7">
-                        <div class="mb-0">
-                            <h3 class="lets-talk-title">Ready to Transform your Business with .NET Expertise? Let's talk!</h3>
-                            <div class="lets-talk-content mt-3">
-                                Partner with us to unlock the full power of .NET. We'll leverage cutting-edge technologies to drive your business forward, delivering innovative solutions that meet your unique goals and challenges.
-                            </div>
+            <div class="row align-items-center inner-block" style="background: var(--Secondary, #142149) !important;">
+                <div class="col-md-12 col-lg-8 col-xl-7">
+                    <div class="mb-0">
+                        <h3 class="lets-talk-title">Ready to Transform your Business with .NET Expertise? Let's talk!</h3>
+                        <div class="lets-talk-content mt-3">
+                            Partner with us to unlock the full power of .NET. We'll leverage cutting-edge technologies to drive your business forward, delivering innovative solutions that meet your unique goals and challenges.
                         </div>
                     </div>
-                    <div class="col-md-12 col-lg-4 col-xl-5 text-end">
-                        <div class="btn-box">
-                            <a href="~/contact-us/" class="theme-btn btn-style-one btn-light">                                
-                                <span class="btn-title" style="color: #142149;"><img src="~/assets/images/hiringpages/ion_call-sharp.png" style="width: 22px; height: 22px; margin-right:5px;" />Schadule a consultation ?</span>
-                            </a>
-                        </div>
+                </div>
+                <div class="col-md-12 col-lg-4 col-xl-5 text-end">
+                    <div class="btn-box">
+                        <a href="~/contact-us/" class="theme-btn btn-style-one btn-light">
+                            <span class="btn-title" style="color: #142149;"><img src="~/assets/images/hiringpages/ion_call-sharp.png" style="width: 22px; height: 22px; margin-right:5px;" />Schedule a consultation </span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1358,13 +1393,13 @@
     </section>
     <!--let's talk section end-->
     <!--schedule section start-->
-    <section class="developer-interview-section">
+    <section class="developer-interview-section section-box-spacing">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-sm-3">
-                    <img class="devloper-interview-img-box" src="~/assets/images/hiringpages/devloperInterview.png" />
+                <div class="col-md-6 col-lg-6 col-sm-3">
+                    <img class="" src="~/assets/images/hiringpages/devloperInterview.png" />
                 </div>
-                <div class="col-md-6 col-sm-3">
+                <div class="col-md-6 col-lg-6 col-sm-3 mt-4">
                     <div class="row">
                         <div class="col-auto" style="margin-left:12px;">
                             <h3 class="schedule-interview-title">
@@ -1372,23 +1407,37 @@
                             </h3>
                         </div>
                     </div>
-                    <form class="enquire-form-box">
-                        <div class="form-group interview-form-input-control">
-                            <input type="text" class="form-control" id="usr" placeholder="Your Name">
+                    <form id="hiringform" method="post" name="hiring_form_data">
+                        <div class="col-md-12">
+                            <div class="form-group interview-form-input-control">
+                                <input type="text" class="form-control" name="Name" id="Name" placeholder="Your Name">
+                            </div>
                         </div>
-                        <div class="form-group interview-form-input-control">
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <div class="col-md-12">
+                            <div class="form-group interview-form-input-control">
+                                <input type="email" class="form-control" id="Email" name="Email" aria-describedby="emailHelp" placeholder="Enter email">
+                            </div>
                         </div>
-                        <div class="form-group interview-form-input-control">
-                            <input type="tel" class="form-control" id="phoneNumber" placeholder="123-456-7890" aria-label="Phone number" aria-describedby="basic-addon1">
+                        <div class="col-md-12">
+                            <div class="form-group interview-form-input-control">
+                                <input type="tel" class="form-control" name="ContactNumber" id="ContactNumber" placeholder="123-456-7890" aria-label="Phone number" aria-describedby="basic-addon1">
+                            </div>
                         </div>
-                        <div class="form-group interview-form-input-control">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Tell us about your project"></textarea>
+                        <div class="col-md-12">
+                            <div class="form-group interview-form-input-control">
+                                <textarea class="form-control" id="Message" name="Message" rows="3" placeholder="Tell us about your project"></textarea>
+                            </div>
                         </div>
-                        <button class="btn-enquire-now btn-techtitle-font me-4" style=" /* display: inline-block; */ ">
-                            Enquire Now
-                            <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
-                        </button>                        
+                        <div class="col-md-12">
+                            <div class="btn-box" style="margin-left: 13px">
+                                <button type="button" class="theme-btn btn-style-one" name="submit" id="btnSendHMail">
+                                    <span class="btn-title">
+                                        Enquire Now
+                                        <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                        </span>
+                                </button>
+                            </div>                            
+                        </div>                        
                     </form>
                 </div>
             </div>
@@ -1424,12 +1473,90 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
-            GetSectionData(1);
+            var BlogType = ".NET"
+            GetSectionData(BlogType);
+
+
+            $('#btnSendHMail').on('click', function () {
+                var Name = $("#Name").val();
+                var Email = $("#Email").val();
+                var ContactNumber = $("#ContactNumber").val();
+                var Message = $("#Message").val();
+
+                // Simple validation rules
+    if (Name === "") {
+        alert("Please enter your name.");
+        return false;
+    }
+
+    if (Email === "") {
+        alert("Please enter your email.");
+        return false;
+    } else {
+        // Email format validation
+        var emailPattern = /^([a-zA-Z0-9_.+-])+\@@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+        if (!emailPattern.test(Email)) {
+            alert("Please enter a valid email address.");
+            return false;
+        }
+    }
+
+    if (ContactNumber === "") {
+        alert("Please enter your contact number.");
+        return false;
+    } else {
+        // Basic phone number format validation (US format in this case)
+        var phonePattern = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
+        if (!phonePattern.test(ContactNumber)) {
+            alert("Please enter a valid phone number.");
+            return false;
+        }
+    }
+
+    if (Message === "") {
+        alert("Please provide details about your project.");
+        return false;
+    }
+
+
+
+                var fileData = new FormData();
+                fileData.append('Name', Name);
+                fileData.append('Email', Email);
+                fileData.append('ContactNumber', ContactNumber);
+                fileData.append('Message', Message);
+
+                return $.ajax({
+                    type: "POST",
+                    url: "/api/Mail/SendHiringDotNetDetails",
+                    data: fileData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response) { // check whether response is received
+                            window.location.replace("/thankyou");
+                            message.fadeIn().removeClass("alert-danger").addClass("alert-success");
+                            message.text(response);
+                            grecaptcha.reset();
+                            setTimeout(function () {
+                                message.fadeOut();
+                            }, 3000);
+                           // Candidateform.find('input:not([type="submit"]), textarea').val("");
+                        }
+                    }
+                });
+            });
+
         });
-        function GetSectionData(id) {
+
+    </script>
+    <script type="text/javascript">
+        function GetSectionData(BlogType) {
             $.ajax({
                 type: "GET",
-                url: "/Avidclan/GetSectionData?page=" + id,
+                url: "/Avidclan/GetSectionDataByBlogType?BlogType=" + BlogType,
                 contentType: 'application/json; charset=utf-8',
                 dataType: "json",
                 success: function (data) {
@@ -1437,83 +1564,71 @@
                     var sectionblog = "";
                     var paginationData = "";
                     var imageURL = "https://cms.avidclan.com";
-                    var counter = 0;
+
                     $.each(data.data.ListBlog, function (k, v) {
-                        if (counter >= 3) return false; // Break the loop after 3 iterations
+
                         var options = { year: 'numeric', month: 'long', day: 'numeric' };
                         var PostingDate = new Date(v.PostingDate);
                         var longDt = PostingDate.toLocaleDateString("en-US", options);
                         var Descriptionlength = v.MetaDescription.length > 80 ? v.MetaDescription.substring(0, 80) + "…" : v.MetaDescription;
-                        /* var url = imageURL + v.Image;*/
+
                         sectionblog += '<div class="col-lg-4 col-md-6">' +
-                            '<div class="blog-box">' +
+                            '<div class="single-blog">' +
                             '<div class="blog-img img img-fluid">' +
-                            '<a href="/blog/' + v.PageUrl + '"><img class="BlogImages" src="' + v.Image + '" alt="" style=height:216px; ></a>' +
-                            '<div class="top-meta">' +
-                            '<span class="tag" style="font-style: normal;">' + v.BlogType + '</span>' +
+                            '<a href="/blog/' + v.PageUrl + '"><img class="BlogImages" src="' + v.Image + '" alt="" style="height:216px;"></a>' +
+                            '</div> ' +
+                            '<div class="blog-content w-100">' +
+                            '<h1 class="title blog-title"><a href="/blog/' + v.PageUrl + '">' + v.Title + '</a></h1>' +
+                            '<div class="blog-meta"><span><i class="fas fa-user icon-image"></i><span class="by-separator">by</span><a href="#">' + v.PostedBy + '</a></span><span id="admindateid_36"><i class="far fa-calendar-alt"></i>' + longDt + '</span></div>' +
+                            '<div class="read-article">' +
+                            '<div class="btn-box  text-center mt-3">' +
+                            '<button onclick="window.location.href=\'' + '/blog/' + v.PageUrl + '\'"' + 'class="theme-btn btn-style-one text-center"><span class="btn-title">Read Full Article <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span></span></button>' +
                             '</div>' +
                             '</div>' +
-                            '<div class="blog-content-box">' +
-                            '<h1 class="title blog-title-text"><a href="/blog/' + v.PageUrl + '" style="font-style: normal;">' + v.Title + '</a></h1>' +
-                            '<p class="blog-meta-desc">' + Descriptionlength + '</p>' +
-                            '<div class="blog-ref-by-content-box">' +
-                            '<span class="blog-ref-by-text"><i class="fas fa-user"></i> <a style="font-style: normal;" href="#">' + v.PostedBy + '</a></span>' +
-                            '<span class="" id="admindateid_' + v.Id + '" class="blog-dt-text">' + longDt + '</span>' +
-                            '</div>' +
-                            '</div>' +
-                            '<div class="blog-btn" style="margin-left: 83px;">' +
-                            '<a href="/blog/' + v.PageUrl + '")>' +
-                            ' <span class="btn-tech-title btn-techtitle-font">' +
-                            'Read Full Article <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>' +
-                            '</span>' +
-                            '</a>' +                           
                             '</div>' +
                             '</div>' +
                             '</div>';
-                        counter++; // Increment the counter after each iteration
-                    })                        
+
+                    })
+                    onclick = "window.location.href='/services#project_inquiry_form';"
                     $('#demo').html(sectionblog);
-                    document.querySelector('.loader').style.display = 'none';
-                    if (data.data.pager.EndPage > 1) {
-                        paginationData += '<ul class="pagination">'
-                        if (data.data.pager.CurrentPage > 1) {
-                            let previousPage = (data.data.pager.CurrentPage) - 1;
-                            paginationData += '<li class="page-item">' + '<a class="page-link" onclick="GetSectionData(' + previousPage + ')"  href="javascript:void(0);"><i class="fas fa-chevron-left"></i></a>' + '</li>'
-                        }
-                        for (var page = data.data.pager.StartPage; page <= data.data.pager.EndPage; page++) {
-                            var isActive = (page == data.data.pager.CurrentPage) ? "active" : "";
-                            paginationData += '<li class="' + isActive + ' page-item">' +
-                                '<a class="page-link" onclick="GetSectionData(' + page + ')" href="javascript:void(0);">' + page + '</a>' +
-                                '</li>'
-                        }
-                        if (data.data.pager.CurrentPage < data.data.pager.TotalPages) {
-                            let nextPage = (data.data.pager.CurrentPage) + 1;
-                            paginationData += '<li class="page-item">' +
-                                '<a class="page-link" onclick="GetSectionData(' + nextPage + ')" href="javascript:void(0);"><i class="fas fa-chevron-right"></i></a>' +
-                                '</li>'
-                        }
-                        paginationData += '</ul>'
-                    }
-                    $('#pagination').html(paginationData);
 
-                    var uri = window.location.href.toString();
-                    if (uri.indexOf("?") > 0) {
-                        var clean_uri = uri.substring(0, uri.indexOf("?"));
-                        window.history.replaceState({}, document.title, clean_uri);
-                    }
-
-                    if (id > 1) {
-                        var currentURL = window.location.href;
-                        var newURL = currentURL + (currentURL.indexOf('?') !== -1 ? '&' : '?') + 'page=' + id;
-                        history.pushState({ path: newURL }, '', newURL);
-                    }
                 },
                 error: function (result) {
                     alert("Error Ocurred!");
                 }
             });
         }
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+
+        // hiring dwtail submit : send mail
+
+        //var hiringform = $("#hiringform");
+        //hiringform.submit(function (e) {
+
+        //    e.preventDefault();
+
+        //    if (!$(".career_form").valid()) {
+        //        return false;
+        //    }
+
+        //    $('#button-spinner').show();
+        //    $('#btnSendEmail').attr("disabled", true);
+
+            
+        //});
+
+        function SendMail() {
+            
+        }
+
     </script>
-    @Html.Partial("_FooterWith190")
+    @Html.Partial("_Footer")
 </body>
 </html>

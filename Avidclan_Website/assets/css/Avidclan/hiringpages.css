@@ -1,6 +1,11 @@
 ﻿body {
 }
 
+.section-box-spacing {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
 .btn-activetitlebtn {
     border-radius: 10px;
     background: var(--Primary-Color, #007BFC);
@@ -13,6 +18,21 @@
 
 .blinked {
     color: #007BFC;
+}
+
+.banner-section-box {
+    background: linear-gradient(180deg, #EDF0FF 0%, rgba(237, 240, 255, 0.71) 0.01%, rgba(237, 240, 255, 0.00) 100%) !important;
+}
+
+.hiring-section-subtittle {
+    color: var(--Avidclan_CLR-Black-black-300, #6A6D70);
+    /* Typography/H5/Bold 700 */
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 133.333% */
+    align-self: stretch;
 }
 
 .divavidclansection {
@@ -61,6 +81,24 @@
     background: #BABBBD;
 }
 /*------------------------------------------------------------------------------------
+|  Banner Section mobile view  |
+-----------------------------------------------------------------------------------*/
+@media (max-width: 767px) {
+    .banner-section-two {
+        margin-bottom: 20px; /* Adjust as per your needs */
+    }
+   
+        .banner-section-two .btn-tech-title,
+        .banner-section-two .btn-banner-title {
+            margin-bottom: 16px 32px; /* Add margin for buttons on mobile */
+        }
+
+    .hiringprocess-text-box {
+        font-weight: 400;
+    }
+}
+
+/*------------------------------------------------------------------------------------
 |  CTA Section  |
 -----------------------------------------------------------------------------------*/
 .servicesubtitle {
@@ -69,6 +107,16 @@
     font-size: 17px;
     font-weight: 700;
     line-height: 23px;
+    padding-bottom: 16px;
+}
+
+.service-card-subtitle {
+    color: #007BFC;
+    font-family: Poppins, sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 23px;
+    margin-bottom: 0px;
 }
 
 .servicecontent {
@@ -100,6 +148,7 @@
     font-weight: 500 !important;
     line-height: 32px;
 }
+
 .custom-card-content {
     color: var(--Avidclan_CLR-Black-black-500, #212529);
     /* Typography/H6/Regular 400 */
@@ -110,11 +159,12 @@
     line-height: 24px; /* 150% */
     align-self: stretch;
 }
+
 .custom-card-box {
-    height: 465px;
+    height: auto;
     display: flex;
-    width: 310px;
-    min-height: 400px;
+    /* width: 310px;*/
+    min-height: 100%;
     padding: 20px;
     flex-direction: column;
     align-items: flex-start;
@@ -125,6 +175,7 @@
     /* Dropshadow/Timeline */
     box-shadow: 0px 12px 24px 0px rgba(33, 37, 41, 0.06);
 }
+
 .ourservices-section {
     margin-bottom: -122px;
 }
@@ -138,6 +189,8 @@
     align-items: center;
     gap: 10px;
     border-radius: 25px;
+    /* width: 1300px;
+    height: 243px;*/
 }
 
 .ctasection-inner-block {
@@ -168,6 +221,8 @@
 .ctasection .sec-title {
     display: contents;
     row-gap: 25px;
+    padding-bottom: 0px !important;
+    text-align: center;
 }
 
 .ctasection .inner-block .sec-title p {
@@ -192,9 +247,20 @@
 
 .ctasection .inner-block a {
     border-radius: 50px;
-    width: 202px;
-    height: 50px;
+    width: auto;
+    height: 100%;
     flex-shrink: 0;
+}
+
+.cta-content-text {
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    align-self: stretch;
 }
 
 .cta-btn-div {
@@ -208,15 +274,18 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    margin-top: 3px;
+    margin-top: 13px;
+    margin-bottom: 13px;
 }
 
 .cta-btn-box {
+    margin-top: 32px !important;
     border-radius: 50px;
     width: 202px;
     height: 50px;
     text-align: center;
     margin-top: 14px;
+    margin: 5px;
 }
 
 .techsection .container {
@@ -229,33 +298,37 @@
     position: absolute;
 }
 /*------------------------------------------------------------------------------------
+|  ourservices Section mobile view  |
+-----------------------------------------------------------------------------------*/
+
+
+/*------------------------------------------------------------------------------------
 |  Technology Section  |
 -----------------------------------------------------------------------------------*/
+.tech-box{
+    margin:0px;
+    height:100%;
+}
 .sec-tech-titlediv {
     display: flex;
-    width: 310px;
-    height: 100px;
     /*padding: 30px 32px;*/
-    /*padding: 30px 32px;*/
-
-    align-items: center;
+    padding: 18px 32px;
     gap: 8px;
+    margin-top: 15px !important;
     border-radius: 12px;
     background: var(--Avidclan_CLR-Light-Blue-light-blue-50, #E6F2FF);
 }
 
 .tech-title-box {
-    display: flex;
-    width: 310px;
+    /*display: flex;*/
+    width: auto;
     /*padding: 54px 32px;*/
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
+    /* gap: 8px;*/
 }
 
     .tech-title-box h4 {
-        color: var(--Avidclan_CLR-Dark-Blue-dark-blue-500, #142149);
-        text-align: center;
+        color: #0057B3;
+        
         /* Typography/H2/Bold 700 */
         font-family: Poppins;
         font-size: 24px;
@@ -291,23 +364,44 @@
     max-height: 60%;
     max-width: 100%;
     list-style-type: none;
-    padding: 0;
+    padding: 6px;
     margin: 0;
 }
 
     .inline-list li {
-        margin-right: 35px; /* Adjust the spacing as needed */
+        margin:6px 8px; /* Adjust the spacing as needed */
     }
 
+.inline-list-li {
+    display: flex;
+    padding: 4px 8px;
+    align-items: center;
+    gap: 12px;
+    border-radius: 6px;
+    background: #FFF;
+
+}
+
+
 .btn-tech-title {
+    /* margin-top: 48px !important;*/
+    padding: 16px 32px;
+    gap: 8px;
+    border-radius: 12px;
+    background: #007BFC;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.btn-tech-btn {
     display: flex;
     padding: 16px 32px;
     justify-content: center;
     align-items: center;
     gap: 8px;
-    border-radius: 12px;
+    border-radius: 50px;
     background: #007BFC;
-    margin-top: 20px;
+    margin-top: 48px;
 }
 
 .btn-techtitle-font {
@@ -317,18 +411,19 @@
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
-    line-height: 18px; /* 150% */
+    /*line-height: 18px;*/ /* 150% */
 }
 
 .btn-banner-title {
+    margin-left:10px;
     display: flex;
-    padding: 16px 5px;
+    padding: 10px 16px;
     justify-content: center;
     align-items: center;
     gap: 8px;
-    border-radius: 12px;
+    border-radius: 25px;
     background: var(--Avidclan_CLR-White-white-500, #FFF);
-    margin-top: 20px;
+    /*margin-top: 20px;*/
     border: 2px solid var(--Primary-Color, #007BFC);
 }
 
@@ -343,13 +438,10 @@
     line-height: 24px; /* 150% */
 }
 
-/*avidclan banner*/
-/*stop section*/
 /*------------------------------------------------------------------------------------
 |  company success detail Section  |
 -----------------------------------------------------------------------------------*/
 .detail-section-div {
-    display: flex;
     padding: 24px;
     /*flex-direction: column;*/
     justify-content: center;
@@ -380,22 +472,18 @@
 }
 
 .detail-content-img {
-    height: 377px;
     align-self: stretch;
     border-radius: 16px;
     background: url(<path-to-image>) lightgray 50% / cover no-repeat, #007BFC;
     /* Dropshadow/Timeline */
-   /* box-shadow: 0px 12px 24px 0px rgba(33, 37, 41, 0.06);*/
+    /* box-shadow: 0px 12px 24px 0px rgba(33, 37, 41, 0.06);*/
 }
 
 .detail-contentbox-dark {
-    width: 310px;
-    min-width: 310px;
-    max-width: 310px;
-    min-height: 310px;
-    max-height: 310px;
-    display: flex;
-    padding: 24px;
+    width: auto;
+    height:100%;
+   /* display: flex;*/
+    padding: 40px;
     margin-bottom: 10px;
     flex-direction: column;
     justify-content: center;
@@ -415,37 +503,39 @@
     font-style: normal;
     font-weight: 700;
     line-height: 56px; /* 155.556% */
+    gap: 12px;
 }
 
-.detail-contentbox-dark p {
+.detail-contentbox-dark-p {
     color: var(--Avidclan_CLR-White-white-500, #FFF);
     /* Typography/H4/Medium 500 */
     font-family: Poppins;
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
-    line-height: 32px; /* 160% */
+   
+
 }
 
 .detail-contententbox-light {
-    display: flex;
-    width: 310px;
-    min-width: 310px;
-    max-width: 310px;
-    min-height: 310px;
-    max-height: 310px;
-    padding: 24px;
+   
+    width: auto;
+   height:100%;
+    padding: 40px;
     margin-bottom: 10px;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 12px;
+    gap: 22px;
     border-radius: 16px;
     background: var(--Avidclan_CLR-White-white-500, #FFF);
     /* Dropshadow/Timeline */
     box-shadow: 0px 12px 24px 0px rgba(33, 37, 41, 0.06);
 }
-
+    .detail-contententbox-light img {
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
 .number-style {
     color: var(--Avidclan_CLR-Dark-Blue-dark-blue-500, #142149);
     /* Typography/H1/Bold 700 */
@@ -453,22 +543,23 @@
     font-size: 36px;
     font-style: normal;
     font-weight: 700;
-    line-height: 32px; /* 155.556% */
+    line-height: 56px; /* 155.556% */
+    gap: 12px;
 }
-
-.detail-contententbox-light p {
+.about-avidclan-text {
+    margin-bottom: 27px;
+}
+.detail-contententbox-light-p {
     color: var(--Avidclan_CLR-Dark-Blue-dark-blue-500, #142149);
     /* Typography/H4/Medium 500 */
     font-family: Poppins;
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
-    line-height: 32px; /* 160% */
+   
 }
 
 .hireavidclanImg {
-    width: 550px;
-    height: 656px;
     border-radius: 12px;
 }
 
@@ -489,9 +580,9 @@
 -----------------------------------------------------------------------------------*/
 .hire-avidclan-card {
     display: flex;
-    width: 310px;
-    height: 464px;
-    min-height: 420px;
+    /*width: 310px;*/
+    height:100%;
+   
     padding: 20px;
     flex-direction: column;
     align-items: flex-start;
@@ -526,12 +617,22 @@
     align-self: stretch;
 }
 
+.hire-section-icon-box {
+    display: inline-block;
+    padding: 12px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    background: var(--Avidclan_CLR-Light-Blue-light-blue-50, #E6F2FF);
+}
+
 /*------------------------------------------------------------------------------------
 | pricing Section  |
 -----------------------------------------------------------------------------------*/
 .pricing-card-light {
     display: flex;
-    width: 420px;
+    width: auto;
+    height:100%;
     padding: 28px 20px;
     flex-direction: column;
     align-items: flex-start;
@@ -565,7 +666,8 @@
 
 .pricing-card-dark {
     display: flex;
-    width: 420px;
+    width: auto;
+    height:100%;
     padding: 28px 20px;
     flex-direction: column;
     align-items: flex-start;
@@ -674,21 +776,41 @@
     align-self: stretch;
     background-color: white;
 }
-
+/* Hide the arrow SVG on small screens (less than 768px width) */
+@media (max-width: 768px) {
+    .arrow-icon {
+        display: none;
+    }
+}
 @media (max-width: 768px) {
     .hiringprocess-content-box {
         width: auto;
-        Make responsive on smaller screens
+       
     }
 
     .arrow-icon {
         width: 50px;
-        Adjust arrow size for smaller screens
+       
     }
 
     .hiringprocess-img-box {
         width: 100px;
-        Adjust image size for smaller screens
+       
+    }
+    .tailor-solution-box {
+        margin-top:  0.75rem !important;
+    }
+    .benefits-icon-box {
+        margin-top: 1.25rem !important;
+    }
+}
+
+/* Ensure image is vertical on small screens */
+@media (max-width: 768px) {
+    .development-process-imgbox {
+        display: inline-block;
+        vertical-align: middle;
+        float: none;
     }
 }
 /*------------------------------------------------------------------------------------
@@ -917,8 +1039,9 @@
 -----------------------------------------------------------------------------------*/
 .blog-content-section {
     padding-top: 20px;
-  /*  padding-bottom: 100px*/
+    /*  padding-bottom: 100px*/
 }
+
 .loader {
     width: 10px;
     height: 10px;
@@ -931,15 +1054,17 @@
     box-sizing: border-box;
     animation: shadowRolling 2s linear infinite;
 }
+
 .blog-box {
     display: flex;
     width: 410px;
-    height:586px;
+    height: 586px;
     flex-direction: column;
     align-items: flex-start;
     /* Dropshadow/Timeline */
     box-shadow: 0px 12px 24px 0px rgba(33, 37, 41, 0.06);
 }
+
 .blog-content-box {
     display: flex;
     padding: 15px;
@@ -950,6 +1075,7 @@
     border-radius: 0px 0px 12px 12px;
     background: var(--Avidclan_CLR-White-white-500, #FFF);
 }
+
 .blog-title-text {
     color: var(--Primary-Color, #007BFC);
     /* Typography/H3/Bold 700 */
@@ -960,6 +1086,7 @@
     line-height: 32px; /* 145.455% */
     align-self: stretch;
 }
+
 .blog-ref-by-text {
     color: var(--Color-Avidclan-Dark-Blue-dark-blue-500, #142149);
     /* Typography/H7/Bold 700 */
@@ -969,6 +1096,7 @@
     font-weight: 700;
     line-height: 20px;
 }
+
 .blog-dt-text {
     color: var(--Color-Avidclan-Dark-Blue-dark-blue-500, #142149);
     text-align: right;
@@ -979,12 +1107,37 @@
     font-weight: 500;
     line-height: 20px; /* 142.857% */
 }
+
 .blog-ref-by-content-box {
     display: flex;
     align-items: center;
     gap: 105px;
     align-self: stretch;
 }
+
+.blog-btn-box {
+    margin-top: 24px;
+    display: flex;
+    padding: 16px 32px !important;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+    border-radius: 50px;
+    background: #007BFC;
+}
+
+.blog-btn-text {
+    background: #007BFC;
+    color: #FFF;
+    /* Typography/H6/SemiBold 600 */
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+}
+
 /*------------------------------------------------------------------------------------
 | let's talk Section  |
 -----------------------------------------------------------------------------------*/
@@ -996,6 +1149,7 @@
     font-weight: 800;
     line-height: normal;
 }
+
 .lets-talk-content {
     color: #FFF;
     font-family: Poppins;
@@ -1005,20 +1159,23 @@
     line-height: normal;
     width: 732px;
 }
-.lets-talk-section{
-margin-bottom:100px;
+
+.lets-talk-section {
+    margin-bottom: 100px;
 }
 /*------------------------------------------------------------------------------------
 | developer interview Section  |
 -----------------------------------------------------------------------------------*/
-.developer-interview-section{
-    margin-top:140px;
+.developer-interview-section {
+    margin-top: 172px;
 }
+
 .developer-interview-img-box {
-    width: 640px;
-    height: 640px;
+    width: 600px;
+    height: 600px;
     flex-shrink: 0;
 }
+
 .schedule-interview-title {
     color: var(--Avidclan_CLR-Dark-Blue-dark-blue-500, #142149);
     /* Typography/H1/Bold 700 */
@@ -1029,22 +1186,23 @@ margin-bottom:100px;
     line-height: 56px; /* 155.556% */
     align-self: stretch;
 }
+
 .enquire-form-box {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    
     align-self: stretch;
 }
+
 .interview-form-input-control {
     display: flex;
-    width: 640px;
+    width:auto;
     padding: 14px;
     align-items: center;
-    
     /*border-radius: 4px;
     border: 1px solid var(--Avidclan_CLR-Dark-Blue-dark-blue-200, #9399AB);*/
 }
+
 .btn-enquire-now {
     margin-left: 17px;
     display: flex;
@@ -1052,6 +1210,59 @@ margin-bottom:100px;
     justify-content: center;
     align-items: center;
     gap: 8px;
-    border-radius: 12px;
+    border-radius: 50px;
     background: #007BFC;
+}
+
+.faq-section {
+    margin-top: -110px !important;
+}
+
+.testimonial-section-two {
+    padding: 40px 0;
+    background-image: none !important;
+    background: none !important;
+}
+
+/*sec-tech-titlediv*/
+
+@media (max-width: 768px) {
+    .sec-tech-titlediv {
+        padding: 0px 0px;
+       /* margin-top: 15px !important;*/
+    }
+    /*.inline-list li{
+        margin:0px;
+    }*/
+    .inline-list-li {
+        margin-right: 16px;
+        margin-bottom: 12px;
+        /* flex-wrap: wrap; */
+        padding: 4px 8px;
+    }
+    .inline-list {
+        flex-wrap: wrap;
+    }
+   /* .tech-box{
+        padding :0px;
+    }*/
+    .btn-check-price{
+        margin:5px 0px 10px -11px !important;
+        
+    }
+}
+.custom-about-box {
+    border-radius: 16px;
+    background: var(--Avidclan_CLR-White-white-500, #FFF);
+    /* Dropshadow/Timeline */
+    box-shadow: 0px 12px 24px 0px rgba(33, 37, 41, 0.06) !important;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    #develoment-process-div {
+        display: none !important;
+    }
+    #develoment-process-div-mobile {
+        display: block !important;
+    }
 }

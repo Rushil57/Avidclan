@@ -250,6 +250,79 @@ namespace Avidclan_Website.Controllers
             return "Sent";
 
         }
+
+        [Route("api/Mail/SendHiringDotNetDetails")]
+        [HttpPost]
+        public async Task<string> SendHiringDotNetDetails()
+        {
+            await ReadConfiguration("career");
+            var Name = HttpContext.Current.Request["Name"];
+            var Email = HttpContext.Current.Request["Email"];
+            var ContactNumber = HttpContext.Current.Request["ContactNumber"];
+            var Message = HttpContext.Current.Request["Message"];
+            var Position = "DotNet Developer";
+
+            var messagebody = "<html>" +
+                                    "<body style='font-family: lato, Helvetica, sans-serif;font-size: 16px;width:600px;'>" +
+                                    "<div style='padding: 15px 30px;background: #1d5fa5;color: #fff;'>" +
+                                        "<h4 style='padding: 0;margin: 0;'>Inquiry for Hiring .Net Developers</h4>" +
+                                     "</div>" +
+                                      "<div style='padding: 15px 30px;background: #f8f8f8;'>" +
+                                            "<p>Hello,<br/>" + Message + "<br/><br/>" +
+                                            "<strong>Job Position:</strong>" + Position + "<br/><br/>" +
+                                            "Regards,<br/><br/><strong>" + Name + "</strong><br/>" + Email + "<br/>" +
+                                           ContactNumber + "<br/><br/><br/> This mail is sent via career form on Avidclan Technologies Web Site <br/><a href='https://www.avidclan.com'>https://www.avidclan.com</a>" +
+                                        "</p></div>" +
+                                "</body></html>";
+            try
+            {
+                
+                await sendEmail(senderEmail, receiverEmail, Name, "Inquiry for Hiring .Net Developers", messagebody);
+            }
+            catch (System.Net.Mail.SmtpException myEx)
+            {
+                return "Error: " + myEx.Message.ToString() + " " + myEx.StackTrace.ToString();
+                throw myEx.InnerException;
+            }
+            var MessageReply = "<html>" +
+                                   "<body style='font-family: lato, Helvetica, sans-serif;font-size: 16px;width:600px;'>" +
+                                        "<div style='padding: 15px 30px;background: #1d5fa5;color: #fff;'>" +
+                                            "<h4 style='padding: 0;margin: 0;'>Career Inquiry Details</h4>" +
+                                         "</div>" +
+                                         "<div style='padding: 15px 30px;background: #f8f8f8;'>" +
+                                             "<p>Dear " + Name + ",<br/><br/> Thank you for the interest in <strong>" + Position + "</strong> " +
+                                                "Position <br/><br/> Please follow the link below to apply for relevant position.<br/>" +
+                                                "<a href='https://www.avidclan.com/hire-dot-net-developers't wait to get/'>Enquire Now</a><br/></br>" +
+                                                "We always love to hear from you. Our inbox c your messages, so talk to us anytime you like! <br/><br/>Regards,<br/><br/>" +
+                                                 "Team,<a href='https://www.avidclan.com/'> Avidclan Technologies </a><br/><a href='mailto:info@avidclan.com'> info@avidclan.com </a><br/> +91 9624679717 <br/><br/> This mail is sent via portfolio form on Avidclan Technologies Site<br/><a href='https://www.avidclan.com'> https://www.avidclan.com</a>" +
+                                             "</p></div>" +
+                                "</body></html>";
+            try
+            {
+                //MailMessage replymail = new MailMessage();
+                //replymail.To.Add(Email);
+                //replymail.From = new MailAddress(senderEmail);
+                //replymail.Subject = "Career Inquiry From Avidclan Technologies";
+                //replymail.Body = MessageReply;
+                //replymail.IsBodyHtml = true;
+                //SmtpClient smtp = new SmtpClient(host, port);
+                //smtp.EnableSsl = true;
+                //smtp.UseDefaultCredentials = false;
+                //smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
+                //smtp.Send(replymail);
+
+                //await sendEmail(senderEmail, Email, Name, "Career Inquiry From Avidclan Technologies", MessageReply);
+            }
+            catch (System.Net.Mail.SmtpException myEx)
+            {
+                return "Error: " + myEx.Message.ToString() + " " + myEx.StackTrace.ToString();
+                throw myEx.InnerException;
+            }
+
+
+            return "Sent";
+
+        }
         public async Task<bool> ReadConfiguration(string type)
         {
             var result = false;
