@@ -1,6 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "IonicAppDevelopment";
+    var context = "@context";
+    var type = "@type";
+    var id = "@id";
+    var graph = "@graph";
 }
 @*<title>Ionic App Development Company, Avidclan Technologies</title>*@
 @section AdditionalMeta
@@ -11,6 +15,35 @@
     <link rel="canonical" href="https://www.avidclan.com/ionic-app-development-company/" />
     <link rel="stylesheet" href="~/assets/css/Avidclan/technologies.css" />
 }
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "What is the time taken to build a hybrid app?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "As it is a web app enclosed in a native setting, hybrid app can be launched faster as compared to the native app solutions. You can create incredible app solutions with a single codebase."
+    }
+  },{
+    "@type": "Question",
+    "name": "Do you need to download the hybrid mobile app?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The best part about hybrid mobile app is that you don’t need to download them. you can access them in a web browser."
+    }
+  },{
+    "@type": "Question",
+    "name": "Do you sign an NDA before getting started?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Once we have defined the requirements and the scope, we sign an NDA before beginning the project."
+    }
+  }]
+}
+</script>
+
 <section class="inner-page">
     <div class="container">
         <div class="content-box">

@@ -1,6 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "GoogleCouldServices";
+    var context = "@context";
+    var type = "@type";
+    var id = "@id";
+    var graph = "@graph";
 }
 @section AdditionalMeta
 {
@@ -10,6 +14,35 @@
     <link rel="canonical" href="https://www.avidclan.com/google-cloud-services/" />
     <link rel="stylesheet" href="~/assets/css/Avidclan/technologies.css" />
 }
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "What cloud services does Google Cloud offer?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Google Cloud allows developers to compute, store, deploy, build and network over the cloud. They have defined the tools and resources required to perform the different tasks. To use the Google cloud platform, you should be proficient with the different Android and Google technologies. It will help streamline app development and speed up the deployment."
+    }
+  },{
+    "@type": "Question",
+    "name": "Is Google Cloud easy to learn?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Google Cloud comes with the lowest learning curve, making it easy and efficient to learn and incorporate in your app development process. You can easily build your applications with the already available tools. With this cloud infrastructure, you don’t need to plan your solutions or write the code from the scratch."
+    }
+  },{
+    "@type": "Question",
+    "name": "Do you sign an NDA before getting started?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "We do understand the risks involved with cloud development. As a result, before acquiring data and beginning the build process, we sign an NDA with the client company. This helps both parties protect the intellectual property and improve the development processes."
+    }
+  }]
+}
+</script>
+
 <section class="inner-page">
     <div class="container">
         <div class="content-box">

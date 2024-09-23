@@ -1,6 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "UiUxDesignCompanyUSA";
+    var context = "@context";
+    var type = "@type";
+    var id = "@id";
+    var graph = "@graph";
 }
 
 @section AdditionalMeta
@@ -12,6 +16,104 @@
     <link href="~/assets/css/Avidclan/flutter_app_development_usa.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/assets/css/intlTelInput.css" />
 }
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "What is the difference between UI and UX Design?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Imagine designing the apartment of your dreams: UX (User Experience) involves selecting furniture, paint colors, and overall looks, while UI (User Interface) is responsible for selecting furniture, colors, paint effects, and overall designs. Together, they're essential in creating an aesthetically pleasing and functional living space!
+
+User interface design (UI Design) refers to all of the visual and interactive elements and features present in an app or website, including buttons, menus, fonts, color schemes, and animations—anything that makes the app or website look and feels attractive.
+
+UX Design delves deeper, considering all aspects of the user journey. It poses questions such as \"Will users find what they need easily? Are tasks completed efficiently? And will the app or website provide enjoyable usage experiences?\" A great UX designer makes their product intuitive and efficient so users are satisfied."
+    }
+  },{
+    "@type": "Question",
+    "name": "What are the benefits of good UI/UX design?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Consider an app you love - its design may be both visually pleasing and easy to use, a hallmark of great UI/UX design! Why is that important? Here's why it matters:
+1. Engaging Users: An effective UI/UX design keeps users reverting for more, making the user experience enjoyable and hassle-free.
+2. Increase Conversions: Successful UX/UI design increases conversion rates, whether by getting users to sign up, buy something, or complete desired actions.
+3. An engaging app or website reflects positively on your brand, making you appear professional and trustworthy to users."
+    }
+  },{
+    "@type": "Question",
+    "name": "Do I need a UI/UX designer if I'm building a simple website?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Not necessarily for basic websites, but if you want something that stands out, is easy to navigate, and converts visitors into leads or customers, hiring a UI/UX designer would be a wise investment. They will help avoid common pitfalls while creating something truly suitable for both you and your users."
+    }
+  },{
+    "@type": "Question",
+    "name": "What skills are essential for UI/UX designers?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "1. Design Skills: Attention to aesthetics, knowledge of colour theory, typography and layout principles, along with usability testing capabilities which enable designers to gain an insight into user behaviours while guaranteeing optimal usability of designs, are necessary for designers.
+2. Wireframing & Prototyping: Generating mockups and interactive models to visualize an app/website before development commences.
+3. Communication & Collaboration: Collaborating efficiently between developers, clients and other project stakeholders on an app/website project."
+    }
+  },{
+    "@type": "Question",
+    "name": "What tools do UI/UX designers use?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "1. Figma & Sketchcan help create design mockups and prototypes.
+2. Adobe XD provides another robust design and prototyping platform.
+3. InVision allows interactive prototype creation for user testing purposes
+4. Usability testing tools allow tracking user behavior while gathering feedback during testing sessions."
+    }
+  },{
+    "@type": "Question",
+    "name": "What are the benefits of hiring a UI/UX design agency?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Hiring an agency has many advantages, and these are some key ones:
+1. Expertise & Experience: Agencies have teams of designers with extensive knowledge across multiple fields of design.
+2. Fresh Perspectives: Agencies bring fresh perspectives that challenge existing assumptions while offering new ideas for innovation and improvement.
+3. Project Management: They can take over the design process, saving both time and resources."
+    }
+  },{
+    "@type": "Question",
+    "name": "What should I look for when choosing a UI/UX design agency?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "1. Portfolio: Check if their past work aligns with your vision and target audience.
+2. Process: Understand their design process and how they collaborate with clients.
+3. Communication Style: Make sure they clearly communicate and keep you involved throughout the project.
+4. Budget: Get quotes that correspond with your budget."
+    }
+  },{
+    "@type": "Question",
+    "name": "Is there any difference between UI/UX design and web design?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "User experience design (UI/UX design) refers to all interactive products - be they websites or apps. Website design focuses specifically on designing websites using elements like SEO (Search Engine Optimization) and responsive design (making sure the website looks good across devices). So, UI/UX is more of an umbrella term, while web design falls beneath it."
+    }
+  },{
+    "@type": "Question",
+    "name": "What is the expected timeline for a UI/UX design project?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Timing for UI/UX design projects varies based on complexity, size, and level of involvement—for instance, a simple app may take weeks, while more complex websites could take months!"
+    }
+  },{
+    "@type": "Question",
+    "name": "Do you offer support to the application after the launch?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Although we cannot make changes or code modifications directly for your app post-launch, we can be an invaluable asset in your design process. Our services can include assisting with:
+1. User research and testing: We can assist in analyzing and identifying user feedback to identify areas for improvement.
+2. Ideation & brainstorming: With our assistance, new ideas may emerge to enhance your product or service offering."
+    }
+  }]
+}
+</script>
+
 <style>
     .alphabet-list {
         padding: 1rem;
@@ -480,7 +582,7 @@
             <div class="col-lg-6 col-md-6 col-portfolio">
                 <div class="box-item">
                     <a href="https://www.avidclan.com/portfolio/" class="image">
-                        <img src="/assets/images/gallery/progress-retail-portfolio.jpg" alt="progress-retail-portfolio"  class="w-100 h-100">
+                        <img src="/assets/images/gallery/progress-retail-portfolio.jpg" alt="progress-retail-portfolio" class="w-100 h-100">
                     </a>
                     <div class="portfolio_content d-flex flex-column align-items-center justify-content-end text-center">
                         <h4 class="title-26">Progress Retail</h4>

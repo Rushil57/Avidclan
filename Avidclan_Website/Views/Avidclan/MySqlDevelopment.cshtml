@@ -1,6 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "MySqlDevelopment";
+    var context = "@context";
+    var type = "@type";
+    var id = "@id";
+    var graph = "@graph";
 }
 @section AdditionalMeta
 {
@@ -10,6 +14,35 @@
     <link rel="canonical" href="https://www.avidclan.com/mysql-development-company/" />
     <link rel="stylesheet" href="~/assets/css/Avidclan/technologies.css" />
 }
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "What is MySQL used for?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "MySQL has plenty of use cases, including data warehousing, managing eCommerce database, logging the application and data retrieval."
+    }
+  },{
+    "@type": "Question",
+    "name": "Do you follow a standard process with MySQL database services?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, we have defined a standard practice that allows us to go step-by-step in planning, designing and creating the database services to suit your requirements. We use sprint-based agile methodology to deliver the solution."
+    }
+  },{
+    "@type": "Question",
+    "name": "Why should we use MySQL?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "For the security, reliability and data layers it provides, MySQL can help your application with proper structuring, mitigated risks and lowered vulnerabilities."
+    }
+  }]
+}
+</script>
+
 <section class="inner-page">
     <div class="container">
         <div class="content-box">

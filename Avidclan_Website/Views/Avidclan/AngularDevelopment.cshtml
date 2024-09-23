@@ -1,6 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "AngularDevelopment";
+    var context = "@context";
+    var type = "@type";
+    var id = "@id";
+    var graph = "@graph";
 }
 @section AdditionalMeta
 {
@@ -9,6 +13,63 @@
     <link rel="canonical" href="https://www.avidclan.com/angular-development-services/" />
     <link rel="stylesheet" href="~/assets/css/Avidclan/technologies.css" />
 }
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Is Angular for front end development?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, Angular is a framework for front end web application development."
+    }
+  },{
+    "@type": "Question",
+    "name": "Is it expensive to build solutions using Angular?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Angular offers relatively low cost and high impact solutions, and is the most popular web front end development framework. Being an open-source framework, Angular offers high performance at a relatively low price."
+    }
+  },{
+    "@type": "Question",
+    "name": "Is it possible to migrate legacy applications with Angular?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Absolutely! You can modify, upgrade, customize and fix bugs for your legacy applications with version migration to Angular. We at Avidclan specialize in modernizing legacy applications for better views, high performance and speed using Angular."
+    }
+  },{
+    "@type": "Question",
+    "name": "Does Avidclan offer post-sales support?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes! At Avidclan, we support our clients through the full development life cycle of all projects. Our expert Angular developers ensure that post-development maintenance support and updates are taken care of."
+    }
+  },{
+    "@type": "Question",
+    "name": "Can we create animations or customised designs with Angular?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Absolutely, this is what Angular is for! Customised web views are the core strength of this robust framework. At Avidclan we leverage the force of Angular to develop beautiful looking websites, with animations, accessibility features, portion views and much more! All that with a lightweight, high performance web app."
+    }
+  },{
+    "@type": "Question",
+    "name": "Does Angular support Dynamic Loading?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, Angular supports Dynamic Loading where a program can access the memory on run time, access and execute the functions and load and execute the needed libraries."
+    }
+  },{
+    "@type": "Question",
+    "name": "What is the difference between Angular and AngularJS?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Angular and AngularJS have multiple differences, starting with the language itself. While AngularJS uses JavaScript, Google recommends using TypeScript for Angular. The architecture for AngularJS supports model-view controller design, whereas Angular uses components and directives. AngularJS isn’t supported by mobile browsers, Angular is."
+    }
+  }]
+}
+</script>
+
 <section class="inner-page">
     <div class="container">
         <div class="content-box">
@@ -553,18 +614,18 @@
 </section>
 
 @*<section class="blogs-section d-none">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="avidclan_section_title text-center mb-50">
-                    <h5 class="avidclan_sub_title primary-color">LATEST UPDATES & NEWS</h5>
-                    <div class="sec-title"><h2>Our Blogs</h2></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="avidclan_section_title text-center mb-50">
+                        <h5 class="avidclan_sub_title primary-color">LATEST UPDATES & NEWS</h5>
+                        <div class="sec-title"><h2>Our Blogs</h2></div>
+                    </div>
                 </div>
             </div>
+
         </div>
-       
-    </div>
-</section>*@
+    </section>*@
 
 @Html.Partial("_Footer")
 

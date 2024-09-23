@@ -1163,6 +1163,14 @@
 .lets-talk-section {
     margin-bottom: 100px;
 }
+.sidebar-wrap {
+    position: relative;
+   
+}
+
+#img-people-grp-leftside.fixed {
+    position: fixed;
+}
 /*------------------------------------------------------------------------------------
 | developer interview Section  |
 -----------------------------------------------------------------------------------*/
@@ -1264,5 +1272,18 @@
     }
     #develoment-process-div-mobile {
         display: block !important;
+    }
+    .hr-cls-mobile-view {
+        width: 243px !important;
+    }
+    .section-box-spacing-mobile-ui {
+        margin-left: 7px;
+        margin-right: 7px;
+    }
+    .rating-box-mobile-ui {
+        margin-top: 10px !important;
+    }
+    .get-started-btn-mobile-ui {
+        width: 225px !important;
     }
 }

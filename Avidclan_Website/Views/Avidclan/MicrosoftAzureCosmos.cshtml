@@ -1,6 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "MicrosoftAzureCosmos";
+    var context = "@context";
+    var type = "@type";
+    var id = "@id";
+    var graph = "@graph";
 }
 
 @*<title>Microsoft Azure Cosmos DB Developer, Avidclan Technologies</title>*@
@@ -12,6 +16,42 @@
     <link rel="canonical" href="https://www.avidclan.com/microsoft-azure-cosmos-db/" />
     <link rel="stylesheet" href="~/assets/css/Avidclan/technologies.css" />
 }
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "What is CosmosDB used for?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "CosmosDB is a multi-model database services that iOS and Android applications use for third-party integrations, to model the social integrations/interactions, and deliver enriching experiences. It is a NoSQL database that provides users with single digit millisecond response times that make it useful for real-time applications."
+    }
+  },{
+    "@type": "Question",
+    "name": "Can Azure Cosmos DB work with any platform?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "You can use it with Xamarin, and .Net to develop mobile and web apps respectively. Apart from this, you can integrate it with several third-party database APIs to improve data efficiency."
+    }
+  },{
+    "@type": "Question",
+    "name": "Are MongoDB and CosmosDB the same?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "For the commonly used applications, CosmosDB tends to be faster as compared to MongoDB. However, when it comes to higher bandwidth or app size, MongoDB works better. In terms of setup, MongoDB offers more flexibility to app developers. When it comes to total cost of ownership, CosmosDB proves to be better especially with high-storage and variable traffic loads."
+    }
+  },{
+    "@type": "Question",
+    "name": "Do you provide help with migration from other databases?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, as part of our migration services, we ensure risk free migration with no data loss from databases including Cassandra, MongoDB and others."
+    }
+  }]
+}
+</script>
+
 <section class="inner-page">
     <div class="container">
         <div class="content-box">
