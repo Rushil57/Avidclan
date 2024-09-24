@@ -818,11 +818,22 @@
 -----------------------------------------------------------------------------------*/
 .industries-img-box {
     display: flex;
-    width: 200px;
+   
     padding: 20px;
     flex-direction: column;
     align-items: center;
     gap: 24px;
+}
+.industries-text {
+    color: var(--Avidclan_CLR-Black-black-400, #4D5154);
+    text-align: center;
+    /* Typography/H4/Medium 500 */
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px; /* 160% */
+    align-self: stretch;
 }
 /*------------------------------------------------------------------------------------
 | our works Section  |
