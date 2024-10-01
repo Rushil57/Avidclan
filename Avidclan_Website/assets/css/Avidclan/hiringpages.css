@@ -83,23 +83,76 @@
 /*------------------------------------------------------------------------------------
 |  Banner Section mobile view  |
 -----------------------------------------------------------------------------------*/
-@media (max-width: 767px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     .banner-section-two {
         margin-bottom: 20px; /* Adjust as per your needs */
     }
-   
+
         .banner-section-two .btn-tech-title,
         .banner-section-two .btn-banner-title {
             margin-bottom: 16px 32px; /* Add margin for buttons on mobile */
         }
 
-    .hiringprocess-text-box {
-        font-weight: 400;
+    .hiringprocess-text-box-mobile-ui {
+        font-weight: 400 !important;
+        font-size: 16px !important;
+    }
+
+    #lets_talk_section_mobileUI {
+        display: block !important;
+    }
+
+    #lets_talk_section_webUI {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hiringprocess-text-box-mobile-ui {
+        font-size: 16px !important;
+        font-weight: 500 !important;
+    }
+
+    .our-pricing-tab-ui {
+        margin-top: 1.5rem !important;
+    }
+}
+/*------------------------------------------------------------------------------------
+| who we are section  tablet view |
+-----------------------------------------------------------------------------------*/
+@media (max-width: 768px) {
+    /* Tablet view adjustments */
+    .about-us-img-box {
+        order: 2;
+    }
+
+    .about-us-text-box {
+        order: 1;
+    }
+
+    .about-us-dark-box, .about-us-light {
+        order: 3;
+    }
+
+    #develoment-process-div {
+        display: none !important;
+    }
+
+    #about-us-section-tablet {
+        display: block !important;
+    }
+
+    #about-us-section {
+        display: none !important;
+    }
+
+    #about-us-section-for-mobile-ui {
+        display: none !important;
     }
 }
 
 /*------------------------------------------------------------------------------------
-|  CTA Section  |
+|  service Section  |
 -----------------------------------------------------------------------------------*/
 .servicesubtitle {
     color: #007BFC;
@@ -158,6 +211,16 @@
     font-weight: 400;
     line-height: 24px; /* 150% */
     align-self: stretch;
+}
+
+.tech-li-text {
+    color: var(--Avidclan_CLR-Black-black-500, #212529);
+    /* Typography/H2/Medium 500 */
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 36px; /* 150% */
 }
 
 .custom-card-box {
@@ -305,10 +368,11 @@
 /*------------------------------------------------------------------------------------
 |  Technology Section  |
 -----------------------------------------------------------------------------------*/
-.tech-box{
-    margin:0px;
-    height:100%;
+.tech-box {
+    margin: 0px;
+    height: 100%;
 }
+
 .sec-tech-titlediv {
     display: flex;
     /*padding: 30px 32px;*/
@@ -328,7 +392,6 @@
 
     .tech-title-box h4 {
         color: #0057B3;
-        
         /* Typography/H2/Bold 700 */
         font-family: Poppins;
         font-size: 24px;
@@ -369,17 +432,16 @@
 }
 
     .inline-list li {
-        margin:6px 8px; /* Adjust the spacing as needed */
+        margin: 6px 8px; /* Adjust the spacing as needed */
     }
 
 .inline-list-li {
     display: flex;
-    padding: 4px 8px;
+    padding: 4px 6px;
     align-items: center;
     gap: 12px;
     border-radius: 6px;
     background: #FFF;
-
 }
 
 
@@ -415,7 +477,7 @@
 }
 
 .btn-banner-title {
-    margin-left:10px;
+    margin-left: 10px;
     display: flex;
     padding: 10px 16px;
     justify-content: center;
@@ -438,6 +500,11 @@
     line-height: 24px; /* 150% */
 }
 
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .tech-row-mobile-ui {
+        padding: 0px !important;
+    }
+}
 /*------------------------------------------------------------------------------------
 |  company success detail Section  |
 -----------------------------------------------------------------------------------*/
@@ -481,8 +548,8 @@
 
 .detail-contentbox-dark {
     width: auto;
-    height:100%;
-   /* display: flex;*/
+    height: 100%;
+    /* display: flex;*/
     padding: 40px;
     margin-bottom: 10px;
     flex-direction: column;
@@ -513,14 +580,11 @@
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
-   
-
 }
 
 .detail-contententbox-light {
-   
     width: auto;
-   height:100%;
+    height: 100%;
     padding: 40px;
     margin-bottom: 10px;
     flex-direction: column;
@@ -532,10 +596,12 @@
     /* Dropshadow/Timeline */
     box-shadow: 0px 12px 24px 0px rgba(33, 37, 41, 0.06);
 }
+
     .detail-contententbox-light img {
         padding-top: 3px;
         padding-bottom: 3px;
     }
+
 .number-style {
     color: var(--Avidclan_CLR-Dark-Blue-dark-blue-500, #142149);
     /* Typography/H1/Bold 700 */
@@ -546,9 +612,11 @@
     line-height: 56px; /* 155.556% */
     gap: 12px;
 }
+
 .about-avidclan-text {
     margin-bottom: 27px;
 }
+
 .detail-contententbox-light-p {
     color: var(--Avidclan_CLR-Dark-Blue-dark-blue-500, #142149);
     /* Typography/H4/Medium 500 */
@@ -556,7 +624,6 @@
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
-   
 }
 
 .hireavidclanImg {
@@ -581,8 +648,7 @@
 .hire-avidclan-card {
     display: flex;
     /*width: 310px;*/
-    height:100%;
-   
+    height: 100%;
     padding: 20px;
     flex-direction: column;
     align-items: flex-start;
@@ -632,7 +698,7 @@
 .pricing-card-light {
     display: flex;
     width: auto;
-    height:100%;
+    height: 100%;
     padding: 28px 20px;
     flex-direction: column;
     align-items: flex-start;
@@ -667,7 +733,7 @@
 .pricing-card-dark {
     display: flex;
     width: auto;
-    height:100%;
+    height: 100%;
     padding: 28px 20px;
     flex-direction: column;
     align-items: flex-start;
@@ -748,7 +814,8 @@
     width: 200px;
     flex-direction: column;
     align-items: center;
-    gap: 23px;
+    /*gap: 23px;*/
+    margin-bottom: 15px;
 }
 
 .hiringprocess-img-box {
@@ -777,29 +844,29 @@
     background-color: white;
 }
 /* Hide the arrow SVG on small screens (less than 768px width) */
-@media (max-width: 768px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     .arrow-icon {
         display: none;
     }
 }
+
 @media (max-width: 768px) {
     .hiringprocess-content-box {
         width: auto;
-       
     }
 
     .arrow-icon {
         width: 50px;
-       
     }
 
     .hiringprocess-img-box {
         width: 100px;
-       
     }
+
     .tailor-solution-box {
-        margin-top:  0.75rem !important;
+        margin-top: 0.75rem !important;
     }
+
     .benefits-icon-box {
         margin-top: 1.25rem !important;
     }
@@ -818,12 +885,12 @@
 -----------------------------------------------------------------------------------*/
 .industries-img-box {
     display: flex;
-   
     padding: 20px;
     flex-direction: column;
     align-items: center;
     gap: 24px;
 }
+
 .industries-text {
     color: var(--Avidclan_CLR-Black-black-400, #4D5154);
     text-align: center;
@@ -1174,9 +1241,9 @@
 .lets-talk-section {
     margin-bottom: 100px;
 }
+
 .sidebar-wrap {
     position: relative;
-   
 }
 
 #img-people-grp-leftside.fixed {
@@ -1215,7 +1282,7 @@
 
 .interview-form-input-control {
     display: flex;
-    width:auto;
+    width: auto;
     padding: 14px;
     align-items: center;
     /*border-radius: 4px;
@@ -1248,7 +1315,7 @@
 @media (max-width: 768px) {
     .sec-tech-titlediv {
         padding: 0px 0px;
-       /* margin-top: 15px !important;*/
+        /* margin-top: 15px !important;*/
     }
     /*.inline-list li{
         margin:0px;
@@ -1259,17 +1326,38 @@
         /* flex-wrap: wrap; */
         padding: 4px 8px;
     }
+
     .inline-list {
         flex-wrap: wrap;
     }
-   /* .tech-box{
+    /* .tech-box{
         padding :0px;
     }*/
-    .btn-check-price{
-        margin:5px 0px 10px -11px !important;
-        
+
+
+    .btn-check-price {
+        margin: 0px 0px 10px 0px !important;
     }
 }
+
+@media (max-width: 576px) {
+    .btn-check-price {
+        /*margin:  0px 0px 10px 0px !important;*/
+        margin: 5px 0px 10px -11px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .order-md-1 {
+        order: 1 !important;
+    }
+
+    /*.order-md-2 {
+        order: 2 !important;
+    }*/
+}
+
+
 .custom-about-box {
     border-radius: 16px;
     background: var(--Avidclan_CLR-White-white-500, #FFF);
@@ -1281,20 +1369,530 @@
     #develoment-process-div {
         display: none !important;
     }
+
     #develoment-process-div-mobile {
         display: block !important;
     }
+
     .hr-cls-mobile-view {
         width: 243px !important;
     }
+
     .section-box-spacing-mobile-ui {
-        margin-left: 7px;
-        margin-right: 7px;
+        margin-left: 7px !important;
+        margin-right: 7px !important;
     }
+
     .rating-box-mobile-ui {
         margin-top: 10px !important;
     }
+
     .get-started-btn-mobile-ui {
         width: 225px !important;
     }
 }
+
+
+/* updated css for who are we ? section*/
+
+.about-us-text-box {
+    display: flex;
+    height: 100%;
+    padding: 24px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 16px;
+    background: var(--Avidclan_CLR-White-white-500, #FFF);
+    /* Dropshadow/Timeline */
+    box-shadow: 0px 12px 24px 0px rgba(33, 37, 41, 0.06);
+}
+
+.about-us-text-box-h2 {
+    color: var(--Avidclan_CLR-Dark-Blue-dark-blue-500, #142149);
+    /* Typography/H1/Bold 700 */
+    font-family: Poppins;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 56px; /* 155.556% */
+    align-self: stretch;
+}
+
+.about-avidclan-text-span {
+    color: var(--Avidclan_CLR-Black-black-400, #4D5154);
+    /* Typography/H4/Medium 500 */
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px; /* 160% */
+    align-self: stretch;
+}
+
+.about-us-dark-box {
+    display: flex;
+    height: 100%;
+    padding: 24px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+    border-radius: 16px;
+    background: var(--Avidclan_CLR-Dark-Blue-dark-blue-500, #142149);
+    /* Dropshadow/Timeline */
+    box-shadow: 0px 12px 24px 0px rgba(33, 37, 41, 0.06);
+}
+
+.about-us-dark-box-client-span {
+    color: var(--Avidclan_CLR-White-white-500, #FFF);
+    /* Typography/H1/Bold 700 */
+    font-family: Poppins;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 56px; /* 155.556% */
+}
+
+.about-us-dark-box-client-p {
+    color: var(--Avidclan_CLR-White-white-500, #FFF);
+    /* Typography/H4/Medium 500 */
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px; /* 160% */
+}
+
+.about-us-light {
+    display: flex;
+    height: 100%;
+    padding: 24px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+    border-radius: 16px;
+    background: var(--Avidclan_CLR-White-white-500, #FFF);
+    /* Dropshadow/Timeline */
+    box-shadow: 0px 12px 24px 0px rgba(33, 37, 41, 0.06);
+}
+
+.about-us-light-box-project-icon {
+    padding: 2px;
+}
+
+.about-us-light-project-span {
+    color: var(--Avidclan_CLR-Dark-Blue-dark-blue-500, #142149);
+    /* Typography/H1/Bold 700 */
+    font-family: Poppins;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 56px; /* 155.556% */
+}
+
+.about-us-light-project-p {
+    color: var(--Avidclan_CLR-Dark-Blue-dark-blue-500, #142149);
+    /* Typography/H4/Medium 500 */
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px; /* 160% */
+}
+
+.about-us-img-box {
+    border-radius: 16px;
+    background: url(<path-to-image>) lightgray 50% / cover no-repeat;
+    /* Dropshadow/Timeline */
+    box-shadow: 0px 12px 24px 0px rgba(33, 37, 41, 0.06);
+    height: 100%;
+    align-self: stretch;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    #about-us-section {
+        display: none !important;
+    }
+
+    #about-us-section-for-mobile-ui {
+        display: block !important;
+    }
+
+    .section-hiring-title-p {
+        padding: 7px;
+    }
+
+    #swiper-next {
+        display: block !important;
+    }
+
+    #swiper-prev {
+        display: block !important;
+    }
+}
+
+/*why hire from avidclan*/
+.why-hire-content-box {
+    display: flex;
+    height: 100%;
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    border-radius: 12px;
+    border: 2px solid var(--Avidclan_CLR-Black-black-50, #E9E9EA);
+    background: var(--Avidclan_CLR-White-white-500, #FFF);
+    /* Dropshadow/Timeline */
+    box-shadow: 0px 12px 24px 0px rgba(33, 37, 41, 0.06);
+}
+
+.why-hire-content-icon-box {
+    display: flex;
+    padding: 12px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    background: var(--Avidclan_CLR-Light-Blue-light-blue-50, #E6F2FF);
+}
+
+.why-hire-title-box-span {
+    color: var(--Avidclan_CLR-Light-Blue-light-blue-500, #007BFC);
+    /* Typography/H2/SemiBold 600 */
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 36px; /* 150% */
+}
+
+.why-hire-content-text-p {
+    color: var(--Avidclan_CLR-Black-black-400, #4D5154);
+    /* Typography/H4/Medium 500 */
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px; /* 160% */
+    align-self: stretch;
+}
+
+.why-hire-header-box {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    align-self: stretch;
+}
+
+.badges-row {
+    display: flex;
+    padding: 24px 70px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+}
+
+.badge-box-img {
+    box-sizing: content-box !important;
+    border-radius: 8px;
+    background: url(<path-to-image>) lightgray 14.465px 20.422px / 85.535% 77.026% no-repeat, #FFF;
+    /* Dropshadow/Timeline */
+    box-shadow: 0px 12px 24px 0px rgba(33, 37, 41, 0.06);
+}
+
+.badge-box-p {
+    color: var(--Avidclan_CLR-Dark-Blue-dark-blue-200, #9399AB);
+    text-align: center;
+    /* Typography/H5/Regular 400 */
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 133.333% */
+    align-self: stretch;
+}
+
+.badgecard-overflow {
+    overflow: hidden !important;
+}
+.badge-card .stretched-link {
+    text-decoration: none;
+    margin: 10px 20px !important;
+    box-shadow: 0 2px 16px -2px rgba(0, 0, 0, .05);
+}
+.pricing-plan-box {
+    display: flex;
+    height: 100%;
+    padding: 28px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    border-radius: 12px;
+    border: 2px solid var(--Avidclan_CLR-Light-Blue-light-blue-300, #54A7FD);
+    background: var(--Avidclan_CLR-White-white-500, #FFF);
+}
+
+.pricing-plan-h2-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 42px;
+    align-self: stretch;
+}
+
+.pricing-plan-title {
+    color: var(--Avidclan_CLR-Dark-Blue-dark-blue-500, #142149);
+    font-family: Poppins;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 44px; /* 122.222% */
+}
+
+.pricing-plan-content-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+}
+
+.pricing-plan-content-span {
+    color: var(--Avidclan_CLR-Dark-Blue-dark-blue-500, #142149);
+    /* Typography/H4/Regular 400 */
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px; /* 160% */
+    flex: 1 0 0;
+}
+
+.pricing-plan-detail-box {
+    display: flex;
+    flex-direction: column;
+    /*align-items: flex-start;*/
+    gap: 14px;
+    align-self: stretch;
+}
+
+.pricing-plan-detail-span {
+    color: var(--Avidclan_CLR-Dark-Blue-dark-blue-500, #142149);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 44px; /* 122.222% */
+    flex: 1 0 0;
+}
+
+.tech-combination-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 48px;
+    align-self: stretch;
+}
+
+.tech-combination-box {
+    display: flex;
+    height: 100%;
+    padding: 40px 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    border-radius: 12px;
+    background: var(--Avidclan_CLR-Dark-Blue-dark-blue-50, #E8E9ED) !important;
+    text-align: left;
+}
+
+.tech-box-icon-combination {
+    display: flex;
+    align-items: flex-start;
+    padding: 4px 12px;
+    /*align-items: center;*/
+    gap: 12px;
+    border-radius: 8px;
+    background: var(--Secondary, #142149);
+}
+
+.badge-card {
+    position: relative;
+    display: flex;
+    align-items: flex-start !important;
+    min-height: 125px;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: transparent;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.tech-blog-plus-sign {
+    display: flex;
+    padding: 0px 8px;
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 10px;
+}
+
+.tech-combination-title {
+    color: var(--Secondary, #142149);
+    /* Typography/H2/SemiBold 600 */
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 36px; /* 150% */
+    align-self: stretch;
+    align-items: flex-start;
+    text-align: left; /* Left-align title text */
+}
+
+.tech-combination-span {
+    align-items: flex-start !important;
+}
+
+.tech-combination-p {
+    color: var(--Avidclan_CLR-Black-black-400, #4D5154);
+    /* Typography/H4/Regular 400 */
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px; /* 160% */
+    align-self: stretch;
+    align-items: flex-start;
+    text-align: left; /* Left-align title text */
+}
+
+.tech-combination-h1 {
+    color: white;
+}
+
+.tech-combination {
+    margin-bottom: 32px !important;
+}
+
+.tech-combination-text {
+    margin-bottom: 79px !important;
+}
+
+.left-arrow {
+    margin-left: -25px !important;
+}
+
+.right-arrow {
+    margin-right: 12px !important;
+}
+
+.tech-combination-content {
+    margin-bottom: 43px;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .tech-combination-container {
+        display: flex;
+        flex-wrap: wrap; /* Allow wrapping of items */
+        justify-content: center; /* Center items horizontally */
+    }
+
+    .taech-combintion-tab-ui {
+        width: 220px !important; /* Fixed width */
+        margin-right: 10px !important;
+        display: flex; /* Make this a flex container */
+        flex-direction: column; /* Stack children vertically */
+        flex-grow: 1; /* Allow to grow to fill the height */
+        height: 856px !important;
+    }
+
+    .badge-card {
+        flex: 1; /* Ensure all cards take equal height */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Space elements evenly */
+        min-height: 300px; /* Set a minimum height */
+        margin-top: 24px;
+        margin-bottom: 24px;
+        border-radius:10px !important;
+    }
+
+    .right-arrow {
+        margin-right: 3px !important;
+    }
+}
+
+.pricing-plan-content-box-ul {
+    padding-left: 2rem;
+}
+
+.pricing-plan-content-box-li {
+    list-style-image: url('../../images/hiringpages/tick (1).svg') !important;
+    margin-bottom: 12px;
+}
+
+    .pricing-plan-content-box-li::marker {
+        margin-top: 5px !important;
+    }
+
+.pricing-box {
+    margin-top: 63px;
+}
+
+.pricing-box2 {
+    margin-top: 30px;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .why-hire-card {
+        margin: 12px;
+    }
+
+    .hiring-process-icon-mobile-ui {
+        margin-left: 127px !important;
+    }
+    .why-hire-contentbox-mobileui {
+        margin-right: 25px !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    #swiper-next,
+    #swiper-prev {
+        display: block !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .taech-combintion-tab-ui {
+        width: 220px !important;
+        margin-right: 10px !important;
+    }
+    /*.tech-combination-box {
+        padding: 17px 12px !important;
+    }
+    .tech-combination-span {
+        margin-bottom: 41px !important;
+    }*/
+}
+
+@media (min-width: 1024px) { /* Adjust this breakpoint as needed for laptops and big screens */
+    .hiring-process-icon {
+        margin-left: 38px !important;
+    }
+}
+
+.banner-section-margin {
+    margin-top: 40px !important;
+}
+@media (max-width: 767px) {
+    #about-us-section-tablet {
+        display: none;
+    }
+}
+
