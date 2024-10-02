@@ -447,7 +447,8 @@ namespace Avidclan_Website.Controllers
                     var thumbnailImageString = BlogList[i].Image;
 
                     var thumbnailImageCDN = thumbnailImageString;
-                    if (thumbnailImageString.Contains("https"))
+                    //thumbnailImageString.StartsWith("http")
+                    if (thumbnailImageString.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                     {
                         thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString : ImageServerUrl + thumbnailImageString;
                     }
@@ -488,7 +489,7 @@ namespace Avidclan_Website.Controllers
                     var thumbnailImageString = BlogList[i].Image;
 
                     var thumbnailImageCDN = thumbnailImageString;
-                    if (thumbnailImageString.Contains("https"))
+                    if (thumbnailImageString.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                     {
                         thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString : ImageServerUrl + thumbnailImageString;
                     }
@@ -532,7 +533,7 @@ namespace Avidclan_Website.Controllers
                     var thumbnailImageString = BlogList[i].Image;
 
                     var thumbnailImageCDN = thumbnailImageString;
-                    if (thumbnailImageString.Contains("https"))
+                    if (thumbnailImageString.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                     {
                         thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString : ImageServerUrl + thumbnailImageString;
                     }
@@ -576,7 +577,7 @@ namespace Avidclan_Website.Controllers
                     var thumbnailImageString = BlogList[i].Image;
 
                     var thumbnailImageCDN = thumbnailImageString;
-                    if (thumbnailImageString.Contains("https"))
+                    if (thumbnailImageString.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                     {
                         thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString : ImageServerUrl + thumbnailImageString;
                     }
@@ -655,7 +656,8 @@ namespace Avidclan_Website.Controllers
                     var thumbnailImageString = bloglist[i].Image;
 
                     var thumbnailImageCDN = thumbnailImageString;
-                    if (thumbnailImageString.Contains("https"))
+
+                    if (thumbnailImageString.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                     {
                         thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString : ImageServerUrl + thumbnailImageString;
                     }
@@ -666,7 +668,7 @@ namespace Avidclan_Website.Controllers
             var dynamiclist = new
             {
                 bloglist = bloglist,
-                blogfaqslist = blogfaqslist
+                blogfaqslist = blogfaqslist,
             };
             return Json(dynamiclist, JsonRequestBehavior.AllowGet);
         }
