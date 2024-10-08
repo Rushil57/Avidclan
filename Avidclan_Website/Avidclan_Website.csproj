@@ -196,6 +196,7 @@
     <Content Include="assets\css\Avidclan\contactus.css" />
     <Content Include="assets\css\Avidclan\career.css" />
     <Content Include="assets\css\Avidclan\blog.css" />
+    <Content Include="assets\css\Avidclan\dotnet_development_locationPage.css" />
     <Content Include="assets\css\Avidclan\flutter_app_development_usa.css" />
     <Content Include="assets\css\Avidclan\hiringpages.css" />
     <Content Include="assets\css\Avidclan\work.css" />
@@ -238,10 +239,21 @@
     <Content Include="assets\images\adobe_xd.svg" />
     <Content Include="assets\images\agile-img.svg" />
     <Content Include="assets\images\AIDevelopment\Ai Integration and Deployment.jpg" />
+    <Content Include="assets\images\AIDevelopment\Apache Kafka.png" />
+    <Content Include="assets\images\AIDevelopment\Apache Spark.png" />
+    <Content Include="assets\images\AIDevelopment\AWS Sagemaker.png" />
     <Content Include="assets\images\AIDevelopment\Blockchain.jpg" />
     <Content Include="assets\images\AIDevelopment\Custom AI Development.jpg" />
     <Content Include="assets\images\AIDevelopment\GenerativeAi.jpg" />
+    <Content Include="assets\images\AIDevelopment\Google Cloud AI.png" />
+    <Content Include="assets\images\AIDevelopment\Keras.png" />
     <Content Include="assets\images\AIDevelopment\Machine Learning.jpg" />
+    <Content Include="assets\images\AIDevelopment\Mongo DB.png" />
+    <Content Include="assets\images\AIDevelopment\Open CV.png" />
+    <Content Include="assets\images\AIDevelopment\PY Torch.png" />
+    <Content Include="assets\images\AIDevelopment\Python.png" />
+    <Content Include="assets\images\AIDevelopment\SQL Database.png" />
+    <Content Include="assets\images\AIDevelopment\Tensor Flow.png" />
     <Content Include="assets\images\android-app-dev.jpg" />
     <Content Include="assets\images\android-app-tech.jpg" />
     <Content Include="assets\images\android-img.svg" />
@@ -717,7 +729,12 @@
     <Content Include="assets\images\locations\Internet-marketing.svg" />
     <Content Include="assets\images\locations\IOT Service.svg" />
     <Content Include="assets\images\locations\Mobile Apps.svg" />
+    <Content Include="assets\images\locations\Process_dotnet_usa_ Mobile.png" />
+    <Content Include="assets\images\locations\Process_dotnet_usa_Web.png" />
     <Content Include="assets\images\locations\QA Services.svg" />
+    <Content Include="assets\images\locations\SVGThumbnail - .NET Core vs .NET Framework_ Understand Them for Modern Web Development.svg" />
+    <Content Include="assets\images\locations\SVGThumbnail -Top Features of .NET 7_ What%27s New and Improved- Avidclan Technologies.svg" />
+    <Content Include="assets\images\locations\SVGThumbnail-The Advantages of Choosing .NET Core for Modern Web Applications.svg" />
     <Content Include="assets\images\locations\uid_blog1.jpg" />
     <Content Include="assets\images\locations\uid_blog2.jpg" />
     <Content Include="assets\images\locations\uid_blog3.jpg" />
@@ -1066,6 +1083,7 @@
     <Content Include="Views\Avidclan\UiUxDesignCompanyUSA.cshtml" />
     <Content Include="Views\HiringPages\HiredotNetDevelopers.cshtml" />
     <Content Include="Views\Avidclan\AIDevelopment.cshtml" />
+    <Content Include="Views\Avidclan\DotNetDevelopmentUSA.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

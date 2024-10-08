@@ -21,7 +21,8 @@
 }
 
 .banner-section-box {
-    background: linear-gradient(180deg, #EDF0FF 0%, rgba(237, 240, 255, 0.71) 0.01%, rgba(237, 240, 255, 0.00) 100%) !important;
+    /*background: linear-gradient(180deg, #EDF0FF 0%, rgba(237, 240, 255, 0.71) 0.01%, rgba(237, 240, 255, 0.00) 100%) !important;*/
+    background-image: linear-gradient(0deg, rgba(237, 240, 255, 70%), rgba(237, 240, 255, 0%));
 }
 
 .hiring-section-subtittle {
@@ -1528,10 +1529,12 @@
 
     #swiper-next {
         display: block !important;
+        right: 23px;
     }
 
     #swiper-prev {
         display: block !important;
+        left: 14px;
     }
 }
 
@@ -1631,7 +1634,7 @@
     padding: 28px 20px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 32px;
+    gap: 16px;
     border-radius: 12px;
     border: 2px solid var(--Avidclan_CLR-Light-Blue-light-blue-300, #54A7FD);
     background: var(--Avidclan_CLR-White-white-500, #FFF);
@@ -1776,7 +1779,7 @@
 }
 
 .tech-combination {
-    margin-bottom: 32px !important;
+    margin-bottom: 15px !important;
 }
 
 .tech-combination-text {
@@ -1859,6 +1862,7 @@
     .why-hire-contentbox-mobileui {
         margin-right: 25px !important;
     }
+   
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -1894,5 +1898,163 @@
     #about-us-section-tablet {
         display: none;
     }
+
+}
+/*.contact-input {
+    width: 100% !important;  Custom width for larger screens 
+}*/
+@media only screen and (min-width: 992px) and (max-device-width: 1024px) { /* For laptops and larger screens */
+    .contact-input {
+        width: 607px !important; /* Custom width for larger screens */
+    }
 }
 
+@media only screen and (min-device-width : 410px){
+   
+    .contact-input-mobile {
+        width: 120% ;  /*Custom width for larger screens*/ 
+    }
+}
+@media (min-device-width : 480px) and (max-device-width: 768px) {
+    .contact-input {
+        width: 110%;
+    }
+}
+@media (min-device-width : 1024px) and (max-device-width: 1080px) {
+    .contact-input {
+        width: 429px !important;
+    }
+}
+@media (min-device-width : 1080px) and (max-device-width: 1400px) {
+    .mobile-input input {
+        width: 149% !important;
+    }
+}
+@media (min-device-width : 1440px) {
+    .contact-input {
+        width: 604px !important;
+    }
+}
+@media (min-device-width : 320px) and (max-width: 321px) {
+    .mobile-input input {
+        width: 100% !important;
+    }
+}
+/* Media query for 425px or less */
+@media (min-width: 425px) and (max-device-width : 480px) {
+    .mobile-input input {
+        width: 131% !important; /* Set width to 128% */
+    }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+    .mobile-input input {
+        width: 107% !important; /* Set width to 106% */
+    }
+}
+@media (min-device-width : 360px) and (max-width: 390px) {
+    .mobile-input input {
+        width: 107%;
+    }
+}
+@media (min-device-width : 540px) and (max-width: 360px) {
+    .mobile-input input {
+        width: 169%;
+    }
+}
+
+@media (min-device-width : 375px) and (max-device-width: 380px) {
+    .mobile-input input {
+        width: 112%;
+    }
+}
+@media (min-device-width : 410px) and (max-width: 430px) {
+    .mobile-input input {
+        width: 126%;
+    }
+}
+@media (min-device-width : 390px) and (max-width: 410px) {
+    .mobile-input input {
+        width: 117%;
+    }
+}
+@media (min-device-width : 430px) and (max-device-width: 450px) {
+    .mobile-input input {
+        width: 128%;
+    }
+}
+/*@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {*/
+/*#phone {
+        width: auto !important;
+    }*/
+/*.contact-input-web {
+        width: 100% !important;
+    }
+}
+@media only screen and (min-device-width : 340px) and (max-device-width : 410px) {*/
+/*#phone {
+        width: auto !important;
+    }*/
+/*.contact-input-mobile {
+        width: 120% ;
+    }
+}
+@media only screen and (min-device-width : 410px){
+    .contact-input-mobile {
+        width: 121% !important;
+    }}*/
+.pricing-icon-img-web {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 3px;
+}
+.pricing-p {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 40px);
+}
+.pricing-plan-content-li {
+    margin-bottom: 12px !important;
+    list-style: none;
+}
+.price-m-top {
+    margin-top: 43px;
+}
+@media only screen and (max-width: 768px) {
+    .pricing-plan-detail-span {
+        font-size: 34px;
+    }
+    .why-hire-title-box-span{
+        font-size:21px;
+    }
+    .why-hire-header-box{
+        gap:6px;
+    }
+    .hourly-span {
+        margin-top: 60px !important;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1020px) {
+    .core-react {
+        margin-top: 25px;
+    }
+    .web-assembly {
+        margin-top: -41px;
+    }
+    .docker-dotnetcore {
+        margin-top: 24px;
+    }
+    .wpf-entity {
+        margin-top: -28px;
+    }
+    .widows-devexp {
+        margin-top: -25px;
+    }
+    .mvc-azure {
+        margin-top: -29px;
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .contact-inputbox {
+        margin-left: 4px !important
+    }
+}

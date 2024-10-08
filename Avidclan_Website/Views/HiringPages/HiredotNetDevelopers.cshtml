@@ -3,15 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    @*<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">*@
 
     @{
         ViewBag.Title = "HiredotNetDevelopers";
-    }
-
-
-    @{
-        ViewBag.Title = "Index";
         var context = "@context";
         var type = "@type";
         var id = "@id";
@@ -40,6 +35,14 @@
         <link href="~/assets/css/Avidclan/hiringpages.css" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    
+        <!-- Include intlTelInput -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+        <!-- Optional: Include the utils script if you need it -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
+
+        <link rel="stylesheet" href="~/assets/css/intlTelInput.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <link rel="stylesheet" href="~/assets/css/Avidclan/blog.css" />
         <script type="application/ld+json">
@@ -78,15 +81,15 @@
 <body>
     <!-- Banner Section -->
     <!-- Banner Section -->
-    <section class="banner-section-two banner-section-box">
+    <section class="banner-section-two banner-section-box" style="padding-bottom:76px;">
         <div class="container banner-section-margin">
             <div class="row">
                 <div class="col-lg-7 order-lg-2  order-sm-3 order-2">
                     <div class="pl-3">
-                        <h1>Hire Dedicated .Net Developers</h1>
+                        <h1>Hire Dedicated .NET Developers</h1>
                         <h3 class="hiring-section-subtittle">Unleash the power of the .NET Development with our expert Solutions</h3>
                         <p class="text">
-                            At Avidclan Technologies, we are a premier .NET development company with a proven legacy of delivering innovative solutions for businesses of all sizes, from web to desktop applications. Transform your business with our expert team, which surpasses your expectations by harnessing the full potential of the .NET framework to ensure your projects, whether enterprise-grade software or cutting-edge applications.
+                            Avidclan Technologies is a top .NET development company with a proven legacy of delivering innovative solutions, from desktop systems to web applications, tailored to businesses of all sizes. Transform your business with our expert team, which surpasses your expectations by harnessing the full potential of the .NET framework to ensure your projects, whether enterprise-grade software or cutting-edge applications.
                         </p>
                     </div>
                     <div class="row">
@@ -117,7 +120,7 @@
 
     <!--End Banner Section-->
     <!--Avidclan Banner div Section-->
-    <section id="badges" style="background-image: none !important; background: var(--Avidclan_CLR-Dark-Blue-dark-blue-700, #0E1734);margin-top:76px;">
+    <section id="badges" style="background-image: none !important; background: var(--Avidclan_CLR-Dark-Blue-dark-blue-700, #0E1734);">
         <div class="container text-center" style="background-image:none !important;">
             <!-- row -->
             <div class="row badges-row swiper">
@@ -365,7 +368,7 @@
                 </div>
             </div>
             <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
-                <div class="col-md-2 col-lg-2 col-sm-4">
+                <div class="col-md-2 col-lg-2 col-sm-4 my-auto">
                     <div class="tech-title-box tech-box" style="float: left;">
                         <h4>Frameworks</h4>
                     </div>
@@ -375,7 +378,10 @@
                         <ul class=" inline-list">
                             <li class="inline-list-li tech-li-text"><span>ASP.NET</span></li>
                             <li class="inline-list-li tech-li-text"><span>WPF</span></li>
-                            <li class="inline-list-li tech-li-text"><span>WF</span></li>
+                            <li class="inline-list-li tech-li-text"><span>.NET Framework</span></li>
+                            <li class="inline-list-li tech-li-text"><span>ASP.NET MVC</span></li>
+
+                            <li class="inline-list-li tech-li-text"><span>.NET Core</span></li>
                             <li class="inline-list-li tech-li-text"><span>Blazor</span></li>
                             <li class="inline-list-li tech-li-text"><span>SignalR</span></li>
                         </ul>
@@ -383,7 +389,7 @@
                 </div>
             </div>
             <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
-                <div class="col-md-2 col-lg-2">
+                <div class="col-md-2 col-lg-2 my-auto">
                     <div class="tech-title-box tech-box" style="float: left;">
                         <h4>Libraries</h4>
                     </div>
@@ -393,7 +399,7 @@
                         <ul class="inline-list">
                             <li class="inline-list-li tech-li-text"><span>LINQ</span></li>
                             <li class="inline-list-li tech-li-text"><span>ADO.NET</span></li>
-                            <li class="inline-list-li tech-li-text"><span>System. Data</span></li>
+                            <li class="inline-list-li tech-li-text"><span>System.Data</span></li>
                             <li class="inline-list-li tech-li-text"><span>AutoMapper</span></li>
                             <li class="inline-list-li tech-li-text"><span>Serilog</span></li>
                             <li class="inline-list-li tech-li-text"><span>Nlog</span></li>
@@ -402,7 +408,7 @@
                 </div>
             </div>
             <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
-                <div class="col-md-2 col-lg-2">
+                <div class="col-md-2 col-lg-2 my-auto">
                     <div class="tech-title-box tech-box" style="float: left;">
                         <h4>Databases</h4>
                     </div>
@@ -411,16 +417,14 @@
                     <div class="tech-box" style="/* float: left; */">
                         <ul class="inline-list">
                             <li class="inline-list-li tech-li-text"><span>SQL Server</span></li>
-                            <li class="inline-list-li tech-li-text"><span>Oracle</span></li>
-                            <li class="inline-list-li tech-li-text"><span>MY SQL</span></li>
+                            <li class="inline-list-li tech-li-text"><span>MySQL</span></li>
                             <li class="inline-list-li tech-li-text"><span>MongoDB</span></li>
-                            <li class="inline-list-li tech-li-text"><span>SignalR</span></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
-                <div class="col-md-4 col-lg-2">
+                <div class="col-md-4 col-lg-2 my-auto">
                     <div class="tech-title-box tech-box" style="float: left !important;">
                         <h4>Tools and Utilities</h4>
                     </div>
@@ -431,10 +435,9 @@
                             <li class="inline-list-li tech-li-text"><span>Visual Studio</span></li>
                             <li class="inline-list-li tech-li-text"><span>NuGet</span></li>
                             <li class="inline-list-li tech-li-text"><span>Docker</span></li>
-                            <li class="inline-list-li tech-li-text"><span>Git Hub</span></li>
+                            <li class="inline-list-li tech-li-text"><span>GitHub</span></li>
                             <li class="inline-list-li tech-li-text"><span>Jira</span></li>
                             <li class="inline-list-li tech-li-text"><span>Azure Devops</span></li>
-                            <li class="inline-list-li tech-li-text"><span>Docker</span></li>
                         </ul>
                     </div>
                 </div>
@@ -474,7 +477,7 @@
                     <div class="swiper-wrapper">
                         <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4 taech-combintion-tab-ui pb-md-4 swiper-slide">
                             <div class="badge-card tech-combination-box">
-                                <div class="tech-box-icon-combination">
+                                <div class="tech-box-icon-combination mvc-azure">
                                     <img src="~/assets/images/hiringpages/asp.net 1.svg" /> <h1 class="tech-combination-h1">+</h1>
                                     <img src="~/assets/images/hiringpages/Group.svg" />
                                 </div>
@@ -494,7 +497,7 @@
                         </div>
                         <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4 taech-combintion-tab-ui pb-md-4 swiper-slide">
                             <div class="badge-card tech-combination-box">
-                                <div class="tech-box-icon-combination">
+                                <div class="tech-box-icon-combination core-react">
                                     <img src="~/assets/images/hiringpages/asp.net 1.svg" /> <h1 class="tech-combination-h1">+</h1>
                                     <img src="~/assets/images/hiringpages/Icons1.svg" />
                                 </div>
@@ -504,7 +507,7 @@
                         </div>
                         <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4 taech-combintion-tab-ui pb-md-4 swiper-slide">
                             <div class="badge-card tech-combination-box">
-                                <div class="tech-box-icon-combination">
+                                <div class="tech-box-icon-combination web-assembly">
                                     <img src="~/assets/images/hiringpages/blazor.svg" /> <h1 class="tech-combination-h1">+</h1>
                                     <img src="~/assets/images/hiringpages/webassembly-svgrepo-com.svg" />
                                 </div>
@@ -514,7 +517,7 @@
                         </div>
                         <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4 taech-combintion-tab-ui pb-md-4 swiper-slide">
                             <div class="badge-card tech-combination-box">
-                                <div class="tech-box-icon-combination">
+                                <div class="tech-box-icon-combination docker-dotnetcore">
                                     <img src="~/assets/images/hiringpages/docker-svgrepo-com.svg" /><h1 class="tech-combination-h1">+</h1>
                                     <img src="~/assets/images/hiringpages/dot net core.svg" />
                                 </div>
@@ -534,18 +537,18 @@
                         </div>
                         <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4 taech-combintion-tab-ui pb-md-4 swiper-slide">
                             <div class="badge-card tech-combination-box">
-                                <div class="tech-box-icon-combination">
+                                <div class="tech-box-icon-combination wpf-entity">
                                     <img src="~/assets/images/hiringpages/microsoft-forms.svg" />
                                     @*<img src="~/assets/images/hiringpages/wpf.svg" />*@ <h1 class="tech-combination-h1">+</h1>
                                     <img src="~/assets/images/hiringpages/Rectangle.svg" />
                                 </div>
                                 <span class="tech-combination-title tech-combination-span tech-combination">WPF + Entity Framework</span>
-                                <p class="tech-combination-p tech-combination-span tech-combination-content">Craft feature-rich desktop apps with Windows Presentation Foundation (WPF) for complex user interfaces and Entity Framework for efficient data access and management via ORM.</p>
+                                <p class="tech-combination-p tech-combination-span">Craft feature-rich desktop apps with Windows Presentation Foundation (WPF) for complex user interfaces and Entity Framework for efficient data access and management via ORM.</p>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4 taech-combintion-tab-ui pb-md-4 swiper-slide">
                             <div class="badge-card tech-combination-box">
-                                <div class="tech-box-icon-combination">
+                                <div class="tech-box-icon-combination widows-devexp">
                                     <img src="~/assets/images/hiringpages/microsoft-forms.svg" /><h1 class="tech-combination-h1">+</h1>
                                     <img src="~/assets/images/hiringpages/Dev.svg" />
                                 </div>
@@ -559,7 +562,7 @@
                                     <img src="~/assets/images/hiringpages/signalR 2.svg" /><h1 class="tech-combination-h1">+</h1>
                                     <img src="~/assets/images/hiringpages/asp.net 1.svg" />
                                 </div>
-                                <span class="tech-combination-title tech-combination-span tech-combination">Signal R + ASP.Net core</span>
+                                <span class="tech-combination-title tech-combination-span tech-combination">Signal R + ASP.NET core</span>
                                 <p class="tech-combination-p tech-combination-span tech-combination-content">Signal R and ASP.NET Core are used for enabling real-time communication in web applications. Leverage them for accessing chat apps, live updates and interactive user experiences.</p>
                             </div>
                         </div>
@@ -592,7 +595,7 @@
                         <span class="about-avidclan-text-span">
                             A mindful team of tech innovators transforming bold ideas into digital masterpieces.
                             We at Avidclan fuse creativity with technology,
-                            crafting user-centric solutions that captivate and drive the success of global leaders
+                            crafting user-centric solutions that captivate and drive the success of global leaders.
                         </span>
                     </div>
                 </div>
@@ -627,7 +630,7 @@
                 <div class="col-md-6 col-lg-3 mt-3">
                     <div class="about-us-dark-box">
                         <img src="~/assets/images/hiringpages/Satisfaction.svg" />
-                        <span class="about-us-dark-box-client-span">90%</span>
+                        <span class="about-us-dark-box-client-span">99%</span>
                         <p class="about-us-dark-box-client-p">Satisfaction Rate</p>
                     </div>
                 </div>
@@ -757,7 +760,7 @@
                             <div class="sec-title">
                                 <h2 style="font-family: Poppins !important; padding-bottom: 0">Why Hire from Avidclan Technologies?</h2>
                                 <hr class="hr-cls center-block" />
-                                <p class="text m-0 header_description">At Avidclan we have a well-organized process that allows us to assess each talent's abilities and experience to choose the best talent to meet your needs and assist you in creating a robust, cross-platform and innovative app that will grow your company.</p>
+                                <p class="text m-0 header_description">At Avidclan Technologies, we have a well-organized process that allows us to assess each talent's abilities and experience to choose the best talent to meet your needs and assist you in creating a robust, cross-platform and innovative app that will grow your company.</p>
                             </div>
                         </div>
                     </div>
@@ -792,7 +795,7 @@
                             <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/cpo.svg" />
                             <span class="why-hire-title-box-span">Cost-Performance Optimization</span>
                         </div>
-                        <p class="why-hire-content-text-p">Our primary objective is to provide economical solutions while enhancing efficiency to guarantee optimal return on investment</p>
+                        <p class="why-hire-content-text-p">Our primary objective is to provide economical solutions while enhancing efficiency to guarantee optimal return on investment.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card mt-4">
@@ -825,13 +828,12 @@
                             <span class="why-hire-title-box-span">Transparent Communication</span>
                         </div>
                         <p class="why-hire-content-text-p">
-                            We use an agile development approach and make sure your project has a transparent workflow , open lines of communication, and a reliable reporting system                        </p>
+                            We use an agile development approach and make sure your project has a transparent workflow, open lines of communication, and a reliable reporting system.
+                        </p>
                     </div>
                 </div>
             </div>
-            @*<div class="row mt-4">
-
-                </div>*@
+            
         </div>
     </section>
     <!--hire from avidclan section end-->
@@ -860,19 +862,35 @@
                             <h2 class="pricing-plan-title">Hourly</h2>
                         </div>
                         <div class="pricing-plan-content-box">
-                            <ul class="pricing-plan-content-box-ul">
-                                <li class="pricing-plan-content-span pricing-plan-content-box-li"> Skilled and experienced developers will be allocated 4-8 hours per day according to your needs</li>
-                                <li class="pricing-plan-content-span pricing-plan-content-box-li"> Flexible scope and timeline</li>
-                                <li class="pricing-plan-content-span pricing-plan-content-box-li"> Ideal for projects with uncertain requirements</li>
+                            <ul>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Skilled and experienced developers will
+                                        be allocated 4-8 hours per day according to your needs
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Flexible scope and timeline
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Ideal for projects with uncertain requirements
+                                    </p>
+                                </li>
                             </ul>
                         </div>
-                        <div class="pricing-plan-detail-box text-center">
+                        <div class="pricing-plan-detail-box text-center hourly-span" style="margin-top: 29px;">
                             <span class="pricing-plan-detail-span">
                                 $18/hour <br /> (USD)
                             </span>
                             <button onclick="window.location.href='/services#project_inquiry_form';" class="theme-btn btn-style-one">
                                 <span class="btn-title" style="padding: 10px 20px!important;">
-                                    Hire Hourly Developer
+                                    Hire Developers on Hourly Basis
                                     <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
                                 </span>
                             </button>
@@ -885,10 +903,26 @@
                             <h2 class="pricing-plan-title">Monthly</h2>
                         </div>
                         <div class="pricing-plan-content-box">
-                            <ul class="pricing-plan-content-box-ul">
-                                <li class="pricing-plan-content-span pricing-plan-content-box-li"> Skilled and experienced developers will be allocated full-time for 160 hours per month</li>
-                                <li class="pricing-plan-content-span pricing-plan-content-box-li"> Predictable resource allocation</li>
-                                <li class="pricing-plan-content-span pricing-plan-content-box-li"> Suitable for long-term projects</li>
+                            <ul>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Skilled and experienced developers will
+                                        be allocated full-time for 160 hours per month
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li price-m-top">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Predictable resource allocation
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Suitable for long-term projects
+                                    </p>
+                                </li>
                             </ul>
                         </div>
                         <div class="pricing-plan-detail-box text-center pricing-box">
@@ -897,7 +931,7 @@
                             </span>
                             <button onclick="window.location.href='/services#project_inquiry_form';" class="theme-btn btn-style-one">
                                 <span class="btn-title" style="padding: 10px 20px!important;">
-                                    Hire Monthly Developer
+                                    Hire Developers on Monthly Basis
                                     <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
                                 </span>
                             </button>
@@ -910,12 +944,29 @@
                             <h2 class="pricing-plan-title">Build a team</h2>
                         </div>
                         <div class="pricing-plan-content-box">
-                            <ul class="pricing-plan-content-box-ul">
-                                <li class="pricing-plan-content-span pricing-plan-content-box-li"> Hire a professional and dedicated team of Project Managers, Designers, Developers, and QA</li>
-                                <li class="pricing-plan-content-span pricing-plan-content-box-li"> Easy to upscale and downscale</li>
-                                <li class="pricing-plan-content-span pricing-plan-content-box-li"> Suitable for complete project development from scratch</li>
+                            <ul>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Hire a professional and dedicated team
+                                        of Project Managers, Designers, Developers,
+                                        and QA
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Easy to upscale and downscale
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Suitable for complete project development from scratch
+                                    </p>
+                                </li>
                             </ul>
-                        </div>
+                                                   </div>
                         <div class="pricing-plan-detail-box text-center pricing-box2">
                             <span class="pricing-plan-detail-span">
                                 $10,000/month (USD)
@@ -943,7 +994,7 @@
                     <div class="service-block">
                         <div class="avidclan_section_title text-center mb-50">
                             <div class="sec-title">
-                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Benefits of hiring dedicated developers</h2>
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Benefits of Hiring Hedicated Developers</h2>
                                 <hr class="center-block" style="width: 500px;" />
                                 <p class="text m-0 header_description">
                                     Boost Your Business with Our Reliable and Efficient .NET Solutions.
@@ -1003,10 +1054,10 @@
             </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12" style="border:none;" id="develoment-process-div">
-                    <img src="~/assets/images/hiringpages/development_process.png" class="development-process-imgbox img-fluid w-100" alt="Development Process" />
+                    <img src="~/assets/images/locations/Process_dotnet_usa_Web.png" class="development-process-imgbox img-fluid w-100" alt="Development Process" />
                 </div>
                 <div class="col-md-12 col-sm-12" style="border:none;display:none;" id="develoment-process-div-mobile">
-                    <img src="~/assets/images/hiringpages/working process path.png" class="development-process-imgbox img-fluid w-100" alt="Development Process" />
+                    <img src="~/assets/images/locations/Process_dotnet_usa_ Mobile.png" class="development-process-imgbox img-fluid w-100" alt="Development Process" />
                 </div>
             </div>
 
@@ -1180,7 +1231,7 @@
                     <div class="service-block">
                         <div class="avidclan_section_title text-center mb-50">
                             <div class="sec-title">
-                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Industries we serve in</h2>
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Industries we serve</h2>
                                 <hr class="center-block" style="width: 350px;" />
                                 <p class="text m-0 header_description">
                                     Transforming diverse industries with innovative, robust, and scalable .NET solutions for seamless digital growth and success.
@@ -1254,7 +1305,7 @@
                                     <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Client Testimonials</h2>
                                     <hr class="center-block" style="width: 366px;" />
                                     <p class="detail-content m-0  text-wrap" style="text-align: center">
-                                        Hear, what are client says
+                                        Hear, what our client says
                                     </p>
                                 </div>
                             </div>
@@ -1408,7 +1459,7 @@
                         <div class="detail-section-div">
                             <div class="avidclan_section_title text-wrap">
                                 <div class="sec-title center-block">
-                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Frequently asked Questions ( FAQs )</h2>
+                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Frequently Asked Questions (FAQs)</h2>
                                     <hr class="center-block" style="width: 682px;" />
                                     <p class="detail-content m-0  text-wrap" style="text-align: center">
                                         Your Questions Answered: Everything You Need to Know About Our .NET Development Services.
@@ -1450,7 +1501,7 @@
                                         data-bs-target="#collapseTwo"
                                         aria-expanded="false"
                                         aria-controls="collapseTwo">
-                                    What is the hiring Process?
+                                    What is the hiring process?
                                 </button>
                             </h2>
                             <div id="collapseTwo"
@@ -1550,7 +1601,7 @@
                                         data-bs-target="#collapseSeven"
                                         aria-expanded="false"
                                         aria-controls="collapseSeven">
-                                    What our Dot Net programmers can do for you?
+                                    What our .NET programmers can do for you?
                                 </button>
                             </h2>
                             <div id="collapseSeven"
@@ -1584,7 +1635,7 @@
                                         data-bs-target="#collapseEight"
                                         aria-expanded="false"
                                         aria-controls="collapseEight">
-                                    What are the hiring engagement options available at Avidclan?
+                                    What are the hiring engagement options available at Avidclan Technologies?
                                 </button>
                             </h2>
                             <div id="collapseEight"
@@ -1592,7 +1643,7 @@
                                  aria-labelledby="headingEight"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    At Avidclan, we have three hiring modules. Part-time, Quarterly, and Annual all have their plans and working hours accordingly. You can check that out in our pricing plans section
+                                    At Avidclan Technologies, we have three hiring modules. Part-time, Quarterly, and Annual all have their plans and working hours accordingly. You can check that out in our pricing plans section
                                 </div>
                             </div>
                         </div>
@@ -1604,7 +1655,7 @@
                                         data-bs-target="#collapseNine"
                                         aria-expanded="false"
                                         aria-controls="collapseNine">
-                                    What if I am not satisfied with the hired .Net developer's work and would like to exit?
+                                    What if I am not satisfied with the hired .NET developer's work and would like to exit?
                                 </button>
                             </h2>
                             <div id="collapseNine"
@@ -1716,38 +1767,60 @@
                             </h3>
                         </div>
                     </div>
-                    <form id="hiringform" method="post" name="hiring_form_data">
-                        <div class="col-md-12">
-                            <div class="form-group interview-form-input-control">
-                                <input type="text" class="form-control" name="Name" id="Name" placeholder="Your Name">
-                            </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <form id="hiringform" method="post" name="hiring_form_data" action="contact-form-handler.php">
+                                <div class="col-md-12">
+                                    <div class="form-group interview-form-input-control">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="Name" id="Name" placeholder="Your Name">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group interview-form-input-control">
+                                        <div class="input-group">
+                                            <input type="email" class="form-control" id="Email" name="Email" aria-describedby="emailHelp" placeholder="Enter email">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12">
+                                    <div class="form-group interview-form-input-control">
+                                        <div class="input-group mobile-input" style="margin-left:4px;">
+                                            <input type="hidden" id="code" name="code" value="1">
+                                            <input type="tel" name="ContactNumber" id="phone" class="numberonly form-control contact-input" maxlength="10" placeholder=" " aria-describedby="basic-addon1" />
+                                        </div>
+
+                                        @*<input type="tel" name="ContactNumber" id="phone" class="numberonly form-control contact-input contact-input-smallUI" maxlength="10" aria-describedby="basic-addon2" style="display:none;" />*@
+                                        @*<input type="tel" class="" name="ContactNumber" id="" placeholder="123-456-7890" aria-label="Phone number" aria-describedby="basic-addon1">*@
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="form-group interview-form-input-control">
+                                        <div class="input-group">
+                                            <textarea class="form-control" id="Message" name="Message" rows="3" placeholder="Tell us about your project"></textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="btn-box" style="margin-left: 13px">
+                                        <button type="button" class="theme-btn btn-style-one" name="submit" id="btnSendHMail">
+                                            <span class="btn-title">
+                                                Enquire Now
+                                                <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="col-md-12">
-                            <div class="form-group interview-form-input-control">
-                                <input type="email" class="form-control" id="Email" name="Email" aria-describedby="emailHelp" placeholder="Enter email">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group interview-form-input-control">
-                                <input type="tel" class="form-control" name="ContactNumber" id="ContactNumber" placeholder="123-456-7890" aria-label="Phone number" aria-describedby="basic-addon1">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group interview-form-input-control">
-                                <textarea class="form-control" id="Message" name="Message" rows="3" placeholder="Tell us about your project"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="btn-box" style="margin-left: 13px">
-                                <button type="button" class="theme-btn btn-style-one" name="submit" id="btnSendHMail">
-                                    <span class="btn-title">
-                                        Enquire Now
-                                        <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -1810,7 +1883,7 @@
             $('#btnSendHMail').on('click', function () {
                 var Name = $("#Name").val();
                 var Email = $("#Email").val();
-                var ContactNumber = $("#ContactNumber").val();
+                var ContactNumber = $("#phone").val();
                 var Message = $("#Message").val();
 
                 // Simple validation rules
@@ -1854,7 +1927,7 @@
                 var fileData = new FormData();
                 fileData.append('Name', Name);
                 fileData.append('Email', Email);
-                fileData.append('ContactNumber', ContactNumber);
+                fileData.append('phone', ContactNumber);
                 fileData.append('Message', Message);
 
                 return $.ajax({
@@ -1882,7 +1955,18 @@
         });
 
     </script>
+    @*<script type="text/javascript">
+        $(document).ready(function () {
+            $("#phone").intlTelInput({
+                initialCountry: "us",
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"  // for formatting/validation
+            });
+        });
+    </script>*@
+
     <script type="text/javascript">
+
+
         function GetSectionData(BlogType) {
             $.ajax({
                 type: "GET",
@@ -1902,7 +1986,7 @@
                         var longDt = PostingDate.toLocaleDateString("en-US", options);
                         var Descriptionlength = v.MetaDescription.length > 80 ? v.MetaDescription.substring(0, 80) + "…" : v.MetaDescription;
 
-                        sectionblog += '<div class="col-lg-4 col-md-6">' +
+                        sectionblog += '<div class="col-lg-4 col-md-6 col-sm-12" style={height: 100%;}>' +
                             '<div class="single-blog">' +
                             '<div class="blog-img img img-fluid">' +
                             '<a href="/blog/' + v.PageUrl + '"><img class="BlogImages" src="' + v.Image + '" alt="" style="height:216px;"></a>' +

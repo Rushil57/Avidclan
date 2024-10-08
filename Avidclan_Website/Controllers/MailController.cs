@@ -258,7 +258,7 @@ namespace Avidclan_Website.Controllers
             await ReadConfiguration("career");
             var Name = HttpContext.Current.Request["Name"];
             var Email = HttpContext.Current.Request["Email"];
-            var ContactNumber = HttpContext.Current.Request["ContactNumber"];
+            var ContactNumber = HttpContext.Current.Request["phone"];
             var Message = HttpContext.Current.Request["Message"];
             var Position = "DotNet Developer";
 

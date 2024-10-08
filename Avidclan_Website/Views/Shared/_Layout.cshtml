@@ -631,13 +631,13 @@
         if (String.fromCharCode(charCode).match(/[^0-9]/g)) return false;
         });
 
-        var code = "+91";
+        var code = "+1";
         $("#phone").val(code);
 
         $("#phone").intlTelInput({
         utilsScript: "/assets/js/utils.js",
         separateDialCode: true,
-        initialCountry: "in",
+        initialCountry: "us",
         });
 
         $(".contactno").keypress(function (e) {
