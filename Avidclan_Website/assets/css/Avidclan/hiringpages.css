@@ -505,6 +505,12 @@ label.error {
     color: red; /* This sets the font color of the error message to red */
     font-size: 14px; /* This defines the font size of the error messages */
     margin-top: 3px; /* Adds spacing between the input field and error message */
+    margin-left: 4px !important;
+    display: block; /* Forces error message to appear on a new line */
+}
+.form-control {
+    width: 100%;
+    /*margin-bottom: 10px;*/ /* Add some margin to separate each input field from the next */
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     .tech-row-mobile-ui {
