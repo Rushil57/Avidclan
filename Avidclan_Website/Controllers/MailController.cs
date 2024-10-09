@@ -253,15 +253,15 @@ namespace Avidclan_Website.Controllers
 
         [Route("api/Mail/SendHiringDotNetDetails")]
         [HttpPost]
-        public async Task<string> SendHiringDotNetDetails()
+        public async Task<string> SendHiringDotNetDetails(HiringCandidateDetails obj)
         {
             await ReadConfiguration("career");
-            var Name = HttpContext.Current.Request["Name"];
-            var Email = HttpContext.Current.Request["Email"];
-            var ContactNumber = HttpContext.Current.Request["phone"];
-            var Message = HttpContext.Current.Request["Message"];
+            var Name = obj.Name;
+            var Email = obj.Email;
+            var ContactNumber =obj.PhoneNumber;
+            var Message = obj.Message;
             var Position = "DotNet Developer";
-
+            //"<tr style='background: #fff;'><td><strong>Mobile/Phone:</strong> </td><td>" + "+" + obj.CountryCode + "&nbsp;" + obj.Phoneumber + " </td></tr>" +
             var messagebody = "<html>" +
                                     "<body style='font-family: lato, Helvetica, sans-serif;font-size: 16px;width:600px;'>" +
                                     "<div style='padding: 15px 30px;background: #1d5fa5;color: #fff;'>" +
@@ -271,7 +271,7 @@ namespace Avidclan_Website.Controllers
                                             "<p>Hello,<br/>" + Message + "<br/><br/>" +
                                             "<strong>Job Position:</strong>" + Position + "<br/><br/>" +
                                             "Regards,<br/><br/><strong>" + Name + "</strong><br/>" + Email + "<br/>" +
-                                           ContactNumber + "<br/><br/><br/> This mail is sent via career form on Avidclan Technologies Web Site <br/><a href='https://www.avidclan.com'>https://www.avidclan.com</a>" +
+                                           "+" + obj.CountryCode + "&nbsp;" + ContactNumber + "<br/><br/><br/> This mail is sent via career form on Avidclan Technologies Web Site <br/><a href='https://www.avidclan.com'>https://www.avidclan.com</a>" +
                                         "</p></div>" +
                                 "</body></html>";
             try

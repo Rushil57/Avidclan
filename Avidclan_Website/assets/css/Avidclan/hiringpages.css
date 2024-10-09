@@ -345,8 +345,8 @@
 .cta-btn-box {
     margin-top: 32px !important;
     border-radius: 50px;
-    width: 202px;
-    height: 50px;
+    /*width: auto;
+    height: 100%;*/
     text-align: center;
     margin-top: 14px;
     margin: 5px;
@@ -500,7 +500,12 @@
     font-weight: 600;
     line-height: 24px; /* 150% */
 }
-
+label.error {
+    font-family: Poppins;
+    color: red; /* This sets the font color of the error message to red */
+    font-size: 14px; /* This defines the font size of the error messages */
+    margin-top: 3px; /* Adds spacing between the input field and error message */
+}
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     .tech-row-mobile-ui {
         padding: 0px !important;
@@ -1535,6 +1540,12 @@
     #swiper-prev {
         display: block !important;
         left: 14px;
+    }
+    .ctasection .container {
+        padding: 20px;
+    }
+    .developer-interview-section {
+        margin-top:0px;
     }
 }
 
