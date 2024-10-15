@@ -255,7 +255,7 @@ namespace Avidclan_Website.Controllers
         [HttpPost]
         public async Task<string> SendHiringDotNetDetails(HiringCandidateDetails obj)
         {
-            await ReadConfiguration("career");
+            await ReadConfiguration("other");
             var Name = obj.Name;
             var Email = obj.Email;
             var ContactNumber =obj.PhoneNumber;
@@ -271,7 +271,7 @@ namespace Avidclan_Website.Controllers
                                             "<p>Hello,<br/>" + Message + "<br/><br/>" +
                                             "<strong>Job Position:</strong>" + Position + "<br/><br/>" +
                                             "Regards,<br/><br/><strong>" + Name + "</strong><br/>" + Email + "<br/>" +
-                                           "+" + obj.CountryCode + "&nbsp;" + ContactNumber + "<br/><br/><br/> This mail is sent via career form on Avidclan Technologies Web Site <br/><a href='https://www.avidclan.com'>https://www.avidclan.com</a>" +
+                                           "+" + obj.CountryCode + "&nbsp;" + ContactNumber + "<br/><br/><br/> This mail is sent via Hire .NET Developer page on Avidclan Technologies Website. <br/><a href='https://www.avidclan.com'>https://www.avidclan.com</a>" +
                                         "</p></div>" +
                                 "</body></html>";
             try
