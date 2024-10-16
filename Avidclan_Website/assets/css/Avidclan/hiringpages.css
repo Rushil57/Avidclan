@@ -1920,6 +1920,9 @@ label.error {
 #hiringform .intl-tel-input{
     width:100%;
 }
+#hiringform1 .intl-tel-input {
+    width: 100%;
+}
 
 .pricing-icon-img-web {
     display: inline-block;

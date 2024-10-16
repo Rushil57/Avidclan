@@ -449,7 +449,7 @@
                             <li><a href="~/web-development-company/">Web Development</a></li>
                             <li><a href="~/ui-ux-design-company/">Design</a></li>
                             <li><a href="~/quality-assurance-services/">QA</a></li>
-                            <li><a href="~/iot-service-providers/">IoT</a></li>                            
+                            <li><a href="~/iot-service-providers/">IoT</a></li>
                         </ul>
                     </li>
                     <li>
@@ -639,6 +639,12 @@
         separateDialCode: true,
         initialCountry: "us",
         });
+            $("#mobilet").val(code);
+            $("#mobilet").intlTelInput({
+                utilsScript: "/assets/js/utils.js",
+                separateDialCode: true,
+                initialCountry: "us",
+            });
 
         $(".contactno").keypress(function (e) {
         var charCode = e.which ? e.which : event.keyCode;
