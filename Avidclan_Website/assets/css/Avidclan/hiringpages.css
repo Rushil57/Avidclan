@@ -1923,6 +1923,9 @@ label.error {
 #hiringform1 .intl-tel-input {
     width: 100%;
 }
+    #hiringform1 .intl-tel-input.allow-dropdown.separate-dial-code .selected-dial-code {
+        padding-left: 14px !important;
+    }
 
 .pricing-icon-img-web {
     display: inline-block;
