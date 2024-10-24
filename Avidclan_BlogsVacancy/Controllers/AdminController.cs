@@ -275,7 +275,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 return imageUrl;
             }catch(Exception ex)
             {
-                ErrorLog("AdminController - UploadImage", ex.Message, ex.StackTrace);
+                await ErrorLog("AdminController - UploadImage", ex.Message, ex.StackTrace);
                 return "";
             }
         }
@@ -1019,7 +1019,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             parameters.Add("@ErrorMessage", ErrorMessage, DbType.String, ParameterDirection.Input);
             parameters.Add("@StackTrace", StackTrace, DbType.String, ParameterDirection.Input);
             parameters.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
-            var SaveError = con.ExecuteScalar("sp_Errorlog", parameters, commandType: CommandType.StoredProcedure);
+            var SaveError = await con.ExecuteScalarAsync("sp_Errorlog", parameters, commandType: CommandType.StoredProcedure);
         }
         public async Task sendEmail(string fromEmail, string toEmail, string reciverName, string subject, string message, List<string> ReportingPerson)
         {
