@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "WFHStatus";
+    Layout = "~/Views/Shared/_AdminTemplate.cshtml";
+}
+
+<h2>WFHStatus</h2>
+
+@*<div class="col-sm-2" style="margin: auto;">
+        <select name="Status" id="StatusId" class="form-control select2 cls-Status" onchange="GetLeaveList()">
+            <option value='status'>Status</option>
+            <option value='pending'>Pending</option>
+            <option value='approved'>Approved</option>
+            <option value='noted'>Noted</option>
+            <option value='rejected'>Rejected</option>
+        </select>
+    </div>*@
+
+<table id="WfhTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>From Date</th>
+            <th>To Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody class="LeaveTableBody">
+    </tbody>
+</table>
+
+@*MODAL START FOR APPLY WFH*@
+<div class="modal" id="WFHModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Leave</h5>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="WFHId" value="0">
+                <input type="hidden" id="EmailId">
+                <input type="hidden" id="FirstName">
+                <div class="form-group">
+                    <label for="txtFromDate">From Date</label>
+                    <input type="text" class="form-control" name="txtFromDate" id="txtFromDate" placeholder="From Date" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="txtToDate">To Date</label>
+                    <input type="text" class="form-control" name="txtToDate" id="txtToDate" placeholder="To Date" readonly>
+                </div>
+
+                <div id="TotalLeaveDates">
+                    <table class="table" id="LeaveDateTable">
+                        <thead>
+                            <tr>
+                                <th style="width:33%">Date</th>
+                                <th style="width:23%">Half Day?</th>
+                                <th style="width:44%"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="LeaveDatebody">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="Rejected" onclick="ApprovedOrRejectWFH(this.id)">Rejected</button>
+                    <button type="button" class="btn btn-success" id="Approved" onclick="ApprovedOrRejectWFH(this.id)">Approved</button>
+                    <button type="button" class="btn btn-success" id="Noted" onclick="ApprovedOrRejectWFH(this.id)">Noted</button>
+                    <button type="button" class="btn btn-secondary" onclick="ResetWFHModel()">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@*MODAL END FOR APPLY WFH*@
+
+<script src="~/Javascript/Admin/WFHStatusJs.js"></script>

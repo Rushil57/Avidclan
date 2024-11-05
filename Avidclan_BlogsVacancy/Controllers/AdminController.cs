@@ -1012,6 +1012,75 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
         }
 
+        //work from home reply
+
+        [Route("api/Admin/ReplyToWFHRequest")]
+        [HttpPost]
+        public async Task<string> ReplyToWFHRequest(LeaveViewModel leaveViewModel)
+        {
+            try
+            {
+                await SendReplyForWFH(leaveViewModel.WFH, leaveViewModel.WFHStatus, leaveViewModel.FirstName, leaveViewModel.EmailId, leaveViewModel.Id);
+                var parameters = new DynamicParameters();
+                parameters.Add("@WFHStatus", leaveViewModel.WFHStatus, DbType.String, ParameterDirection.Input);
+                parameters.Add("@Id", leaveViewModel.Id, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@Mode", 4, DbType.Int32, ParameterDirection.Input);
+                var UpdateLeave = con.Query<LeaveViewModel>("sp_WorkFromHome", parameters, commandType: CommandType.StoredProcedure);
+                return "Reply Send Successfully";
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("AdminController - ReplyToWFHRequest", ex.Message, ex.StackTrace);
+                var MessageException = ex.InnerException + ex.StackTrace;
+                return MessageException;
+            }
+
+        }
+
+        public async Task SendReplyForWFH(List<WorkFromHomeViewModel> wfhDetailsViews, string status, string name, string EmailId, object Id)
+        {
+            await ReadConfiguration();
+            try
+            {
+                List<ReportingPersons> ReportingPerson = new List<ReportingPersons>();
+                ReportingPerson = GetReportingPerson(Id);
+                var mailbody = "<p>Hello " + name + "<br>  Your work for home has been<b> " + status + " </b>for the following day(s).<br><br></p>" +
+                "<html><body>" +
+                    "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
+                    "<thead><tr style='background: #eee;'><th>WFH Date</th><th>WFH Day</th><th>Half Day</th></tr></thead>" +
+                    "<tbody class='leaveTable'>";
+                foreach (var wfhdetail in wfhDetailsViews)
+                {
+                    string WeekDay = wfhdetail.WFHDate.DayOfWeek.ToString();
+                    var addrow = "<tr><td style='background: #fff;'>" + wfhdetail.WFHDate.ToShortDateString() + "</td><td>" + WeekDay + "</td><td>" + wfhdetail.HalfDay + "</td></tr>";
+                    mailbody += addrow;
+                }
+                mailbody += "</tbody></table><br><br>" +
+                "<p>Thanks & Regards,<br>HR, Avidclan</p></body></html>";
+
+                var subject = "Reply For Work From Home Application";
+
+                List<string> reportingpersonList = new List<string>();
+                if (ReportingPerson != null)
+                {
+                    if (ReportingPerson.Count > 0)
+                    {
+                        foreach (var person in ReportingPerson)
+                        {
+                            reportingpersonList.Add(person.ReportingPerson);
+                        }
+                    }
+                }
+
+                await sendEmail(senderEmail, EmailId, name, subject, mailbody, reportingpersonList);
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("AdminController - SendReplyForWFH", ex.Message, ex.StackTrace);
+            }
+        }
+
+
         public async Task ErrorLog(string ControllerName, string ErrorMessage, string StackTrace)
         {
             var parameters = new DynamicParameters();

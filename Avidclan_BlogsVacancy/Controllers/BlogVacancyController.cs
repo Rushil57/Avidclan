@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -168,7 +169,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 }
                 return 1;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //ErrorLog("AdminController - RemoveImage", ex.Message, ex.StackTrace);
                 return 0;
@@ -236,6 +237,15 @@ namespace Avidclan_BlogsVacancy.Controllers
             return View();
         }
 
+        public ActionResult WFHStatus()
+        {
+            if (Session["UserEmailId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
+            return View();
+        }
+
         public ActionResult SalarySlips()
         {
             if (Session["UserEmailId"] == null)
@@ -258,6 +268,15 @@ namespace Avidclan_BlogsVacancy.Controllers
                 {
                     mode = 10;
                 }
+                if(userRegister.BreakMonth != null)
+                {
+                    // Extract the numeric part from BreakMonth
+                    userRegister.BreakMonth = Regex.Match(userRegister.BreakMonth, @"\d+(\.\d+)?").Value;
+                }
+                //if (!userRegister.OnBreak)
+                //{
+                //    userRegister.BreakMonth = "0";
+                //}
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id", userRegister.Id, DbType.Int32, ParameterDirection.Input);
                 parameters.Add("@FirstName", userRegister.FirstName, DbType.String, ParameterDirection.Input);
@@ -267,6 +286,8 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@PhoneNumber", userRegister.PhoneNumber, DbType.String, ParameterDirection.Input);
                 parameters.Add("@JoiningDate", userRegister.JoiningDate.ToShortDateString(), DbType.DateTime, ParameterDirection.Input);
                 parameters.Add("@ProbationPeriod", userRegister.ProbationPeriod, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@OnBreak", userRegister.OnBreak, DbType.Boolean, ParameterDirection.Input);
+                parameters.Add("@BreakMonth", userRegister.BreakMonth, DbType.String, ParameterDirection.Input);
                 parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
                 using (IDbConnection connection = new SqlConnection(connectionString))
                 {
@@ -278,6 +299,18 @@ namespace Avidclan_BlogsVacancy.Controllers
                     else
                     {
                         SaveUserRole(userRegister.Id, userRegister.Role, true);
+                    }
+                    //save employee is in notice period or not
+                    if(mode == 10)
+                    {
+                        var noticeparameters = new DynamicParameters();
+                        noticeparameters.Add("@UserId", userRegister.Id, DbType.Int32, ParameterDirection.Input);
+                        noticeparameters.Add("@IsNoticePeriod", userRegister.IsNoticePeriod, DbType.Boolean, ParameterDirection.Input);
+                        noticeparameters.Add("@mode", 10, DbType.Int32, ParameterDirection.Input);
+                        using (IDbConnection noticeconnection = new SqlConnection(connectionString))
+                        {
+                            var saveLeaves = noticeconnection.ExecuteScalar("sp_PastLeaves", noticeparameters, commandType: CommandType.StoredProcedure);
+                        }
                     }
                 }
                 return "Data Saved!";
@@ -365,7 +398,6 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@PersonalLeave", balanaceLeaveViewModel.PersonalLeave, DbType.String, ParameterDirection.Input);
                 parameters.Add("@SickLeave", balanaceLeaveViewModel.SickLeave, DbType.String, ParameterDirection.Input);
                 parameters.Add("@UserId", balanaceLeaveViewModel.UserId, DbType.Int16, ParameterDirection.Input);
-                parameters.Add("@IsNoticePeriod", balanaceLeaveViewModel.NoticePeriod, DbType.Boolean, ParameterDirection.Input);
                 parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
                 try
                 {

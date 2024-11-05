@@ -1,5 +1,6 @@
 ﻿using Avidclan_BlogsVacancy.ViewModel;
 using Dapper;
+using iTextSharp.text;
 using iTextSharp.text.pdf.qrcode;
 using System;
 using System.Collections.Generic;
@@ -375,7 +376,17 @@ namespace Avidclan_BlogsVacancy.Controllers
                 var SickLeave = 1.0;
                 var joiningDate = (DateTime)(JoinigDate);
 
-                var monthDifference = leavedates.LeaveDate.Month;
+                var monthDifference = 0;
+                if (joiningDate.Year == leavedates.LeaveDate.Year)
+                {
+                    monthDifference = (leavedates.LeaveDate.Year - joiningDate.Year) * 12 + leavedates.LeaveDate.Month - joiningDate.Month;
+                }
+                else
+                {
+                    monthDifference = leavedates.LeaveDate.Month;
+                }
+
+                
                 double SickLeaves = (double)monthDifference / (double)2;
                 if (leavedates.Halfday != null)
                 {
@@ -458,7 +469,16 @@ namespace Avidclan_BlogsVacancy.Controllers
                 var joiningDate = (DateTime)(JoinigDate);
                 var PersonalLeave = 1.0;
 
-                var monthDifference = leave.LeaveDate.Month;
+                var monthDifference = 0;
+                if (joiningDate.Year == leave.LeaveDate.Year)
+                {
+                    monthDifference = (leave.LeaveDate.Year - joiningDate.Year) * 12 + leave.LeaveDate.Month - joiningDate.Month;
+                }
+                else
+                {
+                    monthDifference = leave.LeaveDate.Month;
+                }
+                //var monthDifference = leave.LeaveDate.Month;
                 if (leave.Halfday != null)
                 {
                     if (TotalPersonalLeave < monthDifference)
@@ -636,8 +656,14 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@UserId", UserId, DbType.String, ParameterDirection.Input);
                 parameters.Add("@Year", Currentyear, DbType.String, ParameterDirection.Input);
                 parameters.Add("@Mode", 12, DbType.Int32, ParameterDirection.Input);
-                var TotalLeaveList = con.Query<TypeOfLeave>("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure);
-                return Json(TotalLeaveList, JsonRequestBehavior.AllowGet);
+                var totalLeaveList = con.Query<TypeOfLeave>("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+                var breakparameters = new DynamicParameters();
+                breakparameters.Add("@Id", UserId, DbType.String, ParameterDirection.Input);
+                breakparameters.Add("@Mode", 15, DbType.Int32, ParameterDirection.Input);
+                var userData = con.Query<UserRegister>("sp_User", breakparameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+                return Json(new { TotalLeaveList = totalLeaveList, UserBreakData = userData }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -713,6 +739,67 @@ namespace Avidclan_BlogsVacancy.Controllers
                 await ErrorLog("LeaveController - CheckOldPassword", ex.Message, ex.StackTrace);
             }
         }
+
+        public async Task<ActionResult> SaveSickAndPaidLeave(UserRegister userRegister)
+        {
+            try
+            {
+                var UserId = Session["UserId"];
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id", UserId, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@PaidLeave", userRegister.PaidLeave, DbType.String, ParameterDirection.Input);
+                parameters.Add("@SickLeave", userRegister.SickLeave, DbType.String, ParameterDirection.Input);
+                parameters.Add("@mode", 13, DbType.Int32, ParameterDirection.Input);
+                using (IDbConnection connection = new SqlConnection(connectionString))
+                {
+                    await connection.ExecuteScalarAsync("sp_User", parameters, commandType: CommandType.StoredProcedure);
+                    return Json(new { message = "Saved Successfully" });
+                }
+            }
+            catch(Exception ex)
+            {
+                await ErrorLog("LeaveController - SaveSickAndPaidLeave", ex.Message, ex.StackTrace);
+                return Json(new { message = ex.Message });
+            }
+        }
+
+        public async Task<ActionResult> GetUserLeaveBalance()
+        {
+            try
+            {
+                var UserId = Session["UserId"];
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id", UserId, DbType.String, ParameterDirection.Input);
+                parameters.Add("@Mode", 14, DbType.Int32, ParameterDirection.Input);
+                var Leavebalance = con.Query<UserRegister>("sp_User", parameters, commandType: CommandType.StoredProcedure);
+                return Json(Leavebalance, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("LeaveController - SaveSickAndPaidLeave", ex.Message, ex.StackTrace);
+                return Json(new { message = ex.Message });
+            }
+        }
+
+
+        public JsonResult GetWfhList(string LeaveStatus)
+        {
+            var parameters = new DynamicParameters();
+            //parameters.Add("@LeaveStatus", LeaveStatus, DbType.String, ParameterDirection.Input);
+            parameters.Add("@Mode", 2, DbType.Int32, ParameterDirection.Input);
+            var GetwfhList = con.Query<LeaveViewModel>("sp_WorkFromHome", parameters, commandType: CommandType.StoredProcedure);
+            return Json(GetwfhList, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetWFHDetails(int Id)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", Id, DbType.Int16, ParameterDirection.Input);
+            parameters.Add("@Mode", 3, DbType.Int32, ParameterDirection.Input);
+            var GetLeaveDates = con.Query<LeaveViewModel>("sp_WorkFromHome", parameters, commandType: CommandType.StoredProcedure);
+            return Json(GetLeaveDates, JsonRequestBehavior.AllowGet);
+        }
+
         public async Task ErrorLog(string ControllerName, string ErrorMessage, string StackTrace)
         {
             var parameters = new DynamicParameters();

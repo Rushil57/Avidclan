@@ -91,7 +91,10 @@ function SaveNewUser() {
         Password: $("#PassWord").val(),
         Role: $("#RoleName").val(),
         JoiningDate: $("#JoiningDate").val(),
-        ProbationPeriod: $("#ProbationMonth").val()
+        ProbationPeriod: $("#ProbationMonth").val(),
+        IsNoticePeriod: $("#NoticePeriod").prop('checked'),
+        OnBreak: $("#OnBreak").prop('checked'),
+        BreakMonth: $("#BreakMonth").val()
     }
     $.ajax({
         type: "POST",
@@ -175,7 +178,10 @@ function ResetForm() {
     $("#RoleName").val(''),
         $("#JoiningDate").val(''),
         $("#ProbationMonth").val('')
-    $("#EmployeeModal").modal('hide')
+    $("#EmployeeModal").modal('hide');
+    $('#NoticePeriod').prop('checked', false);
+    $('#OnBreak').prop('checked', false);
+    $('#BreakMonth').val("0");
 }
 function ShowEmployeRegisterModel() {
     $("#EmployeeModal").modal('show')
@@ -202,6 +208,8 @@ function GetEmployeeList() {
                     },
                     { "data": "Password" },
                     { "data": "ProbationPeriod" },
+                    { "data": "PaidLeave" },
+                    { "data": "SickLeave" },
                     {
                         "data": "Id",
                         "render": function (data, type, row) {
@@ -244,6 +252,17 @@ function GetEmployeeDetailsById(id) {
                 $("#JoiningDate").val(date)
                 $("#ProbationMonth").val(result.ProbationPeriod)
                 $("#RoleName").val(result.Role);
+                if (result.IsNoticePeriod) {
+                    $('#NoticePeriod').prop('checked', true);
+                } else {
+                    $('#NoticePeriod').prop('checked', false);
+                }
+                if (result.OnBreak) {
+                    $('#OnBreak').prop('checked', true);
+                } else {
+                    $('#OnBreak').prop('checked', false);
+                }
+                $("#BreakMonth").val(result.BreakMonth);
             }
         },
         error: function () {
@@ -268,5 +287,14 @@ function DeleteEmployee(id) {
                 alert(result.responseText);
             }
         });
+    }
+}
+
+function ShowBreakMonthInput() {
+    var breakCheck = $("#OnBreak").prop('checked');
+    if (breakCheck) {
+        $(".cls-breakmonth").removeClass("d-none");
+    } else {
+        $(".cls-breakmonth").addClass("d-none");
     }
 }

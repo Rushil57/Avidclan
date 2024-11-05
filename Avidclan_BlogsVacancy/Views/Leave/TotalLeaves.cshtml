@@ -53,9 +53,9 @@
         }
 
         $.when(
-            GetPastLeaveBalance(),
+            //GetPastLeaveBalance(),
             GetTotalCurrentYearLeave(),
-            delay(2500).then(GetTotalLeaveBalance)
+            GetLeaveBalance()
         ).done(function () {
             hideSpinner();
         }).fail(function () {
@@ -188,109 +188,64 @@
         });
     }
 
-    function TotalSickLeaveCount(sickleave) {
+    function GetLeaveBalance() {
+         $.ajax({
+             url: '/Leave/GetUserLeaveBalance',
+             contentType: 'application/json',
+             type: "GET",
+             success: function (data) {
+                 
+                 $('#TotalLeaveBalanceTable').DataTable({
+                     destroy: true,
+                     data: data,
+                     searching: false,
+                     paging: false,
+                     info: false,
+                     order: [[0, 'desc']],
+                     "columns": [
+                         {
+                             "data": "SickLeave",
+                             "render": function (data, type, row) {
+                                 var slAfterBreak = CountSickLeave(data,row.OnBreak,row.BreakMonth);
+                                 return "<span>" + slAfterBreak + "</span>"
 
-        var getJoiningDate = $('#JoiningDate').val();
-        getJoiningDate = new Date(getJoiningDate);
-        var getProbationMonth = $('#ProbationMonth').val();
-        getProbationMonth = parseInt(getProbationMonth)
+                             }
+                         },
+                         {
+                             "data": "PaidLeave",
+                             "render": function (data, type, row) {
+                                 var plAfterBreak = CountPaidLeave(data, row.OnBreak, row.BreakMonth);
+                                 return "<span>" + plAfterBreak + "</span>"
 
-        var CurrentDate = new Date();
-        var CurrentYear = CurrentDate.getFullYear();
-
-        var months = CurrentDate.getMonth() - getJoiningDate.getMonth() +
-            (12 * (CurrentDate.getFullYear() - getJoiningDate.getFullYear()))
-
-        var MonthlySickLeave;
-        if (months >= getProbationMonth) {
-            var JoiningDateAfterProbation = new Date(getJoiningDate.setMonth(getJoiningDate.getMonth() + getProbationMonth));
-            var JoiningYear = JoiningDateAfterProbation.getFullYear();
-            if (JoiningYear == CurrentYear) {
-                months = (CurrentDate.getMonth() - JoiningDateAfterProbation.getMonth() + 1) +
-                    (12 * (CurrentDate.getFullYear() - getJoiningDate.getFullYear()))
-                MonthlySickLeave = months / 2 - sickleave;
-                if (MonthlySickLeave < 0) {
-                    MonthlySickLeave = 0;
-                }
-                return MonthlySickLeave;
-            }
-
-            var Pastsickleave = $("#SickLeave").val();
-            if (Pastsickleave == '') {
-                Pastsickleave = 0.0;
-            }
-
-            var CurrentMonth = CurrentDate.getMonth() + 1;
-            MonthlySickLeave = CurrentMonth / 2;
-            MonthlySickLeave = (MonthlySickLeave - sickleave);
-            if (MonthlySickLeave < 0) {
-                MonthlySickLeave = 0 + parseFloat(Pastsickleave);
-            } else { MonthlySickLeave = MonthlySickLeave + parseFloat(Pastsickleave); }
-        }
-        else {
-            MonthlySickLeave = 0.0;
-        }
-        return MonthlySickLeave;
+                             }
+                         }
+                     ]
+                 });
+             },
+             error: function (result) {
+                 alert(result.responseText);
+             }
+         });
     }
 
-    function TotalPersonalLeaveCount(personalLeave) {
-        var getJoiningDate = $('#JoiningDate').val();
-        getJoiningDate = new Date(getJoiningDate);
-        var getProbationMonth = $('#ProbationMonth').val();
-        getProbationMonth = parseInt(getProbationMonth)
+    function CountSickLeave(sl,userbreak,breakMonth) {
+        if (!userbreak) {
+            var slPermonth = 0.5 * breakMonth;  // Adjust slPermonth based on breakMonth
 
-        var CurrentDate = new Date();
-        var CurrentYear = CurrentDate.getFullYear();
-
-        var months = CurrentDate.getMonth() - getJoiningDate.getMonth() +
-            (12 * (CurrentDate.getFullYear() - getJoiningDate.getFullYear()))
-
-        var TotalPersonalLeave;
-        if (months >= getProbationMonth) {
-            var JoiningDateAfterProbation = new Date(getJoiningDate.setMonth(getJoiningDate.getMonth() + getProbationMonth));
-            var JoiningYear = JoiningDateAfterProbation.getFullYear();
-            if (JoiningYear == CurrentYear) {
-                months = (CurrentDate.getMonth() - JoiningDateAfterProbation.getMonth() + 1) +
-                    (12 * (CurrentDate.getFullYear() - getJoiningDate.getFullYear()))
-                TotalPersonalLeave = months - personalLeave;
-                if (TotalPersonalLeave < 0 && TotalPersonalLeave != -0.5) {
-                    TotalPersonalLeave = 0;
-                } else {
-                    TotalPersonalLeave = TotalPersonalLeave;
-                }
-                return TotalPersonalLeave;
-            }
-
-
-            var Pastpersonalleave = $("#PersonalLeave").val();
-            if (Pastpersonalleave == '') {
-                Pastpersonalleave = 0.0;
-            }
-
-            var CurrentDate = new Date();
-            var CurrentMonth = CurrentDate.getMonth() + 1;
-            TotalPersonalLeave = parseFloat(Pastpersonalleave) + (CurrentMonth - personalLeave)
-            if (TotalPersonalLeave < 0 && TotalPersonalLeave != -0.5) {
-                TotalPersonalLeave = 0;
-            } else if (TotalPersonalLeave == -0.5) {
-                TotalPersonalLeave = 0.5;
-            }
+            var totalsl = sl - slPermonth;
+            return totalsl;
+        } else {
+            return sl;
         }
-        else {
-            TotalPersonalLeave = 0.0;
-        }
-
-        return TotalPersonalLeave;
     }
 
-    //function showSpinner() {
-    //    $('#spinner-overlay').show();
-    //    $('#content-to-blur').addClass('blur-background');
-    //}
-
-    //function hideSpinner() {
-    //    $('#spinner-overlay').hide();
-    //    $('#content-to-blur').removeClass('blur-background');
-    //}
+    function CountPaidLeave(pl, userbreak, breakMonth) {
+        if (!userbreak) {
+            var totalpl = pl - breakMonth;
+            return totalpl;
+        } else {
+            return pl;
+        }
+    }
 
 </script>

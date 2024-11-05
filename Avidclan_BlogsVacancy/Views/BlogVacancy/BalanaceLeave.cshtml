@@ -26,10 +26,6 @@
                         <label for="sickLeave">Sick Leave</label>
                         <input type="text" class="form-control" id="SickLeave" name="sickleave" placeholder="Enter Sick Leave">
                     </div>
-                    <div class="form-group">
-                        <input type="checkbox" id="NoticePeriod" name="noticePeriod"> &nbsp;
-                        <label for="NoticePeriod">Notice Period</label>
-                    </div>
                     @*<div class="form-group">
                         <label for="NoticePerioddate">Notice Period Date</label>
                         <input type="text" class="form-control" name="dateofNoticePeriod" id="DateOfNoticePeriod" placeholder="Notice Period Date">
@@ -90,7 +86,6 @@
             PersonalLeave: $("#PersonalLeave").val(),
             SickLeave: $("#SickLeave").val(),
             UserId: $("#Employee").val(),
-            NoticePeriod: $("#NoticePeriod").prop('checked'),
             FirstName: $("#Employee").val()
         }
 
