@@ -34,7 +34,10 @@
 
 </head>
 <body>
-    <div class="container-scroller">
+    <div id="spinner-overlay" style="display: none;">
+        <div class="spinner-border text-muted" style="position: fixed; top: 50%; left: 50%; z-index: 1000;"></div>
+    </div>
+    <div class="container-scroller" id="content-to-blur">
         <div class="container-fluid page-body-wrapper">
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center" style="margin-top: 30px;">
@@ -63,6 +66,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="~/BlogVacancy/LeaveStatus">
                             <span class="menu-title">Leave Status</span>
+                            <i class="mdi mdi-account-multiple menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/BlogVacancy/WFHStatus">
+                            <span class="menu-title">Work From Home Status</span>
                             <i class="mdi mdi-account-multiple menu-icon"></i>
                         </a>
                     </li>
@@ -140,6 +149,16 @@
                 }
             })
             window.location.href = '/BlogVacancy/UserLogin'
+        }
+
+        function showSpinner() {
+            $('#spinner-overlay').show();
+            $('#content-to-blur').addClass('blur-background');
+        }
+
+        function hideSpinner() {
+            $('#spinner-overlay').hide();
+            $('#content-to-blur').removeClass('blur-background');
         }
     </script>
 </body>
