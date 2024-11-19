@@ -54,7 +54,7 @@
             }
 
             .blog-wrap .content-part .blog-meta .tag svg, .sidebar-widget .recent-posts ul li .post-link .post-text .post-meta i, .single-blog .blog-content .blog-meta span i {
-                color: #007bfc;
+                color: var(--color-primary);
                 margin-right: 5px
             }
 
@@ -158,7 +158,7 @@
             justify-content: space-between;
             font-size: 14px;
             font-weight: 600;
-            color: #007bfc;
+            color: var(--color-primary);
             transition: .3s linear
         }
 
@@ -173,7 +173,7 @@
     }
 
         .single-blog .blog-img .top-meta .tag {
-            background-color: #007bfc;
+            background-color: var(--color-primary);
             color: #fff;
             font-size: 12px;
             border-radius: 5px;

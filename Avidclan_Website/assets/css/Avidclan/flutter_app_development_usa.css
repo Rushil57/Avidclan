@@ -813,8 +813,8 @@ overflow: hidden;
     border-radius: 30px;
     overflow: hidden;
     vertical-align: middle;
-    background-color: #007bfc;
-    cursor:pointer;
+    background-color: var(--color-primary);
+    cursor: pointer;
 }
 
 .form_contact .btn-box .btn-title {

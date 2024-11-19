@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 24.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 355.2 444" style="enable-background:new 0 0 355.2 444;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#007AFB;}
-</style>
-<path class="st0" d="M355.2,444H0V0h237.1l118,118V444z M29.2,414.8H326V130.1L225,29.2H29.2L29.2,414.8z M92.7,63.2H63.5v65.7h29.2
-	V63.2z M158,63.2h-29.2v65.7h29.1L158,63.2z M223.2,63.2H194v65.7h29.2V63.2z M274,357.9H81.2v29.2H274L274,357.9z"/>
+<svg width="356" height="444" viewBox="0 0 356 444" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_493_968)">
+<path d="M355.7 444H0.5V0H237.6L355.6 118V444H355.7ZM29.7 414.8H326.5V130.1L225.5 29.2H29.7V414.8ZM93.2 63.2H64V128.9H93.2V63.2ZM158.5 63.2H129.3V128.9H158.4L158.5 63.2ZM223.7 63.2H194.5V128.9H223.7V63.2ZM274.5 357.9H81.7V387.1H274.5V357.9Z" fill="#0E53BE"/>
+</g>
+<defs>
+<clipPath id="clip0_493_968">
+<rect width="355.2" height="444" fill="white" transform="translate(0.5)"/>
+</clipPath>
+</defs>
 </svg>

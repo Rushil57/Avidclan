@@ -355,7 +355,7 @@
     }
 
     .career-block .position-count {
-        background-color: #007bfc;
+        background-color: var(--color-primary);
         color: #fff;
         border-radius: 50%;
         height: 35px;

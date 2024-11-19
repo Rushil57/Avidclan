@@ -167,12 +167,12 @@
             .OurTeam .member-block .m-info .header-box .heading .position {
                 font-size: 20px;
                 font-weight: 700;
-                color: #007bfc;
+                color: var(--color-primary);
                 display: block
             }
 
             .OurTeam .member-block .m-info .header-box .social-ics > a {
-                background-color: #007bfc;
+                background-color: var(--color-primary);
                 width: 28px;
                 height: 28px;
                 color: #fff;

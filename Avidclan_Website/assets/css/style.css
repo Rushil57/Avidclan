@@ -4424,7 +4424,7 @@ form.contact-form label.error {
     }
 
     .career-block .position-count {
-        background-color: #007bfc;
+        background-color: var(--color-primary);
         color: #fff;
         border-radius: 50%;
         height: 35px;
@@ -4703,7 +4703,7 @@ form.contact-form label.error {
     }
 
         .single-blog .blog-img .top-meta .tag {
-            background-color: #007bfc;
+            background-color: var(--color-primary);
             color: #fff;
             font-size: 12px;
             border-radius: 5px;

@@ -16,7 +16,7 @@
 .team-block-four .social-links-wrapper:hover .icon,
 .scroll-to-top,
 .banner-section .owl-theme .owl-nav button:hover:before {
-  background-color: #007bfc;
+    background-color: var(--color-primary);
 }
 
 /* Color */
@@ -42,7 +42,7 @@
 a:hover,
 a,
 .mobile-menu a.active {
-  color: #007bfc;
+    color: var(--color-primary);
 }
 
 /* Border Color */
@@ -55,5 +55,5 @@ a,
 .filter-tabs.filter-btns li span.count,
 .team-block-four .author-title,
 .about-section .logo {
-  border-color: #007bfc;
+    border-color: var(--color-primary);
 }

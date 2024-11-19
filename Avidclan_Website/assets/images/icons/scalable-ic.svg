@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 24.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 355.2 355.2" style="enable-background:new 0 0 355.2 355.2;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#007AFB;}
-</style>
-<path class="st0" d="M43.2,355.2h79.3c7.3,0,13.2-5.9,13.2-13.2s-5.9-13.2-13.2-13.2l-77.6,0l284-284v77.6c0,7.3,5.9,13.2,13.2,13.2
-	s13.2-5.9,13.2-13.2l0-79.3C355.2,19.4,335.8,0,312,0h-79.3c-7.3,0-13.2,5.9-13.2,13.2s5.9,13.2,13.2,13.2h77.6l-284,284v-77.6
-	c0-7.3-5.9-13.2-13.2-13.2S0,225.4,0,232.7V312C0,335.8,19.4,355.2,43.2,355.2L43.2,355.2z"/>
+<svg width="356" height="356" viewBox="0 0 356 356" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_492_193)">
+<path d="M43.2 355.7H122.5C129.8 355.7 135.7 349.8 135.7 342.5C135.7 335.2 129.8 329.3 122.5 329.3H44.9L328.9 45.3V122.9C328.9 130.2 334.8 136.1 342.1 136.1C349.4 136.1 355.3 130.2 355.3 122.9V43.6C355.2 19.9 335.8 0.5 312 0.5H232.7C225.4 0.5 219.5 6.4 219.5 13.7C219.5 21 225.4 26.9 232.7 26.9H310.3L26.3 310.9V233.3C26.3 226 20.4 220.1 13.1 220.1C5.8 220.1 0 225.9 0 233.2V312.5C0 336.3 19.4 355.7 43.2 355.7Z" fill="#0E53BE"/>
+</g>
+<defs>
+<clipPath id="clip0_492_193">
+<rect width="355.2" height="355.2" fill="white" transform="translate(0 0.5)"/>
+</clipPath>
+</defs>
 </svg>

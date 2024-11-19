@@ -82,7 +82,7 @@
         text-align: center;
         box-shadow: 0 0 10px 0 rgb(0 0 0 / 15%);
         margin-bottom: 40px;
-        border-bottom: 5px solid #007bfc;
+        border-bottom: 5px solid var(--color-primary);
         height: calc(100% - 40px)
     }
 
@@ -98,7 +98,7 @@
 
         .tech-services-section .tech-service-block .title {
             font-weight: 700;
-            color: #007bfc;
+            color: var(--color-primary);
             font-size: 18px;
             margin-top: 18px
         }
