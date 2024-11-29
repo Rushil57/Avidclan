@@ -87,6 +87,19 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
+
+        [Route("reactjs-app-development-company-usa/")]
+        public ActionResult ReactjsAppDevelopmentUSA()
+        {
+            return View();
+        }
+
+        [Route("selenium-app-development-company-usa/")]
+        public ActionResult SeleniumAppDevelopmentUSA()
+        {
+            return View();
+        }
+
         [Route("dot-net-development-company-usa/")]
         public ActionResult DotNetDevelopmentUSA()
         {
@@ -427,6 +440,33 @@ namespace Avidclan_Website.Controllers
 
         [Route("thankyou")]
         public ActionResult ThankYou()
+        {
+            return View();
+        }
+
+        [Route("career-thank-you")]
+        public ActionResult CareerThankYou()
+        {
+            return View();
+        }
+        [Route("contact-us-thank-you/")]
+        public ActionResult ContactThankYou()
+        {
+            return View();
+        }
+        [Route("services-thank-you/")]
+        public ActionResult ServiceThankYou()
+        {
+            return View();
+        }
+        [Route("location-thank-you/")]
+        public ActionResult LocationThankYou()
+        {
+            return View();
+        }
+
+        [Route("hire-developer-thank-you/")]
+        public ActionResult HireDeveloperThankYou()
         {
             return View();
         }

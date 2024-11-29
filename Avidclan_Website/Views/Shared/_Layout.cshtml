@@ -661,7 +661,7 @@
         function done_func(response) {
         console.log(response);
         //if (response == "Sent") {
-        window.location.replace("/thankyou");
+            window.location.replace("/contact-us-thank-you");
         grecaptcha.reset();
         setTimeout(function () {
         message.fadeOut();
@@ -779,7 +779,7 @@
         function done_func(response) {
             console.log(response);
             if (response == "Sent") {
-            window.location.replace("/thankyou");
+                window.location.replace("/contact-us-thank-you");
             /*grecaptcha.reset();*/
             setTimeout(function () {
                 message.fadeOut();
@@ -888,7 +888,7 @@
 
         function Application_Form(response) {
         if (response == "Sent") {
-        window.location.replace("/thankyou");
+            window.location.replace("/career-thank-you");
         message.fadeIn().removeClass("alert-danger").addClass("alert-success");
         message.text(response);
         grecaptcha.reset();
@@ -1014,7 +1014,7 @@
 
         function ProjectSuccess(response) {
         if (response == "Sent") {
-        window.location.replace("/thankyou");
+            window.location.replace("/services-thank-you");
         message.fadeIn().removeClass("alert-danger").addClass("alert-success");
         message.text(response);
         grecaptcha.reset();

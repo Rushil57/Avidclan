@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "CareerThankYou";
+}
+
+
+@*<title>Thank You!</title>*@
+@section AdditionalMeta
+{
+    <title>Thank you | Your job application has been received</title>
+    <meta name="description" content="Thank you for applying to Avidclan Technologies. We'll review your application." />
+    <link rel="canonical" href="https://www.avidclan.com/career-thank-you/" />
+    <meta name="robots" content="noindex, nofollow" />
+}
+<section class="inner-page contact-section">
+    <div class="container">
+        <div class="content-box">
+            <div class="row align-items-center">
+                <div class="col-md-12 col-lg-8">
+                    <div>
+                        <h1><span class="primary-color">Thank</span> You!</h1>
+                        <div class="text">Thank you for your inquiry. We will get back to you soon.</div>
+                    </div>
+                    <div class="btn-box">
+                        <a href="~/home/" class="theme-btn btn-style-one">
+                            <span class="btn-title">
+                                <span class="iconify me-2" data-icon="entypo:arrow-long-left" data-height="25"></span>Go to Home
+                                Page
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="image col-md-12 col-lg-4">
+                    <img src="~/assets/images/contact-us-img.svg" alt="" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@Html.Partial("_Footer")
+
+

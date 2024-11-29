@@ -23,5 +23,25 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
+        [Route("case-studies/orisuun/")]
+        public ActionResult OrisuunCaseStudyDetail()
+        {
+            return View();
+        }
+
+        [Route("case-studies/clf/")]
+        public ActionResult CLFCaseStudyDetail()
+        {
+            return View();
+        }
+       
+        
+        [Route("case-studies/vyking/")]
+        public ActionResult VykingCaseStudyDetail()
+        
+        {
+            return View();
+        }
+       
     }
 }

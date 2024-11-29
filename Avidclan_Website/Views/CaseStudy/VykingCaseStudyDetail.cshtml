@@ -1,0 +1,649 @@
+﻿
+@{
+    ViewBag.Title = "VykingCaseStudyDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section AdditionalMeta
+{
+    <link rel="stylesheet" href="~/assets/css/Avidclan/work.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link href="~/assets/css/swiper-bundle-min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link href="~/assets/css/Avidclan/responsive_image_slide.css" rel="stylesheet" />
+    <script src="~/assets/js/Avidclan/responsive_image_slide.js"></script>
+    <link rel="stylesheet" href="~/assets/css/Avidclan/casestudy.css" />
+}
+<style>
+    .secImg img {
+        /*height: 30px;*/
+        margin: 5px;
+    }
+
+    .d-none {
+        display: none !important;
+    }
+</style>
+
+
+<!--Orisuun Section-->
+<section>
+    <div class="container">
+        <div class="row mt5 banner-sec-custom mb5">
+            <div class="col-lg-5 order-lg-1 order-md-2 order-sm-2 order-2">
+                <div class="case-title intro-heading">
+                    <h2>Vyking</h2>
+                </div>
+                <p>
+                    Unlock the world of U.S. shopping with Vyking Ship, the go-to service for effortless and affordable international shipping. From providing a free U.S. address to helping you save up to 80% on shipping costs through expert package consolidation, Vyking Ship transforms how you shop across borders. Every parcel, every purchase, every delivery—Vyking Ship brings your favorite U.S. brands within reach, no matter where you are.
+                    <br /><br />
+                    Embrace a smarter shopping experience with Vyking Ship and discover just how easy global shopping can be!
+                </p>
+                <div style="margin-top:21px !important;">
+                    <h3>Tools Used</h3>
+                    <div class="row">
+                        <div class="col-md-3 col-6 mb-3">
+                            <img src="~/assets/images/casestudy/boltwell/visual studio.png" />
+                            <h4 class="mt-2 h4-font">Visual Studio</h4>
+                        </div>
+                        <div class="col-md-3 col-6 mb-3">
+                            <img src="~/assets/images/casestudy/boltwell/sql.png" />
+                            <h4 class="mt-2 h4-font">MSSQL</h4>
+                        </div>
+                        <div class="col-md-3 col-6 mb-3">
+                            <img src="~/assets/images/casestudy/goolgoal/figma.svg" />
+                            <h4 class="mt-2 h4-font">Figma</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7  mtimggg order-lg-2 order-md-1 order-sm-1 order-1">
+                <img src="~/assets/images/casestudy/Vyking/Banner-image.png" class="img-fluid w-100" alt="Orisuun" />
+                @*<img src="~/assets/images/casestudy/goolgoal/GoolGoalCombine.png" alt="goolgoal" />*@
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="mt-5 mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 order-lg-1 order-md-1 order-sm-1 order-1  d-flex flex-wrap align-content-center about-img">
+                <img src="~/assets/images/casestudy/Vyking/About-Image.png" class="img-fluid" />
+            </div>
+            <div class="col-lg-7 order-lg-2 order-md-2 order-sm-2 order-2">
+                <div class="row justify-content-left mt-3 Sec">
+                    <div class="case-title mt5">
+                        <h2 style="border-bottom: 1px solid #ccc; width: fit-content; ">About Project</h2>
+                    </div>
+                    <p class="mt5 about-subtopic">
+                        Vyking Ship is a package forwarding business that enables worldwide consumers to access U.S. items through a dependable and economical shipping solution. With features like free U.S. address registration, package consolidation, and purchase assistance, Vyking Ship enables users worldwide to easily shop and ship. Our goal was to enhance user experience, integrate a flexible subscription model, and maximize shipping efficiency.
+                    </p>
+                    <div class="col-md-3 col-6">
+                        <h3>Sector :</h3>
+                        <p>Global Shipping and  Parcel Forwarding</p>
+                    </div>
+                    <div class="col-1 d-flex justify-content-center align-items-center divi">
+                        <div class="divider"></div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <h3>Design Service:</h3>
+                        <p>Web Platform Design and Development</p>
+                    </div>
+                    <div class="col-1 d-flex justify-content-center align-items-center divi">
+                        <div class="divider"></div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <h3>Timeline :</h3>
+                        <p>Mar 2024 - Ongoing</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--  Our Technology -->
+<section class="process-section hiring-process testimonial-section-two">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                @*<div class="avidclan_section_title text-center mb-50">
+                        <div class="case-title">
+                            <div class="custom-underline" style="width: 32%">
+                                <h2>Our Technology</h2>
+                            </div>
+                        </div>
+                    </div>*@
+                <div class="case-title text-center mb-50">
+                    <div class="custom-underline">
+                        <h2>Our Technology</h2>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-lg-4 col-md-6  stat-card">
+                        <div class="d-flex flex-row content-center">
+                            <div><img src="~/assets/images/casestudy/Vyking/Asp.net.svg" class="img-fluid" /></div>
+                            <div class="d-flex flex-column p-1 ms-2">
+                                <h3 class="text-left">Backend Framework</h3>
+                                <h3 style="color: #0d47a1; text-align: left;">
+                                    ASP.NET
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 stat-card mmt5">
+                        <div class="d-flex flex-row content-center">
+                            <div> <img src="/assets/images/casestudy/Vyking/sql.svg" class="img-fluid" /></div>
+                            <div class="d-flex flex-column p-1 ms-2">
+                                <h3 class="text-left">Database</h3>
+                                <h3 style="color: #0d47a1; text-align: left;">
+                                    SQL
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6  stat-card mmt5">
+                        <div class="d-flex flex-row content-center">
+                            <div> <img src="/assets/images/casestudy/Vyking/bootstrap.svg" class="img-fluid" /></div>
+                            <div class="d-flex flex-column p-1 ms-2">
+                                <h3 class="text-left">Front-End</h3>
+                                <h3 class="text-left" style="color: #0d47a1;">
+                                    Bootstrap
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6  stat-card">
+                        <div class="d-flex flex-row content-center">
+                            <div> <img src="~/assets/images/casestudy/Vyking/c.svg" class="img-fluid" /></div>
+                            <div class="d-flex flex-column p-1 ms-2">
+                                <h3 class="text-left">Backend</h3>
+                                <h3 style="color: #0d47a1; text-align: left;">
+                                    C#
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6  stat-card mmt5">
+                        <div class="d-flex flex-row content-center">
+                            <div> <img src="~/assets/images/casestudydetail/TechnologiesImages/netmvc.svg" class="img-fluid" /></div>
+                            <div class="d-flex flex-column p-1 ms-2">
+                                <h3 class="text-left">Backend Framework</h3>
+                                <h3 style="color: #0d47a1; text-align: left;">
+                                    ASP.NET MVC
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6  stat-card mmt5">
+                        <div class="d-flex flex-row content-center">
+                            <div> <img src="/assets/images/casestudy/Vyking/jquery.svg" class="img-fluid" /></div>
+                            <div class="d-flex flex-column p-1 ms-2">
+                                <h3 class="text-left">Front-End</h3>
+                                <h3 style="color: #0d47a1; text-align: left;">
+                                    jQuery
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6  stat-card">
+                        <div class="d-flex flex-row content-center">
+                            <div> <img src="~/assets/images/casestudy/Vyking/JavaScript.svg" class="img-fluid" /></div>
+                            <div class="d-flex flex-column p-1 ms-2">
+                                <h3 class="text-left">Front-End</h3>
+                                <h3 style="color: #0d47a1; text-align: left;">
+                                    JavaScript
+                                </h3>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Clients Requirements-->
+<section class="section-clientRequirement">
+    <div class="container-fluid mt5 mb-2">
+        <div class="row">
+            <div class="col-lg-6 col-8 mx-auto mt5">
+                @*<div class="case-title text-center">
+                        <div class="custom-underline" style="width: 61%">
+                            <h2>Client's Requirements</h2>
+                        </div>
+                    </div>*@
+                <div class="case-title text-center">
+                    <div class="custom-underline">
+                        <h2>Client's Requirements</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center mt-5 txtCenter">
+            <div class="col-lg-3 first-column-content order-lg-1 order-md-2 order-sm-2 order-2 crtxtcls">
+                <div class="p-2">
+                    <div class="customdiv txt-client-requ txt-requ ">1</div>
+                    <h3>Subscription Plans</h3>
+                    <p>Develop three-tiered subscription plans—Basic, Gold, and Platinum—each offering unique designated features tailored to user needs.</p>
+                </div>
+                <div class="p-2 mt-3">
+                    <div class="customdiv txt-client-requ">2</div>
+                    <h3>Seamless Package Management</h3>
+                    <p>Ensure smooth user experiences in managing package consolidation, forwarding, and storage.</p>
+                </div>
+            </div>
+            <div class="col-lg-5 mb-0 mb-md-4 mb-lg-0 order-lg-2 order-md-1 order-sm-1 order-1">
+                <img src="~/assets/images/casestudy/Vyking/ClientReq-Image.png" class="img-fluid" />
+                @*<img src="/assets/images/casestudy/goolgoal/gg4.png" class="img-fluid" />*@
+            </div>
+            <div class="col-lg-3 last-column-content order-lg-3 order-md-2 order-sm-2 order-3">
+                <div class="p-2">
+                    <div class="customdiv txt-client-requ">3</div>
+                    <h3>User-Friendly Shipping Calculator</h3>
+                    <p>Integrate a tool for precise cost estimates.</p>
+                </div>
+                <div class="p-2 mt-2">
+                    <div class="customdiv txt-client-requ">4</div>
+                    <h3>Robust Customer Support</h3>
+                    <p>Facilitate support via multiple channels (chat, email, and phone).</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!--Our Approach-->
+<section>
+    <div class="container">
+        <div class="row mb5 mt5">
+            <div class="col-lg-6 p-2 oahidimg">
+                <img src="~/assets/images/casestudy/goolgoal/OurAppImg.jpg" class="img-fluid" />
+            </div>
+            <div class="col-lg-6 ourapp">
+                <div class="row">
+                    <div class="avidclan_section_title text-left mb-50">
+                        <div class="case-title">
+                            <h2 class=" width-fit-content" style="border-bottom: 1px solid #ccc;">Our Approach</h2>
+                        </div>
+                    </div>
+                    @*<div class="case-title text-center">
+                            <div class="custom-underline">
+                                <h2>Our Approach</h2>
+                            </div>
+                        </div>*@
+                    <img class="oashwimg img-fluid" src="/assets/images/casestudy/goolgoal/OurAppImg.jpg" />
+                    <div class="mt5">
+                        <ul class="listst">
+                            <li><p>Designed an intuitive user interface for straightforward registration, package management, and cost calculation.</p></li>
+                            <li><p>Phased integration of the Basic, Gold, and Platinum subscription plans, providing options suited to different user needs and budgets.</p></li>
+                            <li><p>Developed cost-saving consolidation and repackaging services for users to minimize shipping expenses.</p></li>
+                            <li><p>Established robust support channels, ensuring customers receive timely assistance.</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Project Challenges and Our Solution-->
+<section class="ourmission lightblue-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 pe-lg-4 proch">
+                <div class="row">
+                    <div class="avidclan_section_title">
+                        @*<div class="case-title">
+                                <h2 style="border-bottom: 1px solid #ccc;">Project Challenges</h2>
+                            </div>*@
+                        <div class="avidclan_section_title">
+                            <div class="case-title">
+                                <h2 style="border-bottom: 1px solid #ccc;">Project Challenges</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 order-lg-1 order-md-1 order-sm-3 order-2 mt3">
+                        <ul class="listst">
+                            <li><p>Designing adaptable subscription plans to meet diverse user needs and preferences effectively and affordably.</p></li>
+                            <li><p>Guaranteeing precise shipping cost calculations for clear, accurate, and completely transparent pricing models.</p></li>
+                            <li><p>Integrating seamless plan transitions for users upgrading between subscription tiers without any disruptions.</p></li>
+                            <li><p>Addressing scalability challenges to accommodate growing customer demands across all subscription tiers efficiently.</p></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-12 order-lg-2 order-md-2 order-sm-1 order-1 mt3">
+                        <img src="~/assets/images/casestudy/goolgoal/ProjectChallenge.jpg" class="img-fluid" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 ps-lg-4 oursol">
+                <div class="row mt-0 mt-md-4 mt-lg-0">
+                    <div class="avidclan_section_title">
+                        <div class="case-title">
+                            <h2 style="border-bottom: 1px solid #ccc;">Our Solution</h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 order-lg-1 order-md-1 order-sm-3 order-2 mt3">
+                        <ul class="listst">
+                            <li><p>Basic, Gold, and Platinum Subscription plans each offer distinct benefits, with features designed to maximize value and convenience at every level. </p></li>
+                            <li><p>Reduces shipping costs by up to 80% through package consolidation and efficient repackaging services.</p></li>
+                            <li><p>Provides seamless purchase assistance for users unable to complete transactions due to payment restrictions.</p></li>
+                            <li><p>Expands the customer base with a referral program offering attractive discounts and rewards for participants.</p></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-12 order-lg-2 order-md-2 order-sm-1 order-1 mt3">
+                        <img src="~/assets/images/casestudy/goolgoal/OurSolution.jpg" class="img-fluid" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--Key Features-->
+<section class="mt-5 mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="avidclan_section_title text-center mb-50">
+                    <div class="case-title">
+                        <div class="custom-underline key-feature-margin mb-3">
+                            <h2 style="border-bottom: 1px solid #ccc;">Key Features</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 order-lg-1 order-md-1 order-sm-1 order-1  d-flex flex-wrap align-content-center">
+                <img src="~/assets/images/casestudy/Vyking/KeyFeatures-Image.png" class="img-fluid" />
+            </div>
+            <div class="col-lg-6 order-lg-1 order-md-2 order-sm-2 order-2">
+                <div class="row">                   
+                    <div class="row keyftxt txtCenter mt-2">
+                        <div class="col-md-6">
+                            <div class="p-2">
+                                <img src="~/assets/images/casestudy/Vyking/1_FreeUS.svg" class="img-fluid" />
+                            </div>
+                            <div class="p-2">
+                                <p>Free U.S. Address with 180-Day Storage</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-2">
+                                <img src="~/assets/images/casestudy/Vyking/2_sHIPPINGCALC.svg" class="img-fluid" />
+                            </div>
+                            <div class="p-2">
+                                <p>Real-Time Shipping Calculator for Cost Transparency</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-2">
+                                <img src="~/assets/images/casestudy/Vyking/3_PACKAGE.svg" class="img-fluid" />
+                            </div>
+                            <div class="p-2">
+                                <p>Package Consolidation and Repackaging</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-2">
+                                <img src="~/assets/images/casestudy/Vyking/4_Purchase.svg" class="img-fluid" />
+                            </div>
+                            <div class="p-2">
+                                <p>Purchase Assistance for U.S.-Only Retailers</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-2">
+                                <img src="~/assets/images/casestudy/Vyking/7_cs.svg" class="img-fluid" />
+                            </div>
+                            <div class="p-2">
+                                <p>24/7 Customer Support via Multiple Channels</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-2">
+                                <img src="~/assets/images/casestudy/Vyking/6._exclusivesubs.svg" class="img-fluid" />
+                            </div>
+                            <div class="p-2">
+                                <p>Exclusive Subscription Tiers tailored to user needs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--User Interface Designs-->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-lg-6 mx-auto mb5 mt5">
+                <div class="case-title text-center">
+                    <div class="custom-underline">
+                        <h2 style="width: max-content;">User Interface Designs</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row thumbnail-div">
+            <div class="col-md-10 image-thumbnail-carousel">
+                <section class="image-display">
+                    <div class="screen"></div>
+                </section>
+                <section class="thumbnail-carousel">
+                    <button type="button" class="carousel__btn prev icon-arrow" aria-label="Previous slide">
+                        <svg width="16" height="16" fill="currentColor" class="arrow-icon arrow-left-circle" viewBox="0 0 16 16">
+                            <img src="~/assets/images/casestudy/Orisuun/Arrow left-circle.svg" />
+                            @*<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />*@
+                        </svg>
+                    </button>
+                    <ul class="carousel__slider">
+                        <li class="carousel__slide">
+                            <div class="thumbnail">
+                                <img loading="lazy" src="~/assets/images/casestudy/Vyking/Slider-1.png" alt="">
+                            </div>
+                        </li>
+                        <li class="carousel__slide">
+                            <div class="thumbnail">
+                                <img loading="lazy" src="~/assets/images/casestudy/Vyking/Slider-2.png" alt="">
+                            </div>
+                        </li>
+                        <li class="carousel__slide">
+                            <div class="thumbnail">
+                                <img loading="lazy" src="~/assets/images/casestudy/Vyking/Slider-3.png" alt="">
+                            </div>
+                        </li>
+                        <li class="carousel__slide">
+                            <div class="thumbnail">
+                                <img loading="lazy" src="~/assets/images/casestudy/Vyking/Slider-4.png" alt="">
+                            </div>
+                        </li>
+                        <li class="carousel__slide">
+                            <div class="thumbnail">
+                                <img loading="lazy" src="~/assets/images/casestudy/Vyking/Slider-5.png" alt="">
+                            </div>
+                        </li>
+                        @*<li class="carousel__slide">
+                                <div class="thumbnail">
+                                    <img loading="lazy" src="https://picsum.photos/800/456" alt="">
+                                </div>
+                            </li>
+                            <li class="carousel__slide">
+                                <div class="thumbnail">
+                                    <img loading="lazy" src="https://picsum.photos/800/457" alt="">
+                                </div>
+                            </li>
+                            <li class="carousel__slide">
+                                <div class="thumbnail">
+                                    <img loading="lazy" src="https://picsum.photos/800/458" alt="">
+                                </div>
+                            </li>
+                            <li class="carousel__slide">
+                                <div class="thumbnail">
+                                    <img loading="lazy" src="https://picsum.photos/800/459" alt="">
+                                </div>
+                            </li>*@
+                    </ul>
+                    <button type="button" class="carousel__btn next icon-arrow" aria-label="Next slide">
+                        <svg width="16" height="16" fill="currentColor" class="arrow-icon arrow-right-circle" viewBox="0 0 16 16">
+                            <img src="~/assets/images/casestudy/Orisuun/Arrow right-circle.svg" />
+                            @*<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />*@
+                        </svg>
+                    </button>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Dynamics Statistics-->
+<section class="ourmission lightblue-bg mt-5 mb-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="avidclan_section_title text-center">
+                    <div class="case-title">
+                        <div class="custom-underline">
+                            <h2>Dynamic Statistics</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center dysts">
+                    <div class="col-md-2 col-sm-6 stat-card">
+                        40%
+                        <div class="stat-desc">Faster Package processing</div>
+                    </div>
+                    <div class="col-1 d-flex justify-content-center align-items-center">
+                        <div class="divider"></div>
+                    </div>
+                    <div class="col-md-2 col-sm-6 stat-card mmt5">
+                        60%
+                        <div class="stat-desc">Savings on Shipping costs</div>
+                    </div>
+                    <div class="col-1 d-flex justify-content-center align-items-center">
+                        <div class="divider"></div>
+                    </div>
+                    <div class="col-md-2 col-sm-6 stat-card mmt5">
+                        35%
+                        <div class="stat-desc">Growth in Subscriptions</div>
+                    </div>
+                    <div class="col-1 d-flex justify-content-center align-items-center">
+                        <div class="divider"></div>
+                    </div>
+                    <div class="col-md-2 col-sm-6 stat-card mmt5">
+                        45%
+                        <div class="stat-desc">Improved Package Tracking</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--Business Outcomes-->
+<section class="business-outcomes">
+    <div class="container-fluid mt-3">
+        <div class="row Business_row ">
+            <div class="col-lg-6">
+                <div class="first-column_content">
+                    <h2 class="section-title">Business Outcomes</h2>
+                    <hr />
+                    <div class="row">
+                        <div class="col order-lg-1 order-md-1 order-sm-2 order-2">
+                            <p class="section-content mt-3">
+                                The enhanced Vyking Ship platform provides a more streamlined and user-centric experience, leading to increased customer loyalty and cost savings. With innovative features like purchase assistance, consolidated shipping, and a transparent pricing model, Vyking Ship has become a preferred choice for global shoppers looking to access U.S. products. The introduction of the Basic, Gold, and Platinum subscription plans has driven user engagement, with a clear increase in premium membership signups, boosting recurring revenue and overall customer retention.
+                            </p>
+                        </div>
+                        <div class="col order-lg-1 order-md-1 order-sm-1 order-1">
+                            <img src="/assets/images/casestudy/goolgoal/businessoutcome.png" class="img-fluid mt-3 rounded" alt="Business Outcomes">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="testimonial">
+                    <h2 class="section-title">What does the Client Have to say about the project?</h2>
+                    <hr />
+                    <div class="quote"><img src="~/assets/images/casestudy/goolgoal/quoteupper.png" class="img-fluid" alt="Business Outcomes"></div>
+                    <p class="testimonial-content mt-3">
+                        Working with Avidclan Technologies was an exceptional experience. Their team's professionalism and creativity were evident from the start. They not only grasped our brand identity effortlessly but also translated it into a visually stunning design that surpassed our expectations. The final product not only looks fantastic but also provides a seamless user experience, elevating our business significantly.
+                    </p>
+                    <div class="row mt-5 mb-3">
+                        <div class="col-md-2 col-3">
+                            <img src="/assets/images/casestudy/goolgoal/darrenjon.png" class="img-fluid rounded-circle" alt="Business Outcomes">
+                        </div>
+                        <div class="col-md-8 col-8">
+                            <div class="testimonial-author">
+                                <span style="font-weight: 700;font-size: 20px;margin-top: 0.5rem;">
+                                    - Darrell Johnson
+                                </span>
+                                <br>
+                                <div class="text-muted" style="font-weight: 600;font-size: 14px;">(Chief Executive Officer)</div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 quote">
+                            <img src="/assets/images/casestudy/goolgoal/quotelower.png" class="img-fluid" alt="Business Outcomes">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Explore our Portfolio-->
+<section>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-6 col-12  mx-auto mt5 mb-4">
+                <div class="case-title text-center" style="border-bottom: 1px solid #ccc; /* width: fit-content; */ ">
+                    <h2>Explore our Portfolio</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-6 col-lg-4">
+                <img src="~/assets/images/casestudy/goolgoal/E-Sala.jpg" class="img-fluid" />
+                <div class="mt-2">
+                    <h3> E-Shala</h3>
+                    <p>  School management app used by teachers and students to manage attendance, assignments and more activities.</p>
+                </div>
+            </div>
+            <div class="col-6 col-lg-4">
+                <img src="~/assets/images/casestudy/goolgoal/prizai.jpg" class="img-fluid" />
+                <div class="mt-2">
+                    <h3>Prizai</h3>
+                    <p>
+                        App used by customers wanting to get salon services online by getting benefit of various referral programs.
+                    </p>
+                </div>
+            </div>
+            <div class="col-6 col-lg-4">
+                <img src="~/assets/images/casestudy/goolgoal/improve.jpg" class="img-fluid" />
+                <div class="mt-2">
+                    <h3>Improve</h3>
+                    <p>
+                        App focused on health and fitness factors, which engages its user to get fit by providing knowledge on diet, exercise.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@Html.Partial("_Footer")
+
+
+
+
+
+

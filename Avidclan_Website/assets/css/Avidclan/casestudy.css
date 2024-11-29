@@ -97,6 +97,7 @@
 .custom-underline {
     margin: 0.5rem auto 0;
     border-bottom: 1px solid #ccc;
+    width: fit-content;
     /*width: 32%;*/
 }
 
@@ -183,7 +184,7 @@
 }
 
 .first-column_content .section-title {
-    display: table-caption;
+    /*display: table-caption;*/
 }
 
 .BO_row {
@@ -210,8 +211,8 @@ hr {
     font-family: "Poppins";
     font-weight: 500;
     color: rgba(77, 81, 84, 1);
-    width: 301px;
-    height: 96px;
+    /*width: 301px;
+    height: 96px;*/
 }
 
 .first-column-content {
@@ -237,9 +238,9 @@ hr {
     padding: 2.5rem;
 }
 
-.proch {
+/*.proch {
     padding-right: 3rem !important;
-}
+}*/
 
 .mtsix {
     margin-top: 6rem !important;
@@ -331,7 +332,7 @@ hr {
     .custom-underline {
         margin: 0.5rem auto 0;
         border-bottom: 1px solid #ccc;
-        width: fit-content !important;
+        width: fit-content;
     }
 
     .proch {
@@ -375,8 +376,15 @@ hr {
 
     .txtCenter {
         text-align: center;
-    }
 
+    }
+    .txt-client-requ {
+       
+        margin-bottom: 24px;
+    }
+    .txt-requ {
+        margin-top: 32px;
+    }
     .keyftxt p {
         font-size: 17px;
         font-family: "Poppins";
@@ -456,4 +464,155 @@ hr {
     font-family: "Poppins";
     font-weight: 500;
     line-height: 32px;
+}
+/*.challange-img {
+    height: 300px;
+    width:100%;
+}*/
+
+.stat-card .image-content img {
+    max-width: 100%;
+    height: auto;
+    margin-left: 30px; /* Adds space between text and image */
+}
+
+@media (min-width: 992px) { /* Adjust the width threshold as needed */
+    .about-img {
+        margin-top: 74px !important;
+    }
+    .key-feature-margin {
+        margin-bottom: 59px;
+    }
+    .Business_row {
+        /* background-color: #E9E9EA; */
+        padding: 0 0 0 50px;
+    }
+}
+
+
+.tech-img-content {
+    margin-left: 30px;
+}
+.tech-img-c{
+    margin-right:14px;
+}
+.content-center {
+    align-items: center !important;
+    margin-bottom: 30px;
+    border-right: 1px solid #BABBBD;
+    margin-right: 20px;
+}
+
+@media (max-width: 991.98px) {
+    .content-center {
+       
+        border-right: 0px;
+      
+    }
+}
+@media(min-width:992px){
+    
+    .tech-margin {
+        margin-top: 3rem !important;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px) { /* Adjust the max-width as needed for your mobile breakpoint */
+    .intro-heading {
+        margin-top: 24px;
+    }
+
+    .about-subtopic {
+        margin-bottom: 40px;
+        margin-top: 32px;
+    }
+
+    .tech-dotnet {
+        margin-left: 40px;
+    }
+
+    .tech-azure {
+        margin-left: 27px
+    }
+
+    .tech-img {
+        margin-top: 36px !important;
+    }
+
+    .tech-head {
+        margin-right: 8px;
+    }
+
+    .tech-head-h3 {
+        margin-right: 32px;
+    }
+
+    .Business_row {
+        /* background-color: #E9E9EA; */
+        padding: 0 0 0 16px;
+    }
+
+    .Sec .divi {
+        display: none !important;
+    }
+
+    .divider {
+        display: none !important;
+    }
+    
+}
+.text-left{
+    text-align:left;
+}
+
+@media(max-width:1200px){
+    .banner-sec-custom {
+        margin-top: 95px !important;
+    }
+}
+
+.width-fit-content {
+    width: fit-content;
+}
+@media(max-width:576) {
+    .intro-heading {
+        margin-top: 24px;
+    }
+   
+}
+@media (max-width: 767.98px) {
+    .content-center {
+        align-items: center !important;
+        margin-bottom: 15px;
+        border-right: 0;
+        margin-right: 0;
+    }
+    .h4-font {
+        font-size: 14px;
+        font-weight:400;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .banner-sec-custom {
+        margin-top: 16px !important;
+       
+    }
+}
+
+
+@media (max-width: 767.98px) {
+    .intro-heading {
+        margin-top: 24px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 992px) {
+    .intro-heading {
+        margin-top: 24px;
+    }
+
+    .banner-sec-custom {
+        margin-top: 90px !important;
+    }
 }
