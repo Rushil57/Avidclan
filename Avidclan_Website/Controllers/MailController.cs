@@ -323,6 +323,38 @@ namespace Avidclan_Website.Controllers
             return "Sent";
 
         }
+
+        [Route("api/Mail/SendLocationPageDetails")]
+        [HttpPost]
+        public async Task<string> SendLocationPageDetails(UserDetail obj)
+        {
+            try
+            {
+                await ReadConfiguration("other");
+                var messagebody = "<html><body>" +
+                                    "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
+                                    "<tr style='background: #eee;'><td colspan='2'><strong>Contact Inquiry Details</strong></td></tr>" +
+                                    "<tr style='background: #fff;'><td><strong>FirstName:</strong> </td><td>" + obj.FirstName + " </td></tr>" +
+                                    "<tr style='background: #fff;'><td><strong>LastName:</strong> </td><td>" + obj.LastName + " </td></tr>" +
+                                    "<tr style='background: #fff;'><td><strong>Email:</strong> </td><td>" + obj.Email + " </td></tr>" +
+                                    "<tr style='background: #fff;'><td><strong>Mobile/Phone:</strong> </td><td>" + "+" + obj.CountryCode + "&nbsp;" + obj.Phoneumber + " </td></tr>" +
+                                    "<tr style='background: #fff;'><td><strong>Comment/Message:</strong> </td><td>" + obj.Message + " </td></tr>" +
+                                   "</table>" +
+                                   "</body></html>";
+
+              
+                await sendEmail(senderEmail, receiverEmail, (obj.FirstName + " " + obj.LastName), "Service Inquiry From Avidclan Technologies", messagebody);
+
+                ErrorLog("Mail", "Execution Success", "Success");
+            }
+            catch (Exception ex)
+            {
+                ErrorLog("Mail", ex.Message.ToString() + ex.InnerException, ex.StackTrace.ToString());
+                return "Error: " + ex.Message.ToString() + " " + ex.StackTrace.ToString();
+                throw ex.InnerException;
+            }
+            return "Sent";
+        }
         public async Task<bool> ReadConfiguration(string type)
         {
             var result = false;

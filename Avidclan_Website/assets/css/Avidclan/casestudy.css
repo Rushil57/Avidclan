@@ -1,4 +1,13 @@
-﻿@media(max-width: 1139px) {
+﻿
+.banner-section-two-h1 {
+    position: relative;
+    color: #142149;
+    font-weight: 800;
+    font-size: 60px;
+    line-height: 1.2;
+    margin-bottom: 30px;
+}
+@media(max-width: 1139px) {
     .primary-header {
         margin-top: 99px !important;
     }
@@ -477,9 +486,7 @@ hr {
 }
 
 @media (min-width: 992px) { /* Adjust the width threshold as needed */
-    .about-img {
-        margin-top: 74px !important;
-    }
+  
     .key-feature-margin {
         margin-bottom: 59px;
     }
@@ -488,8 +495,17 @@ hr {
         padding: 0 0 0 50px;
     }
 }
-
-
+/*and (max-width: 1199.98px)*/
+@media (min-width :992px) {
+    .about-img {
+        margin-top: 150px !important;
+    }
+}
+@media(max-width: 1199.98px){
+    .about-img {
+        margin-top: -54px !important;
+    }
+}
 .tech-img-content {
     margin-left: 30px;
 }
