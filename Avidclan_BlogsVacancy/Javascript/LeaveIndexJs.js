@@ -68,10 +68,11 @@ function SelectCalenderDate() {
                 SetMinDate();
             }
         },
-        events: [],
+        events: []
         //eventClick: function (info) {
         //    var StartTime = moment(info.event.start).format('MM/DD/YYYY');
-        //    EditLeaves(info.event.id,StartTime);
+        //    var Eventlist = calendar.getEvents();
+        //    EditLeaves(info.event.id, StartTime);
         //}
     });
 
@@ -101,10 +102,10 @@ function DateChange() {
         dt.setDate(dt.getDate() + 1);
     }
 
-    BindLeaveTable(arr);
+    BindLeaveTable(arr, false);
 }
 
-function BindLeaveTable(arr) {
+function BindLeaveTable(arr, showDeleteIcon) {
     $("#TotalLeaveDates").show();
     $("#LeaveDateTable .LeaveDatebody").html("");
     var count = 1
@@ -122,19 +123,56 @@ function BindLeaveTable(arr) {
             ':&nbsp; <input type="radio" id="WFHHalfLeave" name="WFHHalfDay_' + count + '" value="HalfDayLeave" onchange="CheckWfhRadioButton(' + count + ')"> <label for="HalfDay">Leave</label>&nbsp;&nbsp;' +
             '<input type="radio" id="WorkFromOffice" name="WFHHalfDay_' + count + '" value="HalfDayWFO" onchange="CheckWfhRadioButton(' + count + ')"> <label for= "WFO" > WFO</label>' +
             '</div>' +
-            '<label class="error" id="error_' + count + '" for="errormessage" style="display: none;color: red;padding-top: 5px;">Please select one of the options</label>' +
-            "</td>"
-
-        "</tr >";
+            '<label class="error" id="error_' + count + '" for="errormessage" style="display: none;color: red;padding-top: 5px;">Please select one of the options</label>'
+        if (showDeleteIcon) {
+            if (arr[i].Title == "WFH") {
+                addcontrols += '<td><i class="mdi mdi-delete-outline delete-icon" id="WfhDetailsId_' + arr[i].WFHDetailId + '" onclick=DeleteWFHDetailsOfEmployee(' + arr[i].WFHDetailId + ')></i></td>'
+            }
+            else if (arr[i].Title == "LeaveAndWfh")
+            {
+                addcontrols += '<td><i class="mdi mdi-delete-outline delete-icon" onclick=DeleteWFHandLeaveDetailsOfEmployee(' + arr[i].WFHDetailsId + ',' + arr[i].LeaveDetailsId + ')></i></td>'
+            }
+            else {
+                addcontrols += '<td><i class="mdi mdi-delete-outline delete-icon" id="LeaveDetailsId_' + arr[i].LeaveDetailsId + '" onclick=DeleteLeaveDetailsOfEmployee(' + arr[i].LeaveDetailsId + ')></i></td>'
+            }
+            
+        }
+        addcontrols += "</td></tr>";
 
 
         $("#LeaveDateTable .LeaveDatebody").append(addcontrols);
-        //if (arr[i].Halfday != null && arr[i].Halfday != "") {
-        //    $(".HalfDaydiv_" + count).show();
-        //    $("#HalfDaycheck_"+ count).prop("checked", true);
-        //    $("input[name=HalfDayLeave_" + count + "][value=" + arr[i].Halfday +"]").prop("checked", true);
 
-        //}
+        if (showDeleteIcon) {
+            if (arr[i].Halfday != null && arr[i].Halfday != "") {
+                $(".HalfDaydiv_" + count).show();
+                /*  $("#WorkFromcheck_" + count).prop("checked", true);*/
+                $("input[name=HalfDayLeave_" + count + "][value=" + arr[i].Halfday + "]").prop("checked", true);
+            }
+            //if (arr[i].Title == "Leave" && arr[i].Halfday != null) {
+            //    $("#WFHHalfLeave_" + count).text(arr[i].Halfday)
+            //    $(".WorkAndLeave_" + count).show();
+            //}
+            if (arr[i].Title == "WFH") {
+                $("#WorkFromcheck_" + count).prop("checked", true);
+                if (arr[i].Halfday != null && arr[i].Halfday != "") {
+                    $(".WorkAndLeave_" + count).show();
+                    if (arr[i].Halfday == 'SecondHalf') {
+                        $("#WFHHalfLeave_" + count).text("FirstHalf")
+                    } else {
+                        $("#WFHHalfLeave_" + count).text("SecondHalf")
+                    }
+                    $("input[name=WFHHalfDay_" + count + "][value=HalfDayWFO]").prop("checked", true);
+                }
+            }
+            if (arr[i].Title == "LeaveAndWfh") {
+                $("#WorkFromcheck_" + count).prop("checked", true);
+                $("input[name=HalfDayLeave_" + count + "][value=" + arr[i].WFHHalfDay + "]").prop("checked", true);
+                $("#WFHHalfLeave_" + count).show();
+                $("#WFHHalfLeave_" + count).text(arr[i].LeaveHalfday)
+                $(".WorkAndLeave_" + count).show();
+                $("input[name=WFHHalfDay_" + count + "][value=HalfDayLeave]").prop("checked", true);
+            }
+        }
         //else {
         //    $(".HalfDaydiv_" + count).hide();
         //}
@@ -218,7 +256,8 @@ function SendLeaveRequest() {
         Leaves: LeaveDetails,
         ReportingPerson: $("#ReportingPersonId").val(),
         ReasonForLeave: $("#txtReason").val(),
-        WorkFromHome: $("#WorkFromHome").prop('checked')
+        WorkFromHome: $("#WorkFromHome").prop('checked'),
+        WFHId : $("#WfhId").val() 
     }
     showSpinner();
     $.ajax({
@@ -302,6 +341,9 @@ function GetLeaveDates() {
             });
 
             $.each(data.wfhdetaillist, function (key, val) {
+                if (val.LeaveId == 0) {
+                    val.LeaveId = val.Id;
+                }
                 var fromdate = moment(val.LeaveDate).format('YYYY-MM-DD');
                 if (val.HalfDay != null && val.HalfDay != "") {
                     if (val.HalfDay == "FirstHalf") {
@@ -330,7 +372,6 @@ function GetLeaveDates() {
                         allDay: true
                     });
                 }
-
             });
         },
         error: function (result) {
@@ -339,37 +380,17 @@ function GetLeaveDates() {
     });
 }
 
-function EditLeaves(id, date) {
-    var TodayDate = new Date();
-    TodayDate = moment(TodayDate).format('MM/DD/YYYY');
-    if (date >= TodayDate) {
-        $.ajax({
-            url: "Leave/GetLeaveDetails",
-            type: "GET",
-            data: {
-                Id: id,
-            },
-            contentType: 'application/json; charset=utf-8',
-            success: function (data) {
-                $("#ApplyLeaveModel").show();
-                var fromdate = moment(data[0].Fromdate).format('MM/DD/YYYY');
-                var todate = moment(data[0].Todate).format('MM/DD/YYYY');
-                $("#txtFromDate").val(fromdate);
-                $("#txtToDate").val(todate);
-                $("#LeaveId").val(data[0].Id)
-                var arr = new Array();
-                $.each(data, function (key, val) {
-                    var LeaveDetails = {
-                        LeaveDates: val.LeaveDates,
-                        Halfday: val.Halfday
-                    }
+function EditLeaves(id, startDate) {
 
-                    arr.push(LeaveDetails);
-                })
-                BindLeaveTable(arr);
-            }
-        });
+    var diffDays = checkedEditedLeavesday(startDate);
+    if (diffDays > 2) {
+        OpenEmployeeEditDetails(id)
+    } else {
+        // alert("Please inform to management team for changes in leave.Thanks!")
+        OpenEmployeeEditDetails(id)
     }
+
+
 }
 
 function checkRadioButton(data) {
@@ -482,7 +503,7 @@ function GetTotalLeaveBalance() {
                 var paidleave = TotalPersonalLeaveCount(data.TotalLeaveList.PersonalLeave, userOnbreak);
                 SaveSickAndPaidLeave(sickLeave, paidleave);
             }
-          
+
         },
         error: function (result) {
             alert(result.responseText);
@@ -492,6 +513,7 @@ function GetTotalLeaveBalance() {
 
 function TotalSickLeaveCount(sickleave, userBreak) {
 
+    return 0.0;
     var getJoiningDate = $('#JoiningDate').val();
     getJoiningDate = new Date(getJoiningDate);
     var getProbationMonth = $('#ProbationMonth').val();
@@ -582,10 +604,11 @@ function TotalPersonalLeaveCount(personalLeave, userBreak) {
         if (Pastpersonalleave == '') {
             Pastpersonalleave = 0.0;
         }
-
+        months = (CurrentDate.getMonth() - JoiningDateAfterProbation.getMonth() + 1) +
+            (12 * (CurrentDate.getFullYear() - getJoiningDate.getFullYear()))
         var CurrentDate = new Date();
         var CurrentMonth = CurrentDate.getMonth() + 1;
-        TotalPersonalLeave = parseFloat(Pastpersonalleave) + (CurrentMonth - personalLeave)
+        TotalPersonalLeave = parseFloat(Pastpersonalleave) + (months - personalLeave)
         if (TotalPersonalLeave < 0 && TotalPersonalLeave != -0.5) {
             TotalPersonalLeave = 0;
         } else if (TotalPersonalLeave == -0.5) {
@@ -602,7 +625,7 @@ function TotalPersonalLeaveCount(personalLeave, userBreak) {
 function SaveSickAndPaidLeave(sickleave, paidleave) {
     var data = {
         SickLeave: sickleave,
-        PaidLeave : paidleave
+        PaidLeave: paidleave
     }
     $.ajax({
         type: "POST",
@@ -620,4 +643,213 @@ function SaveSickAndPaidLeave(sickleave, paidleave) {
             alert("Error: " + error);
         },
     })
+}
+
+
+function checkedEditedLeavesday(startDate) {
+    var today = new Date();
+    var start = new Date(startDate); // Convert startDate to a Date object
+
+    // Calculate the difference in milliseconds
+    var differenceInMilliseconds = start - today;
+
+    // Convert milliseconds to days
+    var differenceInDays = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
+
+    return differenceInDays;
+}
+function OpenEmployeeEditDetails(leaveId) {
+
+    if (leaveId == 0) {
+        return
+    }
+    showSpinner();
+
+    $.ajax({
+        url: "/Leave/GetEmployeeLeaveDetails",
+        type: "GET",
+        data: {
+            Id: leaveId,
+        },
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            // Determine which dataset to use
+            var isLeave = data.leavelist.length > 0;
+            var record = isLeave ? data.leavelist[0] : data.wfhdetaillist[0];
+            var fromdate = moment(record.Fromdate).format('MM/DD/YYYY');
+            var todate = moment(record.Todate).format('MM/DD/YYYY');
+
+            // Check leave edit restrictions if applicable
+            //if (isLeave) {
+            //    var differenceDay = checkedEditedLeavesday(fromdate);
+            //    if (differenceDay <= 2) {
+            //        alert("Please inform the management team about changes in leave. Thanks!");
+            //        hideSpinner();
+            //        return;
+            //    }
+            //}
+
+            // Populate modal fields
+            $("#ApplyLeaveModel").show();
+            $("#txtFromDate").val(fromdate);
+            $("#txtToDate").val(todate);
+            isLeave ? $("#LeaveId").val(record.Id) : $("#WfhId").val(record.WFHId) 
+            $("#EmailId").val(record.EmailId);
+            $("#FirstName").val(record.FirstName);
+            $("#txtReason").val(isLeave ? record.ReasonForLeave : record.ReasonForWFH);
+            SetMinDate();
+            var arr = [];
+
+            // Step 1: Push all unique leave and WFH records to `arr`
+            $.each(data.leavelist, function (key, val) {
+                var LeaveDetails = {
+                    Title: "Leave",
+                    LeaveDates: val.LeaveDates,
+                    Halfday: val.Halfday,
+                    LeaveDetailsId: val.LeaveApplicationId
+                }
+                arr.push(LeaveDetails);
+            });
+
+            $.each(data.wfhdetaillist, function (key, val) {
+                var WFHDetails = {
+                    Title: "WFH",
+                    LeaveDates: val.WFHDates,
+                    Halfday: val.Halfday,
+                    WFHDetailId: val.WFHDetailId
+                }
+                arr.push(WFHDetails);
+            });
+
+            // Step 2: Find common dates between leaveDates and wfhDates
+            var leaveDates = data.leavelist.map(function (val) { return val.LeaveDates; });
+            var wfhDates = data.wfhdetaillist.map(function (val) { return val.WFHDates; });
+            var commonDates = leaveDates.filter(function (date) { return wfhDates.includes(date); });
+
+            // Step 3: If common dates exist, consolidate records for those dates
+            if (commonDates.length > 0) {
+                console.log("Common Dates:", commonDates);
+
+                // Get details for the common dates from each list
+                var commonLeaveDetails = data.leavelist.filter(function (val) {
+                    return commonDates.includes(val.LeaveDates);
+                });
+
+                var commonWFHDetails = data.wfhdetaillist.filter(function (val) {
+                    return commonDates.includes(val.WFHDates);
+                });
+
+                // Consolidate common details and push to `arr`
+                $.each(commonDates, function (index, date) {
+                    var leaveDetail = commonLeaveDetails.find(function (leave) {
+                        return leave.LeaveDates === date;
+                    });
+                    var wfhDetail = commonWFHDetails.find(function (wfh) {
+                        return wfh.WFHDates === date;
+                    });
+
+                    // Check if both leave and WFH details exist for this date
+                    if (leaveDetail && wfhDetail) {
+                        arr = getUniqueRecords(arr, 'LeaveDates');
+
+                        var LeaveAndWorkFromDetails = {
+                            Title: "LeaveAndWfh",
+                            LeaveDates: date,
+                            LeaveHalfday: leaveDetail.Halfday,
+                            LeaveDetailsId: leaveDetail.LeaveApplicationId,
+                            WFHDetailsId: wfhDetail.WFHDetailId,
+                            WFHHalfDay: wfhDetail.Halfday
+                        };
+                        arr.push(LeaveAndWorkFromDetails);
+                    }
+                });
+
+                console.log("Consolidated Common Details:", arr);
+
+            } else {
+                console.log("No common dates found.");
+            }
+
+            BindLeaveTable(arr, true);
+
+            hideSpinner();
+        },
+        error: function (result) {
+            console.log(xhr.responseText);  // Log the raw response text
+            alert("Error: " + error);
+            hideSpinner();
+        },
+    });
+}
+
+function getUniqueRecords(arr, property) {
+    const countMap = arr.reduce((acc, item) => {
+        acc[item[property]] = (acc[item[property]] || 0) + 1;
+        return acc;
+    }, {});
+
+    return arr.filter(item => countMap[item[property]] === 1);
+}
+
+
+function DeleteLeaveDetailsOfEmployee(leaveDetailsId) {
+    if (confirm('Are you sure you want to delete leave?')) {
+        showSpinner();
+        var leaveId = $("#LeaveId").val();
+        $.ajax({
+            url: "/Leave/DeleteLeaveDetailsApplication",
+            type: "GET",
+            data: {
+                LeaveApplicationId: leaveDetailsId,
+                LeaveId: leaveId
+            },
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                alert(data);
+                OpenEmployeeEditDetails(leaveId);
+
+                hideSpinner();
+            },
+            error: function (result) {
+                console.log(result.responseText);  // Log the raw response text
+                alert("Error: " + result);
+                hideSpinner();
+            },
+        });
+    }
+}
+
+function DeleteWFHDetailsOfEmployee(wfhdetailId) {
+    if (confirm('Are you sure you want to delete Wfh?')) {
+        showSpinner();
+        $.ajax({
+            url: "/Leave/DeleteWFHDetailsOfEmployee",
+            type: "GET",
+            data: {
+                wfhDetailId: wfhdetailId
+            },
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                alert(data);
+                var leaveId = $("#LeaveId").val();
+                OpenEmployeeEditDetails(leaveId);
+
+                hideSpinner();
+            },
+            error: function (result) {
+                console.log(result.responseText);  // Log the raw response text
+                alert("Error: " + result);
+                hideSpinner();
+            },
+        });
+    }
+}
+
+function DeleteWFHandLeaveDetailsOfEmployee(wfhdetailId, leaveApplicationId) {
+    if (confirm('Are you sure you want to delete leave?')) {
+        showSpinner();
+        DeleteLeaveDetailsApplication(leaveApplicationId);
+        DeleteWFHDetailsOfEmployee(wfhdetailId);
+        hideSpinner();
+    }
 }

@@ -8,6 +8,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
     public class LeaveViewModel
     {
         public int Id { get; set; }
+        public int WFHId { get; set; }
         public DateTime Fromdate { get; set; }
         public DateTime Todate { get; set; }
 
@@ -30,11 +31,14 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string Persons { get; set; }
 
         public string ReasonForLeave { get; set; }
+        public string ReasonForWFH { get; set; }
 
         public List<LeaveDetailsViewModel> Leaves { get;set; }
         public List<WorkFromHomeViewModel> WFH { get;set; }
 
         public DateTime LeaveDate { get; set; }
+        public int LeaveApplicationId { get; set; }
+        public int WFHDetailId { get; set; }
     }
 
     public class LeaveDetailsViewModel
@@ -62,6 +66,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
 
         public bool WorkAndHalfLeave { get; set; }
         public string LeaveStatus { get; set; }
+        public int WFHId { get; set; }
 
     }
 
@@ -93,6 +98,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public DateTime WFHDate { get; set; }
 
         public string HalfDay { get; set; }
+        public int LeaveId { get; set; }
     }
 
     public class ReportingPersons
