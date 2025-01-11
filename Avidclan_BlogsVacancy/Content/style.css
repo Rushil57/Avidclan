@@ -7239,7 +7239,7 @@ fieldset:disabled .btn {
     }
 
 .navbar-brand {
-    padding-top: 0.3125rem;
+    /*padding-top: 0.3125rem;*/
     padding-bottom: 0.3125rem;
     margin-right: 1rem;
     font-size: 1.25rem;
@@ -21172,4 +21172,19 @@ label.required::after {
     width: 4rem;
     height: 4rem;
     border-width: 0.5rem;
+}
+
+.delete-icon {
+    color: #142149;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.sideImageBanner{
+    width: 107%;
+    /*width:200px;*/
+}
+
+.sideImageBannerSmall {
+    width: 130%;
 }
