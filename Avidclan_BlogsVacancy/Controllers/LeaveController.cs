@@ -197,45 +197,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                         con.ExecuteScalar("sp_LeaveApplicationDetails", param, commandType: CommandType.StoredProcedure);
                     }
 
-                    // Fetch Past Leaves
-                    var pastLeaveParams = new DynamicParameters();
-                    pastLeaveParams.Add("@UserId", UserId, DbType.Int32, ParameterDirection.Input);
-                    pastLeaveParams.Add("@Mode", 9, DbType.Int32, ParameterDirection.Input);
-                    var pastLeaves = con.QueryFirstOrDefault<TypeOfLeave>("sp_PastLeaves", pastLeaveParams, commandType: CommandType.StoredProcedure);
-
-                    if (pastLeaves != null)
-                    {
-                        // Update Past Personal Leave if applicable
-                        if (pastPersonalLeave > 0)
-                        {
-                            var totalPersonalLeave = Convert.ToDouble(pastLeaves.PersonalLeave) + pastPersonalLeave;
-                            var personalLeaveParams = new DynamicParameters();
-                            personalLeaveParams.Add("@PersonalLeave", totalPersonalLeave, DbType.String, ParameterDirection.Input);
-                            personalLeaveParams.Add("@UserId", UserId, DbType.Int16, ParameterDirection.Input);
-                            personalLeaveParams.Add("@mode", 2, DbType.Int32, ParameterDirection.Input);
-
-                            using (IDbConnection connection = new SqlConnection(connectionString))
-                            {
-                                await connection.ExecuteScalarAsync("sp_PastLeaves", personalLeaveParams, commandType: CommandType.StoredProcedure);
-                            }
-                        }
-
-                        // Update Past Sick Leave if applicable
-                        if (pastSickLeave > 0)
-                        {
-                            var totalSickLeave = Convert.ToDouble(pastLeaves.SickLeave) + pastSickLeave;
-                            var sickLeaveParams = new DynamicParameters();
-                            sickLeaveParams.Add("@SickLeave", totalSickLeave, DbType.String, ParameterDirection.Input);
-                            sickLeaveParams.Add("@UserId", UserId, DbType.Int16, ParameterDirection.Input);
-                            sickLeaveParams.Add("@mode", 3, DbType.Int32, ParameterDirection.Input);
-
-                            using (IDbConnection connection = new SqlConnection(connectionString))
-                            {
-                                connection.ExecuteScalar("sp_PastLeaves", sickLeaveParams, commandType: CommandType.StoredProcedure);
-                            }
-                        }
-                    }
-
+                 
                     // Get user leave balance
                     var userParams = new DynamicParameters();
                     userParams.Add("@Id", UserId, DbType.String, ParameterDirection.Input);
@@ -268,12 +230,6 @@ namespace Avidclan_BlogsVacancy.Controllers
                         var leavelist = dataStoreList.Where(x => x.LeaveId == leaveid).ToList();
 
                         var list = leavelist.FirstOrDefault();
-                        var parameters = new DynamicParameters();
-                        parameters.Add("@Year", CurrentYear, DbType.Int32, ParameterDirection.Input);
-                        parameters.Add("@LeaveDate", list.LeaveDate, DbType.Date, ParameterDirection.Input);
-                        parameters.Add("@UserId", UserId, DbType.Int32, ParameterDirection.Input);
-                        parameters.Add("@Mode", 4, DbType.Int32, ParameterDirection.Input);
-                        var Leaves1 = con.Query<TypeOfLeave>("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure).ToList();
 
                         foreach (var item in leavelist)
                         {
@@ -426,9 +382,9 @@ namespace Avidclan_BlogsVacancy.Controllers
             try
             {
                 // Check if this is a past sick leave
-                bool isPastLeave = await CheckpastPersonalSickLeave(leavedates, userId, "Sick");
-                if (isPastLeave)
-                    return 0.0;
+                //bool isPastLeave = await CheckpastPersonalSickLeave(leavedates, userId, "Sick");
+                //if (isPastLeave)
+                //    return 0.0;
 
                 // Get user leave balance
                 var userParams = new DynamicParameters();
@@ -523,9 +479,9 @@ namespace Avidclan_BlogsVacancy.Controllers
             try
             {
                 // Check if this is a past personal leave
-                bool isPastLeave = await CheckpastPersonalSickLeave(leave, userId, "Personal");
-                if (isPastLeave)
-                    return 0.0;
+                //bool isPastLeave = await CheckpastPersonalSickLeave(leave, userId, "Personal");
+                //if (isPastLeave)
+                //    return 0.0;
 
                 const double FULL_DAY_LEAVE = 1.0;
                 const double HALF_DAY_LEAVE = 0.5;

@@ -513,7 +513,11 @@ function GetTotalLeaveBalance() {
 
 function TotalSickLeaveCount(sickleave, userBreak) {
 
-    return 0.0;
+    var SickLeavePerMonth = 0.5;
+    var TotalMonths = 12;
+
+    var OverAllSickLeave = 12 * 0.5
+
     var getJoiningDate = $('#JoiningDate').val();
     getJoiningDate = new Date(getJoiningDate);
     var getProbationMonth = $('#ProbationMonth').val();
@@ -525,45 +529,17 @@ function TotalSickLeaveCount(sickleave, userBreak) {
     var months = CurrentDate.getMonth() - getJoiningDate.getMonth() +
         (12 * (CurrentDate.getFullYear() - getJoiningDate.getFullYear()))
 
-    var MonthlySickLeave;
+    // check probation month
     if (months >= getProbationMonth) {
-        var JoiningDateAfterProbation = new Date(getJoiningDate.setMonth(getJoiningDate.getMonth() + getProbationMonth));
-        var JoiningYear = JoiningDateAfterProbation.getFullYear();
-        if (JoiningYear == CurrentYear) {
-            // checking month wise
-            if (JoiningDateAfterProbation > CurrentDate) {
-                MonthlySickLeave = 0;
-                return MonthlySickLeave;
-            }
-            months = (CurrentDate.getMonth() - JoiningDateAfterProbation.getMonth() + 1) +
-                (12 * (CurrentDate.getFullYear() - getJoiningDate.getFullYear()))
-            MonthlySickLeave = months / 2 - sickleave;
-            if (MonthlySickLeave < 0 && MonthlySickLeave != -0.5) {
-                MonthlySickLeave = 0;
-            } else if (MonthlySickLeave == -0.5) {
-                MonthlySickLeave = 0.5;
-            }
-            return MonthlySickLeave;
+        if (sickleave > 0) {
+            OverAllSickLeave = OverAllSickLeave - sickleave;
+            return OverAllSickLeave
+        } else {
+            return OverAllSickLeave;
         }
-
-        var Pastsickleave = $("#SickLeave").val();
-        if (Pastsickleave == '') {
-            Pastsickleave = 0.0;
-        }
-
-        var CurrentMonth = CurrentDate.getMonth() + 1;
-        MonthlySickLeave = CurrentMonth / 2;
-        MonthlySickLeave = (MonthlySickLeave - sickleave);
-        if (MonthlySickLeave < 0 && MonthlySickLeave != -0.5) {
-            MonthlySickLeave = 0 + parseFloat(Pastsickleave);
-        } else if (MonthlySickLeave == -0.5) {
-            MonthlySickLeave = 0.5;
-        } else { MonthlySickLeave = MonthlySickLeave + parseFloat(Pastsickleave); }
+    } else {
+        return OverAllSickLeave = 0.0
     }
-    else {
-        MonthlySickLeave = 0.0;
-    }
-    return MonthlySickLeave;
 }
 
 function TotalPersonalLeaveCount(personalLeave, userBreak) {
