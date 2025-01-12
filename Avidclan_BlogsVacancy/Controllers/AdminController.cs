@@ -405,7 +405,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
         }
 
-        public async Task SaveReportingPerson(List<string> ReportingPerson, object Leaveid)
+        public async Task SaveReportingPerson(List<string> ReportingPerson, object Leaveid, object wfhId)
         {
             try
             {
@@ -414,6 +414,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     var parameter = new DynamicParameters();
                     parameter.Add("@ReportingPerson", person, DbType.String, ParameterDirection.Input);
                     parameter.Add("@LeaveId", Leaveid, DbType.Int32, ParameterDirection.Input);
+                    parameter.Add("@wfhId", wfhId, DbType.Int32, ParameterDirection.Input);
                     parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
                     var SaveReportingPerson = con.ExecuteScalar("sp_LeaveReportingPerson", parameter, commandType: CommandType.StoredProcedure);
                 }
@@ -515,7 +516,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             try
             {
                 List<ReportingPersons> ReportingPerson = new List<ReportingPersons>();
-                ReportingPerson = GetReportingPerson(Id);
+                ReportingPerson = GetReportingPerson(Id, "Leave");
                 var mailbody = "<p>Hello " + name + "<br>  Your leave has been<b> " + status + " </b>for the following day(s).<br><br></p>" +
                 "<html><body>" +
                     "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
@@ -552,12 +553,12 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
         }
 
-        public List<ReportingPersons> GetReportingPerson(object Id)
+        public List<ReportingPersons> GetReportingPerson(object Id, string status)
         {
             List<ReportingPersons> ReportingPerson = new List<ReportingPersons>();
             var parameters = new DynamicParameters();
-            parameters.Add("@LeaveId", Id, DbType.Int32, ParameterDirection.Input);
-            parameters.Add("@Mode", 2, DbType.Int32, ParameterDirection.Input);
+            parameters.Add(status == "WFH" ? "@WfhId" : "@LeaveId", Id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@Mode", status == "WFH" ? 9 : 2, DbType.Int32, ParameterDirection.Input);
             ReportingPerson = con.Query<ReportingPersons>("sp_LeaveReportingPerson", parameters, commandType: CommandType.StoredProcedure).ToList();
             return ReportingPerson;
         }
@@ -712,7 +713,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     {
                         if (ReportingPerson.Count > 0)
                         {
-                            await SaveReportingPerson(ReportingPerson, SaveLeave);
+                            await SaveReportingPerson(ReportingPerson, SaveLeave, 0);
                         }
                     }
                     //leaveViewModel[0].Id = Convert.ToInt16(SaveLeave);
@@ -888,7 +889,7 @@ namespace Avidclan_BlogsVacancy.Controllers
 
             try
             {
-                await SaveworkFromData(range, leaveViewModel.ReasonForLeave, leaveViewModel.Id, startDate.LeaveDate, toDate.LeaveDate, UserId, leaveId, wfhId);
+                await SaveworkFromData(range, leaveViewModel, startDate.LeaveDate, toDate.LeaveDate, UserId, leaveId, wfhId);
 
             }
             catch (Exception ex)
@@ -899,8 +900,7 @@ namespace Avidclan_BlogsVacancy.Controllers
         }
         public async Task SaveworkFromData(
                     List<LeaveDetailsViewModel> leaveViewModel,
-                    string reasonForLeave,
-                    object id,
+                    LeaveViewModel leaveView,
                     DateTime fromDate,
                     DateTime toDate,
                     object userId,
@@ -910,20 +910,29 @@ namespace Avidclan_BlogsVacancy.Controllers
             try
             {
                 int mode = (Convert.ToInt32(wfhId) != 0) ? 8 : 1;
-                if (mode == 8) id = wfhId;
+                if (mode == 8) leaveView.Id = Convert.ToInt32(wfhId);
 
 
                 var parameters = new DynamicParameters();
-                parameters.Add("@Id", id, DbType.Int64, ParameterDirection.Input);
+                parameters.Add("@Id", leaveView.Id, DbType.Int64, ParameterDirection.Input);
                 parameters.Add("@Fromdate", fromDate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
                 parameters.Add("@Todate", toDate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
                 parameters.Add("@WFHStatus", "Pending", DbType.String, ParameterDirection.Input);
                 parameters.Add("@UserId", userId, DbType.Int16, ParameterDirection.Input);
-                parameters.Add("@WFHReason", reasonForLeave, DbType.String, ParameterDirection.Input);
+                parameters.Add("@WFHReason", leaveView.ReasonForLeave, DbType.String, ParameterDirection.Input);
                 parameters.Add("@LeaveId", leaveId, DbType.Int16, ParameterDirection.Input);
                 parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
                 var saveWFH = con.ExecuteScalar("sp_WorkFromHome", parameters, commandType: CommandType.StoredProcedure);
-
+                if (saveWFH != null)
+                {
+                    if (leaveView.ReportingPerson != null)
+                    {
+                        if (leaveView.ReportingPerson.Count > 0)
+                        {
+                            await SaveReportingPerson(leaveView.ReportingPerson, 0, saveWFH);
+                        }
+                    }
+                }
                 if (leaveViewModel != null)
                 {
                     //if (mode == 8) await DeleteLeaveDetailsAsync(wfhId, 9);
@@ -944,19 +953,19 @@ namespace Avidclan_BlogsVacancy.Controllers
                         //if (mode == 8)
                         //{
                         if (string.IsNullOrEmpty(item.Halfday))
-                            {
-                                var leaveDates = GetLeaveDates(leaveId);
-                                var record = leaveDates?.FirstOrDefault(l => l.LeaveDate == item.LeaveDate);
-                                if (record != null) await DeleteLeaveDetailsAsync(record.Id, 15);
-                            }
+                        {
+                            var leaveDates = GetLeaveDates(leaveId);
+                            var record = leaveDates?.FirstOrDefault(l => l.LeaveDate == item.LeaveDate);
+                            if (record != null) await DeleteLeaveDetailsAsync(record.Id, 15);
+                        }
 
-                            if (item.WorkFromHome && !item.WorkAndHalfLeave)
-                            {
-                                var leaveDetail = GetExistingLeaveDetail(item.LeaveDate, userId);
-                                if (leaveDetail != null) await DeleteLeaveDetailsAsync(leaveDetail.Id, 15);
-                            }
+                        if (item.WorkFromHome && !item.WorkAndHalfLeave)
+                        {
+                            var leaveDetail = GetExistingLeaveDetail(item.LeaveDate, userId);
+                            if (leaveDetail != null) await DeleteLeaveDetailsAsync(leaveDetail.Id, 15);
+                        }
                         //}
-                            
+
                     }
                 }
             }
@@ -1130,7 +1139,8 @@ namespace Avidclan_BlogsVacancy.Controllers
         {
             try
             {
-                await SendReplyForWFH(leaveViewModel.WFH, leaveViewModel.WFHStatus, leaveViewModel.FirstName, leaveViewModel.EmailId, leaveViewModel.Id);
+                //await SendReplyForWFH(leaveViewModel.WFH, leaveViewModel.WFHStatus, leaveViewModel.FirstName, leaveViewModel.EmailId, leaveViewModel.Id);
+                await SendReplyForWFH(leaveViewModel);
                 var parameters = new DynamicParameters();
                 parameters.Add("@WFHStatus", leaveViewModel.WFHStatus, DbType.String, ParameterDirection.Input);
                 parameters.Add("@Id", leaveViewModel.Id, DbType.Int32, ParameterDirection.Input);
@@ -1147,19 +1157,19 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         }
 
-        public async Task SendReplyForWFH(List<WorkFromHomeViewModel> wfhDetailsViews, string status, string name, string EmailId, object Id)
+        public async Task SendReplyForWFH(LeaveViewModel leaveViewModel)
         {
             await ReadConfiguration();
             try
             {
                 List<ReportingPersons> ReportingPerson = new List<ReportingPersons>();
-                ReportingPerson = GetReportingPerson(Id);
-                var mailbody = "<p>Hello " + name + "<br>  Your work for home has been<b> " + status + " </b>for the following day(s).<br><br></p>" +
+                ReportingPerson = GetReportingPerson(leaveViewModel.Id, "WFH");
+                var mailbody = "<p>Hello " + leaveViewModel.FirstName + "<br>  Your work for home has been<b> " + leaveViewModel.WFHStatus + " </b>for the following day(s).<br><br></p>" +
                 "<html><body>" +
                     "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
                     "<thead><tr style='background: #eee;'><th>WFH Date</th><th>WFH Day</th><th>Half Day</th></tr></thead>" +
                     "<tbody class='leaveTable'>";
-                foreach (var wfhdetail in wfhDetailsViews)
+                foreach (var wfhdetail in leaveViewModel.WFH)
                 {
                     string WeekDay = wfhdetail.WFHDate.DayOfWeek.ToString();
                     var addrow = "<tr><td style='background: #fff;'>" + wfhdetail.WFHDate.ToShortDateString() + "</td><td>" + WeekDay + "</td><td>" + wfhdetail.HalfDay + "</td></tr>";
@@ -1182,7 +1192,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     }
                 }
 
-                await sendEmail(senderEmail, EmailId, name, subject, mailbody, reportingpersonList);
+                await sendEmail(senderEmail, leaveViewModel.EmailId, leaveViewModel.FirstName, subject, mailbody, reportingpersonList);
             }
             catch (Exception ex)
             {
