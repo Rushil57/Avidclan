@@ -777,10 +777,10 @@ namespace Avidclan_BlogsVacancy.Controllers
         }
 
 
-        public JsonResult GetWfhList(string LeaveStatus)
+        public JsonResult GetWfhList(string wfhStatus)
         {
             var parameters = new DynamicParameters();
-            //parameters.Add("@LeaveStatus", LeaveStatus, DbType.String, ParameterDirection.Input);
+            parameters.Add("@wfhStatus", wfhStatus, DbType.String, ParameterDirection.Input);
             parameters.Add("@Mode", 2, DbType.Int32, ParameterDirection.Input);
             var GetwfhList = con.Query<LeaveViewModel>("sp_WorkFromHome", parameters, commandType: CommandType.StoredProcedure);
             return Json(GetwfhList, JsonRequestBehavior.AllowGet);

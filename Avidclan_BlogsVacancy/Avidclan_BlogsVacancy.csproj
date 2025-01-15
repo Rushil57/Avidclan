@@ -309,6 +309,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Javascript\Admin\employeeleavejs.js" />
     <Content Include="Javascript\Admin\WFHStatusJs.js" />
     <Content Include="Javascript\LeaveIndexJs.js" />
     <Content Include="Javascript\RegisterEmployeeJs.js" />
@@ -385,6 +386,7 @@
     <Content Include="Views\BlogVacancy\RegisterEmployee.cshtml" />
     <Content Include="Views\BlogVacancy\ReportingPerson.cshtml" />
     <Content Include="Views\BlogVacancy\WFHStatus.cshtml" />
+    <Content Include="Views\BlogVacancy\EmployeeLeave.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,13 +10,11 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
-    @*<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" />*@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
-    @*<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>*@
 
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.5/dist/quill.snow.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -32,6 +30,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
 
+    @*LINK FOR TABLE TO EXCEL*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    @*LINK FOR TABLE TO EXCEL*@
+
+    <script src="~/Scripts/index.global.js"></script>
 </head>
 <body>
     <div id="spinner-overlay" style="display: none;">
@@ -61,6 +64,12 @@
                         <a class="nav-link" href="~/BlogVacancy/Careers">
                             <span class="menu-title">Vacancy</span>
                             <i class="mdi mdi-flask-empty-outline menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/BlogVacancy/employeeleave">
+                            <span class="menu-title">Employees Leave</span>
+                            <i class="mdi mdi-account-multiple menu-icon"></i>
                         </a>
                     </li>
                     <li class="nav-item">

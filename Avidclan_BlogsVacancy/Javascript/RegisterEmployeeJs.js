@@ -82,6 +82,8 @@ $(function () {
 });
 
 function SaveNewUser() {
+
+    showSpinner();
     var data = {
         Id: $("#EmployeeId").val(),
         FirstName: $("#FirstName").val(),
@@ -110,9 +112,11 @@ function SaveNewUser() {
             else {
                 alert(result)
             }
+            hideSpinner();
         },
         error: function (result) {
             alert(result.responseText);
+            hideSpinner();
         }
     });
 
@@ -187,6 +191,7 @@ function ShowEmployeRegisterModel() {
     $("#EmployeeModal").modal('show')
 }
 function GetEmployeeList() {
+    showSpinner();
     $.ajax({
         type: "Get",
         url: "/BlogVacancy/GetAllEmployees",
@@ -225,14 +230,17 @@ function GetEmployeeList() {
                 ]
             });
 
+            hideSpinner();
 
         },
         error: function (result) {
             alert(result.responseText);
+            hideSpinner();
         }
     });
 }
 function GetEmployeeDetailsById(id) {
+    showSpinner();
     $("#EmployeeModal").modal('show');
     $.ajax({
         url: "/BlogVacancy/GetEmployeeById",
@@ -264,15 +272,19 @@ function GetEmployeeDetailsById(id) {
                 }
                 $("#BreakMonth").val(result.BreakMonth);
             }
+
+            hideSpinner();
         },
         error: function () {
             alert(result.responseText);
+            hideSpinner();
         }
     });
 }
 
 function DeleteEmployee(id) {
     if (confirm('Are you sure want to delete Employee?')) {
+        showSpinner();
         $.ajax({
             url: "/BlogVacancy/DeleteEmployee",
             contentType: 'application/json',
@@ -281,10 +293,11 @@ function DeleteEmployee(id) {
             success: function (result) {
                 GetEmployeeList();
                 alert('Delete Successully!');
-
+                hideSpinner();
             },
             error: function (result) {
                 alert(result.responseText);
+                hideSpinner();
             }
         });
     }
@@ -297,4 +310,52 @@ function ShowBreakMonthInput() {
     } else {
         $(".cls-breakmonth").addClass("d-none");
     }
+}
+
+// Export to Excel Function
+function ExportEmployeeLeaveDetails() {
+    // Show loader
+    showSpinner();
+
+    // Simulate the process of exporting to Excel
+    try {
+        var table = $('#EmployeeList').DataTable();
+        var data = table.rows().data().toArray();
+        var currentDate = new Date();
+        var date = formatDate(currentDate);
+        
+        // Prepare data for Excel
+        var exportData = [];
+        exportData.push(["First Name", "Last Name", "PaidLeave_On_" + date, "SickLeave_On_" + date]); // Header row
+        data.forEach(row => {
+            exportData.push([
+                row.FirstName,     // First Name
+                row.LastName,      // Last Name
+                row.PaidLeave,     // Paid Leave
+                row.SickLeave      // Sick Leave
+            ]);
+        });
+
+        // Create Excel file
+        var ws = XLSX.utils.aoa_to_sheet(exportData);
+        var wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "EmployeeData");
+
+        // Export file
+        XLSX.writeFile(wb, "EmployeeLeaveDetails_" + date +".xlsx");
+
+    } catch (error) {
+        alert('Error while exporting data: ' + error.message);
+    } finally {
+        // Hide loader after process ends
+        hideSpinner();
+    }
+}
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0'); // Get the day (2 digits)
+    const month = date.toLocaleString('en-US', { month: 'short' }); // Get the short month name
+    const year = date.getFullYear(); // Get the year
+    return `${day}_${month}_${year}`; // Combine into the desired format
 }

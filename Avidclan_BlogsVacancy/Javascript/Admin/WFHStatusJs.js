@@ -6,11 +6,12 @@ $(function () {
 
 function GetWfhList() {
     showSpinner();
+    var Statusid = $("#StatusId").val();
     $.ajax({
         url: "/Leave/GetWfhList",
         contentType: 'application/json',
         type: "GET",
-        //data: { LeaveStatus: Statusid },
+        data: { wfhStatus: Statusid },
         success: function (data) {
             table = $('#WfhTable').DataTable({
                 destroy: true,

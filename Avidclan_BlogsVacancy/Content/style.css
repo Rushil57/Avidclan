@@ -9390,6 +9390,18 @@ fieldset:disabled .btn {
         .modal-fullscreen-lg-down .modal-footer {
             border-radius: 0;
         }
+
+    .modal-content{
+        width: auto;
+    }
+
+    .secondhalf {
+        margin-left: 0px !important;
+    }
+
+    .firsthalf {
+        margin-right: 0px !important;
+    }
 }
 
 @media (max-width: 1199.98px) {
@@ -20964,9 +20976,8 @@ input:checked + .BlogStatusSlider:before {
 }
 
 .firsthalf {
-    margin-right: 65px !important;
+    margin-right: 57px !important;
 }
-
 .secondhalf {
     margin-left: 65px !important;
 }
@@ -21117,7 +21128,7 @@ table {
     background-color: green;
 }
 
-.Wfhsecondhalf {
+/*.Wfhsecondhalf {
     margin-left: 40px !important;
     background-color: #37d873cc !important;
     border: 1px solid WHITE !important;
@@ -21132,8 +21143,12 @@ table {
 .Wfh {
     background-color: #37d873cc !important;
     border: 1px solid WHITE !important;
-}
+}*/
 
+.leave-approved {
+    background-color: #37d873cc !important;
+    border: 1px solid WHITE !important;
+}
 
 label.required::after {
     content: '*';
@@ -21180,9 +21195,9 @@ label.required::after {
     cursor: pointer;
 }
 
-.sideImageBanner{
+.sideImageBanner {
     width: 107%;
-    /*width:200px;*/
+    height: 65px;
 }
 
 .sideImageBannerSmall {

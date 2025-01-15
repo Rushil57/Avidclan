@@ -80,6 +80,7 @@
     var table;
     function GetLeaveList() {
         var Statusid = $("#StatusId").val();
+        showSpinner();
          $.ajax({
             url: "@Url.Action("GetLeaves", "Leave")",
             contentType: 'application/json',
@@ -111,10 +112,13 @@
                         },
                         {"data": "LeaveStatus"}
                     ]
-                });
+              });
+
+                hideSpinner();
             },
             error: function (result) {
                 alert(result.responsetext);
+                hideSpinner();
             }
         });
     }
@@ -212,7 +216,7 @@
             FirstName :$("#FirstName").val(),
             Leaves: LeaveDetails
         }
-
+        showSpinner();
         $.ajax({
             type: "POST",
             url: "/api/Admin/ReplyToLeaveRequest",
@@ -222,9 +226,11 @@
             success: function (result) {
                 alert(result);
                 ResetModel();
+                hideSpinner();
             },
             error: function (result) {
                 alert(result.responsetext);
+                hideSpinner();
             },
         })
     }

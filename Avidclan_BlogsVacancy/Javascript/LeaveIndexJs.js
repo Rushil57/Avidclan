@@ -310,6 +310,8 @@ function GetLeaveDates() {
         success: function (data) {
             calendar.removeAllEvents();
             $.each(data.leavelist, function (key, val) {
+                // Add the "leave-approved" class if LeaveStatus is not "Pending"
+                var className = val.LeaveStatus != "Pending" ? "leave-approved" : "";
                 var fromdate = moment(val.LeaveDate).format('YYYY-MM-DD');
                 if (val.Halfday != null && val.Halfday != "") {
                     if (val.Halfday == "FirstHalf") {
@@ -317,7 +319,7 @@ function GetLeaveDates() {
                             id: val.Id,
                             title: val.Halfday,
                             start: fromdate,
-                            className: "firsthalf",
+                            className: className + " firsthalf",
                         }), true;
                     }
                     else {
@@ -325,7 +327,7 @@ function GetLeaveDates() {
                             id: val.Id,
                             title: val.Halfday,
                             start: fromdate,
-                            className: "secondhalf",
+                            className: className + " secondhalf",
                         }), true;
                     }
                 }
@@ -334,6 +336,7 @@ function GetLeaveDates() {
                         id: val.Id,
                         title: 'Leave',
                         start: fromdate,
+                        className: className,
                         allDay: true
                     });
                 }
@@ -341,6 +344,9 @@ function GetLeaveDates() {
             });
 
             $.each(data.wfhdetaillist, function (key, val) {
+
+                // Add the "leave-approved" class if LeaveStatus is not "Pending"
+                var className = val.WFHStatus != "Pending" ? "leave-approved" : "";
                 if (val.LeaveId == 0) {
                     val.LeaveId = val.Id;
                 }
@@ -351,7 +357,7 @@ function GetLeaveDates() {
                             id: val.Id,
                             title: "WFH " + val.HalfDay,
                             start: fromdate,
-                            className: "Wfhfirsthalf",
+                            className: className + " firsthalf",
                         }), true;
                     }
                     else {
@@ -359,7 +365,7 @@ function GetLeaveDates() {
                             id: val.Id,
                             title: "WFH " + val.HalfDay,
                             start: fromdate,
-                            className: "Wfhsecondhalf",
+                            className: className + " secondhalf",
                         }), true;
                     }
                 }
@@ -368,7 +374,7 @@ function GetLeaveDates() {
                         id: val.Id,
                         title: 'Work From Home',
                         start: fromdate,
-                        className: "Wfh",
+                        className: className,
                         allDay: true
                     });
                 }

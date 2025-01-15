@@ -99,6 +99,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
 
         public string HalfDay { get; set; }
         public int LeaveId { get; set; }
+        public string WFHStatus { get; set; }
     }
 
     public class ReportingPersons

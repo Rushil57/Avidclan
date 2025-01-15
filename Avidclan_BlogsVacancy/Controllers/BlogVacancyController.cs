@@ -568,6 +568,27 @@ namespace Avidclan_BlogsVacancy.Controllers
             var EmployeeData = con.Query<ReportingPersons>("sp_LeaveReportingPerson", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
             return Json(EmployeeData, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult EmployeeLeave()
+        {
+            return View();
+        }
+
+        public async Task<JsonResult> GetAllEmployeesLeaveDates()
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Mode", 7, DbType.Int32, ParameterDirection.Input);
+                var EmployeeData = con.Query<LeaveViewModel>("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure).ToList();
+                return Json(EmployeeData, JsonRequestBehavior.AllowGet);
+            }
+            catch(Exception ex)
+            {
+                await ErrorLog("BlogVacancyController - GetAllEmployeesLeaveDates", ex.Message, ex.StackTrace);
+                return null;
+            }
+        }
         public async Task ErrorLog(string ControllerName, string ErrorMessage, string StackTrace)
         {
             var parameters = new DynamicParameters();
