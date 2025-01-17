@@ -14,7 +14,7 @@
     position: relative
 }
 
-.process-block-one .inner-box {
+.process-block-one .inner-box { /*test*/
     position: relative;
     margin-bottom: 30px;
     text-align: center
