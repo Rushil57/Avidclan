@@ -21203,3 +21203,7 @@ label.required::after {
 .sideImageBannerSmall {
     width: 130%;
 }
+
+.chosen-container {
+    width: 100% !important;
+}

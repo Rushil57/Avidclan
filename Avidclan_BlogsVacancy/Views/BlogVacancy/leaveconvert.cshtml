@@ -1,12 +1,8 @@
-﻿@{
-    Layout = "~/Views/Shared/_LeaveTemplate.cshtml";
+﻿
+@{
+    ViewBag.Title = "leaveconvert";
+    Layout = "~/Views/Shared/_AdminTemplate.cshtml";
 }
-
-<input type="hidden" id="PersonalLeave" />
-<input type="hidden" id="SickLeave" />
-<input id="JoiningDate" type="hidden" value='@Session["UserJoiningDate"]' />
-<input id="ProbationMonth" type="hidden" value='@Session["UserProbationPeriod"]' />
-
 <div id='calendar'></div>
 
 @*MODAL START FOR APPLY LEAVE*@
@@ -18,7 +14,12 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" id="LeaveId" value="0">
-                <input type="hidden" id="WfhId" value="0">
+                <div class="form-group">
+                    <label for="employee">Select Employee</label>
+                    <select class="form-control cls-employee" name="employee" id="Employee">
+                        <option value="">Select Employess</option>
+                    </select>
+                </div>
                 <div class="form-group">
                     <label for="txtFromDate" class="required">From Date</label>
                     <input type="text" class="form-control" name="txtFromDate" id="txtFromDate" placeholder="From Date" onchange="SetMinDate()">
@@ -33,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <label>Select Reporting Person</label>
-                    <select data-placeholder="Select Reporting Person..." id="ReportingPersonId" multiple class="chosen-select cls-reportingdrp" name="test" style="width:100%">
+                    <select data-placeholder="Select Reporting Person..." id="LeaveReportingPersonId" multiple class="chosen-select cls-reportingdrp" name="test" style="width:100%">
                     </select>
                 </div>
                 <div id="TotalLeaveDates">
@@ -50,13 +51,9 @@
                         </tbody>
                     </table>
                 </div>
-                @*<div class="form-group">
-                        <input type="checkbox" id="WorkFromHome" name="workfromHome"> &nbsp;
-                        <label for="WorkFromHome">Work From Home?</label>
-                    </div>*@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="ResetModel()">Cancel</button>
-                    <button type="button" class="btn btn-primary" onclick=" SendLeaveRequest()">Submit Request</button>
+                    <button type="button" class="btn btn-primary" onclick=" AdminLeaveRequest()">Submit Request</button>
                 </div>
             </div>
 
@@ -65,4 +62,4 @@
 </div>
 @*MODAL END FOR APPLY LEAVE*@
 
-<script src="~/Javascript/LeaveIndexJs.js"></script>
+<script src="~/Javascript/Admin/leaveconvertJs.js"></script>

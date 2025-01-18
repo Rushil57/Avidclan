@@ -1201,6 +1201,138 @@ namespace Avidclan_BlogsVacancy.Controllers
         }
 
 
+        [Route("api/Admin/AdminLeaveRequest")]
+        [HttpPost]
+        public async Task<string> AdminLeaveRequest(LeaveViewModel leaveViewModel)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Fromdate", leaveViewModel.Fromdate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
+                parameters.Add("@Todate", leaveViewModel.Todate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
+                parameters.Add("@LeaveStatus", "Approved", DbType.String, ParameterDirection.Input);
+                parameters.Add("@UserId", leaveViewModel.UserId, DbType.Int16, ParameterDirection.Input);
+                parameters.Add("@LeaveReason", leaveViewModel.ReasonForLeave, DbType.String, ParameterDirection.Input);
+                parameters.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
+                var SaveLeave = await con.ExecuteScalarAsync("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure);
+                if (SaveLeave != null)
+                {
+                    if (leaveViewModel.ReportingPerson != null)
+                    {
+                        if (leaveViewModel.ReportingPerson.Count > 0)
+                        {
+                            await SaveReportingPerson(leaveViewModel.ReportingPerson, SaveLeave, 0);
+                        }
+                    }
+
+                    // Get user leave balance
+                    var userParams = new DynamicParameters();
+                    userParams.Add("@Id", leaveViewModel.UserId, DbType.String, ParameterDirection.Input);
+                    userParams.Add("@Mode", 14, DbType.Int32, ParameterDirection.Input);
+
+                    var leaveBalance = con.Query<UserRegister>("sp_User", userParams, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                    double userTotalPaidLeave = string.IsNullOrEmpty(leaveBalance?.PaidLeave) ? 0 : Convert.ToDouble(leaveBalance.PaidLeave);
+                    double userTotalSickLeave = string.IsNullOrEmpty(leaveBalance?.SickLeave) ? 0 : Convert.ToDouble(leaveBalance.SickLeave);
+
+                    double totalPlUsed = 0;
+                    foreach (var item in leaveViewModel.Leaves)
+                    {
+                        var parameter = new DynamicParameters();
+                        parameter.Add("@LeaveDate", item.LeaveDate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
+                        parameter.Add("@Halfday", item.Halfday, DbType.String, ParameterDirection.Input);
+                        parameter.Add("@LeaveId", SaveLeave, DbType.Int64, ParameterDirection.Input);
+                        parameter.Add("@UserId", leaveViewModel.UserId, DbType.Int64, ParameterDirection.Input);
+                        parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
+                        var SaveLeaveDetails = await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
+                        if(SaveLeaveDetails != null)
+                        {
+                            double full_Day_pl = 1;
+                            if (item.Halfday != null)
+                            {
+                                full_Day_pl = 0.5;
+                                totalPlUsed += 0.5;
+                            }
+                            else
+                            {
+                                totalPlUsed++;
+                            }
+
+                            
+                            var PLparameters = new DynamicParameters();
+                            PLparameters.Add("@PersonalLeaves", full_Day_pl, DbType.Decimal, ParameterDirection.Input);
+                            PLparameters.Add("@Id", SaveLeaveDetails, DbType.Int64, ParameterDirection.Input);
+                            PLparameters.Add("@PastLeave", 0, DbType.Decimal, ParameterDirection.Input);
+                            PLparameters.Add("@mode", 9 , DbType.Int32, ParameterDirection.Input);
+                            await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", PLparameters, commandType: CommandType.StoredProcedure);
+                           
+                        }
+                        
+                    }
+                    if (leaveBalance != null)
+                    {
+                        var remainingPl = Math.Max(0, userTotalPaidLeave - totalPlUsed);
+                        await new LeaveController().UpdateLeaveBalance(leaveViewModel.UserId, remainingPl,userTotalSickLeave);
+                    }
+                }
+
+                var Emailparameters = new DynamicParameters();
+                Emailparameters.Add("@Id", leaveViewModel.UserId, DbType.Int32, ParameterDirection.Input);
+                Emailparameters.Add("@mode", 16, DbType.Int32, ParameterDirection.Input);
+                var userEmailAddress = con.Query<UserRegister>("sp_User", Emailparameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+               
+                await SendMailForLeaveByAdmin(leaveViewModel.Leaves, userEmailAddress, SaveLeave);
+
+                return "Leave Updated Successfully!";
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("AdminController - AdminLeaveRequest", ex.Message, ex.StackTrace);
+                return ex.Message;
+            }
+        }
+
+        public async Task SendMailForLeaveByAdmin(List<LeaveDetailsViewModel> leaveViewModel, UserRegister userDetails,object leaveId)
+        {
+            await ReadConfiguration();
+            try
+            {
+                List<ReportingPersons> ReportingPerson = new List<ReportingPersons>();
+                ReportingPerson = GetReportingPerson(leaveId, "Leave");
+                var mailbody = "<p>Hello " + userDetails.FirstName + "<br>  Your request for Converting Sick Leaves to Paid Leaves is Successfully Implemeted for the following day(s).<br><br></p>" +
+                "<html><body>" +
+                    "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
+                    "<thead><tr style='background: #eee;'><th>WFH Date</th><th>WFH Day</th><th>Half Day</th></tr></thead>" +
+                    "<tbody class='leaveTable'>";
+                foreach (var leaveDetail in leaveViewModel)
+                {
+                    string WeekDay = leaveDetail.LeaveDate.DayOfWeek.ToString();
+                    var addrow = "<tr><td style='background: #fff;'>" + leaveDetail.LeaveDate.ToShortDateString() + "</td><td>" + WeekDay + "</td><td>" + leaveDetail.Halfday + "</td></tr>";
+                    mailbody += addrow;
+                }
+                mailbody += "</tbody></table><br><br>" +
+                "<p>Thanks & Regards,<br>HR, Avidclan</p></body></html>";
+
+                var subject = "Coverting Sick Leaves to Paid Leaves";
+
+                List<string> reportingpersonList = new List<string>();
+                if (ReportingPerson != null)
+                {
+                    if (ReportingPerson.Count > 0)
+                    {
+                        foreach (var person in ReportingPerson)
+                        {
+                            reportingpersonList.Add(person.ReportingPerson);
+                        }
+                    }
+                }
+
+                await sendEmail(senderEmail, userDetails.EmailId, userDetails.FirstName, subject, mailbody, reportingpersonList);
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("AdminController - SendReplyForWFH", ex.Message, ex.StackTrace);
+            }
+        }
         public async Task ErrorLog(string ControllerName, string ErrorMessage, string StackTrace)
         {
             var parameters = new DynamicParameters();

@@ -589,6 +589,11 @@ namespace Avidclan_BlogsVacancy.Controllers
                 return null;
             }
         }
+
+        public ActionResult LeaveConvert()
+        {
+            return View();
+        }
         public async Task ErrorLog(string ControllerName, string ErrorMessage, string StackTrace)
         {
             var parameters = new DynamicParameters();

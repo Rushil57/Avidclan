@@ -459,7 +459,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure);
         }
         #endregion  sickLeave
-        private async Task UpdateLeaveBalance(object userId, double paidLeave, double sickLeave)
+        public async Task UpdateLeaveBalance(object userId, double paidLeave, double sickLeave)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@Id", userId, DbType.Int32, ParameterDirection.Input);
@@ -869,7 +869,6 @@ namespace Avidclan_BlogsVacancy.Controllers
             } // The reader is properly disposed of here
         }
 
-        //DeleteWFHDetailsOfEmployee
         public async Task<string> DeleteWFHDetailsOfEmployee(int wfhDetailId)
         {
             try
