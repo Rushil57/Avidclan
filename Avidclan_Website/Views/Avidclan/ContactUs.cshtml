@@ -10,6 +10,15 @@
     <link rel="canonical" href="https://www.avidclan.com/contact-us/" />
     <link rel="stylesheet" href="~/assets/css/intlTelInput.css" />
     <link rel="stylesheet" href="~/assets/css/Avidclan/contactus.css" />
+    <script type="text/javascript">
+        // temprory hide usa location address from the footer
+        document.addEventListener('DOMContentLoaded', function () {
+            const element = document.querySelector('#address-usacls');
+            if (element) {
+                element.remove(); // Removes the element from the DOM
+            }
+        });
+    </script>
 }
 
 <section class="inner-page contact-section">
@@ -87,7 +96,7 @@
                                     <label for="phone">Phone</label>
                                     <div class="input-group">
                                         <input id="code" value="ccode" type="hidden" name="code" />
-                                        <input type="tel" name="phone" id="phone" class="numberonly" maxlength="10"/>
+                                        <input type="tel" name="phone" id="phone" class="numberonly" maxlength="10" />
 
                                     </div>
                                 </div>
@@ -174,7 +183,7 @@
                     <div class="inner-box"></div>
                 </div>
             </div>
-            <div class="col-lg-4 offset-xl-1">
+            <div class="col-lg-4 offset-xl-1" id="address-usacls">
                 <div class="location-block contact-info-block">
                     <div class="d-flex align-items-center">
                         <img src="~/assets/images/icons/usa-flag.svg" alt="USA Flag" />

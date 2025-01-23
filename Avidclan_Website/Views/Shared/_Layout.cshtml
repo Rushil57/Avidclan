@@ -624,6 +624,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" async></script>
 
     <script type="text/javascript" defer>
+        // temprory hide usa location address from the footer
+       
+        window.onload = function () {
+            document.querySelector('.address-usa').remove();  // This will remove the element from the DOM entirely
+        };
+        
         (function ($) {
         "use strict";
         $(".numberonly").keypress(function (e) {
