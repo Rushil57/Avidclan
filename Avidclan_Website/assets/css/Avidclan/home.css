@@ -877,7 +877,7 @@ li, ul {
             padding: 3px 0;
             -moz-osx-font-smoothing: grayscale;
             opacity: 1;
-            transition: .3s
+            transition: .3s;
         }
 
             .main-menu .navigation > li > a:before {

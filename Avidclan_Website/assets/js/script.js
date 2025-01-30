@@ -17,10 +17,10 @@
             let i = e(this).find("a");
             e(i).attr("href") == t && e(this).addClass("current");
         }),
-        n.children("li").each(function () {
-            e(this).find(".current").length && e(this).addClass("current");
-        }),
-        "" == t && n.find("li").eq(0).addClass("current"),
+        //n.children("li").each(function () {
+        //    e(this).find(".current").length && e(this).addClass("current");
+        //}),
+        "services/" == t && n.find("li").eq(0).addClass("current"),
         i();
     var n,
         a = e(".nav-menu");

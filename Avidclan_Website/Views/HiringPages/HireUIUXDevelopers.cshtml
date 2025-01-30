@@ -1,0 +1,2062 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @*<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">*@
+
+    @{
+        ViewBag.Title = "HireUIUXDevelopers";
+        var context = "@context";
+        var type = "@type";
+        var id = "@id";
+        var graph = "@graph";
+    }
+
+    @section AdditionalMeta
+{
+        <meta property="og:url" content="https://www.avidclan.com/hire-dot-net-developers/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Top .NET Development Company | Hire Dedicated .NET Developers" />
+        <meta property="og:description" content="Looking to hire .NET developers? Our .NET development company provides top-notch .NET core development services. Get dedicated .NET developers for your projects today." />
+        <meta property="og:image" content="https://www.avidclan.com/assets/images/logo.svg" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://twitter.com/AvidclanT" />
+        <meta name="twitter:title" content="Top .NET Development Company | Hire Dedicated .NET Developers" />
+        <meta name="twitter:description" content="Looking to hire .NET developers? Our .NET development company provides top-notch .NET core development services. Get dedicated .NET developers for your projects today." />
+        <meta name="twitter:image" content=" https://twitter.com/AvidclanT/header_photo " />
+
+        <title>Top .NET Development Company | Hire Dedicated .NET Developers</title>
+        <meta name="description" content="Looking to hire .NET developers? Our .NET development company provides top-notch .NET core development services. Get dedicated .NET developers for your projects today." />
+        <link rel="canonical" href="https://www.avidclan.com/hire-dot-net-developers/" />
+
+        <link href="~/assets/css/swiper-bundle-min.css" rel="stylesheet" />
+        <link href="~/assets/css/Avidclan/hiringpages.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="~/assets/js/jquery.validate.min.js"></script>
+
+        <!-- Include intlTelInput -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+        <!-- Optional: Include the utils script if you need it -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
+
+        <link rel="stylesheet" href="~/assets/css/intlTelInput.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="~/assets/css/Avidclan/blog.css" />
+       
+
+
+        <script type="text/javascript">
+            $('#btngetstarted').click(function () {
+                $('#btnpricing').fadeOut(250).fadeIn(250);
+            });
+        </script>
+    }
+</head>
+<body>
+    <!-- Banner Section -->
+    <!-- Banner Section -->
+    <section class="banner-section-two banner-section-box" style="padding-bottom:10px;">
+        <div class="container banner-section-margin">
+            <div class="row">
+                <div class="col-lg-7 order-lg-2  order-sm-3 order-2">
+                    <div class="pl-3">
+                        <h1>Designing Future, Not Just Interfaces</h1>
+                        <h3 class="hiring-section-subtittle">Explore the world through our creative UI/UX Designers</h3>
+                        <p class="text">
+                            Ever wondered why users leave your website in a few seconds? Stop Wondering, as Avidclan Technologies is a place where Creativity meets Functionality. Our UI/UX designers transform concepts into seamless user experiences and craft your ideas into intuitive, engaging designs. Ready to resonate with users and elevate your brand’s digital presence?
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 d-flex flex-column flex-md-row">
+                            <div class="btn-box mb-2 mb-md-0">
+                                <a href="~/services#project_inquiry_form" class="theme-btn btn-style-one get-started-btn-mobile-ui">
+                                    <span class="btn-title">
+                                        Let’s connect
+                                        <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="btn-box btn-check-price mb-2">
+                                <button onclick="scrollToSection('pricing_section')" class="btn-banner-title btn-title-font">
+                                    Check our pricing plans
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 order-md-2 order-sm-3 order-md-1 order-1 text-center">
+                    @*<img src="~/assets/images/hiringpages/Illustration.png" class="img-fluid" alt="development" />*@
+
+                    @*<div class="row">
+                            <div class="col-auto" style="margin-left:12px;">
+                                <h3 class="schedule-interview-title">
+                                    Schedule a Developer Interview Now
+                                </h3>
+                            </div>
+                        </div>*@
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="card-title">Schedule a Designer Interview Now</h3>
+                                    <form id="hiringform1" method="post" name="hiring_form_data1" action="contact-form-handler.php">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group interview-form-input-control">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control w-100 " name="Name1" id="Name1" placeholder="Your name">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group interview-form-input-control">
+                                                <div class="input-group">
+                                                    <input type="email" class="form-control w-100 " id="Email1" name="Email1" aria-describedby="emailHelp" placeholder="Enter email">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group interview-form-input-control">
+                                                <div class="input-group mobile-input mobilet" style="margin-left:4px;">
+                                                    <input type="hidden" id="code1" name="code1" value="1">
+                                                    <input type="tel" name="ContactNumber1" id="mobilet" class="w-100 numberonly form-control contact-input" maxlength="10" placeholder=" " aria-describedby="basic-addon1" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group interview-form-input-control">
+                                                <div class="input-group">
+                                                    <textarea class="form-control w-100 " id="Message1" name="Message1" rows="3" placeholder="Tell us about your project"></textarea>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="btn-box" style="margin-left: 13px">
+                                                <button type="submit" class="theme-btn btn-style-one" name="submit" id="btnSendHMail1">
+                                                    <span class="btn-title">
+                                                        Enquire Now
+                                                        <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!--End Banner Section-->
+    <!--Avidclan Banner div Section-->
+    <section id="badges" style="background-image: none !important; background: var(--Avidclan_CLR-Dark-Blue-dark-blue-700, #0E1734);">
+        <div class="container text-center" style="background-image:none !important;">
+            <!-- row -->
+            <div class="row badges-row swiper">
+                <div class="card-content">
+                    <div class="swiper-wrapper">
+                        <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                            <div class="badge-card badgecard-overflow">
+                                <div class="body">
+                                    <hr class="bottom-bar" />
+                                    <div class="text-center">
+                                        <p class="subtitle badge-box-p m-0">
+                                            Top-Rated Custom Software Development Company
+                                        </p>
+                                    </div>
+                                    <hr class="top-bar" />
+                                    <a class="stretched-link">
+                                        <img src="~/assets/images/hiringpages/appfutura.png" alt="Sortlist Verified Agency" title="Top-Rated Custom Software Development Company" class="icon badge-box-img" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                            <div class="badge-card badgecard-overflow">
+                                <div class="body">
+                                    <hr class="bottom-bar" />
+                                    <div class="text-center">
+                                        <p class="subtitle badge-box-p m-0">
+                                            Top Software Development Company by Design Rush
+                                        </p>
+                                    </div>
+                                    <hr class="top-bar" />
+                                    <a href="https://www.designrush.com/agency/profile/avidclantechnologies" target="_blank" class="stretched-link">
+                                        <img src="~/assets/images/hiringpages/designrush.png" class="icon badge-box-img" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                            <div class="badge-card badgecard-overflow">
+                                <div class="body">
+                                    <hr class="bottom-bar" />
+                                    <div class="text-center">
+                                        <p class="subtitle badge-box-p m-0">
+                                            Top Custom Software Development Company
+                                        </p>
+                                    </div>
+                                    <hr class="top-bar" />
+                                    <a href="https://itrate.co/developers/all" target="_blank" class="stretched-link">
+                                        <img src="~/assets/images/hiringpages/itrateco.png" " class="icon badge-box-img" alt="Custom Software Development">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                            <div class="badge-card badgecard-overflow">
+                                <div class="body">
+                                    <hr class="bottom-bar" />
+                                    <div class="text-center">
+                                        <p class="subtitle badge-box-p m-0">
+                                            Clutch's Top Application Management Company 2024
+                                        </p>
+                                    </div>
+                                    <hr class="top-bar" />
+                                    <a href="https://clutch.co/profile/avidclan-technologies" target="_blank" class="stretched-link">
+                                        <img alt="Top Application Management & Support Company" src="~/assets/images/hiringpages/clutch.png" class="icon badge-box-img" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                            <div class="badge-card badgecard-overflow">
+                                <div class="body">
+                                    <hr class="bottom-bar" />
+                                    <div class="text-center">
+                                        <p class="subtitle badge-box-p m-0">
+                                            Top Web Development Company 2024
+                                        </p>
+                                    </div>
+                                    <hr class="top-bar" />
+                                    <a href="https://techreviewer.co/companies/avidclan-technologies" target="_blank" class="stretched-link">
+                                        <img src="~/assets/images/hiringpages/webdevelopmentcompany.png" alt="flag" class="icon badge-box-img" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                            <div class="badge-card badgecard-overflow">
+                                <div class="body">
+                                    <hr class="bottom-bar" />
+                                    <div class="text-center">
+                                        <p class="subtitle badge-box-p m-0">
+                                            Top Mobile App Developers 2024
+                                        </p>
+                                    </div>
+                                    <hr class="top-bar" />
+                                    <a href="https://www.topdevelopers.co/profile/avidclan-technologies" target="_blank" class="stretched-link">
+                                        <img src="~/assets/images/hiringpages/mobileapp_developer.png" alt="Mobile App Development Companies" title="Mobile App Development Companies" class="icon badge-box-img">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        @* end badges *@
+                    </div><!-- end of row -->
+                </div>
+                <!-- Navigation Buttons -->
+                <div class="swiper-button-next bg-none" id="swiper-next" style="display:none;">
+                    <i class="ri-arrow-right-s-line"></i>
+                </div>
+
+                <div class="swiper-button-prev bg-none" id="swiper-prev" style="display:none;">
+                    <i class="ri-arrow-left-s-line"></i>
+                </div>
+
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!--End Avidclan div Section-->
+    <!--    our services Section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Hire Our UI/UX Designers to Create Compelling Digital Experiences</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">At Avidclan Technologies, we create captivating, user-friendly digital solutions. With a combination of creativity and data-driven insights, our talented UI/UX designers create tailored experiences for web, mobile, and emerging platforms that improve conversion rates, and promote user satisfaction and business growth.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h4 class="service-card-subtitle">UI/UX Consultancy</h4>
+                        <p class="custom-card-content">
+                            Consult our UI/UX designers, who use their design knowledge and industry best practices to grasp your needs and suggest design ideas to solve user experiences concentrated on conversion.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h4 class="service-card-subtitle">UI/UX Web Design</h4>
+                        <p class="custom-card-content">
+                            Our top-notch UI/UX designers provide dynamic, platform-specific, and cutting-edge web design solutions that attract new customers, retain existing ones, and convert them into clients, reducing bounce rates and enhancing brand presence.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h4 class="service-card-subtitle">UI/UX Mobile app</h4>
+                        <p class="custom-card-content">
+                            Avidclan Technologies provides expert mobile UI/UX design services for native, cross-platform, and hybrid apps, specializing in human interface and material design to enhance user experience.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h4 class="service-card-subtitle">Wireframes & Prototyping</h4>
+                        <p class="custom-card-content">
+                            Leverage the expertise of UI/UX professionals who offer a comprehensive range of wireframe design services, using the latest methodologies and tools to create visually engaging and user-friendly applications.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 mt-2">
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h4 class="service-card-subtitle">Graphic Design</h4>
+                        <p class="custom-card-content">
+                            Our branding and graphics designers integrate a user-centric approach with creativity to produce visually spectacular content, such as layouts, colour schemes, typography, icons, and graphics, that foster brand recognition and loyalty.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h4 class="service-card-subtitle">UX Audit</h4>
+                        <p class="custom-card-content">
+                            With our expertise in UX audits and best practices, we help identify software usability issues and provide effective design solutions to enhance the overall user experience and drive customer satisfaction.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h4 class="service-card-subtitle">Digital Branding</h4>
+                        <p class="custom-card-content">
+                            Our digital branding professionals create bespoke branding strategies and identity design components that resonate with your target audience and encourage engagement to leave a lasting impression.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h4 class="service-card-subtitle">Logo Design</h4>
+                        <p class="custom-card-content">
+                            Your logo best represents your brand. Our talented UI/UX designers at Avidclan Technologies create futuristic, minimalist logos that reflect your brand values and communicate your business message.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- our services Section end-->
+    <!-- CTA Section start-->
+    <section class="ctasection section-box-spacing section-box-spacing-mobile-ui">
+        <div class="container" style="background: var(--color-primary) !important; ">
+            <div class="row align-items-center">
+                <div class="col-md-12 col-lg-12 col-sm-12 text-center">
+                    <div class="sec-title mb-0">
+                        <h3 class="ctasectiontexct">Reimagine Your Digital Presence with Our UI/UX Designers</h3>
+                        <div class="cta-content-text">
+                            Our skilled UI/UX designers will create engaging, user-friendly interfaces to transform your ideas into impactful web experiences.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row  align-items-center">
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="cta-btn-box align-items-center">
+                        <a href="~/contact-us/" class="btn-style-one btn-light  d-flex align-items-center justify-content-center" style="padding-left: 10px; padding-right: 10px;">
+                            <span class="cta-btn-title"><span class="iconify me-2" data-icon="ion:call-sharp" data-height="25"></span>Design with us</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CTA Section end-->
+    <!--Technologies section start-->
+    <section class="techsection">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Technologies</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">We utilize cutting-edge UI/UX technologies and tools to design seamless, user-centric experiences that enhance engagement and deliver exceptional results.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
+                <div class="col-md-2 col-lg-2 col-sm-4 my-auto">
+                    <div class="tech-title-box tech-box" style="float: left;">
+                        <h4>UI/UX</h4>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-12 col-sm-12 my-auto tech-row-mobile-ui">
+                    <div class="tech-box" style="/* float: left; */">
+                        <ul class=" inline-list">
+                            <li class="inline-list-li tech-li-text"><span>Figma</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Sketch</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Adobe XD</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Axure RP</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Adobe Illustrator</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
+                <div class="col-md-2 col-lg-2 my-auto">
+                    <div class="tech-title-box tech-box" style="float: left;">
+                        <h4>Prototyping</h4>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-9 my-auto tech-row-mobile-ui">
+                    <div class="tech-box" style="/* float: left; */">
+                        <ul class="inline-list">
+                            <li class="inline-list-li tech-li-text"><span>InVision</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Marvel</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Proto.io</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Balsamiq</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
+                <div class="col-md-2 col-lg-2 my-auto">
+                    <div class="tech-title-box tech-box" style="float: left;">
+                        <h4>Motion Graphics/<br />Animation</h4>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-9 my-auto tech-row-mobile-ui">
+                    <div class="tech-box" style="/* float: left; */">
+                        <ul class="inline-list">
+                            <li class="inline-list-li tech-li-text"><span>Adobe After Effects</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Principle</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Lottie</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Cinema 4D</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
+                <div class="col-md-4 col-lg-2 my-auto">
+                    <div class="tech-title-box tech-box" style="float: left !important;">
+                        <h4>Graphic Design</h4>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-9 my-auto tech-row-mobile-ui">
+                    <div class="tech-box" style="/* float: left; */">
+                        <ul class="inline-list">
+                            @*<li class="inline-list-li tech-li-text"><span>Adobe Illustrator</span></li>*@
+                            <li class="inline-list-li tech-li-text"><span>Corel Draw</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Affinity Designer</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Canva</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
+                <div class="col-md-4 col-lg-2 my-auto">
+                    <div class="tech-title-box tech-box" style="float: left !important;">
+                        <h4>Collaboration</h4>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-9 my-auto tech-row-mobile-ui">
+                    <div class="tech-box" style="/* float: left; */">
+                        <ul class="inline-list">
+                            <li class="inline-list-li tech-li-text"><span>Notion</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Dropbox</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Miro</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Slack</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Trello</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="btn-box text-center">
+                    <a href="~/services#project_inquiry_form" class="theme-btn btn-style-one text-center mt-4 mb-3">
+                        <span class="btn-title">
+                            Schedule a Designer Interview
+                            <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Technologies section end-->
+   
+    <!--company success section start-->
+    <section id="about-us-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-6 mt-3">
+                    <div class="about-us-text-box">
+                        <h2 class="about-us-text-box-h2">Who are we?</h2>
+                        <hr class="hr-cls">
+                        <span class="about-avidclan-text-span">
+                            A mindful team of tech innovators transforming bold ideas into digital masterpieces. We at Avidclan Technologies fuse creativity with technology, crafting user-centric solutions that captivate and drive the success of global leaders.
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-dark-box">
+                        <img src="~/assets/images/hiringpages/Office Team.svg" />
+                        <span class="about-us-dark-box-client-span">100+</span>
+                        <p class="about-us-dark-box-client-p">Clients Served Globally</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-light">
+                        <img class="about-us-light-box-project-icon" src="/assets/images/hiringpages/Delivered.svg" />
+                        <span class="about-us-light-project-span">150+</span>
+                        <p class="about-us-light-project-p">Projects Delivered</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-lg-6 mt-3">
+                    <div class="about-us-img-box">
+                        <img src="~/assets/images/hiringpages/Rectangle 129.png" class="detail-content-img" />
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-light">
+                        <img src="~/assets/images/hiringpages/Team.svg" />
+                        <span class="about-us-light-project-span">30+</span>
+                        <p class="about-us-light-project-p">Developers</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-dark-box">
+                        <img src="~/assets/images/hiringpages/Satisfaction.svg" />
+                        <span class="about-us-dark-box-client-span">99%</span>
+                        <p class="about-us-dark-box-client-p">Satisfaction Rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="about-us-section-tablet" style="display:none !important;">
+        <div class="container">
+            <div class="row">
+                <!-- Text Column -->
+                <div class="col-md-12 col-lg-6 mt-3 order-1 order-lg-1">
+                    <div class="about-us-text-box">
+                        <h2 class="about-us-text-box-h2">Who are we?</h2>
+                        <hr class="hr-cls">
+                        <span class="about-avidclan-text-span">
+                            Picking the correct UI/UX partner is key. Avidclan Technologies combines creativity and technology to create user-friendly designs that boost your brand's digital visibility.
+                        </span>
+                    </div>
+                </div>
+                <!-- Image Column -->
+                <div class="col-md-12 col-lg-6 mt-3 order-2 order-lg-2">
+                    <div class="about-us-img-box">
+                        <img src="~/assets/images/hiringpages/Rectangle 129.png" class="detail-content-img" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- First Row: 100+ and 150+ in one line -->
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-dark-box">
+                        <img src="~/assets/images/hiringpages/Office Team.svg" />
+                        <span class="about-us-dark-box-client-span">100+</span>
+                        <p class="about-us-dark-box-client-p">Clients Served Globally</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-light">
+                        <img class="about-us-light-box-project-icon" src="/assets/images/hiringpages/Delivered.svg" />
+                        <span class="about-us-light-project-span">150+</span>
+                        <p class="about-us-light-project-p">Projects Delivered</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Row: 30+ and 90% in one line -->
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-light">
+                        <img src="~/assets/images/hiringpages/Team.svg" />
+                        <span class="about-us-light-project-span">30+</span>
+                        <p class="about-us-light-project-p">Developers</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-dark-box">
+                        <img src="~/assets/images/hiringpages/Satisfaction.svg" />
+                        <span class="about-us-dark-box-client-span">90%</span>
+                        <p class="about-us-dark-box-client-p">Satisfaction Rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-us-section-for-mobile-ui" style="display:none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 mt-5">
+                    <div class="about-us-text-box">
+                        <h2 class="about-us-text-box-h2">Who are we?</h2>
+                        <hr class="hr-cls">
+                        <span class="about-avidclan-text-span">
+                            A mindful team of tech innovators transforming bold ideas into digital masterpieces. We at Avidclan Technologies fuse creativity with technology, crafting user-centric solutions that captivate and drive the success of global leaders.
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 mt-5">
+                    <div class="about-us-img-box">
+                        <img src="~/assets/images/hiringpages/Rectangle 129.png" class="detail-content-img" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 mt-5">
+                    <div class="about-us-dark-box">
+                        <img src="~/assets/images/hiringpages/Office Team.svg" />
+                        <span class="about-us-dark-box-client-span">100+</span>
+                        <p class="about-us-dark-box-client-p">Clients Served Globally</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 mt-5">
+                    <div class="about-us-light">
+                        <img class="about-us-light-box-project-icon" src="/assets/images/hiringpages/Delivered.svg" />
+                        <span class="about-us-light-project-span">150+</span>
+                        <p class="about-us-light-project-p">Projects Delivered</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 mt-5">
+                    <div class="about-us-dark-box">
+                        <img src="~/assets/images/hiringpages/Satisfaction.svg" />
+                        <span class="about-us-dark-box-client-span">90%</span>
+                        <p class="about-us-dark-box-client-p">Satisfaction Rate</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 mt-5">
+                    <div class="about-us-light">
+                        <img src="~/assets/images/hiringpages/Team.svg" />
+                        <span class="about-us-light-project-span">30+</span>
+                        <p class="about-us-light-project-p">Developers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--company sucess section end-->
+    <!--hire from avidclan section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Why Hire from Avidclan Technologies?</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">
+                                    Picking the correct UI/UX partner is key. Avidclan Technologies combines creativity and technology to create user-friendly designs that boost your brand's digital visibility.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card">
+                    <div class="why-hire-content-box why-hire-contentbox-mobileui">
+                        <div class="why-hire-header-box">
+                            <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/UI_UX_Hiring/Why Hire Section/user-centric-approach.svg" />
+                            <span class="why-hire-title-box-span">User-Centric Approach</span>
+                        </div>
+                        <p class="why-hire-content-text-p">
+                            Each step of the design, we put your users first, making sure that the designs are not just stunning but also sensible and useful.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card">
+                    <div class="why-hire-content-box why-hire-contentbox-mobileui">
+                        <div class="why-hire-header-box">
+                            <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/UI_UX_Hiring/Why Hire Section/tailored-solution.svg" />
+                            <span class="why-hire-title-box-span">Tailored Solutions</span>
+                        </div>
+                        <p class="why-hire-content-text-p">
+                            Every project is different. To ensure a perfect fit for your brand, we tailor our design approach to your specific needs.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card our-pricing-tab-ui">
+                    <div class="why-hire-content-box why-hire-contentbox-mobileui">
+                        <div class="why-hire-header-box">
+                            <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/UI_UX_Hiring/Why Hire Section/experienced-designers.svg" />
+                            <span class="why-hire-title-box-span">Experienced Designers</span>
+                        </div>
+                        <p class="why-hire-content-text-p">We have talented designers on our team who have worked on numerous projects involving the development of captivating digital experiences for different industries.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card mt-4">
+                    <div class="why-hire-content-box why-hire-contentbox-mobileui">
+                        <div class="why-hire-header-box">
+                            <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/UI_UX_Hiring/Why Hire Section/end-to-end-service.svg" />
+                            <span class="why-hire-title-box-span">
+                                End-to-End Service
+                            </span>
+                        </div>
+                        <p class="why-hire-content-text-p">
+                            We manage every aspect of your design project, from concept to completion, ensuring a seamless and stress-free experience.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card mt-4">
+                    <div class="why-hire-content-box why-hire-contentbox-mobileui">
+                        <div class="why-hire-header-box">
+                            <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/UI_UX_Hiring/Why Hire Section/agile-workflow.svg" />
+                            <span class="why-hire-title-box-span">Agile Work-Flow</span>
+                        </div>
+                        <p class="why-hire-content-text-p"> We at Avidclan Technologies ensure Agile methodology at each and every path. Therefore, we can adapt changes with flexibility and rapid iterations without any hesitation.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card mt-4 our-pricing-tab-ui">
+                    <div class="why-hire-content-box why-hire-contentbox-mobileui">
+                        <div class="why-hire-header-box">
+                            <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/UI_UX_Hiring/Why Hire Section/proven-track-record.svg" />
+                            <span class="why-hire-title-box-span">Proven Track Record</span>
+                        </div>
+                        <p class="why-hire-content-text-p">
+                            Our portfolio demonstrates a track record of successful projects in a variety of domains. We've continuously offered high-quality designs and enhanced user engagement and satisfaction.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!--hire from avidclan section end-->
+    <!--our pricing section start-->
+    <section class="section-box-spacing" id="pricing_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Our Pricing Plans</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">
+                                    Explore our scalable pricing options, which offer excellent design services to match your objectives and budget.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-plan-box">
+                        <div class="pricing-plan-h2-box">
+                            <h2 class="pricing-plan-title">Hourly</h2>
+                        </div>
+                        <div class="pricing-plan-content-box">
+                            <ul>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Skilled and experienced developers will
+                                        be allocated 4-8 hours per day according to your needs
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Flexible scope and timeline
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Ideal for projects with uncertain requirements
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pricing-plan-detail-box text-center hourly-span" style="margin-top: 29px;">
+                            <span class="pricing-plan-detail-span">
+                                $18/hour <br /> (USD)
+                            </span>
+                            <button onclick="window.location.href='/services#project_inquiry_form';" class="theme-btn btn-style-one">
+                                <span class="btn-title" style="padding: 10px 20px!important;">
+                                    Hire Developers on Hourly Basis
+                                    <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 rating-box-mobile-ui">
+                    <div class="pricing-plan-box">
+                        <div class="pricing-plan-h2-box">
+                            <h2 class="pricing-plan-title">Monthly</h2>
+                        </div>
+                        <div class="pricing-plan-content-box">
+                            <ul>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Skilled and experienced developers will
+                                        be allocated full-time for 160 hours per month
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li price-m-top">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Predictable resource allocation
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Suitable for long-term projects
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pricing-plan-detail-box text-center pricing-box">
+                            <span class="pricing-plan-detail-span">
+                                $2500/month <br /> (USD)
+                            </span>
+                            <button onclick="window.location.href='/services#project_inquiry_form';" class="theme-btn btn-style-one">
+                                <span class="btn-title" style="padding: 10px 20px!important;">
+                                    Hire Developers on Monthly Basis
+                                    <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 rating-box-mobile-ui our-pricing-tab-ui">
+                    <div class="pricing-plan-box">
+                        <div class="pricing-plan-h2-box">
+                            <h2 class="pricing-plan-title">Build a team</h2>
+                        </div>
+                        <div class="pricing-plan-content-box">
+                            <ul>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Hire a professional and dedicated team
+                                        of Project Managers, Designers, Developers,
+                                        and QA
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Easy to upscale and downscale
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Suitable for complete project development from scratch
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pricing-plan-detail-box text-center pricing-box2">
+                            <span class="pricing-plan-detail-span">
+                                $10,000/month (USD)
+                            </span>
+                            <div class="btn-box  text-center">
+                                <button onclick="window.location.href='/services#project_inquiry_form';" class="theme-btn btn-style-one">
+                                    <span class="btn-title" style="padding: 10px 20px!important;">
+                                        Hire Dedicated Team
+                                        <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--our pricing section end-->
+    <!--benefits of hiring section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Benefits of Hiring Dedicated Developers</h2>
+                                <hr class="center-block" style="width: 500px;" />
+                                <p class="text m-0 header_description">
+                                    Boost engagement, loyalty, and conversions with tailored, user-centric design solutions.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
+                    <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/UI_UX_Hiring/Benefits of Hiring/Enhanced-User-Enhancement.svg" alt="Quick Around Time" />
+                    <span class="benefits-of-hiring-text">Enhanced User Engagement</span>
+                </div>
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
+                    <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/UI_UX_Hiring/Benefits of Hiring/Improved-Conversion-Rate.svg" alt="Direct Point of Contact" />
+                    <span class="benefits-of-hiring-text">Improved Conversion Rate</span>
+                </div>
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
+                    <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/UI_UX_Hiring/Benefits of Hiring/Data-Driven-Designs.svg" alt="Scalable Architecture" />
+                   <span class="benefits-of-hiring-text">
+                        Data-Driven Designs
+                    </span>
+                </div>
+            </div>
+            <div class="row text-center mt-5">
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
+                    <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/UI_UX_Hiring/Benefits of Hiring/Mobile First-Approach.svg" alt="Seamless Integration" />
+                    <span class="benefits-of-hiring-text">Mobile First-Approach</span>
+                </div>
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
+                    <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/UI_UX_Hiring/Benefits of Hiring/Scalable-Solutions.svg" alt="Dedicated Resources" />
+                    <span class="benefits-of-hiring-text">Scalable Solutions</span>
+                </div>
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
+                    <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/UI_UX_Hiring/Benefits of Hiring/Brand-Consistency.svg" alt="Cost Effective" />
+                    <span class="benefits-of-hiring-text">Brand Consistency</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!--benefits of hiring section end-->
+    <!--development process section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Our Designing Process</h2>
+                                <hr class="center-block" style="width: 500px;" />
+                                <p class="text m-0 header_description">At Avidclan Technologies, we design intuitive, visually stunning, and user-friendly interfaces that enhance experiences. Our talented UI/UX designers craft seamless, engaging designs for web and mobile applications, ensuring a perfect balance of aesthetics and functionality to drive user satisfaction and business success.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12" style="border:none;" id="develoment-process-div">
+                    <img src="~/assets/images/locations/FlutterAppDevINDIAImage.jpg" class="development-process-imgbox img-fluid w-100" alt="Development Process" />
+                </div>
+                <div class="col-md-12 col-sm-12" style="border:none;display:none;" id="develoment-process-div-mobile">
+                    <img src="~/assets/images/locations/FlutterAppDevINDIAMobview.jpg" class="development-process-imgbox img-fluid w-100" alt="Development Process" />
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!--development process section end-->
+    <!--Hiring process section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row center-block">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Hiring Process of UI/UX Designer</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">
+                                    Shape the Future of Design: We're Looking for Creative UI/UX Designers to Transform Ideas into Intuitive Experiences.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1 col-lg-1"></div>
+                <div class="col-md-1 col-lg-1 d-flex flex-column align-items-center hiringprocess-content-box hiring-process-icon">
+                    <div class="d-flex align-items-center ">
+                        @*hiring-process-icon-mobile-ui*@
+                        <img class="hiringprocess-img-box " src="~/assets/images/hiringpages/UI_UX_Hiring/Hiring Process/Initial-Design-Consultation.svg" />
+                    </div>
+                    <span class="hiringprocess-text-box text-wrap mt-3 hiringprocess-text-box-mobile-ui">Initial Design Consultation</span>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="arrow-icon mt-5" src="~/assets/images/hiringpages/arrow.svg" />
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="hiringprocess-img-box " src="~/assets/images/hiringpages/UI_UX_Hiring/Hiring Process/UX-Analysis.svg" />
+                    </div>
+                    <span class="hiringprocess-text-box text-wrap mt-3 hiringprocess-text-box-mobile-ui">
+                        UX Analysis
+                    </span>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="arrow-icon mt-5" src="~/assets/images/hiringpages/arrow.svg" />
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="hiringprocess-img-box" src="~/assets/images/hiringpages/QA_Automation/Hiring_Process/agreement.svg" />
+                    </div>
+                    <span class="hiringprocess-text-box text-wrap mt-3 hiringprocess-text-box-mobile-ui">Proposal & Agreement</span>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="arrow-icon mt-5" src="~/assets/images/hiringpages/arrow.svg" />
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="hiringprocess-img-box " src="~/assets/images/hiringpages/QA_Automation/Hiring_Process/design-integration.svg" />
+                    </div>
+                    <span class="hiringprocess-text-box text-wrap mt-3 hiringprocess-text-box-mobile-ui">
+                        Design Integration
+                    </span>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="arrow-icon mt-5" src="~/assets/images/hiringpages/arrow.svg" />
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="hiringprocess-img-box " src="~/assets/images/hiringpages/UI_UX_Hiring/Hiring Process/Iterative- Feedback-Refinement.svg" />
+                    </div>
+                    <span class="hiringprocess-text-box text-wrap mt-3 hiringprocess-text-box-mobile-ui">Iterative Tuning</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--HiringProces section end-->
+    <!--our work section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Our Work</h2>
+                                <hr class="center-block" style="width:250px;" />
+                                <p class="text m-0 header_description">
+                                    Our designs captivate users and elevate digital experiences, whether they are for simple mobile interfaces or smooth web platforms. Each project is an expression of our dedication to maximizing impact through the integration of creativity and functionality.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="project-block-five masonry-item por-1 col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image">
+                            <a href="https://www.avidclan.com/portfolio/" class="image">
+                                <img src="~/assets/images/gallery/grizzlybolt-portfolio.jpg" alt="grizzlybolt-portfolio" />
+                            </a>
+                        </div>
+                        <div class="lower-content">
+                            <div class="content">
+                                <h4>GrizzlyBolt</h4>
+                                <p>
+                                    Web application based on petroleum industry to forecast oil, gas and water reserviors for the
+                                    coming years.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-block-five masonry-item por-1 col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image">
+                            <a href="https://www.avidclan.com/portfolio/" class="image">
+                                <img src="~/assets/images/gallery/reebonz-portfolio.jpg" alt="reebonz-portfolio-portfolio" />
+                            </a>
+                        </div>
+                        <div class="lower-content">
+                            <div class="content">
+                                <h4>Reebonz</h4>
+                                <p>
+                                    An online platform for buying and selling the widest range of bags, caps, men and women
+                                    accessories.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-block-five masonry-item por-1 col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image">
+                            <a href="https://www.avidclan.com/portfolio/" class="image">
+                                <img src="~/assets/images/gallery/elite-portfolio.jpg" alt="elite-portfolio" />
+                            </a>
+                        </div>
+                        <div class="lower-content">
+                            <div class="content">
+                                <h4>Elite</h4>
+                                <p>
+                                    An admin portal for SMS marketing business used to get the insights of the end-user web
+                                    application.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--our work section end-->
+    <!--Industry section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Industries we serve</h2>
+                                <hr class="center-block" style="width: 350px;" />
+                                <p class="text m-0 header_description">
+                                    We deliver tailored UI/UX solutions across technology, healthcare, finance, e-commerce, education and more.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-1 d-flex flex-column align-items-center"></div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/Banking.svg" alt="Quick Around Time" />
+                    <span class="industries-text">Finance and Banking</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/Healthcare.svg" />
+                    <span class="industries-text">Healthcare</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box" src="~/assets/images/hiringpages/eCommerce.svg" />
+                    <span class="industries-text">E-commerce</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box" src="~/assets/images/hiringpages/engineering.svg" />
+                    <span class="industries-text">Manufacturing</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/Education.svg" />
+                    <span class="industries-text">Education</span>
+                </div>
+                <div class="col-md-1 d-flex flex-column align-items-center"></div>
+            </div>
+            <div class="row text-center mt-3">
+                <div class="col-md-1 d-flex flex-column align-items-center"></div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/UI_UX_Hiring/real-estate.svg" />
+                    <span class="industries-text">
+                        Real Estate
+                    </span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/UI_UX_Hiring/travel.svg" />
+                    <span class="industries-text">Travel & Hospitality</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/UI_UX_Hiring/entertainment.svg" />
+                    <span class="industries-text">Entertainment</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/Logistics.svg" />
+                    <span class="industries-text">Logistics</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/Healthcare-1.svg" />
+                    <span class="industries-text">Wellness & Fitness</span>
+                </div>
+                <div class="col-md-1 d-flex flex-column align-items-center"></div>
+            </div>
+
+        </div>
+    </section>
+    <!--Industry section end-->
+    <!--testimonials section start-->
+    <section class="bg-img-none">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="detail-section-div">
+                            <div class="avidclan_section_title text-wrap">
+                                <div class="sec-title center-block">
+                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Client Testimonials</h2>
+                                    <hr class="center-block" style="width: 366px;" />
+                                    <p class="detail-content m-0  text-wrap" style="text-align: center">
+                                        Client-focused, impactful design results.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cinkes_testimonial_spage_wrapper">
+                <div class="swiper-container cinkes_testimonial_spage_active">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    Skillfuly accomplished the complex development tasks. Team was available for discussion on changes
+                                    or requests. It was a great pleasure to work with the Avidclan Technologies team.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img src="~/assets/images/user/1.jpg" alt="darpon-k" srcset="~/assets/images/user/1.jpg 100w, ~/assets/images/user/1.jpg 1080w" sizes="100vw" width="100" height="100" class="lazyload" loading="lazy" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Darpon K.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">CEO & Founder</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    We have worked with the team many times over different projects in the last few years, and always
+                                    value having them working with us. They are great communicators and the quality of work is
+                                    excellent.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img src="~/assets/images/user/2.jpg" srcset="~/assets/images/user/2.jpg 100w, ~/assets/images/user/2.jpg 1080w" sizes="100vw" alt="Tom-A-technical-director" width="100" height="100" class="lazyload" loading="lazy" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Tom A.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">Technical Director</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    Avidclan Technologies did a splendid job building our UI and frontend exactly the way we wanted. They
+                                    understood the requirements very well and delivered well ahead of time.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img src="~/assets/images/user/3.jpg" alt="gregoire-p-managibg-director" srcset="~/assets/images/user/3.jpg 100w, ~/assets/images/user/3.jpg 1080w" sizes="100vw" width="100" height="100" class="lazyload" loading="lazy" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Grégoire P.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">Managing director</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    Team communicates very well and adheres to deadlines, even getting work done early. They take time
+                                    to perfect their work and made sure that we were fully satisfied with the quality of work.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img src="~/assets/images/user/4.jpg" alt="nicholas-p-web-designer" srcset="~/assets/images/user/4.jpg 100w, ~/assets/images/user/4.jpg 1080w" sizes="100vw" width="100" height="100" class="lazyload" loading="lazy" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Nicolas P.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">Web Designer</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    Fantastic skills and the development team has got a great eye for detail and accuracy and they
+                                    were very easy to work with.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img src="~/assets/images/user/5.jpg" alt="sanuka-s-sales-manager" srcset="~/assets/images/user/5.jpg 100w, ~/assets/images/user/5.jpg 1080w" sizes="100vw" width="100" height="100" class="lazyload" loading="lazy" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Sanuka S.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">Sales Manager</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cinkes_testimonial_spage_navigation text-center mt-35">
+                    <div class="cinkes_testimonial_spage_prev"><i class="fas fa-long-arrow-alt-left"></i></div>
+                    <div class="cinkes_testimonial_spage_next"><i class="fas fa-long-arrow-alt-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--testimonials section end-->
+    @*<div id="testimonials">
+            @Html.Partial("_ClientFeedback")
+        </div>*@
+    <!--frequently asked question section start-->
+    <section class="FAQ-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="detail-section-div">
+                            <div class="avidclan_section_title text-wrap">
+                                <div class="sec-title center-block">
+                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Frequently Asked Questions (FAQs)</h2>
+                                    <hr class="center-block" style="width: 682px;" />
+                                    <p class="detail-content m-0  text-wrap" style="text-align: center">
+                                        Discover the answers to frequently asked questions concerning our collaborative approach, timelines, costs, and UI/UX design process.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne"
+                                        aria-expanded="true"
+                                        aria-controls="collapseOne">
+                                    What kind of UI/UX design services do you deliver?
+                                </button>
+                            </h2>
+                            <div id="collapseOne"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingOne"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    At Avidclan Technologies, we have varied UI/UX design services, which are:-
+                                    <ul class="fa-ul">
+                                        <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Mobile App Design</li>
+                                        <li class="inline-list-li">
+                                            <span><i class="fa-solid fa-circle fa-xs"></i></span>Web App and Website Design
+                                        </li>
+                                        <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Prototyping and Wireframing</li>
+                                        <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Motion Graphic Design</li>
+                                        <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Graphic Design</li> 
+                                        <li class="inline-list-li"><span><i class="fa-solid fa-circle fa-xs"></i></span>Logo and Brand Identity</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo"
+                                        aria-expanded="false"
+                                        aria-controls="collapseTwo">
+                                    Why hire dedicated UI/UX designers from Avidclan Technologies?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingTwo"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    At Avidclan Technologies, we design futures, not just interfaces. Our UI/UX designers have a robust portfolio spanning several industries, demonstrating and comprehending the fundamental importance of the user experience, and they are committed to enhancing your brand through intuitive designs. Also we offer flexible engagement models tailored to your project needs and budget, along with 24/7 support and maintenance services.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree"
+                                        aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                    How do I know if a UI/UX designer is skilled enough?
+                                </button>
+                            </h2>
+                            <div id="collapseThree"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingThree"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    We can interview and choose our UI/UX designers based on their skills and expertise. Our team has the top talent that passed our assessment. We keep things transparent, so you can examine portfolios, client ratings, and reviews before hiring.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseFour"
+                                        aria-expanded="false"
+                                        aria-controls="collapseFour">
+                                    How long does a UI/UX design project take?
+                                </button>
+                            </h2>
+                            <div id="collapseFour"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingFour"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    The timeline varies based on the project's complexity and requirements. It typically spans from weeks to months, involving stages like research, design, prototyping, testing, and necessary adjustments to ensure perfection.
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseFive"
+                                        aria-expanded="false"
+                                        aria-controls="collapseFive">
+                                    What is the hiring process of designer?
+                                </button>
+                            </h2>
+                            <div id="collapseFive"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingFive"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Our hiring process is transparent, simple, and straightforward. From the initial consultation to the final design integration, we ensure clear communication, alignment with your goals, and seamless collaboration every step of the way.
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingSix">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseSix"
+                                        aria-expanded="false"
+                                        aria-controls="collapseSix">
+                                    What are the hiring engagement options available at Avidclan Technologies?
+                                </button>
+                            </h2>
+                            <div id="collapseSix"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingSix"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    We at Avidclan Technologies provide flexible hiring models that can be tailored to your needs. Whether you are hiring on an hourly or project-based basis, our project-specific engagement models, tailored to your project's goal, include the fixed price model among others. You can check that out in our pricing plans section.
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingSeven">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseSeven"
+                                        aria-expanded="false"
+                                        aria-controls="collapseSeven">
+                                    What if I am not satisfied with the designs and would like to exit?
+
+                                </button>
+                            </h2>
+                            <div id="collapseSeven"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingSeven"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    If you're not satisfied with the designs, we can easily modify them and re-approach our thinking. However, if the designs don't meet your expectations, you can opt for a hassle-free exit. We offer flexible terms to ensure your project meets your expectations without any commitment concerns. But we ensure that the exit phase will never come.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--frequently asked question section end-->
+    <!--frequently asked question section end-->
+    <!-- Blog Section -->
+    <section class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="detail-section-div">
+                            <div class="avidclan_section_title text-wrap">
+                                <div class="sec-title center-block">
+                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Related Blogs</h2>
+                                    <hr class="center-block" style="width: 250px;" />
+                                    <p class="detail-content m-0  text-wrap" style="text-align: center">
+                                        Read our insightful blogs for tips, trends, and best practices in UI/UX design and development.
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="blog-grid-wrap">
+                <div class="row" id="demo">
+                </div>
+            </div>
+
+            <!-- Blog Pagination Start -->
+            <div class="blog-pagination">
+                <ul class="pagination justify-content-center" id="pagination" style="margin-top: 70px;">
+                </ul>
+            </div>
+            <!-- Blog Pagination End -->
+        </div>
+    </section>
+    <!-- Blog Section -->
+    <!--let's talk section start-->
+    <section class="lets-talk section-box-spacing" id="lets_talk_section_webUI">
+        <div class="container">
+            <div class="row align-items-center inner-block">
+                <div class="col-md-12 col-lg-8 col-xl-7">
+                    <div class="mb-0">
+                        <h3 class="lets-talk-title">Ready to Elevate your Business with Intuitive Designs?</h3>
+                        <div class="lets-talk-content mt-3">
+                            Partner with us to unlock creative solutions that drive innovation, elevate your brand, and help you achieve your business goals through strategic design and exceptional user experiences tailored to your needs.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4 col-xl-5 text-end">
+                    <div class="btn-box">
+                        <a href="~/contact-us/" class="theme-btn btn-style-one btn-light text-center">
+                            <span class="btn-title" style="color: #142149;"><img src="~/assets/images/hiringpages/ion_call-sharp.png" style="width: 22px; height: 22px; margin-right:5px;" />Schedule a Consultation </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="ctasection section-box-spacing section-box-spacing-mobile-ui" id="lets_talk_section_mobileUI" style="display:none;">
+        <div class="container" style="background: var(--color-primary) !important; ">
+            <div class="row align-items-center">
+                <div class="col-md-12 col-lg-12 col-sm-12 text-center">
+                    <div class="sec-title mb-0">
+                        <h3 class="ctasectiontexct">Ready to Elevate your Business with Intuitive Designs?</h3>
+                        <div class="cta-content-text">
+                            Partner with us to unlock creative solutions that drive innovation, elevate your brand, and help you achieve your business goals through strategic design and exceptional user experiences tailored to your needs.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12 col-sm-12" align="center">
+                    <div class="cta-btn-box align-items-center" align="center">
+                        <a href="~/contact-us/" class="btn-style-one btn-light  d-flex align-items-center justify-content-center">
+                            <span class="cta-btn-title"><span class="iconify me-2" data-icon="ion:call-sharp" data-height="25"></span>Schedule a consultation</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--let's talk section end-->
+    <!--schedule section start-->
+    <section class="developer-interview-section section-box-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-6 col-sm-3">
+                    <img class="" src="~/assets/images/hiringpages/devloperInterview.png" />
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-3 mt-4">
+                    <div class="row">
+                        <div class="col-auto" style="margin-left:12px;">
+                            <h3 class="schedule-interview-title">
+                                Schedule a Designer Interview Now
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <form id="hiringform" method="post" name="hiring_form_data" action="contact-form-handler.php">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group interview-form-input-control">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control w-100 " name="Name" id="Name" placeholder="Your name">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group interview-form-input-control">
+                                        <div class="input-group">
+                                            <input type="email" class="form-control w-100 " id="Email" name="Email" aria-describedby="emailHelp" placeholder="Enter email">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group interview-form-input-control">
+                                        <div class="input-group mobile-input" style="margin-left:4px;">
+                                            <input type="hidden" id="code" name="code" value="1">
+                                            <input type="tel" name="ContactNumber" id="phone" class="w-100 numberonly form-control contact-input" maxlength="10" placeholder=" " aria-describedby="basic-addon1" />
+                                        </div>
+
+                                        @*<input type="tel" name="ContactNumber" id="phone" class="numberonly form-control contact-input contact-input-smallUI" maxlength="10" aria-describedby="basic-addon2" style="display:none;" />*@
+                                        @*<input type="tel" class="" name="ContactNumber" id="" placeholder="123-456-7890" aria-label="Phone number" aria-describedby="basic-addon1">*@
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group interview-form-input-control">
+                                        <div class="input-group">
+                                            <textarea class="form-control w-100 " id="Message" name="Message" rows="3" placeholder="Tell us about your project"></textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="btn-box" style="margin-left: 13px">
+                                        <button type="submit" class="theme-btn btn-style-one" name="submit" id="btnSendHMail">
+                                            <span class="btn-title">
+                                                Enquire Now
+                                                <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--schadule section end-->
+    <script src="~/assets/js/swiper-bundle-min.js"></script>
+    <script>
+        // Siwper JS
+
+        let swiperCard = new Swiper(".card-content", {
+            loop: true,
+            spaceBetween: 32,
+            grabCursor: true,
+
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                dynamicBullets: true,
+            },
+
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+
+            breakpoints: {
+                768: { slidesPerView: 3 },
+                1200: { slidesPerView: 6 },
+            },
+        });
+
+        let swiperCardCombination = new Swiper(".card-content-combination", {
+            loop: true,
+            spaceBetween: 32,
+            grabCursor: true,
+
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                dynamicBullets: true,
+            },
+
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                1200: { slidesPerView: 3 },
+            },
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var BlogType = "ui/ux"
+            GetSectionData(BlogType);
+
+
+
+
+        });
+
+    </script>
+    <script type="text/javascript">
+        // Ensure jQuery and jQuery Validate are loaded in the document
+        $(document).ready(function () {
+
+            var Hiringform = $("#hiringform"),
+                message = $(".contact_msg"),
+                form_data;
+
+            function done_func(response) {
+                console.log(response);
+                window.location.replace("/hire-developer-thank-you");
+                grecaptcha.reset();
+                setTimeout(function () {
+                    message.fadeOut();
+                }, 3000);
+                Hiringform.find('input:not([type="submit"]), textarea').val("");
+                $('#button-spinner').hide();
+            }
+
+            Hiringform.submit(function (e) {
+                e.preventDefault();
+
+                var countrycode = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
+                $("#code").val(countrycode);
+
+                form_data = $(this).serialize();
+
+                if (!Hiringform.valid()) {
+                    return false;
+                }
+
+                $('#button-spinner').show();
+                $('#sbmtbtn').attr("disabled", true);
+
+                var data = {
+                    Name: $("#Name").val(),
+                    Email: $("#Email").val(),
+                    PhoneNumber: $("#phone").val(),
+                    Message: $("#Message").val(),
+                    CountryCode: countrycode,
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/api/Mail/SendHiringDotNetDetails",
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                }).done(done_func);
+            });
+
+            // jQuery validation
+            $("form[name='hiring_form_data']").validate({
+                errorPlacement: function (error, element) {
+                    if ($(element).is("#phone")) {
+                        element.closest(".intl-tel-input").after(error);
+                    } else {
+                        error.insertAfter(element);
+                    }
+                },
+                rules: {
+                    Name: "required",
+                    Email: {
+                        required: true,
+                        email: true,
+                    },
+                    ContactNumber: {
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10
+                    },
+                    Message: {
+                        required: true,
+                        minlength: 25,
+                    }
+                },
+                messages: {
+                    Name: "Please enter your name",
+                    ContactNumber: {
+                        required: "Please enter your phone number",
+                        digits: "Please enter valid phone number",
+                        minlength: "Please enter valid phone number",
+                        maxlength: "Please enter valid phone number",
+                    },
+                    Email: {
+                        required: "Please enter your email address",
+                        email: "Please enter a valid email address.",
+                    },
+                    Message: {
+                        required: "Please write your message",
+                        minlength: "Please write at least 25 characters",
+                    }
+                },
+                submitHandler: function (form) {
+                    form.submit();  // Use native form submit here to avoid recursion
+                }
+            });
+
+
+
+            var Hiringform1 = $("#hiringform1"),
+                message = $(".contact_msg"),
+                form_data;
+
+            function done_func(response) {
+                console.log(response);
+                window.location.replace("/hire-developer-thank-you");
+                grecaptcha.reset();
+                setTimeout(function () {
+                    message.fadeOut();
+                }, 3000);
+                Hiringform.find('input:not([type="submit"]), textarea').val("");
+                $('#button-spinner').hide();
+            }
+
+            Hiringform1.submit(function (e) {
+                e.preventDefault();
+
+                var countrycode = $("#mobilet").intlTelInput("getSelectedCountryData").dialCode;
+                $("#code1").val(countrycode);
+
+                form_data = $(this).serialize();
+
+                if (!Hiringform1.valid()) {
+                    return false;
+                }
+
+                $('#button-spinner').show();
+                $('#sbmtbtn').attr("disabled", true);
+
+                var data = {
+                    Name: $("#Name1").val(),
+                    Email: $("#Email1").val(),
+                    PhoneNumber: $("#mobilet").val(),
+                    Message: $("#Message1").val(),
+                    CountryCode: countrycode,
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/api/Mail/SendHiringDotNetDetails",
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                }).done(done_func);
+            });
+
+            // jQuery validation
+            $("form[name='hiring_form_data1']").validate({
+                errorPlacement: function (error, element) {
+                    if ($(element).is("#mobilet")) {
+                        element.closest(".intl-tel-input").after(error);
+                    } else {
+                        error.insertAfter(element);
+                    }
+                },
+                rules: {
+                    Name1: "required",
+                    Email1: {
+                        required: true,
+                        email: true,
+                    },
+                    ContactNumber1: {
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10
+                    },
+                    Message1: {
+                        required: true,
+                        minlength: 25,
+                    }
+                },
+                messages: {
+                    Name1: "Please enter your name",
+                    ContactNumber1: {
+                        required: "Please enter your phone number",
+                        digits: "Please enter valid phone number",
+                        minlength: "Please enter valid phone number",
+                        maxlength: "Please enter valid phone number",
+                    },
+                    Email1: {
+                        required: "Please enter your email address",
+                        email: "Please enter a valid email address.",
+                    },
+                    Message1: {
+                        required: "Please write your message",
+                        minlength: "Please write at least 25 characters",
+                    }
+                },
+                submitHandler: function (form) {
+                    form.submit();  // Use native form submit here to avoid recursion
+                }
+            });
+        });
+
+    </script>
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                $("#phone").intlTelInput({
+                    initialCountry: "us",
+                    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"  // for formatting/validation
+                });
+            });
+        </script>*@
+
+    <script type="text/javascript">
+
+
+        function GetSectionData(BlogType) {
+            $.ajax({
+                type: "GET",
+                url: "/Avidclan/GetSectionDataByBlogType?BlogType=" + BlogType,
+                contentType: 'application/json; charset=utf-8',
+                dataType: "json",
+                success: function (data) {
+                    $("#demo").html("");
+                    var sectionblog = "";
+                    var paginationData = "";
+                    var imageURL = "https://cms.avidclan.com";
+
+                    $.each(data.data.ListBlog, function (k, v) {
+
+                        var options = { year: 'numeric', month: 'long', day: 'numeric' };
+                        var PostingDate = new Date(v.PostingDate);
+                        var longDt = PostingDate.toLocaleDateString("en-US", options);
+                        var Descriptionlength = v.MetaDescription.length > 80 ? v.MetaDescription.substring(0, 80) + "…" : v.MetaDescription;
+
+                        sectionblog += '<div class="col-lg-4 col-md-6 col-sm-12" style={height: 100%;}>' +
+                            '<div class="single-blog">' +
+                            '<div class="blog-img img img-fluid">' +
+                            '<a href="/blog/' + v.PageUrl + '"><img class="BlogImages" src="' + v.Image + '" alt="" style="height:216px;"></a>' +
+                            '</div> ' +
+                            '<div class="blog-content w-100">' +
+                            '<h1 class="title blog-title"><a href="/blog/' + v.PageUrl + '">' + v.Title + '</a></h1>' +
+                            '<div class="blog-meta"><span><i class="fas fa-user icon-image"></i><span class="by-separator">by</span><a href="#">' + v.PostedBy + '</a></span><span id="admindateid_36"><i class="far fa-calendar-alt"></i>' + longDt + '</span></div>' +
+                            '<div class="read-article">' +
+                            '<div class="btn-box  text-center mt-3">' +
+                            '<button onclick="window.location.href=\'' + '/blog/' + v.PageUrl + '\'"' + 'class="theme-btn btn-style-one text-center"><span class="btn-title">Read Full Article <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span></span></button>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+
+                    })
+                    onclick = "window.location.href='/services#project_inquiry_form';"
+                    $('#demo').html(sectionblog);
+
+                },
+                error: function (result) {
+                    alert("Error Ocurred!");
+                }
+            });
+        }
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+
+        // hiring dwtail submit : send mail
+
+        //var hiringform = $("#hiringform");
+        //hiringform.submit(function (e) {
+
+        //    e.preventDefault();
+
+        //    if (!$(".career_form").valid()) {
+        //        return false;
+        //    }
+
+        //    $('#button-spinner').show();
+        //    $('#btnSendEmail').attr("disabled", true);
+
+
+        //});
+
+        function SendMail() {
+
+        }
+
+    </script>
+    @Html.Partial("_Footer")
+</body>
+</html>

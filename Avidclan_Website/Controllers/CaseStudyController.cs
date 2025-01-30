@@ -8,7 +8,7 @@ namespace Avidclan_Website.Controllers
 {
     public class CaseStudyController : Controller
     {
-        [Route("casestudy/")]
+        [Route("case-studies/")]
         public ActionResult CaseStudy()
         {
             return View();
@@ -23,19 +23,18 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
-        [Route("case-studies/orisuun/")]
-        public ActionResult OrisuunCaseStudyDetail()
-        {
-            return View();
-        }
 
         [Route("case-studies/clf/")]
         public ActionResult CLFCaseStudyDetail()
         {
             return View();
         }
-       
-        
+        //[Route("case-studies/orisuun/")]
+        //public ActionResult OrisuunCaseStudyDetail()
+        //{
+        //    return View();
+        //}
+
         [Route("case-studies/vyking/")]
         public ActionResult VykingCaseStudyDetail()
         

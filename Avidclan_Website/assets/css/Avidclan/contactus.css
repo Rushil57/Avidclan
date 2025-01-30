@@ -303,3 +303,8 @@ i.call {
         animation-duration: 1.5s;
     }
 }
+@media (min-width: 992px)  {
+    .career-div {
+        margin-left: 150px;
+    }
+}

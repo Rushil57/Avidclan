@@ -121,6 +121,8 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
+
+
         [Route("mobile-application-development/")]
         public ActionResult MobileApplicationRedirect()
         {
@@ -723,12 +725,24 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
+
+        [Route("dot-net-app-development-company-india/")]
+        public ActionResult DotNetAppDevelopmentINDIA()
+        {
+            return View();
+        }
+
         [Route("ui-ux-design-company-usa/")]
         public ActionResult UiUxDesignCompanyUSA()
         {
             return View();
         }
 
-        
+        [Route("angular-development-company-usa/")]
+        public ActionResult AngularAppDevelopmentCompanyUSA()
+        {
+            return View();
+        }
+
     }
 }

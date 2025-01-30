@@ -15,6 +15,18 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
-        
+
+        [Route("hire-ui-ux-designers/")]
+        public ActionResult HireUIUXDevelopers()
+        {
+            return View();
+        }
+
+        [Route("hire-qa-automation-tester/")]
+        public ActionResult HireAutomationTestingDevelopers()
+        {
+            return View();
+        }
+
     }
 }

@@ -111,8 +111,8 @@
                                 <nav class="main-menu navbar-expand-md navbar-light">
                                     <div class="collapse navbar-collapse show clearfix">
                                         <ul class="navigation clearfix w3_megamenu">
-                                            <li><a href="~/home/">Home</a></li>
-                                            <li><a href="~/about-us/">About Us</a></li>
+                                            @*<li><a href="~/home/">Home</a></li>
+                                                <li><a href="~/about-us/">About Us</a></li>*@
                                             <li class="dropdown w3_megamenu-fw ser_menu">
                                                 <a href="~/services/">Services</a>
                                                 <ul class="dropdown-menu half" style="transform: translate(-461.5px);">
@@ -254,6 +254,7 @@
                                                     </li>
                                                 </ul>
                                             </li>
+
                                             <li class="dropdown w3_megamenu-fw tec_menu">
                                                 <a href="~/technologies/">Technologies</a>
                                                 <ul class="dropdown-menu half" style="transform: translate(-441.5px);">
@@ -378,40 +379,150 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li><a href="~/portfolio/">Work</a></li>
-                                            <li class="cls-menu-blog"><a href="~/blog/">Blog</a></li>
+                                            @*<li><a href="~/about-us#Aboutus_industry_section">Industries</a></li>*@
+                                            @*<li><a href="~/home/">Hire Developers</a></li>*@
                                             <li class="dropdown w3_megamenu-fw car_menu">
-                                                <a href="~/career/">Careers</a>
-                                                <ul class="dropdown-menu half testmenu" style="max-width: 560px; transform: translate(-248px);">
+                                                <a href="#">Hire Developers</a>
+                                                <ul class="dropdown-menu half testmenu" style="max-width: 310px; transform: translate(-120px);">
                                                     <div class="dropdown-arrow"></div>
-                                                    <li class="w3_megamenu-content withoutdesc">
+                                                    <li class="w3_megamenu-content withoutdesc" style="margin-left:1px;">
                                                         <div class="row">
-                                                            <div class="col-sm-6">
-                                                                <a href="~/career#career-section">
-                                                                    <h3 class="title">Current Openings</h3>
-                                                                    <div class="content">
-                                                                        <p>
-                                                                            We are always looking for smart and enthusiastic people to add to our growing
-                                                                            team.
-                                                                        </p>
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                <a href="~/life-at-avidclan/">
-                                                                    <h3 class="title">Life @@ Avidclan Technologies</h3>
-                                                                    <div class="content">
-                                                                        <p>
-                                                                            Being a great place to work is the difference between being a good company and a
-                                                                            great company.
-                                                                        </p>
-                                                                    </div>
-                                                                </a>
+                                                            <div class="col-sm-12 col-auto">
+                                                                <h3 class="title">
+                                                                    <a href="~/about-us/">Hire skilled and experienced resources</a>
+                                                                </h3>
+                                                                <ul style="padding-bottom: 15px !important;">
+                                                                    @*<li>
+                                                                            <a aria-label="Enterprise Solutions"
+                                                                               href="~/hire-qa-automation-tester/">Hire Automation Tester</a>
+                                                                        </li>*@
+                                                                    <li>
+                                                                        <a aria-label="Hire .NET Developer" href="~/hire-dot-net-developers/">Hire .NET Developers</a>
+                                                                    </li>
+                                                                    <li class="mt-1">
+                                                                        <a aria-label="Hire UI/UX Designers" href="~/hire-ui-ux-designers/">Hire UI/UX Designers</a>
+                                                                    </li>
+                                                                </ul>
                                                             </div>
                                                         </div>
                                                     </li>
                                                 </ul>
                                             </li>
+                                            @*company menu start*@
+                                            <li class="dropdown w3_megamenu-fw car_menu">
+                                                <a href="#">Company</a>
+                                                <ul class="dropdown-menu half" style="max-width: 600px; transform: translate(-280px);">
+                                                    <div class="dropdown-arrow"></div>
+                                                    <li class="w3_megamenu-content withoutdesc">
+                                                        <div class="row">
+                                                            <div class="col-sm-4">
+                                                                <h3 class="title">
+                                                                    <a href="~/about-us/">About Us</a>
+                                                                </h3>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a aria-label="Enterprise Solutions"
+                                                                           href="~/about-us/">About Avidclan Technologies</a>
+                                                                    </li>
+                                                                    @*<li>
+                                                                            <a aria-label="ECommerce" href="">Client Testimonials</a>
+                                                                        </li>*@
+                                                                    @*<li>
+                                                                            <a aria-label="API &amp; Backend" href="~/">Our Locations</a>
+                                                                        </li>*@
+                                                                    @*<li>
+                                                                            <a aria-label="Awards & Recognitions"
+                                                                               href="~/">Awards & Recognitions</a>
+                                                                        </li>*@
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <h3 class="title">
+                                                                    <a href="~/career/">Careers</a>
+                                                                </h3>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a aria-label="Current Openings"
+                                                                           href="~/career#career-section/">Current Openings</a>
+                                                                    </li>
+                                                                    @*<li>
+                                                                            <a aria-label="Why Avidclan Technologies"
+                                                                               href="~/mobile-app-development-company#native-android-apps">Why Avidclan Technologies</a>
+                                                                        </li>*@
+                                                                    <li>
+                                                                        <a aria-label="Life at Avidclan Technologies"
+                                                                           href="~/life-at-avidclan/">
+                                                                            Life at Avidclan Technologies
+                                                                        </a>
+                                                                    </li>
+                                                                    @*<li>
+                                                                            <a aria-label="Events"
+                                                                               href="~/">Events</a>
+                                                                        </li>*@
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <h3 class="title">
+                                                                    <a href="~/ui-ux-design-company/">Resources</a>
+                                                                </h3>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a aria-label="Blogs" href="~/blog//">Blogs</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a aria-label="Case Studies" href="~/case-studies/">Case Studies</a>
+                                                                    </li>
+                                                                    @*<li>
+                                                                            <a aria-label="Infographics" href="~/">Infographics</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a aria-label="Whitepapers" href="~/">Whitepapers</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a aria-label="Web Stories" href="~/">Web Stories</a>
+                                                                        </li>*@
+                                                                </ul>
+                                                            </div>
+
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            @*company menu end*@
+                                            @*<li><a href="~/portfolio/">Portfolio</a></li>*@
+                                            @*<li class="cls-menu-blog"><a href="~/blog/">Blog</a></li>
+                                                <li class="dropdown w3_megamenu-fw car_menu">
+                                                    <a href="~/career/">Careers</a>
+                                                    <ul class="dropdown-menu half testmenu" style="max-width: 560px; transform: translate(-248px);">
+                                                        <div class="dropdown-arrow"></div>
+                                                        <li class="w3_megamenu-content withoutdesc">
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <a href="~/career#career-section">
+                                                                        <h3 class="title">Current Openings</h3>
+                                                                        <div class="content">
+                                                                            <p>
+                                                                                We are always looking for smart and enthusiastic people to add to our growing
+                                                                                team.
+                                                                            </p>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <a href="~/life-at-avidclan/">
+                                                                        <h3 class="title">Life @@ Avidclan Technologies</h3>
+                                                                        <div class="content">
+                                                                            <p>
+                                                                                Being a great place to work is the difference between being a good company and a
+                                                                                great company.
+                                                                            </p>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>*@
                                             <!-- <li><a href="contact.html">Contact Us</a></li> -->
                                         </ul>
                                     </div>
@@ -436,8 +547,8 @@
             <!-- Mobile Menu  -->
             <nav class="nav-menu-wrap">
                 <ul class="nav-menu menu">
-                    <li><a href="~/home/">Home</a></li>
-                    <li><a href="~/about-us/">About Us</a></li>
+                    @*<li><a href="~/home/">Home</a></li>
+                        <li><a href="~/about-us/">About Us</a></li>*@
                     <li>
                         <a href="~/services/">Services</a>
                         <i class="fa fa-angle-right sub-menu-toggle"></i>
@@ -533,19 +644,117 @@
 
                         </ul>
                     </li>
-                    <li><a href="~/portfolio/">Work</a></li>
-                    <li class="cls-menu-blog"><a href="~/blog/">Blog</a></li>
+                    @*<li><a href="~/about-us#Aboutus_industry_section">Industries</a></li>*@
                     <li>
-                        <a href="~/career/">Careers</a>
+                        <a href="">Hire Developers</a>
                         <i class="fa fa-angle-right sub-menu-toggle"></i>
                         <ul class="sub-menu menu">
                             <li class="close">
                                 <div>Back <i class="fa icon fa-angle-left"></i></div>
                             </li>
-                            <li><a href="~/career#career-section">Current Openings</a></li>
-                            <li><a href="~/life-at-avidclan/">Life @@ Avidclan Technologies</a></li>
+                            @*<li><a href="~/hire-qa-automation-tester/">Hire Automation Tester</a></li>*@
+                            <li><a href="~/hire-dot-net-developers/">Hire .NET Developers</a></li>
+                            <li><a href="~/hire-ui-ux-designers/">Hire UI/UX Designers</a></li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="~/about-us/">Company</a>
+                        <i class="fa fa-angle-right sub-menu-toggle"></i>
+                        <ul class="sub-menu menu">
+                            <li class="close">
+                                <div>Back <i class="fa icon fa-angle-left"></i></div>
+                            </li>
+                            <li>
+                                <a href="#">About</a>
+                                <i class="fa fa-angle-right sub-menu-toggle"></i>
+                                <ul class="sub-menu menu">
+                                    <li class="close">
+                                        <div>Back <i class="fa icon fa-angle-left"></i></div>
+                                    </li>
+                                    <li><a href="~/about-us/">About Avidclan Technologies</a></li>
+                                    @*<li><a href="">Client Testimonials</a></li>*@
+                                    <li>
+                                        @*<a href="">Our Locations</a>*@
+                                        <!--<i class="fa fa-angle-right sub-menu-toggle"></i>
+                                        <ul class="sub-menu menu">
+                                            <li class="close">
+                                                <div>Back <i class="fa icon fa-angle-left"></i></div>
+                                            </li>
+                                            <li>
+                                                <a href="#">Locations</a>-->
+                                        @*<i class="fa fa-angle-right sub-menu-toggle"></i>
+                                            <ul class="sub-menu menu">
+
+                                                <li><a href=""></a></li>
+                                                <li><a href=""></a></li>
+                                            </ul>*@
+                                        <!--</li>
+                                        </ul>-->
+                                    </li>
+                                    @*<li><a href="">Awards & Recognitions</a></li>*@
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Careers</a>
+                                <i class="fa fa-angle-right sub-menu-toggle"></i>
+                                <ul class="sub-menu menu">
+                                    <li class="close">
+                                        <div>Back <i class="fa icon fa-angle-left"></i></div>
+                                    </li>
+                                    <li><a href="~/career#career-section">Current Openings</a></li>
+                                    @*<li><a href="">Why Avidclan Technologies</a></li>*@
+                                    <li><a href="~/life-at-avidclan/">Life at Avidclan Technologies</a></li>
+                                    @*<li><a href="">Events</a></li>*@
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Resources</a>
+                                <i class="fa fa-angle-right sub-menu-toggle"></i>
+                                <ul class="sub-menu menu">
+                                    <li class="close">
+                                        <div>Back <i class="fa icon fa-angle-left"></i></div>
+                                    </li>
+                                    <li><a href="~/blog/">Blogs</a></li>
+                                    <li>
+                                        <a href="~/case-studies/">Case Studies</a>
+                                        @*<i class="fa fa-angle-right sub-menu-toggle"></i>
+                                            <ul class="sub-menu menu">
+                                                <li class="close">
+                                                    <div>Back <i class="fa icon fa-angle-left"></i></div>
+                                                </li>
+                                                <li>
+                                                    <a href="~/case-studies/clf/">CLF</a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/case-studies/vyking/">Vyking</a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/case-studies/orisuun/">Orisuun</a>
+                                                </li>
+                                            </ul>*@
+                                    </li>
+                                    @*<li><a href="">Infographics</a></li>
+                                        <li><a href="">Whitepapers</a></li>
+                                        <li><a href="">Web Stories</a></li>*@
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li><a href="~/portfolio/">Portfolio</a></li>
+                    @*<li class="cls-menu-blog"><a href="~/blog/">Blog</a></li>
+                        <li>
+                            <a href="~/career/">Careers</a>
+                            <i class="fa fa-angle-right sub-menu-toggle"></i>
+                            <ul class="sub-menu menu">
+                                <li class="close">
+                                    <div>Back <i class="fa icon fa-angle-left"></i></div>
+                                </li>
+                                <li><a href="~/career#career-section">Current Openings</a></li>
+                                <li><a href="~/life-at-avidclan/">Life @@ Avidclan Technologies</a></li>
+                            </ul>
+                        </li>*@
                     <li><a href="/contact-us/">Contact Us</a></li>
                 </ul>
             </nav>
@@ -625,11 +834,9 @@
 
     <script type="text/javascript" defer>
         // temprory hide usa location address from the footer
-       
         window.onload = function () {
             document.querySelector('.address-usa').remove();  // This will remove the element from the DOM entirely
         };
-        
         (function ($) {
         "use strict";
         $(".numberonly").keypress(function (e) {
@@ -661,7 +868,7 @@
 
 
 
-           
+
 
         /*CONTACT FORM START*/
         var Contactform = $(".contact_form"),
@@ -889,7 +1096,7 @@
 
         /*Contact Us FORM END*/
 
-           
+
 
         /*APPLICATION FORM START*/
 
