@@ -68,6 +68,10 @@ namespace Avidclan_Website.Controllers
 
                 await sendEmail(senderEmail, receiverEmail, (obj.FirstName + " " + obj.LastName), "Contact Inquiry From Avidclan Technologies", messagebody);
 
+                //mail send on solutions@avidclan.com
+                await ReadConfiguration("solution");
+                await sendEmail(senderEmail, receiverEmail, (obj.FirstName + " " + obj.LastName), "Contact Inquiry From Avidclan Technologies", messagebody);
+
                 ErrorLog("Mail", "Execution Success", "Success");
             }
             catch (Exception ex)
@@ -83,26 +87,26 @@ namespace Avidclan_Website.Controllers
         [HttpPost]
         public async Task<string> SendProjectDetails(ProjectDetail projectDetail)
         {
-            await ReadConfiguration("other");
-            var messagebody = "<html>" +
-                                 "<body style='font-family: lato, Helvetica, sans-serif;font-size: 16px;width:600px;'>" +
-                                     "<div style='padding: 15px 30px;background: #1d5fa5;color: #fff;'>" +
-                                         "<h4 style='padding: 0;margin: 0;'>Project Inquiry Details</h4>" +
-                                      "</div>" +
-                                        "<div style='padding: 15px 30px;background: #f8f8f8;'>" +
-                                             "<p>Hello,<br/>" + projectDetail.ProjectDetails + "<br/><br/>" +
-                                             "<strong>Service Name:</strong>" + projectDetail.Service + "<br/><br/>" +
-                                             "<strong>Budget:</strong>" + projectDetail.Budget + "<br/><br/>" +
-                                             "<strong>Start Time:</strong>" + projectDetail.StartDate + "<br/><br/>" +
-                                             "<strong>Project Requirement:</strong>" + projectDetail.Requirement + "<br/><br/>" +
-                                             "Regards,<br/><br/><strong>" + projectDetail.FirstName + "&nbsp;" + projectDetail.LastName + "</strong><br/>" +
-                                              projectDetail.Email + "<br/>" + "+" + projectDetail.CountryCode + "&nbsp;" + projectDetail.Phone +
-                                              "<br/><br/><br/>This mail is sent via project form on Avidclan Technologies Web Site <br/>" +
-                                              "<a href='https://www.avidclan.com'>https://www.avidclan.com</a>" +
-                                         "</p></div>" +
-                                 "</body></html>";
             try
             {
+                await ReadConfiguration("other");
+                var messagebody = "<html>" +
+                                     "<body style='font-family: lato, Helvetica, sans-serif;font-size: 16px;width:600px;'>" +
+                                         "<div style='padding: 15px 30px;background: #1d5fa5;color: #fff;'>" +
+                                             "<h4 style='padding: 0;margin: 0;'>Project Inquiry Details</h4>" +
+                                          "</div>" +
+                                            "<div style='padding: 15px 30px;background: #f8f8f8;'>" +
+                                                 "<p>Hello,<br/>" + projectDetail.ProjectDetails + "<br/><br/>" +
+                                                 "<strong>Service Name:</strong>" + projectDetail.Service + "<br/><br/>" +
+                                                 "<strong>Budget:</strong>" + projectDetail.Budget + "<br/><br/>" +
+                                                 "<strong>Start Time:</strong>" + projectDetail.StartDate + "<br/><br/>" +
+                                                 "<strong>Project Requirement:</strong>" + projectDetail.Requirement + "<br/><br/>" +
+                                                 "Regards,<br/><br/><strong>" + projectDetail.FirstName + "&nbsp;" + projectDetail.LastName + "</strong><br/>" +
+                                                  projectDetail.Email + "<br/>" + "+" + projectDetail.CountryCode + "&nbsp;" + projectDetail.Phone +
+                                                  "<br/><br/><br/>This mail is sent via project form on Avidclan Technologies Web Site <br/>" +
+                                                  "<a href='https://www.avidclan.com'>https://www.avidclan.com</a>" +
+                                             "</p></div>" +
+                                     "</body></html>";
                 //MailMessage mail = new MailMessage();
                 //mail.To.Add(receiverEmail);
                 //mail.From = new MailAddress(senderEmail);
@@ -117,6 +121,11 @@ namespace Avidclan_Website.Controllers
                 //smtp.Dispose();
 
                 await sendEmail(senderEmail, receiverEmail, (projectDetail.FirstName + " " + projectDetail.LastName), "Project Inquiry From Avidclan Technologies", messagebody);
+
+                //mail send on solutions@avidclan.com
+                await ReadConfiguration("solution");
+                await sendEmail(senderEmail, receiverEmail, (projectDetail.FirstName + " " + projectDetail.LastName), "Project Inquiry From Avidclan Technologies", messagebody);
+
             }
             catch (System.Net.Mail.SmtpException myEx)
             {
@@ -275,8 +284,12 @@ namespace Avidclan_Website.Controllers
                                         "</p></div>" +
                                 "</body></html>";
             try
-            {
-                
+            {               
+                await sendEmail(senderEmail, receiverEmail, Name, "Inquiry for Hiring .Net Developers", messagebody);
+
+                //mail send on solutions@avidclan.com
+
+                await ReadConfiguration("solution");
                 await sendEmail(senderEmail, receiverEmail, Name, "Inquiry for Hiring .Net Developers", messagebody);
             }
             catch (System.Net.Mail.SmtpException myEx)
@@ -343,6 +356,10 @@ namespace Avidclan_Website.Controllers
                                    "</body></html>";
 
               
+                await sendEmail(senderEmail, receiverEmail, (obj.FirstName + " " + obj.LastName), "Service Inquiry From Avidclan Technologies", messagebody);
+
+                //mail send on solutions@avidclan.com
+                await ReadConfiguration("solution");
                 await sendEmail(senderEmail, receiverEmail, (obj.FirstName + " " + obj.LastName), "Service Inquiry From Avidclan Technologies", messagebody);
 
                 ErrorLog("Mail", "Execution Success", "Success");
