@@ -64,7 +64,24 @@
     function c(t) {
         e(t.target).prev(".panel-heading").find(".more-less").toggleClass("fa-plus fa-minus"), e(t.target).prev(".panel-heading").toggleClass("active");
     }
+    //=========== Uncomment this script when you want to show menubar in full screen ============//
+
+    //e(".mobile-nav-toggler").on("click", function () {
+    //    a.toggleClass("active"),
+    //        (function () {
+    //            var t = 0;
+    //            if (a.hasClass("active")) {
+    //                var i = a.children("li");
+    //                e.each(i, function () {
+    //                    t += e(this).outerHeight();
+    //                });
+    //            }
+    //            //a.css("height", t);
+    //        })();
+    //}),
+
     e(".mobile-nav-toggler").on("click", function () {
+        //==== This function call when click hamburger menu ====//
         a.toggleClass("active"),
             (function () {
                 var t = 0;
@@ -74,21 +91,69 @@
                         t += e(this).outerHeight();
                     });
                 }
+
+                //===== Set height according to t (now t = 240) =====//
                 a.css("height", t);
             })();
     }),
+
+        //=========== Uncomment this script when you want to show menubar in full screen ============//
+
+        //e(".sub-menu-toggle").on("click", function () {
+        //    var t, i;
+        //    e(this).siblings(".sub-menu").toggleClass("active"),
+        //        o(),
+        //        (t = a.outerHeight()),
+        //        (i = e(".sub-menu")),
+        //        e.each(i, function () {
+        //            e(this).outerHeight(t);
+        //        });
+        //}),
+
         e(".sub-menu-toggle").on("click", function () {
-            var t, i;
-            e(this).siblings(".sub-menu").toggleClass("active"),
-                o(),
-                (t = a.outerHeight()),
-                (i = e(".sub-menu")),
+            var currentSubMenu = e(this).siblings(".sub-menu").toggleClass("active");
+
+            var t = 0;
+            if (currentSubMenu.hasClass("active")) {
+                var i = currentSubMenu.children("li");
                 e.each(i, function () {
-                    e(this).outerHeight(t);
+                    t += e(this).outerHeight();
                 });
+            }
+
+            //===== Set height according to t (now t = 288) =====//
+            a.css("height", t);
         }),
+
+        //=========== Uncomment this script when you want to show menubar in full screen ============//
+
+        //    e(".close").on("click", function () {
+        //        e(this).parent(".sub-menu").toggleClass("active");
+        //}),
+
         e(".close").on("click", function () {
+            //e(this).parent(".sub-menu").toggleClass("active");
+            var currentParentMenu = e(this).parents(".sub-menu.menu.active").first();
             e(this).parent(".sub-menu").toggleClass("active");
+
+            //==== when parent found then set height dynamic ====//
+            var activeMenu = e(currentParentMenu[0]).parents(".sub-menu")[0];
+            if (activeMenu != undefined) {
+
+                //==== when parent found then set height dynamic ====//
+                var t = 0;
+                if (e(activeMenu).hasClass("active")) {
+                    var i = e(activeMenu).children("li");
+                    e.each(i, function () {
+                        t += e(this).outerHeight();
+                    });
+                }
+                a.css("height", t);
+            }
+            else {
+                //==== when 0 parent found then getting undefind so add height auto ====//
+                a.css("height", "auto");
+            }
         }),
         o(),
         e(".case-tabs").length &&
