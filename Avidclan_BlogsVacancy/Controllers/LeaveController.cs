@@ -139,7 +139,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 var FutureListLeaves = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", Attributes, commandType: CommandType.StoredProcedure).ToList();
                 if (FutureListLeaves.Count > 0)
                 {
-                    double pastPersonalLeave = 0.0, pastSickLeave = 0.0, currPersonalLeave = 0.0, currSickLeave = 0.0;
+                    double pastPersonalLeave = 0.0, pastSickLeave = 0.0, currPersonalLeave = 0.0, currSickLeave = 0.0, compOff = 0.0;
                     var updateParams = new List<DynamicParameters>();
 
                     foreach (var leave in FutureListLeaves)
@@ -157,7 +157,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                             else
                             {
                                 if (isPastLeave) pastPersonalLeave++;
-                                else currPersonalLeave++;
+                                else currPersonalLeave += Convert.ToDouble(leave.PersonalLeaves);
                             }
                         }
 
@@ -172,6 +172,18 @@ namespace Avidclan_BlogsVacancy.Controllers
                             {
                                 if (isPastLeave) pastSickLeave++;
                                 else currSickLeave++;
+                            }
+                        }
+
+                        if(leave.CompOffLeave != null)
+                        {
+                            if (leave.Halfday != null)
+                            {
+                                compOff += 0.5;
+                            }
+                            else
+                            {
+                                compOff += Convert.ToDouble(leave.CompOffLeave);
                             }
                         }
 
@@ -197,7 +209,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                         con.ExecuteScalar("sp_LeaveApplicationDetails", param, commandType: CommandType.StoredProcedure);
                     }
 
-                 
+
                     // Get user leave balance
                     var userParams = new DynamicParameters();
                     userParams.Add("@Id", UserId, DbType.String, ParameterDirection.Input);
@@ -211,16 +223,21 @@ namespace Avidclan_BlogsVacancy.Controllers
                             var updatedpl = currPersonalLeave + Convert.ToDouble(leaveBalance.PaidLeave);
                             await UpdateLeaveBalance(UserId, Convert.ToDouble(updatedpl), Convert.ToDouble(leaveBalance.SickLeave));
                         }
-                        else
+                        if(currSickLeave != 0.0)
                         {
                             var updatesSl = currSickLeave + Convert.ToDouble(leaveBalance.SickLeave);
                             await UpdateLeaveBalance(UserId, Convert.ToDouble(leaveBalance.PaidLeave), Convert.ToDouble(updatesSl));
                         }
+                        if (compOff != 0.0)
+                        {
+                            var updateCompOff = compOff + Convert.ToDouble(leaveBalance.CompOffLeave);
+                            await UpdateUserCompOffBalance(UserId, updateCompOff);
+                        }
                     }
+                    
                 }
 
-                await AddLeaves(ListLeaves, ProbationPeriod, JoinigDate, UserId, FromDate,wfhId);
-
+                await AddLeaves(ListLeaves, ProbationPeriod, JoinigDate, UserId, FromDate, wfhId);
 
                 if (dataStoreList.Count > 0)
                 {
@@ -274,7 +291,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 var JoiningDateAfterProbation = joiningDate.AddMonths(ProbationMonths);
 
                 var TodaysDate = DateTime.Now;
-                
+
 
                 DateTime fromDate = new DateTime();
                 if (Convert.ToInt32(wfhId) != 0)
@@ -311,7 +328,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                         {
                             if (DiffernceDate >= 7)
                             {
-                               await SetPersonalorLwpLeave(leave, JoiningDateAfterProbation, UserId);
+                                await SetPersonalorLwpLeave(leave, JoiningDateAfterProbation, UserId);
                             }
                             else
                             {
@@ -323,12 +340,12 @@ namespace Avidclan_BlogsVacancy.Controllers
                         {
                             if (DiffernceDate >= 14)
                             {
-                               await SetPersonalorLwpLeave(leave, JoiningDateAfterProbation, UserId);
+                                await SetPersonalorLwpLeave(leave, JoiningDateAfterProbation, UserId);
                             }
                             else
                             {
                                 sickLeavetaken = true;
-                               await SetSickorLwpLeave(leave, JoiningDateAfterProbation, UserId);
+                                await SetSickorLwpLeave(leave, JoiningDateAfterProbation, UserId);
                             }
                         }
                     }
@@ -365,7 +382,8 @@ namespace Avidclan_BlogsVacancy.Controllers
                     parameters.Add("@mode", 10, DbType.Int32, ParameterDirection.Input);
                     var SaveLwpLeave = con.ExecuteScalar("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure);
                 }
-            }catch(Exception ex)
+            }
+            catch(Exception ex)
             {
                 await ErrorLog("LeaveController - SetProbationLwpLeave", ex.Message, ex.StackTrace);
 
@@ -474,18 +492,21 @@ namespace Avidclan_BlogsVacancy.Controllers
         }
 
         #region paidleave
-        public async Task<double> SetPersonalorLwpLeave(LeaveDetailsViewModel leave, object joiningDate, object userId)
+        public async Task<double> SetPersonalorLwpLeave(LeaveDetailsViewModel leave, object joiningDate, object userId, double? remainingLeaveToDeduct = null, bool skipCompOffCheck = false)
         {
             try
             {
-                // Check if this is a past personal leave
-                //bool isPastLeave = await CheckpastPersonalSickLeave(leave, userId, "Personal");
-                //if (isPastLeave)
-                //    return 0.0;
+                if (!skipCompOffCheck)
+                {
+                    bool iscompOffLeave = await CheckCompOffLeave(leave, joiningDate,userId);
+                    if (iscompOffLeave)
+                        return 0.0;
+                }
 
                 const double FULL_DAY_LEAVE = 1.0;
                 const double HALF_DAY_LEAVE = 0.5;
-                double leaveTaken = leave.Halfday != null ? HALF_DAY_LEAVE : FULL_DAY_LEAVE;
+                // Use remainingLeaveToDeduct if provided; otherwise, determine leaveTaken normally
+                double leaveTaken = remainingLeaveToDeduct ?? (leave.Halfday != null ? HALF_DAY_LEAVE : FULL_DAY_LEAVE);
 
                 // Get user leave balance
                 var userParams = new DynamicParameters();
@@ -540,107 +561,153 @@ namespace Avidclan_BlogsVacancy.Controllers
         }
 
         #endregion  paidleave
-        public async Task<bool> CheckpastPersonalSickLeave(LeaveDetailsViewModel leave, object UserId, string flag)
+
+        #region compoffleave
+        public async Task<bool> CheckCompOffLeave(LeaveDetailsViewModel leave, object joiningDate,object UserId)
         {
-            var pastFulldayLeave = 1.0;
-            bool PastLeave = false;
+            bool CompOffLeave = false;
             var parameters = new DynamicParameters();
             parameters.Add("@UserId", UserId, DbType.Int32, ParameterDirection.Input);
-            parameters.Add("@Mode", 1, DbType.Int32, ParameterDirection.Input);
-            var Pastleave = con.Query<TypeOfLeave>("sp_PastLeaves", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
-            try {
-                if (Pastleave != null)
+            parameters.Add("@Mode", 6, DbType.Int32, ParameterDirection.Input);
+            var compoffleave = con.Query<CompOffViewModel>("sp_CompensationLeave", parameters, commandType: CommandType.StoredProcedure).ToList();
+
+            try
+            {
+                const double FULL_DAY_LEAVE = 1.0;
+                const double HALF_DAY_LEAVE = 0.5;
+                double leaveTaken = leave.Halfday != null ? HALF_DAY_LEAVE : FULL_DAY_LEAVE;
+                double remainingLeaveToDeduct = leaveTaken; // Total leave to be deducted
+                double totalCompOffDeducted = 0; // Track total deducted comp-off leave
+
+                if (compoffleave != null && compoffleave.Any())
                 {
-                    if (Pastleave.IsNoticePeriod)
+                    foreach (var compoff in compoffleave)
                     {
-                        //PastLeave = true;
-                        await SetProbationLwpLeave(leave);
-                        return true;
-                    }
-                    if (flag == "Personal")
-                    {
-                        if (Convert.ToDouble(Pastleave.PersonalLeave) != 0.0 && Convert.ToDouble(Pastleave.PersonalLeave) != 0.5)
+                        double availableDays = Convert.ToDouble(compoff.NumberOfDays);
+
+                        if (availableDays > 0)
                         {
-                            PastLeave = true;
-                            if (leave.Halfday != null)
+                            // Deduct the minimum required from the current record
+                            double leaveToDeduct = Math.Min(remainingLeaveToDeduct, availableDays);
+
+                            // Accumulate total deducted comp-off leave
+                            totalCompOffDeducted += leaveToDeduct;
+
+                            // Reduce remaining leave to deduct
+                            remainingLeaveToDeduct -= leaveToDeduct;
+
+                            // Update the comp-off balance
+                            double updatedCompOffLeave = Math.Max(0, availableDays - leaveToDeduct);
+                            await UpdateCompOffBalance(UserId, updatedCompOffLeave, compoff.Id);
+
+                            // If all required leave has been deducted, exit loop
+                            if (remainingLeaveToDeduct <= 0)
+                                break;
+                        }
+                    }
+
+                    // **Save the final total CompOff deduction**
+                    if (totalCompOffDeducted > 0)
+                    {
+                        await SaveCompOffLeave(leave.Id, totalCompOffDeducted);
+                        CompOffLeave = true;
+                    }
+
+                    // If leave is still remaining after all records are processed
+                    if (remainingLeaveToDeduct > 0)
+                    {
+                        await SetPersonalorLwpLeave(leave, joiningDate, UserId, remainingLeaveToDeduct, true);
+                        Console.WriteLine($"Remaining leave not covered by comp-off: {remainingLeaveToDeduct}");
+                    }
+                }
+                else
+                {
+                    // Get user leave balance
+                    var userParams = new DynamicParameters();
+                    userParams.Add("@Id", UserId, DbType.String, ParameterDirection.Input);
+                    userParams.Add("@Mode", 14, DbType.Int32, ParameterDirection.Input);
+
+                    var TotalCompOffList = con.Query<UserRegister>("sp_User", userParams, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                    if (TotalCompOffList != null)
+                    {
+                        var totalDays = TotalCompOffList.CompOffLeave;
+                        if(Convert.ToDouble(totalDays) > 0)
+                        {
+                            // Deduct the minimum required from the current record
+                            double leaveToDeduct = Math.Min(remainingLeaveToDeduct, Convert.ToDouble(totalDays));
+
+                            // Save leave deduction record
+                            await SaveCompOffLeave(leave.Id, leaveToDeduct);
+
+                            // Update the comp-off balance
+                            double updatedCompOffLeave = Math.Max(0, Convert.ToDouble(totalDays) - leaveToDeduct);
+                            await UpdateUserCompOffBalance(UserId, updatedCompOffLeave);
+
+                            // Mark that at least part of the leave has been deducted
+                            CompOffLeave = true;
+
+                            // Reduce remaining leave to deduct
+                            remainingLeaveToDeduct -= leaveToDeduct;
+
+                            // If leave is still remaining after all records are processed
+                            if (remainingLeaveToDeduct > 0)
                             {
-                                pastFulldayLeave = 0.5;
+                                CompOffLeave = false;
+                                await SetPersonalorLwpLeave(leave, joiningDate, UserId, remainingLeaveToDeduct, true);
+
+                                Console.WriteLine($"Remaining leave not covered by comp-off: {remainingLeaveToDeduct}");
+                                CompOffLeave = true;
                             }
-                            var parameter = new DynamicParameters();
-                            parameter.Add("@PersonalLeaves", pastFulldayLeave, DbType.Decimal, ParameterDirection.Input);
-                            parameter.Add("@PastLeave", 1, DbType.Boolean, ParameterDirection.Input);
-                            parameter.Add("@Id", leave.Id, DbType.Int64, ParameterDirection.Input);
-                            parameter.Add("@mode", 9, DbType.Int32, ParameterDirection.Input);
-                            var SavePersonalLeave = await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
-                        }
-                        if (Convert.ToDouble(Pastleave.PersonalLeave) == 0.5 && leave.Halfday != null)
-                        {
-                            PastLeave = true;
-                            pastFulldayLeave = 0.5;
-                            var parameter = new DynamicParameters();
-                            parameter.Add("@PersonalLeaves", pastFulldayLeave, DbType.Decimal, ParameterDirection.Input);
-                            parameter.Add("@PastLeave", 1, DbType.String, ParameterDirection.Input);
-                            parameter.Add("@Id", leave.Id, DbType.Int64, ParameterDirection.Input);
-                            parameter.Add("@mode", 9, DbType.Int32, ParameterDirection.Input);
-                            var SavePersonalLeave = await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
-                        }
-                        if (PastLeave)
-                        {
-                            var RemainingPersonalLeave = (Convert.ToDecimal(Pastleave.PersonalLeave)) - (Convert.ToDecimal(pastFulldayLeave));
-                            var parameter = new DynamicParameters();
-                            parameter.Add("@PersonalLeave", RemainingPersonalLeave, DbType.Decimal, ParameterDirection.Input);
-                            parameter.Add("@UserId", UserId, DbType.Int64, ParameterDirection.Input);
-                            parameter.Add("@mode", 2, DbType.Int32, ParameterDirection.Input);
-                            var SavePersonalLeave = await con.ExecuteScalarAsync("sp_PastLeaves", parameter, commandType: CommandType.StoredProcedure);
                         }
                     }
-                    if (flag == "Sick")
-                    {
-                        if (Convert.ToDouble(Pastleave.SickLeave) != 0.0 && Convert.ToDouble(Pastleave.SickLeave) != 0.5)
-                        {
-                            PastLeave = true;
-                            if (leave.Halfday != null)
-                            {
-                                pastFulldayLeave = 0.5;
-                            }
-                            var parameter = new DynamicParameters();
-                            parameter.Add("@SickLeaves", pastFulldayLeave, DbType.Decimal, ParameterDirection.Input);
-                            parameter.Add("@PastLeave", 1, DbType.Boolean, ParameterDirection.Input);
-                            parameter.Add("@Id", leave.Id, DbType.Int64, ParameterDirection.Input);
-                            parameter.Add("@mode", 11, DbType.Int32, ParameterDirection.Input);
-                            var SaveSickLeave = await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
-                        }
-                        if (Convert.ToDouble(Pastleave.SickLeave) == 0.5 && leave.Halfday != null)
-                        {
-                            PastLeave = true;
-                            pastFulldayLeave = 0.5;
-                            var parameter = new DynamicParameters();
-                            parameter.Add("@SickLeaves", pastFulldayLeave, DbType.Decimal, ParameterDirection.Input);
-                            parameter.Add("@PastLeave", 1, DbType.String, ParameterDirection.Input);
-                            parameter.Add("@Id", leave.Id, DbType.Int64, ParameterDirection.Input);
-                            parameter.Add("@mode", 11, DbType.Int32, ParameterDirection.Input);
-                            var SaveSickLeave = await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
-                        }
-                        if (PastLeave)
-                        {
-                            var RemainingSickLeave = (Convert.ToDecimal(Pastleave.SickLeave)) - (Convert.ToDecimal(pastFulldayLeave));
-                            var parameter = new DynamicParameters();
-                            parameter.Add("@SickLeave", RemainingSickLeave, DbType.Decimal, ParameterDirection.Input);
-                            parameter.Add("@UserId", UserId, DbType.Int64, ParameterDirection.Input);
-                            parameter.Add("@mode", 3, DbType.Int32, ParameterDirection.Input);
-                            var SaveRemainingLeave = await con.ExecuteScalarAsync("sp_PastLeaves", parameter, commandType: CommandType.StoredProcedure);
-                        }
-                    }
+
                 }
             }
             catch (Exception ex)
             {
-                await ErrorLog("LeaveController - CheckpastPersonalSickLeave", ex.Message, ex.StackTrace);
+                await ErrorLog("LeaveController - CheckCompOffLeave", ex.Message, ex.StackTrace);
             }
 
-            return PastLeave;
+            return CompOffLeave;
         }
 
+        private async Task SaveCompOffLeave(long leaveId, double leaveAmount)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@CompOffLeave", leaveAmount, DbType.Decimal, ParameterDirection.Input);
+            parameters.Add("@Id", leaveId, DbType.Int64, ParameterDirection.Input);
+            parameters.Add("@mode", 19, DbType.Int32, ParameterDirection.Input);
+
+            await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure);
+        }
+        public async Task UpdateCompOffBalance(object userId, double CompOffLeave, object CompOffId)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", CompOffId, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@NumberOfDays", CompOffLeave, DbType.String, ParameterDirection.Input);
+            parameters.Add("@mode", 7, DbType.Int32, ParameterDirection.Input);
+
+            using (IDbConnection connection = new SqlConnection(connectionString))
+            {
+                await connection.ExecuteScalarAsync("sp_CompensationLeave", parameters, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        // for userTable
+        public async Task UpdateUserCompOffBalance(object userId, double CompOffLeave)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@CompOffLeave", CompOffLeave, DbType.String, ParameterDirection.Input);
+            parameters.Add("@Id", userId, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@mode", 17, DbType.Int32, ParameterDirection.Input);
+
+            using (IDbConnection connection = new SqlConnection(connectionString))
+            {
+                await connection.ExecuteScalarAsync("sp_User", parameters, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        #endregion compoffleave
         public async Task<JsonResult> GetTotalLeaveBalanaceList()
         {
             try
@@ -740,6 +807,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             try
             {
                 var UserId = Session["UserId"];
+                await SaveTotalCompOffLeave(UserId);
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id", UserId, DbType.Int32, ParameterDirection.Input);
                 parameters.Add("@PaidLeave", userRegister.PaidLeave, DbType.String, ParameterDirection.Input);
@@ -751,7 +819,37 @@ namespace Avidclan_BlogsVacancy.Controllers
                     return Json(new { message = "Saved Successfully" });
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
+            {
+                await ErrorLog("LeaveController - SaveSickAndPaidLeave", ex.Message, ex.StackTrace);
+                return Json(new { message = ex.Message });
+            }
+        }
+
+        public async Task<ActionResult> SaveTotalCompOffLeave(object UserId)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@UserId", UserId, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@mode", 8, DbType.Int32, ParameterDirection.Input);
+                var TotalCompOffList = con.Query<CompOffViewModel>("sp_CompensationLeave", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                if(TotalCompOffList != null)
+                {
+                    TotalCompOffList.TotalDays = TotalCompOffList.TotalDays == null ? "0" : TotalCompOffList.TotalDays;
+                    var compOffparameters = new DynamicParameters();
+                    compOffparameters.Add("@CompOffLeave", TotalCompOffList.TotalDays, DbType.String, ParameterDirection.Input);
+                    compOffparameters.Add("@Id", UserId, DbType.Int32, ParameterDirection.Input);
+                    compOffparameters.Add("@mode", 17, DbType.Int32, ParameterDirection.Input);
+                    using (IDbConnection connection = new SqlConnection(connectionString))
+                    {
+                        await connection.ExecuteScalarAsync("sp_User", compOffparameters, commandType: CommandType.StoredProcedure);
+                        
+                    }
+                }
+                return Json(new { message = "Saved Successfully" });
+            }
+            catch (Exception ex)
             {
                 await ErrorLog("LeaveController - SaveSickAndPaidLeave", ex.Message, ex.StackTrace);
                 return Json(new { message = ex.Message });
@@ -879,7 +977,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 wfhDetailsParameters.Add("@Mode", 10, DbType.Int32, ParameterDirection.Input);
 
                 var WFHResult = con.Query<LeaveViewModel>("sp_WorkFromHome", wfhDetailsParameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
-                if(WFHResult != null)
+                if (WFHResult != null)
                 {
                     // dlete record
                     var deleteParameters = new DynamicParameters();
@@ -895,7 +993,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     wfhParameters.Add("@Id", wfhId, DbType.Int16, ParameterDirection.Input);
                     wfhParameters.Add("@Mode", 12, DbType.Int32, ParameterDirection.Input);
 
-                    var WFH= con.Query<LeaveViewModel>("sp_WorkFromHome", wfhParameters, commandType: CommandType.StoredProcedure).ToList();
+                    var WFH = con.Query<LeaveViewModel>("sp_WorkFromHome", wfhParameters, commandType: CommandType.StoredProcedure).ToList();
 
                     var firstDate = WFH[0].Fromdate;
                     var lastDate = WFH[0].Todate;
@@ -913,7 +1011,7 @@ namespace Avidclan_BlogsVacancy.Controllers
 
                         var updateResult = con.ExecuteScalar("sp_WorkFromHome", updateParameters, commandType: CommandType.StoredProcedure);
                     }
-                    
+
 
                 }
                 return "Deleted Successfully";
@@ -925,7 +1023,37 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
         }
 
+        public ActionResult CompOff()
+        {
+            return View();
+        }
 
+        public JsonResult GetComppOffDataList()
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Mode", 2, DbType.Int32, ParameterDirection.Input);
+            var GetcommpoffList = con.Query<CompOffViewModel>("sp_CompensationLeave", parameters, commandType: CommandType.StoredProcedure);
+            return Json(GetcommpoffList, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCompOfDetails(int Id)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", Id, DbType.Int16, ParameterDirection.Input);
+            parameters.Add("@Mode", 3, DbType.Int32, ParameterDirection.Input);
+            var GetcommpOffData = con.Query<CompOffViewModel>("sp_CompensationLeave", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            return Json(GetcommpOffData, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetTotalCompensationLeave()
+        {
+            var UserId = Session["UserId"];
+            var parameters = new DynamicParameters();
+            parameters.Add("@UserId", UserId, DbType.Int16, ParameterDirection.Input);
+            parameters.Add("@Mode", 5, DbType.Double, ParameterDirection.Input);
+            var GetcommpOffData = con.Query<CompOffViewModel>("sp_CompensationLeave", parameters, commandType: CommandType.StoredProcedure);
+            return Json(GetcommpOffData, JsonRequestBehavior.AllowGet);
+        }
         public async Task ErrorLog(string ControllerName, string ErrorMessage, string StackTrace)
         {
             var parameters = new DynamicParameters();

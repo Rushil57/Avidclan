@@ -39,6 +39,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string BreakMonth { get; set; }
         public string PaidLeave { get; set; }
         public string SickLeave { get; set; }
+        public string CompOffLeave { get; set; }
     }
 
 }

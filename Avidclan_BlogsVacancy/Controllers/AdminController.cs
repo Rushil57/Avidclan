@@ -38,6 +38,7 @@ using SendGrid.Helpers.Mail.Model;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using Newtonsoft.Json.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Avidclan_BlogsVacancy.Controllers
 {
@@ -1257,16 +1258,16 @@ namespace Avidclan_BlogsVacancy.Controllers
                                 totalPlUsed++;
                             }
 
-                            
+
                             var PLparameters = new DynamicParameters();
                             PLparameters.Add("@PersonalLeaves", full_Day_pl, DbType.Decimal, ParameterDirection.Input);
                             PLparameters.Add("@Id", SaveLeaveDetails, DbType.Int64, ParameterDirection.Input);
                             PLparameters.Add("@PastLeave", 0, DbType.Decimal, ParameterDirection.Input);
                             PLparameters.Add("@mode", 9 , DbType.Int32, ParameterDirection.Input);
                             await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", PLparameters, commandType: CommandType.StoredProcedure);
-                           
+
                         }
-                        
+
                     }
                     if (leaveBalance != null)
                     {
@@ -1279,7 +1280,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 Emailparameters.Add("@Id", leaveViewModel.UserId, DbType.Int32, ParameterDirection.Input);
                 Emailparameters.Add("@mode", 16, DbType.Int32, ParameterDirection.Input);
                 var userEmailAddress = con.Query<UserRegister>("sp_User", Emailparameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
-               
+
                 await SendMailForLeaveByAdmin(leaveViewModel.Leaves, userEmailAddress, SaveLeave);
 
                 return "Leave Updated Successfully!";
@@ -1333,6 +1334,136 @@ namespace Avidclan_BlogsVacancy.Controllers
                 await ErrorLog("AdminController - SendReplyForWFH", ex.Message, ex.StackTrace);
             }
         }
+
+        [Route("api/Admin/SendCompOffRequest")]
+        [HttpPost]
+        public async Task<string> SendCompOffRequest(CompOffViewModel compOffViewModel)
+        {
+            try
+            {
+                var userIdObj = HttpContext.Current.Session["UserId"];
+                if (userIdObj == null)
+                {
+                    return "User is not logged in.";
+                }
+                Match match = Regex.Match(compOffViewModel.NumberOfDays, @"\d+(\.\d+)?"); // Extracts only numbers
+                var parameters = new DynamicParameters();
+                parameters.Add("@UserId", userIdObj, DbType.Int64, ParameterDirection.Input);
+                parameters.Add("@NumberOfDays", match.Value, DbType.String, ParameterDirection.Input);
+                parameters.Add("@Reason", compOffViewModel.Reason, DbType.String, ParameterDirection.Input);
+                parameters.Add("@Status", "Pending", DbType.String, ParameterDirection.Input);
+                parameters.Add("@Mode", 1, DbType.Int64, ParameterDirection.Input);
+                var SaveLeave = await con.ExecuteScalarAsync("sp_CompensationLeave", parameters, commandType: CommandType.StoredProcedure);
+
+                await SendMailForCompOffRequest(compOffViewModel, userIdObj);
+
+                return "Request sent successfully! After approval it will be added to your leave balanace!";
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("AdminController - AdminLeaveRequest", ex.Message, ex.StackTrace);
+                return ex.Message;
+            }
+        }
+
+        public async Task SendMailForCompOffRequest(CompOffViewModel compOffViewModel,object UserId)
+        {
+            await ReadConfiguration();
+            try
+            {
+                var Emailparameters = new DynamicParameters();
+                Emailparameters.Add("@Id", UserId, DbType.Int32, ParameterDirection.Input);
+                Emailparameters.Add("@mode", 16, DbType.Int32, ParameterDirection.Input);
+                var userDetails = con.Query<UserRegister>("sp_User", Emailparameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+                // Ensure userDetails is not null
+                if (userDetails == null)
+                {
+                    throw new Exception("User details not found.");
+                }
+
+                var mailbody = $@"
+                    <html>
+                    <body>
+                        <p>Hello Ma'am/Sir,</p>
+                        <p><strong>{userDetails.FirstName} {userDetails.LastName}</strong> would like to request Compensation Leave.</p>
+                        <p><b>Reason:</b> {compOffViewModel.Reason}</p>
+                        <p><b>Number of Days:</b> {compOffViewModel.NumberOfDays}</p>
+                        <p>Hoping to receive a positive response from you.</p>
+                        <br>
+                        <p>Yours sincerely,</p>
+                        <p>{userDetails.FirstName} {userDetails.LastName}</p>
+                    </body>
+                    </html>";
+
+                var subject = "Request for Compensation Leave";
+                await sendEmail(senderEmail, senderEmail, $"{userDetails.FirstName} {userDetails.LastName}", subject, mailbody, null);
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("AdminController - SendMailForCompOffRequest", ex.Message, ex.StackTrace);
+            }
+        }
+
+        
+        [Route("api/Admin/ReplyToCompOffRequest")]
+        [HttpPost]
+        public async Task<string> ReplyToCompOffRequest(CompOffViewModel compOffViewModel)
+        {
+            try
+            {
+                await SendReplyForCompOff(compOffViewModel);
+                var parameters = new DynamicParameters();
+                parameters.Add("@Status", compOffViewModel.Status, DbType.String, ParameterDirection.Input);
+                parameters.Add("@Id", compOffViewModel.Id, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@Mode", 4, DbType.Int32, ParameterDirection.Input);
+                var UpdateStatus = con.Query<CompOffViewModel>("sp_CompensationLeave", parameters, commandType: CommandType.StoredProcedure);
+                return "Reply Send Successfully";
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("AdminController - ReplyToCompOffRequest", ex.Message, ex.StackTrace);
+                var MessageException = ex.InnerException + ex.StackTrace;
+                return MessageException;
+            }
+
+        }
+
+        public async Task SendReplyForCompOff(CompOffViewModel compOffViewModel)
+        {
+            await ReadConfiguration();
+            try
+            {
+                string firstName = compOffViewModel.FirstName;
+                string status = compOffViewModel.Status;
+                string reason = compOffViewModel.Reason;
+                string noOfdays = compOffViewModel.NumberOfDays;
+
+                var mailbody = $@"
+                <html>
+                <body>
+                    <p>Hello {firstName},</p>
+                    <p>Your Compensation Leave Request has been <b>{status}</b>.</p>
+                    <p><b>Reason : </b>{reason}.</p>
+                    <p><b>Number of Days : </b>{noOfdays}.</p>
+                    <br>
+                    <p>Thanks & Regards,</p>
+                    <p><b>HR, Avidclan</b></p>
+                </body>
+                </html>";
+
+                var subject = "Reply For Compensation Leave Request";
+
+                List<string> reportingpersonList = new List<string>();
+
+                 await sendEmail(senderEmail, compOffViewModel.EmailId, firstName, subject, mailbody, reportingpersonList);
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("AdminController - SendReplyForCompOff", ex.Message, ex.StackTrace);
+            }
+        }
+
         public async Task ErrorLog(string ControllerName, string ErrorMessage, string StackTrace)
         {
             var parameters = new DynamicParameters();
@@ -1353,6 +1484,12 @@ namespace Avidclan_BlogsVacancy.Controllers
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", base64Auth);
 
                 var ccList = new List<object>();
+
+                // Ensure ReportingPerson is not null
+                if (ReportingPerson == null)
+                {
+                    ReportingPerson = new List<string>();
+                }
                 ReportingPerson.Add("rushil@avidclan.com");
                 ReportingPerson.Add("chintan.s@avidclan.com");
                 if (ReportingPerson.Count > 0)

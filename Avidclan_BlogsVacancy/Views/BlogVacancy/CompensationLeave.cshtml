@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "CompensationLeave";
+    Layout = "~/Views/Shared/_AdminTemplate.cshtml";
+}
+
+<table id="CommpOffTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Number of Days</th>
+            <th>Reason</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody class="CommpOffBody">
+    </tbody>
+</table>
+
+@*MODAL START FOR COMPENSATION*@
+<div class="modal" id="CompensationDetailsModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Compensation Details</h5>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="CompensationId" value="0">
+                <input type="hidden" id="FirstName" value="">
+                <input type="hidden" id="EmailId" value="">
+                <div class="form-group">
+                    <label for="txtNumberOfDays">Number Of Days</label>
+                    <input type="text" class="form-control" name="txtNumberOfDays" id="txtNumberOfDays" placeholder="Number of Days" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="Reason">Reason</label>
+                    <textarea type="text" class="form-control cls-customtextarea " name="Reason" id="Reason" placeholder="Reason" readonly></textarea>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="Rejected" onclick="ApprovedOrRejectRequest(this.id)">Rejected</button>
+                    <button type="button" class="btn btn-success" id="Approved" onclick="ApprovedOrRejectRequest(this.id)">Approved</button>
+                    <button type="button" class="btn btn-secondary" onclick="ResetModel()">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@*MODAL END FOR APPLY COMPENSATION*@
+
+<script src="~/Javascript/Admin/commpoffjs.js"></script>

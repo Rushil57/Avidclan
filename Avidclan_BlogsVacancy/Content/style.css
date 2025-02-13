@@ -21207,3 +21207,8 @@ label.required::after {
 .chosen-container {
     width: 100% !important;
 }
+
+.cls-customtextarea {
+    min-height: 6.875rem !important;
+    width: 80% !important;
+}

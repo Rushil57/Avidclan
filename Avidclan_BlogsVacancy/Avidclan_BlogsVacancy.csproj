@@ -290,6 +290,7 @@
     <Compile Include="ViewModel\BalanaceLeaveViewModel.cs" />
     <Compile Include="ViewModel\Blog.cs" />
     <Compile Include="ViewModel\Careers.cs" />
+    <Compile Include="ViewModel\CompOffViewModel.cs" />
     <Compile Include="ViewModel\HeaderMenu.cs" />
     <Compile Include="ViewModel\LeaveViewModel.cs" />
     <Compile Include="ViewModel\SalarySlipViewModel.cs" />
@@ -309,6 +310,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Javascript\Admin\commpoffjs.js" />
     <Content Include="Javascript\Admin\employeeleavejs.js" />
     <Content Include="Javascript\Admin\leaveconvertJs.js" />
     <Content Include="Javascript\Admin\WFHStatusJs.js" />
@@ -389,6 +391,8 @@
     <Content Include="Views\BlogVacancy\WFHStatus.cshtml" />
     <Content Include="Views\BlogVacancy\EmployeeLeave.cshtml" />
     <Content Include="Views\BlogVacancy\leaveconvert.cshtml" />
+    <Content Include="Views\Leave\CompOff.cshtml" />
+    <Content Include="Views\BlogVacancy\CompensationLeave.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -54,6 +54,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string PastLeave { get; set; }
 
         public string PersonalLeaves { get; set; }
+        public string CompensationLeave { get; set; }
 
         public string SickLeaves { get; set; }
 
@@ -66,6 +67,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
 
         public bool WorkAndHalfLeave { get; set; }
         public string LeaveStatus { get; set; }
+        public string CompOffLeave { get; set; }
         public int WFHId { get; set; }
 
     }
@@ -77,6 +79,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string SickLeave { get; set; }
         public string PersonalLeave { get; set; }
         public string LwpLeave { get; set; }
+        public string CompOffLeave { get; set; }
 
         public string Year { get; set; }
 

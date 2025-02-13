@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "CompOff";
+    Layout = "~/Views/Shared/_LeaveTemplate.cshtml";
+}
+
+<div>
+    <form name="CommpOffRequestForm">
+        <div class="form-group">
+            <label for="noofDays" class="required">Number of Days : </label>
+            <input type="text" class="form-control" name="noofDays" id="NoOfDays" placeholder="Enter Number of Days" style="width:80%">
+        </div>
+
+        <div class="form-group">
+            <label for="reason" class="required">Reason for Compensation Leave : </label>
+            <textarea type="text" class="form-control cls-customtextarea " name="reason" id="Reason" placeholder="Enter Reason"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-sm">Send Request</button>
+    </form>
+
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        validator = $("form[name='CommpOffRequestForm']").validate({
+            rules: {
+                noofDays: { required: true, },
+                reason: { required: true, },
+            },
+            messages: {
+                noofDays: { required: "Please enter a number of days", },
+                reason: { required: "Please enter reason with specific day and time", },
+            },
+            submitHandler: function (form) {
+                SendCompOffRequest()
+            }
+        });
+
+    });
+
+    function SendCompOffRequest() {
+        showSpinner();
+        var Numberofdays = $("#NoOfDays").val();
+        var Reasonforrequest = $("#Reason").val();
+
+        var data = {
+            NumberOfDays: Numberofdays,
+            Reason : Reasonforrequest
+        }
+        $.ajax({
+            type: "POST",
+            url: "/api/Admin/SendCompOffRequest",
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data),
+            success: function (result) {
+                alert(result);
+                $("#NoOfDays").val("");
+                $("#Reason").val("");
+                hideSpinner();
+            },
+            error: function (result) {
+                alert(result);
+            },
+        })
+    }
+
+
+</script>
