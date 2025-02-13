@@ -13,11 +13,11 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
+            
         gtag('config', 'G-72R4P6376Q');
     </script>
-    <!-- Google tag (gtag.js)
-    <!--<script src="https://www.googletagmanager.com/gtag/js?id=UA-190354516-1" async></script>
+     Google tag (gtag.js)
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-190354516-1" async></script>
     <script async>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -27,9 +27,9 @@
     </script>-->
     <meta name="msvalidate.01" content="C6EA7291CCD22012F734D3C6649F2F3F" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" media="all" href="~/assets/css/swiper.min.css" defer />
-    <link rel="stylesheet" media="all" href="~/assets/css/all-min.css" defer async />
-    <link rel="stylesheet" media="all" href="~/assets/css/Avidclan/bootstrap-custom.css" defer async />
+    <link rel="stylesheet" media="all" href="~/assets/css/swiper.min.css" />
+    <link rel="stylesheet" media="all" href="~/assets/css/all-min.css" />
+    <link rel="stylesheet" media="all" href="~/assets/css/Avidclan/bootstrap-custom.css" />
     @*<link rel="stylesheet" media="all" href="~/assets/css/Avidclan/home.min.css" />*@
     <link rel="stylesheet" media="all" href="~/assets/css/Avidclan/home.css" />
     <link rel="stylesheet" media="all" href="@Styles.Url("~/Content/css")" />
@@ -76,7 +76,7 @@
                         <!--Logo-->
                         <div class="logo-box">
                             <div class="logo">
-                                <a href="~/home/"><img src="~/assets/images/logo.svg" alt="Avidclan-Logo" width="100" height="100" /></a>
+                                <a href="~/"><img src="~/assets/images/logo.svg" alt="Avidclan-Logo" width="100" height="100" /></a>
                             </div>
                         </div>
                         <!--Nav Box-->
@@ -98,7 +98,7 @@
                             <!--Logo-->
                             <div class="logo-box">
                                 <div class="logo">
-                                    <a href="~/home/"><img src="~/assets/images/logo.svg" alt="Avidclan-Logo" width="100" height="100" /></a>
+                                    <a href="~/"><img src="~/assets/images/logo.svg" alt="Avidclan-Logo" width="100" height="100" /></a>
                                 </div>
                             </div>
                             <!--Nav Box-->
@@ -117,7 +117,7 @@
                                             <li class="dropdown w3_megamenu-fw ser_menu">
                                                 <a href="~/services/">Services</a>
                                                 <ul class="dropdown-menu half" style="transform: translate(-461.5px);">
-                                                    <div class="dropdown-arrow"></div>
+                                                    @*<div class="dropdown-arrow"></div>*@
                                                     <li class="w3_megamenu-content withoutdesc">
                                                         <div class="row">
                                                             <div class="col-sm-3">
@@ -259,7 +259,7 @@
                                             <li class="dropdown w3_megamenu-fw tec_menu">
                                                 <a href="~/technologies/">Technologies</a>
                                                 <ul class="dropdown-menu half" style="transform: translate(-441.5px);">
-                                                    <div class="dropdown-arrow"></div>
+                                                    @*<div class="dropdown-arrow"></div>*@
                                                     <li class="w3_megamenu-content withoutdesc">
                                                         <div class="row">
                                                             <div class="col-sm-3">
@@ -382,38 +382,39 @@
                                             </li>
                                             @*<li><a href="~/about-us#Aboutus_industry_section">Industries</a></li>*@
                                             @*<li><a href="~/home/">Hire Developers</a></li>*@
-                                            <li class="dropdown w3_megamenu-fw car_menu">
-                                                <a href="#">Hire Developers</a>
-                                                <ul class="dropdown-menu half testmenu" style="max-width: 310px; transform: translate(-120px);">
-                                                    <div class="dropdown-arrow"></div>
-                                                    <li class="w3_megamenu-content withoutdesc" style="margin-left:1px;">
-                                                        <div class="row">
-                                                            <div class="col-sm-12 col-auto">
-                                                                <h3 class="title">
-                                                                    <a href="~/about-us/">Hire skilled and experienced resources</a>
-                                                                </h3>
-                                                                <ul style="padding-bottom: 15px !important;">
-                                                                    @*<li>
-                                                                    <a aria-label="Enterprise Solutions"
-                                                                       href="~/hire-qa-automation-tester/">Hire Automation Tester</a>
-                                                                </li>*@
-                                                                    <li>
-                                                                        <a aria-label="Hire .NET Developer" href="~/hire-dot-net-developers/">Hire .NET Developers</a>
-                                                                    </li>
-                                                                    <li class="mt-1">
-                                                                        <a aria-label="Hire UI/UX Designers" href="~/hire-ui-ux-designers/">Hire UI/UX Designers</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
+                                        <li class="dropdown w3_megamenu-fw car_menu">
+                                            <a href="#">Hire resources</a>
+                                            @*<a href="#">Hire Developers</a>*@
+                                            <ul class="dropdown-menu half testmenu" style="max-width: 310px; transform: translate(-75px);">
+                                                @*<div class="dropdown-arrow"></div>*@
+                                                <li class="w3_megamenu-content withoutdesc" style="margin-left:1px;">
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-auto">
+                                                            <h3 class="title">
+                                                                <a href="#">Hire skilled resources</a>
+                                                            </h3>
+                                                            <ul style="padding-bottom: 15px !important;">
+                                                                @*<li>
+                                <a aria-label="Enterprise Solutions"
+                                   href="~/hire-qa-automation-tester/">Hire Automation Tester</a>
+                            </li>*@
+                                                                <li>
+                                                                    <a aria-label="Hire .NET Developer" href="~/hire-dot-net-developers/">Hire .NET Developers</a>
+                                                                </li>
+                                                                @*<li class="mt-1">
+                                <a aria-label="Hire UI/UX Designers" href="~/hire-ui-ux-designers/">Hire UI/UX Designers</a>
+                            </li>*@
+                                                            </ul>
                                                         </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
                                             @*company menu start*@
                                             <li class="dropdown w3_megamenu-fw car_menu">
                                                 <a href="#">Company</a>
                                                 <ul class="dropdown-menu half" style="max-width: 600px; transform: translate(-280px);">
-                                                    <div class="dropdown-arrow"></div>
+                                                    @*<div class="dropdown-arrow"></div>*@
                                                     <li class="w3_megamenu-content withoutdesc">
                                                         <div class="row">
                                                             <div class="col-sm-4">
@@ -464,7 +465,7 @@
                                                             </div>
                                                             <div class="col-sm-4">
                                                                 <h3 class="title">
-                                                                    <a href="~/ui-ux-design-company/">Resources</a>
+                                                                    <a href="#">Resources</a>
                                                                 </h3>
                                                                 <ul>
                                                                     <li>
@@ -786,7 +787,7 @@
                     </li>
                     @*<li><a href="~/about-us#Aboutus_industry_section">Industries</a></li>*@
                     <li>
-                        <a href="">Hire Developers</a>
+                        <a href="">Hire resources</a>
                         <i class="fa fa-angle-right sub-menu-toggle"></i>
                         <ul class="sub-menu menu">
                             <li class="close">
@@ -794,7 +795,7 @@
                             </li>
                             @*<li><a href="~/hire-qa-automation-tester/">Hire Automation Tester</a></li>*@
                             <li><a href="~/hire-dot-net-developers/">Hire .NET Developers</a></li>
-                            <li><a href="~/hire-ui-ux-designers/">Hire UI/UX Designers</a></li>
+                            @*<li><a href="~/hire-ui-ux-designers/">Hire UI/UX Designers</a></li>*@
                         </ul>
                     </li>
 
@@ -972,7 +973,7 @@
     <script src="~/assets/js/script.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" async></script>
 
-    <script type="text/javascript" defer>
+    <script type="text/javascript">
         // temprory hide usa location address from the footer
         window.onload = function () {
             document.querySelector('.address-usa').remove();  // This will remove the element from the DOM entirely
