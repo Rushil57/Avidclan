@@ -159,6 +159,7 @@ li, ul {
 }
 
     .banner-section-two .content-box {
+        width: 100%;
         border-radius: 40px;
         padding: 50px;
         display: -webkit-box;
@@ -528,11 +529,15 @@ li, ul {
 }
 
 .nav-menu-wrap {
-    width: 100%;
-    background-color: #fff;
+    display: none;
 }
 
-.nav-menu {
+/*.nav-menu-wrap {
+    width: 100%;
+    background-color: #fff;
+}*/
+
+/*.nav-menu {
     width: 100%;
     height: 0;
     overflow: hidden;
@@ -540,7 +545,7 @@ li, ul {
     -o-transition: height .5s linear;
     -moz-transition: height .5s linear;
     transition: height .5s linear
-}
+}*/
 
 /*Uncomment this class css when you want to show menubar in full screen*/
 
@@ -548,7 +553,7 @@ li, ul {
     height: 100vh;
 }*/
 
-.nav-menu, .sub-menu {
+/*.nav-menu, .sub-menu {
     margin: 0;
     padding: 0;
     position: relative;
@@ -592,13 +597,13 @@ li, ul {
         -ms-transform: translate(0,0);
         -o-transform: translate(0,0);
         transform: translate3d(0,0,0)
-    }
+    }*/
 
     .btn-style-one, .nav-menu .sub-menu-toggle, .theme-btn, .theme-btn i, img {
         display: inline-block
     }
 
-    .nav-menu .sub-menu.active {
+    /*    .nav-menu .sub-menu.active {
         -moz-transform: translate3d(-100%,0,0);
         -webkit-transform: translate3d(-100%,0,0);
         -ms-transform: translate(-100%,0);
@@ -647,11 +652,11 @@ li, ul {
         .sub-menu .close div i {
             float: left;
             margin-right: 5px
-        }
+        }*/
 
-.award-section.style-two .bottom-text a, .banner-section-two .btn-style-one:hover .btn-title, .bootstrap-select .dropdown-menu li.active a span.text, .btn-style-one:hover .btn-title, .btn-theme, .our-mission.vision .content-block .title, .recruitment .section-box:hover .s-title h2, .recruitment .section-box:hover .s-title span, .recruitment .section-box:hover p, .scroll-to-top:hover, .sec-title.light .text, .sec-title.light h2, .tech-services-section .tech-service-block.CTA .content p, .tech-services-section .tech-service-block.CTA .title {
-    color: #fff
-}
+    .award-section.style-two .bottom-text a, .banner-section-two .btn-style-one:hover .btn-title, .bootstrap-select .dropdown-menu li.active a span.text, .btn-style-one:hover .btn-title, .btn-theme, .our-mission.vision .content-block .title, .recruitment .section-box:hover .s-title h2, .recruitment .section-box:hover .s-title span, .recruitment .section-box:hover p, .scroll-to-top:hover, .sec-title.light .text, .sec-title.light h2, .tech-services-section .tech-service-block.CTA .content p, .tech-services-section .tech-service-block.CTA .title {
+        color: #fff
+    }
 
 .inner-page .content-box {
     padding: 70px 0;
@@ -2160,6 +2165,125 @@ form.contact-form label.error {
             border-radius: 10px;
             object-fit: contain;
         }
+
+@media (max-width: 1139px) {
+    .nav-menu-wrap {
+        width: 100%;
+        background-color: #fff;
+        display: block;
+    }
+
+    .nav-menu {
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        -webkit-transition: height .5s linear;
+        -o-transition: height .5s linear;
+        -moz-transition: height .5s linear;
+        transition: height .5s linear
+    }
+
+    .nav-menu, .sub-menu {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        background: #fff
+    }
+
+        .nav-menu li {
+            list-style-type: none;
+            display: block;
+            float: left;
+            width: 100%;
+            border-top: 1px solid #eee;
+            background: #fff
+        }
+
+            .nav-menu li > a {
+                display: block;
+                font-weight: 500;
+                color: #142149;
+                padding: 10px 15px;
+                position: relative;
+                float: left;
+                width: 85%;
+                -webkit-transition: .3s;
+                -moz-transition: .3s;
+                transition: .3s
+            }
+
+        .nav-menu .sub-menu {
+            display: block;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            -moz-transition: .4s ease-in;
+            -webkit-transition: .4s ease-in;
+            transition: transform 0.3s ease-in-out;
+            z-index: 5;
+            -moz-transform: translate3d(0,0,0);
+            -webkit-transform: translate3d(0,0,0);
+            -ms-transform: translate(0,0);
+            -o-transform: translate(0,0);
+            transform: translate3d(0,0,0)
+        }
+
+        .nav-menu .sub-menu-toggle {
+            display: inline-block
+        }
+
+        .nav-menu .sub-menu.active {
+            -moz-transform: translate3d(-100%,0,0);
+            -webkit-transform: translate3d(-100%,0,0);
+            -ms-transform: translate(-100%,0);
+            -o-transform: translate(-100%,0);
+            transform: translate3d(-100%,0,0)
+        }
+
+        .nav-menu .sub-menu-toggle {
+            position: relative;
+            top: 0;
+            right: 0;
+            color: #142149;
+            background: rgba(162,162,162,.1);
+            cursor: pointer;
+            width: 15%;
+            text-align: center
+        }
+
+            .nav-menu .sub-menu-toggle:active, .nav-menu .sub-menu-toggle:hover {
+                background: #ddd
+            }
+
+            .nav-menu .sub-menu-toggle:before {
+                display: inline-block;
+                -webkit-transition: .3s linear;
+                -o-transition: .3s linear;
+                -moz-transition: .3s linear;
+                -ms-transition: .3s linear;
+                transition: .3s linear
+            }
+
+            .nav-menu .sub-menu-toggle.flip:before {
+                -webkit-transform: rotate(-180deg);
+                -moz-transform: rotate(-180deg);
+                -o-transform: rotate(-180deg);
+                -ms-transform: rotate(-180deg);
+                transform: rotate(-180deg)
+            }
+
+        .sub-menu .close div {
+            padding: 10px 15px;
+            cursor: pointer;
+            background: #f2f5fe
+        }
+
+            .sub-menu .close div i {
+                float: left;
+                margin-right: 5px
+            }
+}
 
 @media (max-width: 767.98px) {
     .badge-card {
