@@ -12,6 +12,7 @@
             <th style="width: 130px;" class="dt-head-center">Sick Leave (SL)</th>
             <th style="width: 175px;" class="dt-head-center">Paid Leave (PL)</th>
             <th style="width: 216px;" class="dt-head-center">Leave Without Pay (LWP)</th>
+            <th style="width: 216px;" class="dt-head-center">Compensatory Leave(Comp off)</th>
             <th style="width: 203px;" class="dt-head-center">Reason For Leave</th>
         </tr>
     </thead>
@@ -36,6 +37,18 @@
 <hr />
 
 
+<h4>Total Compensation Leave</h4>
+<table id="TotalCompensationLeaveTable">
+    <thead>
+        <tr>
+            <th class="dt-head-center">Days</th>
+            <th class="dt-head-center">Reason</th>
+        </tr>
+    </thead>
+    <tbody style="text-align: center;"></tbody>
+</table>
+
+
 <input type="hidden" id="PersonalLeave" />
 <input type="hidden" id="SickLeave" />
 <input id="JoiningDate" type="hidden" value='@Session["UserJoiningDate"]' />
@@ -55,7 +68,8 @@
         $.when(
             //GetPastLeaveBalance(),
             GetTotalCurrentYearLeave(),
-            GetLeaveBalance()
+            GetLeaveBalance(),
+            GetTotalCompensationLeave()
         ).done(function () {
             hideSpinner();
         }).fail(function () {
@@ -110,6 +124,12 @@
                         }
                     },
                     {
+                        "data": "CompOffLeave",
+                        "render": function (data, type, row) {
+                            return data == null ? "<span>0.0</span>" : "<span>" + data + "</span>";
+                        }
+                    },
+                    {
                         "data": "LeaveReason",
                         "render": function (data, type, row) {
                             var leaveReason = data.length > 40 ? data.substring(0, 40) + "..." : data;
@@ -129,47 +149,6 @@
         var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         return months[monthNumber - 1];
     }
-
-    @*function GetTotalLeaveBalance() {
-        $.ajax({
-            url: "@Url.Action("GetTotalLeaveBalanaceList", "Leave")",
-            contentType: 'application/json',
-             type: "GET",
-            success: function (data) {
-                $('#TotalLeaveBalanceTable').DataTable({
-                    destroy: true,
-                    data: data,
-                    searching: false,
-                    paging: false,
-                    info: false ,
-                    order: [[0, 'desc']],
-                    "columns": [
-                        {
-                            "data": "SickLeave",
-                            "render": function (data, type, row) {
-
-                                var SickLeave = TotalSickLeaveCount(data);
-                                return "<span>" + SickLeave + "</span>"
-
-                            }
-                        },
-                        {
-                            "data": "PersonalLeave",
-                            "render": function (data, type, row) {
-
-                                var personalLeave = TotalPersonalLeaveCount(data);
-                                return "<span>" + personalLeave + "</span>"
-
-                            }
-                        }
-                    ]
-                });
-            },
-            error: function (result) {
-                alert(result.responseText);
-            }
-        });
-    }*@
 
      function GetPastLeaveBalance() {
         $.ajax({
@@ -194,7 +173,7 @@
              contentType: 'application/json',
              type: "GET",
              success: function (data) {
-                 
+
                  $('#TotalLeaveBalanceTable').DataTable({
                      destroy: true,
                      data: data,
@@ -247,5 +226,37 @@
             return pl;
         }
     }
+
+function GetTotalCompensationLeave() {
+    $.ajax({
+        url: '@Url.Action("GetTotalCompensationLeave", "Leave")',
+        contentType: 'application/json',
+        type: "GET",
+        success: function (compensatedata) {
+            console.log("Received Data:", compensatedata); // Debugging
+
+            // Destroy existing DataTable before reinitializing
+            if ($.fn.DataTable.isDataTable('#TotalCompensationLeaveTable')) {
+                $('#TotalCompensationLeaveTable').DataTable().clear().destroy();
+            }
+
+            $('#TotalCompensationLeaveTable').DataTable({
+                data: compensatedata,
+                searching: false,
+                paging: false,
+                info: false,
+                order: [[0, 'desc']],
+                columns: [
+                    { data: "NumberOfDays" },
+                    { data: "Reason" }
+                ]
+            });
+        },
+        error: function (result) {
+            alert(result.responseText);
+        }
+    });
+}
+
 
 </script>

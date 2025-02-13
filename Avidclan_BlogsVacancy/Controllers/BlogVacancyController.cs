@@ -592,6 +592,19 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult LeaveConvert()
         {
+            if (Session["UserEmailId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
+            return View();
+        }
+
+        public ActionResult CompensationLeave()
+        {
+            if (Session["UserEmailId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
             return View();
         }
         public async Task ErrorLog(string ControllerName, string ErrorMessage, string StackTrace)

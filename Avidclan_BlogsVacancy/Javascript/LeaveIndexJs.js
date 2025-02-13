@@ -68,12 +68,12 @@ function SelectCalenderDate() {
                 SetMinDate();
             }
         },
-        events: []
-        //eventClick: function (info) {
-        //    var StartTime = moment(info.event.start).format('MM/DD/YYYY');
-        //    var Eventlist = calendar.getEvents();
-        //    EditLeaves(info.event.id, StartTime);
-        //}
+        events: [],
+        eventClick: function (info) {
+            var StartTime = moment(info.event.start).format('MM/DD/YYYY');
+            var Eventlist = calendar.getEvents();
+            EditLeaves(info.event.id, StartTime);
+        }
     });
 
     calendar.render();
