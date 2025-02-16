@@ -42,4 +42,9 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string CompOffLeave { get; set; }
     }
 
+    public class UseridList
+    {
+        public List<int> Id { get; set; }
+    }
+
 }

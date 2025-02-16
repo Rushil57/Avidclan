@@ -2,6 +2,7 @@
 using Dapper;
 using iTextSharp.text;
 using iTextSharp.text.pdf.qrcode;
+using iTextSharp.tool.xml.html;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -131,144 +132,146 @@ namespace Avidclan_BlogsVacancy.Controllers
                 Attribute.Add("@Mode", 8, DbType.Int32, ParameterDirection.Input);
                 var ListLeaves = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", Attribute, commandType: CommandType.StoredProcedure).ToList();
 
-                var Attributes = new DynamicParameters();
-                var GetLastLeaveDate = ListLeaves.LastOrDefault();
-                Attributes.Add("@LeaveDate", GetLastLeaveDate.LeaveDate, DbType.Date, ParameterDirection.Input);
-                Attributes.Add("@UserId", UserId, DbType.Int32, ParameterDirection.Input);
-                Attributes.Add("@Mode", 14, DbType.Int32, ParameterDirection.Input);
-                var FutureListLeaves = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", Attributes, commandType: CommandType.StoredProcedure).ToList();
-                if (FutureListLeaves.Count > 0)
-                {
-                    double pastPersonalLeave = 0.0, pastSickLeave = 0.0, currPersonalLeave = 0.0, currSickLeave = 0.0, compOff = 0.0;
-                    var updateParams = new List<DynamicParameters>();
+                //var Attributes = new DynamicParameters();
+                //var GetLastLeaveDate = ListLeaves.LastOrDefault();
+                //Attributes.Add("@LeaveDate", GetLastLeaveDate.LeaveDate, DbType.Date, ParameterDirection.Input);
+                //Attributes.Add("@UserId", UserId, DbType.Int32, ParameterDirection.Input);
+                //Attributes.Add("@Mode", 14, DbType.Int32, ParameterDirection.Input);
+                //var FutureListLeaves = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", Attributes, commandType: CommandType.StoredProcedure).ToList();
+                //if (FutureListLeaves.Count > 0)
+                //{
+                //    double pastPersonalLeave = 0.0, pastSickLeave = 0.0, currPersonalLeave = 0.0, currSickLeave = 0.0, compOff = 0.0;
+                //    var updateParams = new List<DynamicParameters>();
 
-                    foreach (var leave in FutureListLeaves)
-                    {
-                        // Handle Past and Current Leave counts
-                        bool isPastLeave = leave.PastLeave == "1";
+                //    foreach (var leave in FutureListLeaves)
+                //    {
+                //        // Handle Past and Current Leave counts
+                //        bool isPastLeave = leave.PastLeave == "1";
 
-                        if (leave.PersonalLeaves != null)
-                        {
-                            if (leave.Halfday != null)
-                            {
-                                if (isPastLeave) pastPersonalLeave += 0.5;
-                                else currPersonalLeave += 0.5;
-                            }
-                            else
-                            {
-                                if (isPastLeave) pastPersonalLeave++;
-                                else currPersonalLeave += Convert.ToDouble(leave.PersonalLeaves);
-                            }
-                        }
+                //        if (leave.PersonalLeaves != null)
+                //        {
+                //            if (leave.Halfday != null)
+                //            {
+                //                if (isPastLeave) pastPersonalLeave += 0.5;
+                //                else currPersonalLeave += 0.5;
+                //            }
+                //            else
+                //            {
+                //                if (isPastLeave) pastPersonalLeave++;
+                //                else currPersonalLeave += Convert.ToDouble(leave.PersonalLeaves);
+                //            }
+                //        }
 
-                        if (leave.SickLeaves != null)
-                        {
-                            if (leave.Halfday != null)
-                            {
-                                if (isPastLeave) pastSickLeave += 0.5;
-                                else currSickLeave += 0.5;
-                            }
-                            else
-                            {
-                                if (isPastLeave) pastSickLeave++;
-                                else currSickLeave++;
-                            }
-                        }
+                //        if (leave.SickLeaves != null)
+                //        {
+                //            if (leave.Halfday != null)
+                //            {
+                //                if (isPastLeave) pastSickLeave += 0.5;
+                //                else currSickLeave += 0.5;
+                //            }
+                //            else
+                //            {
+                //                if (isPastLeave) pastSickLeave++;
+                //                else currSickLeave++;
+                //            }
+                //        }
 
-                        if(leave.CompOffLeave != null)
-                        {
-                            if (leave.Halfday != null)
-                            {
-                                compOff += 0.5;
-                            }
-                            else
-                            {
-                                compOff += Convert.ToDouble(leave.CompOffLeave);
-                            }
-                        }
+                //        if(leave.CompOffLeave != null)
+                //        {
+                //            if (leave.Halfday != null)
+                //            {
+                //                compOff += 0.5;
+                //            }
+                //            else
+                //            {
+                //                compOff += Convert.ToDouble(leave.CompOffLeave);
+                //            }
+                //        }
 
-                        // Prepare data for LeaveDetailsViewModel
-                        dataStoreList.Add(new LeaveDetailsViewModel
-                        {
-                            LeaveDate = leave.LeaveDate,
-                            LeaveId = leave.LeaveId,
-                            Halfday = leave.Halfday,
-                            Id = leave.Id
-                        });
+                //        // Prepare data for LeaveDetailsViewModel
+                //        dataStoreList.Add(new LeaveDetailsViewModel
+                //        {
+                //            LeaveDate = leave.LeaveDate,
+                //            LeaveId = leave.LeaveId,
+                //            Halfday = leave.Halfday,
+                //            Id = leave.Id,
+                //            CreatedDate = leave.CreatedDate
+                //        });
 
-                        // Add parameters for updating individual leave
-                        var parameters = new DynamicParameters();
-                        parameters.Add("@Id", leave.Id, DbType.Int16, ParameterDirection.Input);
-                        parameters.Add("@Mode", 15, DbType.Int32, ParameterDirection.Input);
-                        updateParams.Add(parameters);
-                    }
+                //        // Add parameters for updating individual leave
+                //        var parameters = new DynamicParameters();
+                //        parameters.Add("@Id", leave.Id, DbType.Int16, ParameterDirection.Input);
+                //        parameters.Add("@Mode", 15, DbType.Int32, ParameterDirection.Input);
+                //        updateParams.Add(parameters);
+                //    }
 
-                    // Execute all individual leave updates in batch
-                    foreach (var param in updateParams)
-                    {
-                        con.ExecuteScalar("sp_LeaveApplicationDetails", param, commandType: CommandType.StoredProcedure);
-                    }
+                //    // Execute all individual leave updates in batch
+                //    foreach (var param in updateParams)
+                //    {
+                //        con.ExecuteScalar("sp_LeaveApplicationDetails", param, commandType: CommandType.StoredProcedure);
+                //    }
 
 
-                    // Get user leave balance
-                    var userParams = new DynamicParameters();
-                    userParams.Add("@Id", UserId, DbType.String, ParameterDirection.Input);
-                    userParams.Add("@Mode", 14, DbType.Int32, ParameterDirection.Input);
+                //    // Get user leave balance
+                //    var userParams = new DynamicParameters();
+                //    userParams.Add("@Id", UserId, DbType.String, ParameterDirection.Input);
+                //    userParams.Add("@Mode", 14, DbType.Int32, ParameterDirection.Input);
 
-                    var leaveBalance = con.Query<UserRegister>("sp_User", userParams, commandType: CommandType.StoredProcedure).FirstOrDefault();
-                    if(leaveBalance != null)
-                    {
-                        if(currPersonalLeave != 0.0)
-                        {
-                            var updatedpl = currPersonalLeave + Convert.ToDouble(leaveBalance.PaidLeave);
-                            await UpdateLeaveBalance(UserId, Convert.ToDouble(updatedpl), Convert.ToDouble(leaveBalance.SickLeave));
-                        }
-                        if(currSickLeave != 0.0)
-                        {
-                            var updatesSl = currSickLeave + Convert.ToDouble(leaveBalance.SickLeave);
-                            await UpdateLeaveBalance(UserId, Convert.ToDouble(leaveBalance.PaidLeave), Convert.ToDouble(updatesSl));
-                        }
-                        if (compOff != 0.0)
-                        {
-                            var updateCompOff = compOff + Convert.ToDouble(leaveBalance.CompOffLeave);
-                            await UpdateUserCompOffBalance(UserId, updateCompOff);
-                        }
-                    }
+                //    var leaveBalance = con.Query<UserRegister>("sp_User", userParams, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                //    if(leaveBalance != null)
+                //    {
+                //        if(currPersonalLeave != 0.0)
+                //        {
+                //            var updatedpl = currPersonalLeave + Convert.ToDouble(leaveBalance.PaidLeave);
+                //            await UpdateLeaveBalance(UserId, Convert.ToDouble(updatedpl), Convert.ToDouble(leaveBalance.SickLeave));
+                //        }
+                //        if(currSickLeave != 0.0)
+                //        {
+                //            var updatesSl = currSickLeave + Convert.ToDouble(leaveBalance.SickLeave);
+                //            await UpdateLeaveBalance(UserId, Convert.ToDouble(leaveBalance.PaidLeave), Convert.ToDouble(updatesSl));
+                //        }
+                //        if (compOff != 0.0)
+                //        {
+                //            var updateCompOff = compOff + Convert.ToDouble(leaveBalance.CompOffLeave);
+                //            await UpdateUserCompOffBalance(UserId, updateCompOff);
+                //        }
+                //    }
                     
-                }
+                //}
 
                 await AddLeaves(ListLeaves, ProbationPeriod, JoinigDate, UserId, FromDate, wfhId);
 
-                if (dataStoreList.Count > 0)
-                {
-                    var LeaveIds = dataStoreList.Select(x => x.LeaveId).Distinct().ToList();
-                    foreach (var leaveid in LeaveIds)
-                    {
-                        var leavelist = dataStoreList.Where(x => x.LeaveId == leaveid).ToList();
+                //if (dataStoreList.Count > 0)
+                //{
+                //    var LeaveIds = dataStoreList.Select(x => x.LeaveId).Distinct().ToList();
+                //    foreach (var leaveid in LeaveIds)
+                //    {
+                //        var leavelist = dataStoreList.Where(x => x.LeaveId == leaveid).ToList();
 
-                        var list = leavelist.FirstOrDefault();
+                //        var list = leavelist.FirstOrDefault();
 
-                        foreach (var item in leavelist)
-                        {
-                            var parameters1 = new DynamicParameters();
-                            parameters1.Add("@LeaveDate", item.LeaveDate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
-                            parameters1.Add("@Halfday", item.Halfday, DbType.String, ParameterDirection.Input);
-                            parameters1.Add("@LeaveId", item.LeaveId, DbType.Int64, ParameterDirection.Input);
-                            parameters1.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
-                            var SaveLeaveDetails = con.ExecuteScalar("sp_LeaveApplicationDetails", parameters1, commandType: CommandType.StoredProcedure);
-                        }
+                //        foreach (var item in leavelist)
+                //        {
+                //            var parameters1 = new DynamicParameters();
+                //            parameters1.Add("@LeaveDate", item.LeaveDate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
+                //            parameters1.Add("@Halfday", item.Halfday, DbType.String, ParameterDirection.Input);
+                //            parameters1.Add("@LeaveId", item.LeaveId, DbType.Int64, ParameterDirection.Input);
+                //            parameters1.Add("@CreatedDate", item.CreatedDate, DbType.DateTime, ParameterDirection.Input);
+                //            parameters1.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
+                //            var SaveLeaveDetails = con.ExecuteScalar("sp_LeaveApplicationDetails", parameters1, commandType: CommandType.StoredProcedure);
+                //        }
 
-                        var Attribute1 = new DynamicParameters();
-                        Attribute1.Add("@LeaveId", leaveid, DbType.Int32, ParameterDirection.Input);
-                        Attribute1.Add("@Mode", 8, DbType.Int32, ParameterDirection.Input);
-                        ListLeaves = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", Attribute1, commandType: CommandType.StoredProcedure).ToList();
-
-
-                        await AddLeaves(ListLeaves, ProbationPeriod, JoinigDate,UserId, list.LeaveDate, wfhId);
-                    }
+                //        var Attribute1 = new DynamicParameters();
+                //        Attribute1.Add("@LeaveId", leaveid, DbType.Int32, ParameterDirection.Input);
+                //        Attribute1.Add("@Mode", 8, DbType.Int32, ParameterDirection.Input);
+                //        ListLeaves = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", Attribute1, commandType: CommandType.StoredProcedure).ToList();
 
 
-                }
+                //        await AddLeaves(ListLeaves, ProbationPeriod, JoinigDate,UserId, list.LeaveDate, wfhId,true);
+                //    }
+
+
+                //}
             }
             catch (Exception ex)
             {
@@ -313,41 +316,55 @@ namespace Avidclan_BlogsVacancy.Controllers
                 {
                     var monthDifference = (((leave.LeaveDate.Year - joiningDate.Year) * 12) +
                      leave.LeaveDate.Month - joiningDate.Month) + 1;
+
+                    bool isPreviousMonthLeave = leave.LeaveDate.Month < TodaysDate.Month && leave.LeaveDate.Year == TodaysDate.Year;
+                    bool isWithinGracePeriod = TodaysDate.Day <= 7;
+
                     if (monthDifference <= ProbationMonths)
                     {
                         await SetProbationLwpLeave(leave);
                     }
                     else
                     {
-                        if (leave.LeaveDate <= TodaysDate)
+                        if (isPreviousMonthLeave && !isWithinGracePeriod)
                         {
-                            sickLeavetaken = true;
-                            await SetSickorLwpLeave(leave, JoiningDateAfterProbation, UserId);
+                            // If leave is from a previous month and today's date is past the 7th, mark it as LWP
+                            //await SetPersonalorLwpLeave(leave, JoiningDateAfterProbation, UserId);
+                            await SavePaidOrLwpLeave(leave.Id, leave.Halfday != null ? 0.5 : 1.0, "Lwp");
                         }
-                        if (ListLeaves.Count == 1 && leave.LeaveDate > TodaysDate)
+                        else
                         {
-                            if (DiffernceDate >= 7)
-                            {
-                                await SetPersonalorLwpLeave(leave, JoiningDateAfterProbation, UserId);
-                            }
-                            else
+                            if (leave.LeaveDate <= TodaysDate)
                             {
                                 sickLeavetaken = true;
                                 await SetSickorLwpLeave(leave, JoiningDateAfterProbation, UserId);
                             }
-                        }
-                        if (ListLeaves.Count > 1 && leave.LeaveDate > TodaysDate)
-                        {
-                            if (DiffernceDate >= 14)
+                            if (ListLeaves.Count == 1 && leave.LeaveDate > TodaysDate)
                             {
-                                await SetPersonalorLwpLeave(leave, JoiningDateAfterProbation, UserId);
+                                if (DiffernceDate >= 7)
+                                {
+                                    await SetPersonalorLwpLeave(leave, JoiningDateAfterProbation, UserId);
+                                }
+                                else
+                                {
+                                    sickLeavetaken = true;
+                                    await SetSickorLwpLeave(leave, JoiningDateAfterProbation, UserId);
+                                }
                             }
-                            else
+                            if (ListLeaves.Count > 1 && leave.LeaveDate > TodaysDate)
                             {
-                                sickLeavetaken = true;
-                                await SetSickorLwpLeave(leave, JoiningDateAfterProbation, UserId);
+                                if (DiffernceDate >= 14)
+                                {
+                                    await SetPersonalorLwpLeave(leave, JoiningDateAfterProbation, UserId);
+                                }
+                                else
+                                {
+                                    sickLeavetaken = true;
+                                    await SetSickorLwpLeave(leave, JoiningDateAfterProbation, UserId);
+                                }
                             }
                         }
+                      
                     }
                 }
             }
@@ -942,29 +959,65 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
         }
 
-        public JsonResult GetEmployeeLeaveDetails(int Id)
+        public JsonResult GetEmployeeLeaveDetails(string Id)
         {
             var UserId = Session["UserId"];
-            var parameters = new DynamicParameters();
-            parameters.Add("@Id", Id, DbType.Int64, ParameterDirection.Input);
-            parameters.Add("@UserId", UserId, DbType.Int64, ParameterDirection.Input);
-            parameters.Add("@Mode", 17, DbType.Int32, ParameterDirection.Input);
-
-            using (var reader = con.QueryMultiple("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure))
+            if(Id != null)
             {
-                // Read the data from the reader
-                var leavelist = reader.Read<LeaveViewModel>().ToList();
-                var wfhdetaillist = reader.Read<LeaveViewModel>().ToList();
+                var splitId = Id.Split('_');
+                var type = splitId[0];
+                var typeId = splitId[1];
 
-                // Prepare the dynamic object for JSON response
-                var dynamiclist = new
+                if (type == "Leave")
                 {
-                    leavelist,
-                    wfhdetaillist
-                };
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@Id", typeId, DbType.Int64, ParameterDirection.Input);
+                    parameters.Add("@UserId", UserId, DbType.Int64, ParameterDirection.Input);
+                    parameters.Add("@Mode", 20, DbType.Int32, ParameterDirection.Input);
 
-                return Json(dynamiclist, JsonRequestBehavior.AllowGet);
-            } // The reader is properly disposed of here
+                    using (var reader = con.QueryMultiple("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure))
+                    {
+                        // Read the data from the reader
+                        var leavelist = reader.Read<LeaveViewModel>().ToList();
+                        var wfhdetaillist = reader.Read<LeaveViewModel>().ToList();
+
+                        // Prepare the dynamic object for JSON response
+                        var dynamiclist = new
+                        {
+                            leavelist,
+                            wfhdetaillist
+                        };
+
+                        return Json(dynamiclist, JsonRequestBehavior.AllowGet);
+                    } // The reader is properly disposed of here
+                }
+                else
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@Id", typeId, DbType.Int64, ParameterDirection.Input);
+                    parameters.Add("@UserId", UserId, DbType.Int64, ParameterDirection.Input);
+                    parameters.Add("@Mode", 21, DbType.Int32, ParameterDirection.Input);
+
+                    using (var reader = con.QueryMultiple("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure))
+                    {
+                        // Read the data from the reader
+                        var wfhdetaillist = reader.Read<LeaveViewModel>().ToList();
+                        var leavelist = reader.Read<LeaveViewModel>().ToList();
+
+                        // Prepare the dynamic object for JSON response
+                        var dynamiclist = new
+                        {
+                            leavelist,
+                            wfhdetaillist
+                        };
+
+                        return Json(dynamiclist, JsonRequestBehavior.AllowGet);
+                    } // The reader is properly disposed of here
+                }
+               
+            }
+            return Json(null);
+
         }
 
         public async Task<string> DeleteWFHDetailsOfEmployee(int wfhDetailId)

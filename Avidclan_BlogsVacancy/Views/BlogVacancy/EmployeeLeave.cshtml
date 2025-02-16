@@ -6,4 +6,46 @@
 
 <div id='calendar'></div>
 
+@*MODAL START FOR APPLY LEAVE*@
+<div class="modal" id="ApplyLeaveModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Leave</h5>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="LeaveId" value="0">
+                <input type="hidden" id="EmailId">
+                <input type="hidden" id="FirstName">
+                <div class="form-group">
+                    <label for="txtFromDate">From Date</label>
+                    <input type="text" class="form-control" name="txtFromDate" id="txtFromDate" placeholder="From Date" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="txtToDate">To Date</label>
+                    <input type="text" class="form-control" name="txtToDate" id="txtToDate" placeholder="To Date" readonly>
+                </div>
+
+                <div id="TotalLeaveDates">
+                    <table class="table" id="LeaveDateTable">
+                        <thead>
+                            <tr>
+                                <th style="width:33%">Date</th>
+                                <th style="width:23%">Half Day?</th>
+                                <th style="width:44%"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="LeaveDatebody">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="ResetModel()">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@*MODAL END FOR APPLY LEAVE*@
 <script src="~/Javascript/Admin/employeeleavejs.js"></script>

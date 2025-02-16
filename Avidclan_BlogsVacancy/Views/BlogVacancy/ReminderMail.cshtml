@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "ReminderMail";
+    Layout = "~/Views/Shared/_AdminTemplate.cshtml";
+}
+<style>
+    .dropdown-menu {
+        max-height: 250px; /* Adjust height as needed */
+        overflow-y: auto; /* Enables vertical scrollbar when needed */
+    }
+
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 d-flex align-items-center">
+            <label for="EmployeeDropdown" class="col-auto pe-4 fw-bold">Select Employee:</label>
+            <div class="dropdown w-100">
+                <button class="form-control text-start dropdown-toggle" type="button" id="EmployeeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Select Employee
+                </button>
+                <ul class="dropdown-menu w-100" aria-labelledby="EmployeeDropdown" id="employeeList">
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-primary" onclick="SendReminderMailtoEmployee()">Send Reminder Mail</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        GetListOfUser();
+    });
+
+    function GetListOfUser() {
+        showSpinner();
+        $.ajax({
+            type: "GET",
+            url: "/BlogVacancy/GetEmployeeList",
+            contentType: 'application/json',
+            success: function (result) {
+                if (result != null) {
+                    var employeeList = $('#employeeList');
+                    employeeList.empty(); // Clear previous data
+
+                    $.each(result, function (index, item) {
+                        var listItem = `
+                        <li class="dropdown-item no-close-dropdown">
+                            <label class="d-flex align-items-center w-100">
+                                <input type="checkbox" class="form-check-input employee-checkbox me-2" value="${item.Id}">
+                                <span class="employee-name" style="cursor: pointer;">${item.FirstName}</span>
+                            </label>
+                        </li>`;
+                        employeeList.append(listItem);
+                    });
+
+                    // Prevent dropdown from closing when clicking on checkbox or employee name
+                    $("#employeeList").on("click", ".no-close-dropdown", function (e) {
+                        e.stopPropagation(); // Stop Bootstrap dropdown from closing
+                    });
+
+                    // Click on the employee name should toggle the checkbox
+                    $("#employeeList").on("click", ".employee-name", function (e) {
+                        e.preventDefault();
+                        var checkbox = $(this).siblings("input[type='checkbox']");
+                        checkbox.prop("checked", !checkbox.prop("checked")); // Toggle checkbox state
+                    });
+
+                    // Ensure clicking directly on the checkbox works normally
+                    $("#employeeList").on("click", ".employee-checkbox", function (e) {
+                        e.stopPropagation(); // Stop Bootstrap dropdown from closing
+                    });
+                }
+                hideSpinner();
+            },
+            error: function (result) {
+                hideSpinner();
+                alert(result.responseText);
+            }
+        });
+    }
+
+    function SendReminderMailtoEmployee() {
+        var selected = [];
+        $(".employee-checkbox:checked").each(function () {
+            selected.push($(this).val());
+        });
+
+        if (selected.length == 0) {
+            alert("Select atleast one employee to send mail.")
+            return
+        }
+        var EmployeeIds = {
+            Id: selected
+        }
+        showSpinner();
+         $.ajax({
+             url: "/api/Admin/SendLeaveReminderMail",
+             dataType: "json",
+             contentType: 'application/json',
+             type: "POST",
+             data: JSON.stringify(EmployeeIds),
+             success: function (data) {
+                 alert(data);
+                 $(".employee-checkbox").prop("checked", false);
+                 hideSpinner();
+             },
+             error: function (result) {
+                 alert(result.responseText);
+                 hideSpinner();
+             }
+        });
+    }
+</script>
+
