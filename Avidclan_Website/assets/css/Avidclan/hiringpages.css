@@ -25,6 +25,10 @@
     background-image: linear-gradient(0deg, rgba(237, 240, 255, 70%), rgba(237, 240, 255, 0%));
 }
 
+.banner-section-two .ui-banner-text {
+    font-weight: 600 !important;
+}
+
 .hiring-section-subtittle {
     color: var(--Avidclan_CLR-Black-black-300, #6A6D70);
     /* Typography/H5/Bold 700 */
