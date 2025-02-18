@@ -378,6 +378,17 @@ a.dot-net-dev-link {
 |  ourservices Section mobile view  |
 -----------------------------------------------------------------------------------*/
 
+.experties-btn .btn-custom {
+    border: 1px solid var(--Avidclan_CLR-Black-black-50, #E9E9EA);
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-size: 14px;
+    color: #5e7290;
+    background-color: #fff;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: default;
+}
 
 /*------------------------------------------------------------------------------------
 |  Technology Section  |
@@ -514,6 +525,7 @@ a.dot-net-dev-link {
     font-weight: 600;
     line-height: 24px; /* 150% */
 }
+
 label.error {
     font-family: Poppins;
     color: red; /* This sets the font color of the error message to red */
@@ -522,10 +534,12 @@ label.error {
     margin-left: 4px !important;
     display: block; /* Forces error message to appear on a new line */
 }
+
 .form-control {
     width: 100%;
     /*margin-bottom: 10px;*/ /* Add some margin to separate each input field from the next */
 }
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     .tech-row-mobile-ui {
         padding: 0px !important;
@@ -1288,6 +1302,10 @@ label.error {
     flex-shrink: 0;
 }
 
+.interview-spacing {
+    margin-left: 12px;
+}
+
 .schedule-interview-title {
     color: var(--Avidclan_CLR-Dark-Blue-dark-blue-500, #142149);
     /* Typography/H1/Bold 700 */
@@ -1561,11 +1579,13 @@ label.error {
         display: block !important;
         left: 14px;
     }
+
     .ctasection .container {
         padding: 20px;
     }
+
     .developer-interview-section {
-        margin-top:0px;
+        margin-top: 0px;
     }
 }
 
@@ -1654,11 +1674,13 @@ label.error {
 .badgecard-overflow {
     overflow: hidden !important;
 }
+
 .badge-card .stretched-link {
     text-decoration: none;
     margin: 10px 20px !important;
     box-shadow: 0 2px 16px -2px rgba(0, 0, 0, .05);
 }
+
 .pricing-plan-box {
     display: flex;
     height: 100%;
@@ -1853,7 +1875,7 @@ label.error {
         min-height: 300px; /* Set a minimum height */
         margin-top: 24px;
         margin-bottom: 24px;
-        border-radius:10px !important;
+        border-radius: 10px !important;
     }
 
     .right-arrow {
@@ -1890,10 +1912,10 @@ label.error {
     .hiring-process-icon-mobile-ui {
         margin-left: 127px !important;
     }
+
     .why-hire-contentbox-mobileui {
         margin-right: 25px !important;
     }
-   
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -1925,18 +1947,25 @@ label.error {
 .banner-section-margin {
     margin-top: 40px !important;
 }
+
 @media (max-width: 767px) {
     #about-us-section-tablet {
         display: none;
     }
 
+    .interview-spacing {
+        margin-left: 0px;
+    }
 }
-#hiringform .intl-tel-input{
-    width:100%;
+
+#hiringform .intl-tel-input {
+    width: 100%;
 }
+
 #hiringform1 .intl-tel-input {
     width: 100%;
 }
+
     #hiringform1 .intl-tel-input.allow-dropdown.separate-dial-code .selected-dial-code {
         padding-left: 14px !important;
     }
@@ -1946,52 +1975,66 @@ label.error {
     vertical-align: top;
     margin-top: 3px;
 }
+
 .pricing-p {
     display: inline-block;
     vertical-align: top;
     width: calc(100% - 40px);
 }
+
 .pricing-plan-content-li {
     margin-bottom: 12px !important;
     list-style: none;
 }
+
 .price-m-top {
     margin-top: 43px;
 }
+
 @media only screen and (max-width: 768px) {
     .pricing-plan-detail-span {
         font-size: 34px;
     }
-    .why-hire-title-box-span{
-        font-size:21px;
+
+    .why-hire-title-box-span {
+        font-size: 21px;
     }
-    .why-hire-header-box{
-        gap:6px;
+
+    .why-hire-header-box {
+        gap: 6px;
     }
+
     .hourly-span {
         margin-top: 60px !important;
     }
 }
+
 @media only screen and (min-width: 768px) and (max-width: 1020px) {
     .core-react {
         margin-top: 25px;
     }
+
     .web-assembly {
         margin-top: -41px;
     }
+
     .docker-dotnetcore {
         margin-top: 24px;
     }
+
     .wpf-entity {
         margin-top: -28px;
     }
+
     .widows-devexp {
         margin-top: -25px;
     }
+
     .mvc-azure {
         margin-top: -29px;
     }
 }
+
 @media (min-width: 768px) and (max-width: 1024px) {
     .contact-inputbox {
         margin-left: 4px !important

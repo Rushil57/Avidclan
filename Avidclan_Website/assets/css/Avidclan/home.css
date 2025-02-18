@@ -1489,21 +1489,25 @@ li, ul {
     border-radius: 50%
 }
 
-    .links-widget .social-links li.social-links-footer {
+/*    .links-widget .social-links li.social-links-footer {
         background: none;
-    }
+    }*/
 
-        .links-widget .social-links li.social-links-footer a, .links-widget .social-links li.social-links-footer a img {
-            width: 29px;
+/*        .links-widget .social-links li.social-links-footer a, .links-widget .social-links li.social-links-footer a img {
+            width: 30px;
             height: auto;
-        }
+        }*/
+
+/*        .links-widget .social-links li.social-links-footer .upwork-footer-icon {
+            width: 26px;
+        }*/
 
     .links-widget .social-links li a {
         display: block;
         color: #f2f5fe;
-        font-size: 14px;
-        width: 25px;
-        height: 25px;
+        font-size: 17px;
+        width: 27px;
+        height: 27px;
         text-align: center;
         border-radius: 50%;
         transition: .3s
