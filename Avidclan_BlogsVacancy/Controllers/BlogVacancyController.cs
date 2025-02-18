@@ -607,6 +607,15 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             return View();
         }
+
+        public ActionResult ReminderMail()
+        {
+            if (Session["UserEmailId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
+            return View();
+        }
         public async Task ErrorLog(string ControllerName, string ErrorMessage, string StackTrace)
         {
             var parameters = new DynamicParameters();

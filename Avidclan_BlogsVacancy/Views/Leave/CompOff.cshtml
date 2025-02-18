@@ -8,7 +8,7 @@
     <form name="CommpOffRequestForm">
         <div class="form-group">
             <label for="noofDays" class="required">Number of Days : </label>
-            <input type="text" class="form-control" name="noofDays" id="NoOfDays" placeholder="Enter Number of Days" style="width:80%">
+            <input type="text" class="form-control" name="noofDays" id="NoOfDays" placeholder="Enter Number of Days" style="width:20%">
         </div>
 
         <div class="form-group">
@@ -35,6 +35,10 @@
             submitHandler: function (form) {
                 SendCompOffRequest()
             }
+        });
+
+        $("#NoOfDays").on("input", function () {
+            this.value = this.value.replace(/[^0-9]/g, ''); // Allow only numbers
         });
 
     });

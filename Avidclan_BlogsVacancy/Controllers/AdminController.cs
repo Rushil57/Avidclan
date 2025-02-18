@@ -353,7 +353,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 {
                     var updatedleaveId = leaveId;
                     leaveId = await GetConsecutiveLeaveDates(LeaveAndWfhData, leaveViewModel, true, JoinigDate, ProbationPeriod, UserId, leaveViewModel.WFHId, leaveId);
-                    var tempLeaveid = leaveId == 0 ? leaveId : updatedleaveId;
+                    var tempLeaveid = leaveId != 0 ? leaveId : updatedleaveId;
                     await GetConsecutiveWorkFromHomeDates(LeaveAndWfhData, leaveViewModel, UserId, tempLeaveid, leaveViewModel.WFHId);
                 }
 
@@ -752,14 +752,6 @@ namespace Avidclan_BlogsVacancy.Controllers
                     mode = 3;
                 }
 
-                //if (mode == 3)
-                //{
-                //    var parameter = new DynamicParameters();
-                //    parameter = new DynamicParameters();
-                //    parameter.Add("@LeaveId", Leaveid, DbType.Int32, ParameterDirection.Input);
-                //    parameter.Add("@Mode", 3, DbType.Int32, ParameterDirection.Input);
-                //    var deletelist = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure).ToList();
-                //}
                 if (leaveViewModel != null)
                 {
                     if (mode == 1)
@@ -783,6 +775,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                             parameter.Add("@Halfday", item.Halfday, DbType.String, ParameterDirection.Input);
                             parameter.Add("@LeaveId", Leaveid, DbType.Int64, ParameterDirection.Input);
                             parameter.Add("@UserId", UserId, DbType.Int64, ParameterDirection.Input);
+                            parameter.Add("@CreatedDate", DateTime.Now, DbType.DateTime, ParameterDirection.Input);
                             parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
                             var SaveLeaveDetails = await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
 
@@ -810,6 +803,7 @@ namespace Avidclan_BlogsVacancy.Controllers
 
                         var leaveDates = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", leaveParameters, commandType: CommandType.StoredProcedure).ToList();
 
+                        var newRecord = false;
                         foreach (var item in leaveViewModel)
                         {
                             var LeaveBalance = leaveDates
@@ -830,8 +824,10 @@ namespace Avidclan_BlogsVacancy.Controllers
                             }
                             else
                             {
-                                item.PersonalLeaves = LeaveBalance.PersonalLeaves;
-                                item.SickLeaves = LeaveBalance.SickLeaves;
+                                if(LeaveBalance != null)
+                                    item.PersonalLeaves = LeaveBalance.PersonalLeaves;
+                                if(LeaveBalance != null)
+                                    item.SickLeaves = LeaveBalance.SickLeaves;
                             }
                             if (checkLeaveAndWfh && item.Halfday != null)
                             {
@@ -862,7 +858,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                             }
                             else
                             {
-
+                                newRecord = true;
                                 var parameter = new DynamicParameters();
                                 parameter.Add("@LeaveDate", item.LeaveDate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
                                 parameter.Add("@Halfday", item.Halfday, DbType.String, ParameterDirection.Input);
@@ -871,6 +867,12 @@ namespace Avidclan_BlogsVacancy.Controllers
                                 parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
                                 var SaveLeaveDetails = await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
                             }
+                        }
+                        if (newRecord)
+                        {
+                            var result = await new LeaveController().CheckTypeOfLeave(
+                               leaveViewModel, GetFromDate.LeaveDate,
+                               Leaveid, UserId, JoinigDate, ProbationPeriod, wfhId);
                         }
                     }
 
@@ -948,7 +950,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                         }
                         else
                         {
-                            await DeleteWfhDetailsAsync(saveWFH, 6);
+                            await DeleteWfhDetailsAsync(saveWFH, 9);
                         }
 
                         //if (mode == 8)
@@ -1461,6 +1463,57 @@ namespace Avidclan_BlogsVacancy.Controllers
             catch (Exception ex)
             {
                 await ErrorLog("AdminController - SendReplyForCompOff", ex.Message, ex.StackTrace);
+            }
+        }
+
+        [Route("api/Admin/SendLeaveReminderMail")]
+        [HttpPost]
+        public async Task<string> SendLeaveReminderMail(UseridList UseridList)
+        {
+            await ReadConfiguration();
+            try
+            {
+                if (UseridList.Id.Count > 0)
+                {
+                    foreach (var id in UseridList.Id)
+                    {
+                        var Emailparameters = new DynamicParameters();
+                        Emailparameters.Add("@Id", id, DbType.Int32, ParameterDirection.Input);
+                        Emailparameters.Add("@mode", 16, DbType.Int32, ParameterDirection.Input);
+                        var userEmailAddress = con.Query<UserRegister>("sp_User", Emailparameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                        if (userEmailAddress != null)
+                        {
+                            string firstName = userEmailAddress.FirstName;
+                            var TodaysDate = DateTime.Now;
+                            var currentMonth = TodaysDate.ToString("MMMM");
+
+                            var mailbody = $@"
+                            <html>
+                            <body>
+                                <p>Hello {firstName},</p>
+                                <p>This is a reminder to apply for your leave for the previous month on or before the 7th of {currentMonth}.</p>
+                                <br>
+                                <p>Thanks & Regards,</p>
+                                <p><b>HR, Avidclan</b></p>
+                            </body>
+                            </html>";
+
+                            var subject = "Reminder Mail";
+
+                            List<string> reportingpersonList = new List<string>();
+
+                            await sendEmail(senderEmail, userEmailAddress.EmailId, firstName, subject, mailbody, reportingpersonList);
+                        }
+                    }
+                    return "Send Successfully!";
+                }
+                return "Data not found!";
+
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("AdminController - SendReplyForCompOff", ex.Message, ex.StackTrace);
+                return ex.Message;
             }
         }
 

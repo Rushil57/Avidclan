@@ -69,6 +69,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string LeaveStatus { get; set; }
         public string CompOffLeave { get; set; }
         public int WFHId { get; set; }
+        public DateTime CreatedDate { get; set; }
 
     }
 

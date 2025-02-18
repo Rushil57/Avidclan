@@ -68,12 +68,12 @@ function SelectCalenderDate() {
                 SetMinDate();
             }
         },
-        events: [],
-        eventClick: function (info) {
-            var StartTime = moment(info.event.start).format('MM/DD/YYYY');
-            var Eventlist = calendar.getEvents();
-            EditLeaves(info.event.id, StartTime);
-        }
+        events: []
+        //eventClick: function (info) {
+        //    var StartTime = moment(info.event.start).format('MM/DD/YYYY');
+        //    var Eventlist = calendar.getEvents();
+        //    EditLeaves(info.event.id, StartTime);
+        //}
     });
 
     calendar.render();
@@ -316,7 +316,7 @@ function GetLeaveDates() {
                 if (val.Halfday != null && val.Halfday != "") {
                     if (val.Halfday == "FirstHalf") {
                         calendar.addEvent({
-                            id: val.Id,
+                            id: "Leave_" + val.Id,
                             title: val.Halfday,
                             start: fromdate,
                             className: className + " firsthalf",
@@ -324,7 +324,7 @@ function GetLeaveDates() {
                     }
                     else {
                         calendar.addEvent({
-                            id: val.Id,
+                            id: "Leave_" + val.Id,
                             title: val.Halfday,
                             start: fromdate,
                             className: className + " secondhalf",
@@ -333,7 +333,7 @@ function GetLeaveDates() {
                 }
                 else {
                     calendar.addEvent({
-                        id: val.Id,
+                        id: "Leave_" + val.Id,
                         title: 'Leave',
                         start: fromdate,
                         className: className,
@@ -354,7 +354,7 @@ function GetLeaveDates() {
                 if (val.HalfDay != null && val.HalfDay != "") {
                     if (val.HalfDay == "FirstHalf") {
                         calendar.addEvent({
-                            id: val.Id,
+                            id: "WFH_" + val.Id,
                             title: "WFH " + val.HalfDay,
                             start: fromdate,
                             className: className + " firsthalf",
@@ -362,7 +362,7 @@ function GetLeaveDates() {
                     }
                     else {
                         calendar.addEvent({
-                            id: val.Id,
+                            id: "WFH_" + val.Id,
                             title: "WFH " + val.HalfDay,
                             start: fromdate,
                             className: className + " secondhalf",
@@ -371,7 +371,7 @@ function GetLeaveDates() {
                 }
                 else {
                     calendar.addEvent({
-                        id: val.Id,
+                        id: "WFH_" +val.Id,
                         title: 'Work From Home',
                         start: fromdate,
                         className: className,
@@ -788,7 +788,7 @@ function DeleteLeaveDetailsOfEmployee(leaveDetailsId) {
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
                 alert(data);
-                OpenEmployeeEditDetails(leaveId);
+                OpenEmployeeEditDetails("Leave_" + leaveId);
 
                 hideSpinner();
             },
@@ -814,7 +814,7 @@ function DeleteWFHDetailsOfEmployee(wfhdetailId) {
             success: function (data) {
                 alert(data);
                 var leaveId = $("#LeaveId").val();
-                OpenEmployeeEditDetails(leaveId);
+                OpenEmployeeEditDetails("WFH_" + leaveId);
 
                 hideSpinner();
             },
