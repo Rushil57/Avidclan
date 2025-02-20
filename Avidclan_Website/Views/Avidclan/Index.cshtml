@@ -25,6 +25,8 @@
     <link rel="canonical" href="https://www.avidclan.com/" />
 
     <link href="~/assets/css/swiper-bundle-min.css" rel="stylesheet" />
+    <link rel="preload" as="image" href="~/assets/images/dev.svg" type="image/svg+xml">
+
 
     <script type="application/ld+json">
     {
@@ -179,28 +181,28 @@
         <div class="row">
             <div class="col-md-6 col-lg-3">
                 <div class="count-box">
-                    <img src="~/assets/images/icons/clients-ic.svg" alt="Clients Served Globally" />
+                    <img src="~/assets/images/icons/clients-ic.svg" alt="Clients Served Globally" width="70" height="70" />
                     <div class="c-number">100+</div>
                     <p>Clients Served Globally</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="count-box even">
-                    <img src="~/assets/images/icons/delivered-ic.svg" alt="Projects Accomplished" />
+                    <img src="~/assets/images/icons/delivered-ic.svg" alt="Projects Accomplished" width="70" height="70" />
                     <div class="c-number">150+</div>
                     <p>Projects Accomplished</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="count-box">
-                    <img src="~/assets/images/icons/developers-ic.svg" alt="Team Strength" />
+                    <img src="~/assets/images/icons/developers-ic.svg" alt="Team Strength" width="70" height="70" />
                     <div class="c-number">30+</div>
                     <p>Team Strength</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="count-box even">
-                    <img src="~/assets/images/icons/satisfaction-rate-ic.svg" alt="Success Ratio" />
+                    <img src="~/assets/images/icons/satisfaction-rate-ic.svg" alt="Success Ratio" width="70" height="70" />
                     <div class="c-number">98%</div>
                     <p>Success Ratio</p>
                 </div>
@@ -399,6 +401,22 @@
                             </div>
                         </div>
                     </div>-->
+                    <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                        <div class="badge-card">
+                            <div class="body">
+                                <hr class="bottom-bar" />
+                                <div class="text-center">
+                                    <p class="subtitle m-0">
+                                        Top Offshore Software Development Companies in India
+                                    </p>
+                                </div>
+                                <hr class="top-bar" />
+                                <a href="https://softwareoutsourcing.com/?utm_id=so_644a362f88129" target="_blank" class="stretched-link">
+                                    <img alt="Software Outsourcing" src="https://softwareoutsourcing.com/wp-content/uploads/Software-Outsourcing-Journal.png" title="Top Offshore Software Development Companies in India" class="icon" width="75" height="75" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
                         <div class="badge-card">
                             <div class="body">
@@ -715,7 +733,7 @@
                 <div class="inner-box bg1">
                     <div class="content-box">
                         <div class="icon">
-                            <img src="~/assets/images/POS.svg" class="img-fluid" alt="POS-and-Retail" />
+                            <img src="~/assets/images/POS.svg" class="img-fluid" alt="POS-and-Retail" width="346" height="220" loading="lazy" />
                         </div>
                         <h4>POS & Retail</h4>
                         <p>
@@ -728,7 +746,7 @@
                 <div class="inner-box bg2">
                     <div class="content-box">
                         <div class="icon">
-                            <img src="~/assets/images/healthcare.svg" alt="life-and-healthcare" class="img-fluid" />
+                            <img src="~/assets/images/healthcare.svg" alt="life-and-healthcare" class="img-fluid" width="330" height="220" loading="lazy" />
                         </div>
                         <h4>Life & Health Care</h4>
                         <p>
@@ -741,7 +759,7 @@
                 <div class="inner-box bg3">
                     <div class="content-box">
                         <div class="icon">
-                            <img src="~/assets/images/petroleum.svg" alt="petroleum-industry" class="img-fluid" />
+                            <img src="~/assets/images/petroleum.svg" alt="petroleum-industry" class="img-fluid" width="351" height="219" loading="lazy" />
                         </div>
                         <h4>Petroleum Industry</h4>
                         <p>
@@ -754,7 +772,7 @@
                 <div class="inner-box bg4">
                     <div class="content-box">
                         <div class="icon">
-                            <img src="~/assets/images/ecommerce.svg" alt="ecommerce-development" class="img-fluid" />
+                            <img src="~/assets/images/ecommerce.svg" alt="ecommerce-development" class="img-fluid" width="311" height="220" loading="lazy" />
                         </div>
                         <h4>ECommerce</h4>
                         <p>
@@ -767,7 +785,7 @@
                 <div class="inner-box bg6">
                     <div class="content-box">
                         <div class="icon">
-                            <img src="~/assets/images/finance.svg" alt="finance-and-insurance-market" class="img-fluid" />
+                            <img src="~/assets/images/finance.svg" alt="finance-and-insurance-market" class="img-fluid" width="285" height="220" loading="lazy" />
                         </div>
                         <h4>Finance & Insurance Market</h4>
                         <p>
@@ -780,7 +798,7 @@
                 <div class="inner-box bg5">
                     <div class="content-box">
                         <div class="icon">
-                            <img src="~/assets/images/education.svg" alt="education-and-training" class="img-fluid" />
+                            <img src="~/assets/images/education.svg" alt="education-and-training" class="img-fluid" width="247" height="220" loading="lazy" />
                         </div>
                         <h4>Education & Training</h4>
                         <p>
@@ -1029,7 +1047,8 @@
         </div>
     </div>
 </section>
-<script src="~/assets/js/swiper-bundle-min.js"></script>
+@*<script src="~/assets/js/swiper-bundle-min.js"></script>*@
+<script src="~/assets/js/swiper-bundle-min.min.js"></script>
 <script>
     // Siwper JS
 
