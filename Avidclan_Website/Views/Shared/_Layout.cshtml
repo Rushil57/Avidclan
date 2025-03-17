@@ -27,11 +27,12 @@
     </script>-->
     <meta name="msvalidate.01" content="C6EA7291CCD22012F734D3C6649F2F3F" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" media="all" href="~/assets/css/swiper.min.css" />
+    @*<link rel="stylesheet" media="all" href="~/assets/css/swiper.min.css" />*@
     <link rel="stylesheet" media="all" href="~/assets/css/all-min.css" />
     <link rel="stylesheet" media="all" href="~/assets/css/Avidclan/bootstrap-custom.css" />
-    <link rel="stylesheet" media="all" href="~/assets/css/Avidclan/home.min.css" />
-    @*<link rel="stylesheet" media="all" href="~/assets/css/Avidclan/home.css" />*@
+    @*<link rel="stylesheet" media="all" href="~/assets/css/Avidclan/home.min.css" />*@
+    <link rel="stylesheet" media="all" href="~/assets/css/Avidclan/home.css" />
+    <link rel="stylesheet" href="~/assets/css/jquery.fancybox.min.css" media="print" onload="this.media='all';">
     <link rel="stylesheet" media="all" href="@Styles.Url("~/Content/css")" />
     @*<link rel="stylesheet" media="all" href="@Styles.Url("~/bundles/modernizr")" defer />*@
 
@@ -126,8 +127,7 @@
                                                                 </h3>
                                                                 <ul>
                                                                     <li>
-                                                                        <a aria-label="Enterprise Solutions"
-                                                                           href="~/web-development-company#enterprise-solutions">Enterprise Solutions</a>
+                                                                        <a aria-label="Enterprise Solutions" href="~/web-development-company#enterprise-solutions">Enterprise Solutions</a>
                                                                     </li>
                                                                     <li>
                                                                         <a aria-label="ECommerce" href="~/web-development-company#ecommerce">ECommerce</a>
@@ -424,9 +424,6 @@
                                                                     <li>
                                                                         <a aria-label="About Avidclan Technologies" href="~/about-us/">About Avidclan Technologies</a>
                                                                     </li>
-                                                                    <li>
-                                                                        <a aria-label="Portfolio" href="~/portfolio/">Portfolio</a>
-                                                                    </li>
                                                                     @*<li>
                                                                             <a aria-label="ECommerce" href="">Client Testimonials</a>
                                                                         </li>*@
@@ -492,6 +489,7 @@
                                                 </ul>
                                             </li>
                                             @*company menu end*@
+                                            <li><a aria-label="Portfolio" href="~/portfolio/">Portfolio</a></li>
                                             @*<li><a href="~/portfolio/">Portfolio</a></li>*@
                                             @*<li class="cls-menu-blog"><a href="~/blog/">Blog</a></li>
                                                 <li class="dropdown w3_megamenu-fw car_menu">
@@ -552,7 +550,7 @@
             <nav class="nav-menu-wrap">
                 <ul class="nav-menu menu">
                     @*<li><a href="~/home/">Home</a></li>
-                        <li><a href="~/about-us/">About Us</a></li>*@
+        <li><a href="~/about-us/">About Us</a></li>*@
                     <li>
                         <a href="~/services/">Services</a>
                         <i class="fa fa-angle-right sub-menu-toggle"></i>
@@ -568,8 +566,7 @@
                                         <div>Back <i class="fa icon fa-angle-left"></i></div>
                                     </li>
                                     <li>
-                                        <a aria-label="Enterprise Solutions"
-                                           href="~/web-development-company#enterprise-solutions">Enterprise Solutions</a>
+                                        <a aria-label="Enterprise Solutions" href="~/web-development-company#enterprise-solutions">Enterprise Solutions</a>
                                     </li>
                                     <li>
                                         <a aria-label="ECommerce" href="~/web-development-company#ecommerce">ECommerce</a>
@@ -815,25 +812,24 @@
                                         <div>Back <i class="fa icon fa-angle-left"></i></div>
                                     </li>
                                     <li><a href="~/about-us/">About Avidclan Technologies</a></li>
-                                    <li><a href="~/portfolio/">Portfolio</a></li>
                                     @*<li><a href="">Client Testimonials</a></li>*@
                                     <li>
                                         @*<a href="">Our Locations</a>*@
                                         <!--<i class="fa fa-angle-right sub-menu-toggle"></i>
-                                        <ul class="sub-menu menu">
-                                            <li class="close">
-                                                <div>Back <i class="fa icon fa-angle-left"></i></div>
-                                            </li>
-                                            <li>
-                                                <a href="#">Locations</a>-->
+                        <ul class="sub-menu menu">
+                            <li class="close">
+                                <div>Back <i class="fa icon fa-angle-left"></i></div>
+                            </li>
+                            <li>
+                                <a href="#">Locations</a>-->
                                         @*<i class="fa fa-angle-right sub-menu-toggle"></i>
-                                            <ul class="sub-menu menu">
+                            <ul class="sub-menu menu">
 
-                                                <li><a href=""></a></li>
-                                                <li><a href=""></a></li>
-                                            </ul>*@
+                                <li><a href=""></a></li>
+                                <li><a href=""></a></li>
+                            </ul>*@
                                         <!--</li>
-                                        </ul>-->
+                        </ul>-->
                                     </li>
                                     @*<li><a href="">Awards & Recognitions</a></li>*@
                                 </ul>
@@ -862,24 +858,24 @@
                                     <li>
                                         <a href="~/case-studies/">Case Studies</a>
                                         @*<i class="fa fa-angle-right sub-menu-toggle"></i>
-                                            <ul class="sub-menu menu">
-                                                <li class="close">
-                                                    <div>Back <i class="fa icon fa-angle-left"></i></div>
-                                                </li>
-                                                <li>
-                                                    <a href="~/case-studies/clf/">CLF</a>
-                                                </li>
-                                                <li>
-                                                    <a href="~/case-studies/vyking/">Vyking</a>
-                                                </li>
-                                                <li>
-                                                    <a href="~/case-studies/orisuun/">Orisuun</a>
-                                                </li>
-                                            </ul>*@
+                            <ul class="sub-menu menu">
+                                <li class="close">
+                                    <div>Back <i class="fa icon fa-angle-left"></i></div>
+                                </li>
+                                <li>
+                                    <a href="~/case-studies/clf/">CLF</a>
+                                </li>
+                                <li>
+                                    <a href="~/case-studies/vyking/">Vyking</a>
+                                </li>
+                                <li>
+                                    <a href="~/case-studies/orisuun/">Orisuun</a>
+                                </li>
+                            </ul>*@
                                     </li>
                                     @*<li><a href="">Infographics</a></li>
-                                        <li><a href="">Whitepapers</a></li>
-                                        <li><a href="">Web Stories</a></li>*@
+                        <li><a href="">Whitepapers</a></li>
+                        <li><a href="">Web Stories</a></li>*@
                                 </ul>
                             </li>
 
@@ -887,17 +883,18 @@
                     </li>
                     @*<li><a href="~/portfolio/">Portfolio</a></li>*@
                     @*<li class="cls-menu-blog"><a href="~/blog/">Blog</a></li>
-                        <li>
-                            <a href="~/career/">Careers</a>
-                            <i class="fa fa-angle-right sub-menu-toggle"></i>
-                            <ul class="sub-menu menu">
-                                <li class="close">
-                                    <div>Back <i class="fa icon fa-angle-left"></i></div>
-                                </li>
-                                <li><a href="~/career#career-section">Current Openings</a></li>
-                                <li><a href="~/life-at-avidclan/">Life @@ Avidclan Technologies</a></li>
-                            </ul>
-                        </li>*@
+        <li>
+            <a href="~/career/">Careers</a>
+            <i class="fa fa-angle-right sub-menu-toggle"></i>
+            <ul class="sub-menu menu">
+                <li class="close">
+                    <div>Back <i class="fa icon fa-angle-left"></i></div>
+                </li>
+                <li><a href="~/career#career-section">Current Openings</a></li>
+                <li><a href="~/life-at-avidclan/">Life @@ Avidclan Technologies</a></li>
+            </ul>
+        </li>*@
+                    <li><a href="~/portfolio/">Portfolio</a></li>
                     <li><a href="/contact-us/">Contact Us</a></li>
                 </ul>
             </nav>
@@ -945,7 +942,7 @@
     <script src="~/assets/js/additional-methods.min.js"></script>
     <script src="~/assets/js/intlTelInput.js"></script>
     <script src="~/assets/js/script.js"></script>-->
-    <script src="~/assets/js/swiper.min.js" defer></script>
+    @*<script src="~/assets/js/swiper.min.js" defer></script>*@
     <script src="~/assets/js/jquery.js"></script>
     @Scripts.Render("~/Content/js")
     @*<script src="~/assets/js/jquery.js"></script>*@

@@ -1,7 +1,7 @@
 ﻿@import url(../custom-animate.css);
 @import url(../owl.css);
 @import url(../jquery-ui.css);
-@import url(../jquery.fancybox.min.css);
+/*@import url(../jquery.fancybox.min.css);*/
 @import url(../scrollbar.css);
 @import url(../hover.min.css);
 /*@import url(../hover.css);*/
@@ -1103,7 +1103,7 @@ li, ul {
 }
 
 .testimonial-section-two {
-    background-image: url("../../../assets/images/testimonial_bg.png");
+/*    background-image: url("../../../assets/images/testimonial_bg.png");*/
     padding: 100px 0
 }
 
@@ -2110,7 +2110,7 @@ form.contact-form label.error {
     Badges Section
 --------------------------------------------------------------------------*/
 .badges-section {
-    background-image: url(../../../assets/images/testimonial_bg.png);
+/*    background-image: url(../../../assets/images/testimonial_bg.png);*/
 }
 
 .badges-row {
@@ -2186,6 +2186,10 @@ form.contact-form label.error {
             border-radius: 10px;
             object-fit: contain;
         }
+
+.dot-net-dev-banner-text {
+    font-size: 19px !important;
+}
 
 @media (max-width: 1139px) {
     .nav-menu-wrap {
