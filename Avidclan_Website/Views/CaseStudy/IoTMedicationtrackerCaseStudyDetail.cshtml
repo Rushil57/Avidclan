@@ -1,0 +1,577 @@
+﻿
+@{
+    ViewBag.Title = "IoTMedicationtrackerCaseStudyDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section AdditionalMeta
+{
+    <title>Accurate Inhaler Usage Monitoring: Enhance Patient Welfare</title>
+    <meta name="description" content="Track inhaler usage accurately with our IoT-based BLE solution. Get reminders, improve adherence, and provide real-time data for better respiratory care." />
+    <link rel="canonical" href="https://www.avidclan.com/case-studies/iot-health-monitor/" />
+
+    <link rel="stylesheet" href="~/assets/css/Avidclan/work.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link href="~/assets/css/swiper-bundle-min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link href="~/assets/css/Avidclan/responsive_image_slide.css" rel="stylesheet" />
+    <script src="~/assets/js/Avidclan/responsive_image_slide.js"></script>
+    <link rel="stylesheet" href="~/assets/css/Avidclan/casestudy.css" />
+}
+
+<section>
+    <div class="container">
+        <div class="row mt5 banner-sec-custom mb5">
+            <div class="col-md-6 order-lg-1 order-md-1 order-sm-2 order-2">
+                <div class="case-title intro-heading">
+                    <h1 class="banner-section-two-h1">IoT Health Monitor</h1>
+                </div>
+                <p>
+                    Managing respiratory conditions requires consistent medication adherence, and the swift advancement of smart healthcare solutions has rendered accurate inhaler usage monitoring essential for patient welfare and treatment compliance. However, traditional methods often result in <b>missed doses, overdosing, or improper medication use</b>, increasing health risks for patients.
+                    <br /><br />
+                    To address this gap, we created an IoT-based BLE solution that interfaces effortlessly with smart inhalers to monitor medication adherence, deliver prompt reminders, and archive usage data in the Azure Cloud. This system improves patient involvement, guarantees medical compliance, and equips healthcare practitioners with real-time data, transforming the management of respiratory care through technology.
+                </p>
+                <div class="mt5">
+                    <h3>Tools Used</h3>
+                    <div class="row">
+                        <div class="col-md-3 col-6">
+                            <img src="~/assets/images/casestudydetail/tools/XCode.svg" alt="xcode" />
+                            <h4 class="mt-2 h4-font">XCode</h4>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <img src="~/assets/images/casestudydetail/tools/jira.svg" alt="jira" />
+                            <h4 class="mt-2 h4-font">JIRA</h4>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <img src="~/assets/images/casestudydetail/tools/swift_lint.svg" alt="swift-lint" />
+                            <h4 class="mt-2 h4-font">Swift lint</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-4 mtimggg order-lg-2 order-md-2 order-sm-1 order-1">
+                <img src="~/assets/images/casestudy/IoTMedicationTracker/Banner_IoT_Med_Tracker.png" alt="banner-iot-medication-tracker" class="img-fluid" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--About Project-->
+<section>
+    <div class="container">
+        <div class="row mt5 aboutpro">
+            <div class="col-md-4 p-5">
+                <img src="~/assets/images/casestudy/IoTMedicationTracker/About_img_IoT_Med_Tracker.png" alt="about-img-iot-med-tracker" class="img-fluid" />
+            </div>
+            <div class="col-md-8 mt5">
+                <div class="case-title mt5">
+                    <h2 style="border-bottom: 1px solid #ccc; width: fit-content; ">About Project</h2>
+                </div>
+                <p class="mt5">
+                    Enhancing medication adherence and inhaler usage tracking, the IoT-based BLE Inhaler Medication Tracker integrates a BLE-enabled sensor with a mobile application for seamless monitoring and management. This solution integrates <b>BLE technology, mobile applications, and Azure Cloud IoT</b>, where the sensor pairs with the app via <b>Core Bluetooth</b> to retrieve actuation data, store it in <b>SQLite</b>, and sync it securely to <b>Azure Cloud</b> for seamless access and monitoring.
+                    <br /><br />
+                    Users can track medication intake, receive dose reminders, and securely store usage history for better treatment adherence. Built using <b>Core Bluetooth, SQLite, and Azure Cloud</b>, the system ensures seamless data synchronization and remote monitoring.
+                    <br /><br />
+                    Additionally, <b>Azure API Management</b> enables data sharing with healthcare providers and third-party medical platforms, offering a comprehensive approach to medication management. By bridging the gap between patients, doctors, and technology, this <b>IoT-driven solution</b> enhances health outcomes and simplifies medication tracking.
+                </p>
+                <div class="row justify-content-left mt-3 Sec">
+                    <div class="col-md-3 col-6">
+                        <h3>Sector :</h3>
+                        <p>IoT & Healthcare</p>
+                    </div>
+                    <div class="col-1 d-flex justify-content-center align-items-center divi">
+                        <div class="divider"></div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <h3>Design Service:</h3>
+                        <p>Mobile Application Development & IoT Integration</p>
+                    </div>
+                    <div class="col-1 d-flex justify-content-center align-items-center">
+                        <div class="divider"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <h3>Timeline :</h3>
+                        <p>6 months+</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--  Our Technology -->
+<section class="process-section hiring-process testimonial-section-two">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="case-title text-center mb-50">
+                    <div class="custom-underline">
+                        <h2>Our Technology</h2>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-lg-4 col-md-6  stat-card">
+                        <div class="d-flex flex-row content-center">
+                            <div><img src="~/assets/images/icons/swift_1.svg" alt="swift_1" class="img-fluid" /></div>
+                            <div class="d-flex flex-column p-1 ms-2">
+                                <h3 class="text-left">Frontend</h3>
+                                <h3 style="color: #0d47a1; text-align: left;">
+                                    Swift
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 stat-card mmt5">
+                        <div class="d-flex flex-row content-center">
+                            <div> <img src="~/assets/images/icons/Core_Bluetooth.svg" alt="core-bluetooth" class="img-fluid" /></div>
+                            <div class="d-flex flex-column p-1 ms-2">
+                                <h3 class="text-left">Frontend</h3>
+                                <h3 style="color: #0d47a1; text-align: left;">
+                                    Core Bluetooth
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6  stat-card mmt5">
+                        <div class="d-flex flex-row content-center">
+                            <div> <img src="~/assets/images/icons/Core_Loaction.svg" alt="core-loaction" class="img-fluid" /></div>
+                            <div class="d-flex flex-column p-1 ms-2">
+                                <h3 class="text-left">Frontend</h3>
+                                <h3 class="text-left" style="color: #0d47a1;">
+                                    Core Location
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6  stat-card mmt5">
+                        <div class="d-flex flex-row content-center">
+                            <div> <img src="~/assets/images/icons/Firebase_Crashlytics.svg" alt="Firebase_Crashlytics" class="img-fluid" /></div>
+                            <div class="d-flex flex-column p-1 ms-2">
+                                <h3 class="text-left">Backend</h3>
+                                <h3 style="color: #0d47a1; text-align: left;">
+                                    Firebase Crashlytics
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6  stat-card mmt5">
+                        <div class="d-flex flex-row content-center">
+                            <div> <img src="~/assets/images/icons/Alamofire.svg" alt="alamofire" class="img-fluid" /></div>
+                            <div class="d-flex flex-column p-1 ms-2">
+                                <h3 class="text-left">API</h3>
+                                <h3 style="color: #0d47a1; text-align: left;">
+                                    Alamofire
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6  stat-card mmt5">
+                        <div class="d-flex flex-row content-center">
+                            <div> <img src="~/assets/images/icons/Fabric.svg" alt="fabric" class="img-fluid" /></div>
+                            <div class="d-flex flex-column p-1 ms-2">
+                                <h3 class="text-left">Full Stack</h3>
+                                <h3 style="color: #0d47a1; text-align: left;">
+                                    Fabric
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Clients Requirements-->
+<section class="section-clientRequirement">
+    <div class="container-fluid mt5 mb-5">
+        <div class="row">
+            <div class="col-sm-8 col-lg-6 mx-auto mt5">
+                <div class="case-title text-center">
+                    <div class="custom-underline" style="width: 61%">
+                        <h2>Clients Requirements</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center mt-5 txtCenter">
+            <div class="col-md-4 first-column-content order-lg-1 order-md-1 order-sm-1 order-2 crtxtcls">
+                <div class="p-2">
+                    <div class="customdiv">1</div>
+                    <h3>Real-Time BLE Tracking</h3>
+                    <p>Enable seamless Bluetooth Low Energy (BLE) pairing with inhaler sensors for real-time dose tracking, actuation trends, and treatment insights, ensuring uninterrupted device communication.</p>
+                </div>
+                <div class="p-2">
+                    <div class="customdiv">2</div>
+                    <h3>Automated Medication Reminders</h3>
+                    <p>Implement scheduled notifications to alert users about missed or upcoming doses, improving medication adherence and health management.</p>
+                </div>
+            </div>
+            <div class="col-md-2 order-lg-2 order-md-2 order-sm-3 order-1">
+                <img src="~/assets/images/casestudy/IoTMedicationTracker/ClientReq_img_IoT_Med_Tracker.png" alt="client-req-iot-med-tracker" class="img-fluid" />
+            </div>
+            <div class="col-md-4 last-column-content order-lg-3 order-md-3 order-sm-2 order-3">
+                <div class="p-2">
+                    <div class="customdiv">3</div>
+                    <h3>Cloud Data Synchronization</h3>
+                    <p>Store medication usage history securely in Azure Cloud IoT, allowing remote access, backup, and multi-device synchronization.</p>
+                </div>
+                <div class="p-2">
+                    <div class="customdiv">4</div>
+                    <h3>Third-Party Service Integration</h3>
+                    <p>Provide in-app browser login for users to sync inhaler data with external medical platforms and healthcare providers.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Our Approach-->
+<section>
+    <div class="container">
+        <div class="row mb5 mt5">
+            <div class="col-md-6 p-2 oahidimg">
+                <img src="~/assets/images/casestudy/goolgoal/OurAppImg.jpg" class="img-border img-fluid" />
+            </div>
+            <div class="col-md-6 ourapp mt5">
+                <div class="avidclan_section_title text-left mb-50">
+                    <div class="case-title">
+                        <h2 style="border-bottom: 1px solid #ccc;">Our Approach</h2>
+                    </div>
+                </div>
+                <img class="img-border oashwimg img-fluid" src="/assets/images/casestudy/goolgoal/OurAppImg.jpg" />
+                <div class="mt5">
+                    <ul class="listst">
+                        <li><p>Our team developed a Swift-based mobile app with Core Bluetooth integration, ensuring seamless BLE pairing, real-time inhaler tracking, alerts, and cloud synchronization.</p></li>
+                        <li><p>Core Bluetooth integration established stable communication between BLE sensors and the mobile app, enabling accurate medication tracking and actuation data retrieval.</p></li>
+                        <li><p>With Azure Cloud IoT, we enabled secure data storage and synchronization, allowing multi-device access and real-time data backup for users.</p></li>
+                        <li><p>Deep linking and in-app authentication facilitated smooth third-party service integration, allowing users to easily log in and exchange data with external healthcare platforms.</p></li>
+                        <li><p>To maintain adherence to the medication schedule, a dynamic notification system was introduced based on localized and cloud-based alerts.</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Project Challenges and Our Solution-->
+<section class="ourmission lightblue-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 proch">
+                <div class="row">
+                    <div class="avidclan_section_title">
+                        <div class="case-title">
+                            <h2 style="border-bottom: 1px solid #ccc;">Project Challenges</h2>
+                        </div>
+                    </div>
+                    <div class="col order-lg-1 order-md-1 order-sm-3 order-2 mt3">
+                        <ul class="listst">
+                            <li><p>BLE communication often faces connection instability and data transfer delays, leading to inaccurate medication usage tracking and user frustration.</p></li>
+                            <li><p>The app should ensure a smooth user experience, handle real-time data, and maintain cross-device compatibility without performance issues.</p></li>
+                            <li><p>Handling large medication data with real-time sync across devices posed security and performance challenges..</p></li>
+                            <li><p>Users required precise, customizable reminders that adapted to their schedules while preventing redundant or missed notifications.</p></li>
+                            <li><p>Seamless integration with healthcare providers and external medical platforms was essential but required secure authentication and compliance.</p></li>
+                        </ul>
+                    </div>
+                    <div class="col order-lg-2 order-md-2 order-sm-1 order-1 mt3">
+                        <img src="~/assets/images/casestudy/goolgoal/ProjectChallenge.jpg" class="img-border img-fluid" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 oursol">
+                <div class="row">
+                    <div class="avidclan_section_title">
+                        <div class="case-title">
+                            <h2 style="border-bottom: 1px solid #ccc;">Our Solution</h2>
+                        </div>
+                    </div>
+                    <div class="col order-lg-1 order-md-1 order-sm-3 order-2 mt3">
+                        <ul class="listst">
+                            <li><p>Optimized Core Bluetooth protocols with error-handling mechanisms, ensuring a stable, uninterrupted connection between the inhaler sensor and the mobile app.</p></li>
+                            <li><p>We developed a Swift-based mobile application with an optimized MVVM architecture, improving data handling, UI responsiveness, and scalability.</p></li>
+                            <li><p>Leveraged Azure Cloud IoT with encrypted REST APIs, enabling secure, fast, and scalable data storage, ensuring seamless cross-device access.</p></li>
+                            <li><p>Implemented intelligent local notifications combined with cloud-based alerts, ensuring personalized, timely reminders without redundancy.</p></li>
+                            <li><p>We enabled deep linking and in-app browser authentication, empowering users to securely sync their medication data with trusted third-party services.</p></li>
+                        </ul>
+                    </div>
+                    <div class="col order-lg-2 order-md-2 order-sm-1 order-1 mt3">
+                        <img src="~/assets/images/casestudy/goolgoal/OurSolution.jpg" class="img-border img-fluid" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Key Features-->
+<section class="mt-5 mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="avidclan_section_title text-center mb-50">
+                    <div class="case-title">
+                        <div class="custom-underline key-feature-margin mb-3">
+                            <h2 style="border-bottom: 1px solid #ccc;">Key Features</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 order-lg-1 order-md-1 order-sm-2 order-2">
+                <div class="row">
+                    <div class="row keyftxt txtCenter">
+                        <div class="col-md-6">
+                            <div class="p-2">
+                                <img src="~/assets/images/casestudy/IoTMedicationTracker/Seamless_BLE_Connectivity.svg" alt="seamless-BLE-connectivity" class="img-fluid" />
+                            </div>
+                            <div class="p-2">
+                                <p>Seamless BLE Connectivity</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-2">
+                                <img src="~/assets/images/casestudy/IoTMedicationTracker/Automated_Medication_Reminders.svg" alt="automated-medication-reminders" class="img-fluid" />
+                            </div>
+                            <div class="p-2">
+                                <p>Automated Medication Reminders</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-2">
+                                <img src="~/assets/images/casestudy/IoTMedicationTracker/Cloud-Based_Data_Synchronization.svg" alt="cloud-based-data-synchronization" class="img-fluid" />
+                            </div>
+                            <div class="p-2">
+                                <p>Cloud-Based Data Synchronization</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-2">
+                                <img src="~/assets/images/casestudy/IoTMedicationTracker/Real-Time_Usage_Monitoring.svg" alt="real-time-usage-monitoring" class="img-fluid" />
+                            </div>
+                            <div class="p-2">
+                                <p>Real-Time Usage Monitoring</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-2">
+                                <img src="~/assets/images/casestudy/IoTMedicationTracker/Third-Party_Integration_Support.svg" alt="third-party-integration-support" class="img-fluid" />
+                            </div>
+                            <div class="p-2">
+                                <p>Third-Party Integration Support</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-2">
+                                <img src="~/assets/images/casestudy/IoTMedicationTracker/User-Friendly_Mobile_Interface.svg" alt="user-friendly-mobile-interface" class="img-fluid" />
+                            </div>
+                            <div class="p-2">
+                                <p>User-Friendly Mobile Interface</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 order-lg-1 order-md-1 order-sm-1 order-1">
+                <div class="row mt-3">
+                    <div class="col-6 p-2"><img src="~/assets/images/casestudy/IoTMedicationTracker/KeyFeature_img_1_IoT_Med_Tracker.png" alt="keyfeature-1" class="img-fluid"></div>
+                    <div class="col-6 p-2"><img src="~/assets/images/casestudy/IoTMedicationTracker/KeyFeature_img_2_IoT_Med_Tracker.png" alt="keyfeature-2" class="img-fluid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--User Interface Designs-->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-lg-6 mx-auto mb5 mt5">
+                <div class="case-title text-center">
+                    <div class="custom-underline uidsignhed">
+                        <h2>User Interface Designs</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column mb-3">
+            <div class="row">
+                <div class="col-md-3 col-6 p-3">
+                    <img src="~/assets/images/casestudy/IoTMedicationTracker/UserInterface__IoT_Med_Tracker-1.png" alt="user-interface-1" class="img-fluid" />
+                </div>
+                <div class="col-md-3 col-6 p-3">
+                    <img src="~/assets/images/casestudy/IoTMedicationTracker/UserInterface__IoT_Med_Tracker-2.png" alt="user-interface-2" class="img-fluid" />
+                </div>
+                <div class="col-md-3 col-6 p-3">
+                    <img src="~/assets/images/casestudy/IoTMedicationTracker/UserInterface__IoT_Med_Tracker-3.png" alt="user-interface-3" class="img-fluid" />
+                </div>
+                <div class="col-md-3 col-6 p-3">
+                    <img src="~/assets/images/casestudy/IoTMedicationTracker/UserInterface__IoT_Med_Tracker-4.png" alt="user-interface-4" class="img-fluid" />
+                </div>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="col-md-3 col-6 p-3">
+                    <img src="~/assets/images/casestudy/IoTMedicationTracker/UserInterface__IoT_Med_Tracker-5.png" alt="user-interface-5" class="img-fluid" />
+                </div>
+                <div class="col-md-3 col-6 p-3">
+                    <img src="~/assets/images/casestudy/IoTMedicationTracker/UserInterface__IoT_Med_Tracker-6.png" alt="user-interface-6" class="img-fluid" />
+                </div>
+                <div class="col-md-3 col-6 p-3">
+                    <img src="~/assets/images/casestudy/IoTMedicationTracker/UserInterface__IoT_Med_Tracker-7.png" alt="user-interface-7" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Dynamics Statistics-->
+<section class="ourmission lightblue-bg mt-5 mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="avidclan_section_title text-center">
+                    <div class="case-title">
+                        <div class="custom-underline" style="width:31%;">
+                            <h2>Dynamic Statistics</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center dysts">
+                    <div class="col-md-2 col-sm-6 stat-card">
+                        98%
+                        <div class="stat-desc">BLE Connectivity</div>
+                    </div>
+                    <div class="col-1 d-flex justify-content-center align-items-center">
+                        <div class="divider"></div>
+                    </div>
+                    <div class="col-md-2 col-sm-6 stat-card mmt5">
+                        85%
+                        <div class="stat-desc">Adherence Improvement</div>
+                    </div>
+                    <div class="col-1 d-flex justify-content-center align-items-center">
+                        <div class="divider"></div>
+                    </div>
+                    <div class="col-md-2 col-sm-6 stat-card mmt5">
+                        90%
+                        <div class="stat-desc">Sync Accuracy</div>
+                    </div>
+                    <div class="col-1 d-flex justify-content-center align-items-center">
+                        <div class="divider"></div>
+                    </div>
+                    <div class="col-md-2 col-sm-6 stat-card mmt5">
+                        75%
+                        <div class="stat-desc">Missed Dose Reduction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Business Outcomes-->
+<section class="business-outcomes">
+    <div class="container-fluid mt-5">
+        <div class="row BO_row">
+            <div class="col-md-6">
+                <div class="first-column_content">
+                    <h2 class="section-title">Business Outcomes</h2>
+                    <hr />
+                    <div class="row">
+                        <div class="col order-lg-1 order-md-1 order-sm-2 order-2">
+                            <p class="section-content mt-3">
+                                The implementation of the IoT-based BLE Inhaler Medication Tracker significantly improved medication adherence and patient engagement. By reducing the chance of missing or mistaking dosages, real-time inhaler tracking and Azure Cloud synchronization gave customers greater control over how much medication they took.
+                                <br /><br />
+                                By combining automated reminders with AI-driven health data, the solution improved treatment efficacy and provided a customized experience.
+                                <br /><br />
+                                The smooth collaboration among patients, physicians, and healthcare providers was enabled by secure third-party data exchange, improving informed medical decision-making. This system offered a user-focused, scalable, and effective approach to controlling respiratory health by successfully integrating cloud analytics, mobile technology, and the Internet of Things.
+                            </p>
+                        </div>
+                        <div class="col order-lg-1 order-md-1 order-sm-1 order-1">
+                            <img src="/assets/images/casestudy/goolgoal/businessoutcome.png" class="img-border img-fluid mt-3" alt="Business Outcomes">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 light-blue-bg">
+                <div class="testimonial">
+                    <h2 class="section-title">What does the Client Have to say about the project?</h2>
+                    <hr />
+                    <div class="quote"><img src="~/assets/images/casestudy/goolgoal/quoteupper.png" class="img-fluid" alt="Business Outcomes"></div>
+                    <p class="testimonial-content mt-3">
+                        The IoT-based BLE solution presents a significant leap forward in managing respiratory conditions. The innovative thinking demonstrated by avidclan technologies in leveraging IoT and cloud technology promises to transform respiratory care management for the better, ultimately leading to improved patient welfare and treatment compliance.
+                    </p>
+                    <div class="row mt-5 mb-3">
+                        <div class="col-md-2 col-3">
+                            <img src="~/assets/images/casestudy/Mrs._Sofia_Petrova.png" class="img-fluid rounded-circle" alt="sofia-petrova">
+                        </div>
+                        <div class="col-md-8 col-8">
+                            <div class="testimonial-author">
+                                <span style="font-weight: 700;font-size: 20px;margin-top: 0.5rem;">
+                                    - Mrs. Sofia Petrova
+                                </span>
+                                <br>
+                                <div class="text-muted" style="font-weight: 600;font-size: 14px;">( Tech Manager )</div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 quote">
+                            <img src="/assets/images/casestudy/goolgoal/quotelower.png" class="img-fluid" alt="Business Outcomes">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Explore our Portfolio-->
+<section>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-6 col-12  mx-auto mt5 mb-4">
+                <div class="case-title text-center" style="border-bottom: 1px solid #ccc;">
+                    <h2>Explore our Portfolio</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-12 col-lg-4">
+                <a href="~/portfolio/" class="portfolio_content d-flex flex-column align-items-center justify-content-end text-center">
+                    <img src="~/assets/images/gallery/hotel-lemonade-portfolio.jpg" alt="hotel-lemonade-portfilio" class="img-border img-fluid" />
+                </a>
+                <div class="mt-2">
+                    <h3>Hotel Lemonade</h3>
+                    <p>
+                        App that allows customers to book hotel room, browse menu, search for nearby events and contact
+                        a concierge.
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <a href="~/portfolio/" class="portfolio_content d-flex flex-column align-items-center justify-content-end text-center">
+                    <img src="~/assets/images/gallery/salon-portfolio.jpg" alt="salon-portfolio" class="img-border img-fluid" />
+                </a>
+                <div class="mt-2">
+                    <h3>Grabdeal</h3>
+                    <p>
+                        Search engine based app that allows users to find the best deals in their city, nearby areas and
+                        check their reviews.
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <a href="~/portfolio/" class="portfolio_content d-flex flex-column align-items-center justify-content-end text-center">
+                    <img src="~/assets/images/gallery/klixtersM-portfolio.jpg" alt="klixtersM-portfolio" class="img-border img-fluid" />
+                </a>
+                <div class="mt-2">
+                    <h3>Klixters</h3>
+                    <p>
+                        Klixters is a fun and simple rewards network. To get in you’ll need an invitation from someone
+                        who’s already in Klixters.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@Html.Partial("_Footer")

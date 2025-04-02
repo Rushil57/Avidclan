@@ -26,6 +26,8 @@
 
     <link href="~/assets/css/swiper-bundle-min.css" rel="stylesheet" />
     <link rel="preload" as="image" href="~/assets/images/dev.svg" type="image/svg+xml">
+    <link rel="preload" as="image" href="/assets/images/dev.svg" media="(max-width: 600px)">
+
 
 
     <script type="application/ld+json">
@@ -160,7 +162,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6 text-center">
-                    <img src="~/assets/images/dev.svg" width="400" height="400" alt="Website Development" />
+                    <img fetchpriority="high" src="~/assets/images/dev.svg" width="400" height="400" alt="Website Development" />
                 </div>
             </div>
         </div>
@@ -181,28 +183,28 @@
         <div class="row">
             <div class="col-md-6 col-lg-3">
                 <div class="count-box">
-                    <img src="~/assets/images/icons/clients-ic.svg" alt="Clients Served Globally" width="70" height="70" />
+                    <img src="~/assets/images/icons/clients-ic.svg" alt="Clients Served Globally" width="70" height="70" loading="lazy" />
                     <div class="c-number">100+</div>
                     <p>Clients Served Globally</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="count-box even">
-                    <img src="~/assets/images/icons/delivered-ic.svg" alt="Projects Accomplished" width="70" height="70" />
+                    <img src="~/assets/images/icons/delivered-ic.svg" alt="Projects Accomplished" width="70" height="70" loading="lazy" />
                     <div class="c-number">150+</div>
                     <p>Projects Accomplished</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="count-box">
-                    <img src="~/assets/images/icons/developers-ic.svg" alt="Team Strength" width="70" height="70" />
+                    <img src="~/assets/images/icons/developers-ic.svg" alt="Team Strength" width="70" height="70" loading="lazy" />
                     <div class="c-number">30+</div>
                     <p>Team Strength</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="count-box even">
-                    <img src="~/assets/images/icons/satisfaction-rate-ic.svg" alt="Success Ratio" width="70" height="70" />
+                    <img src="~/assets/images/icons/satisfaction-rate-ic.svg" alt="Success Ratio" width="70" height="70" loading="lazy" />
                     <div class="c-number">98%</div>
                     <p>Success Ratio</p>
                 </div>
@@ -258,22 +260,22 @@
             <div class="card-content">
                 <div class="swiper-wrapper">
                     <!--<div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
-                    <div class="badge-card">
-                        <div class="body">
-                            <hr class="bottom-bar" />
-                            <div class="text-center">-->
+    <div class="badge-card">
+        <div class="body">
+            <hr class="bottom-bar" />
+            <div class="text-center">-->
                     @*<h6 class="title"></h6>*@
                     <!--<p class="subtitle m-0">
-                                        Top-Rated Custom Software Development Company
-                                    </p>
-                                </div>
-                                <hr class="top-bar" />
-                                <a href="https://www.appfutura.com/companies/avidclan-technologies" target="_blank" class="stretched-link">
-                                    <img src="https://www.appfutura.com/img/badges/badge-top-software-development-company-gray.png" class="icon" width="75" height="75" alt="" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>-->
+                        Top-Rated Custom Software Development Company
+                    </p>
+                </div>
+                <hr class="top-bar" />
+                <a href="https://www.appfutura.com/companies/avidclan-technologies" target="_blank" class="stretched-link">
+                    <img src="https://www.appfutura.com/img/badges/badge-top-software-development-company-gray.png" class="icon" width="75" height="75" alt="" />
+                </a>
+            </div>
+        </div>
+    </div>-->
                     <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
                         <div class="badge-card">
                             <div class="body">
@@ -285,7 +287,7 @@
                                 </div>
                                 <hr class="top-bar" />
                                 <a href="https://www.ambitionbox.com/overview/avidclan-technologies-overview?utm_source=employer-dashboard&utm_campaign=avidclan-technologies&utm_medium=badges" target="_blank" class="stretched-link">
-                                    <img src="/assets/images/badges/Avidclan_Technologies_Rating_Badge_6_on_AmbitionBox.png" class="icon" width="75" height="75" alt="Follow Us on AmbitionBox" />
+                                    <img src="/assets/images/badges/Avidclan_Technologies_Rating_Badge_6_on_AmbitionBox.png" class="icon" width="75" height="75" alt="Follow Us on AmbitionBox" loading="lazy" />
                                 </a>
                             </div>
                         </div>
@@ -301,7 +303,7 @@
                                 </div>
                                 <hr class="top-bar" />
                                 <a href="https://www.designrush.com/agency/profile/avidclantechnologies" target="_blank" class="stretched-link">
-                                    <img src="/assets/images/badges/Design_Rush_Avidclan.png" class="icon" width="75" height="75" alt="Top Software Development Company by Design Rush" />
+                                    <img src="/assets/images/badges/Design_Rush_Avidclan.png" class="icon" width="75" height="75" alt="Top Software Development Company by Design Rush" loading="lazy" />
                                 </a>
                             </div>
                         </div>
@@ -333,7 +335,7 @@
                                 </div>
                                 <hr class="top-bar" />
                                 <a href="https://clutch.co/profile/avidclan-technologies" target="_blank" class="stretched-link">
-                                    <img alt="Top Application Management & Support Company" src="/assets/images/badges/top_clutch.co_application_management__support_company_ahmedabad_2024.png" class="icon" width="75" height="75" />
+                                    <img alt="Top Application Management & Support Company" src="/assets/images/badges/top_clutch.co_application_management__support_company_ahmedabad_2024.png" class="icon" width="75" height="75" loading="lazy" />
                                 </a>
                             </div>
                         </div>
@@ -349,7 +351,7 @@
                                 </div>
                                 <hr class="top-bar" />
                                 <a href="https://techreviewer.co/companies/avidclan-technologies" target="_blank" class="stretched-link">
-                                    <img src="assets/images/badges/techReview-web-developers.svg" alt="flag" class="icon" width="75" height="75" />
+                                    <img src="assets/images/badges/techReview-web-developers.svg" alt="flag" class="icon" width="75" height="75" loading="lazy" />
                                 </a>
                             </div>
                         </div>
@@ -386,21 +388,37 @@
                             </div>
                         </div>
                     </div>
-                    <!--<div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
-                    <div class="badge-card">
-                        <div class="body">
-                            <hr class="bottom-bar" />
-                            <div class="text-center">
-                                <p class="subtitle m-0">
-                                    Top Web Development Company by Good Firms
-                                </p>
-                            </div>
-                            <hr class="top-bar" />-->
-                    @*<div class="goodfirm-widget frame-img" data-widget-type="goodfirms-widget-t1" data-height="198" data-company-id="114972"></div>*@
-                    <!--<div class="goodfirm-widget frame-img" data-widget-type="goodfirms-widget-t6" data-widget-pattern="star-no-review" data-height="100" data-company-id="114972"></div>
+                    <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                        <div class="badge-card">
+                            <div class="body">
+                                <hr class="bottom-bar" />
+                                <div class="text-center">
+                                    <p class="subtitle m-0">
+                                        Top Software Developers 2025 by FixThePhoto
+                                    </p>
+                                </div>
+                                <hr class="top-bar" />
+                                <a href="https://fixthephoto.com/best-android-app-developers.html#avidclan" target="_blank" class="stretched-link">
+                                    <img alt="Pandia Badge 5" src="~/assets/images/badges/Fix-The-Photo-Badge.png" title="Fix the photo badge" class="icon" width="75" height="75" />
+                                </a>
                             </div>
                         </div>
-                    </div>-->
+                    </div>
+                    <!--<div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+    <div class="badge-card">
+        <div class="body">
+            <hr class="bottom-bar" />
+            <div class="text-center">
+                <p class="subtitle m-0">
+                    Top Web Development Company by Good Firms
+                </p>
+            </div>
+            <hr class="top-bar" />-->
+                    @*<div class="goodfirm-widget frame-img" data-widget-type="goodfirms-widget-t1" data-height="198" data-company-id="114972"></div>*@
+                    <!--<div class="goodfirm-widget frame-img" data-widget-type="goodfirms-widget-t6" data-widget-pattern="star-no-review" data-height="100" data-company-id="114972"></div>
+            </div>
+        </div>
+    </div>-->
                     <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
                         <div class="badge-card">
                             <div class="body">
@@ -445,6 +463,22 @@
                                 <hr class="top-bar" />
                                 <a href="https://www.sortlist.com/agency/avidclan-technologies" target="_blank" class="stretched-link">
                                     <img src="https://core.sortlist.com//_/apps/core/images/badges-en/badge-flag-black-dark-xl.svg" alt="Sortlist Verified Agency" title="Sortlist Verified Agency" class="icon" width="75" height="75" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                        <div class="badge-card">
+                            <div class="body">
+                                <hr class="bottom-bar" />
+                                <div class="text-center">
+                                    <p class="subtitle m-0">
+                                        Top Web Development Company 2025 by TNC
+                                    </p>
+                                </div>
+                                <hr class="top-bar" />
+                                <a href="https://technewscast.io/web-development/" target="_blank" class="stretched-link">
+                                    <img src="~/assets/images/badges/Top_Web_Development_Company_2025_by_TNC.jpg" alt="v" title="Top Web Development Company 2025 by TNC" class="icon" width="75" height="75" />
                                 </a>
                             </div>
                         </div>

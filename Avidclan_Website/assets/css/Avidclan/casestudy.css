@@ -1,4 +1,8 @@
-﻿
+﻿.img-border {
+    border: 1px solid #999B9D;
+    border-radius: 15px;
+}
+
 .banner-section-two-h1 {
     position: relative;
     color: #142149;
@@ -7,10 +11,15 @@
     line-height: 1.2;
     margin-bottom: 30px;
 }
+
 @media(max-width: 1139px) {
     .primary-header {
         margin-top: 99px !important;
     }
+}
+
+.primary-header .row {
+    width: 100%;
 }
 
 .ourmission {
@@ -27,17 +36,27 @@
     letter-spacing: -.5px;
 }
 
+.card-img-sec {
+    padding: 30px;
+    background: #d7f5ff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
 .app-card {
     border: 1px #999B9D solid;
     border-radius: 12px;
     /*padding: 20px;*/
-    margin-bottom: 20px;
+    margin-bottom: 0px;
+    /*    margin-bottom: 20px;*/
     height: 100%;
 }
 
     .app-card img {
         width: 100%;
         border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+/*        border: 1px solid #999B9D;*/
     }
 
     .app-card h3 {
@@ -267,9 +286,11 @@ hr {
 .mt3 {
     margin-top: 1.5rem !important;
 }
+
 .dysts {
     margin-top: 3rem !important;
 }
+
 .oahidimg {
     display: block;
 }
@@ -277,6 +298,7 @@ hr {
 .oashwimg {
     display: none;
 }
+
 .uidsignhed {
     width: 73%;
 }
@@ -386,15 +408,16 @@ hr {
 
     .txtCenter {
         text-align: center;
-
     }
+
     .txt-client-requ {
-       
         margin-bottom: 24px;
     }
+
     .txt-requ {
         margin-top: 32px;
     }
+
     .keyftxt p {
         font-size: 17px;
         font-family: "Poppins";
@@ -455,14 +478,17 @@ hr {
         display: block;
         margin-top: 1.5rem !important;
     }
+
     .uidsignhed {
         width: 73%;
         margin-bottom: 1rem;
     }
+
     .dysts {
         margin-top: 0rem !important;
         padding: 2rem;
     }
+
         .dysts .mmt5 {
             margin-top: 2.5rem !important;
         }
@@ -487,10 +513,11 @@ hr {
 }
 
 @media (min-width: 992px) { /* Adjust the width threshold as needed */
-  
+
     .key-feature-margin {
         margin-bottom: 59px;
     }
+
     .Business_row {
         /* background-color: #E9E9EA; */
         padding: 0 0 0 50px;
@@ -502,17 +529,21 @@ hr {
         margin-top: 150px !important;
     }
 }
-@media(max-width: 1199.98px){
+
+@media(max-width: 1199.98px) {
     .about-img {
         margin-top: -54px !important;
     }
 }
+
 .tech-img-content {
     margin-left: 30px;
 }
-.tech-img-c{
-    margin-right:14px;
+
+.tech-img-c {
+    margin-right: 14px;
 }
+
 .content-center {
     align-items: center !important;
     margin-bottom: 30px;
@@ -522,13 +553,12 @@ hr {
 
 @media (max-width: 991.98px) {
     .content-center {
-       
         border-right: 0px;
-      
     }
 }
-@media(min-width:992px){
-    
+
+@media(min-width:992px) {
+
     .tech-margin {
         margin-top: 3rem !important;
     }
@@ -576,13 +606,13 @@ hr {
     .divider {
         display: none !important;
     }
-    
-}
-.text-left{
-    text-align:left;
 }
 
-@media(max-width:1200px){
+.text-left {
+    text-align: left;
+}
+
+@media(max-width:1200px) {
     .banner-sec-custom {
         margin-top: 95px !important;
     }
@@ -591,12 +621,13 @@ hr {
 .width-fit-content {
     width: fit-content;
 }
+
 @media(max-width:576) {
     .intro-heading {
         margin-top: 24px;
     }
-   
 }
+
 @media (max-width: 767.98px) {
     .content-center {
         align-items: center !important;
@@ -604,16 +635,16 @@ hr {
         border-right: 0;
         margin-right: 0;
     }
+
     .h4-font {
         font-size: 14px;
-        font-weight:400;
+        font-weight: 400;
     }
 }
 
 @media (max-width: 767.98px) {
     .banner-sec-custom {
         margin-top: 16px !important;
-       
     }
 }
 

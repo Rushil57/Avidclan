@@ -41,6 +41,29 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
-       
+
+        [Route("case-studies/rsc/")]
+        public ActionResult RSCCaseStudyDetail()
+        {
+            return View();
+        }
+
+        [Route("case-studies/kathy-kuo-home/")]
+        public ActionResult KKHCaseStudyDetail()
+        {
+            return View();
+        }
+
+        [Route("case-studies/iot-water-heater-management/")]
+        public ActionResult IOTWaterHeaterCaseStudyDetail()
+        {
+            return View();
+        }
+
+        [Route("case-studies/iot-health-monitor/")]
+        public ActionResult IOTMedicationTrackerCaseStudyDetail()
+        {
+            return View();
+        }
     }
 }
