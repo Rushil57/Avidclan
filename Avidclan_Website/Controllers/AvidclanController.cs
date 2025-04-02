@@ -43,6 +43,12 @@ namespace Avidclan_Website.Controllers
             return RedirectToAction("AvidclanAction", "Avidclan");
         }
 
+        //[Route("index_check/")]
+        //public ActionResult Index_check()
+        //{
+        //    return View();
+        //}
+
         [Route("about-us/")]
         public ActionResult AboutUs()
         {
