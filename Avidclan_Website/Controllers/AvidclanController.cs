@@ -43,12 +43,6 @@ namespace Avidclan_Website.Controllers
             return RedirectToAction("AvidclanAction", "Avidclan");
         }
 
-        //[Route("index_check/")]
-        //public ActionResult Index_check()
-        //{
-        //    return View();
-        //}
-
         [Route("about-us/")]
         public ActionResult AboutUs()
         {
@@ -127,7 +121,6 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
-
 
         [Route("mobile-application-development/")]
         public ActionResult MobileApplicationRedirect()

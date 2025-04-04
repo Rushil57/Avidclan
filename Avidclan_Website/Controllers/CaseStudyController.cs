@@ -24,7 +24,7 @@ namespace Avidclan_Website.Controllers
             return View();
         }
 
-        [Route("case-studies/clf/")]
+        [Route("case-studies/concierge-live-feed/")]
         public ActionResult CLFCaseStudyDetail()
         {
             return View();
@@ -35,14 +35,14 @@ namespace Avidclan_Website.Controllers
         //    return View();
         //}
 
-        [Route("case-studies/vyking/")]
+        [Route("case-studies/vyking-ship/")]
         public ActionResult VykingCaseStudyDetail()
         
         {
             return View();
         }
 
-        [Route("case-studies/rsc/")]
+        [Route("case-studies/readysetconnect/")]
         public ActionResult RSCCaseStudyDetail()
         {
             return View();
