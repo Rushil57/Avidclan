@@ -27,7 +27,8 @@
     <link href="~/assets/css/swiper-bundle-min.css" rel="stylesheet" />
     <link rel="preload" as="image" href="~/assets/images/dev.svg" type="image/svg+xml">
     <link rel="preload" as="image" href="/assets/images/dev.svg" media="(max-width: 600px)">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/css/Avidclan/owl.carousel.min.css" rel="stylesheet" />
 
 
     <script type="application/ld+json">
@@ -138,22 +139,27 @@
 
 }
 
-<!-- Banner Section -->
-<section class="banner-section-two">
+<!--start Banner Section-->
+<section class="banner-section pt-5">
     <div class="container">
-        <div class="content-box">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="pl-2">
-                        <h1>Simplifying Business Needs Using <span class="primary-color">Technology</span></h1>
-                        <p class="text">
-                            Avidclan Technologies is a renowned and leading web and mobile app development company with a vision to fulfill
-                            business requirements using innovative solutions.We assist our clients in a way that they can
+        <div class="content-box w-100 rounded-5 p-md-5 p-3 pt-5">
+            <div class="row d-flex flex-lg-row">
+                <div class="col-lg-7 col-md-12 col-sm-12">
+                    <div>
+                        <h1 class="display-3">
+                            Simplifying Business Needs Using <span class="primary-color">Technology</span>
+                        </h1>
+                        <p class="text fs-5">
+                            Avidclan Technologies is a renowned and leading web and mobile app development company
+                            with a vision to fulfill
+                            business requirements using innovative solutions.We assist our clients in a way that
+                            they can
                             provide a superior digital experience for their clients worldwide.
                         </p>
                         <div class="btn-box">
-                            <a href="~/services#project_inquiry_form" class="theme-btn btn-style-one">
-                                <span class="btn-title">
+                            <a href="~/services#project_inquiry_form"
+                               class="btn btn-primary fw-bold rounded-5 mt-2 ">
+                                <span class="py-2 px-3">
                                     Find Consultant
                                     <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
                                 </span>
@@ -161,8 +167,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 text-center">
-                    <img fetchpriority="high" src="~/assets/images/dev.svg" width="400" height="400" alt="Website Development" />
+                <div class="col-lg-5 col-md-12 col-sm-12">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <img fetchpriority="high" src="~/assets/images/imagenew/dev.svg" width="400" height="400" alt="Website Development" class="img-fluid responsive-img-hide" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -170,72 +178,98 @@
 </section>
 <!--End Banner Section-->
 
-<section class="section ourfacts">
+<section class="py-5">
     <div class="container">
         <div class="row">
-            <div class="col-xl-12">
-                <div class="avidclan_section_title text-center mb-50">
-                    <h5 class="avidclan_sub_title primary-color">By The Numbers</h5>
-                    <div class="sec-title"><h2>Drive Growth and Efficiency with Our Custom Software Development</h2></div>
+            <div class="col-12 text-center mb-4">
+                <div class="line-heading d-flex align-items-center justify-content-center gap-3 mb-3">
+                    <h5 class="primary-color fw-semibold d-inline-block text-uppercase mb-0">By The Numbers</h5>
+                </div>
+
+                <div class="mb-md-5 mb-3">
+                    <h2 class="fw-custom fs-1">Drive Growth and Efficiency with Our Custom Software Development</h2>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 col-lg-3">
-                <div class="count-box">
-                    <img src="~/assets/images/icons/clients-ic.svg" alt="Clients Served Globally" width="70" height="70" loading="lazy" />
-                    <div class="c-number">100+</div>
-                    <p>Clients Served Globally</p>
+        <div class="row d-flex h-100 flex-wrap align-items-stretch">
+            <!-- First Column -->
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                <div class="d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center bg-white custom-border-primary">
+                    <img src="~/assets/images/imagenew/clients-ic.svg" alt="Clients Served Globally" width="70" height="70" loading="lazy">
+                    <div class="fs-5 fw-bold">100+</div>
+                    <p class="fs-5 text-body-tertiary">Clients Served Globally</p>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="count-box even">
-                    <img src="~/assets/images/icons/delivered-ic.svg" alt="Projects Accomplished" width="70" height="70" loading="lazy" />
-                    <div class="c-number">150+</div>
-                    <p>Projects Accomplished</p>
+
+            <!-- Second Column -->
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                <div class="d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center custom-bg custom-border-primary">
+                    <img src="~/assets/images/imagenew/delivered-ic.svg" alt="Projects Accomplished" width="70" height="70" loading="lazy" />
+                    <div class="fs-5 fw-bold">150+</div>
+                    <p class="fs-5 text-body-tertiary">Projects Accomplished</p>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="count-box">
-                    <img src="~/assets/images/icons/developers-ic.svg" alt="Team Strength" width="70" height="70" loading="lazy" />
-                    <div class="c-number">30+</div>
-                    <p>Team Strength</p>
+
+            <!-- Third Column -->
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                <div class="d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center bg-white custom-border-primary">
+                    <img src="~/assets/images/imagenew/developers-ic.svg" alt="Team Strength" width="70" height="70" loading="lazy" />
+                    <div class="fs-5 fw-bold">30+</div>
+                    <p class="fs-5 text-body-tertiary">Team Strength</p>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="count-box even">
-                    <img src="~/assets/images/icons/satisfaction-rate-ic.svg" alt="Success Ratio" width="70" height="70" loading="lazy" />
-                    <div class="c-number">98%</div>
-                    <p>Success Ratio</p>
+
+            <!-- Fourth Column -->
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                <div class="d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center custom-bg custom-border-primary">
+                    <img src="~/assets/images/imagenew/satisfaction-rate-ic.svg" alt="Success Ratio" width="70" height="70" loading="lazy" />
+                    <div class="fs-5 fw-bold">98+</div>
+                    <p class="fs-5 text-body-tertiary">Success Ratio</p>
                 </div>
             </div>
         </div>
+
     </div>
 </section>
 
 <!-- About Section -->
-<section class="about-section lightblue-bg">
+<section class="custom-bg p-md-5 p-3">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 d-md-none d-lg-block">
-                <img src="~/assets/images/aboutus-new.png" alt="about-us-banner" srcset="~/assets/images/aboutus-new.png 400w, ~/assets/images/aboutus-new.png 1080w" sizes="400vw" width="400" height="400" class="lazyload" loading="lazy" />
+            <div class="col-lg-6 col-md-12 col-sm-12 d-lg-block d-flex justify-content-center">
+                <img loading="lazy" src="~/assets/images/imagenew/aboutus-new.png" alt="about-us-banner" class="img-fluid">
             </div>
-            <div class="col-lg-6">
-                <p class="avidclan_ralign_subtitle">ABOUT US</p>
-                <div class="sec-title">
-                    <h2>Your trusted partner for custom software, web and mobile app development</h2>
-                    <span class="sub-text">
-                        Over the past 7 years, Avidclan Technologies has built a successful track record in custom software development.
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <p class="fw-semibold d-inline-block mb-3 primary-color fs-5">
+                    ABOUT US<img src="~/assets/images/imagenew/horizontal-line.png"
+                                 class="ms-3 responsive-horizontal-line" height="3" width="45" alt="">
+                </p>
+                <div class="sec-title mb-3">
+                    <h2 class="fw-custom fs-1 pb-3">
+                        Your trusted partner for custom software, web and mobile app
+                        development
+                    </h2>
+                    <span class="fs-5 lh-md fw-semibold mb-2 d-block">
+                        Over the past 7 years, Avidclan Technologies has built a successful track record in custom
+                        software development.
                     </span>
-                    <div class="text">
-                        We craft solutions that are not only visually stunning but also boast exceptional usability and keep users engaged. Our unwavering commitment to quality services has earned the trust of leading global players. At Avidclan Technologies, our team of highly talented web developers transforms business needs into innovative software solutions.
+                    <div class="text mt-4">
+                        We craft solutions that are not only visually stunning but also boast exceptional usability
+                        and keep users engaged. Our unwavering commitment to quality services has earned the trust
+                        of leading global players. At Avidclan Technologies, our team of highly talented web
+                        developers transforms business needs into innovative software solutions.
                     </div>
                 </div>
                 <div class="btn-box">
-                    <a href="~/about-us/" class="theme-btn btn-style-one">
-                        <span class="btn-title">
+                    <a href="~/about-us/" class="btn btn-primary fw-bold rounded-5 mt-2">
+                        <span class="py-2 px-3">
                             Discover More
-                            <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 aria-hidden="true" role="img" class="iconify iconify--entypo ms-2" width="25"
+                                 height="25" preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20"
+                                 data-icon="entypo:arrow-long-right" data-height="25">
+                                <path fill="currentColor" d="M14 15.5V12H1V8h13V4.5l5.25 5.5z"></path>
+                            </svg>
                         </span>
                     </a>
                 </div>
@@ -243,348 +277,282 @@
         </div>
     </div>
 </section>
-
+<!-- About Section end-->
 <!-- badges section -->
-<section class="badges-section" id="badges">
+<section class=" p-lg-5 p-3">
     <div class="container text-center">
+        <!-- row -->
         <div class="row">
-            <div class="col-xl-12">
-                <div class="avidclan_section_title text-center mb-50">
-                    <p class="avidclan_sub_title primary-color">Trusted By</p>
-                    <div class="sec-title"><h2>Industry Recognitions and Awards</h2></div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="text-center mb-3 mb-md-5">
+                    <div class="line-heading d-flex align-items-center justify-content-center gap-3 mb-3">
+                        <h5 class="primary-color fw-semibold d-inline-block text-uppercase mb-0">Trusted By</h5>
+                    </div>
+                    <div class=" mb-4">
+                        <h2 class="fs-1 fw-custom pb-2 pb-md-5">Industry Recognitions and Awards</h2>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- row -->
-        <div class="row badges-row swiper">
-            <div class="card-content">
-                <div class="swiper-wrapper">
-                    <!--<div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
-    <div class="badge-card">
-        <div class="body">
-            <hr class="bottom-bar" />
-            <div class="text-center">-->
-                    @*<h6 class="title"></h6>*@
-                    <!--<p class="subtitle m-0">
-                        Top-Rated Custom Software Development Company
-                    </p>
-                </div>
-                <hr class="top-bar" />
-                <a href="https://www.appfutura.com/companies/avidclan-technologies" target="_blank" class="stretched-link">
-                    <img src="https://www.appfutura.com/img/badges/badge-top-software-development-company-gray.png" class="icon" width="75" height="75" alt="" />
+        <div class="owl-carousel">
+            <div class="carousel_box px-sm-4 px-2 mx-auto">
+                <a href="https://www.ambitionbox.com/overview/avidclan-technologies-overview?utm_source=employer-dashboard&utm_campaign=avidclan-technologies&utm_medium=badges" target="_blank">
+                    <div width="160" class="mx-auto slider_height bg-white shadow-sm">
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/Avidclan_Technologies_Rating_Badge_6_on_AmbitionBox.png" />
+                    </div>
                 </a>
-            </div>
-        </div>
-    </div>-->
-                    <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
-                        <div class="badge-card">
-                            <div class="body">
-                                <hr class="bottom-bar" />
-                                <div class="text-center">
-                                    <p class="subtitle m-0">
-                                        Follow Us on AmbitionBox
-                                    </p>
-                                </div>
-                                <hr class="top-bar" />
-                                <a href="https://www.ambitionbox.com/overview/avidclan-technologies-overview?utm_source=employer-dashboard&utm_campaign=avidclan-technologies&utm_medium=badges" target="_blank" class="stretched-link">
-                                    <img src="/assets/images/badges/Avidclan_Technologies_Rating_Badge_6_on_AmbitionBox.png" class="icon" width="75" height="75" alt="Follow Us on AmbitionBox" loading="lazy" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
-                        <div class="badge-card">
-                            <div class="body">
-                                <hr class="bottom-bar" />
-                                <div class="text-center">
-                                    <p class="subtitle m-0">
-                                        Top Software Development Company by Design Rush
-                                    </p>
-                                </div>
-                                <hr class="top-bar" />
-                                <a href="https://www.designrush.com/agency/profile/avidclantechnologies" target="_blank" class="stretched-link">
-                                    <img src="/assets/images/badges/Design_Rush_Avidclan.png" class="icon" width="75" height="75" alt="Top Software Development Company by Design Rush" loading="lazy" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
-                        <div class="badge-card">
-                            <div class="body">
-                                <hr class="bottom-bar" />
-                                <div class="text-center">
-                                    <p class="subtitle m-0">
-                                        Top Custom Software Development Company
-                                    </p>
-                                </div>
-                                <hr class="top-bar" />
-                                <a href="https://itrate.co/developers/all" target="_blank" class="stretched-link">
-                                    <img src="https://itrate.co/storage/mediakit/12-original.png?t=1652160380" class="icon" width="75" height="75" alt="Custom Software Development">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
-                        <div class="badge-card">
-                            <div class="body">
-                                <hr class="bottom-bar" />
-                                <div class="text-center">
-                                    <p class="subtitle m-0">
-                                        Clutch's Top Application Management Company 2024
-                                    </p>
-                                </div>
-                                <hr class="top-bar" />
-                                <a href="https://clutch.co/profile/avidclan-technologies" target="_blank" class="stretched-link">
-                                    <img alt="Top Application Management & Support Company" src="/assets/images/badges/top_clutch.co_application_management__support_company_ahmedabad_2024.png" class="icon" width="75" height="75" loading="lazy" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
-                        <div class="badge-card">
-                            <div class="body">
-                                <hr class="bottom-bar" />
-                                <div class="text-center">
-                                    <p class="subtitle m-0">
-                                        Top Web Development Company 2024
-                                    </p>
-                                </div>
-                                <hr class="top-bar" />
-                                <a href="https://techreviewer.co/companies/avidclan-technologies" target="_blank" class="stretched-link">
-                                    <img src="assets/images/badges/techReview-web-developers.svg" alt="flag" class="icon" width="75" height="75" loading="lazy" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
-                        <div class="badge-card">
-                            <div class="body">
-                                <hr class="bottom-bar" />
-                                <div class="text-center">
-                                    <p class="subtitle m-0">
-                                        Top Mobile App Developers 2023
-                                    </p>
-                                </div>
-                                <hr class="top-bar" />
-                                <a href="https://www.topdevelopers.co/profile/avidclan-technologies" target="_blank" class="stretched-link">
-                                    <img src="https://www.topdevelopers.co/assets/badges/app-2023/Mobile-App/Global/badge-top-mobile-app-developers-2023.png" alt="Mobile App Development Companies" title="Mobile App Development Companies" class="icon" width="75" height="75">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
-                        <div class="badge-card">
-                            <div class="body">
-                                <hr class="bottom-bar" />
-                                <div class="text-center">
-                                    <p class="subtitle m-0">
-                                        Top Web Design Agency 2024
-                                    </p>
-                                </div>
-                                <hr class="top-bar" />
-                                <a href="http://www.pandia.com/us/sterling-va/web-design" target="_blank" class="stretched-link">
-                                    <img alt="Pandia Badge 5" src="https://content.pandia.com/badges/webdesign-badge5.png" title="Top Web Design Agency" class="icon" width="75" height="75" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
-                        <div class="badge-card">
-                            <div class="body">
-                                <hr class="bottom-bar" />
-                                <div class="text-center">
-                                    <p class="subtitle m-0">
-                                        Top Software Developers 2025 by FixThePhoto
-                                    </p>
-                                </div>
-                                <hr class="top-bar" />
-                                <a href="https://fixthephoto.com/best-android-app-developers.html#avidclan" target="_blank" class="stretched-link">
-                                    <img alt="Pandia Badge 5" src="~/assets/images/badges/Fix-The-Photo-Badge.png" title="Fix the photo badge" class="icon" width="75" height="75" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--<div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
-    <div class="badge-card">
-        <div class="body">
-            <hr class="bottom-bar" />
-            <div class="text-center">
-                <p class="subtitle m-0">
-                    Top Web Development Company by Good Firms
-                </p>
-            </div>
-            <hr class="top-bar" />-->
-                    @*<div class="goodfirm-widget frame-img" data-widget-type="goodfirms-widget-t1" data-height="198" data-company-id="114972"></div>*@
-                    <!--<div class="goodfirm-widget frame-img" data-widget-type="goodfirms-widget-t6" data-widget-pattern="star-no-review" data-height="100" data-company-id="114972"></div>
-            </div>
-        </div>
-    </div>-->
-                    <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
-                        <div class="badge-card">
-                            <div class="body">
-                                <hr class="bottom-bar" />
-                                <div class="text-center">
-                                    <p class="subtitle m-0">
-                                        Top Offshore Software Development Companies in India
-                                    </p>
-                                </div>
-                                <hr class="top-bar" />
-                                <a href="https://softwareoutsourcing.com/?utm_id=so_644a362f88129" target="_blank" class="stretched-link">
-                                    <img alt="Software Outsourcing" src="https://softwareoutsourcing.com/wp-content/uploads/Software-Outsourcing-Journal.png" title="Top Offshore Software Development Companies in India" class="icon" width="75" height="75" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
-                        <div class="badge-card">
-                            <div class="body">
-                                <hr class="bottom-bar" />
-                                <div class="text-center">
-                                    <p class="subtitle m-0">
-                                        Top Software Development Company 2024
-                                    </p>
-                                </div>
-                                <hr class="top-bar" />
-                                <a href="https://selectedfirms.co/companies/software-development?utm_source=avidclan_technologies&utm_medium=badge&utm_campaign=software_development&utm_term=top_software_development_company&utm_content=agency_badge&utm_marketing_tactic=badge_organic" target="_blank" class="stretched-link">
-                                    <img alt="Top Software Development Company" src="https://selectedfirms.co/public/assets/frontend/img/services/round/software-development.png" title="Top Software Development Company" class="icon" width="75" height="75" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
-                        <div class="badge-card">
-                            <div class="body">
-                                <hr class="bottom-bar" />
-                                <div class="text-center">
-                                    <p class="subtitle m-0">
-                                        Sortlist Verified Agency 2024
-                                    </p>
-                                </div>
-                                <hr class="top-bar" />
-                                <a href="https://www.sortlist.com/agency/avidclan-technologies" target="_blank" class="stretched-link">
-                                    <img src="https://core.sortlist.com//_/apps/core/images/badges-en/badge-flag-black-dark-xl.svg" alt="Sortlist Verified Agency" title="Sortlist Verified Agency" class="icon" width="75" height="75" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
-                        <div class="badge-card">
-                            <div class="body">
-                                <hr class="bottom-bar" />
-                                <div class="text-center">
-                                    <p class="subtitle m-0">
-                                        Top Web Development Company 2025 by TNC
-                                    </p>
-                                </div>
-                                <hr class="top-bar" />
-                                <a href="https://technewscast.io/web-development/" target="_blank" class="stretched-link">
-                                    <img src="~/assets/images/badges/Top_Web_Development_Company_2025_by_TNC.jpg" alt="v" title="Top Web Development Company 2025 by TNC" class="icon" width="75" height="75" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- end of row -->
-            </div>
-            <!-- Navigation Buttons -->
-            <div class="swiper-button-next bg-none">
-                <i class="ri-arrow-right-s-line"></i>
-            </div>
 
-            <div class="swiper-button-prev bg-none">
-                <i class="ri-arrow-left-s-line"></i>
-            </div>
+                <div class="line_bottom my-3 mx-auto background-primary"></div>
 
-            <!-- Pagination -->
-            <div class="swiper-pagination"></div>
+                <p>Follow Us on AmbitionBox</p>
+            </div>
+            <a href="https://www.designrush.com/agency/profile/avidclan" target="_blank">
+                <div class="carousel_box px-sm-4 px-2 mx-auto">
+                    <div width="160" class="mx-auto slider_height bg-white shadow-sm">
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/Design_Rush_Avidclan.png">
+                    </div>
+                    <div class="line_bottom my-3 mx-auto background-primary"></div>
+                    <p>Top Web Design Agency 2024</p>
+                </div>
+            </a>
+
+            <a href="https://itrate.co/developers/all" target="_blank">
+                <div class="carousel_box px-sm-4 px-2 mx-auto">
+                    <div width="160" class="mx-auto slider_height bg-white shadow-sm">
+                        <img loading="lazy" class="w-100 h-100" src="https://itrate.co/storage/mediakit/12-original.png?t=1652160380">
+                    </div>
+                    <div class="line_bottom my-3 mx-auto background-primary"></div>
+                    <p>Top Web Design Agency 2024</p>
+                </div>
+            </a>
+
+            <a href="https://clutch.co/profile/avidclan-technologies" target="_blank">
+                <div class="carousel_box px-sm-4 px-2 mx-auto">
+                    <div width="160" class="mx-auto slider_height bg-white shadow-sm">
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/top_clutch.co_application_management__support_company_ahmedabad_2024.png">
+                    </div>
+                    <div class="line_bottom my-3 mx-auto background-primary"></div>
+                    <p>Top Web Design Agency 2024</p>
+                </div>
+            </a>
+
+            <a href="https://techreviewer.co/companies/avidclan-technologies" target="_blank">
+                <div class="carousel_box px-sm-4 px-2 mx-auto">
+                    <div width="160" class="mx-auto slider_height bg-white shadow-sm">
+                        <img loading="lazy" class="w-100 h-100" src="assets/images/badges/techReview-web-developers.svg">
+                    </div>
+                    <div class="line_bottom my-3 mx-auto background-primary"></div>
+                    <p>Top Web Design Agency 2024</p>
+                </div>
+            </a>
+
+            <a href="https://www.topdevelopers.co/profile/avidclan-technologies" target="_blank">
+                <div class="carousel_box px-sm-4 px-2 mx-auto">
+                    <div width="160" class="mx-auto slider_height bg-white shadow-sm">
+                        <img loading="lazy" class="w-100 h-100" src="https://www.topdevelopers.co/assets/badges/app-2023/Mobile-App/Global/badge-top-mobile-app-developers-2023.png">
+                    </div>
+                    <div class="line_bottom my-3 mx-auto background-primary"></div>
+                    <p>Top Web Design Agency 2024</p>
+                </div>
+            </a>
+
+            <a href="https://www.pandia.com/us/sterling-va/web-design" target="_blank">
+                <div class="carousel_box px-sm-4 px-2 mx-auto">
+                    <div width="160" class="mx-auto slider_height bg-white shadow-sm">
+                        <img loading="lazy" class="w-100 h-100" src="https://content.pandia.com/badges/webdesign-badge5.png">
+                    </div>
+                    <div class="line_bottom my-3 mx-auto background-primary"></div>
+                    <p>Top Web Design Agency 2024</p>
+                </div>
+            </a>
+
+            <a href="https://fixthephoto.com/best-android-app-developers.html#avidclan" target="_blank">
+                <div class="carousel_box px-sm-4 px-2 mx-auto">
+                    <div width="160" class="mx-auto slider_height bg-white shadow-sm">
+                        <img loading="lazy" class="w-100 h-100" src="~/assets/images/badges/Fix-The-Photo-Badge.png">
+                    </div>
+                    <div class="line_bottom my-3 mx-auto background-primary"></div>
+                    <p>Top Web Design Agency 2024</p>
+                </div>
+            </a>
+
+            <a href="https://softwareoutsourcing.com/?utm_id=so_644a362f88129" target="_blank">
+                <div class="carousel_box px-sm-4 px-2 mx-auto">
+                    <div width="160" class="mx-auto slider_height bg-white shadow-sm">
+                        <img loading="lazy" class="w-100 h-100" src="https://softwareoutsourcing.com/wp-content/uploads/Software-Outsourcing-Journal.png">
+                    </div>
+                    <div class="line_bottom my-3 mx-auto background-primary"></div>
+                    <p>Top Web Design Agency 2024</p>
+                </div>
+            </a>
+
+            <a href="https://selectedfirms.co/companies/software-development?utm_source=avidclan_technologies&utm_medium=badge&utm_campaign=software_development&utm_term=top_software_development_company&utm_content=agency_badge&utm_marketing_tactic=badge_organic" target="_blank">
+                <div class="carousel_box px-sm-4 px-2 mx-auto">
+                    <div width="160" class="mx-auto slider_height bg-white shadow-sm">
+                        <img loading="lazy" class="w-100 h-100" src="https://selectedfirms.co/public/assets/frontend/img/services/round/software-development.png">
+                    </div>
+                    <div class="line_bottom my-3 mx-auto background-primary"></div>
+                    <p>Top Web Design Agency 2024</p>
+                </div>
+            </a>
+
+            <a href="https://www.sortlist.com/agency/avidclan-technologies" target="_blank">
+                <div class="carousel_box px-sm-4 px-2 mx-auto">
+                    <div width="160" class="mx-auto slider_height bg-white shadow-sm">
+                        <img loading="lazy" class="w-100 h-100" src="https://core.sortlist.com//_/apps/core/images/badges-en/badge-flag-black-dark-xl.svg">
+                    </div>
+                    <div class="line_bottom my-3 mx-auto background-primary"></div>
+                    <p>Top Web Design Agency 2024</p>
+                </div>
+            </a>
+
+
         </div>
     </div>
-</section><!-- end of service section -->
+</section>
+<!-- badges section end -->
 <!--  Process Section -->
-<section class="process-section">
+<section class="p-3 p-md-5">
     <div class="container">
         <div class="row">
-            <div class="col-xl-12">
-                <div class="avidclan_section_title text-center mb-50">
-                    <p class="avidclan_sub_title primary-color">WORKING PROCESS</p>
-                    <div class="sec-title"><h2>We Simplify Software Development Process</h2></div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="text-center mb-3 mb-md-5">
+                    <div class="line-heading d-flex align-items-center justify-content-center gap-3 mb-3">
+                        <h5 class="primary-color fw-semibold d-inline-block text-uppercase mb-0">Working Process</h5>
+                    </div>
+                    <div class="sec-title">
+                        <h2 class="fs-1 fw-custom pb-2 pb-md-5">We Simplify Software Development Process</h2>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3 process-block-one">
-                <div class="inner-box">
-                    <div class="icon">
-                        <div class="ic-block">
-                            <div class="ic-bg">
-                                <span class="iconify" data-icon="ic:outline-content-paste-search" data-height="55"></span>
+            <div class="col-lg-3 col-md-6 col-sm-12 process-block-one position-relative">
+                <div class="inner-box text-center mb-4">
+                    <div class="icon d-flex justify-content-center text-center mb-4 position-relative">
+                        <div class="ic-block rounded-circle d-flex justify-content-center align-items-center">
+                            <div class="ic-bg bg-white rounded-circle d-flex justify-content-center align-items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                     aria-hidden="true" role="img" class="iconify iconify--ic" width="55" height="55"
+                                     preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                                     data-icon="ic:outline-content-paste-search" data-height="55">
+                                    <path fill="currentColor"
+                                          d="M5 5h2v3h10V5h2v5h2V5c0-1.1-.9-2-2-2h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h5v-2H5zm7-2c.55 0 1 .45 1 1s-.45 1-1 1s-1-.45-1-1s.45-1 1-1">
+                                    </path>
+                                    <path fill="currentColor"
+                                          d="M20.3 18.9c.4-.7.7-1.5.7-2.4c0-2.5-2-4.5-4.5-4.5S12 14 12 16.5s2 4.5 4.5 4.5c.9 0 1.7-.3 2.4-.7l2.7 2.7l1.4-1.4zm-3.8.1c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5s-1.1 2.5-2.5 2.5">
+                                    </path>
+                                </svg>
                             </div>
                         </div>
                     </div>
-                    <h3>Discover</h3>
+                    <h3 class="fw-bold fs-4">Discover</h3>
                     <div class="text">Filter our client's demands into software features to be included.</div>
                 </div>
             </div>
-            <div class="col-lg-3 process-block-one">
-                <div class="inner-box">
-                    <div class="icon">
-                        <div class="ic-block">
-                            <div class="ic-bg">
-                                <span class="iconify" data-icon="fluent:design-ideas-16-regular" data-height="55"></span>
+            <div class="col-lg-3 col-md-6 col-sm-12 process-block-one position-relative">
+                <div class="inner-box text-center mb-4">
+                    <div class="icon d-flex justify-content-center text-center mb-4 position-relative">
+                        <div class="ic-block rounded-circle d-flex justify-content-center align-items-center">
+                            <div class="ic-bg bg-white rounded-circle d-flex justify-content-center align-items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                     aria-hidden="true" role="img" class="iconify iconify--fluent" width="55"
+                                     height="55" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"
+                                     data-icon="fluent:design-ideas-16-regular" data-height="55">
+                                    <path fill="currentColor"
+                                          d="M4.228 6.492c.292.296.462.683.567 1.07C5 8.314 5 9.244 5 9.963V10c0 2.058-.385 3.28-.821 4.007a2.7 2.7 0 0 1-.638.747a1.7 1.7 0 0 1-.33.2S3.084 15 3 15a.8.8 0 0 1-.211-.046a1.7 1.7 0 0 1-.33-.2a2.7 2.7 0 0 1-.638-.747C1.385 13.281 1 12.058 1 10v-.036c0-.72 0-1.649.205-2.403c.105-.386.275-.773.567-1.07C1.3 6.044 1 5.332 1 4.5c0-.326.087-.715.207-1.074s.288-.732.482-1.032c.231-.39.556-.717.808-.937a6 6 0 0 1 .432-.343l.03-.02l.009-.007l.003-.002l.002-.001a.5.5 0 0 1 .727.64a.3.3 0 0 0-.013.089c0 .063.016.183.167.333c.073.073.129.125.19.182c.05.046.103.094.17.16c.13.124.267.27.39.453c.255.383.396.862.396 1.559c0 .832-.3 1.543-.772 1.992M3 7c-.25 0-.4.078-.513.19c-.126.127-.235.333-.317.634C2.004 8.435 2 9.237 2 10c0 1.942.365 2.97.679 3.493c.12.2.233.329.321.41a1.8 1.8 0 0 0 .321-.41C3.635 12.969 4 11.942 4 10c0-.763-.004-1.565-.17-2.176c-.082-.3-.191-.507-.317-.634C3.4 7.078 3.249 7 3 7M2 4.5C2 5.572 2.615 6 3 6s1-.428 1-1.5c0-.553-.109-.824-.229-1.004a1.8 1.8 0 0 0-.251-.289l-.124-.116a10 10 0 0 1-.25-.237a1.7 1.7 0 0 1-.279-.365a2.5 2.5 0 0 0-.334.44c-.14.215-.276.51-.377.814c-.104.31-.156.584-.156.757m4.998 6.473a4.5 4.5 0 0 1-1.016-.235Q6 10.362 6 9.96v-.296c.31.147.646.25.998.3V8a2 2 0 0 1 2-2h1.965a3.5 3.5 0 0 0-5.075-2.609a3.2 3.2 0 0 0-.384-.926A4.5 4.5 0 0 1 11.97 6h1.027a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2zM11.971 7a4.5 4.5 0 0 1-3.973 3.973V12a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1zm-1.008 0H8.998a1 1 0 0 0-1 1v1.965A3.5 3.5 0 0 0 10.963 7">
+                                    </path>
+                                </svg>
                             </div>
                         </div>
                     </div>
-                    <h3>Design</h3>
+                    <h3 class="fw-bold fs-4">Design</h3>
                     <div class="text">Breaking a project into segments and providing an ease-of-change.</div>
                 </div>
             </div>
-            <div class="col-lg-3 process-block-one">
-                <div class="inner-box">
-                    <div class="icon">
-                        <div class="ic-block">
-                            <div class="ic-bg">
-                                <span class="iconify" data-icon="octicon:code-square-16" data-height="55"></span>
+            <div class="col-lg-3 col-md-6 col-sm-12 process-block-one position-relative">
+                <div class="inner-box text-center mb-4">
+                    <div class="icon d-flex justify-content-center text-center mb-4 position-relative">
+                        <div class="ic-block rounded-circle d-flex justify-content-center align-items-center">
+                            <div class="ic-bg bg-white rounded-circle d-flex justify-content-center align-items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                     aria-hidden="true" role="img" class="iconify iconify--octicon" width="55"
+                                     height="55" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"
+                                     data-icon="octicon:code-square-16" data-height="55">
+                                    <path fill="currentColor"
+                                          d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25Zm7.47 3.97a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.749.749 0 0 1-1.275-.326a.75.75 0 0 1 .215-.734L10.69 8L9.22 6.53a.75.75 0 0 1 0-1.06M6.78 6.53L5.31 8l1.47 1.47a.749.749 0 0 1-.326 1.275a.75.75 0 0 1-.734-.215l-2-2a.75.75 0 0 1 0-1.06l2-2a.75.75 0 0 1 1.042.018a.75.75 0 0 1 .018 1.042">
+                                    </path>
+                                </svg>
                             </div>
                         </div>
                     </div>
-                    <h3>Build</h3>
+                    <h3 class="fw-bold fs-4">Build</h3>
                     <div class="text">Converting ideas into an efficient code ensures smooth functioning.</div>
                 </div>
             </div>
-            <div class="col-lg-3 process-block-one">
-                <div class="inner-box">
-                    <div class="icon">
-                        <div class="ic-block">
-                            <div class="ic-bg">
-                                <span class="iconify" data-icon="charm:rocket" data-height="55"></span>
+            <div class="col-lg-3 col-md-6 col-sm-12  process-block-one position-relative">
+                <div class="text-center mb-4">
+                    <div class="icon d-flex justify-content-center text-center mb-4 position-relative">
+                        <div class="ic-block rounded-circle d-flex justify-content-center align-items-center">
+                            <div class="ic-bg bg-white rounded-circle d-flex justify-content-center align-items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                     aria-hidden="true" role="img" class="iconify iconify--charm" width="55"
+                                     height="55" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"
+                                     data-icon="charm:rocket" data-height="55">
+                                    <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                       stroke-linejoin="round" stroke-width="1.5">
+                                        <path d="m4.25 9.75l-2-.5s0-1.5.5-3s4-1.5 4-1.5m-.5 7l.5 2s1.5 0 3-.5s1.5-4 1.5-4m-7 .5l2 2s5-2 6.5-4.5s1.5-5.5 1.5-5.5s-3 0-5.5 1.5s-4.5 6.5-4.5 6.5">
+                                        </path>
+                                        <path fill="currentColor" d="m1.75 14.25l2-1l-1-1z"></path>
+                                        <circle cx="10.25" cy="5.75" r=".5" fill="currentColor"></circle>
+                                    </g>
+                                </svg>
                             </div>
                         </div>
                     </div>
-                    <h3>Deliver</h3>
+                    <h3 class="fw-bold fs-4">Deliver</h3>
                     <div class="text">Provide a bug-free application that meets the requirements.</div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<!--  Process Section end -->
 
 <section class="lets-talk">
     <div class="container">
-        <div class="inner-block">
+        <div class="inner-block rounded-5 px-3 py-4 px-md-5 text-white position-relative ">
             <div class="row align-items-center">
                 <div class="col-md-12 col-lg-8 col-xl-7">
-                    <div class="sec-title mb-0">
-                        <p class="m-1">Require a solution to your software problems?</p>
-                        <h2>Want to get in touch?</h2>
+                    <div class="sec-title">
+                        <p class="m-1 text-white">Require a solution to your software problems?</p>
+                        <h2 class="d-flex fs-2 pb-3 tracking-tight lh-sm fw-custom">
+                            Want to get in
+                            touch?
+                        </h2>
                         <div>
-                            <span class="b-txt"><b>Have an idea?</b></span> Do you need some help with it? Avidclan Technologies would love
+                            <span><b class="fs-4">Have an idea?</b></span> Do you need some help with it? Avidclan
+                            Technologies would love
                             to help you! Kindly click on ‘Contact Us’ to reach us and share your query.
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 col-lg-4 col-xl-5 text-end">
-                    <div class="btn-box">
-                        <a href="~/contact-us/" class="theme-btn btn-style-one btn-light">
-                            <span class="btn-title"><span class="iconify me-2" data-icon="ion:call-sharp" data-height="25"></span>Contact Us</span>
+                <div class="col-md-12 col-lg-4 col-xl-5 text-center text-lg-end">
+                    <div class="btn-box mt-lg-0 mt-4">
+                        <a href="~/contact-us/"
+                           class="btn btn-secondary bg-white position-relative fw-bold rounded-5 overflow-hidden align-middle text-capitalize">
+                            <span class="btn-title py-2 px-3">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                     class="iconify iconify--ion me-2" width="25" height="25"
+                                     preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"
+                                     data-icon="ion:call-sharp" data-height="25">
+                                    <path fill="currentColor"
+                                          d="M478.94 370.14c-5.22-5.56-23.65-22-57.53-43.75c-34.13-21.94-59.3-35.62-66.52-38.81a3.83 3.83 0 0 0-3.92.49c-11.63 9.07-31.21 25.73-32.26 26.63c-6.78 5.81-6.78 5.81-12.33 4c-9.76-3.2-40.08-19.3-66.5-45.78s-43.35-57.55-46.55-67.3c-1.83-5.56-1.83-5.56 4-12.34c.9-1.05 17.57-20.63 26.64-32.25a3.83 3.83 0 0 0 .49-3.92c-3.19-7.23-16.87-32.39-38.81-66.52c-21.78-33.87-38.2-52.3-43.76-57.52a3.9 3.9 0 0 0-3.89-.87a322.4 322.4 0 0 0-56 25.45A338 338 0 0 0 33.35 92a3.83 3.83 0 0 0-1.26 3.74c2.09 9.74 12.08 50.4 43.08 106.72c31.63 57.48 53.55 86.93 100 133.22S252 405.21 309.54 436.84c56.32 31 97 41 106.72 43.07a3.86 3.86 0 0 0 3.75-1.26A337.7 337.7 0 0 0 454.35 430a322.7 322.7 0 0 0 25.45-56a3.9 3.9 0 0 0-.86-3.86">
+                                    </path>
+                                </svg>Contact Us
+                            </span>
                         </a>
                     </div>
                 </div>
@@ -593,153 +561,232 @@
     </div>
 </section>
 
-<section class="services-section-four lightblue-bg homesec">
+<section class="services-section-four custom-bg homesec">
     <div class="container">
         <div class="row">
-            <div class="col-xl-12">
-                <div class="avidclan_section_title text-center mb-50">
-                    <p class="avidclan_sub_title primary-color">OUR CORE SERVICES</p>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="text-center mb-3 mb-md-5">
+                    <div class="line-heading d-flex align-items-center justify-content-center gap-3 mb-3">
+                        <h5 class="primary-color fw-semibold d-inline-block text-uppercase mb-0">OUR CORE SERVICES</h5>
+                    </div>
                     <div class="sec-title">
-                        <h2 class="pb-3 p-0">Our Custom Software Development Services</h2>
-                        <p class="text m-0 header_description">Avidclan Technologies, a pioneer in AI/ML-powered app development, empowers businesses across industries with cutting-edge digital solutions that optimize business operations and drive growth.</p>
+                        <h2 class="fs-1 fw-custom pb-2">Our Custom Software Development Services</h2>
+                        <p class="text m-0 header_description fs-5">
+                            Avidclan Technologies, a pioneer in
+                            AI/ML-powered app development, empowers businesses across industries with cutting-edge
+                            digital solutions that optimize business operations and drive growth.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 col-lg-4">
-                <div class="service-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <img class="lazy-image"
-                                 src="~/assets/images/web-dev.svg"
+        <div class="row d-flex flex-wrap">
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-5">
+                <div class="service-block h-100 mb-5">
+                    <div class="inner-box bg-white py-3 px-5 rounded-3 h-100 d-flex flex-column">
+                        <div class="image-box text-center">
+                            <img class="w-auto opacity-100 m-auto"
+                                 src="~/assets/images/imagenew/web-dev.svg"
                                  data-src="~/assets/images/resource/image-31.jpg"
                                  alt="Web Development Service Company"
                                  data-was-processed="true"
-                                 width="100"
-                                 height="100" loading="lazy" />
+                                 loading="lazy" />
                         </div>
-                        <div class="content">
-                            <h3>Web Development</h3>
-                            <div class="text">
-                                We build and maintain websites that look great, work fast and perform well with a seamless user
+                        <!-- content div still expands -->
+                        <div class="content py-2 pb-3 text-center d-flex flex-column flex-grow-1">
+                            <h3 class="fw-bold fs-4">Web Development</h3>
+                            <!-- text div still expands to push wrapper down -->
+                            <div class="text fs-6">
+                                We build and maintain websites that look great, work fast and perform well with a
+                                seamless user
                                 experience.
                             </div>
-                            <a href="~/web-development-services/" class="theme-btn btn-style-one">
-                                <span class="btn-title">
-                                    Learn About
-                                    <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
-                                </span>
-                            </a>
+                            <!-- Wrapper for button: pushes itself down and centers the button -->
+                            <div class="mt-auto text-center">
+                                <!-- Added pt-2 for spacing -->
+                                <a href="~/web-development-services/"
+                                   class="btn btn-primary fw-bold rounded-5 btn_position btn_position">
+                                    <!-- Removed mt-auto from button -->
+                                    <span class="py-2 px-2">
+                                        Learn About
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                             class="iconify iconify--entypo ms-2" width="18" height="18"
+                                             preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20"
+                                             data-icon="entypo:arrow-long-right" data-height="18">
+                                            <path fill="currentColor" d="M14 15.5V12H1V8h13V4.5l5.25 5.5z"></path>
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="service-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <img class="lazy-image" src="~/assets/images/UI-design.svg" alt="UI/UX-Design-Agency" width="100" height="100" loading="lazy" />
+
+            <!-- Repeat similar structure for other 5 cards -->
+
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-5">
+                <div class="service-block h-100 mb-5">
+                    <div class="inner-box bg-white py-3 px-5 rounded-3 h-100 d-flex flex-column">
+                        <div class="image-box text-center">
+                            <img loading="lazy" class="w-auto opacity-100 m-auto" src="~/assets/images/imagenew/UI-design.svg" alt="UI/UX-Design-Agency">
                         </div>
-                        <div class="content">
-                            <h3>UI/UX Design</h3>
-                            <div class="text">
-                                End-to-end services including adaptive intelligent interfaces, interactive experiences and UI
-                                automation.
+                        <div class="content py-2 pb-3 text-center d-flex flex-column flex-grow-1">
+                            <h3 class="fw-bold fs-4">UI/UX Design</h3>
+                            <div class="text fs-6">
+                                End-to-end services including adaptive intelligent interfaces, interactive
+                                experiences and UI automation.
                             </div>
-                            <a href="~/design/" class="theme-btn btn-style-one">
-                                <span class="btn-title">
-                                    Learn About
-                                    <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
-                                </span>
-                            </a>
+                            <!-- Wrapper for button -->
+                            <div class="mt-auto text-center">
+                                <a href="~/design/"
+                                   class="btn btn-primary fw-bold rounded-5 btn_position">
+                                    <span class="py-2 px-2">
+                                        Learn About
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                             class="iconify iconify--entypo ms-2" width="18" height="18"
+                                             preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20"
+                                             data-icon="entypo:arrow-long-right" data-height="18">
+                                            <path fill="currentColor" d="M14 15.5V12H1V8h13V4.5l5.25 5.5z"></path>
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="service-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <img class="lazy-image" src="~/assets/images/mobile-app.svg" alt="mobile-app-development-company" width="100" height="100" loading="lazy" />
+
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-5">
+                <div class="service-block h-100 mb-5">
+                    <div class="inner-box bg-white py-3 px-5 rounded-3 h-100 d-flex flex-column">
+                        <div class="image-box text-center">
+                            <img loading="lazy" class="w-auto opacity-100 m-auto" src="~/assets/images/imagenew/mobile-app.svg" alt="mobile-app-development-company">
                         </div>
-                        <div class="content">
-                            <h3>Mobile Apps</h3>
-                            <div class="text">
-                                Designing and developing softwares specifically to adhere to the unique features offered by a
-                                mobile device.
+                        <div class="content py-2 pb-3 text-center d-flex flex-column flex-grow-1">
+                            <h3 class="fw-bold fs-4">Mobile Apps</h3>
+                            <div class="text fs-6">
+                                Designing and developing softwares specifically to adhere to the unique features
+                                offered by a mobile device.
                             </div>
-                            <a href="~/mobile-application-development/" class="theme-btn btn-style-one">
-                                <span class="btn-title">
-                                    Learn About
-                                    <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
-                                </span>
-                            </a>
+                            <!-- Wrapper for button -->
+                            <div class="mt-auto text-center">
+                                <a href="~/mobile-application-development/"
+                                   class="btn btn-primary fw-bold rounded-5 btn_position">
+                                    <span class="py-2 px-2">
+                                        Learn About
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                             class="iconify iconify--entypo ms-2" width="18" height="18"
+                                             preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20"
+                                             data-icon="entypo:arrow-long-right" data-height="18">
+                                            <path fill="currentColor" d="M14 15.5V12H1V8h13V4.5l5.25 5.5z"></path>
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="service-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <img class="lazy-image" src="~/assets/images/Internet-marketing.svg" alt="internet-marketing-company" width="100" height="100" loading="lazy" />
+
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-5">
+                <div class="service-block h-100 mb-5">
+                    <div class="inner-box bg-white py-3 px-5 rounded-3 h-100 d-flex flex-column">
+                        <div class="image-box text-center">
+                            <img loading="lazy" class="w-auto opacity-100 m-auto"
+                                 src="~/assets/images/imagenew/Internet-marketing.svg" alt="internet-marketing-company">
                         </div>
-                        <div class="content">
-                            <h3>Internet Marketing</h3>
-                            <div class="text">
-                                Use and apply strategies that can market products and services online through various digital
-                                platforms.
+                        <div class="content py-2 pb-3 text-center d-flex flex-column flex-grow-1">
+                            <h3 class="fw-bold fs-4">Internet Marketing</h3>
+                            <div class="text fs-6">
+                                Use and apply strategies that can market products and services online through
+                                various digital platforms.
                             </div>
-                            <a href="~/internet-marketing-services/" class="theme-btn btn-style-one">
-                                <span class="btn-title">
-                                    Learn About
-                                    <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
-                                </span>
-                            </a>
+                            <!-- Wrapper for button -->
+                            <div class="mt-auto text-center">
+                                <a href="~/internet-marketing-services/"
+                                   class="btn btn-primary fw-bold rounded-5 btn_position">
+                                    <span class="py-2 px-2">
+                                        Learn About
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                             class="iconify iconify--entypo ms-2" width="18" height="18"
+                                             preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20"
+                                             data-icon="entypo:arrow-long-right" data-height="18">
+                                            <path fill="currentColor" d="M14 15.5V12H1V8h13V4.5l5.25 5.5z"></path>
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="service-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <img class="lazy-image" src="~/assets/images/IoT.svg" alt="iot-internet-of-things" width="100" height="100" loading="lazy" />
+
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-5">
+                <div class="service-block h-100 mb-5">
+                    <div class="inner-box bg-white py-3 px-5 rounded-3 h-100 d-flex flex-column">
+                        <div class="image-box text-center">
+                            <img loading="lazy" class="w-auto opacity-100 m-auto" src="~/assets/images/imagenew/IoT.svg" alt="iot-internet-of-things">
                         </div>
-                        <div class="content">
-                            <h3>IoT</h3>
-                            <div class="text">
-                                Provide reliable and efficient interconnectivity to all your digital devices by syncing them to a
-                                cloud.
+                        <div class="content py-2 pb-3 text-center d-flex flex-column flex-grow-1">
+                            <h3 class="fw-bold fs-4">IoT</h3>
+                            <div class="text fs-6">
+                                Provide reliable and efficient interconnectivity to all your digital devices by
+                                syncing them to a cloud.
                             </div>
-                            <a href="~/iot-service-providers/" class="theme-btn btn-style-one">
-                                <span class="btn-title">
-                                    Learn About
-                                    <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
-                                </span>
-                            </a>
+                            <!-- Wrapper for button -->
+                            <div class="mt-auto text-center">
+                                <a href="~/iot-service-providers/"
+                                   class="btn btn-primary fw-bold rounded-5 btn_position">
+                                    <span class="py-2 px-2">
+                                        Learn About
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                             class="iconify iconify--entypo ms-2" width="18" height="18"
+                                             preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20"
+                                             data-icon="entypo:arrow-long-right" data-height="18">
+                                            <path fill="currentColor" d="M14 15.5V12H1V8h13V4.5l5.25 5.5z"></path>
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="service-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <img class="lazy-image" src="~/assets/images/QA-services.svg" alt="qa-testing-services" width="100" height="100" loading="lazy" />
+
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-5">
+                <div class="service-block h-100 mb-5">
+                    <div class="inner-box bg-white py-3 px-5 rounded-3 h-100 d-flex flex-column">
+                        <div class="image-box text-center">
+                            <img loading="lazy" class="w-auto opacity-100 m-auto" src="~/assets/images/imagenew/QA-services.svg" alt="qa-testing-services">
                         </div>
-                        <div class="content">
-                            <h3>QA Services</h3>
-                            <div class="text">
-                                Checking for bugs and making sure your software works efficiently and to your satisfaction.
+                        <div class="content py-2 pb-3 text-center d-flex flex-column flex-grow-1">
+                            <h3 class="fw-bold fs-4">QA Services</h3>
+                            <div class="text fs-6">
+                                Checking for bugs and making sure your software works efficiently and to your
+                                satisfaction.
                             </div>
-                            <a href="~/quality-assurance-services/" class="theme-btn btn-style-one">
-                                <span class="btn-title">
-                                    Learn About
-                                    <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
-                                </span>
-                            </a>
+                            <!-- Wrapper for button -->
+                            <div class="mt-auto text-center">
+                                <a href="~/quality-assurance-services/"
+                                   class="btn btn-primary fw-bold rounded-5 btn_position">
+                                    <span class="py-2 px-2">
+                                        Learn About
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                             class="iconify iconify--entypo ms-2" width="18" height="18"
+                                             preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20"
+                                             data-icon="entypo:arrow-long-right" data-height="18">
+                                            <path fill="currentColor" d="M14 15.5V12H1V8h13V4.5l5.25 5.5z"></path>
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -748,95 +795,105 @@
     </div>
 </section>
 
-<!-- Industry Serve Section five -->
-<section class="section industry-serve style-three pb-0">
+<section class="industry-serve py-5">
     <div class="container">
         <div class="row">
-            <div class="col-xl-12">
-                <div class="avidclan_section_title text-center mb-50">
-                    <h5 class="avidclan_sub_title primary-color section_header">INDUSTRIES</h5>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="text-center mb-3 mb-md-5">
+                    <div class="line-heading d-flex align-items-center justify-content-center gap-3 mb-3">
+                        <h5 class="primary-color fw-semibold d-inline-block text-uppercase mb-0">NDUSTRIES</h5>
+                    </div>
                     <div class="sec-title">
-                        <h2 class="pb-3 p-0 header_subtitle">Industries We Serve</h2>
-                        <p class="text m-0 header_description">We tackle challenges across industries, from healthcare to finance. Let's unlock your potential.</p>
+                        <h2 class="fs-1 fw-custom pb-2">Industries We Serve</h2>
+                        <p class="text m-0 header_description fs-5">
+                            We tackle challenges across industries, from
+                            healthcare to finance. Let's unlock your potential.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6 service-block-five">
-                <div class="inner-box bg1">
-                    <div class="content-box">
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4 service-block-five">
+                <div class="inner-box  custom-bg rounded-3 mb-4 h-100">
+                    <div class=" p-4 rounded text-center content-box">
                         <div class="icon">
-                            <img src="~/assets/images/POS.svg" class="img-fluid" alt="POS-and-Retail" width="346" height="220" loading="lazy" />
+                            <img src="~/assets/images/imagenew/POS.svg" class="img-fluid" alt="POS-and-Retail" width="346" height="220" loading="lazy" />
                         </div>
-                        <h4>POS & Retail</h4>
-                        <p>
-                            We can create checkout systems that are super easy to use, both for your cashiers and your customers. No more long lines or frustration!
+                        <h4 class="fs-4 mb-3 fw-semibold">POS &amp; Retail</h4>
+                        <p class="text mb-0">
+                            We can create checkout systems that are super easy to use, both for your cashiers and
+                            your customers. No more long lines or frustration!
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 service-block-five">
-                <div class="inner-box bg2">
-                    <div class="content-box">
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4 service-block-five">
+                <div class="inner-box  custom-bg rounded-3 mb-4 h-100">
+                    <div class=" p-4 rounded text-center content-box">
                         <div class="icon">
-                            <img src="~/assets/images/healthcare.svg" alt="life-and-healthcare" class="img-fluid" width="330" height="220" loading="lazy" />
+                            <img src="~/assets/images/imagenew/healthcare.svg" alt="life-and-healthcare" class="img-fluid" width="330" height="220" loading="lazy" />
                         </div>
-                        <h4>Life & Health Care</h4>
-                        <p>
-                            We design custom apps to make things easier for doctors, nurses, and patients alike. Imagine helpful tools to keep everyone organized and healthy!
+                        <h4 class="fs-4 mb-3 fw-semibold">Life & Health Care</h4>
+                        <p class="text mb-0">
+                            We design custom apps to make things easier for doctors, nurses, and patients alike.
+                            Imagine helpful tools to keep everyone organized and healthy!
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 service-block-five">
-                <div class="inner-box bg3">
-                    <div class="content-box">
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4 service-block-five">
+                <div class="inner-box  custom-bg rounded-3 mb-4 h-100">
+                    <div class=" p-4 rounded text-center content-box">
                         <div class="icon">
-                            <img src="~/assets/images/petroleum.svg" alt="petroleum-industry" class="img-fluid" width="351" height="219" loading="lazy" />
+                            <img src="~/assets/images/imagenew/petroleum.svg" alt="petroleum-industry" class="img-fluid" width="351" height="219" loading="lazy" />
                         </div>
-                        <h4>Petroleum Industry</h4>
-                        <p>
-                            The world runs on computers these days, and that includes keeping track of oil and gas. We build software that helps these companies run smoothly.
+                        <h4 class="fs-4 mb-3 fw-semibold">Petroleum Industry</h4>
+                        <p class="text mb-0">
+                            The world runs on computers these days, and that includes keeping track of oil and gas.
+                            We build software that helps these companies run smoothly.
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 service-block-five">
-                <div class="inner-box bg4">
-                    <div class="content-box">
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4 service-block-five">
+                <div class="inner-box  custom-bg rounded-3 mb-4 h-100">
+                    <div class=" p-4 rounded text-center content-box">
                         <div class="icon">
-                            <img src="~/assets/images/ecommerce.svg" alt="ecommerce-development" class="img-fluid" width="311" height="220" loading="lazy" />
+                            <img src="~/assets/images/imagenew/ecommerce.svg" alt="ecommerce-development" class="img-fluid" width="311" height="220" loading="lazy" />
                         </div>
-                        <h4>ECommerce</h4>
-                        <p>
-                            We can create top-notch online stores for your business. Our systems are easy to use and can be accessed from anywhere with an internet connection.
+                        <h4 class="fs-4 mb-3 fw-semibold">ECommerce</h4>
+                        <p class="text mb-0">
+                            We can create top-notch online stores for your business. Our systems are easy to use and
+                            can be accessed from anywhere with an internet connection.
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 service-block-five">
-                <div class="inner-box bg6">
-                    <div class="content-box">
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4 service-block-five">
+                <div class="inner-box  custom-bg rounded-3 mb-4 h-100">
+                    <div class=" p-4 rounded text-center content-box">
                         <div class="icon">
-                            <img src="~/assets/images/finance.svg" alt="finance-and-insurance-market" class="img-fluid" width="285" height="220" loading="lazy" />
+                            <img src="~/assets/images/imagenew/finance.svg" alt="finance-and-insurance-market" class="img-fluid" width="285" height="220" loading="lazy" />
                         </div>
-                        <h4>Finance & Insurance Market</h4>
-                        <p>
-                            We build systems that automate tasks, so you can spend less time pushing paper and more time helping your customers.
+                        <h4 class="fs-4 mb-3 fw-semibold">Finance & Insurance Market</h4>
+                        <p class="text mb-0">
+                            We build systems that automate tasks, so you can spend less time pushing paper and more
+                            time helping your customers.
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 service-block-five">
-                <div class="inner-box bg5">
-                    <div class="content-box">
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4 service-block-five">
+                <div class="inner-box  custom-bg rounded-3 mb-4 h-100">
+                    <div class=" p-4 rounded text-center content-box">
                         <div class="icon">
-                            <img src="~/assets/images/education.svg" alt="education-and-training" class="img-fluid" width="247" height="220" loading="lazy" />
+                            <img src="~/assets/images/imagenew/education.svg" alt="education-and-training" class="img-fluid" width="247" height="220" loading="lazy" />
                         </div>
-                        <h4>Education & Training</h4>
-                        <p>
-                            We design all sorts of learning platforms, from simple online courses to more complex systems that can manage everything for you.
+                        <h4 class="fs-4 mb-3 fw-semibold">Education & Training</h4>
+                        <p class="text mb-0">
+                            We design all sorts of learning platforms, from simple online courses to more complex
+                            systems that can manage everything for you.
                         </p>
                     </div>
                 </div>
@@ -845,207 +902,263 @@
     </div>
 </section>
 
-<section class="portfolio-section lightblue-bg">
+<section class="p-3 p-md-5 custom-bg ">
     <div class="container">
         <div class="row">
-            <div class="col-xl-12">
-                <div class="avidclan_section_title text-center mb-50">
-                    <p class="avidclan_sub_title primary-color">TECHNOLOGIES</p>
+            <div class="col-lg-12">
+                <div class="text-center mb-3 mb-md-5">
+                    <div class="line-heading d-flex align-items-center justify-content-center gap-3 mb-3">
+                        <h5 class="primary-color fw-semibold d-inline-block text-uppercase mb-0">TECHNOLOGIES</h5>
+                    </div>
                     <div class="sec-title">
-                        <h2 class="pb-3 p-0">Technologies and Platforms We Use</h2>
-                        <p class="text m-0 header_description">From AI and machine learning to cloud solutions, we craft solutions for your unique technological needs.</p>
+                        <h2 class="fs-1 fw-custom pb-2">Technologies and Platforms We Use</h2>
+                        <p class="text m-0 header_description fs-5">
+                            From AI and machine learning to cloud solutions, we craft solutions for your unique
+                            technological needs.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-        <!--Sortable Galery-->
+
         <div class="sortable-masonry">
-            <!--Filter-->
-            <div class="filters clearfix">
-                <ul class="filter-tabs filter-btns clearfix">
-                    <li class="filter active" data-role="button" data-filter=".fe-tech">Front End</li>
-                    <li class="filter" data-role="button" data-filter=".be-tech">Backend</li>
-                    <li class="filter" data-role="button" data-filter=".mobile-tech">Mobile</li>
-                    <li class="filter" data-role="button" data-filter=".db-tech">Database</li>
+            <div class="filters clearfix mb-5 d-flex justify-content-center">
+                <ul class="filter-tabs filter-btns custom-bg rounded-circle p-2 d-flex flex-wrap align-items-center justify-content-around">
+                    <li class="btn fw-bold py-2 px-3 rounded-5 filter active" data-role="button" data-filter=".fe-tech">Front End</li>
+                    <li class="btn fw-bold py-2 px-3 rounded-5 filter" data-role="button" data-filter=".be-tech">
+                        Back
+                        End
+                    </li>
+                    <li class="btn fw-bold py-2 px-3 rounded-5 filter" data-role="button" data-filter=".mobile-tech">
+                        Mobile
+                    </li>
+                    <li class="btn fw-bold py-2 px-3 rounded-5 filter" data-role="button" data-filter=".db-tech">
+                        Database
+                    </li>
                 </ul>
             </div>
 
-            <div class="items-container row clearfix justify-content-center">
-                <!-- Case Block -->
-                <div class="case-block-one masonry-item mobile-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/ios-app-development-company/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/ios.svg" alt="ios-app-development" width="60" height="60" loading="lazy" />
+            <div class="items-container row clearfix">
+                <!-- ✅ Frontend -->
+                <div class="case-block-one masonry-item fe-tech col-4 col-sm-4 col-md-3 col-lg-2">
+                    <a class="inner-box py-4 px-1  text-center d-block"
+                       href="~/reactjs-development-services/">
+                        <div class="image overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/react-native.svg" alt="react-native-app-development">
                         </div>
-                        <p>iOS</p>
-                    </a>
-                </div>
-                <div class="case-block-one masonry-item mobile-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/android-app-development-company/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/android.svg" alt="android-app-development-company" width="60" height="60" loading="lazy" />
-                        </div>
-                        <p>Android</p>
-                    </a>
-                </div>
-                <div class="case-block-one masonry-item mobile-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/react-native-app-development/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/react-native.svg" alt="react-native-app-development" width="60" height="60" loading="lazy" />
-                        </div>
-                        <p>React Native</p>
+                        <p class="text-decoration-none mt-2">React Js</p>
                     </a>
                 </div>
                 <div class="case-block-one masonry-item fe-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/reactjs-development-services/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/react-native.svg" alt="react-native-app-development" width="60" height="60" loading="lazy" />
+                    <a class="inner-box py-4 px-1  text-center d-block"
+                       href="~/angular-development-services/">
+                        <div class="image  overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/angular.svg" alt="angular-programming">
                         </div>
-                        <p>React Js</p>
-                    </a>
-                </div>
-                <div class="case-block-one masonry-item mobile-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/flutter-app-development-company/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/flutter.svg" alt="flutter-app-development" width="60" height="60" loading="lazy" />
-                        </div>
-                        <p>Flutter</p>
-                    </a>
-                </div>
-                <div class="case-block-one masonry-item mobile-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/ionic-app-development-company/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/ionic.svg" alt="ionic-framework" width="60" height="60" loading="lazy" />
-                        </div>
-                        <p>Ionic</p>
+                        <p class="text-decoration-none mt-2">Angular Js</p>
                     </a>
                 </div>
                 <div class="case-block-one masonry-item fe-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/angular-development-services/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/angular.svg" alt="angular-programming" width="60" height="60" loading="lazy" />
+                    <a class="inner-box py-4 px-1  text-center d-block"
+                       href="~/typescript-web-development/">
+                        <div class="image  overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/typescript.svg" alt="typescript-web-development-services">
                         </div>
-                        <p>Angular JS</p>
-                    </a>
-                </div>
-                <div class="case-block-one masonry-item mobile-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/xamarin-app-development-company/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/xamarin.svg" alt="xamarin-mobile-app-development" width="60" height="60" loading="lazy" />
-                        </div>
-                        <p>Xamarin</p>
+                        <p class="text-decoration-none mt-2">Type Script</p>
                     </a>
                 </div>
                 <div class="case-block-one masonry-item fe-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/typescript-web-development/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/typescript.svg" alt="typescript-web-development-services" width="60" height="60" loading="lazy" />
+                    <a class="inner-box py-4 px-1  text-center d-block"
+                       href="~/vuejs-development-services/">
+                        <div class="image  overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/vuejs.svg" alt="vuejs-development-company">
                         </div>
-                        <p>TypeScript</p>
+                        <p class="text-decoration-none mt-2">Vue</p>
                     </a>
                 </div>
                 <div class="case-block-one masonry-item fe-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/vuejs-development-services/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/vuejs.svg" alt="vuejs-development-company" width="60" height="60" loading="lazy" />
+                    <a class="inner-box py-4 px-1  text-center d-block"
+                       href="~/html5-development/">
+                        <div class="image  overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/html5.svg" alt="responsive-web-design-with-html5">
                         </div>
-                        <p>Vue</p>
+                        <p class="text-decoration-none mt-2">HTML 5</p>
                     </a>
                 </div>
-                <div class="case-block-one masonry-item fe-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/html5-development/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/html5.svg" alt="responsive-web-design-with-html5" width="60" height="60" loading="lazy" />
+
+                <!-- ✅ Backend -->
+                <div class="case-block-one masonry-item be-tech col-4 col-sm-4 col-md-3 col-lg-2"
+                     style="display: none;">
+                    <a class="inner-box py-4 px-1 text-center d-block"
+                       href="~/dot-net-development-company/">
+                        <div class="image overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/dotnet.svg" alt="dot-net-framework">
                         </div>
-                        <p>HTML5</p>
+                        <p class="text-decoration-none mt-2">.NET</p>
                     </a>
                 </div>
-                <div class="case-block-one masonry-item db-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/microsoft-sql-server-manage/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/sql-server.svg" alt="sql-server-management-studio" width="60" height="60" loading="lazy" />
+                <div class="case-block-one masonry-item be-tech col-4 col-sm-4 col-md-3 col-lg-2"
+                     style="display: none;">
+                    <a class="inner-box py-4 px-1 text-center d-block"
+                       href="~/java-development-company/">
+                        <div class="image overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/java.svg" alt="java-jdk-development">
                         </div>
-                        <p>MS SQL</p>
+                        <p class="text-decoration-none mt-2">Java</p>
                     </a>
                 </div>
-                <div class="case-block-one masonry-item db-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/mysql-development-company/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/mysql.svg" style="width: 100px" alt="php-mysql" width="60" height="60" loading="lazy" />
+                <div class="case-block-one masonry-item be-tech col-4 col-sm-4 col-md-3 col-lg-2"
+                     style="display: none;">
+                    <a class="inner-box py-4 px-1 text-center d-block"
+                       href="~/php-development-company/">
+                        <div class="image overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/php.svg" alt="php-development-company">
                         </div>
-                        <p>MySQL</p>
+                        <p class="text-decoration-none mt-2">PHP</p>
                     </a>
                 </div>
-                <div class="case-block-one masonry-item db-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/mongodb-development-company/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/mongodb.svg" alt="mongodb-nodejs-development" width="60" height="60" loading="lazy" />
+                <div class="case-block-one masonry-item be-tech col-4 col-sm-4 col-md-3 col-lg-2"
+                     style="display: none;">
+                    <a class="inner-box py-4 px-1 text-center d-block"
+                       href="~/nodejs-development-services/">
+                        <div class="image overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/nodejs.svg" alt="nodejs-development">
                         </div>
-                        <p>Mongo DB</p>
+                        <p class="text-decoration-none mt-2">Node.Js</p>
                     </a>
                 </div>
-                <div class="case-block-one masonry-item db-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/postgresql-development-company/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/postgresql.svg" alt="python-postgresql" width="60" height="60" loading="lazy" />
+
+                <!-- ✅ Mobile -->
+                <div class="case-block-one masonry-item mobile-tech col-4 col-sm-4 col-md-3 col-lg-2"
+                     style="display: none;">
+                    <a class="inner-box py-4 px-1 text-center d-block"
+                       href="~/ios-app-development-company/">
+                        <div class="image overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/ios.svg">
                         </div>
-                        <p>PostgreSQL</p>
+                        <p class="text-decoration-none mt-2">IOS</p>
                     </a>
                 </div>
-                <div class="case-block-one masonry-item db-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/firebase-development-company/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/firebase.svg" alt="react-native-firebase" width="60" height="60" loading="lazy" />
+                <div class="case-block-one masonry-item mobile-tech col-4 col-sm-4 col-md-3 col-lg-2"
+                     style="display: none;">
+                    <a class="inner-box py-4 px-1 text-center d-block"
+                       href="~/android-app-development-company/">
+                        <div class="image overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/android.svg">
                         </div>
-                        <p>Firebase</p>
+                        <p class="text-decoration-none mt-2">Android</p>
                     </a>
                 </div>
-                <div class="case-block-one masonry-item db-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/redis-development/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/redis.svg" alt="python-redis-docker" width="60" height="60" loading="lazy" />
+                <div class="case-block-one masonry-item mobile-tech col-4 col-sm-4 col-md-3 col-lg-2"
+                     style="display: none;">
+                    <a class="inner-box py-4 px-1 text-center d-block"
+                       href="~/react-native-app-development/">
+                        <div class="image overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/react-native.svg">
                         </div>
-                        <p>Redis</p>
+                        <p class="text-decoration-none mt-2">React Native</p>
                     </a>
                 </div>
-                <div class="case-block-one masonry-item db-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/microsoft-azure-cosmos-db/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/azure-cosmos-DB.svg" alt="azure-cosmos-DB" width="60" height="60" loading="lazy" />
+                <div class="case-block-one masonry-item mobile-tech col-4 col-sm-4 col-md-3 col-lg-2"
+                     style="display: none;">
+                    <a class="inner-box py-4 px-1 text-center d-block"
+                       href="~/flutter-app-development-company/">
+                        <div class="image overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/flutter.svg">
                         </div>
-                        <p>Azure Cosmos DB</p>
+                        <p class="text-decoration-none mt-2">Flutter</p>
                     </a>
                 </div>
-                <div class="case-block-one masonry-item be-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/dot-net-development-company/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/dotnet.svg" alt="dot-net-framework" width="60" height="60" loading="lazy" />
+                <div class="case-block-one masonry-item mobile-tech col-4 col-sm-4 col-md-3 col-lg-2"
+                     style="display: none;">
+                    <a class="inner-box py-4 px-1 text-center d-block"
+                       href="~/ionic-app-development-company/">
+                        <div class="image overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/ionic.svg">
                         </div>
-                        <p>.NET</p>
+                        <p class="text-decoration-none mt-2">Ionic</p>
                     </a>
                 </div>
-                <div class="case-block-one masonry-item be-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/java-development-company/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/java.svg" alt="java-jdk-development" width="60" height="60" loading="lazy" />
+                <div class="case-block-one masonry-item mobile-tech col-4 col-sm-4 col-md-3 col-lg-2"
+                     style="display: none;">
+                    <a class="inner-box py-4 px-1 text-center d-block"
+                       href="~/xamarin-app-development-company/">
+                        <div class="image overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/xamarin.svg">
                         </div>
-                        <p>Java</p>
+                        <p class="text-decoration-none mt-2">Xamarin</p>
                     </a>
                 </div>
-                <div class="case-block-one masonry-item be-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/php-development-company/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/php.svg" alt="php-development-company" width="60" height="60" loading="lazy" />
+
+                <!-- ✅ Database -->
+                <div class="case-block-one masonry-item db-tech col-4 col-sm-4 col-md-3 col-lg-2"
+                     style="display: none;">
+                    <a class="inner-box py-4 px-1 text-center d-block"
+                       href="~/microsoft-sql-server-manage/">
+                        <div class="image overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/sql-server.svg">
                         </div>
-                        <p>PHP</p>
+                        <p class="text-decoration-none mt-2">MS SQL</p>
                     </a>
                 </div>
-                <div class="case-block-one masonry-item be-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <a class="inner-box" href="~/nodejs-development-services/">
-                        <div class="image">
-                            <img src="~/assets/images/icons/nodejs.svg" alt="nodejs-development" width="60" height="60" loading="lazy" />
+                <div class="case-block-one masonry-item db-tech col-4 col-sm-4 col-md-3 col-lg-2"
+                     style="display: none;">
+                    <a class="inner-box py-4 px-1 text-center d-block"
+                       href="~/mysql-development-company/">
+                        <div class="image overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/mysql.svg">
                         </div>
-                        <p>Node.JS</p>
+                        <p class="text-decoration-none mt-2">MySQL</p>
+                    </a>
+                </div>
+                <div class="case-block-one masonry-item db-tech col-4 col-sm-4 col-md-3 col-lg-2"
+                     style="display: none;">
+                    <a class="inner-box py-4 px-1 text-center d-block"
+                       href="~/mongodb-development-company/">
+                        <div class="image overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/mongodb.svg">
+                        </div>
+                        <p class="text-decoration-none mt-2">Mongo DB</p>
+                    </a>
+                </div>
+                <div class="case-block-one masonry-item db-tech col-4 col-sm-4 col-md-3 col-lg-2"
+                     style="display: none;">
+                    <a class="inner-box py-4 px-1 text-center d-block"
+                       href="~/postgresql-development-company/">
+                        <div class="image overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/postgresql.svg">
+                        </div>
+                        <p class="text-decoration-none mt-2">PostgreSQL</p>
+                    </a>
+                </div>
+                <div class="case-block-one masonry-item db-tech col-4 col-sm-4 col-md-3 col-lg-2"
+                     style="display: none;">
+                    <a class="inner-box py-4 px-1 text-center d-block"
+                       href="~/firebase-development-company/">
+                        <div class="image overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/firebase.svg" />
+                        </div>
+                        <p class="text-decoration-none mt-2">Firebase</p>
+                    </a>
+                </div>
+                <div class="case-block-one masonry-item db-tech col-4 col-sm-4 col-md-3 col-lg-2"
+                     style="display: none;">
+                    <a class="inner-box py-4 px-1 text-center d-block"
+                       href="~/redis-development/">
+                        <div class="image overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/redis.svg">
+                        </div>
+                        <p class="text-decoration-none mt-2">Redis</p>
+                    </a>
+                </div>
+                <div class="case-block-one masonry-item db-tech col-4 col-sm-4 col-md-3 col-lg-2"
+                     style="display: none;">
+                    <a class="inner-box py-4 px-1 text-center d-block"
+                       href="~/microsoft-azure-cosmos-db/">
+                        <div class="image overflow-hidden rounded">
+                            <img loading="lazy" src="~/assets/images/imagenew/azure-cosmos-DB.svg">
+                        </div>
+                        <p class="text-decoration-none mt-2">Azure Cosmos DB</p>
                     </a>
                 </div>
             </div>
@@ -1053,27 +1166,161 @@
     </div>
 </section>
 
-<div id="testimonials">
-    @Html.Partial("_ClientFeedback")
-</div>
-
-<section class="lets-talk">
+<section class="p-3 p-md-5">
     <div class="container">
-        <div class="inner-block">
-            <div class="row align-items-center">
-                <div class="col-md-12 col-lg-8 col-xl-7">
-                    <div class="sec-title mb-0">
-                        <p class="m-1">Facing a software challenge?</p>
-                        <h2>Have a brilliant idea for mobile application?</h2>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="text-center mb-3 mb-md-5">
+                    <div class="line-heading d-flex align-items-center justify-content-center gap-3 mb-3">
+                        <h5 class="primary-color fw-semibold d-inline-block text-uppercase mb-0">TESTIMONIAL</h5>
+                    </div>
+                    <div class="sec-title">
+                        <h2 class="fs-1 fw-custom pb-2 pb-md-3">What Our Clients Say</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded cinkes_testimonial_spage_wrapper p-3 p-md-5">
+            <div class="testimonial-slider">
+                <div class="testimonial-item">
+                    <p class="mb-lg-5 mb-2">
+                        Skillfully accomplished the complex development tasks. Team was available
+                        for discussion on changes or requests. It was a great pleasure to work
+                        with the Avidclan Technologies team.
+                    </p>
+                    <div class="d-flex align-items-center gap-4">
+                        <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/imagenew/2.jpg" />
                         <div>
-                            <span class="b-txt"><b>Avidclan Technologies is here to help!</b></span> Whether you need a complete software solution or expert guidance, we're passionate about turning your vision into reality. Simply click "Contact Us" to connect and hire dedicated web and mobile application developers for your project.
+                            <h5 class="fw-semibold">Darpon K.</h5>
+                            <p class="text-gray m-0 mb-2">CEO & Founder</p>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 col-lg-4 col-xl-5 text-end">
+
+                <div class="testimonial-item">
+                    <p class="mb-lg-5 mb-2">
+                        Skillfully accomplished the complex development tasks. Team was available
+                        for discussion on changes or requests. It was a great pleasure to work
+                        with the Avidclan Technologies team.
+                    </p>
+                    <div class="d-flex align-items-center gap-4">
+                        <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/imagenew/2.jpg" />
+                        <div>
+                            <h5 class="fw-semibold">Darpon K.</h5>
+                            <p class="text-gray m-0 mb-2">CEO & Founder</p>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <p class="mb-lg-5 mb-2">
+                        Skillfully accomplished the complex development tasks. Team was available
+                        for discussion on changes or requests. It was a great pleasure to work
+                        with the Avidclan Technologies team.
+                    </p>
+                    <div class="d-flex align-items-center gap-4">
+                        <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/imagenew/2.jpg" />
+                        <div>
+                            <h5 class="fw-semibold">Darpon K.</h5>
+                            <p class="text-gray m-0 mb-2">CEO & Founder</p>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-item">
+                    <p class="mb-lg-5 mb-2">
+                        Skillfully accomplished the complex development tasks. Team was available
+                        for discussion on changes or requests. It was a great pleasure to work
+                        with the Avidclan Technologies team.
+                    </p>
+                    <div class="d-flex align-items-center gap-4">
+                        <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/imagenew/2.jpg" />
+                        <div>
+                            <h5 class="fw-semibold">Darpon K.</h5>
+                            <p class="text-gray m-0 mb-2">CEO & Founder</p>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="left-aroow-radius prev">❮</button>
+                <button class="right-aroow-radius next">❯</button>
+            </div>
+        </div>
+
+
+
+    </div>
+</section>
+
+<style>
+</style>
+
+
+
+<section class="lets-talk">
+    <div class="container">
+        <div class="inner-block rounded-5 px-md-5 px-3 py-4 position-relative text-white ">
+            <div class="row align-items-center">
+                <div class="col-md-12 col-lg-8 col-xl-7">
+                    <div class="sec-title">
+                        <p class="m-1 text-white">Facing a software challenge?</p>
+                        <h2 class="d-flex  fs-1 pb-3 tracking-tight lh-sm fw-custom">
+                            Have a
+                            brilliant idea for mobile application?
+                        </h2>
+                        <div>
+                            <span><b class="fs-3">Avidclan Technologies is here to help!</b></span> Whether you need
+                            a complete software solution or expert guidance, we're passionate about turning your
+                            vision into reality. Simply click "Contact Us" to connect and hire dedicated web and
+                            mobile application developers for your project.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4 col-xl-5 mt-4 text-lg-end  text-center">
                     <div class="btn-box">
-                        <a href="~/services#project_inquiry_form" class="theme-btn btn-style-one btn-light">
-                            <span class="btn-title"><span class="iconify me-2" data-icon="ion:call-sharp" data-height="25"></span>Hire Developers</span>
+                        <a href="~/services#project_inquiry_form"
+                           class="btn btn-secondary bg-white  fw-bold rounded-5 overflow-hidden align-middle text-capitalize">
+                            <span class="btn-title py-2 px-3">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                     class="iconify iconify--ion me-2" width="25" height="25"
+                                     preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"
+                                     data-icon="ion:call-sharp" data-height="25">
+                                    <path fill="currentColor"
+                                          d="M478.94 370.14c-5.22-5.56-23.65-22-57.53-43.75c-34.13-21.94-59.3-35.62-66.52-38.81a3.83 3.83 0 0 0-3.92.49c-11.63 9.07-31.21 25.73-32.26 26.63c-6.78 5.81-6.78 5.81-12.33 4c-9.76-3.2-40.08-19.3-66.5-45.78s-43.35-57.55-46.55-67.3c-1.83-5.56-1.83-5.56 4-12.34c.9-1.05 17.57-20.63 26.64-32.25a3.83 3.83 0 0 0 .49-3.92c-3.19-7.23-16.87-32.39-38.81-66.52c-21.78-33.87-38.2-52.3-43.76-57.52a3.9 3.9 0 0 0-3.89-.87a322.4 322.4 0 0 0-56 25.45A338 338 0 0 0 33.35 92a3.83 3.83 0 0 0-1.26 3.74c2.09 9.74 12.08 50.4 43.08 106.72c31.63 57.48 53.55 86.93 100 133.22S252 405.21 309.54 436.84c56.32 31 97 41 106.72 43.07a3.86 3.86 0 0 0 3.75-1.26A337.7 337.7 0 0 0 454.35 430a322.7 322.7 0 0 0 25.45-56a3.9 3.9 0 0 0-.86-3.86">
+                                    </path>
+                                </svg>Hire Developers
+                            </span>
                         </a>
                     </div>
                 </div>
@@ -1081,8 +1328,15 @@
         </div>
     </div>
 </section>
-@*<script src="~/assets/js/swiper-bundle-min.js"></script>*@
-<script src="~/assets/js/swiper-bundle-min.min.js"></script>
+@*<button id="backToTop" class="back-to-top position-fixed background-primary rounded-circle p-2">
+        <img src="~/assets/images/imagenew/arrow-up (1).svg" alt="Back to Top" class="back-to-top-img" />
+    </button>*@
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="~/assets/js/Avidclan/owl.carousel.min.js"></script>
+@*<script src="js/owl.carousel.min.js"></script>*@
 <script>
     // Siwper JS
 
@@ -1109,5 +1363,58 @@
     });
 
 </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let filterButtons = document.querySelectorAll(".filter-tabs .filter");
+        let items = document.querySelectorAll(".masonry-item");
+
+        filterButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+
+                filterButtons.forEach((btn) => btn.classList.remove("active"));
+                this.classList.add("active");
+
+
+                let filterValue = this.getAttribute("data-filter");
+
+
+                items.forEach((item) => {
+                    if (item.classList.contains(filterValue.substring(1))) {
+                        item.style.display = "block";
+                    } else {
+                        item.style.display = "none";
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+
+<script>
+    $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 0,
+        nav: true,
+        dots: true,
+        navText: [
+            '<img src="/assets/images/imagenew/chevron-left.svg" alt="Left" width="50">',
+            '<img src="/assets/images/imagenew/chevron-right.svg"" alt="Right" width="50">'
+        ],
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 3
+            },
+            1200: {
+                items: 6
+            }
+        }
+    });
+
+</script>
 
 @Html.Partial("_FooterWith190")
+

@@ -9,39 +9,23 @@
     @RenderSection("AdditionalMeta", false)
 
     <meta name="msvalidate.01" content="C6EA7291CCD22012F734D3C6649F2F3F" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" media="all" href="~/assets/css/Avidclan/bootstrap-custom.css" />
+    <link rel="stylesheet" media="all" href="~/assets/css/Avidclan/home_old.css" />
+
     @*<link rel="stylesheet" media="all" href="~/assets/css/swiper.min.css" />*@
     <link rel="stylesheet" media="all" href="~/assets/css/all-min.css" />
-    <link rel="stylesheet" media="all" href="~/assets/css/Avidclan/bootstrap-custom.css" />
+
     @*<link rel="stylesheet" media="all" href="~/assets/css/Avidclan/home.min.css" />*@
-    <link rel="stylesheet" media="all" href="~/assets/css/Avidclan/home.css" />
+
     <link rel="stylesheet" href="~/assets/css/jquery.fancybox.min.css" media="print" onload="this.media='all';">
     <link rel="stylesheet" media="all" href="@Styles.Url("~/Content/css")" />
-    @*<link rel="stylesheet" media="all" href="@Styles.Url("~/bundles/modernizr")" defer />*@
-
-    <!-- Google Tag Manager -->
-    <script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-5HZ8ZV4Q');</script>
-    <!-- End Google Tag Manager -->
+    <link href="/assets/css/intlTelInput.css" rel="stylesheet" />
 </head>
 <body>
-    <!-- Preloader
-    <div class="loader-wrap">
-        <div class="preloader"></div>
-    </div>-->
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HZ8ZV4Q"
-                height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
+
 
     <div class="page-wrapper">
         <!-- Preloader -->
@@ -52,1475 +36,664 @@
                 <div class="layer layer-three"><span class="overlay"></span></div>
             </div>*@
         <!-- Main Header -->
-        <header class="main-header header-style-one">
-            <!-- Header Upper -->
-            <div class="header-upper">
-                <div class="container">
-                    <div class="inner-container clearfix">
-                        <!--Logo-->
-                        <div class="logo-box">
-                            <div class="logo">
-                                <a href="~/"><img src="~/assets/images/logo.svg" alt="Avidclan-Logo" width="100" height="100" /></a>
-                            </div>
-                        </div>
-                        <!--Nav Box-->
-                        <div class="nav-outer clearfix">
-                            <!--Mobile Navigation Toggler-->
-                            <div class="mobile-nav-toggler">
-                                <img src="~/assets/images/icons/icon-bar.png" alt="icon-bar" width="30" height="30" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <header class="main-header header-style-one" style="z-index: 99 !important;">
+            <nav class="navbar navbar-expand-lg bg-white custom-new-shadow w-100 position-fixed" style="z-index: 99 !important;">
+                <div class="container d-flex align-items-center justify-content-between">
 
-            <!-- Sticky Header  -->
-            <div class="sticky-header">
-                <div class="header-upper">
-                    <div class="container">
-                        <div class="inner-container clearfix">
-                            <!--Logo-->
-                            <div class="logo-box">
-                                <div class="logo">
-                                    <a href="~/"><img src="~/assets/images/logo.svg" alt="Avidclan-Logo" width="100" height="100" /></a>
-                                </div>
-                            </div>
-                            <!--Nav Box-->
-                            <div class="nav-outer clearfix">
-                                <!--Mobile Navigation Toggler-->
-                                <div class="mobile-nav-toggler">
-                                    <img src="~/assets/images/icons/icon-bar.png" alt="icon-bar" />
-                                </div>
+                    <a class="navbar-brand" href="#">
+                        <img loading="lazy" height="55" width="195" src="~/assets/images/imagenew/logo (1).svg" alt="Logo">
+                    </a>
+                    <button class="navbar-toggler shadow-none rounded-circle p-2" style="border: none;" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon" id="menuToggle">
+                            <img src="~/assets/images/imagenew/menu.png" alt="Menu" class="img-fluid" id="menuIcon">
+                        </span>
+                    </button>
 
-                                <!-- Main Menu -->
-                                <nav class="main-menu navbar-expand-md navbar-light">
-                                    <div class="collapse navbar-collapse show clearfix">
-                                        <ul class="navigation clearfix w3_megamenu">
-                                            @*<li><a href="~/home/">Home</a></li>
-                                                <li><a href="~/about-us/">About Us</a></li>*@
-                                            <li class="dropdown w3_megamenu-fw ser_menu">
-                                                <a href="~/services/">Services</a>
-                                                <ul class="dropdown-menu half" style="transform: translate(-461.5px);">
-                                                    @*<div class="dropdown-arrow"></div>*@
-                                                    <li class="w3_megamenu-content withoutdesc">
-                                                        <div class="row">
-                                                            <div class="col-sm-3">
-                                                                <h3 class="title">
-                                                                    <a href="~/web-development-company/">Web Development</a>
-                                                                </h3>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a aria-label="Enterprise Solutions" href="~/web-development-company#enterprise-solutions">Enterprise Solutions</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a aria-label="ECommerce" href="~/web-development-company#ecommerce">ECommerce</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a aria-label="API &amp; Backend" href="~/web-development-company#backend">API &amp; Backend</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a aria-label="Custom Development"
-                                                                           href="~/web-development-company#custom-development">Custom Development</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-sm-3">
-                                                                <h3 class="title">
-                                                                    <a href="~/mobile-app-development-company/">Mobile Apps</a>
-                                                                </h3>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a aria-label="Native iOS Apps"
-                                                                           href="~/mobile-app-development-company#native-ios-apps">Native iOS Apps</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a aria-label="Native Android Apps"
-                                                                           href="~/mobile-app-development-company#native-android-apps">Native Android Apps</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a aria-label="Cross Platform"
-                                                                           href="~/mobile-app-development-company#cross-platform">Cross Platform</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a aria-label="Hybrid Apps"
-                                                                           href="~/mobile-app-development-company#hybrid-apps">Hybrid Apps</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-sm-3">
-                                                                <h3 class="title">
-                                                                    <a href="~/ui-ux-design-company/">Design</a>
-                                                                </h3>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a aria-label="Analysis" href="~/ui-ux-design-company#analysis">Analysis</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a aria-label="Wireframe" href="~/ui-ux-design-company#wireframe">Wireframing</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a aria-label="UI / UX Design" href="~/ui-ux-design-company#custom-web-design">Custom Web Design</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a aria-label="UI/UX Design" href="~/ui-ux-design-company#uiux-design">UI/UX Design</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a aria-label="UI / UX Design" href="~/ui-ux-design-company#mobile-ui-design">Mobile UI Design</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-sm-3">
-                                                                <h3 class="title">
-                                                                    <a href="~/quality-assurance-services/">QA</a>
-                                                                </h3>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a aria-label="Manual QA Testing"
-                                                                           href="~/quality-assurance-services#manual-qa-testing">Manual QA Testing</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a aria-label="Web Testing Automation"
-                                                                           href="~/quality-assurance-services#web-testing-automation">Web Testing Automation</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a aria-label="Mobile App Testing"
-                                                                           href="~/quality-assurance-services#mobile-app-testing">Mobile App Testing</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a aria-label="Performance Testing"
-                                                                           href="~/quality-assurance-services#performance-testing">Performance Testing</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a aria-label="API Testing"
-                                                                           href="~/quality-assurance-services#api-testing-automation">API Testing</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-sm-3">
-                                                                <h3 class="title">
-                                                                    <a href="~/iot-service-providers/">IoT</a>
-                                                                </h3>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="~/iot-service-providers#industrial-automation">Industrial Automation</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/iot-service-providers#home-automation">Home Automation</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/iot-service-providers#smart-healthcare">Smart Healthcare</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/iot-service-providers#connected-devices">Connected Devices</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-sm-3">
-                                                                <h3 class="title">
-                                                                    <a href="~/ai-development-company">Artificial Intelligence</a>
-                                                                </h3>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="~/ai-development-company#custom-ai-solutions">Custom AI Development</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/ai-development-company#machine-learning">Machine Learning Development</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/ai-development-company#generativeai">Generative AI</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/ai-development-company#ai-deployment">AI Integration and Deployment</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-0 gap-xl-4 gap-lg-2 fs-lg-5 fs-6 fw-medium px-3 py-2 py-lg-0 p-lg-0">
 
-                                            <li class="dropdown w3_megamenu-fw tec_menu">
-                                                <a href="~/technologies/">Technologies</a>
-                                                <ul class="dropdown-menu half" style="transform: translate(-441.5px);">
-                                                    @*<div class="dropdown-arrow"></div>*@
-                                                    <li class="w3_megamenu-content withoutdesc">
-                                                        <div class="row">
-                                                            <div class="col-sm-3">
-                                                                <h3 class="title">
-                                                                    Front End
-                                                                </h3>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="~/angular-development-company/">Angular</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/reactjs-development-services/">ReactJs</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/vuejs-development-company/">Vue</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/typescript-web-development/">TypeScript</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/html5-development-services/">HTML 5</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-sm-3">
-                                                                <h3 class="title">
-                                                                    Backend
-                                                                </h3>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="~/dot-net-development-company/">.NET</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/java-development-company/">Java</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/php-development-company/">PHP</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/nodejs-development-company/">Node</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-sm-3">
-                                                                <h3 class="title">
-                                                                    Mobile
-                                                                </h3>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="~/ios-app-development-services/">iOS</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/android-app-development-company/">Android</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/react-native-app-development-company/">React Native</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/flutter-app-development-company/">Flutter</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/ionic-app-development-company/">Ionic</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/xamarin-development-company/">Xamarin</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-sm-3">
-                                                                <h3 class="title">
-                                                                    Infra and DevOps
-                                                                </h3>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="~/aws-development-services/">AWS</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/google-cloud-platform-services/">Google Cloud</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/microsoft-azure-devops/">Azure</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/selenium-automation-testing-services/">Selenium</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-sm-3">
-                                                                <h3 class="title">
-                                                                    Database
-                                                                </h3>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="~/microsoft-sql-server-integration-services/">MS SQL</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/mysql-development-company/">MySQL</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/postgresql-database-management/">PostgreSQL</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/firebase-development-company/">Firebase</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/mongodb-development-services/">MongoDB</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/redis-database-development-company/">Redis</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="~/microsoft-azure-cosmos-db/">Azure Cosmos DB</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            @*<li><a href="~/about-us#Aboutus_industry_section">Industries</a></li>*@
-                                            @*<li><a href="~/home/">Hire Developers</a></li>*@
-                                            <li class="dropdown w3_megamenu-fw car_menu">
-                                                <a href="#">Hire resources</a>
-                                                @*<a href="#">Hire Developers</a>*@
-                                                <ul class="dropdown-menu half testmenu" style="max-width: 310px; transform: translate(-75px);">
-                                                    @*<div class="dropdown-arrow"></div>*@
-                                                    <li class="w3_megamenu-content withoutdesc" style="margin-left:1px;">
-                                                        <div class="row">
-                                                            <div class="col-sm-12 col-auto">
-                                                                <h3 class="title">
-                                                                    <a href="#">Hire Skilled Resources</a>
-                                                                </h3>
-                                                                <ul style="padding-bottom: 15px !important;">
-                                                                    <li>
-                                                                            <a aria-label="Hire Automation Tester" href="~/hire-qa-automation-tester/">Hire Automation Tester</a>
-                                                                        </li>
-                                                                    <li>
-                                                                        <a aria-label="Hire .NET Developer" href="~/hire-dot-net-developers/">Hire .NET Developers</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a aria-label="Hire UI/UX Designers" href="~/hire-ui-ux-designers/">Hire UI/UX Designers</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            @*company menu start*@
-                                            <li class="dropdown w3_megamenu-fw car_menu">
-                                                <a href="#">Company</a>
-                                                <ul class="dropdown-menu half" style="max-width: 600px; transform: translate(-280px);">
-                                                    @*<div class="dropdown-arrow"></div>*@
-                                                    <li class="w3_megamenu-content withoutdesc">
-                                                        <div class="row">
-                                                            <div class="col-sm-4">
-                                                                <h3 class="title">
-                                                                    <a href="~/about-us/">About Us</a>
-                                                                </h3>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a aria-label="About Avidclan Technologies" href="~/about-us/">About Avidclan Technologies</a>
-                                                                    </li>
-                                                                    @*<li>
-                                                                            <a aria-label="ECommerce" href="">Client Testimonials</a>
-                                                                        </li>*@
-                                                                    @*<li>
-                                                                            <a aria-label="API &amp; Backend" href="~/">Our Locations</a>
-                                                                        </li>*@
-                                                                    @*<li>
-                                                                            <a aria-label="Awards & Recognitions"
-                                                                               href="~/">Awards & Recognitions</a>
-                                                                        </li>*@
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <h3 class="title">
-                                                                    <a href="~/career/">Careers</a>
-                                                                </h3>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a aria-label="Current Openings"
-                                                                           href="~/career#career-section/">Current Openings</a>
-                                                                    </li>
-                                                                    @*<li>
-                                                                            <a aria-label="Why Avidclan Technologies"
-                                                                               href="~/mobile-app-development-company#native-android-apps">Why Avidclan Technologies</a>
-                                                                        </li>*@
-                                                                    <li>
-                                                                        <a aria-label="Life at Avidclan Technologies"
-                                                                           href="~/life-at-avidclan/">
-                                                                            Life at Avidclan Technologies
-                                                                        </a>
-                                                                    </li>
-                                                                    @*<li>
-                                                                            <a aria-label="Events"
-                                                                               href="~/">Events</a>
-                                                                        </li>*@
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <h3 class="title">
-                                                                    <a href="#">Resources</a>
-                                                                </h3>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a aria-label="Blogs" href="~/blog//">Blogs</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a aria-label="Case Studies" href="~/case-studies/">Case Studies</a>
-                                                                    </li>
-                                                                    @*<li>
-                                                                            <a aria-label="Infographics" href="~/">Infographics</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a aria-label="Whitepapers" href="~/">Whitepapers</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a aria-label="Web Stories" href="~/">Web Stories</a>
-                                                                        </li>*@
-                                                                </ul>
-                                                            </div>
-
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            @*company menu end*@
-                                            <li><a aria-label="Portfolio" href="~/portfolio/">Portfolio</a></li>
-                                            @*<li><a href="~/portfolio/">Portfolio</a></li>*@
-                                            @*<li class="cls-menu-blog"><a href="~/blog/">Blog</a></li>
-                                                <li class="dropdown w3_megamenu-fw car_menu">
-                                                    <a href="~/career/">Careers</a>
-                                                    <ul class="dropdown-menu half testmenu" style="max-width: 560px; transform: translate(-248px);">
-                                                        <div class="dropdown-arrow"></div>
-                                                        <li class="w3_megamenu-content withoutdesc">
-                                                            <div class="row">
-                                                                <div class="col-sm-6">
-                                                                    <a href="~/career#career-section">
-                                                                        <h3 class="title">Current Openings</h3>
-                                                                        <div class="content">
-                                                                            <p>
-                                                                                We are always looking for smart and enthusiastic people to add to our growing
-                                                                                team.
-                                                                            </p>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-                                                                <div class="col-sm-6">
-                                                                    <a href="~/life-at-avidclan/">
-                                                                        <h3 class="title">Life @@ Avidclan Technologies</h3>
-                                                                        <div class="content">
-                                                                            <p>
-                                                                                Being a great place to work is the difference between being a good company and a
-                                                                                great company.
-                                                                            </p>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>*@
-                                            <!-- <li><a href="contact.html">Contact Us</a></li> -->
-                                        </ul>
-                                    </div>
-                                </nav>
-                                <!-- Main Menu End-->
-                                <div class="navbar-right-info">
-                                    <div class="link-btn">
-                                        <a href="/contact-us/" class="theme-btn btn-style-one">
-                                            <span class="btn-title">
-                                                <span class="iconify me-2" data-icon="ion:call-sharp" data-height="25"></span>Contact
-                                                Us
-                                            </span>
-                                        </a>
+                            <li class="nav-item border_b dropdown pb-2 mb-2 mb-lg-0">
+                                <a class="nav-link active dropdown-toggle d-flex justify-content-between align-items-center custom-fs-18"
+                                   href="/services/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Services
+                                </a>
+                                <div class="red-square-box"></div>
+                                <div class="dropdown-menu sub_menu w-100 bg-white p-3 p-lg-5 pt-lg-5">
+                                    <div class="row flex-wrap w-100 row-gap-3">
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold"
+                                                   href="/web-development-company/">Web Development</a>
+                                            </h5>
+                                            <ul>
+                                                <li>
+                                                    <a aria-label="Enterprise Solutions"
+                                                       href="/web-development-company#enterprise-solutions">
+                                                        Enterprise
+                                                        Solutions
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a aria-label="ECommerce"
+                                                       href="/web-development-company#ecommerce">ECommerce</a>
+                                                </li>
+                                                <li>
+                                                    <a aria-label="API & Backend"
+                                                       href="/web-development-company#backend">
+                                                        API &
+                                                        Backend
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a aria-label="Custom Development"
+                                                       href="/web-development-company#custom-development">
+                                                        Custom
+                                                        Development
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold"
+                                                   href="/mobile-app-development-company/">
+                                                    Mobile
+                                                    Apps
+                                                </a>
+                                            </h5>
+                                            <ul>
+                                                <li>
+                                                    <a aria-label="Native iOS Apps"
+                                                       href="/mobile-app-development-company#native-ios-apps">
+                                                        Native
+                                                        iOS Apps
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a aria-label="Native Android Apps"
+                                                       href="/mobile-app-development-company#native-android-apps">
+                                                        Native
+                                                        Android Apps
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a aria-label="Cross Platform"
+                                                       href="/mobile-app-development-company#cross-platform">
+                                                        Cross
+                                                        Platform
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a aria-label="Hybrid Apps"
+                                                       href="/mobile-app-development-company#hybrid-apps">
+                                                        Hybrid
+                                                        Apps
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold"
+                                                   href="/ui-ux-design-company/">Design</a>
+                                            </h5>
+                                            <ul>
+                                                <li>
+                                                    <a aria-label="Analysis"
+                                                       href="/ui-ux-design-company#analysis">Analysis</a>
+                                                </li>
+                                                <li>
+                                                    <a aria-label="Wireframe"
+                                                       href="/ui-ux-design-company#wireframe">Wireframing</a>
+                                                </li>
+                                                <li>
+                                                    <a aria-label="UI / UX Design"
+                                                       href="/ui-ux-design-company#custom-web-design">
+                                                        Custom
+                                                        Web Design
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a aria-label="UI/UX Design"
+                                                       href="/ui-ux-design-company#uiux-design">
+                                                        UI/UX
+                                                        Design
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a aria-label="UI / UX Design"
+                                                       href="/ui-ux-design-company#mobile-ui-design">
+                                                        Mobile
+                                                        UI Design
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold"
+                                                   href="/quality-assurance-services/">QA</a>
+                                            </h5>
+                                            <ul>
+                                                <li>
+                                                    <a aria-label="Manual QA Testing"
+                                                       href="/quality-assurance-services#manual-qa-testing">
+                                                        Manual
+                                                        QA Testing
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a aria-label="Web Testing Automation"
+                                                       href="/quality-assurance-services#web-testing-automation">
+                                                        Web
+                                                        Testing Automation
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a aria-label="Mobile App Testing"
+                                                       href="/quality-assurance-services#mobile-app-testing">
+                                                        Mobile
+                                                        App Testing
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a aria-label="Performance Testing"
+                                                       href="/quality-assurance-services#performance-testing">
+                                                        Performance
+                                                        Testing
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a aria-label="API Testing"
+                                                       href="/quality-assurance-services#api-testing-automation">
+                                                        API
+                                                        Testing
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold"
+                                                   href="/iot-service-providers/">IoT</a>
+                                            </h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="/iot-service-providers#industrial-automation">
+                                                        Industrial
+                                                        Automation
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/iot-service-providers#home-automation">
+                                                        Home
+                                                        Automation
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/iot-service-providers#smart-healthcare">
+                                                        Smart
+                                                        Healthcare
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/iot-service-providers#connected-devices">
+                                                        Connected
+                                                        Devices
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold"
+                                                   href="/ai-development-company">
+                                                    Artificial
+                                                    Intelligence
+                                                </a>
+                                            </h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="/ai-development-company#custom-ai-solutions">
+                                                        Custom
+                                                        AI Development
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/ai-development-company#machine-learning">
+                                                        Machine
+                                                        Learning Development
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/ai-development-company#generativeai">
+                                                        Generative
+                                                        AI
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/ai-development-company#ai-deployment">
+                                                        AI
+                                                        Integration and Deployment
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </li>
+
+                            <li class="nav-item border_b dropdown pb-2 mb-2 mb-lg-0">
+                                <a class="nav-link active dropdown-toggle d-flex justify-content-between align-items-center custom-fs-18"
+                                   href="/technologies/" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    Technologies
+                                </a>
+                                <div class="red-square-box"></div>
+                                <div class="dropdown-menu sub_menu w-100 bg-white p-3 p-lg-5 pt-lg-5">
+                                    <div class="row flex-wrap w-100 row-gap-3">
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold" href="#">Front End</a>
+                                            </h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="/angular-development-company/">Angular</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/reactjs-development-services/">ReactJs</a>
+                                                </li>
+                                                <li><a href="/vuejs-development-company/">Vue</a></li>
+                                                <li>
+                                                    <a href="/typescript-web-development/">TypeScript</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/html5-development-services/">HTML 5</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2"><a class="text_dark fw-semibold" href="#">Backend</a></h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="/dot-net-development-company/">.NET</a>
+                                                </li>
+                                                <li><a href="/java-development-company/">Java</a></li>
+                                                <li><a href="/php-development-company/">PHP</a></li>
+                                                <li><a href="/nodejs-development-company/">Node</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2"><a class="text_dark fw-semibold" href="#">Mobile</a></h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="/ios-app-development-services/">iOS</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/android-app-development-company/">Android</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/react-native-app-development-company/">
+                                                        React
+                                                        Native
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/flutter-app-development-company/">Flutter</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/ionic-app-development-company/">Ionic</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/xamarin-development-company/">Xamarin</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold" href="#">
+                                                    Infra and
+                                                    DevOps
+                                                </a>
+                                            </h5>
+                                            <ul>
+                                                <li><a href="/aws-development-services/">AWS</a></li>
+                                                <li>
+                                                    <a href="/google-cloud-platform-services/">
+                                                        Google
+                                                        Cloud
+                                                    </a>
+                                                </li>
+                                                <li><a href="/microsoft-azure-devops/">Azure</a></li>
+                                                <li>
+                                                    <a href="/selenium-automation-testing-services/">Selenium</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2"><a class="text_dark fw-semibold" href="#">Database</a></h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="/microsoft-sql-server-integration-services/">
+                                                        MS
+                                                        SQL
+                                                    </a>
+                                                </li>
+                                                <li><a href="/mysql-development-company/">MySQL</a></li>
+                                                <li>
+                                                    <a href="/postgresql-database-management/">PostgreSQL</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/firebase-development-company/">Firebase</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/mongodb-development-services/">MongoDB</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/redis-database-development-company/">Redis</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/microsoft-azure-cosmos-db/">
+                                                        Azure Cosmos
+                                                        DB
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="nav-item border_b dropdown pb-2 mb-2 mb-lg-0">
+                                <a class="nav-link active dropdown-toggle d-flex justify-content-between align-items-center custom-fs-18"
+                                   href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Hire resources
+                                </a>
+                                <div class="red-square-box"></div>
+                                <div class="dropdown-menu hire_box w-100 bg-white p-3 p-lg-3 pt-lg-3">
+                                    <h5 class="mb-0 mb-md-2">
+                                        <a class="text_dark fw-semibold" href="#">Hire Skilled Resources</a>
+                                    </h5>
+                                    <ul>
+                                        <li>
+                                            <a href="/hire-qa-automation-tester/">
+                                                Hire Automation
+                                                Tester
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/hire-dot-net-developers/">Hire .NET Developers</a>
+                                        </li>
+                                        <li>
+                                            <a href="/hire-ui-ux-designers/">Hire UI/UX Designers</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="nav-item border_b dropdown pb-2 mb-2 mb-lg-0">
+                                <a class="nav-link active dropdown-toggle d-flex justify-content-between align-items-center custom-fs-18"
+                                   href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Company
+                                </a>
+                                <div class="red-square-box"></div>
+                                <div class="dropdown-menu company_box w-100 bg-white p-3 p-lg-3 pt-lg-3">
+                                    <div class="row flex-wrap w-100 row-gap-3">
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold"
+                                                   href="/about-us/">About Us</a>
+                                            </h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="/about-us/">About Avidclan Technologies</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold"
+                                                   href="/career/">Careers</a>
+                                            </h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="/career#career-section/">
+                                                        Current
+                                                        Openings
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/life-at-avidclan/">
+                                                        Life at Avidclan
+                                                        Technologies
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2"><a class="text_dark fw-semibold" href="">Resources</a></h5>
+                                            <ul>
+                                                <li><a href="/blog/">Blogs</a></li>
+                                                <li><a href="/case-studies/">Case Studies</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="nav-item border_b pb-2 mb-2 mb-lg-0">
+                                <a class="nav-link active custom-fs-18" aria-current="page"
+                                   href="/portfolio/">Portfolio</a>
+                            </li>
+
+                            <li class="nav-item border_b pb-2 mb-2 mb-lg-0 d-lg-none">
+                                <a class="nav-link active" href="/contact-us/">Contact Us</a>
+                            </li>
+
+
+                            <li class="nav-item d-none d-lg-block ms-lg-2">
+                                <a class="nav-link btn btn-primary fw-bold rounded-5"
+                                   href="/contact-us/">
+                                    <span class="py-2 px-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             aria-hidden="true" role="img" class="iconify iconify--ion me-2" width="25"
+                                             height="25" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"
+                                             data-icon="ion:call-sharp" data-height="25">
+                                            <path fill="currentColor"
+                                                  d="M478.94 370.14c-5.22-5.56-23.65-22-57.53-43.75c-34.13-21.94-59.3-35.62-66.52-38.81a3.83 3.83 0 0 0-3.92.49c-11.63 9.07-31.21 25.73-32.26 26.63c-6.78 5.81-6.78 5.81-12.33 4c-9.76-3.2-40.08-19.3-66.5-45.78s-43.35-57.55-46.55-67.3c-1.83-5.56-1.83-5.56 4-12.34c.9-1.05 17.57-20.63 26.64-32.25a3.83 3.83 0 0 0 .49-3.92c-3.19-7.23-16.87-32.39-38.81-66.52c-21.78-33.87-38.2-52.3-43.76-57.52a3.9 3.9 0 0 0-3.89-.87a322.4 322.4 0 0 0-56 25.45A338 338 0 0 0 33.35 92a3.83 3.83 0 0 0-1.26 3.74c2.09 9.74 12.08 50.4 43.08 106.72c31.63 57.48 53.55 86.93 100 133.22S252 405.21 309.54 436.84c56.32 31 97 41 106.72 43.07a3.86 3.86 0 0 0 3.75-1.26A337.7 337.7 0 0 0 454.35 430a322.7 322.7 0 0 0 25.45-56a3.9 3.9 0 0 0-.86-3.86">
+                                            </path>
+                                        </svg> Contact Us
+                                    </span>
+                                </a>
+                            </li>
+
+                        </ul>
                     </div>
                 </div>
-            </div>
-
-
-            <!-- Mobile Menu  -->
-            <nav class="nav-menu-wrap">
-                <ul class="nav-menu menu">
-                    @*<li><a href="~/home/">Home</a></li>
-        <li><a href="~/about-us/">About Us</a></li>*@
-                    <li>
-                        <a href="~/services/">Services</a>
-                        <i class="fa fa-angle-right sub-menu-toggle"></i>
-                        <ul class="sub-menu menu">
-                            <li class="close">
-                                <div>Back <i class="fa icon fa-angle-left"></i></div>
-                            </li>
-                            <li>
-                                <a href="~/web-development-company/">Web Development</a>
-                                <i class="fa fa-angle-right sub-menu-toggle"></i>
-                                <ul class="sub-menu menu">
-                                    <li class="close">
-                                        <div>Back <i class="fa icon fa-angle-left"></i></div>
-                                    </li>
-                                    <li>
-                                        <a aria-label="Enterprise Solutions" href="~/web-development-company#enterprise-solutions">Enterprise Solutions</a>
-                                    </li>
-                                    <li>
-                                        <a aria-label="ECommerce" href="~/web-development-company#ecommerce">ECommerce</a>
-                                    </li>
-                                    <li>
-                                        <a aria-label="API &amp; Backend" href="~/web-development-company#backend">API &amp; Backend</a>
-                                    </li>
-                                    <li>
-                                        <a aria-label="Custom Development"
-                                           href="~/web-development-company#custom-development">Custom Development</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="~/mobile-app-development-company/">Mobile Apps</a>
-                                <i class="fa fa-angle-right sub-menu-toggle"></i>
-                                <ul class="sub-menu menu">
-                                    <li class="close">
-                                        <div>Back <i class="fa icon fa-angle-left"></i></div>
-                                    </li>
-                                    <li>
-                                        <a aria-label="Native iOS Apps"
-                                           href="~/mobile-app-development-company#native-ios-apps">Native iOS Apps</a>
-                                    </li>
-                                    <li>
-                                        <a aria-label="Native Android Apps"
-                                           href="~/mobile-app-development-company#native-android-apps">Native Android Apps</a>
-                                    </li>
-                                    <li>
-                                        <a aria-label="Cross Platform"
-                                           href="~/mobile-app-development-company#cross-platform">Cross Platform</a>
-                                    </li>
-                                    <li>
-                                        <a aria-label="Hybrid Apps"
-                                           href="~/mobile-app-development-company#hybrid-apps">Hybrid Apps</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="~/ui-ux-design-company/">Design</a>
-                                <i class="fa fa-angle-right sub-menu-toggle"></i>
-                                <ul class="sub-menu menu">
-                                    <li class="close">
-                                        <div>Back <i class="fa icon fa-angle-left"></i></div>
-                                    </li>
-                                    <li>
-                                        <a aria-label="Analysis" href="~/ui-ux-design-company#analysis">Analysis</a>
-                                    </li>
-                                    <li>
-                                        <a aria-label="Wireframe" href="~/ui-ux-design-company#wireframe">Wireframing</a>
-                                    </li>
-                                    <li>
-                                        <a aria-label="UI / UX Design" href="~/ui-ux-design-company#custom-web-design">Custom Web Design</a>
-                                    </li>
-                                    <li>
-                                        <a aria-label="UI/UX Design" href="~/ui-ux-design-company#uiux-design">UI/UX Design</a>
-                                    </li>
-                                    <li>
-                                        <a aria-label="UI / UX Design" href="~/ui-ux-design-company#mobile-ui-design">Mobile UI Design</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="~/quality-assurance-services/">QA</a>
-                                <i class="fa fa-angle-right sub-menu-toggle"></i>
-                                <ul class="sub-menu menu">
-                                    <li class="close">
-                                        <div>Back <i class="fa icon fa-angle-left"></i></div>
-                                    </li>
-                                    <li>
-                                        <a aria-label="Manual QA Testing"
-                                           href="~/quality-assurance-services#manual-qa-testing">Manual QA Testing</a>
-                                    </li>
-                                    <li>
-                                        <a aria-label="Web Testing Automation"
-                                           href="~/quality-assurance-services#web-testing-automation">Web Testing Automation</a>
-                                    </li>
-                                    <li>
-                                        <a aria-label="Mobile App Testing"
-                                           href="~/quality-assurance-services#mobile-app-testing">Mobile App Testing</a>
-                                    </li>
-                                    <li>
-                                        <a aria-label="Performance Testing"
-                                           href="~/quality-assurance-services#performance-testing">Performance Testing</a>
-                                    </li>
-                                    <li>
-                                        <a aria-label="API Testing"
-                                           href="~/quality-assurance-services#api-testing-automation">API Testing</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="~/iot-service-providers/">IoT</a>
-                                <i class="fa fa-angle-right sub-menu-toggle"></i>
-                                <ul class="sub-menu menu">
-                                    <li class="close">
-                                        <div>Back <i class="fa icon fa-angle-left"></i></div>
-                                    </li>
-                                    <li>
-                                        <a href="~/iot-service-providers#industrial-automation">Industrial Automation</a>
-                                    </li>
-                                    <li>
-                                        <a href="~/iot-service-providers#home-automation">Home Automation</a>
-                                    </li>
-                                    <li>
-                                        <a href="~/iot-service-providers#smart-healthcare">Smart Healthcare</a>
-                                    </li>
-                                    <li>
-                                        <a href="~/iot-service-providers#connected-devices">Connected Devices</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="~/ai-development-company">Artificial Intelligence</a>
-                                <i class="fa fa-angle-right sub-menu-toggle"></i>
-                                <ul class="sub-menu menu">
-                                    <li class="close">
-                                        <div>Back <i class="fa icon fa-angle-left"></i></div>
-                                    </li>
-                                    <li>
-                                        <a href="~/ai-development-company#custom-ai-solutions">Custom AI Development</a>
-                                    </li>
-                                    <li>
-                                        <a href="~/ai-development-company#machine-learning">Machine Learning Development</a>
-                                    </li>
-                                    <li>
-                                        <a href="~/ai-development-company#generativeai">Generative AI</a>
-                                    </li>
-                                    <li>
-                                        <a href="~/ai-development-company#ai-deployment">AI Integration and Deployment</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="~/technologies/">Technologies</a>
-                        <i class="fa fa-angle-right sub-menu-toggle"></i>
-                        <ul class="sub-menu menu">
-                            <li class="close">
-                                <div>Back <i class="fa icon fa-angle-left"></i></div>
-                            </li>
-                            <li>
-                                <a href="#">Front End</a>
-                                <i class="fa fa-angle-right sub-menu-toggle"></i>
-                                <ul class="sub-menu menu">
-                                    <li class="close">
-                                        <div>Back <i class="fa icon fa-angle-left"></i></div>
-                                    </li>
-                                    <li><a href="~/angular-development-company/">Angular</a></li>
-                                    <li><a href="~/reactjs-development-services/">ReactJs</a></li>
-                                    <li><a href="~/vuejs-development-company/">Vue</a></li>
-                                    <li><a href="~/typescript-web-development/">TypeScript</a></li>
-                                    <li><a href="~/html5-development-services/">HTML5</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Backend</a>
-                                <i class="fa fa-angle-right sub-menu-toggle"></i>
-                                <ul class="sub-menu menu">
-                                    <li class="close">
-                                        <div>Back <i class="fa icon fa-angle-left"></i></div>
-                                    </li>
-                                    <li><a href="~/dot-net-development-company/">.NET</a></li>
-                                    <li><a href="~/java-development-company/">Java</a></li>
-                                    <li><a href="~/php-development-company/">PHP</a></li>
-                                    <li><a href="~/nodejs-development-company/">Node</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Mobile</a>
-                                <i class="fa fa-angle-right sub-menu-toggle"></i>
-                                <ul class="sub-menu menu">
-                                    <li class="close">
-                                        <div>Back <i class="fa icon fa-angle-left"></i></div>
-                                    </li>
-                                    <li><a href="~/ios-app-development-services/">iOS</a></li>
-                                    <li><a href="~/android-app-development-company/">Android</a></li>
-                                    <li><a href="~/react-native-app-development-company/">React Native</a></li>
-                                    <li><a href="~/flutter-app-development-company/">Flutter</a></li>
-                                    <li><a href="~/ionic-app-development-company/">Ionic</a></li>
-                                    <li><a href="~/xamarin-development-company/">Xamarin</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Infra and DevOps</a>
-                                <i class="fa fa-angle-right sub-menu-toggle"></i>
-                                <ul class="sub-menu menu">
-                                    <li class="close">
-                                        <div>Back <i class="fa icon fa-angle-left"></i></div>
-                                    </li>
-                                    <li><a href="~/aws-development-services/">AWS</a></li>
-                                    <li><a href="~/google-cloud-platform-services/">Google Cloud</a></li>
-                                    <li><a href="~/microsoft-azure-devops/">Azure</a></li>
-                                    <li><a href="~/selenium-automation-testing-services/">Selenium</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Database</a>
-                                <i class="fa fa-angle-right sub-menu-toggle"></i>
-                                <ul class="sub-menu menu">
-                                    <li class="close">
-                                        <div>Back <i class="fa icon fa-angle-left"></i></div>
-                                    </li>
-                                    <li><a href="~/microsoft-sql-server-integration-services/">MS SQL</a></li>
-                                    <li><a href="~/mysql-development-company/">MySQL</a></li>
-                                    <li><a href="~/postgresql-database-management/">PostgreSQL</a></li>
-                                    <li><a href="~/firebase-development-company/">Firebase</a></li>
-                                    <li><a href="~/mongodb-development-services/">MongoDB</a></li>
-                                    <li><a href="~/redis-database-development-company/">Redis</a></li>
-                                    <li><a href="~/microsoft-azure-cosmos-db/">Azure Cosmos DB</a></li>
-                                </ul>
-                            </li>
-
-                        </ul>
-                    </li>
-                    @*<li><a href="~/about-us#Aboutus_industry_section">Industries</a></li>*@
-                    <li>
-                        <a href="">Hire resources</a>
-                        <i class="fa fa-angle-right sub-menu-toggle"></i>
-                        <ul class="sub-menu menu">
-                            <li class="close">
-                                <div>Back <i class="fa icon fa-angle-left"></i></div>
-                            </li>
-                            <li><a href="~/hire-qa-automation-tester/">Hire Automation Tester</a></li>
-                            <li><a href="~/hire-dot-net-developers/">Hire .NET Developers</a></li>
-                            <li><a href="~/hire-ui-ux-designers/">Hire UI/UX Designers</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="~/about-us/">Company</a>
-                        <i class="fa fa-angle-right sub-menu-toggle"></i>
-                        <ul class="sub-menu menu">
-                            <li class="close">
-                                <div>Back <i class="fa icon fa-angle-left"></i></div>
-                            </li>
-                            <li>
-                                <a href="#">About</a>
-                                <i class="fa fa-angle-right sub-menu-toggle"></i>
-                                <ul class="sub-menu menu">
-                                    <li class="close">
-                                        <div>Back <i class="fa icon fa-angle-left"></i></div>
-                                    </li>
-                                    <li><a href="~/about-us/">About Avidclan Technologies</a></li>
-                                    @*<li><a href="">Client Testimonials</a></li>*@
-                                    <li>
-                                        @*<a href="">Our Locations</a>*@
-                                        <!--<i class="fa fa-angle-right sub-menu-toggle"></i>
-                        <ul class="sub-menu menu">
-                            <li class="close">
-                                <div>Back <i class="fa icon fa-angle-left"></i></div>
-                            </li>
-                            <li>
-                                <a href="#">Locations</a>-->
-                                        @*<i class="fa fa-angle-right sub-menu-toggle"></i>
-                            <ul class="sub-menu menu">
-
-                                <li><a href=""></a></li>
-                                <li><a href=""></a></li>
-                            </ul>*@
-                                        <!--</li>
-                        </ul>-->
-                                    </li>
-                                    @*<li><a href="">Awards & Recognitions</a></li>*@
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Careers</a>
-                                <i class="fa fa-angle-right sub-menu-toggle"></i>
-                                <ul class="sub-menu menu">
-                                    <li class="close">
-                                        <div>Back <i class="fa icon fa-angle-left"></i></div>
-                                    </li>
-                                    <li><a href="~/career#career-section">Current Openings</a></li>
-                                    @*<li><a href="">Why Avidclan Technologies</a></li>*@
-                                    <li><a href="~/life-at-avidclan/">Life at Avidclan Technologies</a></li>
-                                    @*<li><a href="">Events</a></li>*@
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Resources</a>
-                                <i class="fa fa-angle-right sub-menu-toggle"></i>
-                                <ul class="sub-menu menu">
-                                    <li class="close">
-                                        <div>Back <i class="fa icon fa-angle-left"></i></div>
-                                    </li>
-                                    <li><a href="~/blog/">Blogs</a></li>
-                                    <li>
-                                        <a href="~/case-studies/">Case Studies</a>
-                                        @*<i class="fa fa-angle-right sub-menu-toggle"></i>
-                            <ul class="sub-menu menu">
-                                <li class="close">
-                                    <div>Back <i class="fa icon fa-angle-left"></i></div>
-                                </li>
-                                <li>
-                                    <a href="~/case-studies/clf/">CLF</a>
-                                </li>
-                                <li>
-                                    <a href="~/case-studies/vyking/">Vyking</a>
-                                </li>
-                                <li>
-                                    <a href="~/case-studies/orisuun/">Orisuun</a>
-                                </li>
-                            </ul>*@
-                                    </li>
-                                    @*<li><a href="">Infographics</a></li>
-                        <li><a href="">Whitepapers</a></li>
-                        <li><a href="">Web Stories</a></li>*@
-                                </ul>
-                            </li>
-
-                        </ul>
-                    </li>
-                    @*<li><a href="~/portfolio/">Portfolio</a></li>*@
-                    @*<li class="cls-menu-blog"><a href="~/blog/">Blog</a></li>
-        <li>
-            <a href="~/career/">Careers</a>
-            <i class="fa fa-angle-right sub-menu-toggle"></i>
-            <ul class="sub-menu menu">
-                <li class="close">
-                    <div>Back <i class="fa icon fa-angle-left"></i></div>
-                </li>
-                <li><a href="~/career#career-section">Current Openings</a></li>
-                <li><a href="~/life-at-avidclan/">Life @@ Avidclan Technologies</a></li>
-            </ul>
-        </li>*@
-                    <li><a href="~/portfolio/">Portfolio</a></li>
-                    <li><a href="/contact-us/">Contact Us</a></li>
-                </ul>
             </nav>
+
         </header>
         @RenderBody()
     </div>
+    <button id="backToTop" class="back-to-top position-fixed background-primary rounded-circle p-2" style="z-index:99;">
+        <img src="~/assets/images/imagenew/arrow-up (1).svg" alt="Back to Top" class="back-to-top-img" />
+    </button>
+    <!-- Custom Scripts -->
+    <script src="/assets/js/script.js" defer></script>
+    <script src="/assets/js/iconify.min.js" defer></script>
 
-    <!--<script src="~/assets/js/bootstrap.min.js"></script>
-    <script src="~/assets/js/iconify.min.js"></script>
-    <script src="~/assets/js/bootstrap-select.min.js"></script>
-    Scripts.Render("~/bundles/js")
-    <script src="~/assets/js/intlTelInput.js"></script>-->
-    @*
-        <script src="~/assets/js/contact.js"></script>*@
-    <!--<script src="~/assets/js/script.js"></script>-->
-    <!--Scripts.Render("~/bundles/js")
-    <script src="~/assets/js/bootstrap.min.js"></script>-->
-    @*
-        <script src="~/assets/js/popper.min.js"></script>*@
-    <!--<script src="~/assets/js/isotope.js"></script>
-    <script src="~/assets/js/swiper.min.js"></script>
-    <script src="~/assets/js/iconify.min.js"></script>
-    <script src="~/assets/js/intlTelInput.js"></script>
-    <script src="~/assets/js/script.js"></script>-->
-    <!--<script src="~/assets/js/jquery.js"></script>
-    <script src="~/assets/js/popper.min.js"></script>
-    <script src="~/assets/js/bootstrap.min.js"></script>-->
-    @*
-        <script src="~/assets/js/bootstrap-select.min.js"></script>*@
-    @*
-        <script src="~/assets/js/jquery.fancybox.js"></script>*@
-    <!--<script src="~/assets/js/isotope.js"></script>
-    <script src="~/assets/js/owl.js"></script>
-    <script src="~/assets/js/appear.js"></script>
-    <script src="~/assets/js/wow.js"></script>
-    <script src="~/assets/js/lazyload.js"></script>
-    <script src="~/assets/js/scrollbar.js"></script>-->
-    @*
-        <script src="~/assets/js/TweenMax.min.js"></script>*@
-    <!--<script src="~/assets/js/jClocksGMT.js"></script>
-    <script src="~/assets/js/jquery.rotate.js"></script>
-    <script src="~/assets/js/js.cookie.min.js"></script>
-    <script src="~/assets/js/iconify.min.js"></script>
-    <script src="~/assets/js/jquery.validate.min.js"></script>
-    <script src="~/assets/js/additional-methods.min.js"></script>
-    <script src="~/assets/js/intlTelInput.js"></script>
-    <script src="~/assets/js/script.js"></script>-->
-    @*<script src="~/assets/js/swiper.min.js" defer></script>*@
-    <script src="~/assets/js/jquery.js"></script>
-    @Scripts.Render("~/Content/js")
-    @*<script src="~/assets/js/jquery.js"></script>*@
-    <script src="~/assets/js/popper.min.js" defer></script>
-    <script src="~/assets/js/bootstrap.min.js" defer></script>
-    <script src="~/assets/js/widget.js"></script>
-    @*
-        <script src="~/assets/js/bootstrap-select.min.js"></script>*@
-    @*
-        <script src="~/assets/js/jquery.fancybox.js"></script>*@
-    @*<script src="~/assets/js/isotope.js"></script>*@
-    @*
-        <script src="~/assets/js/owl.js"></script>*@
-    @*<script src="~/assets/js/appear.js"></script>*@
-    @*<script src="~/assets/js/wow.js"></script>*@
-    @*<script src="~/assets/js/lazyload.js"></script>*@
-    @*<script src="~/assets/js/scrollbar.js"></script>*@
-    @*
-        <script src="~/assets/js/TweenMax.min.js"></script>*@
-    @*<script src="~/assets/js/jClocksGMT.js"></script>*@
-    @*<script src="~/assets/js/jquery.rotate.js"></script>*@
-    <script src="~/assets/js/js.cookie.min.js" defer></script>
-    <script src="~/assets/js/iconify.min.js" defer></script>
-    <script src="~/assets/js/jquery.validate.min.js"></script>
-    <script src="~/assets/js/additional-methods.min.js" defer></script>
-    <script src="~/assets/js/intlTelInput.js"></script>
-    <script src="~/assets/js/script.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" async></script>
+    <!-- jQuery -->
+    <script src="/assets/js/jquery.js"></script>
 
+    <!-- Swiper -->
+    <script src="~/assets/js/swiper-bundle-min.min.js"></script>
+
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+
+    <!-- Owl Carousel -->
+    <script src="/assets/js/Avidclan/owl.carousel.min.js"></script>
+    <script src="~/assets/js/intlTelInput.js"></script>
     <script type="text/javascript">
-        // temprory hide usa location address from the footer
-        window.onload = function () {
-            document.querySelector('.address-usa').remove();  // This will remove the element from the DOM entirely
-        };
-        (function ($) {
-        "use strict";
-        $(".numberonly").keypress(function (e) {
-        var charCode = e.which ? e.which : event.keyCode;
-
-        if (String.fromCharCode(charCode).match(/[^0-9]/g)) return false;
-        });
-
-        var code = "+1";
-        $("#phone").val(code);
-
-        $("#phone").intlTelInput({
-        utilsScript: "/assets/js/utils.js",
-        separateDialCode: true,
-        initialCountry: "us",
-        });
-            $("#mobilet").val(code);
-            $("#mobilet").intlTelInput({
+        $(document).ready(function () {
+            var locationForm = $("#location_form");
+            $("#phone").intlTelInput({
                 utilsScript: "/assets/js/utils.js",
                 separateDialCode: true,
                 initialCountry: "us",
+
             });
 
-        $(".contactno").keypress(function (e) {
-        var charCode = e.which ? e.which : event.keyCode;
-        if (String.fromCharCode(charCode).match(/[^0-9]/g)) return false;
-        });
+            $(".numberonly").keypress(function (e) {
+                var charCode = e.which ? e.which : event.keyCode;
 
-
-
-
-
-
-        /*CONTACT FORM START*/
-        var Contactform = $(".contact_form"),
-        message = $(".contact_msg"),
-        form_data;
-
-        function done_func(response) {
-        console.log(response);
-            //if (response == "Sent") {
-            window.location.replace("/contact-us-thank-you");
-        grecaptcha.reset();
-        setTimeout(function () {
-        message.fadeOut();
-        }, 3000);
-        Contactform.find('input:not([type="submit"]), textarea').val("");
-        //}
-
-        $('#button-spinner').hide();
-
-        }
-
-        Contactform.submit(function (e) {
-
-        e.preventDefault();
-        var countrycode = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
-        $("#code").val(countrycode);
-
-        form_data = $(this).serialize();
-
-        if (!$(".contact_form").valid()) {
-        return false;
-        }
-        //var response = grecaptcha.getResponse();
-        //if (response.length == 0) {
-        ////reCaptcha not verified
-        //alert("Please Verify Captcha!");
-        //e.preventDefault();
-        //return false;
-        //}
-
-
-        $('#button-spinner').show();
-        $('#sbmtbtn').attr("disabled", true);
-        var data = {
-        FirstName: $("#firstname").val(),
-        LastName: $("#lastname").val(),
-        Email: $("#email").val(),
-        Phoneumber: $("#phone").val(),
-        Message: $("#message").val(),
-        CountryCode: countrycode,
-        }
-
-
-        $.ajax({
-        type: "POST",
-        url: "/api/Mail/SendContactDetails",
-        contentType: 'application/json',
-        data: JSON.stringify(data),
-        }).done(done_func);
-        });
-
-        $("form[name='contactinfo']").validate({
-        errorPlacement: function (error, element) {
-        if ($(element).is("#phone")) {
-        element.closest(".intl-tel-input").after(error);
-        } else {
-        error.insertAfter(element);
-        }
-        },
-        rules: {
-        firstname: "required",
-        lastname: "required",
-        email: {
-        required: true,
-        email: true,
-        },
-        phone: {
-        required: true,
-        digits: true,
-        minlength: 10,
-        maxlength: 10
-        },
-        message: {
-        required: true,
-        minlength: 25,
-        },
-        fcaptcha: {
-        required: true,
-        },
-        },
-        messages: {
-        firstname: "Please enter your First Name",
-        lastname: "Please enter your Last Name",
-        phone: {
-        required: "Please enter phone number",
-        digits: "Please enter valid phone number",
-        minlength: "Please enter valid phone number",
-        maxlength: "Please enter valid phone number",
-        },
-        email: {
-        required: "Please enter email address",
-        email: "Please enter a valid email address.",
-        },
-        message: {
-        required: "Please write your Message",
-        minlength: "Please write at least 25 characters",
-        },
-        fcaptcha: {
-        required: "Please verify Captcha",
-        },
-        },
-        submitHandler: function (Contactform) {
-        /*Contactform.submit();*/
-        Contactform.submit();
-        },
-        });
-
-        /*CONTACT FORM END*/
-
-        /*Contact Us FORM START*/
-        var Contactform = $("#form_contact"),
-            message = $(".contact_msg"),
-            form_data;
-
-        function done_func(response) {
-            console.log(response);
-            if (response == "Sent") {
-                window.location.replace("/contact-us-thank-you");
-            /*grecaptcha.reset();*/
-            setTimeout(function () {
-                message.fadeOut();
-            }, 3000);
-            Contactform.find('input:not([type="submit"]), textarea').val("");
-            }
-
-            $('#button-spinner').hide();
-
-        }
-
-        Contactform.submit(function (e) {
-            e.preventDefault();
-            var countrycode = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
-            $("#CountryCode").val(countrycode);
-
-            form_data = $(this).serialize();
-
-            if (!$(".form_contact").valid()) {
-                return false;
-            }
-            //var response = grecaptcha.getResponse();
-            //if (response.length == 0) {
-            ////reCaptcha not verified
-            //alert("Please Verify Captcha!");
-            //e.preventDefault();
-            //return false;
-            //}
-
-
-            $('#button-spinner').show();
-            $('#btnSubmit').attr("disabled", true);
-            var data = {
-                FirstName: $("#firstname").val(),
-                /*LastName: $("#lastname").val(),*/
-                Email: $("#email").val(),
-                Phoneumber: $("#phone").val(),
-                Message: $("#message").val(),
-                CountryCode: countrycode,
-            }
-
-            $.ajax({
-                type: "POST",
-                url: "/api/Mail/SendContactDetails",
-                contentType: 'application/json',
-                data: JSON.stringify(data),
-            }).done(done_func);
-        });
-
-        $("form[name='contactDetail']").validate({
-            errorPlacement: function (error, element) {
-                if ($(element).is("#phone")) {
-                    element.closest(".intl-tel-input").after(error);
-                } else {
-                    error.insertAfter(element);
+                if (String.fromCharCode(charCode).match(/[^0-9]/g)) {
+                    return false;
                 }
-            },
-            rules: {
-                firstname: "required",
-                email: {
-                    required: true,
-                    email: true,
+            });
+
+
+
+            locationForm.validate({
+                errorPlacement: function (error, element) {
+
+                    if (element.attr("id") === "phone") {
+
+                        element.closest(".intl-tel-input").after(error);
+                    } else {
+
+                        error.insertAfter(element);
+                    }
                 },
-                phone: {
-                    required: true,
-                    digits: true,
-                    minlength: 10,
-                    maxlength: 10
+                rules: {
+                    firstname: "required",
+
+                    email: {
+                        required: true,
+                        email: true,
+                    },
+                    phone: {
+                        required: true,
+                        digits: true,
+                        minlength: 7,
+                        maxlength: 15
+
+                    },
+                    message: { // Matches name="message"
+                        required: true,
+                        minlength: 10, // Reduced from 25 for broader usability, adjust as needed
+                        maxlength: 500 // Matches maxlength attribute in textarea
+                    }
+                    // fcaptcha: { // Your HTML doesn't have a 'fcaptcha' field for this form
+                    //     required: true,
+                    // },
                 },
-                message: {
-                    required: true,
-                    minlength: 25,
+                messages: {
+                    firstname: "Please enter your Full Name",
+                    // lastname: "Please enter your Last Name",
+                    phone: {
+                        required: "Please enter phone number",
+                        digits: "Please enter valid phone number (digits only)",
+                        minlength: "Please enter a valid phone number",
+                        maxlength: "Please enter a valid phone number",
+                    },
+                    email: {
+                        required: "Please enter email address",
+                        email: "Please enter a valid email address.",
+                    },
+                    message: {
+                        required: "Please write your Message",
+                        minlength: "Please write at least 10 characters",
+                    }
+                },
+                submitHandler: function (form) {
+                    $('#btnSubmit').prop("disabled", true);
+                    $('#button-spinner').show();
+                    form.submit();
                 }
-            },
-            messages: {
-                firstname: "Please enter your First Name",
-                email: {
-                    required: "Please enter email address",
-                    email: "Please enter a valid email address.",
-                },
-                phone: {
-                    required: "Please enter phone number",
-                    digits: "Please enter valid phone number",
-                    minlength: "Please enter valid phone number",
-                    maxlength: "Please enter valid phone number",
-                },
-                message: {
-                    required: "Please write your Message",
-                    minlength: "Please write at least 25 characters",
+            });
+
+
+            // --- Form Submission Handler (AJAX) ---
+            locationForm.submit(function (e) {
+                e.preventDefault(); // Prevent the default form submission
+
+                // Re-check validity (belt and suspenders approach)
+                if (!locationForm.valid()) {
+                    // Re-enable button if validation fails here before AJAX attempt
+                    $('#btnSubmit').prop("disabled", false);
+                    $('#button-spinner').hide();
+                    return false;
                 }
-            },
-            submitHandler: function (Contactform) {
-                /*Contactform.submit();*/
-                Contactform.submit();
-            },
-        });
 
-        /*Contact Us FORM END*/
+                // Show spinner and disable button
+                $('#button-spinner').show();
+                $('#btnSubmit').prop("disabled", true); // Use the correct button ID from your HTML: btnSubmit
 
-
-
-        /*APPLICATION FORM START*/
-
-        var Candidateform = $(".career_form"),
-        message = $(".career_msg"),
-        form_data;
-
-
-        function Application_Form(response) {
-        if (response == "Sent") {
-            window.location.replace("/career-thank-you");
-        message.fadeIn().removeClass("alert-danger").addClass("alert-success");
-        message.text(response);
-        grecaptcha.reset();
-        setTimeout(function () {
-        message.fadeOut();
-        }, 3000);
-        Candidateform.find('input:not([type="submit"]), textarea').val("");
-        }
-        $('#button-spinner').hide();
-        }
-
-        Candidateform.submit(function (e) {
-
-        e.preventDefault();
-
-        if (!$(".career_form").valid()) {
-        return false;
-        }
-
-        //var response = grecaptcha.getResponse();
-        //if (response.length == 0) {
-        //alert("Please Verify Captcha!");
-        //evt.preventDefault();
-        //return false;
-        //}
-        $('#button-spinner').show();
-        $('#btnSendEmail').attr("disabled",true);
-        //var Position = $("#caseOption").val();
-        var Position = $("#caseOption option:selected").text();
-        var Name = $("#name").val();
-        var Email = $("#email").val();
-        var ContactNumber = $("#contactno").val();
-        var Resume = $("#attachmentFile").get(0);
-        var files = Resume.files;
-        var Message = $("#message").val();
-
-        var fileData = new FormData();
-        fileData.append("Resume", files[0]);
-        fileData.append('Name', Name);
-        fileData.append('Email', Email);
-        fileData.append('ContactNumber', ContactNumber);
-        fileData.append('Message', Message);
-        fileData.append('Position', Position);
-
-        return $.ajax({
-        type: "POST",
-        url: "/api/Mail/SendCandidateDetails",
-        data: fileData,
-        cache: false,
-        contentType: false,
-        processData: false,
-        }).done(Application_Form);
-        });
-
-        $("form[name='career_form_data']").validate({
-        errorPlacement: function (error, element) {
-        if ($(element).is("select")) {
-        element.next().after(error);
-        } else {
-        error.insertAfter(element);
-        }
-        },
-
-        debug: true,
-        success: "valid",
-        rules: {
-        caseOption: "required",
-        name: "required",
-        email: {
-        required: true,
-        email: true,
-        },
-        contactno: {
-        required: true,
-        digits: true,
-        minlength: 10,
-        maxlength: 10,
-        },
-        attachmentFile: {
-        required: true,
-        extension: "pdf,doc,docx",
-        },
-        message: {
-        required: true,
-        },
-        },
-        messages: {
-        caseOption: "Please select position",
-        name: "Please enter your Name",
-        contactno: {
-        required: "Please enter phone number",
-        digits: "Please enter valid phone number",
-        minlength: "Please enter valid phone number",
-        maxlength: "Please enter valid phone number"
-        },
-        email: {
-        required: "Please enter email address",
-        email: "Please enter a valid email address.",
-        },
-        attachmentFile: {
-        required: "Please choose a file",
-        extension: "Please choose a valid file type",
-        },
-        message: {
-        required: "Please write your Message",
-        },
-        },
-        submitHandler: function (Candidateform) {
-        Candidateform.submit();
-        },
-        });
+                // Get country code from intlTelInput
+                var countryCode = "";
+                try {
+                    // Ensure intlTelInput instance exists before calling methods
+                    if ($("#phone").data('plugin_intlTelInput')) {
+                        countryCode = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
+                    } else {
+                        console.warn("intlTelInput not initialized on #phone");
+                    }
+                } catch (error) {
+                    console.error("Error getting country code:", error);
+                    // Decide how to handle this - maybe default code or prevent submission?
+                }
 
 
-        /*APPLICATION FORM END*/
+                // Update hidden field value (Make sure the ID matches your HTML)
+                $("#CountryCode").val(countryCode);
+                var dataToSend = {
+                    FirstName: $("#firstname").val(),
+                    // LastName: $("#lastname").val(), // Remove if no lastname field exists
+                    Email: $("#email").val(),
+                    PhoneNumber: $("#phone").val(), // Changed name slightly for clarity
+                    Message: $("#message").val(),
+                    CountryCode: countryCode, // Send the obtained country code
+                };
 
+                // AJAX call
+                $.ajax({
+                    type: "POST",
+                    url: "/api/Mail/SendLocationPageDetails", // Your API endpoint
+                    contentType: 'application/json', // Sending JSON data
+                    data: JSON.stringify(dataToSend), // Convert JS object to JSON string
+                })
+                    .done(function (response) {
+                        // SUCCESS function
+                        console.log("Server Response:", response);
+                        window.location.replace("/location-thank-you");
 
+                        locationForm.trigger("reset");
 
-        /*PROJECT DETAILS FORM START*/
+                    })
+                    .fail(function (jqXHR, textStatus, errorThrown) {
+                        // ERROR function
+                        console.error("AJAX Error:", textStatus, errorThrown);
 
-        var Projectform = $(".project_form"),
-        message = $(".project_msg"),
-        form_data;
+                        alert("There was an error sending your message. Please try again.");
+                        // Re-enable the button on failure
+                        $('#btnSubmit').prop("disabled", false);
 
-        function ProjectSuccess(response) {
-        if (response == "Sent") {
-            window.location.replace("/services-thank-you");
-        message.fadeIn().removeClass("alert-danger").addClass("alert-success");
-        message.text(response);
-        grecaptcha.reset();
-        setTimeout(function () {
-        message.fadeOut();
-        }, 3000);
-        Projectform.find('input:not([type="submit"]), textarea').val("");
-        }
+                    })
+                    .always(function () {
+                        $('#button-spinner').hide();
 
-        $('#button-spinner').hide();
-        }
-
-        Projectform.submit(function (e) {
-        e.preventDefault();
-
-        var code = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
-        $("#scode").val(code);
-
-        form_data = $(this).serialize();
-        if (!$(".project_form").valid()) {
-        return false;
-        }
-        //var response = grecaptcha.getResponse();
-        //if (response.length == 0) {
-        ////reCaptcha not verified
-        //alert("Please Verify Captcha!");
-        //evt.preventDefault();
-        //return false;
-        //}
-
-        $('#button-spinner').show();
-        $('#btnSendEmail').attr("disabled", true);
-        var Projectdata = {
-        FirstName: $("#firstname").val(),
-        LastName: $("#lastname").val(),
-        Email: $("#email").val(),
-        Phone: $("#phone").val(),
-        Service: $("#servicename").val(),
-        Budget: $("#budget").val(),
-        StartDate: $("#starttime").val(),
-        Requirement: $("#prequirement").val(),
-        ProjectDetails: $("#projectbrief").val(),
-        CountryCode: code,
-        }
-
-        $.ajax({
-        type: "POST",
-        url: "/api/Mail/SendProjectDetails",
-        contentType: 'application/json',
-        data: JSON.stringify(Projectdata),
-        }).done(ProjectSuccess);
-        });
-
-
-        $("form[name='project_form_data']").validate({
-        errorPlacement: function (error, element) {
-        if ($(element).is("#phone")) {
-        element.closest(".intl-tel-input").after(error);
-        } else if (element.attr("class").indexOf("selectpicker") != -1) {
-        var mpar = $(element).closest("div.bootstrap-select");
-        error.insertAfter($(".dropdown-toggle", mpar));
-        } else {
-        error.insertAfter(element);
-        }
-        },
-
-
-        rules: {
-        firstname: "required",
-        lastname: "required",
-        phone:
-        {
-        required: true,
-        digits: true,
-        minlength: 10,
-        maxlength: 10
-        },
-        servicename: "required",
-        email: {
-        required: true,
-        email: true,
-        },
-        budget: "required",
-        starttime: "required",
-        prequirement: "required",
-        projectbrief: {
-        required: true,
-        minlength: 25,
-        },
-        },
-        messages: {
-        firstname: "Please enter your First Name",
-        lastname: "Please enter your Last Name",
-        /*phone: "Please enter your Phone Number",*/
-        phone: {
-        required: "Please enter phone number",
-        digits: "Please enter valid phone number",
-        minlength: "Please enter valid phone number",
-        maxlength: "Please enter valid phone number",
-        },
-        servicename: "Please select a Service",
-        email: "Please enter a valid Email Address",
-        budget: "Please select a valid Budget",
-        starttime: "Please select Start Time",
-        prequirement: "Please select Requirement",
-        projectbrief: {
-        required: "Please write brief Project Description",
-        minlength: "Please write at least 25 characters",
-        },
-        },
-
-        submitHandler: function (Projectform) {
-        form.submit();
-
-        },
-        });
-        /*PROJECT DETAILS FORM END*/
-
-
-
-        })(jQuery);
-        function CareerOption() {
-        $.ajax({
-        url: "/Avidclan/GetCareerOption",
-        type: "GET",
-        dataType: "json",
-        success: function (data) {
-        $.each(data, function (index, item) {
-        var opt = new Option(item.JobTitle, item.Id);
-        $('.dropdownjobtitle').append(opt);
+                    });
+            });
 
         });
-        }
-        })
-        }
-        function ClearModalPopup() {
-        $('ul.list').empty();
-        }
-        function GetBlogStatusByName(name) {
-        $.ajax({
-        url: '@Url.Action("GetBlogStatusByName", "Avidclan")',
-        contentType: 'application/json',
-        data: { name: name },
-        type: "GET",
-        success: function (result) {
-        if (result != null) {
-        if (result.Status) {
-        $(".cls-menu-blog").css("display", "block");
-        }
-        else {
-        $(".cls-menu-blog").css("display", "none");
-        }
-        }
-        else {
-        $(".cls-menu-blog").css("display", "none");
-        }
-
-        },
-        error: function () {
-        alert('failure');
-        }
-        });
-        }
     </script>
+
+
     @RenderSection("scripts", required: false)
 
 </body>
