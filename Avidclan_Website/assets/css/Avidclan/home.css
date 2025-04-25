@@ -129,7 +129,8 @@ p {
 .phone .call_ic > i,
 .primary-color,
 .process-block-one .icon .ic-block .ic-bg svg,
-.project-block-five .content a:hover,
+.
+.content a:hover,
 .sidebar-widget .category .cate-item a:hover,
 .sidebar-widget .recent-posts ul li .post-link:hover,
 .single-blog .blog-content .title a:hover,
@@ -523,7 +524,7 @@ a:hover .nav-link .active {
 .testimonial-item {
     flex: 0 0 calc(50% - 10px);
     position: relative;
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     scroll-snap-align: start;
     min-width: 48%
@@ -550,7 +551,7 @@ a:hover .nav-link .active {
         color: #fff;
         border: none;
         padding: 10px 15px;
-        margin: 0 5px;
+        margin: 0 2px;
         cursor: pointer;
         font-size: 18px
     }
@@ -751,7 +752,7 @@ a:hover .nav-link .active {
         }
 
     .services-section-four .col-md-6 {
-        margin-bottom: 2rem !important
+        margin-bottom: 0rem 
     }
 }
 
@@ -811,4 +812,81 @@ a:hover .nav-link .active {
     background-color: #0E53BE;
     max-width: 40px;
 }
+.custom-btn-padding {
+    padding: 10px 30px !important
+}
+.iconify-custom {
+    color: #0E53BE;
+}
 
+.custom-color {
+    color: #0E53BE
+}
+    .custom-color:hover {
+        color: #0E53BE
+    }
+.icon-padding{
+    padding:30px 0 50px;
+}
+@media (max-width: 991.98px) {
+    .mobile-arrow-icon {
+        right: 3px;
+        z-index: 10;
+        top: 5px !important;
+        padding: 5px;
+        position: absolute;
+
+    }
+
+    .mobile-arrow-icon .arrow-icon-img {
+        transform: rotate(180deg); /* arrow-down by default */
+        transition: transform 0.3s ease;
+    }
+
+    .mobile-arrow-icon[aria-expanded="true"] .arrow-icon-img {
+        transform: rotate(0deg); /* arrow-up when open */
+    }
+}
+a.nav-link.btn.btn-primary.fw-bold.rounded-5.custom-btn-padding.shadow-none {
+    padding: 10px 20px !important;
+}
+
+.cookies-infobar {
+    background: #142149;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+    text-align: center;
+    font-size: 13px;
+    z-index: 9
+}
+
+.cookies-infobar_btn, .links-widget .social-links li {
+    display: inline-block;
+    background: var(--color-primary)
+}
+
+.cookies-infobar_wrapper {
+    margin: 10px
+}
+
+.cookies-infobar a:hover {
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid #fff
+}
+
+.cookies-infobar_btn {
+    padding:3px 15px;
+    border-radius: 15px;
+    color: #fff;
+    border: 1px solid var(--color-primary);
+    text-transform: uppercase
+}

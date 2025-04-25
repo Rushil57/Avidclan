@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="~/assets/css/Avidclan/casestudy.css" />
 }
 
-<section>
+<section class="pt-5">
     <div class="container">
         <div class="row mt5 banner-sec-custom mb5">
             <div class="col-md-6 order-lg-1 order-md-1 order-sm-2 order-2">
@@ -27,7 +27,7 @@
                     <h1 class="banner-section-two-h1">IoT Health Monitor</h1>
                 </div>
                 <p>
-                    Managing respiratory conditions requires consistent medication adherence, and the swift advancement of smart healthcare solutions has rendered accurate inhaler usage monitoring essential for patient welfare and treatment compliance. However, traditional methods often result in <b>missed doses, overdosing, or improper medication use</b>, increasing health risks for patients.
+                    Managing respiratory conditions requires consistent medication adherence, and the swift advancement of smart healthcare solutions has rendered accurate inhaler usage monitoring essential for patient welfare and treatment compliance. However, traditional methods often result in missed doses, overdosing, or improper medication use, increasing health risks for patients.
                     <br /><br />
                     To address this gap, we created an IoT-based BLE solution that interfaces effortlessly with smart inhalers to monitor medication adherence, deliver prompt reminders, and archive usage data in the Azure Cloud. This system improves patient involvement, guarantees medical compliance, and equips healthcare practitioners with real-time data, transforming the management of respiratory care through technology.
                 </p>
@@ -36,15 +36,15 @@
                     <div class="row">
                         <div class="col-md-3 col-6">
                             <img src="~/assets/images/casestudydetail/tools/XCode.svg" alt="xcode" />
-                            <h4 class="mt-2 h4-font">XCode</h4>
+                            <h4 class="mt-2 h4-font fs-6">XCode</h4>
                         </div>
                         <div class="col-md-3 col-6">
                             <img src="~/assets/images/casestudydetail/tools/jira.svg" alt="jira" />
-                            <h4 class="mt-2 h4-font">JIRA</h4>
+                            <h4 class="mt-2 h4-font fs-6">JIRA</h4>
                         </div>
                         <div class="col-md-3 col-6">
                             <img src="~/assets/images/casestudydetail/tools/swift_lint.svg" alt="swift-lint" />
-                            <h4 class="mt-2 h4-font">Swift lint</h4>
+                            <h4 class="mt-2 h4-font fs-6">Swift lint</h4>
                         </div>
                     </div>
                 </div>
@@ -68,11 +68,11 @@
                     <h2 style="border-bottom: 1px solid #ccc; width: fit-content; ">About Project</h2>
                 </div>
                 <p class="mt5">
-                    Enhancing medication adherence and inhaler usage tracking, the IoT-based BLE Inhaler Medication Tracker integrates a BLE-enabled sensor with a mobile application for seamless monitoring and management. This solution integrates <b>BLE technology, mobile applications, and Azure Cloud IoT</b>, where the sensor pairs with the app via <b>Core Bluetooth</b> to retrieve actuation data, store it in <b>SQLite</b>, and sync it securely to <b>Azure Cloud</b> for seamless access and monitoring.
+                    Enhancing medication adherence and inhaler usage tracking, the IoT-based BLE Inhaler Medication Tracker integrates a BLE-enabled sensor with a mobile application for seamless monitoring and management. This solution integrates BLE technology, mobile applications, and Azure Cloud IoT, where the sensor pairs with the app via Core Bluetooth to retrieve actuation data, store it in SQLite, and sync it securely to Azure Cloud for seamless access and monitoring.
                     <br /><br />
-                    Users can track medication intake, receive dose reminders, and securely store usage history for better treatment adherence. Built using <b>Core Bluetooth, SQLite, and Azure Cloud</b>, the system ensures seamless data synchronization and remote monitoring.
+                    Users can track medication intake, receive dose reminders, and securely store usage history for better treatment adherence. Built using Core Bluetooth, SQLite, and Azure Cloud, the system ensures seamless data synchronization and remote monitoring.
                     <br /><br />
-                    Additionally, <b>Azure API Management</b> enables data sharing with healthcare providers and third-party medical platforms, offering a comprehensive approach to medication management. By bridging the gap between patients, doctors, and technology, this <b>IoT-driven solution</b> enhances health outcomes and simplifies medication tracking.
+                    Additionally, Azure API Management enables data sharing with healthcare providers and third-party medical platforms, offering a comprehensive approach to medication management. By bridging the gap between patients, doctors, and technology, this IoT-driven solution enhances health outcomes and simplifies medication tracking.
                 </p>
                 <div class="row justify-content-left mt-3 Sec">
                     <div class="col-md-3 col-6">
@@ -266,19 +266,20 @@
                             <h2 style="border-bottom: 1px solid #ccc;">Project Challenges</h2>
                         </div>
                     </div>
-                    <div class="col order-lg-1 order-md-1 order-sm-3 order-2 mt3">
+                    <div class="col-12 mt-3">
                         <ul class="listst">
                             <li><p>BLE communication often faces connection instability and data transfer delays, leading to inaccurate medication usage tracking and user frustration.</p></li>
                             <li><p>The app should ensure a smooth user experience, handle real-time data, and maintain cross-device compatibility without performance issues.</p></li>
-                            <li><p>Handling large medication data with real-time sync across devices posed security and performance challenges..</p></li>
+                            <li><p>Handling large medication data with real-time sync across devices posed security and performance challenges.</p></li>
                             <li><p>Users required precise, customizable reminders that adapted to their schedules while preventing redundant or missed notifications.</p></li>
                             <li><p>Seamless integration with healthcare providers and external medical platforms was essential but required secure authentication and compliance.</p></li>
                         </ul>
                     </div>
-                    <div class="col order-lg-2 order-md-2 order-sm-1 order-1 mt3">
-                        <img src="~/assets/images/casestudy/goolgoal/ProjectChallenge.jpg" class="img-border img-fluid" />
+                    <div class="col-12 mt-3">
+                        <img src="/assets/images/casestudy/goolgoal/ProjectChallenge.jpg" class="img-border img-fluid" alt="Project Challenges">
                     </div>
                 </div>
+
             </div>
             <div class="col-md-6 oursol">
                 <div class="row">
@@ -287,7 +288,7 @@
                             <h2 style="border-bottom: 1px solid #ccc;">Our Solution</h2>
                         </div>
                     </div>
-                    <div class="col order-lg-1 order-md-1 order-sm-3 order-2 mt3">
+                    <div class="col-12 mt-3">
                         <ul class="listst">
                             <li><p>Optimized Core Bluetooth protocols with error-handling mechanisms, ensuring a stable, uninterrupted connection between the inhaler sensor and the mobile app.</p></li>
                             <li><p>We developed a Swift-based mobile application with an optimized MVVM architecture, improving data handling, UI responsiveness, and scalability.</p></li>
@@ -296,10 +297,11 @@
                             <li><p>We enabled deep linking and in-app browser authentication, empowering users to securely sync their medication data with trusted third-party services.</p></li>
                         </ul>
                     </div>
-                    <div class="col order-lg-2 order-md-2 order-sm-1 order-1 mt3">
-                        <img src="~/assets/images/casestudy/goolgoal/OurSolution.jpg" class="img-border img-fluid" />
+                    <div class="col-12 mt-3">
+                        <img src="/assets/images/casestudy/goolgoal/OurSolution.jpg" class="img-border img-fluid" alt="Our Solution">
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -477,19 +479,20 @@
                     <h2 class="section-title">Business Outcomes</h2>
                     <hr />
                     <div class="row">
-                        <div class="col order-lg-1 order-md-1 order-sm-2 order-2">
-                            <p class="section-content mt-3">
+                        <div class="col-12 mt-3">
+                            <p class="section-content">
                                 The implementation of the IoT-based BLE Inhaler Medication Tracker significantly improved medication adherence and patient engagement. By reducing the chance of missing or mistaking dosages, real-time inhaler tracking and Azure Cloud synchronization gave customers greater control over how much medication they took.
-                                <br /><br />
+                                <br><br>
                                 By combining automated reminders with AI-driven health data, the solution improved treatment efficacy and provided a customized experience.
-                                <br /><br />
+                                <br><br>
                                 The smooth collaboration among patients, physicians, and healthcare providers was enabled by secure third-party data exchange, improving informed medical decision-making. This system offered a user-focused, scalable, and effective approach to controlling respiratory health by successfully integrating cloud analytics, mobile technology, and the Internet of Things.
                             </p>
                         </div>
-                        <div class="col order-lg-1 order-md-1 order-sm-1 order-1">
-                            <img src="/assets/images/casestudy/goolgoal/businessoutcome.png" class="img-border img-fluid mt-3" alt="Business Outcomes">
+                        <div class="col-12 mt-3">
+                            <img src="/assets/images/casestudy/goolgoal/businessoutcome.png" class="img-border img-fluid" alt="Business Outcomes">
                         </div>
                     </div>
+
                 </div>
             </div>
             <div class="col-md-6 light-blue-bg">

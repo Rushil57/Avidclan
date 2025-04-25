@@ -418,6 +418,32 @@
         </div>
     </div>
 </section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<script>
+    $(document).ready(function () {
+        $('.filter').on('click', function () {
+            var filterValue = $(this).attr('data-filter');
+
+            // Add active class to the current filter and remove from others
+            $('.filter').removeClass('active');
+            $(this).addClass('active');
+
+            // Show/Hide portfolio items
+            if (filterValue === 'all') {
+                $('.masonry-item').show();
+                $('.masonry-item').removeClass('d-none'); // Ensure all items are visible
+            } else {
+                $('.masonry-item').hide();
+                $(filterValue).show();
+                // Also remove 'd-none' from the items with the 'por-3' class when selected
+                if (filterValue === '.por-3') {
+                    $('.por-3').removeClass('d-none');
+                }
+            }
+        });
+    });
+
+</script>
 
 @Html.Partial("_Footer")
