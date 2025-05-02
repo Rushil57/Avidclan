@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Threading.Tasks;
@@ -56,11 +57,13 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public JsonResult GetLeaveDetails(int Id)
         {
+
             var parameters = new DynamicParameters();
             parameters.Add("@Id", Id, DbType.Int16, ParameterDirection.Input);
             parameters.Add("@Mode", 2, DbType.Int32, ParameterDirection.Input);
             var GetLeaveDates = con.Query<LeaveViewModel>("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure);
             return Json(GetLeaveDates, JsonRequestBehavior.AllowGet);
+
         }
 
         public ActionResult LeaveStatus()
@@ -140,7 +143,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 //var FutureListLeaves = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", Attributes, commandType: CommandType.StoredProcedure).ToList();
                 //if (FutureListLeaves.Count > 0)
                 //{
-                //    double pastPersonalLeave = 0.0, pastSickLeave = 0.0, currPersonalLeave = 0.0, currSickLeave = 0.0, compOff = 0.0;
+                //    double pastPersonalLeave = 0.0, pastSickLeave = 0.0, currPersonalLeave = 0.0, currSickLeave = 0.0, compOff = 0.0; 
                 //    var updateParams = new List<DynamicParameters>();
 
                 //    foreach (var leave in FutureListLeaves)
@@ -236,7 +239,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 //            await UpdateUserCompOffBalance(UserId, updateCompOff);
                 //        }
                 //    }
-                    
+
                 //}
 
                 await AddLeaves(ListLeaves, ProbationPeriod, JoinigDate, UserId, FromDate, wfhId);
@@ -290,6 +293,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             {
                 var ProbationMonths = Convert.ToInt32(ProbationPeriod);
                 var joiningDate = Convert.ToDateTime(JoinigDate);
+                var joiningDatestr = joiningDate.ToString("yyyy-MM-dd");
 
                 var JoiningDateAfterProbation = joiningDate.AddMonths(ProbationMonths);
 
@@ -312,60 +316,79 @@ namespace Avidclan_BlogsVacancy.Controllers
                 }
                 var DiffernceDate = Math.Abs((TodaysDate.Date - fromDate).Days);
 
+                //bool isPreviousMonthLeave = leave.LeaveDate.Month < TodaysDate.Month && leave.LeaveDate.Year == TodaysDate.Year;
+                bool isPreviousMonthLeave =
+                    (ListLeaves[0].LeaveDate.Month < TodaysDate.Month && ListLeaves[0].LeaveDate.Year == TodaysDate.Year) ||
+                    (ListLeaves[0].LeaveDate.Year < TodaysDate.Year);
+                bool isWithinGracePeriod = TodaysDate.Day <= 7;
+
+
+                var usernoticeParameters = new DynamicParameters();
+                usernoticeParameters.Add("@Id", UserId, DbType.Int16, ParameterDirection.Input);
+                usernoticeParameters.Add("@Mode", 16, DbType.Int32, ParameterDirection.Input);
+
+
+                var UserDetails = con.Query<UserRegister>("sp_User", usernoticeParameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+
                 foreach (var leave in ListLeaves)
                 {
                     var monthDifference = (((leave.LeaveDate.Year - joiningDate.Year) * 12) +
                      leave.LeaveDate.Month - joiningDate.Month) + 1;
 
-                    bool isPreviousMonthLeave = leave.LeaveDate.Month < TodaysDate.Month && leave.LeaveDate.Year == TodaysDate.Year;
-                    bool isWithinGracePeriod = TodaysDate.Day <= 7;
-
-                    if (monthDifference <= ProbationMonths)
+                    if (!string.IsNullOrEmpty(Convert.ToString(UserDetails.NoticePeriodDate)))
                     {
                         await SetProbationLwpLeave(leave);
                     }
                     else
                     {
-                        if (isPreviousMonthLeave && !isWithinGracePeriod)
+                        if (monthDifference <= ProbationMonths)
                         {
-                            // If leave is from a previous month and today's date is past the 7th, mark it as LWP
-                            //await SetPersonalorLwpLeave(leave, JoiningDateAfterProbation, UserId);
-                            await SavePaidOrLwpLeave(leave.Id, leave.Halfday != null ? 0.5 : 1.0, "Lwp");
+                            await SetProbationLwpLeave(leave);
                         }
                         else
                         {
-                            if (leave.LeaveDate <= TodaysDate)
+                            if (isPreviousMonthLeave && !isWithinGracePeriod)
                             {
-                                sickLeavetaken = true;
-                                await SetSickorLwpLeave(leave, JoiningDateAfterProbation, UserId);
+                                // If leave is from a previous month and today's date is past the 7th, mark it as LWP
+                                //await SetPersonalorLwpLeave(leave, JoiningDateAfterProbation, UserId);
+                                await SavePaidOrLwpLeave(leave.Id, leave.Halfday != null ? 0.5 : 1.0, "Lwp");
                             }
-                            if (ListLeaves.Count == 1 && leave.LeaveDate > TodaysDate)
+                            else
                             {
-                                if (DiffernceDate >= 7)
-                                {
-                                    await SetPersonalorLwpLeave(leave, JoiningDateAfterProbation, UserId);
-                                }
-                                else
+                                if (leave.LeaveDate <= TodaysDate)
                                 {
                                     sickLeavetaken = true;
-                                    await SetSickorLwpLeave(leave, JoiningDateAfterProbation, UserId);
+                                    await SetSickorLwpLeave(leave, joiningDatestr, UserId);
+                                }
+                                if (ListLeaves.Count == 1 && leave.LeaveDate > TodaysDate)
+                                {
+                                    if (DiffernceDate >= 7)
+                                    {
+                                        await SetPersonalorLwpLeave(leave, joiningDatestr, UserId);
+                                    }
+                                    else
+                                    {
+                                        sickLeavetaken = true;
+                                        await SetSickorLwpLeave(leave, joiningDatestr, UserId);
+                                    }
+                                }
+                                if (ListLeaves.Count > 1 && leave.LeaveDate > TodaysDate)
+                                {
+                                    if (DiffernceDate >= 14)
+                                    {
+                                        await SetPersonalorLwpLeave(leave, joiningDatestr, UserId);
+                                    }
+                                    else
+                                    {
+                                        sickLeavetaken = true;
+                                        await SetSickorLwpLeave(leave, joiningDatestr, UserId);
+                                    }
                                 }
                             }
-                            if (ListLeaves.Count > 1 && leave.LeaveDate > TodaysDate)
-                            {
-                                if (DiffernceDate >= 14)
-                                {
-                                    await SetPersonalorLwpLeave(leave, JoiningDateAfterProbation, UserId);
-                                }
-                                else
-                                {
-                                    sickLeavetaken = true;
-                                    await SetSickorLwpLeave(leave, JoiningDateAfterProbation, UserId);
-                                }
-                            }
+
                         }
-                      
                     }
+
                 }
             }
             catch (Exception ex)
@@ -400,7 +423,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     var SaveLwpLeave = con.ExecuteScalar("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 await ErrorLog("LeaveController - SetProbationLwpLeave", ex.Message, ex.StackTrace);
 
@@ -423,11 +446,12 @@ namespace Avidclan_BlogsVacancy.Controllers
 
                 // Get user leave balance
                 var userParams = new DynamicParameters();
-                userParams.Add("@Id", userId, DbType.String, ParameterDirection.Input);
-                userParams.Add("@Mode", 14, DbType.Int32, ParameterDirection.Input);
+                userParams.Add("@UserId", userId, DbType.String, ParameterDirection.Input);
+                userParams.Add("@JoiningDate", joiningDate, DbType.String, ParameterDirection.Input);
+                userParams.Add("@Mode", 22, DbType.Int32, ParameterDirection.Input);
 
-                var leaveBalance = con.Query<UserRegister>("sp_User", userParams, commandType: CommandType.StoredProcedure).FirstOrDefault();
-                double userTotalSickLeave = string.IsNullOrEmpty(leaveBalance?.SickLeave) ? 0 : Convert.ToDouble(leaveBalance.SickLeave);
+                var leaveBalance = con.Query<UserRegister>("sp_LeaveApplicationDetails", userParams, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                double userTotalSickLeave = string.IsNullOrEmpty(leaveBalance?.SickLeaveFinalBalance) ? 0 : Convert.ToDouble(leaveBalance.SickLeaveFinalBalance);
 
 
                 // Adjust sick leave value for half-day
@@ -438,14 +462,14 @@ namespace Avidclan_BlogsVacancy.Controllers
                 {
                     // Handle the case when the balance is less than required leave
                     await SaveSickAndLwpLeave(leavedates.Id, HALF_DAY_LEAVE, HALF_DAY_LEAVE);
-                    await UpdateLeaveBalance(userId, Convert.ToDouble(leaveBalance.PaidLeave), 0);
+                    //await UpdateLeaveBalance(userId, Convert.ToDouble(leaveBalance.PaidLeave), 0);
                 }
                 else if (userTotalSickLeave >= sickLeave)
                 {
                     // Deduct leave from sick leave balance
                     await SaveLeave(leavedates.Id, sickLeave, "Sick");
                     double remainingSickLeave = Math.Max(0, userTotalSickLeave - sickLeave);
-                    await UpdateLeaveBalance(userId, Convert.ToDouble(leaveBalance.PaidLeave), remainingSickLeave);
+                    //await UpdateLeaveBalance(userId, Convert.ToDouble(leaveBalance.PaidLeave), remainingSickLeave);
                 }
                 else
                 {
@@ -515,7 +539,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             {
                 if (!skipCompOffCheck)
                 {
-                    bool iscompOffLeave = await CheckCompOffLeave(leave, joiningDate,userId);
+                    bool iscompOffLeave = await CheckCompOffLeave(leave, joiningDate, userId);
                     if (iscompOffLeave)
                         return 0.0;
                 }
@@ -525,14 +549,22 @@ namespace Avidclan_BlogsVacancy.Controllers
                 // Use remainingLeaveToDeduct if provided; otherwise, determine leaveTaken normally
                 double leaveTaken = remainingLeaveToDeduct ?? (leave.Halfday != null ? HALF_DAY_LEAVE : FULL_DAY_LEAVE);
 
+
+                //DateTime parsedDate = DateTime.ParseExact(leave.LeaveDate.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                //string formattedDate = parsedDate.ToString("yyyy-MM-dd"); // => "2025-05-16"
+                string formattedDate = leave.LeaveDate.ToString("yyyy-MM-dd");
+
+
                 // Get user leave balance
                 var userParams = new DynamicParameters();
-                userParams.Add("@Id", userId, DbType.String, ParameterDirection.Input);
-                userParams.Add("@Mode", 14, DbType.Int32, ParameterDirection.Input);
+                userParams.Add("@UserId", userId, DbType.String, ParameterDirection.Input);
+                userParams.Add("@JoiningDate", joiningDate, DbType.String, ParameterDirection.Input);
+                userParams.Add("@LeaveDate", formattedDate, DbType.Date, ParameterDirection.Input);
+                userParams.Add("@Mode", 22, DbType.Int32, ParameterDirection.Input);
 
-                var leaveBalance = con.Query<UserRegister>("sp_User", userParams, commandType: CommandType.StoredProcedure).FirstOrDefault();
-                double userTotalPaidLeave = string.IsNullOrEmpty(leaveBalance?.PaidLeave) ? 0 : Convert.ToDouble(leaveBalance.PaidLeave);
-                double userTotalSickLeave = string.IsNullOrEmpty(leaveBalance?.SickLeave) ? 0 : Convert.ToDouble(leaveBalance.SickLeave);
+                var leaveBalance = con.Query<UserRegister>("sp_LeaveApplicationDetails", userParams, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                double userTotalPaidLeave = string.IsNullOrEmpty(leaveBalance?.FinalBalance) ? 0 : Convert.ToDouble(leaveBalance.FinalBalance);
+                double userTotalSickLeave = string.IsNullOrEmpty(leaveBalance?.SickLeaveFinalBalance) ? 0 : Convert.ToDouble(leaveBalance.SickLeaveFinalBalance);
 
                 if (userTotalPaidLeave == HALF_DAY_LEAVE && leave.Halfday == null)
                 {
@@ -541,7 +573,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     await SavePaidOrLwpLeave(leave.Id, HALF_DAY_LEAVE, "Lwp");
 
                     // Update user leave balance
-                    await UpdateLeaveBalance(userId, 0, userTotalSickLeave);
+                    //  await UpdateLeaveBalance(userId, 0, userTotalSickLeave);
                 }
                 else if (userTotalPaidLeave >= leaveTaken)
                 {
@@ -549,8 +581,8 @@ namespace Avidclan_BlogsVacancy.Controllers
                     await SavePaidOrLwpLeave(leave.Id, leaveTaken, "Personal");
 
                     // Update leave balance after deduction
-                    double remainingPaidLeave = Math.Max(0, userTotalPaidLeave - leaveTaken);
-                    await UpdateLeaveBalance(userId, remainingPaidLeave, userTotalSickLeave);
+                    //double remainingPaidLeave = Math.Max(0, userTotalPaidLeave - leaveTaken);
+                    //await UpdateLeaveBalance(userId, remainingPaidLeave, userTotalSickLeave);
                 }
                 else
                 {
@@ -580,7 +612,7 @@ namespace Avidclan_BlogsVacancy.Controllers
         #endregion  paidleave
 
         #region compoffleave
-        public async Task<bool> CheckCompOffLeave(LeaveDetailsViewModel leave, object joiningDate,object UserId)
+        public async Task<bool> CheckCompOffLeave(LeaveDetailsViewModel leave, object joiningDate, object UserId)
         {
             bool CompOffLeave = false;
             var parameters = new DynamicParameters();
@@ -648,7 +680,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     if (TotalCompOffList != null)
                     {
                         var totalDays = TotalCompOffList.CompOffLeave;
-                        if(Convert.ToDouble(totalDays) > 0)
+                        if (Convert.ToDouble(totalDays) > 0)
                         {
                             // Deduct the minimum required from the current record
                             double leaveToDeduct = Math.Min(remainingLeaveToDeduct, Convert.ToDouble(totalDays));
@@ -730,11 +762,12 @@ namespace Avidclan_BlogsVacancy.Controllers
             try
             {
                 var UserId = Session["UserId"];
-                var Currentyear = DateTime.Now.Year.ToString();
+                var joiningDate = ((DateTime)Session["UserJoiningDate"]).ToString("yyyy-MM-dd");
+
                 var parameters = new DynamicParameters();
                 parameters.Add("@UserId", UserId, DbType.String, ParameterDirection.Input);
-                parameters.Add("@Year", Currentyear, DbType.String, ParameterDirection.Input);
-                parameters.Add("@Mode", 12, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@JoiningDate", joiningDate, DbType.String, ParameterDirection.Input);
+                parameters.Add("@Mode", 22, DbType.Int32, ParameterDirection.Input);
                 var totalLeaveList = con.Query<TypeOfLeave>("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
 
                 var breakparameters = new DynamicParameters();
@@ -851,7 +884,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@UserId", UserId, DbType.Int32, ParameterDirection.Input);
                 parameters.Add("@mode", 8, DbType.Int32, ParameterDirection.Input);
                 var TotalCompOffList = con.Query<CompOffViewModel>("sp_CompensationLeave", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
-                if(TotalCompOffList != null)
+                if (TotalCompOffList != null)
                 {
                     TotalCompOffList.TotalDays = TotalCompOffList.TotalDays == null ? "0" : TotalCompOffList.TotalDays;
                     var compOffparameters = new DynamicParameters();
@@ -861,7 +894,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     using (IDbConnection connection = new SqlConnection(connectionString))
                     {
                         await connection.ExecuteScalarAsync("sp_User", compOffparameters, commandType: CommandType.StoredProcedure);
-                        
+
                     }
                 }
                 return Json(new { message = "Saved Successfully" });
@@ -878,10 +911,14 @@ namespace Avidclan_BlogsVacancy.Controllers
             try
             {
                 var UserId = Session["UserId"];
+                var joiningDate = ((DateTime)Session["UserJoiningDate"]).ToString("yyyy-MM-dd");
+
+
                 var parameters = new DynamicParameters();
-                parameters.Add("@Id", UserId, DbType.String, ParameterDirection.Input);
-                parameters.Add("@Mode", 14, DbType.Int32, ParameterDirection.Input);
-                var Leavebalance = con.Query<UserRegister>("sp_User", parameters, commandType: CommandType.StoredProcedure);
+                parameters.Add("@UserId", UserId, DbType.String, ParameterDirection.Input);
+                parameters.Add("@JoiningDate", joiningDate, DbType.String, ParameterDirection.Input);
+                parameters.Add("@Mode", 22, DbType.Int32, ParameterDirection.Input);
+                var Leavebalance = con.Query<UserRegister>("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure);
                 return Json(Leavebalance, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -926,16 +963,16 @@ namespace Avidclan_BlogsVacancy.Controllers
                 // Step 2: Retrieve leave details and check for date changes
                 var leaveParameters = new DynamicParameters();
                 leaveParameters.Add("@Id", leaveId, DbType.Int16, ParameterDirection.Input);
-                leaveParameters.Add("@Mode", 2, DbType.Int32, ParameterDirection.Input);
+                leaveParameters.Add("@Mode", 23, DbType.Int32, ParameterDirection.Input);
 
-                var leaveDates = con.Query<LeaveViewModel>("sp_LeaveApplicationDetails", leaveParameters, commandType: CommandType.StoredProcedure).ToList();
+                var leaveDates = con.Query<LeaveDeleteViewModel>("sp_LeaveApplicationDetails", leaveParameters, commandType: CommandType.StoredProcedure).ToList();
 
                 if (leaveDates != null && leaveDates.Any())
                 {
                     var fromDate = leaveDates[0].Fromdate;
                     var toDate = leaveDates[0].Todate;
-                    var firstLeaveDate = leaveDates.Select(x => x.LeaveDates).FirstOrDefault();
-                    var lastLeaveDate = leaveDates.Select(x => x.LeaveDates).LastOrDefault();
+                    var firstLeaveDate = leaveDates.Min(x => x.LeaveDates);
+                    var lastLeaveDate = leaveDates.Max(x => x.LeaveDates);
 
                     // Step 3: Update dates if there's a change
                     if (fromDate != firstLeaveDate || toDate != lastLeaveDate)
@@ -962,7 +999,7 @@ namespace Avidclan_BlogsVacancy.Controllers
         public JsonResult GetEmployeeLeaveDetails(string Id)
         {
             var UserId = Session["UserId"];
-            if(Id != null)
+            if (Id != null)
             {
                 var splitId = Id.Split('_');
                 var type = splitId[0];
@@ -981,6 +1018,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                         var leavelist = reader.Read<LeaveViewModel>().ToList();
                         var wfhdetaillist = reader.Read<LeaveViewModel>().ToList();
 
+                        wfhdetaillist = wfhdetaillist.Count > 0 ? wfhdetaillist.Where(x => x.WFHDates != null).ToList() : wfhdetaillist;
                         // Prepare the dynamic object for JSON response
                         var dynamiclist = new
                         {
@@ -1004,6 +1042,8 @@ namespace Avidclan_BlogsVacancy.Controllers
                         var wfhdetaillist = reader.Read<LeaveViewModel>().ToList();
                         var leavelist = reader.Read<LeaveViewModel>().ToList();
 
+                        wfhdetaillist = wfhdetaillist.Count > 0 ? wfhdetaillist.Where(x => x.WFHDates != null).ToList() : wfhdetaillist;
+
                         // Prepare the dynamic object for JSON response
                         var dynamiclist = new
                         {
@@ -1014,7 +1054,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                         return Json(dynamiclist, JsonRequestBehavior.AllowGet);
                     } // The reader is properly disposed of here
                 }
-               
+
             }
             return Json(null);
 
@@ -1035,6 +1075,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     // dlete record
                     var deleteParameters = new DynamicParameters();
                     deleteParameters.Add("@Id", wfhDetailId, DbType.Int16, ParameterDirection.Input);
+                    deleteParameters.Add("@WFHId", WFHResult.WFHId, DbType.Int16, ParameterDirection.Input);
                     deleteParameters.Add("@Mode", 11, DbType.Int32, ParameterDirection.Input);
 
                     var deleteResult = con.ExecuteScalar("sp_WorkFromHome", deleteParameters, commandType: CommandType.StoredProcedure);
@@ -1048,21 +1089,26 @@ namespace Avidclan_BlogsVacancy.Controllers
 
                     var WFH = con.Query<LeaveViewModel>("sp_WorkFromHome", wfhParameters, commandType: CommandType.StoredProcedure).ToList();
 
-                    var firstDate = WFH[0].Fromdate;
-                    var lastDate = WFH[0].Todate;
-
-                    var UpdatedFirstDate = WFH.Select(x => x.WFHDates).FirstOrDefault();
-                    var UpdatedLastdate = WFH.Select(x => x.WFHDates).LastOrDefault();
-                    // when there is only one record of wfh delete everything
-                    if (UpdatedFirstDate != firstDate || UpdatedLastdate != lastDate)
+                    if (WFH.Count > 0)
                     {
-                        var updateParameters = new DynamicParameters();
-                        updateParameters.Add("@Fromdate", UpdatedFirstDate, DbType.Date, ParameterDirection.Input);
-                        updateParameters.Add("@Todate", UpdatedLastdate, DbType.Date, ParameterDirection.Input);
-                        updateParameters.Add("@Id", wfhId, DbType.Int16, ParameterDirection.Input);
-                        updateParameters.Add("@Mode", 8, DbType.Int32, ParameterDirection.Input);
+                        var firstDate = WFH[0].Fromdate;
+                        var lastDate = WFH[0].Todate;
 
-                        var updateResult = con.ExecuteScalar("sp_WorkFromHome", updateParameters, commandType: CommandType.StoredProcedure);
+                        var UpdatedFirstDate = WFH.Select(x => x.WFHDates).FirstOrDefault();
+                        var UpdatedLastdate = WFH.Select(x => x.WFHDates).LastOrDefault();
+                        // when there is only one record of wfh delete everything
+                        if (UpdatedFirstDate != firstDate || UpdatedLastdate != lastDate)
+                        {
+                            var updateParameters = new DynamicParameters();
+                            updateParameters.Add("@Fromdate", UpdatedFirstDate, DbType.Date, ParameterDirection.Input);
+                            updateParameters.Add("@Todate", UpdatedLastdate, DbType.Date, ParameterDirection.Input);
+                            updateParameters.Add("@Id", wfhId, DbType.Int16, ParameterDirection.Input);
+                            updateParameters.Add("@WFHReason", WFHResult.ReasonForWFH, DbType.String, ParameterDirection.Input);
+                            updateParameters.Add("@LeaveId", WFHResult.LeaveId, DbType.Int32, ParameterDirection.Input);
+                            updateParameters.Add("@Mode", 8, DbType.Int32, ParameterDirection.Input);
+
+                            var updateResult = con.ExecuteScalar("sp_WorkFromHome", updateParameters, commandType: CommandType.StoredProcedure);
+                        }
                     }
 
 
@@ -1075,6 +1121,102 @@ namespace Avidclan_BlogsVacancy.Controllers
                 return ex.Message;
             }
         }
+
+        public async Task<string> DeleteWFHandLeaveDetailsOfEmployee(int wfhDetailId, int LeaveApplicationId)
+        {
+            try
+            {
+                await DeleteWFHDetailAndUpdateHeader(wfhDetailId);
+                await DeleteLeaveDetailAndUpdateHeader(LeaveApplicationId);
+                return "Deleted Successfully";
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("LeaveController - DeleteLeaveDetailsApplication", ex.Message, ex.StackTrace);
+                return ex.Message;
+            }
+        }
+
+        private async Task DeleteWFHDetailAndUpdateHeader(int wfhDetailId)
+        {
+            var wfhDetailsParams = new DynamicParameters();
+            wfhDetailsParams.Add("@Id", wfhDetailId, DbType.Int16);
+            wfhDetailsParams.Add("@Mode", 10, DbType.Int32);
+
+            var wfhDetail = con.Query<LeaveViewModel>("sp_WorkFromHome", wfhDetailsParams, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            if (wfhDetail == null) return;
+
+            // Delete WFH detail
+            var deleteParams = new DynamicParameters();
+            deleteParams.Add("@Id", wfhDetailId, DbType.Int16);
+            deleteParams.Add("@Mode", 11, DbType.Int32);
+            con.ExecuteScalar("sp_WorkFromHome", deleteParams, commandType: CommandType.StoredProcedure);
+
+            // Retrieve remaining WFH records
+            var wfhListParams = new DynamicParameters();
+            wfhListParams.Add("@Id", wfhDetail.WFHId, DbType.Int16);
+            wfhListParams.Add("@Mode", 12, DbType.Int32);
+
+            var remainingWFH = con.Query<LeaveViewModel>("sp_WorkFromHome", wfhListParams, commandType: CommandType.StoredProcedure).ToList();
+            if (!remainingWFH.Any()) return;
+
+            var firstDate = remainingWFH.Min(x => x.Fromdate);
+            var lastDate = remainingWFH.Max(x => x.Todate);
+
+            var updatedFirstDate = remainingWFH.Min(x => x.WFHDates);
+            var updatedLastDate = remainingWFH.Max(x => x.WFHDates);
+
+            if (updatedFirstDate != firstDate || updatedLastDate != lastDate)
+            {
+                var updateParams = new DynamicParameters();
+                updateParams.Add("@Fromdate", updatedFirstDate, DbType.Date);
+                updateParams.Add("@Todate", updatedLastDate, DbType.Date);
+                updateParams.Add("@Id", wfhDetail.WFHId, DbType.Int16);
+                updateParams.Add("@LeaveId", wfhDetail.LeaveId, DbType.Int16);
+                updateParams.Add("@Mode", 8, DbType.Int32);
+                con.ExecuteScalar("sp_WorkFromHome", updateParams, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        private async Task DeleteLeaveDetailAndUpdateHeader(int leaveApplicationId)
+        {
+            var leaveDetailParams = new DynamicParameters();
+            leaveDetailParams.Add("@Id", leaveApplicationId, DbType.Int16);
+            leaveDetailParams.Add("@Mode", 24, DbType.Int32);
+
+            var leaveDetail = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", leaveDetailParams, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            if (leaveDetail == null) return;
+
+            // Delete leave record
+            var deleteParams = new DynamicParameters();
+            deleteParams.Add("@Id", leaveApplicationId, DbType.Int16);
+            deleteParams.Add("@Mode", 15, DbType.Int32);
+            con.ExecuteScalar("sp_LeaveApplicationDetails", deleteParams, commandType: CommandType.StoredProcedure);
+
+            // Retrieve remaining leave dates
+            var leaveDatesParams = new DynamicParameters();
+            leaveDatesParams.Add("@Id", leaveDetail.LeaveId, DbType.Int16);
+            leaveDatesParams.Add("@Mode", 23, DbType.Int32);
+
+            var leaveDates = con.Query<LeaveDeleteViewModel>("sp_LeaveApplicationDetails", leaveDatesParams, commandType: CommandType.StoredProcedure).ToList();
+            if (!leaveDates.Any()) return;
+
+            var fromDate = leaveDates[0].Fromdate;
+            var toDate = leaveDates[0].Todate;
+            var updatedFirstDate = leaveDates.Min(x => x.LeaveDates);
+            var updatedLastDate = leaveDates.Max(x => x.LeaveDates);
+
+            if (fromDate != updatedFirstDate || toDate != updatedLastDate)
+            {
+                var updateParams = new DynamicParameters();
+                updateParams.Add("@Fromdate", updatedFirstDate, DbType.Date);
+                updateParams.Add("@Todate", updatedLastDate, DbType.Date);
+                updateParams.Add("@Id", leaveDetail.LeaveId, DbType.Int16);
+                updateParams.Add("@Mode", 6, DbType.Int32);
+                con.ExecuteScalar("sp_LeaveApplication", updateParams, commandType: CommandType.StoredProcedure);
+            }
+        }
+
 
         public ActionResult CompOff()
         {

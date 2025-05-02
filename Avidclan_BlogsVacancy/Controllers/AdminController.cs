@@ -338,31 +338,72 @@ namespace Avidclan_BlogsVacancy.Controllers
             var ProbationPeriod = HttpContext.Current.Session["UserProbationPeriod"];
 
             List<LeaveViewModel> LeaveDataList = new List<LeaveViewModel>();
-
+            List<LeaveDetailsViewModel> LeaveData = new List<LeaveDetailsViewModel>();
+            List<LeaveDetailsViewModel> WorkHomeData = new List<LeaveDetailsViewModel>();
+            List<LeaveDetailsViewModel> LeaveAndWfhData = new List<LeaveDetailsViewModel>();
             try
             {
                 int leaveId = 0;
-                var LeaveData = leaveViewModel.Leaves.Where(x => x.WorkAndHalfLeave == false && x.WorkFromHome == false).ToList();
-                if (LeaveData.Count > 0)
+                bool leaveandWfh = false;
+                var pureLeaveItems = leaveViewModel.Leaves
+     .Where(x => x.WorkFromHome == false && x.WorkAndHalfLeave == false)
+     .ToList();
+
+                var pureWfhItems = leaveViewModel.Leaves
+                    .Where(x => x.WorkFromHome == true && x.WorkAndHalfLeave == false)
+                    .ToList();
+
+                var combinedHalfDayItems = leaveViewModel.Leaves
+                    .Where(x => x.WorkFromHome == true && x.WorkAndHalfLeave == true)
+                    .ToList();
+
+                // Create virtual split items for combined half-day cases
+                var virtualLeaveItems = combinedHalfDayItems.Select(x => new LeaveDetailsViewModel
                 {
-                    leaveId = await GetConsecutiveLeaveDates(LeaveData, leaveViewModel, false, JoinigDate, ProbationPeriod, UserId, leaveViewModel.WFHId, leaveId);
+
+                    LeaveDate = x.LeaveDate,
+                    Halfday = x.Halfday == "FirstHalf" ? "SecondHalf" :
+                                x.Halfday == "SecondHalf" ? "FirstHalf" : x.Halfday,
+
+                    WorkFromHome = x.WorkFromHome,
+                    WorkAndHalfLeave = x.WorkAndHalfLeave,
+                    ReasonForLeave = x.ReasonForLeave,
+                    ReportingPerson = x.ReportingPerson
+                }).ToList();
+
+                var virtualWfhItems = combinedHalfDayItems.Select(x => new LeaveDetailsViewModel
+                {
+                    LeaveDate = x.LeaveDate,
+                    Halfday = x.Halfday, // Opposite half of the Leave
+                    WorkFromHome = x.WorkFromHome,
+                    WorkAndHalfLeave = x.WorkAndHalfLeave,
+                    ReasonForLeave = x.ReasonForLeave,
+                    ReportingPerson = x.ReportingPerson
+                }).ToList();
+
+                if (pureLeaveItems.Count > 0 || virtualLeaveItems.Count > 0)
+                {
+                    var combinedLeaveList = pureLeaveItems.Concat(virtualLeaveItems).ToList();
+                    LeaveData.AddRange(combinedLeaveList);  //
+                    leaveId = await GetConsecutiveLeaveDates(
+                        combinedLeaveList, leaveViewModel, false,
+                        JoinigDate, ProbationPeriod, UserId, leaveViewModel.WFHId, leaveId);
                 }
 
-                var LeaveAndWfhData = leaveViewModel.Leaves.Where(x => x.WorkAndHalfLeave == true && x.WorkFromHome == true).ToList();
-                if (LeaveAndWfhData.Count > 0)
+                if (pureWfhItems.Count > 0 || virtualWfhItems.Count > 0)
                 {
-                    var updatedleaveId = leaveId;
-                    leaveId = await GetConsecutiveLeaveDates(LeaveAndWfhData, leaveViewModel, true, JoinigDate, ProbationPeriod, UserId, leaveViewModel.WFHId, leaveId);
-                    var tempLeaveid = leaveId != 0 ? leaveId : updatedleaveId;
-                    await GetConsecutiveWorkFromHomeDates(LeaveAndWfhData, leaveViewModel, UserId, tempLeaveid, leaveViewModel.WFHId);
+                    var combinedWfhList = pureWfhItems.Concat(virtualWfhItems).ToList();
+                    WorkHomeData.AddRange(combinedWfhList);
+                    await GetConsecutiveWorkFromHomeDates(
+                        combinedWfhList, leaveViewModel, UserId, leaveId,
+                        leaveViewModel.WFHId, combinedWfhList.Any());
                 }
 
-                var WorkHomeData = leaveViewModel.Leaves.Where(x => x.WorkAndHalfLeave == false && x.WorkFromHome == true).ToList();
-                if (WorkHomeData.Count > 0)
+                if (combinedHalfDayItems.Any())
                 {
-                    await GetConsecutiveWorkFromHomeDates(WorkHomeData, leaveViewModel, UserId, leaveId, leaveViewModel.WFHId);
+                    LeaveAndWfhData.AddRange(virtualLeaveItems);
+                    LeaveAndWfhData.AddRange(virtualWfhItems);
                 }
-
 
                 if (LeaveData.Count > 0 && WorkHomeData.Count == 0 && LeaveAndWfhData.Count == 0)
                 {
@@ -397,6 +438,8 @@ namespace Avidclan_BlogsVacancy.Controllers
                 {
                     await SendWorkFromHomeAndLeaveMail(leaveViewModel.Leaves, leaveViewModel.ReasonForLeave, leaveViewModel.ReportingPerson, FirstName, LastName);
                 }
+
+
                 return "Request Sent Successfully!";
             }
             catch (Exception ex)
@@ -423,6 +466,22 @@ namespace Avidclan_BlogsVacancy.Controllers
             catch (Exception ex)
             {
                 await ErrorLog("AdminController - SaveReportingPerson", ex.Message, ex.StackTrace);
+            }
+
+        }
+
+        public async Task DeleteExistingReportingPerson(object Leaveid, string reportingType)
+        {
+            try
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add(reportingType == "Leave" ? "@Leave" : "@WfhId", Leaveid, DbType.Int32, ParameterDirection.Input);
+                parameter.Add("@mode", reportingType == "Leave" ? 10 : 11, DbType.Int32, ParameterDirection.Input);
+                var SaveReportingPerson = con.ExecuteScalar("sp_LeaveReportingPerson", parameter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("AdminController - DeleteExistingReportingPerson", ex.Message, ex.StackTrace);
             }
 
         }
@@ -669,11 +728,11 @@ namespace Avidclan_BlogsVacancy.Controllers
         public async Task<int> GetConsecutiveLeaveDates(List<LeaveDetailsViewModel> range, LeaveViewModel leaveViewModel, bool checkLeaveAndWfh, object JoiningDate, object ProbationPeriod, object UserId, object wfhId, int leaveId)
         {
             var leaveApplicationId = 0;
-            var fromDate = range.FirstOrDefault();
-            var ToDate = range.LastOrDefault();
+            var startDate = range.Min(x => x.LeaveDate);
+            var endDate = range.Max(x => x.LeaveDate);
             try
             {
-                leaveApplicationId = await SaveLeaveApplicationData(leaveViewModel.Id, fromDate.LeaveDate, ToDate.LeaveDate, leaveViewModel.ReasonForLeave, range, leaveViewModel.ReportingPerson, checkLeaveAndWfh, UserId, JoiningDate, ProbationPeriod, wfhId, leaveId);
+                leaveApplicationId = await SaveLeaveApplicationData(leaveViewModel.Id, startDate, endDate, leaveViewModel.ReasonForLeave, range, leaveViewModel.ReportingPerson, checkLeaveAndWfh, UserId, JoiningDate, ProbationPeriod, wfhId, leaveId);
                 return leaveApplicationId;
             }
             catch (Exception ex)
@@ -725,6 +784,14 @@ namespace Avidclan_BlogsVacancy.Controllers
                 }
                 else
                 {
+                    if (ReportingPerson != null)
+                    {
+                        if (ReportingPerson.Count > 0)
+                        {
+                            await DeleteExistingReportingPerson(Id, "Leave");
+                            await SaveReportingPerson(ReportingPerson, Id, 0);
+                        }
+                    }
                     var tempLeaveId = leaveId == 0 ? Id : leaveId;
                     await SaveLeaveApplicationDetailsData(leaveDataDetails, tempLeaveId, UserId, checkLeaveAndWfh, JoiningDate, ProbationPeriod, "Edited", wfhId);
                     return tempLeaveId;
@@ -737,147 +804,103 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
 
         }
-        public async Task SaveLeaveApplicationDetailsData(List<LeaveDetailsViewModel> leaveViewModel, object Leaveid, object UserId, bool checkLeaveAndWfh, object JoinigDate, object ProbationPeriod, string newlyAddedOrEdit, object wfhId)
+        public async Task SaveLeaveApplicationDetailsData(
+         List<LeaveDetailsViewModel> leaveViewModel, object Leaveid, object UserId,
+         bool checkLeaveAndWfh, object JoinigDate, object ProbationPeriod,
+         string newlyAddedOrEdit, object wfhId)
         {
             try
             {
-                var GetFromDate = leaveViewModel.FirstOrDefault();
-                var mode = 0;
-                if (newlyAddedOrEdit == "Added")
-                {
-                    mode = 1;
-                }
-                else
-                {
-                    mode = 3;
-                }
+                if (leaveViewModel == null || leaveViewModel.Count == 0) return;
 
-                if (leaveViewModel != null)
+                var GetFromDate = leaveViewModel.First();
+                int mode = newlyAddedOrEdit == "Added" ? 1 : 3;
+
+                if (mode == 1)
                 {
-                    if (mode == 1)
+                    foreach (var item in leaveViewModel)
                     {
-                        foreach (var item in leaveViewModel)
+                        // Swap Halfday if needed
+                        if (checkLeaveAndWfh)
+                            item.Halfday = SwapHalfDay(item.Halfday);
+
+                        var parameter = CreateInsertParameter(item, Leaveid, UserId);
+                        await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
+
+                        // Revert the Halfday for next usage
+                        if (checkLeaveAndWfh)
+                            item.Halfday = SwapHalfDay(item.Halfday);
+
+                        if (!checkLeaveAndWfh && wfhId != null)
                         {
-                            if (checkLeaveAndWfh)
-                            {
-                                if (item.Halfday == "SecondHalf")
-                                {
-                                    item.Halfday = "FirstHalf";
-                                }
-                                else
-                                {
-                                    item.Halfday = "SecondHalf";
-                                }
-                            }
-
-                            var parameter = new DynamicParameters();
-                            parameter.Add("@LeaveDate", item.LeaveDate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
-                            parameter.Add("@Halfday", item.Halfday, DbType.String, ParameterDirection.Input);
-                            parameter.Add("@LeaveId", Leaveid, DbType.Int64, ParameterDirection.Input);
-                            parameter.Add("@UserId", UserId, DbType.Int64, ParameterDirection.Input);
-                            parameter.Add("@CreatedDate", DateTime.Now, DbType.DateTime, ParameterDirection.Input);
-                            parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
-                            var SaveLeaveDetails = await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
-
-                            if (checkLeaveAndWfh)
-                            {
-                                if (item.Halfday == "SecondHalf")
-                                {
-                                    item.Halfday = "FirstHalf";
-                                }
-                                else
-                                {
-                                    item.Halfday = "SecondHalf";
-                                }
-                            }
-                        }
-                        var result = await new LeaveController().CheckTypeOfLeave(
-                                leaveViewModel, GetFromDate.LeaveDate,
-                                Leaveid, UserId, JoinigDate, ProbationPeriod, wfhId);
-                    }
-                    if (mode == 3)
-                    {
-                        var leaveParameters = new DynamicParameters();
-                        leaveParameters.Add("@LeaveId", Leaveid, DbType.Int16, ParameterDirection.Input);
-                        leaveParameters.Add("@Mode", 8, DbType.Int32, ParameterDirection.Input);
-
-                        var leaveDates = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", leaveParameters, commandType: CommandType.StoredProcedure).ToList();
-
-                        var newRecord = false;
-                        foreach (var item in leaveViewModel)
-                        {
-                            var LeaveBalance = leaveDates
-                                    .Where(x => x.LeaveDate == item.LeaveDate)
-                                    .Select(x => new { x.PersonalLeaves, x.SickLeaves })
-                                    .FirstOrDefault();
-
-                            if (item.Halfday != null)
-                            {
-                                if (LeaveBalance.PersonalLeaves != null)
-                                {
-                                    item.PersonalLeaves = "0.5";
-                                }
-                                if (LeaveBalance.SickLeaves != null)
-                                {
-                                    item.SickLeaves = "0.5";
-                                }
-                            }
-                            else
-                            {
-                                if(LeaveBalance != null)
-                                    item.PersonalLeaves = LeaveBalance.PersonalLeaves;
-                                if(LeaveBalance != null)
-                                    item.SickLeaves = LeaveBalance.SickLeaves;
-                            }
-                            if (checkLeaveAndWfh && item.Halfday != null)
-                            {
-
-                                if (item.Halfday == "SecondHalf")
-                                {
-                                    item.Halfday = "FirstHalf";
-                                }
-                                else
-                                {
-                                    item.Halfday = "SecondHalf";
-                                }
-
-                            }
-
-                            // Check if leaveViewModel contains a matching record based on properties
-                            var recordExists = leaveDates.FirstOrDefault(l => l.LeaveDate == item.LeaveDate);
-                            if (recordExists != null)
-                            {
-                                var parameter = new DynamicParameters();
-                                parameter.Add("@LeaveDate", item.LeaveDate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
-                                parameter.Add("@Halfday", item.Halfday, DbType.String, ParameterDirection.Input);
-                                parameter.Add("@PersonalLeaves", item.PersonalLeaves, DbType.String, ParameterDirection.Input);
-                                parameter.Add("@SickLeaves", item.SickLeaves, DbType.String, ParameterDirection.Input);
-                                parameter.Add("@Id", recordExists.Id, DbType.String, ParameterDirection.Input);
-                                parameter.Add("@mode", 16, DbType.Int32, ParameterDirection.Input);
-                                var SaveLeaveDetails = await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
-                            }
-                            else
-                            {
-                                newRecord = true;
-                                var parameter = new DynamicParameters();
-                                parameter.Add("@LeaveDate", item.LeaveDate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
-                                parameter.Add("@Halfday", item.Halfday, DbType.String, ParameterDirection.Input);
-                                parameter.Add("@LeaveId", Leaveid, DbType.Int64, ParameterDirection.Input);
-                                parameter.Add("@UserId", UserId, DbType.Int64, ParameterDirection.Input);
-                                parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
-                                var SaveLeaveDetails = await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
-                            }
-                        }
-                        if (newRecord)
-                        {
-                            var result = await new LeaveController().CheckTypeOfLeave(
-                               leaveViewModel, GetFromDate.LeaveDate,
-                               Leaveid, UserId, JoinigDate, ProbationPeriod, wfhId);
+                            await DeleteWorkFromDetailsParameter(item, wfhId);
                         }
                     }
 
+                    await new LeaveController().CheckTypeOfLeave(leaveViewModel, GetFromDate.LeaveDate, Leaveid, UserId, JoinigDate, ProbationPeriod, wfhId);
                 }
+                else if (mode == 3)
+                {
+                    var existingLeaveParams = new DynamicParameters();
+                    existingLeaveParams.Add("@LeaveId", Leaveid, DbType.Int16);
+                    existingLeaveParams.Add("@Mode", 8, DbType.Int32);
 
+                    var existingLeaveDates = con.Query<LeaveDetailsViewModel>("sp_LeaveApplicationDetails", existingLeaveParams, commandType: CommandType.StoredProcedure).ToList();
+                    bool newRecordAdded = false;
+
+                    // Step 2: Delete old records not present in the new leave list
+                    var leaveDatesInModel = leaveViewModel.Select(l => l.LeaveDate.Date).ToList();
+                    var obsoleteLeaves = existingLeaveDates
+                        .Where(e => !leaveDatesInModel.Contains(e.LeaveDate.Date))
+                        .ToList();
+
+                    foreach (var obsolete in obsoleteLeaves)
+                    {
+                        var deleteParams = new DynamicParameters();
+                        deleteParams.Add("@Id", obsolete.Id, DbType.Int64);
+                        deleteParams.Add("@mode", 15, DbType.Int32); // assuming 9 is delete mode
+                        await con.ExecuteAsync("sp_LeaveApplicationDetails", deleteParams, commandType: CommandType.StoredProcedure);
+                    }
+
+                    foreach (var item in leaveViewModel)
+                    {
+                        var existingRecord = existingLeaveDates.FirstOrDefault(x => x.LeaveDate == item.LeaveDate);
+
+                        if (existingRecord != null)
+                        {
+                            item.PersonalLeaves = existingRecord.PersonalLeaves != null ? (item.Halfday != null ? "0.5" : "1") : null;
+                            item.SickLeaves = existingRecord.SickLeaves != null ? (item.Halfday != null ? "0.5" : "1") : null;
+                        }
+
+                        if (checkLeaveAndWfh && item.Halfday != null)
+                            item.Halfday = SwapHalfDay(item.Halfday);
+
+                        if (existingRecord != null)
+                        {
+                            var updateParams = CreateUpdateParameter(item, existingRecord.Id);
+                            await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", updateParams, commandType: CommandType.StoredProcedure);
+                        }
+                        else
+                        {
+                            newRecordAdded = true;
+                            var insertParams = CreateInsertParameter(item, Leaveid, UserId);
+                            await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", insertParams, commandType: CommandType.StoredProcedure);
+                        }
+
+                        if(existingRecord != null && !checkLeaveAndWfh && wfhId != null)
+                        {
+                            await DeleteWorkFromDetailsParameter(item, wfhId);
+                        }
+
+                        if (checkLeaveAndWfh && item.Halfday != null)
+                            item.Halfday = SwapHalfDay(item.Halfday);
+                    }
+
+                    if (newRecordAdded)
+                    {
+                        await new LeaveController().CheckTypeOfLeave(leaveViewModel, GetFromDate.LeaveDate, Leaveid, UserId, JoinigDate, ProbationPeriod, wfhId);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -885,14 +908,62 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
         }
 
-        public async Task GetConsecutiveWorkFromHomeDates(List<LeaveDetailsViewModel> range, LeaveViewModel leaveViewModel, object UserId, int leaveId, object wfhId)
+        private string SwapHalfDay(string halfDay)
         {
-            var startDate = range.FirstOrDefault();
-            var toDate = range.LastOrDefault();
+            return halfDay == "SecondHalf" ? "FirstHalf" : "SecondHalf";
+        }
+
+        private DynamicParameters CreateInsertParameter(LeaveDetailsViewModel item, object leaveId, object userId)
+        {
+            var param = new DynamicParameters();
+            param.Add("@LeaveDate", item.LeaveDate.ToShortDateString(), DbType.Date);
+            param.Add("@Halfday", item.Halfday, DbType.String);
+            param.Add("@LeaveId", leaveId, DbType.Int64);
+            param.Add("@UserId", userId, DbType.Int64);
+            param.Add("@CreatedDate", DateTime.Now, DbType.DateTime);
+            param.Add("@mode", 1, DbType.Int32);
+            return param;
+        }
+
+        private DynamicParameters CreateUpdateParameter(LeaveDetailsViewModel item, object id)
+        {
+            var param = new DynamicParameters();
+            param.Add("@LeaveDate", item.LeaveDate.ToShortDateString(), DbType.Date);
+            param.Add("@Halfday", item.Halfday, DbType.String);
+            param.Add("@PersonalLeaves", item.PersonalLeaves, DbType.String);
+            param.Add("@SickLeaves", item.SickLeaves, DbType.String);
+            param.Add("@Id", id, DbType.String);
+            param.Add("@mode", 16, DbType.Int32);
+            return param;
+        }
+
+        public async Task DeleteWorkFromDetailsParameter(LeaveDetailsViewModel item, object wfhId)
+        {
+           
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@WFHDates", item.LeaveDate, DbType.DateTime, ParameterDirection.Input);
+                parameters.Add("@WFHId", wfhId, DbType.Int64, ParameterDirection.Input);
+                parameters.Add("@mode", 2, DbType.Int32, ParameterDirection.Input);
+                await con.ExecuteScalarAsync("sp_WorkFromHomeDetails", parameters, commandType: CommandType.StoredProcedure);
+
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("AdminController - GetConsecutiveWorkFromHomeDates", ex.Message, ex.StackTrace);
+            }
+
+        }
+        public async Task GetConsecutiveWorkFromHomeDates(List<LeaveDetailsViewModel> range, LeaveViewModel leaveViewModel, object UserId, int leaveId, object wfhId, bool leaveandWfh = false)
+        {
+            var startDate = range.Min(x => x.LeaveDate);
+            var endDate = range.Max(x => x.LeaveDate);
+
 
             try
             {
-                await SaveworkFromData(range, leaveViewModel, startDate.LeaveDate, toDate.LeaveDate, UserId, leaveId, wfhId);
+                await SaveworkFromData(range, leaveViewModel, startDate, endDate, UserId, leaveId, wfhId, leaveandWfh);
 
             }
             catch (Exception ex)
@@ -908,7 +979,8 @@ namespace Avidclan_BlogsVacancy.Controllers
                     DateTime toDate,
                     object userId,
                     int leaveId,
-                    object wfhId)
+                    object wfhId,
+                    bool leaveandWfh)
         {
             try
             {
@@ -936,38 +1008,48 @@ namespace Avidclan_BlogsVacancy.Controllers
                         }
                     }
                 }
+                else
+                {
+                    if (leaveView.ReportingPerson != null)
+                    {
+                        if (leaveView.ReportingPerson.Count > 0)
+                        {
+                            await DeleteExistingReportingPerson(leaveView.Id, "WFH");
+                            await SaveReportingPerson(leaveView.ReportingPerson, 0, leaveView.Id);
+                        }
+                    }
+                }
                 if (leaveViewModel != null)
                 {
-                    //if (mode == 8) await DeleteLeaveDetailsAsync(wfhId, 9);
+                    saveWFH = saveWFH == null ? wfhId : saveWFH;
+                    //if (!leaveandWfh)
+                    //{
+                        if (mode == 8) await DeleteWfhDetailsAsync(saveWFH, 9);
+                    //}
 
                     foreach (var item in leaveViewModel)
                     {
                         var existingWFH = GetExistingWFH(item.LeaveDate, userId);
-                        saveWFH = saveWFH == null ? wfhId : saveWFH;
                         if (existingWFH == null)
                         {
                             await SaveWFHDetails(item, saveWFH);
                         }
-                        else
-                        {
-                            await DeleteWfhDetailsAsync(saveWFH, 9);
-                        }
 
                         //if (mode == 8)
                         //{
-                        if (string.IsNullOrEmpty(item.Halfday))
-                        {
-                            var leaveDates = GetLeaveDates(leaveId);
-                            var record = leaveDates?.FirstOrDefault(l => l.LeaveDate == item.LeaveDate);
-                            if (record != null) await DeleteLeaveDetailsAsync(record.Id, 15);
-                        }
+                        //if (string.IsNullOrEmpty(item.Halfday))
+                        //{
+                        //    var leaveDates = GetLeaveDates(leaveId);
+                        //    var record = leaveDates?.FirstOrDefault(l => l.LeaveDate == item.LeaveDate);
+                        //    if (record != null) await DeleteLeaveDetailsAsync(record.Id, 15);
+                        //}
 
                         if (item.WorkFromHome && !item.WorkAndHalfLeave)
                         {
                             var leaveDetail = GetExistingLeaveDetail(item.LeaveDate, userId);
                             if (leaveDetail != null) await DeleteLeaveDetailsAsync(leaveDetail.Id, 15);
                         }
-                        //}
+                        // }
 
                     }
                 }
@@ -1028,6 +1110,21 @@ namespace Avidclan_BlogsVacancy.Controllers
             //    WFHId = saveWFH,
             //    Mode = 1
             //});
+            if (item.WorkAndHalfLeave)
+            {
+                if (item.Halfday != null)
+                {
+                    //if (item.Halfday == "FirstHalf")
+                    //{
+                    //    item.Halfday = "SecondHalf";
+                    //}
+                    //else
+                    //{
+                    //    item.Halfday = "FirstHalf";
+                    //}
+                }
+            }
+
             var parameters = new DynamicParameters();
             parameters.Add("@WFHDates", item.LeaveDate.ToShortDateString(), DbType.DateTime, ParameterDirection.Input);
             parameters.Add("@Halfday", item.Halfday, DbType.String, ParameterDirection.Input);
@@ -1210,6 +1307,7 @@ namespace Avidclan_BlogsVacancy.Controllers
         {
             try
             {
+                UserRegister userDetails = null;
                 var parameters = new DynamicParameters();
                 parameters.Add("@Fromdate", leaveViewModel.Fromdate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
                 parameters.Add("@Todate", leaveViewModel.Todate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
@@ -1231,59 +1329,64 @@ namespace Avidclan_BlogsVacancy.Controllers
                     // Get user leave balance
                     var userParams = new DynamicParameters();
                     userParams.Add("@Id", leaveViewModel.UserId, DbType.String, ParameterDirection.Input);
-                    userParams.Add("@Mode", 14, DbType.Int32, ParameterDirection.Input);
+                    userParams.Add("@Mode", 16, DbType.Int32, ParameterDirection.Input);
 
-                    var leaveBalance = con.Query<UserRegister>("sp_User", userParams, commandType: CommandType.StoredProcedure).FirstOrDefault();
-                    double userTotalPaidLeave = string.IsNullOrEmpty(leaveBalance?.PaidLeave) ? 0 : Convert.ToDouble(leaveBalance.PaidLeave);
-                    double userTotalSickLeave = string.IsNullOrEmpty(leaveBalance?.SickLeave) ? 0 : Convert.ToDouble(leaveBalance.SickLeave);
-
-                    double totalPlUsed = 0;
-                    foreach (var item in leaveViewModel.Leaves)
+                    userDetails = con.Query<UserRegister>("sp_User", userParams, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                    if(userDetails != null)
                     {
-                        var parameter = new DynamicParameters();
-                        parameter.Add("@LeaveDate", item.LeaveDate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
-                        parameter.Add("@Halfday", item.Halfday, DbType.String, ParameterDirection.Input);
-                        parameter.Add("@LeaveId", SaveLeave, DbType.Int64, ParameterDirection.Input);
-                        parameter.Add("@UserId", leaveViewModel.UserId, DbType.Int64, ParameterDirection.Input);
-                        parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
-                        var SaveLeaveDetails = await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
-                        if(SaveLeaveDetails != null)
+                        double totalPlUsed = 0;
+                        foreach (var item in leaveViewModel.Leaves)
                         {
-                            double full_Day_pl = 1;
-                            if (item.Halfday != null)
+
+                            // Get user leave balance
+                            var userDetailsParams = new DynamicParameters();
+                            userDetailsParams.Add("@UserId", leaveViewModel.UserId, DbType.String, ParameterDirection.Input);
+                            userDetailsParams.Add("@JoiningDate", userDetails.JoiningDate.ToString("yyyy-MM-dd"), DbType.String, ParameterDirection.Input);
+                            userDetailsParams.Add("@LeaveDate", item.LeaveDate, DbType.Date, ParameterDirection.Input);
+                            userDetailsParams.Add("@Mode", 22, DbType.Int32, ParameterDirection.Input);
+
+                            var leaveBalance = con.Query<UserRegister>("sp_LeaveApplicationDetails", userDetailsParams, commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+                            double userTotalPaidLeave = string.IsNullOrEmpty(leaveBalance?.FinalBalance) ? 0 : Convert.ToDouble(leaveBalance.FinalBalance);
+                            double userTotalSickLeave = string.IsNullOrEmpty(leaveBalance?.SickLeaveFinalBalance) ? 0 : Convert.ToDouble(leaveBalance.SickLeaveFinalBalance);
+
+                            var parameter = new DynamicParameters();
+                            parameter.Add("@LeaveDate", item.LeaveDate.ToShortDateString(), DbType.Date, ParameterDirection.Input);
+                            parameter.Add("@Halfday", item.Halfday, DbType.String, ParameterDirection.Input);
+                            parameter.Add("@LeaveId", SaveLeave, DbType.Int64, ParameterDirection.Input);
+                            parameter.Add("@UserId", leaveViewModel.UserId, DbType.Int64, ParameterDirection.Input);
+                            parameter.Add("@mode", 1, DbType.Int32, ParameterDirection.Input);
+                            var SaveLeaveDetails = await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", parameter, commandType: CommandType.StoredProcedure);
+                            if (SaveLeaveDetails != null)
                             {
-                                full_Day_pl = 0.5;
-                                totalPlUsed += 0.5;
-                            }
-                            else
-                            {
-                                totalPlUsed++;
-                            }
+                                double full_Day_pl = 1;
+                                if (item.Halfday != null)
+                                {
+                                    full_Day_pl = 0.5;
+                                    totalPlUsed += 0.5;
+                                }
+                                else
+                                {
+                                    totalPlUsed++;
+                                }
 
 
-                            var PLparameters = new DynamicParameters();
-                            PLparameters.Add("@PersonalLeaves", full_Day_pl, DbType.Decimal, ParameterDirection.Input);
-                            PLparameters.Add("@Id", SaveLeaveDetails, DbType.Int64, ParameterDirection.Input);
-                            PLparameters.Add("@PastLeave", 0, DbType.Decimal, ParameterDirection.Input);
-                            PLparameters.Add("@mode", 9 , DbType.Int32, ParameterDirection.Input);
-                            await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", PLparameters, commandType: CommandType.StoredProcedure);
+                                var PLparameters = new DynamicParameters();
+                                PLparameters.Add("@PersonalLeaves", full_Day_pl, DbType.Decimal, ParameterDirection.Input);
+                                PLparameters.Add("@Id", SaveLeaveDetails, DbType.Int64, ParameterDirection.Input);
+                                PLparameters.Add("@PastLeave", 0, DbType.Decimal, ParameterDirection.Input);
+                                PLparameters.Add("@mode", 9, DbType.Int32, ParameterDirection.Input);
+                                await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", PLparameters, commandType: CommandType.StoredProcedure);
+
+                            }
 
                         }
-
                     }
-                    if (leaveBalance != null)
-                    {
-                        var remainingPl = Math.Max(0, userTotalPaidLeave - totalPlUsed);
-                        await new LeaveController().UpdateLeaveBalance(leaveViewModel.UserId, remainingPl,userTotalSickLeave);
-                    }
+                  
+                    
                 }
 
-                var Emailparameters = new DynamicParameters();
-                Emailparameters.Add("@Id", leaveViewModel.UserId, DbType.Int32, ParameterDirection.Input);
-                Emailparameters.Add("@mode", 16, DbType.Int32, ParameterDirection.Input);
-                var userEmailAddress = con.Query<UserRegister>("sp_User", Emailparameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
-
-                await SendMailForLeaveByAdmin(leaveViewModel.Leaves, userEmailAddress, SaveLeave);
+                await SendMailForLeaveByAdmin(leaveViewModel.Leaves, userDetails, SaveLeave);
 
                 return "Leave Updated Successfully!";
             }
@@ -1294,7 +1397,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
         }
 
-        public async Task SendMailForLeaveByAdmin(List<LeaveDetailsViewModel> leaveViewModel, UserRegister userDetails,object leaveId)
+        public async Task SendMailForLeaveByAdmin(List<LeaveDetailsViewModel> leaveViewModel, UserRegister userDetails, object leaveId)
         {
             await ReadConfiguration();
             try
@@ -1368,7 +1471,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
         }
 
-        public async Task SendMailForCompOffRequest(CompOffViewModel compOffViewModel,object UserId)
+        public async Task SendMailForCompOffRequest(CompOffViewModel compOffViewModel, object UserId)
         {
             await ReadConfiguration();
             try
@@ -1407,7 +1510,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
         }
 
-        
+
         [Route("api/Admin/ReplyToCompOffRequest")]
         [HttpPost]
         public async Task<string> ReplyToCompOffRequest(CompOffViewModel compOffViewModel)
@@ -1458,7 +1561,7 @@ namespace Avidclan_BlogsVacancy.Controllers
 
                 List<string> reportingpersonList = new List<string>();
 
-                 await sendEmail(senderEmail, compOffViewModel.EmailId, firstName, subject, mailbody, reportingpersonList);
+                await sendEmail(senderEmail, compOffViewModel.EmailId, firstName, subject, mailbody, reportingpersonList);
             }
             catch (Exception ex)
             {

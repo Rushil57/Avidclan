@@ -1,5 +1,7 @@
 ﻿var validator;
 $(function () {
+
+    
     validator = $("form[name='registration']").validate({
         rules: {
             firstname: { required: true },
@@ -78,6 +80,7 @@ $(function () {
 
     BindRoles();
     $('#JoiningDate').datepicker();
+    $("#NoticePeriod").datepicker();
     GetEmployeeList();
 });
 
@@ -94,7 +97,7 @@ function SaveNewUser() {
         Role: $("#RoleName").val(),
         JoiningDate: $("#JoiningDate").val(),
         ProbationPeriod: $("#ProbationMonth").val(),
-        IsNoticePeriod: $("#NoticePeriod").prop('checked'),
+        NoticePeriodDate: $("#NoticePeriod").val(),
         OnBreak: $("#OnBreak").prop('checked'),
         BreakMonth: $("#BreakMonth").val()
     }
@@ -183,7 +186,7 @@ function ResetForm() {
         $("#JoiningDate").val(''),
         $("#ProbationMonth").val('')
     $("#EmployeeModal").modal('hide');
-    $('#NoticePeriod').prop('checked', false);
+    $('#NoticePeriod').val("");
     $('#OnBreak').prop('checked', false);
     $('#BreakMonth').val("0");
 }
@@ -213,8 +216,8 @@ function GetEmployeeList() {
                     },
                     { "data": "Password" },
                     { "data": "ProbationPeriod" },
-                    { "data": "PaidLeave" },
-                    { "data": "SickLeave" },
+                    { "data": "FinalBalance" },
+                    { "data": "SickLeaveFinalBalance" },
                     {
                         "data": "Id",
                         "render": function (data, type, row) {
@@ -256,14 +259,14 @@ function GetEmployeeDetailsById(id) {
                 $("#EmailAddress").val(result.EmailId)
                 $("#PassWord").val(result.Password)
                 $("#ConfirmPassWord").val(result.Password)
-                var date = moment(result.JoiningDate).format('MM/DD/YYYY');
+                var date = moment(result.JoiningDate).format('YYYY-MM-DD');
                 $("#JoiningDate").val(date)
                 $("#ProbationMonth").val(result.ProbationPeriod)
                 $("#RoleName").val(result.Role);
-                if (result.IsNoticePeriod) {
-                    $('#NoticePeriod').prop('checked', true);
+                if (result.NoticePeriodDate != null) {
+                    $('#NoticePeriod').val(moment(result.NoticePeriodDate).format('YYYY-MM-DD'));
                 } else {
-                    $('#NoticePeriod').prop('checked', false);
+                    $('#NoticePeriod').val("");
                 }
                 if (result.OnBreak) {
                     $('#OnBreak').prop('checked', true);

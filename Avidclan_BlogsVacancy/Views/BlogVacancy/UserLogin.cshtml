@@ -54,7 +54,7 @@
                     if (result.RoleName == "Admin") {
                         window.location.href = '/BlogVacancy/blog'
                     }
-                    if (result.RoleName == "Employee") {
+                    if (result.RoleName == "Employee" || result.RoleName == "Manager") {
                         window.location.href = '/Leave/Index'
                     }
                     if(result == null) {

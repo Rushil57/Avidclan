@@ -11,7 +11,7 @@
             <th style="width: 263px;" class="dt-head-center">Dates</th>
             <th style="width: 130px;" class="dt-head-center">Sick Leave (SL)</th>
             <th style="width: 175px;" class="dt-head-center">Paid Leave (PL)</th>
-            <th style="width: 216px;" class="dt-head-center">Leave Without Pay (LWP)</th>
+            <th style="width: 216px;" class="dt-head-center">Leave Without Pay (Entry Date)</th>
             <th style="width: 216px;" class="dt-head-center">Compensatory Leave(Comp off)</th>
             <th style="width: 203px;" class="dt-head-center">Reason For Leave</th>
         </tr>
@@ -102,7 +102,7 @@
 
                             // Return the date range with hidden sortable values
                             return '<span style="display:none;">' + fromDateSortable + toDateSortable + '</span>' +
-                                   fromDateFormatted + " - " + toDateFormatted;
+                                fromDateFormatted + " - " + toDateFormatted;
                         }
                     },
                     {
@@ -119,8 +119,19 @@
                     },
                     {
                         "data": "LwpLeave",
-                        "render": function (data, type, row) {
-                            return data == null ? "<span>0.0</span>" : "<span>" + data + "</span>";
+                        "render": function (data, type, full, row) {
+                            if (data == null || data == "0.0") {
+                                return "<span>0.0</span>";
+                            } else {
+                                var createdDate = moment(full["CreatedDate"]).format('DD/MM/YYYY');
+                                if (createdDate != "01/01/0001") {
+                                    var fullValue = data + " <br>(" + createdDate + ")";
+                                    return "<span>" + fullValue + "</span>";
+                                } else {
+                                    return "<span>"+data+"</span>"
+                                }
+
+                            }
                         }
                     },
                     {
@@ -183,18 +194,18 @@
                      order: [[0, 'desc']],
                      "columns": [
                          {
-                             "data": "SickLeave",
-                             "render": function (data, type, row) {
-                                 var slAfterBreak = CountSickLeave(data,row.OnBreak,row.BreakMonth);
-                                 return "<span>" + slAfterBreak + "</span>"
+                             "data": "SickLeaveFinalBalance",
+                             //"render": function (data, type, row) {
+                             //    var slAfterBreak = CountSickLeave(data,row.OnBreak,row.BreakMonth);
+                             //    return "<span>" + slAfterBreak + "</span>"
 
-                             }
+                             //}
                          },
                          {
-                             "data": "PaidLeave",
+                             "data": "FinalBalance",
                              "render": function (data, type, row) {
-                                 var plAfterBreak = CountPaidLeave(data, row.OnBreak, row.BreakMonth);
-                                 return "<span>" + plAfterBreak + "</span>"
+                                // var plAfterBreak = CountPaidLeave(data, row.OnBreak, row.BreakMonth);
+                                 return "<span>" + data + "</span>"
 
                              }
                          }
@@ -207,7 +218,35 @@
          });
     }
 
-    function CountSickLeave(sl,userbreak,breakMonth) {
+    function CountSickLeave(sl, userbreak, breakMonth) {
+
+        var SickLeavePerMonth = 0.5;
+        var TotalMonths = 12;
+
+        var OverAllSickLeave = 12 * 0.5
+
+        var getJoiningDate = $('#JoiningDate').val();
+        getJoiningDate = new Date(getJoiningDate);
+        var getProbationMonth = $('#ProbationMonth').val();
+        getProbationMonth = parseInt(getProbationMonth)
+
+        var CurrentDate = new Date();
+        var CurrentYear = CurrentDate.getFullYear();
+
+        var months = CurrentDate.getMonth() - getJoiningDate.getMonth() +
+            (12 * (CurrentDate.getFullYear() - getJoiningDate.getFullYear()))
+
+        // check probation month
+        if (months >= getProbationMonth) {
+            if (sickleave > 0) {
+                OverAllSickLeave = OverAllSickLeave - sickleave;
+                return OverAllSickLeave
+            } else {
+                return OverAllSickLeave;
+            }
+        } else {
+            return OverAllSickLeave = 0.0
+        }
         if (!userbreak) {
             var slPermonth = 0.5 * breakMonth;  // Adjust slPermonth based on breakMonth
 

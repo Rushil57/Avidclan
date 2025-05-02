@@ -288,6 +288,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@ProbationPeriod", userRegister.ProbationPeriod, DbType.Int32, ParameterDirection.Input);
                 parameters.Add("@OnBreak", userRegister.OnBreak, DbType.Boolean, ParameterDirection.Input);
                 parameters.Add("@BreakMonth", userRegister.BreakMonth, DbType.String, ParameterDirection.Input);
+                parameters.Add("@NoticePeriodDate", userRegister.NoticePeriodDate, DbType.DateTime, ParameterDirection.Input);
                 parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
                 using (IDbConnection connection = new SqlConnection(connectionString))
                 {
@@ -301,17 +302,17 @@ namespace Avidclan_BlogsVacancy.Controllers
                         SaveUserRole(userRegister.Id, userRegister.Role, true);
                     }
                     //save employee is in notice period or not
-                    if(mode == 10)
-                    {
-                        var noticeparameters = new DynamicParameters();
-                        noticeparameters.Add("@UserId", userRegister.Id, DbType.Int32, ParameterDirection.Input);
-                        noticeparameters.Add("@IsNoticePeriod", userRegister.IsNoticePeriod, DbType.Boolean, ParameterDirection.Input);
-                        noticeparameters.Add("@mode", 10, DbType.Int32, ParameterDirection.Input);
-                        using (IDbConnection noticeconnection = new SqlConnection(connectionString))
-                        {
-                            var saveLeaves = noticeconnection.ExecuteScalar("sp_PastLeaves", noticeparameters, commandType: CommandType.StoredProcedure);
-                        }
-                    }
+                    //if(mode == 10)
+                    //{
+                    //    var noticeparameters = new DynamicParameters();
+                    //    noticeparameters.Add("@UserId", userRegister.Id, DbType.Int32, ParameterDirection.Input);
+                    //    noticeparameters.Add("@IsNoticePeriod", userRegister.IsNoticePeriod, DbType.Boolean, ParameterDirection.Input);
+                    //    noticeparameters.Add("@mode", 10, DbType.Int32, ParameterDirection.Input);
+                    //    using (IDbConnection noticeconnection = new SqlConnection(connectionString))
+                    //    {
+                    //        var saveLeaves = noticeconnection.ExecuteScalar("sp_PastLeaves", noticeparameters, commandType: CommandType.StoredProcedure);
+                    //    }
+                    //}
                 }
                 return "Data Saved!";
             }
@@ -571,6 +572,19 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult EmployeeLeave()
         {
+            if (Session["UserEmailId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
+            return View();
+        }
+
+        public ActionResult EmployeeReport()
+        {
+            if (Session["UserEmailId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
             return View();
         }
 
@@ -584,6 +598,22 @@ namespace Avidclan_BlogsVacancy.Controllers
                 return Json(EmployeeData, JsonRequestBehavior.AllowGet);
             }
             catch(Exception ex)
+            {
+                await ErrorLog("BlogVacancyController - GetAllEmployeesLeaveDates", ex.Message, ex.StackTrace);
+                return null;
+            }
+        }
+
+        public async Task<JsonResult> GetEmployeeLeaveReport(DateTime StartDate)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Mode", 7, DbType.Int32, ParameterDirection.Input);
+                var EmployeeData = con.Query<LeaveViewModel>("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure).ToList();
+                return Json(EmployeeData, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
             {
                 await ErrorLog("BlogVacancyController - GetAllEmployeesLeaveDates", ex.Message, ex.StackTrace);
                 return null;

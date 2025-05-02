@@ -14,8 +14,8 @@ $(function () {
         SelectCalenderDate(),
         GetLeaveDates(),
         GetReportingPerson(),
-        GetPastLeaveBalance(),
-        delay(1500).then(GetTotalLeaveBalance)
+        // GetPastLeaveBalance(),
+        //delay(1500).then(GetTotalLeaveBalance)
     ).done(function () {
         hideSpinner();
     }).fail(function () {
@@ -35,14 +35,7 @@ function SelectCalenderDate() {
         selectable: true,
         dateClick: function (info) {
             var responseDate = moment(info.dateStr).format('MM/DD/YYYY');
-            //var getDateday = new Date(responseDate)
-            //if (getDateday.getDay() === 6 || getDateday.getDay() === 0) {
-            //    return
-            //}
-            //$("#ApplyLeaveModel").show();
-            //$("#txtFromDate").val(responseDate);
-            //$("#txtToDate").val(responseDate);
-            //SetMinDate();
+          
 
             var Eventlist = calendar.getEvents();
             if (Eventlist.length > 0) {
@@ -68,42 +61,428 @@ function SelectCalenderDate() {
                 SetMinDate();
             }
         },
-        events: []
-        //eventClick: function (info) {
-        //    var StartTime = moment(info.event.start).format('MM/DD/YYYY');
-        //    var Eventlist = calendar.getEvents();
-        //    EditLeaves(info.event.id, StartTime);
-        //}
+        events: [],
+        eventClick: function (info) {
+            var StartTime = moment(info.event.start).format('MM/DD/YYYY');
+            var Eventlist = calendar.getEvents();
+            EditLeaves(info.event.id, StartTime);
+        }
     });
 
     calendar.render();
 }
 
+var oldToDate = null;
+var oldFromDate = null;
+
+// Save the previous value when the input is focused
+$("#txtToDate").on("focusin", function () {
+    oldToDate = $(this).val();  // store old value before change
+});
+
+$("#txtFromDate").on("focusin", function () {
+    oldFromDate = $(this).val();  // store old value before change
+});
+
+
 function SetMinDate() {
     var start = $("#txtFromDate").datepicker('getDate');
+    var WeekDay = start?.getDay();
+
+    // Revert if it's weekend
+    if (WeekDay === 6 || WeekDay === 0) {
+        revertFromDate();
+        return;
+    }
+
+    // Check against existing calendar events
+    const formatted = moment(start).format("YYYY-MM-DD");
+    const existingDates = getAllCalendarEventDates();
+
+    if (existingDates.has(formatted)) {
+        alert(`Date ${formatted} already has an request.`);
+        revertFromDate();
+        return;
+    }
+
+    // Valid case
     $("#txtToDate").datepicker("option", "minDate", start);
     DateChange();
 }
 
+function revertFromDate() {
+    if (oldFromDate) {
+        $("#txtFromDate").datepicker('setDate', oldFromDate);
+    } else {
+        $("#txtFromDate").val("");
+    }
+    setTimeout(() => $("#txtFromDate").datepicker("show"), 5);
+}
+
+function revertToDate() {
+    if (oldToDate) {
+        $("#txtToDate").datepicker('setDate', oldToDate);
+    } else {
+        $("#txtToDate").val("");
+    }
+    setTimeout(() => $("#txtToDate").datepicker("show"), 5);
+}
+
+
+let hasConflict = false;
+//function DateChange() {
+//    const start = $("#txtFromDate").datepicker('getDate');
+//    const end = $("#txtToDate").datepicker('getDate');
+
+//    if (!start || !end) return;
+
+//    const weekDay = end.getDay();
+//    if (weekDay === 6 || weekDay === 0) {
+//        if (oldToDate) {
+//            $("#txtToDate").datepicker('setDate', oldToDate);
+//        } else {
+//            $("#txtToDate").val("");
+//        }
+//        setTimeout(() => $("#txtToDate").datepicker("show"), 5);
+//        return;
+//    }
+
+//    const newFromStr = moment(start).format("MM/DD/YYYY");
+//    const newToStr = moment(end).format("MM/DD/YYYY");
+//    const oldFromStr = oldFromDate ? moment(oldFromDate).format("MM/DD/YYYY") : "";
+//    const oldToStr = oldToDate ? moment(oldToDate).format("MM/DD/YYYY") : "";
+
+//    const bothChanged = newFromStr !== oldFromStr && newToStr !== oldToStr;
+
+//    const result = [];
+
+
+//    //function pushIfWeekday(date, list) {
+//    //    const day = date.getDay();
+//    //    if (day === 0 || day === 6) return;
+
+//    //    const formatted = moment(date).format("YYYY-MM-DD");
+//    //    const existingDates = getAllCalendarEventDates();
+
+//    //    if (existingDates.has(formatted)) {
+//    //        alert(`Date ${formatted} already has an request.`);
+//    //        hasConflict = true;
+//    //        return;
+//    //    } else {
+//    //        hasConflict = false;
+//    //    }
+
+//    //    list.push({ LeaveDates: new Date(date) });
+//    //}
+
+//    function pushIfWeekday(date, list) {
+//        const day = date.getDay();
+//        if (day === 0 || day === 6) return;
+
+//        const formatted = moment(date).format("YYYY-MM-DD");
+//        const existingDates = getAllCalendarEventDates();
+
+//        const oldDatesSet = new Set();
+//        document.querySelectorAll('#LeaveDateTable tbody tr').forEach(row => {
+//            const dateStr = row.querySelector('td')?.textContent.trim();
+//            if (dateStr) {
+//                const parsed = moment(dateStr, "MM/DD/YYYY").format("YYYY-MM-DD");
+//                oldDatesSet.add(parsed);
+//            }
+//        });
+
+//        // Skip if already added to the list to avoid duplicates
+//        const alreadyInList = list.some(item =>
+//            moment(item.LeaveDates).format("YYYY-MM-DD") === formatted
+//        );
+//        if (alreadyInList) return;
+
+//        if (existingDates.has(formatted) && !oldDatesSet.has(formatted)) {
+//            alert(`Date ${formatted} already has a request.`);
+//            hasConflict = true;
+//            return;
+//        }
+
+//        hasConflict = false;
+//        list.push({ LeaveDates: new Date(date) });
+//    }
+
+//    const isEdit = $("#LeaveId").val() != 0 || $("#WfhId").val() != 0;
+
+//    if (isEdit) {
+//        if (bothChanged) {
+//            const arr = [];
+//            const dt = new Date(start);
+//            while (dt <= end) {
+//                pushIfWeekday(dt, arr);
+//                dt.setDate(dt.getDate() + 1);
+//            }
+
+//            // ✅ FIX HERE: Push to arr, not result
+//            if (oldToDate) {
+//                const oldStr = moment(oldToDate).format("YYYY-MM-DD");
+//                const exists = arr.some(item => moment(item.LeaveDates).format("YYYY-MM-DD") === oldStr);
+
+//                if (!exists) {
+//                    arr.push({ LeaveDates: new Date(oldToDate) });
+//                }
+//            }
+
+//            BindLeaveTable(arr, true);
+//            return;
+//        }
+
+
+//        // Partial change: retain and extend existing rows
+//        const rows = document.querySelectorAll('#LeaveDateTable tbody tr');
+
+//        rows.forEach((row, index) => {
+//            const cells = row.querySelectorAll('td');
+//            if (cells.length === 0) return;
+
+//            const leaveDate = cells[0].textContent.trim();
+//            const checkbox = cells[1].querySelector('input[type="checkbox"]');
+//            const isChecked = checkbox?.checked ?? false;
+
+//            const radioName = `HalfDayLeave_${index + 1}`;
+//            const selectedRadio = row.querySelector(`input[name='${radioName}']:checked`);
+//            const halfDayValue = selectedRadio?.value ?? null;
+
+//            const wfhRadioName = `WFHHalfDay_${index + 1}`;
+//            const wfhSelectedRadio = row.querySelector(`input[name='${wfhRadioName}']:checked`);
+//            const wfhHalfDayValue = wfhSelectedRadio?.value ?? null;
+
+//            const rowData = { LeaveDates: leaveDate };
+
+//            if (isChecked) rowData.Title = "WFH";
+//            if (halfDayValue) rowData.Halfday = halfDayValue;
+
+//            if (wfhHalfDayValue === "HalfDayLeave" && selectedRadio) {
+//                rowData.Title = "LeaveAndWfh";
+//                rowData.LeaveHalfday = selectedRadio.value === "FirstHalf" ? "SecondHalf" : "FirstHalf";
+//            }
+
+//            result.push(rowData);
+//        });
+
+//        // Add new dates within range if not already included
+//        const current = new Date(start);
+//        while (current <= end) {
+//            pushIfWeekday(current, result);
+//            current.setDate(current.getDate() + 1);
+//        }
+//        // Ensure the original edit date is included
+//        if (oldToDate) {
+//            const oldStr = moment(oldToDate).format("YYYY-MM-DD");
+//            const exists = result.some(item => moment(item.LeaveDates).format("YYYY-MM-DD") === oldStr);
+
+//            if (!exists) {
+//                result.push({ LeaveDates: new Date(oldToDate) });
+//            }
+//        }
+
+//        oldToDate = moment(end).format("MM-DD-YYYY");
+//        oldFromDate = moment(start).format("MM-DD-YYYY");
+//        BindLeaveTable(result, true);
+//    } else {
+//        // New request (not edit)
+//        const arr = [];
+//        const dt = new Date(start);
+//        while (dt <= end) {
+//            pushIfWeekday(dt, arr);
+//            dt.setDate(dt.getDate() + 1);
+//        }
+
+//        if (hasConflict) {
+//            revertToDate();
+//            return;
+//        } else {
+//            // ✅ Update the stored oldToDate only when no conflict
+//            oldToDate = new Date(end);
+//        }
+//        BindLeaveTable(arr, false);
+//    }
+//}
+
 function DateChange() {
-    var start = $("#txtFromDate").datepicker('getDate');
-    var end = $("#txtToDate").datepicker('getDate');
-    var arr = new Array();
-    var dt = new Date(start);
-    while (dt <= end) {
-        var WeekDay = dt.getDay();
-        if (WeekDay != 6 && WeekDay != 0) {
-            //arr.push(new Date(dt));
-            var LeaveDetails = {
-                LeaveDates: new Date(dt),
-            }
-            arr.push(LeaveDetails);
+    const start = $("#txtFromDate").datepicker('getDate');
+    const end = $("#txtToDate").datepicker('getDate');
+
+    if (!start || !end) return;
+
+    const weekDay = end.getDay();
+    if (weekDay === 6 || weekDay === 0) {
+        if (oldToDate) {
+            $("#txtToDate").datepicker('setDate', oldToDate);
+        } else {
+            $("#txtToDate").val("");
         }
-        dt.setDate(dt.getDate() + 1);
+        setTimeout(() => $("#txtToDate").datepicker("show"), 5);
+        return;
     }
 
-    BindLeaveTable(arr, false);
+    const newFromStr = moment(start).format("MM/DD/YYYY");
+    const newToStr = moment(end).format("MM/DD/YYYY");
+    const oldFromStr = oldFromDate ? moment(oldFromDate).format("MM/DD/YYYY") : "";
+    const oldToStr = oldToDate ? moment(oldToDate).format("MM/DD/YYYY") : "";
+    const bothChanged = newFromStr !== oldFromStr && newToStr !== oldToStr;
+
+    let result = [];
+
+    function pushIfWeekday(date, list) {
+        const day = date.getDay();
+        if (day === 0 || day === 6) return;
+
+        const formatted = moment(date).format("YYYY-MM-DD");
+        const existingDates = getAllCalendarEventDates();
+
+        const oldDatesSet = new Set();
+        document.querySelectorAll('#LeaveDateTable tbody tr').forEach(row => {
+            const dateStr = row.querySelector('td')?.textContent.trim();
+            if (dateStr) {
+                const parsed = moment(dateStr, "MM/DD/YYYY").format("YYYY-MM-DD");
+                oldDatesSet.add(parsed);
+            }
+        });
+
+        const alreadyInList = list.some(item =>
+            moment(item.LeaveDates).format("YYYY-MM-DD") === formatted
+        );
+        if (alreadyInList) return;
+
+        if (existingDates.has(formatted) && !oldDatesSet.has(formatted)) {
+            alert(`Date ${formatted} already has a request.`);
+            hasConflict = true;
+            return;
+        }
+
+        hasConflict = false;
+        list.push({ LeaveDates: new Date(date) });
+    }
+
+    const isEdit = $("#LeaveId").val() != 0 || $("#WfhId").val() != 0;
+
+    if (isEdit) {
+        if (bothChanged) {
+            const arr = [];
+
+            if (newFromStr === newToStr) {
+                pushIfWeekday(start, arr);
+            } else {
+                const dt = new Date(start);
+                while (dt <= end) {
+                    pushIfWeekday(new Date(dt), arr);
+                    dt.setDate(dt.getDate() + 1);
+                }
+            }
+
+            BindLeaveTable(arr, true);
+            return;
+        }
+
+        const rows = document.querySelectorAll('#LeaveDateTable tbody tr');
+        rows.forEach((row, index) => {
+            const cells = row.querySelectorAll('td');
+            if (cells.length === 0) return;
+
+            const leaveDate = cells[0].textContent.trim();
+            const checkbox = cells[1].querySelector('input[type="checkbox"]');
+            const isChecked = checkbox?.checked ?? false;
+
+            const radioName = `HalfDayLeave_${index + 1}`;
+            const selectedRadio = row.querySelector(`input[name='${radioName}']:checked`);
+            const halfDayValue = selectedRadio?.value ?? null;
+
+            const wfhRadioName = `WFHHalfDay_${index + 1}`;
+            const wfhSelectedRadio = row.querySelector(`input[name='${wfhRadioName}']:checked`);
+            const wfhHalfDayValue = wfhSelectedRadio?.value ?? null;
+
+            const rowData = { LeaveDates: new Date(leaveDate) };
+
+            if (isChecked) rowData.Title = "WFH";
+            if (halfDayValue) rowData.Halfday = halfDayValue;
+
+            if (wfhHalfDayValue === "HalfDayLeave" && selectedRadio) {
+                rowData.Title = "LeaveAndWfh";
+                rowData.LeaveHalfday = selectedRadio.value === "FirstHalf" ? "SecondHalf" : "FirstHalf";
+            }
+
+            result.push(rowData);
+        });
+
+        const current = new Date(start);
+        if (newFromStr === newToStr) {
+            pushIfWeekday(start, result);
+        } else {
+            while (current <= end) {
+                pushIfWeekday(new Date(current), result);
+                current.setDate(current.getDate() + 1);
+            }
+        }
+
+        if (oldToDate) {
+            const oldStr = moment(oldToDate).format("YYYY-MM-DD");
+            const exists = result.some(item => moment(item.LeaveDates).format("YYYY-MM-DD") === oldStr);
+            if (!exists) {
+                result.push({ LeaveDates: new Date(oldToDate) });
+            }
+        }
+
+        // ✅ Filter out any dates that fall outside the selected range (timestamp-based)
+        const fromTime = new Date(newFromStr).setHours(0, 0, 0, 0);
+        const toTime = new Date(newToStr).setHours(0, 0, 0, 0);
+
+        result = result.filter(item => {
+            const leaveTime = new Date(item.LeaveDates).setHours(0, 0, 0, 0);
+            return leaveTime >= fromTime && leaveTime <= toTime;
+        });
+
+        oldToDate = moment(end).format("MM-DD-YYYY");
+        oldFromDate = moment(start).format("MM-DD-YYYY");
+
+        BindLeaveTable(result, true);
+    } else {
+        const arr = [];
+        if (newFromStr === newToStr) {
+            pushIfWeekday(start, arr);
+        } else {
+            const dt = new Date(start);
+            while (dt <= end) {
+                pushIfWeekday(new Date(dt), arr);
+                dt.setDate(dt.getDate() + 1);
+            }
+        }
+
+        if (hasConflict) {
+            revertToDate();
+            return;
+        } else {
+            oldToDate = new Date(end);
+        }
+        BindLeaveTable(arr, false);
+    }
 }
+
+
+
+function getAllCalendarEventDates() {
+    const events = calendar.getEvents();
+    const eventDates = new Set();
+
+    events.forEach(event => {
+        const startDate = moment(event.start);
+        const endDate = moment(event.end || event.start);
+
+        let current = moment(startDate);
+        while (current <= endDate) {
+            eventDates.add(current.format("YYYY-MM-DD"));
+            current.add(1, 'days');
+        }
+    });
+
+    return eventDates;
+}
+
 
 function BindLeaveTable(arr, showDeleteIcon) {
     $("#TotalLeaveDates").show();
@@ -128,14 +507,13 @@ function BindLeaveTable(arr, showDeleteIcon) {
             if (arr[i].Title == "WFH") {
                 addcontrols += '<td><i class="mdi mdi-delete-outline delete-icon" id="WfhDetailsId_' + arr[i].WFHDetailId + '" onclick=DeleteWFHDetailsOfEmployee(' + arr[i].WFHDetailId + ')></i></td>'
             }
-            else if (arr[i].Title == "LeaveAndWfh")
-            {
+            else if (arr[i].Title == "LeaveAndWfh") {
                 addcontrols += '<td><i class="mdi mdi-delete-outline delete-icon" onclick=DeleteWFHandLeaveDetailsOfEmployee(' + arr[i].WFHDetailsId + ',' + arr[i].LeaveDetailsId + ')></i></td>'
             }
             else {
-                addcontrols += '<td><i class="mdi mdi-delete-outline delete-icon" id="LeaveDetailsId_' + arr[i].LeaveDetailsId + '" onclick=DeleteLeaveDetailsOfEmployee(' + arr[i].LeaveDetailsId + ')></i></td>'
+                addcontrols += '<td><i class="mdi mdi-delete-outline delete-icon" id="LeaveDetailsId_' + arr[i].LeaveDetailsId + '" onclick=DeleteLeaveDetailsOfEmployee(' + arr[i].LeaveDetailsId + ',this)></i></td>'
             }
-            
+
         }
         addcontrols += "</td></tr>";
 
@@ -147,6 +525,7 @@ function BindLeaveTable(arr, showDeleteIcon) {
                 $(".HalfDaydiv_" + count).show();
                 /*  $("#WorkFromcheck_" + count).prop("checked", true);*/
                 $("input[name=HalfDayLeave_" + count + "][value=" + arr[i].Halfday + "]").prop("checked", true);
+                $("input[name=HalfDayLeave_" + count + "][value=" + arr[i].Halfday + "]").attr("data-checked", "true");
             }
             //if (arr[i].Title == "Leave" && arr[i].Halfday != null) {
             //    $("#WFHHalfLeave_" + count).text(arr[i].Halfday)
@@ -205,7 +584,7 @@ function WorkFromHomecheckboxchecked(id) {
 }
 
 function SendLeaveRequest() {
-    var Reason = $("#txtReason").val();
+    var Reason = $("#txtReason").val().trim();
     if (Reason.length == 0) {
         if ($('#Reason-error').is(':visible')) {
             return
@@ -257,7 +636,7 @@ function SendLeaveRequest() {
         ReportingPerson: $("#ReportingPersonId").val(),
         ReasonForLeave: $("#txtReason").val(),
         WorkFromHome: $("#WorkFromHome").prop('checked'),
-        WFHId : $("#WfhId").val() 
+        WFHId: $("#WfhId").val()
     }
     showSpinner();
     $.ajax({
@@ -270,9 +649,9 @@ function SendLeaveRequest() {
             /*alert("Request Sent..");*/
             alert(result)
             ResetModel();
-            GetPastLeaveBalance();
+            //GetPastLeaveBalance();
             delay(1500).then(function () {
-                GetTotalLeaveBalance();
+                //GetTotalLeaveBalance();
 
                 // Ensure spinner is hidden after everything completes
                 setTimeout(function () {
@@ -291,6 +670,7 @@ function ResetModel() {
     console.clear();
     $("#ApplyLeaveModel").hide();
     $("#LeaveId").val(0)
+    $("#WfhId").val(0)
     $("#txtFromDate").val("");
     $("#txtToDate").val("");
     $("#LeaveDateTable .LeaveDatebody").html("");
@@ -371,7 +751,7 @@ function GetLeaveDates() {
                 }
                 else {
                     calendar.addEvent({
-                        id: "WFH_" +val.Id,
+                        id: "WFH_" + val.Id,
                         title: 'Work From Home',
                         start: fromdate,
                         className: className,
@@ -392,8 +772,8 @@ function EditLeaves(id, startDate) {
     if (diffDays > 2) {
         OpenEmployeeEditDetails(id)
     } else {
-        // alert("Please inform to management team for changes in leave.Thanks!")
-        OpenEmployeeEditDetails(id)
+        alert("Please inform to management team for changes in leave.")
+        //OpenEmployeeEditDetails(id)
     }
 
 
@@ -468,6 +848,8 @@ function GetReportingPerson() {
         type: "Get",
         url: "/BlogVacancy/GetListOfReportingPerson",
         success: function (result) {
+            $("#ReportingPersonId").empty();
+            $('#ReportingPersonId').trigger("chosen:updated");
             $.each(result, function (index, item) {
                 $('.cls-reportingdrp').append('<option value="' + item.ReportingPersonEmail + '"> ' + item.ReportingPersonEmail + ' </option>');
                 $('.cls-reportingdrp').trigger('chosen:updated');
@@ -506,8 +888,8 @@ function GetTotalLeaveBalance() {
             var userOnbreak = data.UserBreakData.OnBreak;
             if (!userOnbreak) {
                 var sickLeave = TotalSickLeaveCount(data.TotalLeaveList.SickLeave, userOnbreak);
-                var paidleave = TotalPersonalLeaveCount(data.TotalLeaveList.PersonalLeave, userOnbreak);
-                SaveSickAndPaidLeave(sickLeave, paidleave);
+                var paidleave = data.TotalLeaveList.FinalBalance;
+                //SaveSickAndPaidLeave(sickLeave, paidleave);
             }
 
         },
@@ -629,17 +1011,28 @@ function SaveSickAndPaidLeave(sickleave, paidleave) {
 
 
 function checkedEditedLeavesday(startDate) {
-    var today = new Date();
-    var start = new Date(startDate); // Convert startDate to a Date object
+    const today = new Date();
+    const start = new Date(startDate);
 
-    // Calculate the difference in milliseconds
-    var differenceInMilliseconds = start - today;
+    // Normalize time for both dates to avoid partial day issues
+    today.setHours(0, 0, 0, 0);
+    start.setHours(0, 0, 0, 0);
 
-    // Convert milliseconds to days
-    var differenceInDays = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
+    let differenceInDays = 0;
+    let current = new Date(today);
+
+    // Loop from today to start date
+    while (current < start) {
+        const dayOfWeek = current.getDay(); // 0 = Sunday, 6 = Saturday
+        if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+            differenceInDays++;
+        }
+        current.setDate(current.getDate() + 1);
+    }
 
     return differenceInDays;
 }
+
 function OpenEmployeeEditDetails(leaveId) {
 
     if (leaveId == 0) {
@@ -658,28 +1051,119 @@ function OpenEmployeeEditDetails(leaveId) {
             // Determine which dataset to use
             var isLeave = data.leavelist.length > 0;
             var record = isLeave ? data.leavelist[0] : data.wfhdetaillist[0];
-            var fromdate = moment(record.Fromdate).format('MM/DD/YYYY');
-            var todate = moment(record.Todate).format('MM/DD/YYYY');
 
+            if (data.leavelist.length == 0 && data.wfhdetaillist.length == 0) {
+                ResetModel();
+                return;
+            }
+
+            if (data.leavelist.length > 0 && data.wfhdetaillist.length > 0) {
+                var combinedList = data.leavelist.concat(data.wfhdetaillist);
+
+                // Extract all dates and convert them to JavaScript Date objects
+                var allDates = combinedList.flatMap(item => [
+                    new Date(parseInt(item.Fromdate.match(/\d+/)[0])),
+                    new Date(parseInt(item.Todate.match(/\d+/)[0]))
+                ]);
+
+                // Get the lowest (earliest) and highest (latest) dates
+                var minDate = new Date(Math.min(...allDates));
+                var maxDate = new Date(Math.max(...allDates));
+
+                // Format the dates as YYYY-MM-DD
+                var minDateFormatted = minDate.toLocaleDateString('en-CA'); // gives yyyy-mm-dd
+                var maxDateFormatted = maxDate.toLocaleDateString('en-CA');
+
+                console.log("Earliest Date:", minDateFormatted);
+                console.log("Latest Date:", maxDateFormatted);
+
+                var fromdate = moment(minDateFormatted).format('MM/DD/YYYY');
+                var todate = moment(maxDateFormatted).format('MM/DD/YYYY');
+
+                // Example: comma-separated values from database
+                if (data.wfhdetaillist[0].ReportingPersonEdit != null) {
+                    // Convert to array
+                    var personArray = data.wfhdetaillist[0].ReportingPersonEdit.split(',').map(p => p.trim());
+                    $("#ReportingPersonId").val(personArray);
+
+                    // Trigger update for Chosen to recognize new values
+                    $("#ReportingPersonId").trigger("chosen:updated");
+                }
+
+                $("#txtFromDate").val(fromdate);
+                $("#txtToDate").val(todate);
+                oldFromDate = fromdate;
+                oldToDate = todate;
+            }
+            else if (data.leavelist.length > 0) {
+                var fromdate = moment(record.Fromdate).format('MM/DD/YYYY');
+                var todate = moment(record.Todate).format('MM/DD/YYYY');
+
+                // Example: comma-separated values from database
+                if (data.leavelist[0].ReportingPersonEdit != null) {
+                    // Convert to array
+                    var personArray = data.leavelist[0].ReportingPersonEdit.split(',').map(p => p.trim());
+                    $("#ReportingPersonId").val(personArray);
+
+                    // Trigger update for Chosen to recognize new values
+                    $("#ReportingPersonId").trigger("chosen:updated");
+                }
+                $("#txtFromDate").val(fromdate);
+                $("#txtToDate").val(todate);
+
+                oldFromDate = fromdate;
+                oldToDate = todate;
+               
+            }
+            else if (data.wfhdetaillist.length > 0) {
+                var fromdate = moment(record.Fromdate).format('MM/DD/YYYY');
+                var todate = moment(record.Todate).format('MM/DD/YYYY');
+
+
+                // Example: comma-separated values from database
+                if (data.wfhdetaillist[0].ReportingPersonEdit != null) {
+                    // Convert to array
+                    var personArray = data.wfhdetaillist[0].ReportingPersonEdit.split(',').map(p => p.trim());
+
+                    // Clear existing options (optional)
+                    // $("#ReportingPersonId").empty();
+
+                    $("#ReportingPersonId").val(personArray);
+
+                    // Trigger update for Chosen to recognize new values
+                    $("#ReportingPersonId").trigger("chosen:updated");
+                }
+
+                $("#txtFromDate").val(fromdate);
+                $("#txtToDate").val(todate);
+                oldFromDate = fromdate;
+                oldToDate = todate;
+            }
+
+           
             // Check leave edit restrictions if applicable
-            //if (isLeave) {
-            //    var differenceDay = checkedEditedLeavesday(fromdate);
-            //    if (differenceDay <= 2) {
-            //        alert("Please inform the management team about changes in leave. Thanks!");
-            //        hideSpinner();
-            //        return;
-            //    }
-            //}
-
+            if (isLeave) {
+                var differenceDay = checkedEditedLeavesday(fromdate);
+                if (differenceDay <= 2) {
+                    alert("Please inform the management team about changes in leave. Thanks!");
+                    hideSpinner();
+                    return;
+                }
+            }
+            if (data.leavelist.length > 0) {
+                $("#LeaveId").val(data.leavelist[0].Id)
+            }
+            if (data.wfhdetaillist.length > 0) {
+                $("#WfhId").val(data.wfhdetaillist[0].WFHId)
+            }
             // Populate modal fields
             $("#ApplyLeaveModel").show();
-            $("#txtFromDate").val(fromdate);
-            $("#txtToDate").val(todate);
-            isLeave ? $("#LeaveId").val(record.Id) : $("#WfhId").val(record.WFHId) 
             $("#EmailId").val(record.EmailId);
             $("#FirstName").val(record.FirstName);
             $("#txtReason").val(isLeave ? record.ReasonForLeave : record.ReasonForWFH);
-            SetMinDate();
+            //SetMinDate();
+            var start = $("#txtFromDate").datepicker('getDate');
+            $("#txtToDate").datepicker("option", "minDate", start);
             var arr = [];
 
             // Step 1: Push all unique leave and WFH records to `arr`
@@ -774,8 +1258,17 @@ function getUniqueRecords(arr, property) {
 }
 
 
-function DeleteLeaveDetailsOfEmployee(leaveDetailsId) {
+function DeleteLeaveDetailsOfEmployee(leaveDetailsId, button) {
     if (confirm('Are you sure you want to delete leave?')) {
+
+        // If leaveDetailsId is undefined, remove row directly
+        if (typeof leaveDetailsId === 'undefined' || leaveDetailsId === null) {
+            // Traverse from button to the row and remove it
+            const row = button.closest('tr');
+            if (row) row.remove();
+            return;
+        }
+
         showSpinner();
         var leaveId = $("#LeaveId").val();
         $.ajax({
@@ -813,7 +1306,7 @@ function DeleteWFHDetailsOfEmployee(wfhdetailId) {
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
                 alert(data);
-                var leaveId = $("#LeaveId").val();
+                var leaveId = $("#WfhId").val();
                 OpenEmployeeEditDetails("WFH_" + leaveId);
 
                 hideSpinner();
@@ -830,8 +1323,26 @@ function DeleteWFHDetailsOfEmployee(wfhdetailId) {
 function DeleteWFHandLeaveDetailsOfEmployee(wfhdetailId, leaveApplicationId) {
     if (confirm('Are you sure you want to delete leave?')) {
         showSpinner();
-        DeleteLeaveDetailsApplication(leaveApplicationId);
-        DeleteWFHDetailsOfEmployee(wfhdetailId);
-        hideSpinner();
+        $.ajax({
+            url: "/Leave/DeleteWFHandLeaveDetailsOfEmployee",
+            type: "GET",
+            data: {
+                wfhDetailId: wfhdetailId,
+                LeaveApplicationId: leaveApplicationId
+            },
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                alert(data);
+                var leaveId = $("#WfhId").val();
+                OpenEmployeeEditDetails("WFH_" + leaveId);
+
+                hideSpinner();
+            },
+            error: function (result) {
+                console.log(result.responseText);  // Log the raw response text
+                alert("Error: " + result);
+                hideSpinner();
+            },
+        });
     }
 }

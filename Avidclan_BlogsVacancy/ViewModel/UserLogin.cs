@@ -34,12 +34,14 @@ namespace Avidclan_BlogsVacancy.ViewModel
 
         public int ProbationPeriod { get; set; }
         public DateTime JoiningDate { get; set; }
-        public bool IsNoticePeriod { get; set; }
+        public DateTime? NoticePeriodDate { get; set; }
         public bool OnBreak { get; set; }
         public string BreakMonth { get; set; }
         public string PaidLeave { get; set; }
         public string SickLeave { get; set; }
         public string CompOffLeave { get; set; }
+        public string FinalBalance { get; set; }
+        public string SickLeaveFinalBalance { get; set; }
     }
 
     public class UseridList
