@@ -37,34 +37,55 @@
         </div>
     </div>
 </section>
-
 <!-- Career-info Section -->
 <section class="about-section">
     <div class="container">
+        <!-- Section Title for Small Screens -->
         <div class="row sm_only">
             <div class="col-xl-12">
                 <div class="avidclan_section_title text-center mb-50">
                     <div class="sec-title">
-                        <h2 class="p-0 header_subtitle text-start">Ready to build your dream career in the IT company? we can help</h2>
+                        <h2 class="p-0 header_subtitle text-start">
+                            Ready to build your dream career in the IT company? We can help
+                        </h2>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Main Content -->
         <div class="row">
-            <div class="col-md-6 d-md-none d-flex justify-content-center align-items-center img-col my-3 my-lg-0 my-md-0 my-xl-0">
-                <img src="~/assets/images/helping-partner-concept-illustration.svg" alt="about-us-banner" srcset="~/assets/images/helping-partner-concept-illustration.svg 400w, ~/assets/images/helping-partner-concept-illustration.jpg 1080w" sizes="400vw" width="400" height="400" class="lazyload" loading="lazy" />
+            <!-- Image Column -->
+            <div class="col-md-6 d-flex justify-content-center align-items-center img-col my-3">
+                <img src="/assets/images/helping-partner-concept-illustration.svg"
+                     alt="career-banner"
+                     width="400"
+                     height="400"
+                     class="lazyload img-fluid"
+                     loading="lazy"
+                     style="object-fit: contain; max-width: 100%; height: 400px; filter: none; opacity: 1; mix-blend-mode: normal;" />
             </div>
+
+            <!-- Text Column -->
             <div class="col-lg-6 col-md-6 col-about_description">
                 <div class="sec-title">
-                    <h2 class="lg_only">Ready to build your dream career in the IT company? we can help</h2>
+                    <h2 class="lg_only">
+                        Ready to build your dream career in the IT company? We can help
+                    </h2>
                     <div class="text description-18 my-0 gap-25_description">
-                        <div>Imagine working globally and collaborating with diverse businesses and brands worldwide. That is precisely what Avidclan Technologies offers its employees - more than simply jobs! At Avidclan Technologies, this opportunity exists - you'll have a chance to grow alongside our ingenuity and talent as we make an impactful difference in the world!</div><div>Our team of professionals is empowered. Your ideas are taken seriously and put into action - don't be shy about pushing boundaries - we provide all the resources and support necessary for turning creative energy into impactful results.</div>
+                        <div>
+                            Imagine working globally and collaborating with diverse businesses and brands worldwide. That is precisely what Avidclan Technologies offers its employees - more than simply jobs! At Avidclan Technologies, this opportunity exists - you'll have a chance to grow alongside our ingenuity and talent as we make an impactful difference in the world!
+                        </div>
+                        <div>
+                            Our team of professionals is empowered. Your ideas are taken seriously and put into action - don't be shy about pushing boundaries - we provide all the resources and support necessary for turning creative energy into impactful results.
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
 <section class="career-section" id="career-section">
     <div class="container">
@@ -100,9 +121,15 @@
                         <div class="devider"></div>
                         <div class="footer">
                             <div class="btn-box me-3">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#ModalApplyJob" class="theme-btn btn-style-one" onclick="OpenApplyJobModal();"><span class="btn-title">Apply Now</span></a>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#ModalApplyJob" class="btn btn-primary fw-bold rounded-2 mt-0" onclick="OpenApplyJobModal();">
+                                    <span class="btn-title">Apply Now</span>
+
+                                </a>
                             </div>
-                            <div class="btn-box">
+
+
+
+                            <div class="btn-box mt-0">
                                 <button data-bs-toggle="modal"
                                         data-bs-target="#ModalJobDescDotNet"
                                         class="theme-btn btn-style-one jobdes-link" id="OpenModalPopup" onclick="OpenRolesModal(@item.Id)">
