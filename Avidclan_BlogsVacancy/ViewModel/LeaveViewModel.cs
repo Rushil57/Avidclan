@@ -24,6 +24,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string WFHStatus { get; set; }
 
         public string FirstName { get; set; }
+        public string LastName { get; set; }
 
         public string EmailId { get; set; }
 
@@ -41,6 +42,14 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public int LeaveApplicationId { get; set; }
         public int WFHDetailId { get; set; }
         public string ReportingPersonEdit { get; set; }
+        public string PersonalLeaves { get; set; }
+        public string SickLeaves { get; set; }
+        public string Lwp { get; set; }
+        public string HalfDay { get; set; }
+        public string WfhHalfDay { get; set; }
+
+        public string FinalBalance { get; set; }
+        public string SickLeaveFinalBalance { get; set; }
     }
 
     public class LeaveDetailsViewModel
@@ -131,6 +140,24 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public int? LeaveApplicationId { get; set; }
         public DateTime? LeaveDates { get; set; }
         public string Halfday { get; set; }
+    }
+
+    public class EmployeeReportViewModel
+    {
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public int UserId { get; set; }
+    }
+
+    public class HolidayViewModel
+    {
+        public string HolidayName { get; set; }
+        public string Description { get; set; }
+        public string HolidayDate { get; set; }
+        public string HolidayFomattedDate { get; set; }
+        public int Id { get; set; }
+        public int HolidayYear { get; set; }
+        public string Status { get; set; }
     }
 
 

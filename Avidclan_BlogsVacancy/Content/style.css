@@ -9022,7 +9022,7 @@ fieldset:disabled .btn {
     filter: invert(1) grayscale(100%) brightness(200%);
 }
 
-.toast {
+/*.toast {
     width: 350px;
     max-width: 100%;
     font-size: 0.875rem;
@@ -9079,7 +9079,7 @@ fieldset:disabled .btn {
 .toast-body {
     padding: 0.75rem;
     word-wrap: break-word;
-}
+}*/
 
 .modal {
     position: fixed;

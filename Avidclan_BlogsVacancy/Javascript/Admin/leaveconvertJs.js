@@ -54,15 +54,56 @@ function SelectCalenderDate() {
     calendar.render();
 }
 
+var oldToDate = null;
+var oldFromDate = null;
+
+// Save the previous value when the input is focused
+$("#txtToDate").on("focusin", function () {
+    oldToDate = $(this).val();  // store old value before change
+});
+
+$("#txtFromDate").on("focusin", function () {
+    oldFromDate = $(this).val();  // store old value before change
+});
+
+
 function SetMinDate() {
     var start = $("#txtFromDate").datepicker('getDate');
+    var WeekDay = start?.getDay();
+
+    // Revert if it's weekend
+    if (WeekDay === 6 || WeekDay === 0) {
+        revertFromDate();
+        return;
+    }
     $("#txtToDate").datepicker("option", "minDate", start);
     DateChange();
+}
+
+function revertFromDate() {
+    if (oldFromDate) {
+        $("#txtFromDate").datepicker('setDate', oldFromDate);
+    } else {
+        $("#txtFromDate").val("");
+    }
+    setTimeout(() => $("#txtFromDate").datepicker("show"), 5);
 }
 
 function DateChange() {
     var start = $("#txtFromDate").datepicker('getDate');
     var end = $("#txtToDate").datepicker('getDate');
+
+    const weekDay = end.getDay();
+    if (weekDay === 6 || weekDay === 0) {
+        if (oldToDate) {
+            $("#txtToDate").datepicker('setDate', oldToDate);
+        } else {
+            $("#txtToDate").val("");
+        }
+        setTimeout(() => $("#txtToDate").datepicker("show"), 5);
+        return;
+    }
+
     var arr = new Array();
     var dt = new Date(start);
     while (dt <= end) {
@@ -126,6 +167,8 @@ function GetListOfUser() {
         contentType: 'application/json',
         success: function (result) {
             if (result != null) {
+                $(".cls-employee option:not(:first)").remove();
+
                 $.each(result, function (index, item) {
                     var opt = new Option(item.FirstName, item.Id);
                     $('.cls-employee').append(opt);
@@ -144,7 +187,9 @@ function GetReportingPerson() {
         type: "Get",
         url: "/BlogVacancy/GetListOfReportingPerson",
         success: function (result) {
+            $('.cls-reportingdrp').empty();
             $.each(result, function (index, item) {
+              
                 $('.cls-reportingdrp').append('<option value="' + item.ReportingPersonEmail + '"> ' + item.ReportingPersonEmail + ' </option>');
                 $('.cls-reportingdrp').trigger('chosen:updated');
 
@@ -171,91 +216,6 @@ function ResetModel() {
     $("#ApplyLeaveModel").hide();
 }
 
-//function AdminLeaveRequest() {
-//    var Reason = $("#txtReason").val();
-//    if (Reason.length == 0) {
-//        if ($('#Reason-error').is(':visible')) {
-//            return
-//        }
-//        else {
-//            $("<label id='Reason-error' class='error' style=' color: #ff0000;font-weight: normal!important;' for='reason'>Please enter reasons for leave</label>").insertAfter("#txtReason");
-//            return
-//        }
-//    }
-
-//    var employeeSelect = $("#Employee").val();
-//    if (employeeSelect.length == 0) {
-//        if ($('#select-error').is(':visible')) {
-//            return
-//        }
-//        else {
-//            $("<label id='select-error' class='error' style=' color: #ff0000;font-weight: normal!important;' for='reason'>Please select employee name</label>").insertAfter("#Employee");
-//            return
-//        }
-//    }
-//    var LeaveDetails = new Array();
-//    var exit = false;
-//    $("#LeaveDateTable tbody tr").each(function () {
-//        var row = $(this);
-//        var Leave = {};
-
-//        Leave.LeaveDate = row.find("td:eq(0)").text();
-//        var WfhCheck = row.find("td:eq(1) input:checkbox").is(':checked');
-//        if (WfhCheck) {
-//            Leave.WorkFromHome = WfhCheck;
-//            var halfdaycheckbox = row.find("td:eq(2) input[type='radio']:checked").is(':checked');
-//            if (halfdaycheckbox) {
-//                var HalfdayCriteria = row.find("td:eq(3) input[type='radio']:checked").is(':checked');
-//                if (HalfdayCriteria) {
-//                    var WFHHalfDayReason = row.find("td:eq(3) input[type='radio']:checked").val();
-//                    if (WFHHalfDayReason.includes("WFO") == true) {
-//                        Leave.WorkAndHalfLeave = false
-//                    }
-//                    else {
-//                        Leave.WorkAndHalfLeave = true
-//                    }
-//                }
-//                else {
-//                    exit = true
-//                    row.find("td:eq(3) .error").css("display", "block");
-//                }
-//            }
-//        }
-//        Leave.Halfday = row.find("td:eq(2) input[type='radio']:checked").val();
-//        LeaveDetails.push(Leave);
-//    })
-//    if (exit) {
-//        return;
-//    }
-//    var Leavedata = {
-//        Id: $("#LeaveId").val(),
-//        Fromdate: $("#txtFromDate").val(),
-//        Todate: $("#txtToDate").val(),
-//        Leaves: LeaveDetails,
-//        ReportingPerson: $("#ReportingPersonId").val(),
-//        ReasonForLeave: $("#txtReason").val(),
-//        WorkFromHome: $("#WorkFromHome").prop('checked'),
-//        UserId: $("#Employee").val()
-//    }
-
-//    showSpinner();
-//    $.ajax({
-//        type: "POST",
-//        url: "/api/Admin/AdminLeaveRequest",
-//        dataType: 'json',
-//        contentType: 'application/json; charset=utf-8',
-//        data: JSON.stringify(Leavedata),
-//        success: function (result) {
-//            alert(result)
-//            ResetModel();
-//            hideSpinner();
-//        },
-//        error: function (result) {
-//            alert(result.responseText);
-//            hideSpinner();
-//        },
-//    })
-//}
 
 function AdminLeaveRequest() {
     // Helper function to validate fields and display errors

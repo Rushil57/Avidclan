@@ -81,11 +81,37 @@ $(function () {
     BindRoles();
     $('#JoiningDate').datepicker();
     $("#NoticePeriod").datepicker();
+    $("#lastWorkingDate").datepicker();
     GetEmployeeList();
 });
 
 function SaveNewUser() {
 
+    // Get values from form
+    var noticePeriod = $("#NoticePeriod").val();
+    var lastWorkingDate = $("#lastWorkingDate").val();
+
+    // Validation logic
+    if (noticePeriod && !lastWorkingDate) {
+        toastr.warning("Please enter the Last Working Date when Notice Period is provided.","Warning");
+        hideSpinner();
+        return;
+    }
+
+    if (!noticePeriod && lastWorkingDate) {
+        toastr.warning("You cannot enter the Last Working Date if the Notice Period is empty.", "Warning");
+        hideSpinner();
+        return;
+    }
+
+    var noticeDate = null;
+    var lastworkingDateformatted = null;
+    if (noticePeriod) {
+        noticeDate = moment(noticePeriod).format('YYYY-MM-DD');
+    }
+    if (lastWorkingDate) {
+        lastworkingDateformatted = moment(lastWorkingDate).format('YYYY-MM-DD');
+    }
     showSpinner();
     var data = {
         Id: $("#EmployeeId").val(),
@@ -97,9 +123,10 @@ function SaveNewUser() {
         Role: $("#RoleName").val(),
         JoiningDate: $("#JoiningDate").val(),
         ProbationPeriod: $("#ProbationMonth").val(),
-        NoticePeriodDate: $("#NoticePeriod").val(),
+        NoticePeriodDate: noticeDate,
         OnBreak: $("#OnBreak").prop('checked'),
-        BreakMonth: $("#BreakMonth").val()
+        BreakMonth: $("#BreakMonth").val(),
+        LastWorkingDate: lastworkingDateformatted
     }
     $.ajax({
         type: "POST",
@@ -189,6 +216,7 @@ function ResetForm() {
     $('#NoticePeriod').val("");
     $('#OnBreak').prop('checked', false);
     $('#BreakMonth').val("0");
+    $("#lastWorkingDate").val("");
 }
 function ShowEmployeRegisterModel() {
     $("#EmployeeModal").modal('show')
@@ -274,6 +302,12 @@ function GetEmployeeDetailsById(id) {
                     $('#OnBreak').prop('checked', false);
                 }
                 $("#BreakMonth").val(result.BreakMonth);
+                if (result.LastWorkingDate != null) {
+                    $('#lastWorkingDate').val(moment(result.LastWorkingDate
+).format('YYYY-MM-DD'));
+                } else {
+                    $('#lastWorkingDate').val("");
+                }
             }
 
             hideSpinner();
@@ -348,7 +382,7 @@ function ExportEmployeeLeaveDetails() {
         XLSX.writeFile(wb, "EmployeeLeaveDetails_" + date +".xlsx");
 
     } catch (error) {
-        alert('Error while exporting data: ' + error.message);
+        toastr.error('Error while exporting data: ' + error.message,"Error");
     } finally {
         // Hide loader after process ends
         hideSpinner();

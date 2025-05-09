@@ -93,7 +93,7 @@ function EmployeeLeaveDetails(leaveId) {
             $.each(data, function (key, val) {
                 var LeaveDetails = {
                     LeaveDates: val.LeaveDates,
-                    Halfday: val.Halfday
+                    Halfday: val.HalfDay
                 }
 
                 arr.push(LeaveDetails);

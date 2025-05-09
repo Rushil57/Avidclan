@@ -394,6 +394,9 @@
     <Content Include="Views\Leave\CompOff.cshtml" />
     <Content Include="Views\BlogVacancy\CompensationLeave.cshtml" />
     <Content Include="Views\BlogVacancy\ReminderMail.cshtml" />
+    <Content Include="Views\BlogVacancy\EmployeeReport.cshtml" />
+    <Content Include="Views\BlogVacancy\Holiday.cshtml" />
+    <Content Include="Views\BlogVacancy\LeaveBalance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

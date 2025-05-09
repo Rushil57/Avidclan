@@ -1,0 +1,300 @@
+﻿
+@{
+    ViewBag.Title = "Holiday";
+    Layout = "~/Views/Shared/_AdminTemplate.cshtml";
+}
+
+<div class="row" style="align-items: center;">
+    <div class="col-sm-3">
+        <button type="button" class="btn btn-primary" data-target="#exampleModal" id="AddHoliday" onclick="OpenHolidayPopupModal()">
+            Add Holiday
+        </button>
+    </div>
+    <div class="col-sm-3">
+        <select name="HolidayYear" id="HolidayYear" class="form-control select2 cls-holidayYear" onchange="GetHolidayList()">
+        </select>
+    </div>
+</div>
+
+<div class="table-responsive pt-5">
+    <table id="holidayList" class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th><strong> Name </strong></th>
+                <th><strong> Date </strong></th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="AddHolidayModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Holiday</h5>
+            </div>
+            <div class="modal-body">
+                <form name="HolidayDetails">
+                    <input type="hidden" id="HolidayId">
+                    <div class="form-group">
+                        <label for="Title">Holiday Name</label>
+                        <input type="text" class="form-control" id="Title" name="title" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="Title">Holiday Date</label>
+                        <input type="text" class="form-control" id="HolidayDate" name="HolidayDate" placeholder="Date" autocomplete="off">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="ResetHolidayData()">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    var validator;
+    $(function () {
+        $("#HolidayDate").datepicker();
+        GetHolidayYear();
+        validator = $("form[name='HolidayDetails']").validate({
+            rules: {
+                title: { required: true, },
+                HolidayDate: { required: true, }
+
+            },
+            messages: {
+                title: { required: "Please enter a title", },
+                HolidayDate: { required: "Please select valid date", }
+
+            },
+            submitHandler: function (form) {
+                SaveHolidayDetails()
+            }
+        });
+    });
+
+    function OpenHolidayPopupModal() {
+        $("#AddHolidayModal").modal('show')
+    }
+
+    function SaveHolidayDetails() {
+
+        
+        let date = new Date($("#HolidayDate").val());
+        let formattedDate = date.getFullYear() + '-' +
+            String(date.getMonth() + 1).padStart(2, '0') + '-' +
+            String(date.getDate()).padStart(2, '0');
+
+
+        var details = {
+            HolidayName: $("#Title").val().trim(),
+            HolidayDate: $("#HolidayDate").val(),
+            HolidayFomattedDate: formattedDate,
+            Id : $("#HolidayId").val()
+        }
+
+        showSpinner();
+        $.ajax({
+            type: "POST",
+            url: "/BlogVacancy/SaveHolidayDetails",
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(details),
+            success: function (result) {
+                if (result.success) {
+                    toastr.success(result.message, 'Success');
+                    GetHolidayYear();
+                    ResetHolidayData();
+                   // GetHolidayList()
+                } else {
+                    toastr.warning(result.message, 'Warning');
+                }
+                hideSpinner();
+            },
+
+            error: function (result) {
+                debugger
+                hideSpinner();
+                console.error("Error saving data:", result.responseText);
+                toastr.error('Error saving data : ' + result.responseText +'', 'Error');
+            }
+        });
+    }
+
+    function ResetHolidayData() {
+        validator.resetForm();
+        $("#Title").val("");
+        $("#HolidayDate").val("");
+        $("#AddHolidayModal").modal('hide')
+        $("#HolidayId").val(0); 
+    }
+
+    $("#HolidayDate").on("change", function () {
+        $(this).valid(); // triggers validation on this field
+    });
+
+   function GetHolidayYear() {
+    $.ajax({
+        type: "GET",
+        url: "@Url.Action("GetHolidayYear", "BlogVacancy")",
+        success: function (result) {
+            const $dropdown = $("#HolidayYear");
+            $dropdown.empty(); // Clear existing options
+
+            // Add default option
+            $dropdown.append($("<option>").val("0").text("-- Select Year --"));
+
+            const currentYear = new Date().getFullYear();
+            let isCurrentYearPresent = false;
+
+            // Populate dropdown
+            $.each(result, function (index, item) {
+                // Assuming item.Year contains the year value (adjust if your model uses a different property)
+                const year = item.HolidayYear;
+
+                if (year == currentYear) {
+                    isCurrentYearPresent = true;
+                }
+
+                $dropdown.append($("<option>").val(year).text(year));
+            });
+
+            // Set current year if available
+            if (isCurrentYearPresent) {
+                $dropdown.val(currentYear);
+            } else {
+                $dropdown.val("0"); // Keep default
+            }
+
+            // Trigger change if needed
+            $dropdown.trigger('change');
+            GetHolidayList();
+        },
+        error: function (result) {
+            toastr.error('Error fetching data: ' + result.responseText, 'Error');
+        }
+    });
+}
+
+    function GetHolidayList() {
+        var selectedYear = $("#HolidayYear").val();
+        var $table = $("#holidayList");
+
+        // Clear previous table body
+        $table.find("tbody").remove(); // remove old tbody if exists
+        var $tbody = $("<tbody></tbody>");
+
+        if (selectedYear == 0) {
+            //$tbody.append("<tr><td colspan='2' class='text-center'>No holidays found for selected year</td></tr>");
+            //$table.append($tbody);
+            return;
+        }
+
+        showSpinner();
+        $.ajax({
+            type: "POST",
+            url: "/BlogVacancy/GetHolidayList",
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ HolidayYear: selectedYear }),
+            success: function (result) {
+                hideSpinner();
+
+                if (result && result.length > 0) {
+                    // Clear previous table body
+                    $table.find("tbody").remove(); // remove old tbody if exists
+                    var $tbody = $("<tbody></tbody>");
+                    $.each(result, function (index, item) {
+                        var row = "<tr>" +
+                            "<td>" + item.Description + "</td>" +
+                            "<td>" + formatDate(item.HolidayDate) + "</td>" +
+                            "<td><button class='btn btn-sm btn-danger delete-btn' onclick='DeleteHolidayData(" + item.Id + ")'><i class='mdi mdi-delete'></i></button></td>"
+                            "</tr>";
+                        $tbody.append(row);
+                    });
+                } else {
+                    $tbody.append("<tr><td colspan='2' class='text-center'>No holidays found for selected year</td></tr>");
+                }
+
+                $table.append($tbody);
+            },
+            error: function (result) {
+                hideSpinner();
+                console.error("Error saving data:", result.responseText);
+                toastr.error('Error fetching data: ' + result.responseText, 'Error');
+            }
+        });
+    }
+
+
+    function formatDate(dateStr) {
+        // Converts to dd-MM-yyyy format
+        var date = new Date(dateStr);
+        var day = String(date.getDate()).padStart(2, '0');
+        var month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
+        var year = date.getFullYear();
+        return `${day}-${month}-${year}`;
+    }
+
+    function GetHolidayData(holidayId) {
+        showSpinner();
+        $.ajax({
+            type: "POST",
+            url: "/BlogVacancy/GetHolidayData",
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ Id: holidayId }),
+            success: function (result) {
+                hideSpinner();
+
+                if (result) {
+                    $("#AddHolidayModal").modal('show');
+
+                    // Populate modal form fields with returned data
+                    $("#HolidayId").val(result.Id); // Hidden input
+                    $("#Title").val(result.Description);
+                    $("#HolidayDate").val(moment(result.HolidayDate).format("YYYY-MM-DD"));
+                    $("#HolidayDate").datepicker("setDate", new Date(result.HolidayDate));
+                } else {
+                    toastr.warning("No holiday data found.");
+                }
+            },
+
+            error: function (result) {
+                hideSpinner();
+                console.error("Error saving data:", result.responseText);
+                toastr.error('Error fetching data: ' + result.responseText, 'Error');
+            }
+        });
+    }
+
+    function DeleteHolidayData(id) {
+        if (confirm('Are you sure want to delete holiday?')) {
+            showSpinner();
+            $.ajax({
+                url: "/BlogVacancy/DeleteHolidayData",
+                contentType: 'application/json',
+                data: JSON.stringify({ Id: id })
+,
+                type: "POST",
+                success: function (result) {
+                    GetHolidayYear();
+                    toastr.success(result.message,"Success");
+                    hideSpinner();
+                },
+                error: function (result) {
+                    toastr.error(result.responseText, "Error");
+                    hideSpinner();
+                }
+            });
+        }
+    }
+    
+</script>

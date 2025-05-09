@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "LeaveBalance";
+    Layout = "~/Views/Shared/_AdminTemplate.cshtml";
+}
+
+<div class="col-sm-2" style="margin: auto;">
+    <select name="Status" id="StatusId" class="form-control select2 cls-Status" onchange="GetEmployeeStatusWise()">
+        <option value=''>--Select Status--</option>
+        <option value='1'>Active</option>
+        <option value='0'>Inactive</option>
+    </select>
+</div>
+<div class="table-responsive pt-3">
+    <table id="EmployeeLeaveBalanceList" class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th> Employee Name </th>
+                <th> PL Balance </th>
+                <th> SL Balance </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<script>
+    $(function () {
+        GetEmployeeLeaveBalance();
+    });
+    function GetEmployeeLeaveBalance() {
+        showSpinner();
+        $.ajax({
+            type: "Get",
+            url: "/BlogVacancy/GetAllEmployees",
+            success: function (result) {
+                BindEmployeeTable(result)
+
+                hideSpinner();
+
+            },
+            error: function (result) {
+                alert(result.responseText);
+                hideSpinner();
+            }
+        });
+    }
+
+    function BindEmployeeTable(result) {
+        $('#EmployeeLeaveBalanceList').dataTable({
+            destroy: true,
+            data: result,
+            "columns": [
+                {
+                    "data": "FirstName",
+                    render: function (data, type, row) {
+                        return row.FirstName + ' ' + row.LastName;
+                    }
+                },
+
+                { "data": "FinalBalance" },
+                { "data": "SickLeaveFinalBalance" },
+
+            ]
+        });
+    }
+    function GetEmployeeStatusWise() {
+        showSpinner();
+        var status = $(".cls-Status").val();
+        if (status == '') {
+            GetEmployeeLeaveBalance();
+            return;
+        }
+        $.ajax({
+            url: "/BlogVacancy/GetEmployeeStatusWise",
+            contentType: 'application/json',
+            data: JSON.stringify({ Status: status }),
+            type: "POST",
+            success: function (result) {
+              debugger
+                BindEmployeeTable(result.data)
+                hideSpinner();
+            },
+            error: function (result) {
+                alert(result.responseText);
+                hideSpinner();
+            }
+        });
+    }
+</script>

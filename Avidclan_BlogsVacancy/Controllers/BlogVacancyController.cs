@@ -2,6 +2,8 @@
 using Dapper;
 using iTextSharp.text.pdf.qrcode;
 using MailKit;
+using MimeKit.Cryptography;
+using Org.BouncyCastle.Asn1.Ocsp;
 using Org.BouncyCastle.Bcpg;
 using System;
 using System.Configuration;
@@ -65,12 +67,12 @@ namespace Avidclan_BlogsVacancy.Controllers
                 }
                 return Json(logindata, JsonRequestBehavior.AllowGet);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 await ErrorLog("UserLogin", ex.Message, ex.StackTrace);
                 return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
-           
+
         }
 
         public ActionResult Blog()
@@ -268,7 +270,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 {
                     mode = 10;
                 }
-                if(userRegister.BreakMonth != null)
+                if (userRegister.BreakMonth != null)
                 {
                     // Extract the numeric part from BreakMonth
                     userRegister.BreakMonth = Regex.Match(userRegister.BreakMonth, @"\d+(\.\d+)?").Value;
@@ -289,6 +291,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@OnBreak", userRegister.OnBreak, DbType.Boolean, ParameterDirection.Input);
                 parameters.Add("@BreakMonth", userRegister.BreakMonth, DbType.String, ParameterDirection.Input);
                 parameters.Add("@NoticePeriodDate", userRegister.NoticePeriodDate, DbType.DateTime, ParameterDirection.Input);
+                parameters.Add("@LastWorkingDate", userRegister.LastWorkingDate, DbType.DateTime, ParameterDirection.Input);
                 parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
                 using (IDbConnection connection = new SqlConnection(connectionString))
                 {
@@ -499,11 +502,20 @@ namespace Avidclan_BlogsVacancy.Controllers
             return View();
         }
 
+        public ActionResult LeaveBalance()
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
+            return View();
+        }
+
         [HttpPost]
         public async Task<string> SaveReportingperson(string person, int Id)
         {
-            var mode=0;
-            if(Id == 0)
+            var mode = 0;
+            if (Id == 0)
             {
                 mode = 8;
             }
@@ -597,20 +609,78 @@ namespace Avidclan_BlogsVacancy.Controllers
                 var EmployeeData = con.Query<LeaveViewModel>("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure).ToList();
                 return Json(EmployeeData, JsonRequestBehavior.AllowGet);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 await ErrorLog("BlogVacancyController - GetAllEmployeesLeaveDates", ex.Message, ex.StackTrace);
                 return null;
             }
         }
 
-        public async Task<JsonResult> GetEmployeeLeaveReport(DateTime StartDate)
+        public async Task<JsonResult> GetEmployeeLeaveReport(DateTime StartDate, DateTime EndDate)
         {
             try
             {
                 var parameters = new DynamicParameters();
-                parameters.Add("@Mode", 7, DbType.Int32, ParameterDirection.Input);
-                var EmployeeData = con.Query<LeaveViewModel>("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure).ToList();
+                parameters.Add("@Mode", 25, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@startdate", StartDate, DbType.DateTime, ParameterDirection.Input);
+                parameters.Add("@enddate", EndDate, DbType.DateTime, ParameterDirection.Input);
+                var EmployeeData = con.Query<LeaveViewModel>("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure).ToList();
+                if (EmployeeData.Count > 0)
+                {
+                    var groupedData = EmployeeData
+                       .GroupBy(e => e.Id)
+                       .Select(g => new
+                       {
+                           Id = g.Key,
+                           Leaves = g
+            .OrderByDescending(e =>
+                (e.LeaveDate != DateTime.MinValue ? e.LeaveDate :
+                 e.WFHDates != DateTime.MinValue ? e.WFHDates : DateTime.MinValue)
+            )
+            .ToList()
+                       })
+                       .ToList();
+                    return Json(groupedData, JsonRequestBehavior.AllowGet);
+                }
+                return Json(EmployeeData, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("BlogVacancyController - GetAllEmployeesLeaveDates", ex.Message, ex.StackTrace);
+                return null;
+            }
+        }
+
+
+        public async Task<JsonResult> loadUserLeaveDetails(EmployeeReportViewModel employeeReportViewModel)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Mode", 26, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@startdate", employeeReportViewModel.StartDate, DbType.DateTime, ParameterDirection.Input);
+                parameters.Add("@enddate", employeeReportViewModel.EndDate, DbType.DateTime, ParameterDirection.Input);
+                parameters.Add("@Id", employeeReportViewModel.UserId, DbType.Int32, ParameterDirection.Input);
+                var EmployeeData = con.Query<LeaveViewModel>("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure).ToList().OrderByDescending(x => x.LeaveDate);
+                return Json(EmployeeData, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("BlogVacancyController - GetAllEmployeesLeaveDates", ex.Message, ex.StackTrace);
+                return null;
+            }
+        }
+
+        public async Task<JsonResult> loadUserWfhDetails(EmployeeReportViewModel employeeReportViewModel)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Mode", 27, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@startdate", employeeReportViewModel.StartDate, DbType.DateTime, ParameterDirection.Input);
+                parameters.Add("@enddate", employeeReportViewModel.EndDate, DbType.DateTime, ParameterDirection.Input);
+                parameters.Add("@Id", employeeReportViewModel.UserId, DbType.Int32, ParameterDirection.Input);
+                var EmployeeData = con.Query<LeaveViewModel>("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure).ToList().OrderByDescending(x => x.WFHDates);
                 return Json(EmployeeData, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -629,6 +699,8 @@ namespace Avidclan_BlogsVacancy.Controllers
             return View();
         }
 
+
+
         public ActionResult CompensationLeave()
         {
             if (Session["UserEmailId"] == null)
@@ -646,6 +718,196 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
             return View();
         }
+
+        public ActionResult Holiday()
+        {
+            if (Session["UserEmailId"] == null)
+            {
+                return RedirectToAction("UserLogin");
+            }
+            return View();
+        }
+
+        public async Task<JsonResult> SaveHolidayDetails(HolidayViewModel holidayViewModel)
+        {
+            try
+            {
+                if (holidayViewModel.HolidayDate == null)
+                    return Json(new { success = false, message = "Invalid date selected." });
+
+                if (holidayViewModel.Id == 0) // only check on add
+                {
+                    var checkParams = new DynamicParameters();
+                    checkParams.Add("@Mode", 9); // assuming mode 6 is a check mode
+                    checkParams.Add("@Description", holidayViewModel.HolidayName, DbType.String);
+                    checkParams.Add("@Date", holidayViewModel.HolidayFomattedDate, DbType.String);
+
+                    var existing = 0;
+                    using (IDbConnection connection = new SqlConnection(connectionString))
+                    {
+                        //await connection.ExecuteAsync("sp_Holidays", checkParams, commandType: CommandType.StoredProcedure);
+                        existing = await connection.QueryFirstOrDefaultAsync<int>(
+                                "sp_Holidays", checkParams, commandType: CommandType.StoredProcedure);
+                    }
+
+                    if (existing > 0)
+                    {
+                        return Json(new { success = false, message = "A holiday with the same name or date already exists." });
+                    }
+                }
+                 var mode = 0;
+                var successMessage = "";
+                if (holidayViewModel.Id == 0)
+                {
+                    mode = 2;
+                    successMessage = "Holiday saved successfully!";
+                }
+                else
+                {
+                    mode = 7;
+                    successMessage = "Holiday Edited successfully!";
+                }
+                var parameters = new DynamicParameters();
+                parameters.Add("@Mode", mode, DbType.Int32);
+                parameters.Add("@Description", holidayViewModel.HolidayName, DbType.String);
+                parameters.Add("@Date", holidayViewModel.HolidayDate, DbType.String);
+                parameters.Add("@Id", holidayViewModel.Id, DbType.Int32);
+
+                using (IDbConnection connection = new SqlConnection(connectionString))
+                {
+                    await connection.ExecuteAsync("sp_Holidays", parameters, commandType: CommandType.StoredProcedure);
+                }
+
+                return Json(new { success = true, message = successMessage });
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("BlogVacancyController - SaveHolidayDetails", ex.Message, ex.StackTrace);
+                return Json(new { success = false, message = "An error occurred while saving the holiday." });
+            }
+        }
+
+
+        public async Task<JsonResult> GetHolidayYear()
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Mode", 3, DbType.Int32, ParameterDirection.Input);
+
+                var holidayYearList = con.Query<HolidayViewModel>("sp_Holidays", parameters, commandType: CommandType.StoredProcedure).ToList().OrderByDescending(x => x.HolidayYear);
+                return Json(holidayYearList, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("BlogVacancyController - GetHolidayYear", ex.Message, ex.StackTrace);
+                return null;
+            }
+        }
+
+        public async Task<JsonResult> GetHolidayList(HolidayViewModel holidayViewModel)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Mode", 4, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@Year", holidayViewModel.HolidayYear, DbType.Int32, ParameterDirection.Input);
+
+                var holidayYearList = con.Query<HolidayViewModel>("sp_Holidays", parameters, commandType: CommandType.StoredProcedure).ToList();
+                return Json(holidayYearList, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("BlogVacancyController - GetHolidayList", ex.Message, ex.StackTrace);
+                return null;
+            }
+        }
+
+
+        public async Task<JsonResult> GetMonthlyLeaves(EmployeeReportViewModel employeeReportViewModel)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Mode", 5, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@StartDate", employeeReportViewModel.StartDate, DbType.Date, ParameterDirection.Input);
+                parameters.Add("@EndDate ", employeeReportViewModel.EndDate, DbType.Date, ParameterDirection.Input);
+
+                var holidayYearList = con.Query<HolidayViewModel>("sp_Holidays", parameters, commandType: CommandType.StoredProcedure).ToList();
+                return Json(holidayYearList, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("BlogVacancyController - GetMonthlyLeaves", ex.Message, ex.StackTrace);
+                return null;
+            }
+        }
+
+        public async Task<JsonResult> GetHolidayData(HolidayViewModel holidayViewModel)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Mode", 6, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@Id", holidayViewModel.Id, DbType.Int32, ParameterDirection.Input);
+
+                var holidaydata = con.Query<HolidayViewModel>("sp_Holidays", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return Json(holidaydata, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("BlogVacancyController - GetHolidayList", ex.Message, ex.StackTrace);
+                return null;
+            }
+        }
+
+
+        public async Task<JsonResult> DeleteHolidayData(HolidayViewModel holidayViewModel)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Mode", 8, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@Id", holidayViewModel.Id, DbType.Int32, ParameterDirection.Input);
+
+                var holidaydata = con.Query<HolidayViewModel>("sp_Holidays", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return Json(new { success = true, message = "Deleted Successfully!" });
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("BlogVacancyController - GetHolidayList", ex.Message, ex.StackTrace);
+                return null;
+            }
+        }
+
+        
+        public async Task<JsonResult> GetEmployeeStatusWise(HolidayViewModel holidayViewModel)
+        {
+            try
+            {
+                int status = Convert.ToInt16(holidayViewModel.Status);
+                if(status == 0)
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@Mode", 18, DbType.Int32, ParameterDirection.Input);
+                    var inactiveuserData = con.Query<UserRegister>("sp_User", parameters, commandType: CommandType.StoredProcedure).ToList();
+                    return Json(new { success = true, data = inactiveuserData});
+                }
+                else
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@Mode", 19, DbType.Int32, ParameterDirection.Input);
+                    var activeuserData = con.Query<UserRegister>("sp_User", parameters, commandType: CommandType.StoredProcedure).ToList();
+                    return Json(new { success = true, data = activeuserData });
+                }
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("BlogVacancyController - GetEmployeeStatusWise", ex.Message, ex.StackTrace);
+                return null;
+            }
+        }
+
         public async Task ErrorLog(string ControllerName, string ErrorMessage, string StackTrace)
         {
             var parameters = new DynamicParameters();

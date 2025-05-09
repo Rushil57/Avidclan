@@ -1,0 +1,599 @@
+﻿
+@{
+    ViewBag.Title = "EmployeeReport";
+    Layout = "~/Views/Shared/_AdminTemplate.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-4">
+        <label for="fromdatepicker">From Date:</label>
+        <input type="text" id="fromdatepicker" placeholder="Select date" class="form-control">
+        <div id="fromDateError" class="text-danger" style="display:none;"></div>
+    </div>
+    <div class="col-md-4">
+        <label for="todatepicker">To Date:</label>
+        <input type="text" id="todatepicker" placeholder="Select date" class="form-control">
+        <div id="toDateError" class="text-danger" style="display:none;"></div>
+    </div>
+    <div class="col-md-4">
+        <button class="btn btn-primary mt-3" onclick="GetEmployeeLeaveReport()">Generate Report</button>
+      
+    </div>
+</div>
+
+<div class="row pt-2">
+    <div class="col-md-2">
+        <label for="workingDays"><strong>Working Days:</strong></label>
+        <span id="workingDays" class="ml-2"></span>
+    </div>
+    <div class="col-md-6">
+        <label for="monthlyHolidays"><strong>Holidays:</strong></label>
+        <span id="monthlyHolidayList" class="ml-2"></span>
+    </div>
+</div>
+
+<div class="table-responsive pt-3">
+    <table id="EmployeeReportList" class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th> Employee Name </th>
+                <th> Leave Dates </th>
+                <th> SL Taken</th>
+                <th> PL Taken </th>
+                <th> LWP </th>
+                <th> Total Leave Taken </th>
+                <th> WFH Dates </th>
+                <th> SL Balance </th>
+                <th> PL Balance </th>
+
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userModalLabel">User Leave Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="userModalBody">
+                <div class="table-responsive">
+                    <table id="EmployeeLeaveList" class="table table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th><strong> Leave Date</strong> </th>
+                                <th><strong> Type</strong> </th>
+                                <th><strong> FH/SH</strong> </th>
+                                <th><strong> Leave Status</strong> </th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="userWFHModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userModalLabel">User WFH Details</h5>
+                <button type="button" class="wfhclose" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="userModalBody">
+                <div class="table-responsive">
+                    <table id="EmployeeWFHList" class="table table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th><strong>WFH Date</strong></th>
+                                <th><strong> FH/SH</strong> </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var toDatePicker;
+    var fromDatePicker;
+    $(function () {
+        showSpinner();
+        $("#EmployeeReportList").hide();
+
+        // Step 1: Calculate first and last day of previous month
+        const now = new Date();
+        const firstDayLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+        const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+
+        // Format to yyyy-MM-dd for input fields
+        const formatDate = date => date.toISOString().split('T')[0];
+
+        // Step 2: Set default values in input fields
+        document.getElementById('fromdatepicker').value = formatDate(firstDayLastMonth);
+        document.getElementById('todatepicker').value = formatDate(lastDayLastMonth);
+
+        const englishLocale = {
+            days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            daysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            daysMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            months: [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ],
+            monthsShort: [
+                'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+            ],
+            today: 'Today',
+            clear: 'Clear',
+            dateFormat: 'yyyy-MM-dd',
+            timeFormat: 'hh:mm aa',
+            firstDay: 0
+        };
+
+
+
+        fromDatePicker = new AirDatepicker('#fromdatepicker', {
+            view: 'days',
+            minView: 'days',
+            autoClose: true,
+            dateFormat: 'yyyy-MM-dd',
+            locale: englishLocale,
+            selectedDates: [firstDayLastMonth], // Set default selected date
+            onSelect({ date }) {
+                if (date) {
+                    document.getElementById('fromDateError').style.display = 'none';
+                    var changeIntoDateicker = false;
+                    if (toDatePicker) {
+                        // Update minDate
+                        toDatePicker.update({ minDate: date });
+
+                        const currentToDate = toDatePicker.selectedDates[0];
+
+                        // If existing toDate is before new fromDate, reset it
+                        if (!currentToDate || currentToDate < date) {
+                            // Option 1: Automatically sync toDate with fromDate
+                            toDatePicker.selectDate(date);
+                            document.getElementById('todatepicker').value = date.toISOString().split('T')[0];
+
+                            // Option 2 (alternate): Just clear it and let user choose
+                            // toDatePicker.clear();
+                            // document.getElementById('todatepicker').value = '';
+                            changeIntoDateicker = true;
+                        }
+                        //changeIntoDateicker = true;
+                    }
+                }
+                GetMonthlyLeaves();
+                if (!changeIntoDateicker) {
+                    GetEmployeeLeaveReport();
+                }
+                
+            }
+        });
+
+
+        toDatePicker = new AirDatepicker('#todatepicker', {
+            view: 'days',
+            minView: 'days',
+            autoClose: true,
+            dateFormat: 'yyyy-MM-dd',
+            locale: englishLocale,
+            selectedDates: [lastDayLastMonth], // Set default selected date
+            minDate: firstDayLastMonth,
+            onSelect({ date }) {
+                if (date) {
+                    document.getElementById('toDateError').style.display = 'none';
+                }
+                GetMonthlyLeaves();
+                GetEmployeeLeaveReport();
+
+            }
+        });
+
+        GetEmployeeLeaveReport();
+
+        setTimeout(function () {
+            GetMonthlyLeaves();
+        }, 500);
+        hideSpinner();
+
+    });
+
+
+    function GetEmployeeLeaveReport() {
+        if (!checkDateValidation()) {
+            return;
+        }
+
+        const ReportDetail = {
+            StartDate: $("#fromdatepicker").val(),
+            EndDate: $("#todatepicker").val()
+        };
+        showSpinner();
+        $.ajax({
+            type: "POST",
+            url: "/BlogVacancy/GetEmployeeLeaveReport",
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(ReportDetail),
+            success: function (result) {
+                // $("#EmployeeReportList").hide();
+
+                if (result && result.length > 0) {
+                    $("#btn-clearReport").removeClass("d-none");
+                    let tableBody = '';
+
+                    result.forEach(emp => {
+                        //if (emp.Leaves.length === 0) return;
+
+                        const hasActualLeaves = emp.Leaves.some(leave =>
+                            (!leave.WFHDates || leave.WFHDates === null) &&
+                            (
+                                (leave.PersonalLeaves && leave.PersonalLeaves !== "0") ||
+                                (leave.SickLeaves && leave.SickLeaves !== "0") ||
+                                (leave.Lwp && leave.Lwp !== "0")
+                            )
+                        );
+
+                        if (!hasActualLeaves && emp.Leaves.every(l => l.WFHDates == null)) return;
+                        const hasWfh = emp.Leaves.some(leave => leave.WFHDates != null);
+
+
+
+                        const firstName = emp.Leaves[0].FirstName || '';
+                        const lastName = emp.Leaves[0].LastName || '';
+                        const sickLeaveBalance = emp.Leaves[0]?.SickLeaveFinalBalance || 0;
+                        const paidLeaveBalance = emp.Leaves[0]?.FinalBalance || 0;
+
+
+
+                        let wfhDetails = '<ul>';
+                        let totalLeave = 0;
+                        let totalPL = 0;
+                        let totalSL = 0;
+                        let totalLWP = 0;
+
+                        // after change
+                        emp.Leaves.forEach(leave => {
+                            var wfhDate = null;
+                            //  const leaveDate = moment(leave.LeaveDate).format('YYYY-MM-DD');
+                            if (leave.WFHDates != null) {
+                                wfhDate = moment(leave.WFHDates).format('YYYY-MM-DD');
+                            }
+
+                            const WfhhalfDayText = leave.WfhHalfDay ? leave.WfhHalfDay : '';
+
+                            let leaveAmount = 0;
+
+                            if (leave.PersonalLeaves && leave.PersonalLeaves !== "0") {
+                                let pl = parseFloat(leave.PersonalLeaves);
+                                totalPL += pl;
+                                leaveAmount = pl;
+                            } else if (leave.SickLeaves && leave.SickLeaves !== "0") {
+                                let sl = parseFloat(leave.SickLeaves);
+                                totalSL += sl;
+                                leaveAmount = sl;
+                            } else if (leave.Lwp && leave.Lwp !== "0") {
+                                let lwp = parseFloat(leave.Lwp);
+                                totalLWP += lwp;
+                                leaveAmount = lwp;
+                            }
+
+
+                            if (leave.WFHDates != null) {
+                                wfhDetails += `
+                                    <li style="margin-bottom: 10px;">
+                                        <div><strong>${wfhDate}</strong></div>
+                                        ${WfhhalfDayText ? `<div>Half Day: ${WfhhalfDayText}</div>` : ''}
+                                    </li>
+                                `;
+                            } else {
+                                totalLeave += leaveAmount;
+                            }
+
+
+                        });
+
+
+                        wfhDetails += '</ul>';
+
+                        const userId = emp.Id;
+
+                        tableBody += `
+                        <tr>
+                            <td>${firstName} ${lastName}</td>
+                            <td>
+                               ${hasActualLeaves ? `
+                                   <a href="#" class="open-user-modal" data-userid="${userId}"                      onclick="loadUserLeaveDetails(${userId})">
+                                       View Details
+                                   </a>
+                               ` : ''}
+                            </td>
+
+                                  <td>${totalSL}</td>
+                                 <td>${totalPL}</td>
+                                 <td>${totalLWP}</td>
+                                 <td>${totalLeave}</td>
+                                 <td>
+                                    ${hasWfh ? `
+                                        <a href="#" class="open-user-modal" data-userid="${userId}" onclick="loadUserWfhDetails(${userId})">View Details</a>
+                                    ` : ''}
+                                </td>
+
+
+                               <td>${sickLeaveBalance}</td>
+                               <td>${paidLeaveBalance}</td>
+                        </tr>
+                    `;
+                    });
+
+                    // Destroy and rebuild DataTable
+                    if ($.fn.DataTable.isDataTable("#EmployeeReportList")) {
+                        $("#EmployeeReportList").DataTable().destroy();
+                    }
+
+                    $("#EmployeeReportList tbody").remove();
+                    $("#EmployeeReportList").append("<tbody>" + tableBody + "</tbody>");
+                    $("#EmployeeReportList").DataTable({
+                        paging: true,
+                        searching: true,
+                        ordering: true,
+                        pageLength: 10
+                    });
+
+                    $("#EmployeeReportList").show();
+                } else {
+                    // alert("No data available for the selected range.");
+                    toastr.warning('No data available for the selected range', 'Warning');
+
+
+                    if ($.fn.DataTable.isDataTable("#EmployeeReportList")) {
+                        $("#EmployeeReportList").DataTable().destroy();
+                    }
+
+                    $("#EmployeeReportList tbody").remove();
+                    $("#EmployeeReportList").hide();
+
+                }
+
+                hideSpinner();
+            },
+            error: function (result) {
+                hideSpinner();
+                console.error("Error fetching employee leave report:", result.responseText);
+                //alert("An error occurred while retrieving the report. Please try again later.");
+                toastr.error('An error occurred while retrieving the report. Please try again later.', 'Error');
+            }
+        });
+    }
+
+
+    function checkDateValidation() {
+        const fromDate = document.getElementById('fromdatepicker').value.trim();
+        const toDate = document.getElementById('todatepicker').value.trim();
+        const fromError = document.getElementById('fromDateError');
+        const toError = document.getElementById('toDateError');
+
+        let isValid = true;
+
+        // Validate from date
+        if (!fromDate) {
+            fromError.textContent = "Please select a From date.";
+            fromError.style.display = 'block';
+            isValid = false;
+        } else {
+            fromError.style.display = 'none';
+        }
+
+        // Validate to date
+        if (!toDate) {
+            toError.textContent = "Please select a To date.";
+            toError.style.display = 'block';
+            isValid = false;
+        } else {
+            toError.style.display = 'none';
+        }
+
+        return isValid;
+    }
+
+    $(document).on('click', '.close', function (e) {
+        e.preventDefault();
+
+        $('#userModal').modal('hide');
+    });
+
+    
+    $(document).on('click', '.wfhclose', function (e) {
+        e.preventDefault();
+
+        $('#userWFHModal').modal('hide');
+    });
+    function loadUserLeaveDetails(userId) {
+        const ReportDetail = {
+            StartDate: $("#fromdatepicker").val(),
+            EndDate: $("#todatepicker").val(),
+            UserId: userId
+        };
+
+        showSpinner();
+        $.ajax({
+            type: "POST",
+            url: "/BlogVacancy/loadUserLeaveDetails",
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(ReportDetail),
+            success: function (result) {
+                hideSpinner();
+
+                let rows = '';
+
+                if (result && result.length > 0) {
+                    result.forEach(item => {
+                        const leaveDate = item.LeaveDate ? moment(item.LeaveDate).format('YYYY-MM-DD') : '';
+                        let leaveTypeLabel = '';
+                        const halfDay = item.HalfDay || '';
+                        const status = item.LeaveStatus || '';
+
+                        if (item.PersonalLeaves != "0" && item.PersonalLeaves != null) {
+                            leaveTypeLabel = `PL: ${item.PersonalLeaves}`;
+                        } else if (item.SickLeaves != "0" && item.SickLeaves != null) {
+                            leaveTypeLabel = `SL: ${item.SickLeaves}`;
+                        } else {
+                            leaveTypeLabel = `LWP: ${item.Lwp || 0}`;
+                        }
+
+
+                        rows += `
+                        <tr>
+                            <td>${leaveDate}</td>
+                            <td>${leaveTypeLabel}</td>
+                            <td>${halfDay}</td>
+                            <td>${status}</td>
+                        </tr>
+                    `;
+                    });
+                } else {
+                    rows = `<tr><td colspan="4">No leave records found.</td></tr>`;
+                }
+
+                // Replace table body
+                $("#EmployeeLeaveList tbody").remove(); // Remove old tbody
+                $("#EmployeeLeaveList").append(`<tbody>${rows}</tbody>`); // Append new rows
+
+                $('#userModal').modal('show');
+            },
+            error: function (result) {
+                hideSpinner();
+                console.error("Error fetching employee leave report:", result.responseText);
+                toastr.error('An error occurred while retrieving the leave details.', 'Error');
+            }
+        });
+    }
+
+
+    function loadUserWfhDetails(userId) {
+        const ReportDetail = {
+            StartDate: $("#fromdatepicker").val(),
+            EndDate: $("#todatepicker").val(),
+            UserId: userId
+        };
+
+        showSpinner();
+        $.ajax({
+            type: "POST",
+            url: "/BlogVacancy/loadUserWfhDetails",
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(ReportDetail),
+            success: function (result) {
+                hideSpinner();
+
+                let rows = '';
+
+                if (result && result.length > 0) {
+                    result.forEach(item => {
+                        const wfhDate = item.WFHDates ? moment(item.WFHDates).format('YYYY-MM-DD') : '';
+
+                        const halfDay = item.WfhHalfDay || '';
+                        rows += `
+                     <tr>
+                         <td>${wfhDate}</td>
+                        
+                         <td>${halfDay}</td>
+                      
+                     </tr>
+                 `;
+                    });
+                } else {
+                    rows = `<tr><td colspan="2">No leave records found.</td></tr>`;
+                }
+
+                // Replace table body
+                $("#EmployeeWFHList tbody").remove(); // Remove old tbody
+                $("#EmployeeWFHList").append(`<tbody>${rows}</tbody>`); // Append new rows
+
+                $('#userWFHModal').modal('show');
+            },
+            error: function (result) {
+                hideSpinner();
+                console.error("Error fetching employee leave report:", result.responseText);
+                toastr.error('An error occurred while retrieving the leave details.', 'Error');
+            }
+        });
+    }
+
+    function GetMonthlyLeaves() {
+        const ReportDetail = {
+            StartDate: $("#fromdatepicker").val(),
+            EndDate: $("#todatepicker").val(),
+           
+        };
+
+        showSpinner();
+        $.ajax({
+            type: "POST",
+            url: "/BlogVacancy/GetMonthlyLeaves",
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(ReportDetail),
+            success: function (result) {
+                hideSpinner();
+                let holidayDates = [];
+                if (result && result.length > 0) {
+                    holidayDates = result.map(item => moment(item.HolidayDate).format('YYYY-MM-DD'));
+                    var holidays = result.map(function (item) {
+                        return moment(item.HolidayDate).format('YYYY-MM-DD') ;
+                    }).join(", ");
+
+                    $("#monthlyHolidayList").text(holidays);
+                } else {
+                    $("#monthlyHolidayList").text("No holidays found for selected range.");
+                }
+
+                // ✅ Calculate working days
+                const start = moment(ReportDetail.StartDate);
+                const end = moment(ReportDetail.EndDate);
+                let workingDays = 0;
+
+                for (let m = moment(start); m.diff(end, 'days') <= 0; m.add(1, 'days')) {
+                    const day = m.day();
+                    const dateStr = m.format('YYYY-MM-DD');
+
+                    // 0 = Sunday, 6 = Saturday
+                    const isWeekend = (day === 0 || day === 6);
+                    const isHoliday = holidayDates.includes(dateStr);
+
+                    if (!isWeekend && !isHoliday) {
+                        workingDays++;
+                    }
+                }
+
+                $("#workingDays").text(workingDays);
+            },
+
+            error: function (result) {
+                hideSpinner();
+                console.error("Error fetching employee leave report:", result.responseText);
+                toastr.error('An error occurred while retrieving the leave details.', 'Error');
+            }
+        });
+    }
+</script>
+
+
+
