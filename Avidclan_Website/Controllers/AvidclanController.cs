@@ -742,6 +742,11 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
+        [Route("indexrender/")]
+        public ActionResult IndexRender()
+        {
+            return View("indexrender");
+        }
 
     }
 }

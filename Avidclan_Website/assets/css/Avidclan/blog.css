@@ -1321,3 +1321,6 @@ td {
     border: 1px solid #000;
     padding: 2px 5px
 }
+.blog-title a{
+    font-size : 20px !important
+}

@@ -1,0 +1,849 @@
+﻿@*@using reCAPTCHA.MVC*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/assets/images/favicon.png" type="image/x-icon" />
+    <link href="~/assets/css/swiper.min.css" rel="stylesheet" />
+    @RenderSection("AdditionalMeta", false)
+
+    <meta name="msvalidate.01" content="C6EA7291CCD22012F734D3C6649F2F3F" />
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5HZ8ZV4Q');</script>
+    <!-- End Google Tag Manager -->
+    @*<link href="~/assets/css/Avidclan/bootstrap5.min.css" rel="stylesheet" />*@
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" media="all" href="~/assets/css/Avidclan/home.css" />
+    <link href="~/assets/css/Avidclan/owl.carousel.min.css" rel="stylesheet" />
+    <style>
+        p.text.fs-5 {
+            font-size: 1.25rem;
+            margin: 1rem 0;
+            line-height: 1.5
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HZ8ZV4Q" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="page-wrapper">
+        <!-- Preloader -->
+        @*<div class="loader-wrap">
+                <div class="preloader"></div>
+                <div class="layer layer-one"><span class="overlay"></span></div>
+                <div class="layer layer-two"><span class="overlay"></span></div>
+                <div class="layer layer-three"><span class="overlay"></span></div>
+            </div>*@
+        <!-- Main Header -->
+        <header class="main-header header-style-one" style="z-index: 99 !important;">
+            <nav class="navbar navbar-expand-lg bg-white custom-new-shadow w-100 position-fixed" style="z-index: 99 !important;">
+                <div class="container d-flex align-items-center justify-content-between">
+
+                    <a class="navbar-brand" href="/">
+                        <img loading="lazy" height="55" width="195" src="~/assets/images/imagenew/logo (1).svg" alt="Logo">
+                    </a>
+                    <button class="navbar-toggler shadow-none rounded-circle p-2" style="border: none;" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon" id="menuToggle">
+                            <img src="~/assets/images/imagenew/menu.png" alt="Menu" class="img-fluid" id="menuIcon">
+                        </span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-0 gap-xl-4 gap-lg-2 fs-lg-5 fs-6 fw-medium px-3 py-2 py-lg-0 p-lg-0">
+
+                            <li class="nav-item border_b dropdown pb-2 mb-2 mb-lg-0 position-relative">
+                                <!-- Services link (always redirects) -->
+                                <a class="d-inline-block fw-semibold nav-link active custom-fs-18" href="/services/">
+                                    Services
+                                </a>
+
+                                <!-- Mobile‐only arrow at the far right, inline with Services -->
+                                <span class="d-lg-none mobile-arrow-icon"
+                                      data-bs-toggle="dropdown"
+                                      aria-expanded="false">
+                                    <img src="~/assets/images/imagenew/arrow-up-black.svg"
+                                         alt="toggle"
+                                         class="arrow-icon-img"
+                                         width="20"
+                                         height="20" />
+                                </span>
+
+
+
+                                <!-- Decorative red square -->
+                                <div class="red-square-box"></div>
+
+                                <!-- Mega-menu dropdown -->
+                                <div class="dropdown-menu sub_menu w-100 bg-white p-3 p-lg-4 pt-lg-4">
+                                    <div class="row flex-wrap w-100 row-gap-3">
+                                        <div class="col-lg-4 d-none d-lg-block">
+                                            <div class="linkInfoGroup blue-gradient">
+                                                <ul class="avatarGroup mb-2">
+                                                    <li><img src="~/assets/images/hiringpages/Service2.svg" alt="Submenu" width="174" height="54" class="lazyloaded" data-ll-status="loaded"></li>
+                                                </ul>
+                                                <div class="contactInfo mb-3">
+                                                    <div class="infoWrap">
+                                                        <span class="fw-bold fs-5">Scalable Services</span>
+                                                        <h4 class="fw-bold">That Deliver</h4>
+                                                        <p class="fw-semibold text-white">Accelerate growth with custom software development, mobile apps, QA services, and AI solutions. Our agile development team delivers scalable, secure, and innovative tech to keep you competitive and future-ready in the digital world.</p>
+                                                    </div>
+                                                    <a href="/contact-us/" class="contactBtn" title="Contact Us">Contact Us</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="row">
+                                                <!-- Web Development -->
+                                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                                    <div class="mb-4">
+                                                        <h5 class="mb-0 mb-md-2 pb-2 custom-border">
+                                                            <a class="text_dark fw-semibold" href="/web-development-company/">Web Development</a>
+                                                        </h5>
+                                                        <ul>
+                                                            <li class="custom-padding-2"><a href="/web-development-company#enterprise-solutions">Enterprise Solutions</a></li>
+                                                            <li class="custom-padding-2"><a href="/web-development-company#ecommerce">ECommerce</a></li>
+                                                            <li class="custom-padding-2"><a href="/web-development-company#backend">API & Backend</a></li>
+                                                            <li class="custom-padding-2"><a href="/web-development-company#custom-development">Custom Development</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- Design -->
+                                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                                    <div class="mb-4">
+                                                        <h5 class="mb-0 mb-md-2 pb-2 custom-border">
+                                                            <a class="text_dark fw-semibold" href="/ui-ux-design-company/">Design</a>
+                                                        </h5>
+                                                        <ul>
+                                                            <li class="custom-padding-2"><a href="/ui-ux-design-company#analysis">Analysis</a></li>
+                                                            <li class="custom-padding-2"><a href="/ui-ux-design-company#wireframe">Wireframing</a></li>
+                                                            <li class="custom-padding-2"><a href="/ui-ux-design-company#custom-web-design">Custom Web Design</a></li>
+                                                            <li class="custom-padding-2"><a href="/ui-ux-design-company#uiux-design">UI/UX Design</a></li>
+                                                            <li class="custom-padding-2"><a href="/ui-ux-design-company#mobile-ui-design">Mobile UI Design</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- IoT -->
+                                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                                    <div class="mb-4">
+                                                        <h5 class="mb-0 mb-md-2 pb-2 custom-border">
+                                                            <a class="text_dark fw-semibold" href="/iot-service-providers/">IoT</a>
+                                                        </h5>
+                                                        <ul>
+                                                            <li class="custom-padding-2"><a href="/iot-service-providers#industrial-automation">Industrial Automation</a></li>
+                                                            <li class="custom-padding-2"><a href="/iot-service-providers#home-automation">Home Automation</a></li>
+                                                            <li class="custom-padding-2"><a href="/iot-service-providers#smart-healthcare">Smart Healthcare</a></li>
+                                                            <li class="custom-padding-2"><a href="/iot-service-providers#connected-devices">Connected Devices</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-4">
+                                                <!-- Mobile Apps -->
+                                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                                    <div class="mb-4">
+                                                        <h5 class="mb-0 mb-md-2 pb-2 custom-border">
+                                                            <a class="text_dark fw-semibold" href="/mobile-app-development-company/">Mobile Apps</a>
+                                                        </h5>
+                                                        <ul>
+                                                            <li class="custom-padding-2"><a href="/mobile-app-development-company#native-ios-apps">Native iOS Apps</a></li>
+                                                            <li class="custom-padding-2"><a href="/mobile-app-development-company#native-android-apps">Native Android Apps</a></li>
+                                                            <li class="custom-padding-2"><a href="/mobile-app-development-company#cross-platform">Cross Platform</a></li>
+                                                            <li class="custom-padding-2"><a href="/mobile-app-development-company#hybrid-apps">Hybrid Apps</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <!-- QA -->
+                                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                                    <div class="mb-4">
+                                                        <h5 class="mb-0 mb-md-2 pb-2 custom-border">
+                                                            <a class="text_dark fw-semibold" href="/quality-assurance-services/">QA</a>
+                                                        </h5>
+                                                        <ul>
+                                                            <li class="custom-padding-2"><a href="/quality-assurance-services#manual-qa-testing">Manual QA Testing</a></li>
+                                                            <li class="custom-padding-2"><a href="/quality-assurance-services#web-testing-automation">Web Testing Automation</a></li>
+                                                            <li class="custom-padding-2"><a href="/quality-assurance-services#mobile-app-testing">Mobile App Testing</a></li>
+                                                            <li class="custom-padding-2"><a href="/quality-assurance-services#performance-testing">Performance Testing</a></li>
+                                                            <li class="custom-padding-2"><a href="/quality-assurance-services#api-testing-automation">API Testing</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <!-- AI -->
+                                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                                    <div class="mb-4">
+                                                        <h5 class="mb-0 mb-md-2 pb-2 custom-border">
+                                                            <a class="text_dark fw-semibold" href="/ai-development-company">Artificial Intelligence</a>
+                                                        </h5>
+                                                        <ul>
+                                                            <li class="custom-padding-2"><a href="/ai-development-company#custom-ai-solutions">Custom AI Development</a></li>
+                                                            <li class="custom-padding-2"><a href="/ai-development-company#machine-learning">Machine Learning Development</a></li>
+                                                            <li class="custom-padding-2"><a href="/ai-development-company#generativeai">Generative AI</a></li>
+                                                            <li class="custom-padding-2"><a href="/ai-development-company#ai-deployment">AI Integration and Deployment</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <li class="nav-item border_b dropdown pb-2 mb-2 mb-lg-0 position-relative">
+                                <!-- Technologies link (always redirects) -->
+                                <a class="d-inline-block fw-semibold nav-link active custom-fs-18" href="/technologies/">
+                                    Technologies
+                                </a>
+
+                                <!-- Mobile‐only arrow at the far right, inline with Technologies -->
+                                <span class="d-lg-none mobile-arrow-icon"
+                                      data-bs-toggle="dropdown"
+                                      aria-expanded="false">
+                                    <img src="~/assets/images/imagenew/arrow-up-black.svg"
+                                         alt="toggle"
+                                         class="arrow-icon-img"
+                                         width="20"
+                                         height="20" />
+                                </span>
+
+                                <!-- Decorative red square -->
+                                <div class="red-square-box"></div>
+
+                                <!-- Mega-menu dropdown -->
+                                <div class="dropdown-menu sub_menu w-100 bg-white p-3 p-lg-4 pt-lg-4">
+                                    <div class="row flex-wrap w-100 row-gap-3">
+                                        <div class="col-lg-4 d-none d-lg-block">
+                                            <div class="linkInfoGroup blue-gradient h-100" style="flex-direction:unset;">
+                                                <ul class="avatarGroup">
+                                                    <li>
+                                                        <img src="~/assets/images/hiringpages/Technology_menu.svg"
+                                                             alt="Technologies"
+                                                             width="174"
+                                                             height="54" />
+                                                    </li>
+                                                </ul>
+                                                <div class="contactInfo mb-3">
+                                                    <div class="infoWrap">
+                                                        <span class="fw-bold fs-5">Future-Ready</span>
+                                                        <h4 class="fw-bold">Tech Stack</h4>
+                                                        <p class="fw-semibold text-white">We drive innovation with cutting-edge technologies, from frontend and backend to cloud, DevOps, and mobile stacks. Our expert team ensures your product operates smoothly, scales effortlessly, and adapts quickly, helping you stay competitive and agile in today's fast-evolving digital landscape.</p>
+                                                    </div>
+                                                    <a href="/contact-us/" class="contactBtn" title="Contact Us">Contact Us</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="row">
+                                                <!-- Front End -->
+                                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                                    <div class="mb-4">
+                                                        <h5 class="mb-0 mb-md-2 pb-2 custom-border">
+                                                            <a class="text_dark fw-semibold" href="#">Front End</a>
+                                                        </h5>
+                                                        <ul>
+                                                            <li class="custom-padding-2"><a href="/angular-development-company/">Angular</a></li>
+                                                            <li class="custom-padding-2"><a href="/reactjs-development-services/">ReactJs</a></li>
+                                                            <li class="custom-padding-2"><a href="/vuejs-development-company/">Vue</a></li>
+                                                            <li class="custom-padding-2"><a href="/typescript-web-development/">TypeScript</a></li>
+                                                            <li class="custom-padding-2"><a href="/html5-development-services/">HTML 5</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+
+                                                <!-- Backend -->
+                                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                                    <div class="mb-4">
+                                                        <h5 class="mb-0 mb-md-2 pb-2 custom-border">
+                                                            <a class="text_dark fw-semibold" href="#">Backend</a>
+                                                        </h5>
+                                                        <ul>
+                                                            <li class="custom-padding-2"><a href="/dot-net-development-company/">.NET</a></li>
+                                                            <li class="custom-padding-2"><a href="/java-development-company/">Java</a></li>
+                                                            <li class="custom-padding-2"><a href="/php-development-company/">PHP</a></li>
+                                                            <li class="custom-padding-2"><a href="/nodejs-development-company/">Node</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Mobile -->
+                                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                                    <div class="mb-4">
+                                                        <h5 class="mb-0 mb-md-2 pb-2 custom-border">
+                                                            <a class="text_dark fw-semibold" href="#">Mobile</a>
+                                                        </h5>
+                                                        <ul>
+                                                            <li class="custom-padding-2"><a href="/ios-app-development-services/">iOS</a></li>
+                                                            <li class="custom-padding-2"><a href="/android-app-development-company/">Android</a></li>
+                                                            <li class="custom-padding-2"><a href="/react-native-app-development-company/">React Native</a></li>
+                                                            <li class="custom-padding-2"><a href="/flutter-app-development-company/">Flutter</a></li>
+                                                            <li class="custom-padding-2"><a href="/ionic-app-development-company/">Ionic</a></li>
+                                                            <li class="custom-padding-2"><a href="/xamarin-development-company/">Xamarin</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-4">
+                                                <!-- Infra and DevOps -->
+                                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                                    <div class="mb-4">
+                                                        <h5 class="mb-0 mb-md-2 pb-2 custom-border">
+                                                            <a class="text_dark fw-semibold" href="#">Infra and DevOps</a>
+                                                        </h5>
+                                                        <ul>
+                                                            <li class="custom-padding-2"><a href="/aws-development-services/">AWS</a></li>
+                                                            <li class="custom-padding-2"><a href="/google-cloud-platform-services/">Google Cloud</a></li>
+                                                            <li class="custom-padding-2"><a href="/microsoft-azure-devops/">Azure</a></li>
+                                                            <li class="custom-padding-2"><a href="/selenium-automation-testing-services/">Selenium</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Database -->
+                                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                                    <div class="mb-4">
+                                                        <h5 class="mb-0 mb-md-2 pb-2 custom-border">
+                                                            <a class="text_dark fw-semibold" href="#">Database</a>
+                                                        </h5>
+                                                        <ul>
+                                                            <li class="custom-padding-2"><a href="/microsoft-sql-server-integration-services/">MS SQL</a></li>
+                                                            <li class="custom-padding-2"><a href="/mysql-development-company/">MySQL</a></li>
+                                                            <li class="custom-padding-2"><a href="/postgresql-database-management/">PostgreSQL</a></li>
+                                                            <li class="custom-padding-2"><a href="/firebase-development-company/">Firebase</a></li>
+                                                            <li class="custom-padding-2"><a href="/mongodb-development-services/">MongoDB</a></li>
+                                                            <li class="custom-padding-2"><a href="/redis-database-development-company/">Redis</a></li>
+                                                            <li class="custom-padding-2"><a href="/microsoft-azure-cosmos-db/">Azure Cosmos DB</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="nav-item border_b dropdown pb-2 mb-2 mb-lg-0 position-relative">
+                                <!-- Hire Resources link -->
+                                <a class="d-inline-block fw-semibold nav-link active custom-fs-18" href="#">
+                                    Hire resources
+                                </a>
+
+                                <!-- Mobile-only arrow -->
+                                <span class="d-lg-none mobile-arrow-icon" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="~/assets/images/imagenew/arrow-up-black.svg" alt="toggle" class="arrow-icon-img" width="20" height="20" />
+                                </span>
+
+                                <!-- Decorative red square -->
+                                <div class="red-square-box"></div>
+
+                                <!-- Dropdown menu -->
+                                <div class="dropdown-menu hire_box w-100 bg-white p-3 p-lg-4 pt-lg-4">
+                                    <div class="row w-100 flex-nowrap">
+                                        <div class="col-lg-6 d-none d-lg-block">
+                                            <div class="linkInfoGroup blue-gradient h-100">
+                                                <ul class="avatarGroup mb-2">
+                                                    <li>
+                                                        <img src="~/assets/images/hiringpages/Hire_People_menu.svg" alt="Technologies" width="174" height="54">
+                                                    </li>
+                                                </ul>
+                                                <div class="contactInfo mb-3">
+                                                    <div class="infoWrap">
+                                                        <span class="fw-bold fs-5">Hire Experts</span>
+                                                        <h4 class="fw-bold">Scale Seamlessly</h4>
+                                                        <p class="fw-semibold text-white">Hire vetted developers, designers, and testers-on demand. Scale faster with flexible, dedicated tech talent.</p>
+                                                    </div>
+                                                    <a href="/contact-us/" class="contactBtn" title="Contact Us">Contact Us</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                                    <h5 class="mb-0 mb-md-2 pb-2 custom-border">
+                                                        <a class="text_dark fw-semibold" href="#">Hire Skilled Resources</a>
+                                                    </h5>
+                                                    <ul>
+                                                        <li class="custom-padding-2">
+                                                            <a href="/hire-qa-automation-tester/">Hire Automation Tester</a>
+                                                        </li>
+                                                        <li class="custom-padding-2">
+                                                            <a href="/hire-dot-net-developers/">Hire .NET Developers</a>
+                                                        </li>
+                                                        <li class="custom-padding-2">
+                                                            <a href="/hire-ui-ux-designers/">Hire UI/UX Designers</a>
+                                                        </li>
+                                                        <li class="custom-padding-2">
+                                                            <a href="/hire-ai-developers/">Hire AI Developers</a>
+                                                        </li>
+                                                        <li class="custom-padding-2">
+                                                            <a href="/hire-angular-developers/">Hire Angular Developers</a>
+                                                        </li>
+                                                        <li class="custom-padding-2">
+                                                            <a href="/hire-ReactJS-developers/">Hire ReactJS Developers</a>
+                                                        </li>
+                                                        <li class="custom-padding-2">
+                                                            <a href="/hire-ml-developers/">Hire Machine Learning Developers</a>
+                                                        </li>
+                                                        <li class="custom-padding-2">
+                                                            <a href="/hire-Software-developers/">Hire Software Developers</a>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="nav-item border_b dropdown pb-2 mb-2 mb-lg-0 position-relative">
+                                <!-- Company link -->
+                                <a class="d-inline-block fw-semibold nav-link active custom-fs-18" href="#">
+                                    Company
+                                </a>
+
+                                <!-- Mobile-only arrow -->
+                                <span class="d-lg-none mobile-arrow-icon" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="~/assets/images/imagenew/arrow-up-black.svg" alt="toggle" class="arrow-icon-img" width="20" height="20" />
+                                </span>
+
+                                <!-- Decorative red square -->
+                                <div class="red-square-box"></div>
+
+                                <!-- Dropdown menu -->
+                                <div class="dropdown-menu company_box w-100 bg-white p-3 p-lg-4 pt-lg-4">
+                                    <div class="row flex-wrap w-100 row-gap-3">
+                                        <div class="col-lg-6 d-none d-lg-block" style="width: 55% !important;">
+                                            <div class="linkInfoGroup blue-gradient h-100">
+                                                <div class="row text-start mb-4 gx-4 gy-3">
+                                                    <div class="col-6">
+                                                        <p class="mb-2 fs-custom-14 text-white fw-semibold m-0 lh-sm">Clients Served<br>Globally</p>
+                                                        <h6 class="fw-bold text-white m-0 fs-custom-18">100+</h6>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <p class="mb-2 fs-custom-14 text-white fw-semibold m-0 lh-sm">Projects<br>Accomplished</p>
+                                                        <h6 class="fw-bold text-white m-0 fs-custom-18">150+</h6>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <p class="mb-2 fs-custom-14 text-white fw-semibold m-0 lh-sm">Team Strength</p>
+                                                        <h6 class="fw-bold text-white m-0 fs-custom-18">30+</h6>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <p class="mb-2 fs-custom-14 text-white fw-semibold m-0 lh-sm">Success Ratio</p>
+                                                        <h6 class="fw-bold text-white m-0 fs-custom-18">98+</h6>
+                                                    </div>
+                                                </div>
+
+                                                <div class="contactInfo">
+                                                    <div class="infoWrap">
+                                                        <p class="fw-semibold text-white">Driven by innovation, we build lasting partnerships through transparency, collaboration, and reliable technology solutions.</p>
+                                                    </div>
+                                                    <a href="/contact-us/" class="contactBtn" title="Contact Us">Contact Us</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6" style="width: 45% !important;">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <h5 class="mb-0 mb-md-2 pb-2 custom-border">
+                                                        <a class="text_dark fw-semibold" href="/career/">Careers</a>
+                                                    </h5>
+                                                    <ul>
+                                                        <li class="custom-padding-2">
+                                                            <a href="/career#career-section/">Current Openings</a>
+                                                        </li>
+                                                        <li class="custom-padding-2">
+                                                            <a href="/life-at-avidclan/">Life at Avidclan Technologies</a>
+                                                        </li>
+                                                    </ul>
+
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <h5 class="mb-0 mb-md-2 pb-2 custom-border">
+                                                        <a class="text_dark fw-semibold" href="/about-us/">About Us</a>
+                                                    </h5>
+                                                    <ul>
+                                                        <li class="custom-padding-2">
+                                                            <a href="/about-us/">About Avidclan Technologies</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-4">
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <h5 class="mb-0 mb-md-2 pb-2 custom-border">
+                                                        <a class="text_dark fw-semibold" href="">Resources</a>
+                                                    </h5>
+                                                    <ul>
+                                                        <li class="custom-padding-2"><a href="/blog/">Blogs</a></li>
+                                                        <li class="custom-padding-2"><a href="/case-studies/">Case Studies</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </li>
+
+
+                            <li class="nav-item border_b pb-2 mb-2 mb-lg-0">
+                                <a class="fw-semibold nav-link active custom-fs-18" aria-current="page"
+                                   href="/portfolio/">Portfolio</a>
+                            </li>
+
+                            <li class="nav-item border_b pb-2 mb-2 mb-lg-0 d-lg-none">
+                                <a class="fw-semibold nav-link active custom-fs-18" href="/contact-us/">Contact Us</a>
+                            </li>
+
+
+                            <li class="nav-item d-none d-lg-block ms-lg-2">
+                                <a class="nav-link btn btn-primary fw-bold rounded-5 custom-btn-padding shadow-none"
+                                   href="/contact-us/">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             aria-hidden="true" role="img" class="iconify iconify--ion me-2" width="25"
+                                             height="25" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"
+                                             data-icon="ion:call-sharp" data-height="25">
+                                            <path fill="currentColor"
+                                                  d="M478.94 370.14c-5.22-5.56-23.65-22-57.53-43.75c-34.13-21.94-59.3-35.62-66.52-38.81a3.83 3.83 0 0 0-3.92.49c-11.63 9.07-31.21 25.73-32.26 26.63c-6.78 5.81-6.78 5.81-12.33 4c-9.76-3.2-40.08-19.3-66.5-45.78s-43.35-57.55-46.55-67.3c-1.83-5.56-1.83-5.56 4-12.34c.9-1.05 17.57-20.63 26.64-32.25a3.83 3.83 0 0 0 .49-3.92c-3.19-7.23-16.87-32.39-38.81-66.52c-21.78-33.87-38.2-52.3-43.76-57.52a3.9 3.9 0 0 0-3.89-.87a322.4 322.4 0 0 0-56 25.45A338 338 0 0 0 33.35 92a3.83 3.83 0 0 0-1.26 3.74c2.09 9.74 12.08 50.4 43.08 106.72c31.63 57.48 53.55 86.93 100 133.22S252 405.21 309.54 436.84c56.32 31 97 41 106.72 43.07a3.86 3.86 0 0 0 3.75-1.26A337.7 337.7 0 0 0 454.35 430a322.7 322.7 0 0 0 25.45-56a3.9 3.9 0 0 0-.86-3.86">
+                                            </path>
+                                        </svg> Contact Us
+                                    </span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        </header>
+        @RenderBody()
+    </div>
+    @*<button id="backToTop" class="back-to-top position-fixed background-primary rounded-circle p-2" style="z-index:99;">
+            <img src="~/assets/images/imagenew/arrow-up (1).svg" alt="Back to Top" class="back-to-top-img" />
+        </button>*@
+    <script src="~/assets/js/swiper-bundle-min.js"></script>
+    <script src="/assets/js/iconify.min.js" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            new Swiper(".cinkes_testimonial_spage_active", {
+                loop: true,
+                navigation: {
+                    nextEl: ".custom-swiper-next",
+                    prevEl: ".custom-swiper-prev"
+                },
+                slidesPerView: 1, // default for mobile
+                spaceBetween: 30, // spacing between slides
+                breakpoints: {
+                    768: {
+                        slidesPerView: 2 // show 2 slides on tablet & up
+                    },
+                    1200: {
+                        slidesPerView: 2 // keep 2 even on large screens
+                    }
+                }
+            });
+        });
+    </script>
+    @*<script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const slider = document.querySelector(".testimonial-slider");
+                const prevBtn = document.querySelector(".testimonial-slider + .slider-controls .prev");
+                const nextBtn = document.querySelector(".testimonial-slider + .slider-controls .next");
+                const items = document.querySelectorAll(".testimonial-slider .testimonial-item");
+
+                if (slider && items.length > 0 && prevBtn && nextBtn) {
+                    let itemsArray = Array.from(items);
+                    const originalItemCount = itemsArray.length;
+                    const cloneCount = 6;
+
+                    // Clone forward
+                    for (let i = 0; i < cloneCount; i++) {
+                        itemsArray.forEach(item => {
+                            const clonedItem = item.cloneNode(true);
+                            slider.appendChild(clonedItem);
+                        });
+                    }
+
+                    // Clone backward
+                    for (let i = 0; i < cloneCount; i++) {
+                        itemsArray.slice().reverse().forEach(item => {
+                            const clonedItem = item.cloneNode(true);
+                            slider.insertBefore(clonedItem, slider.firstChild);
+                        });
+                    }
+
+                    const itemWidth = items[0].offsetWidth + 20;
+                    const actualContentWidth = itemWidth * originalItemCount;
+                    slider.scrollLeft = itemWidth * cloneCount;
+
+                    let isScrolling;
+                    let isAutoScrolling = false;
+
+                    const handleScroll = () => {
+                        if (isAutoScrolling) return;
+
+                        // ✅ Only fix when scrolling too far to the left
+                        if (slider.scrollLeft <= itemWidth * (cloneCount - 1)) {
+                            slider.scrollLeft += actualContentWidth;
+                        }
+
+                        // ❌ Removed right edge auto-correction
+                        isScrolling = null;
+                    };
+
+                    slider.addEventListener('scroll', () => {
+                        if (isAutoScrolling) return;
+                        clearTimeout(isScrolling);
+                        isScrolling = setTimeout(handleScroll, 150);
+                    }, { passive: true });
+
+                    const scrollWithFlag = (amount) => {
+                        isAutoScrolling = true;
+                        slider.scrollBy({ left: amount, behavior: "smooth" });
+                        setTimeout(() => {
+                            isAutoScrolling = false;
+                        }, 400);
+                    };
+
+                    nextBtn.addEventListener("click", () => {
+                        scrollWithFlag(itemWidth);
+                    });
+
+                    prevBtn.addEventListener("click", () => {
+                        scrollWithFlag(-itemWidth);
+                    });
+
+                    slider.addEventListener("click", (event) => {
+                        if (event.target.closest('button') || window.getSelection().toString()) {
+                            return;
+                        }
+
+                        const clickPosition = event.clientX;
+                        const sliderRect = slider.getBoundingClientRect();
+                        const centerPosition = sliderRect.left + sliderRect.width / 2;
+
+                        scrollWithFlag(clickPosition < centerPosition ? -itemWidth : itemWidth);
+                    });
+                }
+            });
+        </script>*@
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            //const slider = document.querySelector(".testimonial-slider");
+            //const prevBtn = document.querySelector(".testimonial-slider + .slider-controls .prev");
+            //const nextBtn = document.querySelector(".testimonial-slider + .slider-controls .next");
+            //const items = document.querySelectorAll(".testimonial-slider .testimonial-item");
+
+            //if (slider && items.length > 0 && prevBtn && nextBtn) {
+            //    let itemsArray = Array.from(items);
+            //    const originalItemCount = itemsArray.length;
+            //    const cloneCount = 6; // fixed 5 clones forward & backward
+
+            //    for (let i = 0; i < cloneCount; i++) {
+            //        itemsArray.forEach(item => {
+            //            const clonedItem = item.cloneNode(true);
+            //            slider.appendChild(clonedItem);
+            //        });
+            //    }
+            //    for (let i = 0; i < cloneCount; i++) {
+            //        itemsArray.slice().reverse().forEach(item => {
+            //            const clonedItem = item.cloneNode(true);
+            //            slider.insertBefore(clonedItem, slider.firstChild);
+            //        });
+            //    }
+
+            //    const itemWidth = items[0].offsetWidth + 20;
+            //    const actualContentWidth = itemWidth * originalItemCount;
+            //    slider.scrollLeft = itemWidth * cloneCount;
+            //    let isScrolling;
+
+            //    const handleScroll = () => {
+            //        if (slider.scrollLeft <= itemWidth * (cloneCount - 1)) {
+            //            slider.scrollLeft += actualContentWidth;
+            //        } else if (slider.scrollLeft >= itemWidth * (cloneCount + originalItemCount) - slider.clientWidth) {
+            //            slider.scrollLeft -= actualContentWidth;
+            //        }
+            //        isScrolling = null;
+            //    };
+
+            //    slider.addEventListener('scroll', () => {
+            //        window.clearTimeout(isScrolling);
+            //        isScrolling = setTimeout(handleScroll, 150);
+            //    }, { passive: true });
+
+            //    nextBtn.addEventListener("click", () => {
+            //        slider.scrollBy({ left: itemWidth, behavior: "smooth" });
+            //    });
+
+            //    prevBtn.addEventListener("click", () => {
+            //        slider.scrollBy({ left: -itemWidth, behavior: "smooth" });
+            //    });
+
+            //    slider.addEventListener("click", (event) => {
+            //        if (event.target.closest('button') || window.getSelection().toString()) {
+            //            return;
+            //        }
+            //        const clickPosition = event.clientX;
+            //        const sliderRect = slider.getBoundingClientRect();
+            //        const centerPosition = sliderRect.left + sliderRect.width / 2;
+
+            //        slider.scrollBy({
+            //            left: clickPosition < centerPosition ? -itemWidth : itemWidth,
+            //            behavior: "smooth",
+            //        });
+            //    });
+            //}
+
+            //const header = document.querySelector(".custom-new-shadow");
+            //if (header) {
+            //    window.addEventListener("scroll", () => {
+            //        header.classList.toggle("scrolled", window.scrollY > 50);
+            //    }, { passive: true });
+            //}
+
+            //const menuToggleButton = document.getElementById("menuToggle");
+            //if (menuToggleButton) {
+            //    menuToggleButton.closest('button').addEventListener("click", () => {
+            //        let menuIcon = document.getElementById("menuIcon");
+            //        if (menuIcon) {
+            //            const isMenuIcon = menuIcon.src.includes("menu.png");
+            //            menuIcon.src = isMenuIcon
+            //                ? "/assets/images/imagenew/close.png"
+            //                : "/assets/images/imagenew/menu.png";
+            //        }
+            //    });
+            //}
+
+            const navbarCollapse = document.getElementById('navbarSupportedContent');
+            if (navbarCollapse) {
+                navbarCollapse.addEventListener('show.bs.collapse', () => {
+                    document.body.classList.add('mobile-menu-open');
+                });
+                navbarCollapse.addEventListener('hide.bs.collapse', () => {
+                    document.body.classList.remove('mobile-menu-open');
+                });
+
+                const mobileArrows = document.querySelectorAll('.mobile-arrow-icon');
+                mobileArrows.forEach(arrow => {
+                    arrow.addEventListener('click', function (e) {
+                        const img = this.querySelector('.arrow-icon-img');
+                        if (img) {
+                            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                            img.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+                            img.style.transition = 'transform 0.3s ease';
+                        }
+                    });
+                    const parentDropdown = arrow.closest('.dropdown');
+                    if (parentDropdown) {
+                        parentDropdown.addEventListener('hide.bs.dropdown', () => {
+                            const img = arrow.querySelector('.arrow-icon-img');
+                            if (img) img.style.transform = 'rotate(0deg)';
+                        });
+                    }
+                });
+            }
+
+            let filterButtons = document.querySelectorAll(".filter-tabs .filter");
+            let techItems = document.querySelectorAll(".items-container .masonry-item");
+
+            if (filterButtons.length > 0 && techItems.length > 0) {
+                filterButtons.forEach((button) => {
+                    button.addEventListener("click", function () {
+                        filterButtons.forEach((btn) => btn.classList.remove("active"));
+                        this.classList.add("active");
+                        let filterValue = this.getAttribute("data-filter");
+                        techItems.forEach((item) => {
+                            if (item.classList.contains(filterValue.substring(1))) {
+                                item.style.display = "block";
+                            } else {
+                                item.style.display = "none";
+                            }
+                        });
+                    });
+                });
+                const initialActiveFilter = document.querySelector(".filter-tabs .filter.active");
+                if (initialActiveFilter) {
+                    initialActiveFilter.click();
+                }
+            }
+
+            //if (typeof jQuery !== 'undefined' && typeof jQuery.fn.owlCarousel !== 'undefined') {
+            //    $('.owl-carousel').owlCarousel({
+            //        loop: true,
+            //        margin: 0,
+            //        nav: true,
+            //        dots: true,
+            //        navText: [
+            //            '<img src="/assets/images/imagenew/chevron-left.svg" alt="Previous" width="50" style="cursor: pointer;">',
+            //            '<img src="/assets/images/imagenew/chevron-right.svg" alt="Next" width="50" style="cursor: pointer;">'
+            //        ],
+            //        responsive: {
+            //            0: { items: 1 },
+            //            576: { items: 2 },
+            //            768: { items: 3 },
+            //            992: { items: 4 },
+            //            1200: { items: 6 }
+            //        }
+            //    });
+            //} else {
+            //    console.warn("jQuery or Owl Carousel JS not loaded. Badge carousel will not initialize.");
+            //}
+
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+
+            //let scrollTimeout;
+            //window.addEventListener("scroll", () => {
+            //    clearTimeout(scrollTimeout);
+            //    scrollTimeout = setTimeout(() => {
+            //        const backToTop = document.getElementById("backToTop");
+            //        if (backToTop) {
+            //            backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+            //        }
+            //    }, 100);
+            //}, { passive: true });
+
+            //const backToTopButton = document.getElementById("backToTop");
+            //if (backToTopButton) {
+            //    backToTopButton.addEventListener("click", () => {
+            //        window.scrollTo({ top: 0, behavior: "smooth" });
+            //    });
+            //}
+
+        });
+    </script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
+
+<script src="/assets/js/script.js"></script>
+

@@ -1,0 +1,2263 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @*<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">*@
+
+    @{
+        ViewBag.Title = "HireMachineLearningDevelopers";
+        var context = "@context";
+        var type = "@type";
+        var id = "@id";
+        var graph = "@graph";
+    }
+
+    @section AdditionalMeta
+{
+        <meta property="og:url" content="https://www.avidclan.com/hire-ml-developers" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Hire ML Developers | Machine Learning & Data Science Experts" />
+        <meta property="og:description" content="Drive data-driven insights with expert ML developers. Hire dedicated machine learning engineers for predictive modeling, data analysis, and AI solutions." />
+        <meta property="og:image" content="https://www.avidclan.com/assets/images/logo.svg" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://twitter.com/AvidclanT" />
+        <meta name="twitter:title" content="Hire ML Developers | Machine Learning & Data Science Experts" />
+        <meta name="twitter:description" content="Drive data-driven insights with expert ML developers. Hire dedicated machine learning engineers for predictive modeling, data analysis, and AI solutions." />
+        <meta name="twitter:image" content=" https://twitter.com/AvidclanT/header_photo " />
+
+        <title>Hire ML Developers | Machine Learning & Data Science Experts</title>
+        <meta name="description" content="Drive data-driven insights with expert ML developers. Hire dedicated machine learning engineers for predictive modeling, data analysis, and AI solutions." />
+        <link rel="canonical" href="https://www.avidclan.com/hire-ml-developers" />
+
+        <link href="~/assets/css/swiper-bundle-min.css" rel="stylesheet" />
+        <link href="~/assets/css/Avidclan/hiringpages.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="~/assets/js/jquery.validate.min.js"></script>
+
+        <!-- Include intlTelInput -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+        <!-- Optional: Include the utils script if you need it -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
+
+        <link rel="stylesheet" href="~/assets/css/intlTelInput.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="~/assets/css/Avidclan/blog.css" />
+        <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Corporation",
+        "name": "Avidclan Technologies",
+        "alternateName": "Avidclan Technologies",
+        "url": "https://www.avidclan.com/",
+        "logo": "https://www.avidclan.com/assets/images/logo.svg",
+        "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "955-845-0670",
+        "contactType": "sales",
+        "areaServed": "IN",
+        "availableLanguage": ["en","Hindi"]
+        },
+        "sameAs": [
+        "https://www.facebook.com/avidclan/",
+        "https://twitter.com/AvidclanT",
+        "https://www.instagram.com/avidclan_technologies/",
+        "https://www.linkedin.com/company/avidclan-technologies/",
+        "https://www.tumblr.com/blog/avidclan-technologies/"
+        ]
+    }
+        </script>
+
+
+        <script type="text/javascript">
+            $('#btngetstarted').click(function () {
+                $('#btnpricing').fadeOut(250).fadeIn(250);
+            });
+        </script>
+    }
+    <style>
+        ul.custom-list {
+            list-style: none;
+            padding: 0;
+        }
+
+            ul.custom-list li {
+                position: relative;
+                padding-left: 1.2em;
+            }
+
+                ul.custom-list li::before {
+                    content: "\2022";
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    color: #333;
+                }
+    </style>
+</head>
+<body>
+    <!-- Banner Section -->
+    <section class="inner-page banner-section-two banner-section-box" style="padding-top:50px;">
+        <div class="container banner-section-margin">
+            <div class="row">
+                <div class="col-lg-7 order-lg-2  order-sm-3 order-2">
+                    <div class="pl-3">
+                        <h1>Hire Dedicated ML Developers</h1>
+                        <h2 class="hiring-section-subtittle">Empower Intelligence with Bespoke Machine Learning Solutions</h2>
+                        <p class="text">
+                            Avidclan Technologies is a leading machine learning company delivering intelligent, data-driven solutions. Our team of expert AI machine learning engineers specializes in building predictive models, smart recommendations, and automation tools. Hire ML developers from us to gain access to top-tier talent, scalable solutions, and custom strategies that solve real business challenges and drive innovation through the power of machine learning.
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 d-flex flex-column flex-md-row">
+                            <div class="btn-box mt-0">
+                                <a href="~/services#project_inquiry_form" class="btn btn-primary fw-bold rounded-5 custom-btn-padding shadow-none">
+                                    <span>
+                                        Redefine Your Enterprise
+                                        <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="btn-box btn-check-price mb-2">
+                                <button onclick="scrollToSection('pricing_section')" class="btn-banner-title btn-title-font">
+                                    Explore our Engagement Models
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 order-md-2 order-sm-3 order-md-1 order-1 text-center">
+                    @*<img src="~/assets/images/hiringpages/Illustration.png" class="img-fluid" alt="development" />*@
+
+                    @*<div class="row">
+                            <div class="col-auto" style="margin-left:12px;">
+                                <h3 class="schedule-interview-title">
+                                    Schedule a Developer Interview Now
+                                </h3>
+                            </div>
+                        </div>*@
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="card-title">Schedule The ML Developer Interview Now</h3>
+                                    <form id="hiringform1" method="post" name="hiring_form_data1" action="contact-form-handler.php">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group interview-form-input-control">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control w-100 " name="Name1" id="Name1" placeholder="Your name">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group interview-form-input-control">
+                                                <div class="input-group">
+                                                    <input type="email" class="form-control w-100 " id="Email1" name="Email1" aria-describedby="emailHelp" placeholder="Enter email">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group interview-form-input-control">
+                                                <div class="input-group mobile-input mobilet" style="margin-left:4px;">
+                                                    <input type="hidden" id="code1" name="code1" value="1">
+                                                    <input type="tel" name="ContactNumber1" id="mobilet" class="w-100 numberonly form-control contact-input" maxlength="10" placeholder=" " aria-describedby="basic-addon1" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group interview-form-input-control">
+                                                <div class="input-group">
+                                                    <textarea class="form-control w-100 " id="Message1" name="Message1" rows="3" placeholder="Tell us about your project"></textarea>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="btn-box mt-3" style="margin-left: 13px">
+                                                <button type="submit" class="theme-btn btn-style-one" name="submit" id="btnSendHMail1">
+                                                    <span class="btn-title">
+                                                        Enquire Now
+                                                        <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!--End Banner Section-->
+    <!--Avidclan Banner div Section-->
+    <section id="badges" style="background-image: none !important; background: var(--Avidclan_CLR-Dark-Blue-dark-blue-700, #0E1734);">
+        <div class="sec-title">
+            <h2 style="font-family: Poppins !important; padding-bottom: 0; color: #FFF; text-align: center; padding-top: 30px">Awards and Achievement </h2>
+            <hr class="hr-cls center-block" />
+        </div>
+        <div class="container text-center" style="background-image:none !important;">
+            <!-- row -->
+            <div class="row badges-row swiper">
+                <div class="card-content">
+                    <div class="swiper-wrapper">
+                        <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                            <div class="badge-card badgecard-overflow">
+                                <div class="body">
+                                    <hr class="bottom-bar" />
+                                    <div class="text-center">
+                                        <p class="subtitle badge-box-p m-0">
+                                            Top-Rated Custom Software Development Company
+                                        </p>
+                                    </div>
+                                    <hr class="top-bar" />
+                                    <a href="https://www.appfutura.com/companies/avidclan-technologies" target="_blank" class="stretched-link">
+                                        <img src="~/assets/images/hiringpages/appfutura.png" alt="Sortlist Verified Agency" title="Top-Rated Custom Software Development Company" class="icon badge-box-img" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                            <div class="badge-card badgecard-overflow">
+                                <div class="body">
+                                    <hr class="bottom-bar" />
+                                    <div class="text-center">
+                                        <p class="subtitle badge-box-p m-0">
+                                            Top Software Development Company by Design Rush
+                                        </p>
+                                    </div>
+                                    <hr class="top-bar" />
+                                    <a href="https://www.designrush.com/agency/profile/avidclantechnologies" target="_blank" class="stretched-link">
+                                        <img src="~/assets/images/hiringpages/designrush.png" class="icon badge-box-img" alt="design-rush" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                            <div class="badge-card badgecard-overflow">
+                                <div class="body">
+                                    <hr class="bottom-bar" />
+                                    <div class="text-center">
+                                        <p class="subtitle badge-box-p m-0">
+                                            Top Custom Software Development Company
+                                        </p>
+                                    </div>
+                                    <hr class="top-bar" />
+                                    <a href="https://itrate.co/developers/all" target="_blank" class="stretched-link">
+                                        <img src="~/assets/images/hiringpages/itrateco.png" class="icon badge-box-img" alt="Custom Software Development">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                            <div class="badge-card badgecard-overflow">
+                                <div class="body">
+                                    <hr class="bottom-bar" />
+                                    <div class="text-center">
+                                        <p class="subtitle badge-box-p m-0">
+                                            Clutch's Top Application Management Company 2024
+                                        </p>
+                                    </div>
+                                    <hr class="top-bar" />
+                                    <a href="https://clutch.co/profile/avidclan-technologies" target="_blank" class="stretched-link">
+                                        <img alt="Top Application Management & Support Company" src="~/assets/images/hiringpages/clutch.png" class="icon badge-box-img" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                            <div class="badge-card badgecard-overflow">
+                                <div class="body">
+                                    <hr class="bottom-bar" />
+                                    <div class="text-center">
+                                        <p class="subtitle badge-box-p m-0">
+                                            Top Web Development Company 2024
+                                        </p>
+                                    </div>
+                                    <hr class="top-bar" />
+                                    <a href="https://techreviewer.co/companies/avidclan-technologies" target="_blank" class="stretched-link">
+                                        <img src="~/assets/images/hiringpages/webdevelopmentcompany.png" alt="flag" class="icon badge-box-img" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                            <div class="badge-card badgecard-overflow">
+                                <div class="body">
+                                    <hr class="bottom-bar" />
+                                    <div class="text-center">
+                                        <p class="subtitle badge-box-p m-0">
+                                            Top Mobile App Developers 2024
+                                        </p>
+                                    </div>
+                                    <hr class="top-bar" />
+                                    <a href="https://www.topdevelopers.co/profile/avidclan-technologies" target="_blank" class="stretched-link">
+                                        <img src="~/assets/images/hiringpages/mobileapp_developer.png" alt="Mobile App Development Companies" title="Mobile App Development Companies" class="icon badge-box-img">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        @* end badges *@
+                    </div><!-- end of row -->
+                </div>
+                <!-- Navigation Buttons -->
+                <div class="swiper-button-next bg-none" id="swiper-next" style="display:none;">
+                    <i class="ri-arrow-right-s-line"></i>
+                </div>
+
+                <div class="swiper-button-prev bg-none" id="swiper-prev" style="display:none;">
+                    <i class="ri-arrow-left-s-line"></i>
+                </div>
+
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!--End Avidclan div Section-->
+    <!--    our services Section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">
+                                    Delivering Tailored Machine Learning Solutions for Intelligent Outcomes
+                                </h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">As a machine learning services company, At Avidclan Technologies  we craft As a machine learning services company, we build intelligent, data-driven solutions tailored to your business. From predictive analytics to real-time automation, our expert team delivers custom ML solutions that drive smarter decisions, efficiency, and measurable business growth. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h3 class="service-card-subtitle">Custom ML Model Development</h3>
+                        <p class="custom-card-content">
+                            We develop custom machine learning models that are specific to your data and business requirements. Our solutions increase predictive accuracy and decision-making, allowing you to leverage the power of AI to address intricate challenges.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h3 class="service-card-subtitle">Predictive Analytics & Forecasting</h3>
+                        <p class="custom-card-content">
+                            Harness the power of machine learning algorithms to process past data, forecast trends, and drive business strategies. Our predictive analytics solutions assist you in forecasting market change and making informed decisions to achieve sustainable growth.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h3 class="service-card-subtitle"> Natural Language Processing (NLP)</h3>
+                        <p class="custom-card-content">
+                            Turn unstructured data into actionable insights with our NLP offerings. From text classification to sentiment analysis and chatbots, we assist businesses in leveraging the power of natural language understanding with the latest machine learning solutions.
+
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h3 class="service-card-subtitle">Computer Vision Solutions</h3>
+                        <p class="custom-card-content">
+                            Our computer vision solutions based on machine learning allow image recognition, object detection, and video analysis. We assist industries such as healthcare, retail, and manufacturing in automating tasks and enhancing operational effectiveness using visual data.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 mt-2">
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h3 class="service-card-subtitle">Model Optimization & Tuning</h3>
+                        <p class="custom-card-content">
+                            Optimize your machine learning models' performance to the fullest by our expert optimization and hyperparameter tuning. Our experts ensure the models are run at optimum efficiency, delivering high-accuracy output and smooth integration with your systems.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h3 class="service-card-subtitle">AI Integration & Deployment</h3>
+                        <p class="custom-card-content">
+                            We deploy machine learning models into your systems or cloud platforms to facilitate real-time decision-making as well as automation of operations. Our solutions guarantee smooth deployment for seamless functionality and an instant impact on your business processes.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h3 class="service-card-subtitle">AI Strategy & Consulting</h3>
+                        <p class="custom-card-content">
+                            Our machine learning consultancy services offer expert advice on AI implementation, enabling you to build scalable strategies. We partner with you to locate key business opportunities and create a custom roadmap for AI success.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h3 class="service-card-subtitle">Machine Learning Maintenance & Support</h3>
+                        <p class="custom-card-content">
+                            Maintain your machine learning infrastructure in top shape with regular support and maintenance. Our experts offer constant model monitoring, updates, and troubleshooting to keep your ML solutions optimized and aligned with your changing needs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- our services Section end-->
+    <!-- CTA Section start-->
+    <section class="ctasection section-box-spacing section-box-spacing-mobile-ui">
+        <div class="container" style="background: var(--color-primary) !important; ">
+            <div class="row align-items-center">
+                <div class="col-md-12 col-lg-12 col-sm-12 text-center">
+                    <div class="sec-title mb-0">
+                        <h3 class="ctasectiontexct">Accelerate Your Business with Intelligent ML Solutions</h3>
+                        <div class="cta-content-text">
+                            Maximize efficiency, reduce operational costs, and enhance decision-making with machine learning tailored to your business goals.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row  align-items-center">
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="cta-btn-box align-items-center">
+                        <a href="~/contact-us/" class="btn btn-secondary bg-white position-relative fw-bold rounded-5 overflow-hidden align-middle text-capitalize custom-btn-padding" style="padding-left: 10px; padding-right: 10px;">
+                            <span class="cta-btn-title"><span class="iconify me-2" data-icon="ion:call-sharp" data-height="25"></span>Hire ML Developers</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CTA Section end-->
+    <!--Technologies section start-->
+    <section class="techsection">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Technologies</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">By utilizing cutting-edge technologies and tools in Machine Learning, we develop predictive models that analyze data, optimize processes, and generate actionable insights to drive business innovation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
+                <div class="col-md-2 col-lg-2 col-sm-4 my-auto pt-2 pt-md-0">
+                    <div class="tech-title-box tech-box" style="float: left;">
+                        <h3>Languages</h3>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-12 col-sm-12 my-auto tech-row-mobile-ui">
+                    <div class="tech-box pb-2 pb-md-0">
+                        <ul class=" inline-list">
+                            <li class="inline-list-li tech-li-text"><span>Python</span></li>
+                            <li class="inline-list-li tech-li-text"><span>R</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Java</span></li>
+                            <li class="inline-list-li tech-li-text"><span>C++</span></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
+                <div class="col-md-2 col-lg-2 my-auto pt-2 pt-md-0">
+                    <div class="tech-title-box tech-box" style="float: left;">
+                        <h3>Machine Learning and Deep Learning Frameworks</h3>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-9 my-auto tech-row-mobile-ui">
+                    <div class="tech-box pb-2 pb-md-0">
+                        <ul class="inline-list">
+                            <li class="inline-list-li tech-li-text"><span>TensorFlow</span></li>
+                            <li class="inline-list-li tech-li-text"><span>PyTorch</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Keras</span></li>
+                            <li class="inline-list-li tech-li-text"><span>OpenCV</span></li>
+                            <li class="inline-list-li tech-li-text"><span>MXNet</span></li>
+                            <li class="inline-list-li tech-li-text"><span>FastAI</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Scikit-learn</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Xgboost</span></li>
+
+
+                        </ul>
+                        <ul class=" inline-list">
+                            
+                            <li class="inline-list-li tech-li-text"><span>AutoML</span></li>
+                            <li class="inline-list-li tech-li-text"><span>CNTK</span></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
+                <div class="col-md-2 col-lg-2 my-auto pt-2 pt-md-0">
+                    <div class="tech-title-box tech-box" style="float: left;">
+                        <h3>Data Preprocessing and Visualizations</h3>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-9 my-auto tech-row-mobile-ui">
+                    <div class="tech-box pb-2 pb-md-0">
+                        <ul class="inline-list">
+                            <li class="inline-list-li tech-li-text"><span>Pandas</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Numpy</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Matplotlib</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Seaborn</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Plotly</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Hadoop</span></li>
+                            <li class="inline-list-li tech-li-text"><span>SQL</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
+                <div class="col-md-2 col-lg-2 my-auto pt-2 pt-md-0">
+                    <div class="tech-title-box tech-box" style="float: left;">
+                        <h3>NLP Technologies</h3>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-9 my-auto tech-row-mobile-ui">
+                    <div class="tech-box pb-2 pb-md-0">
+                        <ul class="inline-list">
+                            <li class="inline-list-li tech-li-text"><span>NLTK</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Spacy</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Hugging Face</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Transformers </span></li>
+                            <li class="inline-list-li tech-li-text"><span>Library</span></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
+                <div class="col-md-2 col-lg-2 my-auto pt-2 pt-md-0">
+                    <div class="tech-title-box tech-box" style="float: left;">
+                        <h3>Cloud & MLOps Platforms</h3>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-9 my-auto tech-row-mobile-ui">
+                    <div class="tech-box pb-2 pb-md-0">
+                        <ul class="inline-list">
+                            <li class="inline-list-li tech-li-text"><span>AWS SageMaker</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Google AI Platform</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Microsoft Azure ML</span></li>
+                            <li class="inline-list-li tech-li-text"><span>MLflow</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Kubeflow</span></li>
+                        </ul>
+                        <ul class="inline-list">
+                            
+                            <li class="inline-list-li tech-li-text"><span>Docker & Kubernetes</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
+                <div class="col-md-2 col-lg-2 my-auto pt-2 pt-md-0">
+                    <div class="tech-title-box tech-box" style="float: left;">
+                        <h3>Tools and Utilities</h3>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-9 my-auto tech-row-mobile-ui">
+                    <div class="tech-box pb-2 pb-md-0">
+                        <ul class="inline-list">
+                            <li class="inline-list-li tech-li-text"><span>Jupyter</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Anaconda</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Apache Kafka</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Jenkins</span></li>
+                            <li class="inline-list-li tech-li-text"><span>GitHub</span></li>
+                            <li class="inline-list-li tech-li-text"><span>LangChain</span></li>
+                            <li class="inline-list-li tech-li-text"><span>DVC</span></li>
+                            <li class="inline-list-li tech-li-text"><span>BERT</span></li>
+                        </ul>
+                        <ul class="inline-list">
+                            
+                            
+                            <li class="inline-list-li tech-li-text"><span>Claude</span></li>
+                            <li class="inline-list-li tech-li-text"><span>DALL.E</span></li>
+                            <li class="inline-list-li tech-li-text"><span>GPT4All Models</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Google Gemini</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Tensor board OpenAI GPT 3.5/4</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="btn-box text-center mt-3">
+                    <a href="~/services#project_inquiry_form" class="btn btn-primary fw-bold rounded-5 custom-btn-padding shadow-none">
+                        <span>
+                            Schedule a Developer Interview
+                            <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Technologies section end-->
+    <!--Technologies combination section end-->
+    <section class="badges-section" id="badges" style="background-image:none;">
+        <div class="container text-center">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Technologies Combinations</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">We blend ML models with scalable tools to build predictive systems that improve accuracy and insights.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row badges-row  swiper">
+                <div class="card-content-combination tech-combination-container">
+                    <div class="swiper-wrapper">
+                        <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4 taech-combintion-tab-ui pb-md-4 swiper-slide">
+                            <div class="badge-card tech-combination-box">
+                                <div class="tech-box-icon-combination mvc-azure">
+                                    <img src="~/assets/images/hiringpages/Ai_page/Technologies_Combination/Python-Dark logo.svg" alt="Python" /> 
+                                    <h1 class="tech-combination-h1">+</h1>
+                                    <img src="~/assets/images/hiringpages/Ai_page/Technologies_Combination/TensorFlow-Light logo.svg" alt="TensorFlow" /> 
+                                    <h1 class="tech-combination-h1">+</h1>
+                                    <img src="~/assets/images/AIDevelopment/keras_logo.svg" alt="Keras" />
+                                </div>
+                                <p class="tech-combination-title tech-combination-span tech-combination">Python + TensorFlow +<br> Keras</p>
+                                <p class="tech-combination-p tech-combination-content">
+                                    Build deep learning models quickly and efficiently with Python, leveraging TensorFlow’s robustness and Keras' simplicity for real-world AI applications.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4 pb-md-4 taech-combintion-tab-ui swiper-slide">
+                            <div class="badge-card tech-combination-box">
+                                <div class="tech-box-icon-combination">
+                                    <img src="~/assets/images/hiringpages/Ai_page/Technologies_Combination/PyTorch-Light logo.svg" alt="PyTorch" />
+                                    <h1 class="tech-combination-h1">+</h1>
+                                    <img src="~/assets/images/hiringpages/ML_Developer/Technologies_Combinations/file_type_numpy_logo.svg" alt="NumPy" />
+                                    <h1 class="tech-combination-h1">+</h1>
+                                    <img src="~/assets/images/hiringpages/ML_Developer/Technologies_Combinations/matplotlib_plain_logo.svg" alt="Matplotlib" />
+                                </div>
+                                <span class="tech-combination-title tech-combination-span tech-combination">PyTorch + NumPy + Matplotlib</span>
+                                <p class="tech-combination-p tech-combination-span">Combine PyTorch’s dynamic modeling with NumPy’s numerical processing and Matplotlib’s visualization for flexible experimentation and insight-rich model development.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4 taech-combintion-tab-ui pb-md-4 swiper-slide">
+                            <div class="badge-card tech-combination-box">
+                                <div class="tech-box-icon-combination core-react">
+                                    <img src="~/assets/images/hiringpages/ML_Developer/Technologies_Combinations/Scikit_learn_logo_small_logo.svg" alt="Scikit-learn" />
+                                    <h1 class="tech-combination-h1">+</h1>
+                                    <img src="~/assets/images/hiringpages/ML_Developer/Technologies_Combinations/pandas_original_logo.svg" alt="Pandas" />
+                                    <h1 class="tech-combination-h1">+</h1>
+                                    <img src="~/assets/images/hiringpages/ML_Developer/Technologies_Combinations/jupyter_logo.svg" alt="Jupyter" />
+                                </div>
+                                <span class="tech-combination-title tech-combination-span tech-combination">Scikit-learn + Pandas + Jupyter</span>
+                                <p class="tech-combination-p tech-combination-span tech-combination-content">Rapidly develop machine learning models with Scikit-learn, structured data handling in Pandas, and hands-on iteration through Jupyter Notebooks.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4 taech-combintion-tab-ui pb-md-4 swiper-slide">
+                            <div class="badge-card tech-combination-box">
+                                <div class="tech-box-icon-combination web-assembly">
+                                    <img src="~/assets/images/hiringpages/ML_Developer/Technologies_Combinations/AWS_SageMaker.svg" alt="AWS SageMaker" />
+                                    <h1 class="tech-combination-h1">+</h1>
+                                    <img src="~/assets/images/hiringpages/ML_Developer/Technologies_Combinations/Docker_logo.svg" alt="Docker" />
+                                    <h1 class="tech-combination-h1">+</h1>
+                                    <img src="~/assets/images/hiringpages/ML_Developer/Technologies_Combinations/mlflow_white_logo.svg" alt="MLflow" />
+                                </div>
+                                <span class="tech-combination-title tech-combination-span tech-combination">AWS SageMaker + Docker + MLflow</span>
+                                <p class="tech-combination-p tech-combination-span tech-combination-content">Deploy scalable machine learning solutions using SageMaker’s cloud capabilities, Docker’s portability, and MLflow’s experiment tracking and lifecycle management.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4 taech-combintion-tab-ui pb-md-4 swiper-slide">
+                            <div class="badge-card tech-combination-box">
+                                <div class="tech-box-icon-combination docker-dotnetcore">
+                                    <img src="~/assets/images/hiringpages/ML_Developer/Technologies_Combinations/apache_spark_logo.svg" alt="Apache Spark" />
+                                    <h1 class="tech-combination-h1">+</h1>
+                                    <img src="~/assets/images/hiringpages/ML_Developer/Technologies_Combinations/hadoop_logo.svg" alt="Hadoop" />
+                                    <h1 class="tech-combination-h1">+</h1>
+                                    <img src="~/assets/images/hiringpages/ML_Developer/Technologies_Combinations/airflow_icon_logo.svg" alt="Airflow" />
+                                </div>
+                                <span class="tech-combination-title tech-combination-span tech-combination">Apache Spark + Hadoop + Airflow</span>
+                                <p class="tech-combination-p tech-combination-span tech-combination-content">Process massive datasets with Spark and Hadoop while orchestrating efficient ML workflows and ETL pipelines using Apache Airflow.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4 taech-combintion-tab-ui pb-md-4 swiper-slide">
+                            <div class="badge-card tech-combination-box">
+                                <div class="tech-box-icon-combination">
+                                    <img src="~/assets/images/hiringpages/Ai_page/Technologies_Combination/spacy_logo.svg" alt="SpaCy" />
+                                    <h1 class="tech-combination-h1">+</h1>
+                                    <img src="~/assets/images/hiringpages/ML_Developer/Technologies_Combinations/Transformers_logo.svg" alt="Transformers" />
+                                    <h1 class="tech-combination-h1">+</h1>
+                                    <img src="~/assets/images/hiringpages/Ai_page/Technologies_Combination/hugging-face-icon_logo.svg" alt="Hugging Face" />
+                                </div>
+                                <span class="tech-combination-title tech-combination-span tech-combination">SpaCy + Transformers + Hugging Face</span>
+                                <p class="tech-combination-p tech-combination-span tech-combination-content">Build advanced NLP solutions with SpaCy’s speed, Transformers’ depth, and Hugging Face’s tools for sentiment analysis, summarization, and chatbots. </p>
+                            </div>
+                        </div>
+
+                        @* end badges *@
+                    </div><!-- end of row -->
+                </div>
+                <!-- Navigation Buttons -->
+                <div class="swiper-button-next bg-none" id="swiper-next">
+                    <i class="ri-arrow-right-s-line right-arrow"></i>
+                </div>
+
+                <div class="swiper-button-prev bg-none" id="swiper-prev">
+                    <i class="ri-arrow-left-s-line left-arrow "></i>
+                </div>
+
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+    <!--Technologies combination section end-->
+    <!--company success section start-->
+    <section id="about-us-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-6 mt-3">
+                    <div class="about-us-text-box">
+                        <h2 class="about-us-text-box-h2">Who are we?</h2>
+                        <hr class="hr-cls">
+                        <span class="about-avidclan-text-span">
+                            A mindful team of tech innovators transforming bold ideas into digital masterpieces. We at Avidclan Technologies fuse creativity with technology, crafting user-centric solutions that captivate and drive the success of global leaders.
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-dark-box">
+                        <img src="~/assets/images/hiringpages/Office Team.svg" alt="office-team" />
+                        <span class="about-us-dark-box-client-span">100+</span>
+                        <p class="about-us-dark-box-client-p">Clients Served Globally</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-light">
+                        <img class="about-us-light-box-project-icon" src="/assets/images/hiringpages/Delivered.svg" alt="delivered" />
+                        <span class="about-us-light-project-span">150+</span>
+                        <p class="about-us-light-project-p">Projects Delivered</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-lg-6 mt-3">
+                    <div class="about-us-img-box">
+                        <img src="~/assets/images/hiringpages/working_people.png" alt="detail-content" class="detail-content-img w-100" />
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-light">
+                        <img src="~/assets/images/hiringpages/Team.svg" alt="team" />
+                        <span class="about-us-light-project-span">30+</span>
+                        <p class="about-us-light-project-p">Developers</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-dark-box">
+                        <img src="~/assets/images/hiringpages/Satisfaction.svg" alt="satisfaction" />
+                        <span class="about-us-dark-box-client-span">99%</span>
+                        <p class="about-us-dark-box-client-p">Satisfaction Rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="about-us-section-tablet" style="display:none !important;">
+        <div class="container">
+            <div class="row">
+                <!-- Text Column -->
+                <div class="col-md-12 col-lg-6 mt-3 order-1 order-lg-1">
+                    <div class="about-us-text-box">
+                        <h2 class="about-us-text-box-h2">Who are we?</h2>
+                        <hr class="hr-cls">
+                        <span class="about-avidclan-text-span">
+                            A mindful team of tech innovators transforming bold ideas into digital masterpieces. We at Avidclan Technologies fuse creativity with technology, crafting user-centric solutions that captivate and drive the success of global leaders.
+                        </span>
+                    </div>
+                </div>
+                <!-- Image Column -->
+                <div class="col-md-12 col-lg-6 mt-3 order-2 order-lg-2">
+                    <div class="about-us-img-box">
+                        <img src="~/assets/images/hiringpages/working_people.png" alt="detail-content" class="w-100 detail-content-img" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- First Row: 100+ and 150+ in one line -->
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-dark-box">
+                        <img src="~/assets/images/hiringpages/Office Team.svg" alt="office-team" />
+                        <span class="about-us-dark-box-client-span">100+</span>
+                        <p class="about-us-dark-box-client-p">Clients Served Globally</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-light">
+                        <img class="about-us-light-box-project-icon" src="/assets/images/hiringpages/Delivered.svg" alt="delivered" />
+                        <span class="about-us-light-project-span">150+</span>
+                        <p class="about-us-light-project-p">Projects Delivered</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Row: 30+ and 90% in one line -->
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-light">
+                        <img src="~/assets/images/hiringpages/Team.svg" alt="team" />
+                        <span class="about-us-light-project-span">30+</span>
+                        <p class="about-us-light-project-p">Developers</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-dark-box">
+                        <img src="~/assets/images/hiringpages/Satisfaction.svg" alt="satisfaction" />
+                        <span class="about-us-dark-box-client-span">90%</span>
+                        <p class="about-us-dark-box-client-p">Satisfaction Rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-us-section-for-mobile-ui" style="display:none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 mt-5">
+                    <div class="about-us-text-box">
+                        <h2 class="about-us-text-box-h2">Who are we?</h2>
+                        <hr class="hr-cls">
+                        <span class="about-avidclan-text-span">
+                            A mindful team of tech innovators transforming bold ideas into digital masterpieces. We at Avidclan Technologies fuse creativity with technology, crafting user-centric solutions that captivate and drive the success of global leaders.
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 mt-5">
+                    <div class="about-us-img-box">
+                        <img src="~/assets/images/hiringpages/working_people.png" alt="detail-content" class="w-100 detail-content-img" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 mt-5">
+                    <div class="about-us-dark-box">
+                        <img src="~/assets/images/hiringpages/Office Team.svg" alt="office-team" />
+                        <span class="about-us-dark-box-client-span">100+</span>
+                        <p class="about-us-dark-box-client-p">Clients Served Globally</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 mt-5">
+                    <div class="about-us-light">
+                        <img class="about-us-light-box-project-icon" src="/assets/images/hiringpages/Delivered.svg" alt="delivered" />
+                        <span class="about-us-light-project-span">150+</span>
+                        <p class="about-us-light-project-p">Projects Delivered</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 mt-5">
+                    <div class="about-us-dark-box">
+                        <img src="~/assets/images/hiringpages/Satisfaction.svg" alt="satisfaction" />
+                        <span class="about-us-dark-box-client-span">90%</span>
+                        <p class="about-us-dark-box-client-p">Satisfaction Rate</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 mt-5">
+                    <div class="about-us-light">
+                        <img src="~/assets/images/hiringpages/Team.svg" alt="team" />
+                        <span class="about-us-light-project-span">30+</span>
+                        <p class="about-us-light-project-p">Developers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--company sucess section end-->
+    <!--hire from avidclan section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Why Hire from Avidclan Technologies?</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">Hiring our ML experts means equipping your business with predictive capabilities powered by data. We use proven algorithms, scalable models, and clean code to craft learning systems that drive smarter decisions and long-term growth.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card">
+                    <div class="why-hire-content-box why-hire-contentbox-mobileui">
+                        <div class="why-hire-header-box">
+                            <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/QA_Automation/Why_Hire_Section/Automation.svg" alt="automation" />
+                            <span class="why-hire-title-box-span">Domain-Specific Expertise</span>
+                        </div>
+                        <p class="why-hire-content-text-p">
+                            Our developers build machine learning solutions tailored to your industry—whether it’s predictive analytics in healthcare or personalization in retail—ensuring results that matter.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card">
+                    <div class="why-hire-content-box why-hire-contentbox-mobileui">
+                        <div class="why-hire-header-box">
+                            <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/QA_Automation/Why_Hire_Section/Advanced-Automation.svg" alt="advanced-automation" />
+                            <span class="why-hire-title-box-span">End-to-End Ownership</span>
+                        </div>
+                        <p class="why-hire-content-text-p">
+                            From raw data to deployment, we manage the full ML lifecycle. Our machine learning service ensures scalable, high-performance systems every step of the way.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card our-pricing-tab-ui">
+                    <div class="why-hire-content-box why-hire-contentbox-mobileui">
+                        <div class="why-hire-header-box">
+                            <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/QA_Automation/Why_Hire_Section/Accelerated-Testing-Integration.svg" alt="accelerated-testing-integration" />
+                            <span class="why-hire-title-box-span">Strategic Consulting Support</span>
+                        </div>
+                        <p class="why-hire-content-text-p">We offer guidance beyond development. As your machine learning consultancy partner, we help you choose the right tools and strategies to future-proof your AI investments.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card mt-4">
+                    <div class="why-hire-content-box why-hire-contentbox-mobileui">
+                        <div class="why-hire-header-box">
+                            <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/QA_Automation/Why_Hire_Section/Cost and-Time-Efficiency.svg" alt="cos-time-efficiency" />
+                            <span class="why-hire-title-box-span">
+                                TensorFlow & Scikit-learn Pros
+                            </span>
+                        </div>
+                        <p class="why-hire-content-text-p">
+                            Our team leverages powerful ML tools like TensorFlow and Scikit-learn to build robust models—ideal for clients looking to hire dedicated ML developers with tech-specific skills.
+
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card mt-4">
+                    <div class="why-hire-content-box why-hire-contentbox-mobileui">
+                        <div class="why-hire-header-box">
+                            <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/QA_Automation/Why_Hire_Section/Cross-platform.svg" alt="cross-platform" />
+                            <span class="why-hire-title-box-span">Cloud-Based ML Delivery</span>
+                        </div>
+                        <p class="why-hire-content-text-p">Our ML experts deploy scalable applications using AWS SageMaker and Docker—hallmarks of a modern machine learning company pushing innovation in real-time environments.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card mt-4 our-pricing-tab-ui">
+                    <div class="why-hire-content-box why-hire-contentbox-mobileui">
+                        <div class="why-hire-header-box">
+                            <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/QA_Automation/Why_Hire_Section/Tailored.svg" alt="tailored" />
+                            <span class="why-hire-title-box-span">Adaptive Engagement Models</span>
+                        </div>
+                        <p class="why-hire-content-text-p">
+                            Whether staff augmentation or full-project outsourcing, we offer flexible options common among leading machine learning consulting companies, tailored to your pace and budget.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!--hire from avidclan section end-->
+    <!--our pricing section start-->
+    <section class="section-box-spacing" id="pricing_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Our Pricing Plans</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">
+                                    Flexible Machine Learning Development Plans that Suit Your Budget. Discover our pricing options tailored to your project.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-plan-box">
+                        <div class="pricing-plan-h2-box">
+                            <h2 class="pricing-plan-title">Hourly</h2>
+                        </div>
+                        <div class="pricing-plan-content-box h-100">
+                            <ul>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" alt="tick" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Skilled and experienced ML developers will be allocated 4-8 hours per day according to your needs
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li price-m-top">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" alt="tick" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Flexible scope and timeline
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" alt="tick" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Ideal for ML projects with uncertain requirements
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pricing-plan-detail-box text-center hourly-span" style="margin-top: 29px;">
+                            <span class="pricing-plan-detail-span">
+                                $22/hour <br /> (USD)
+                            </span>
+                            <button onclick="window.location.href='/services#project_inquiry_form';" class="theme-btn btn-style-one mt-3">
+                                <span class="btn-title" style="padding: 10px 20px!important;">
+                                    Hire ML Developer on Hourly Basis
+                                    <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 rating-box-mobile-ui">
+                    <div class="pricing-plan-box">
+                        <div class="pricing-plan-h2-box">
+                            <h2 class="pricing-plan-title">Monthly</h2>
+                        </div>
+                        <div class="pricing-plan-content-box h-100">
+                            <ul>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" alt="tick" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Skilled and experienced ML developers will be allocated full-time for 160 hours per month
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li price-m-top">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" alt="tick" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Predictable resource allocation
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" alt="tick" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Suitable for long-term ML projects
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pricing-plan-detail-box text-center pricing-box">
+                            <span class="pricing-plan-detail-span">
+                                $3,000/month <br /> (USD)
+                            </span>
+                            <button onclick="window.location.href='/services#project_inquiry_form';" class="theme-btn btn-style-one mt-3">
+                                <span class="btn-title" style="padding: 10px 20px!important;">
+                                    Hire ML Developer on Monthly Basis
+                                    <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 rating-box-mobile-ui our-pricing-tab-ui">
+                    <div class="pricing-plan-box">
+                        <div class="pricing-plan-h2-box">
+                            <h2 class="pricing-plan-title">Build a team</h2>
+                        </div>
+                        <div class="pricing-plan-content-box h-100">
+                            <ul>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" alt="tick" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Hire a professional and experienced ML team, including skilled ML engineers, data scientists, and MLOps engineers
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" alt="tick" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Easy to upscale and downscale
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" alt="tick" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Suitable for complete project development from scratch
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pricing-plan-detail-box text-center pricing-box2">
+                            <span class="pricing-plan-detail-span">
+                                $12,000/month (USD)
+                            </span>
+                            <div class="btn-box  text-center mt-3">
+                                <button onclick="window.location.href='/services#project_inquiry_form';" class="theme-btn btn-style-one">
+                                    <span class="btn-title" style="padding: 10px 20px!important;">
+                                        Hire Dedicated Team
+                                        <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--our pricing section end-->
+    <!--benefits of hiring section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Benefits of Hiring Dedicated ML Developers</h2>
+                                <hr class="center-block" style="width: 500px;" />
+                                <p class="text m-0 header_description">
+                                    Our machine learning development services empower your business to leverage the latest AI technologies and drive innovation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
+                    <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/QA_Automation/Benefits_of_Hiring/Enhanced-Test-Speed.svg" alt="Quick Around Time" />
+                    <span class="benefits-of-hiring-text">Tailored ML Solutions</span>
+                </div>
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
+                    <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/perm_contact_calendar.png" alt="Direct Point of Contact" />
+                    <span class="benefits-of-hiring-text">Advanced Predictive Capabilities</span>
+                </div>
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
+                    <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/QA_Automation/Benefits_of_Hiring/Cost-Efficient-Testing.svg" alt="Scalable Architecture" />
+                    <span class="benefits-of-hiring-text">Real-Time Analytics</span>
+                </div>
+            </div>
+            <div class="row text-center mt-sm-5 mt-0">
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
+                    <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/QA_Automation/Benefits_of_Hiring/Seamless-Scalability.svg" alt="Seamless Integration" />
+                    <span class="benefits-of-hiring-text">Expertise Across Domains</span>
+                </div>
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
+                    <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/QA_Automation/Benefits_of_Hiring/Minimized-Risk.svg" alt="Dedicated Resources" />
+                    <span class="benefits-of-hiring-text">Continuous Improvement</span>
+                </div>
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
+                    <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/QA_Automation/Benefits_of_Hiring/Consistent-Performance.svg" alt="Cost Effective" />
+                    <span class="benefits-of-hiring-text">Seamless Integration</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!--benefits of hiring section end-->
+    <!--development process section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Our Development Process</h2>
+                                <hr class="center-block" style="width: 500px;" />
+                                <p class="text m-0 header_description">Our machine learning development process ensures seamless integration, continuous improvement, and the creation of intelligent models that drive innovation and deliver business results.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12" style="border:none;" id="develoment-process-div">
+                    <img src="~/assets/images/hiringpages/QA_Automation/ML_WEB.svg" class="development-process-imgbox img-fluid w-100" alt="Development Process" />
+                </div>
+                <div class="col-md-12 col-sm-12" style="border:none;display:none;" id="develoment-process-div-mobile">
+                    <img src="~/assets/images/hiringpages/QA_Automation/ML_Mobile.svg" class="development-process-imgbox img-fluid w-100" alt="Development Process" />
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!--development process section end-->
+    <!--Hiring process section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row center-block">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Hiring Process of ML Developer</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">
+                                    We provide tailored machine learning solutions, delivering dedicated developers to build and optimize models for your business needs.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1 col-lg-1"></div>
+                <div class="col-md-1 col-lg-1 d-flex flex-column align-items-center hiringprocess-content-box hiring-process-icon">
+                    <div class="d-flex align-items-center ">
+                        @*hiring-process-icon-mobile-ui*@
+                        <img class="hiringprocess-img-box" src="~/assets/images/hiringpages/QA_Automation/Hiring_Process/Requirement-Analysis.svg" alt="requirement-analysis" />
+                    </div>
+                    <span class="hiringprocess-text-box text-wrap mt-3 hiringprocess-text-box-mobile-ui">Initial Consultation</span>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="arrow-icon mt-5" src="~/assets/images/hiringpages/arrow.svg" alt="arrow" />
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="hiringprocess-img-box " src="~/assets/images/hiringpages/QA_Automation/Hiring_Process/Pricing.svg" alt="pricing" />
+                    </div>
+                    <span class="hiringprocess-text-box text-wrap mt-3 hiringprocess-text-box-mobile-ui">
+                        Pricing (Select Model)
+                    </span>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="arrow-icon mt-5" src="~/assets/images/hiringpages/arrow.svg" alt="arrow" />
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="hiringprocess-img-box" src="~/assets/images/hiringpages/QA_Automation/Hiring_Process/Onboarding.svg" alt="onboarding" />
+                    </div>
+                    <span class="hiringprocess-text-box text-wrap mt-3 hiringprocess-text-box-mobile-ui">Team Augmentation</span>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="arrow-icon mt-5" src="~/assets/images/hiringpages/arrow.svg" alt="arrow" />
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="hiringprocess-img-box " src="~/assets/images/hiringpages/QA_Automation/Hiring_Process/Automation-setup.svg" alt="automation-setup" />
+                    </div>
+                    <span class="hiringprocess-text-box text-wrap mt-3 hiringprocess-text-box-mobile-ui">
+                        Project Kickoff
+                    </span>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="arrow-icon mt-5" src="~/assets/images/hiringpages/arrow.svg" alt="arrow" />
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="hiringprocess-img-box " src="~/assets/images/hiringpages/QA_Automation/Hiring_Process/Testing.svg" alt="testing" />
+                    </div>
+                    <span class="hiringprocess-text-box text-wrap mt-3 hiringprocess-text-box-mobile-ui">Development and Delivery</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--HiringProces section end-->
+    <!--our work section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Our Work</h2>
+                                <hr class="center-block" style="width:250px;" />
+                                <p class="text m-0 header_description">
+                                    We’ve empowered businesses with custom ML solutions, driving innovation and delivering measurable results across industries. Check out our portfolio for successful implementations.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="project-block-five masonry-item por-1 col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image">
+                            <a href="https://www.avidclan.com/portfolio/" class="image">
+                                <img src="~/assets/images/gallery/cavinessandcates-portfolio.jpg" alt="greenventory-portfolio" />
+                            </a>
+                        </div>
+                        <div class="lower-content">
+                            <div class="content">
+                                <h3>Caviness & Cates Communities</h3>
+                                <p>
+                                    Real estate based web application which helps its end users to find suitable home that best fits their requirements.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-block-five masonry-item por-1 col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image">
+                            <a href="https://www.avidclan.com/portfolio/" class="image">
+                                <img src="~/assets/images/gallery/elite-portfolio.jpg" alt="catina-portfolio" />
+                            </a>
+                        </div>
+                        <div class="lower-content">
+                            <div class="content">
+                                <h3>Elite</h3>
+                                <p>
+                                    An admin portal for SMS marketing business used to get the insights of the end-user web application.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-block-five masonry-item por-1 col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image">
+                            <a href="https://www.avidclan.com/portfolio/" class="image">
+                                <img src="~/assets/images/gallery/CLF-image.png" alt="clf-portfolio" />
+                            </a>
+                        </div>
+                        <div class="lower-content">
+                            <div class="content">
+                                <h3>CLF</h3>
+                                <p>
+                                    CLFNow.com concierge-based platform that aims to connect resorts with local businesses. This platform helps concierges give guests the best recommendations with features like real-time menus and promotions.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--our work section end-->
+    <!--Industry section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Industries we serve</h2>
+                                <hr class="center-block" style="width: 350px;" />
+                                <p class="text m-0 header_description">
+                                    We cater to various sectors, including healthcare, finance, e-commerce, and more, providing specialized ML services.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-1 d-flex flex-column align-items-center"></div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/Banking.svg" alt="banking" />
+                    <span class="industries-text">Finance and Banking</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/Healthcare.svg" alt="healthcare" />
+                    <span class="industries-text">Healthcare</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box" src="~/assets/images/hiringpages/eCommerce.svg" alt="e-commerce" />
+                    <span class="industries-text">E-commerce</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box" src="~/assets/images/hiringpages/engineering.svg" alt="engineering" />
+                    <span class="industries-text">Manufacturing</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/Education.svg" alt="Education" />
+                    <span class="industries-text">Education</span>
+                </div>
+                <div class="col-md-1 d-flex flex-column align-items-center"></div>
+            </div>
+            <div class="row text-center mt-3">
+                <div class="col-md-1 d-flex flex-column align-items-center"></div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/Government.svg" alt="Government" />
+                    <span class="industries-text">Government</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/IOT.svg" alt="IOT" />
+                    <span class="industries-text">IOT</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/oil_barrel.svg" alt="Petroleum-Industry" />
+                    <span class="industries-text">Petroleum Industry</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/Logistics.svg" alt="logistics" />
+                    <span class="industries-text">Logistics</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/UI_UX_Hiring/real-estate.svg" alt="Real Estate" />
+                    <span class="industries-text">Real-estate</span>
+                </div>
+                <div class="col-md-1 d-flex flex-column align-items-center"></div>
+            </div>
+
+        </div>
+    </section>
+    <!--Industry section end-->
+    <!--testimonials section start-->
+    <section class="bg-img-none">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="detail-section-div">
+                            <div class="avidclan_section_title text-wrap">
+                                <div class="sec-title center-block">
+                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Client Testimonials</h2>
+                                    <hr class="center-block" style="width: 366px;" />
+                                    <p class="detail-content m-0  text-wrap" style="text-align: center">
+                                        Client Success Stories in ML Development
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cinkes_testimonial_spage_wrapper">
+                <div class="swiper-container cinkes_testimonial_spage_active">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    Skillfuly accomplished the complex development tasks. Team was available for discussion on changes
+                                    or requests. It was a great pleasure to work with the Avidclan Technologies team.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img src="~/assets/images/user/1.jpg" alt="darpon-k" srcset="~/assets/images/user/1.jpg 100w, ~/assets/images/user/1.jpg 1080w" sizes="100vw" width="100" height="100" class="lazyload" loading="lazy" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Darpon K.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">CEO & Founder</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    We have worked with the team many times over different projects in the last few years, and always
+                                    value having them working with us. They are great communicators and the quality of work is
+                                    excellent.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img src="~/assets/images/user/2.jpg" srcset="~/assets/images/user/2.jpg 100w, ~/assets/images/user/2.jpg 1080w" sizes="100vw" alt="Tom-A-technical-director" width="100" height="100" class="lazyload" loading="lazy" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Tom A.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">Technical Director</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    Avidclan Technologies did a splendid job building our UI and frontend exactly the way we wanted. They
+                                    understood the requirements very well and delivered well ahead of time.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img src="~/assets/images/user/3.jpg" alt="gregoire-p-managibg-director" srcset="~/assets/images/user/3.jpg 100w, ~/assets/images/user/3.jpg 1080w" sizes="100vw" width="100" height="100" class="lazyload" loading="lazy" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Gregoire P.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">Managing director</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    Team communicates very well and adheres to deadlines, even getting work done early. They take time
+                                    to perfect their work and made sure that we were fully satisfied with the quality of work.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img src="~/assets/images/user/4.jpg" alt="nicholas-p-web-designer" srcset="~/assets/images/user/4.jpg 100w, ~/assets/images/user/4.jpg 1080w" sizes="100vw" width="100" height="100" class="lazyload" loading="lazy" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Nicolas P.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">Web Designer</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    Fantastic skills and the development team has got a great eye for detail and accuracy and they
+                                    were very easy to work with.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img src="~/assets/images/user/5.jpg" alt="sanuka-s-sales-manager" srcset="~/assets/images/user/5.jpg 100w, ~/assets/images/user/5.jpg 1080w" sizes="100vw" width="100" height="100" class="lazyload" loading="lazy" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Sanuka S.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">Sales Manager</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cinkes_testimonial_spage_navigation text-center mt-35">
+                    <div class="cinkes_testimonial_spage_prev"><i class="fas fa-long-arrow-alt-left"></i></div>
+                    <div class="cinkes_testimonial_spage_next"><i class="fas fa-long-arrow-alt-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--testimonials section end-->
+    @*<div id="testimonials">
+            @Html.Partial("_ClientFeedback")
+        </div>*@
+    <!--frequently asked question section start-->
+    <section class="FAQ-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="detail-section-div">
+                            <div class="avidclan_section_title text-wrap">
+                                <div class="sec-title center-block">
+                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Frequently Asked Questions (FAQs)</h2>
+                                    <hr class="center-block" style="width: 682px;" />
+                                    <p class="detail-content m-0  text-wrap" style="text-align: center">
+                                        Explore answers to common questions about our machine learning models, techniques, tools, and delivery timelines.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne"
+                                        aria-expanded="true"
+                                        aria-controls="collapseOne">
+                                    What is the hiring process of a dedicated ML developer?
+                                </button>
+                            </h2>
+                            <div id="collapseOne"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingOne"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    The hiring process involves determining your project needs, choosing the best pricing model, recruiting the developer, and ongoing collaboration during development to guarantee top-notch machine learning solutions specific to your demands.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo"
+                                        aria-expanded="false"
+                                        aria-controls="collapseTwo">
+                                    How do you ensure the quality of ML development?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingTwo"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    We apply strict testing, model assessment, and optimization practices to ensure our ML models adhere to performance, accuracy, and reliability requirements and continually improve them using real-world data.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree"
+                                        aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                    Can I engage ML developers on a part-time or hourly basis?
+                                </button>
+                            </h2>
+                            <div id="collapseThree"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingThree"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Yes, we have flexible engagement models where you can engage ML developers on an hourly, part-time, or full-time basis based on the scope and complexity of your project.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseFour"
+                                        aria-expanded="false"
+                                        aria-controls="collapseFour">
+                                    What are the technologies your ML developers are skilled in?
+                                </button>
+                            </h2>
+                            <div id="collapseFour"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingFour"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Our ML developers are proficient in TensorFlow, PyTorch, Keras, Scikit-learn, and other cutting-edge machine learning platforms to provide customized solutions using the optimal technologies for your particular business requirements.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseFive"
+                                        aria-expanded="false"
+                                        aria-controls="collapseFive">
+                                    Will I be in complete control of the project?
+                                </button>
+                            </h2>
+                            <div id="collapseFive"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingFive"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Yes, you will get complete transparency and control of the project. Our developers collaboratively work with your team, giving you regular updates so you can direct the course and decide accordingly.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingSix">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseSix"
+                                        aria-expanded="false"
+                                        aria-controls="collapseSix">
+                                    How do you ensure data security in ML development?
+                                </button>
+                            </h2>
+                            <div id="collapseSix"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingSix"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    At Avidclan Technologies, we maintain data security by encrypting data, storing data securely, and following privacy standards so that your sensitive data remains secure during model training and deployment stages.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingSeven">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseSeven"
+                                        aria-expanded="false"
+                                        aria-controls="collapseSeven">
+                                    How long does it take to deploy a custom ML solution?
+                                </button>
+                            </h2>
+                            <div id="collapseSeven"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingSeven"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    It varies with project scope, complexity, and availability of data. Model development takes anywhere from several weeks to a few months with iterative testing and tuning for maximum output.
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--frequently asked question section end-->
+    <!-- Blog Section -->
+    <section class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="detail-section-div">
+                            <div class="avidclan_section_title text-wrap">
+                                <div class="sec-title center-block">
+                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Related Blogs</h2>
+                                    <hr class="center-block" style="width: 250px;" />
+                                    <p class="detail-content m-0  text-wrap" style="text-align: center">
+                                        Learn More: Explore Our Machine Learning Insights
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="blog-grid-wrap">
+                <div class="row" id="demo">
+                </div>
+            </div>
+            <!-- Blog Pagination Start -->
+
+            <div class="blog-pagination">
+                <ul class="pagination justify-content-center" id="pagination" style="margin-top: 70px;">
+                </ul>
+            </div>
+            <!-- Blog Pagination End -->
+        </div>
+    </section>
+    <!-- Blog Section -->
+    <!--let's talk section start-->
+    <section class="lets-talk section-box-spacing" id="lets_talk_section_webUI">
+        <div class="container">
+            <div class="row align-items-center inner-block">
+                <div class="col-md-12 col-lg-8 col-xl-7">
+                    <div class="mb-0">
+                        <h2 class="lets-talk-title">
+                            Unlock the Power of Machine Learning! Let’s Get Started!
+                        </h2>
+                        <div class="lets-talk-content mt-3">
+                            Partner with us to enhance decision-making, efficiency, and growth. Our ML experts deliver tailored, high-performance solutions designed to meet your unique business goals and challenges.
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4 col-xl-5 text-center text-lg-end">
+                    <div class="btn-box mt-lg-0 mt-4">
+                        <a href="/contact-us/" class="btn btn-secondary bg-white position-relative fw-bold rounded-5 overflow-hidden align-middle text-capitalize custom-btn-padding">
+                            <span class="btn-title">
+                                <span class="btn-title" style="color: #142149;"><img src="~/assets/images/hiringpages/ion_call-sharp.png" alt="call-icon" style="width: 22px; height: 22px; margin-right:5px;" />Start Your ML Journey</span>
+
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="ctasection section-box-spacing section-box-spacing-mobile-ui" id="lets_talk_section_mobileUI" style="display:none;">
+        <div class="container" style="background: var(--color-primary) !important; ">
+            <div class="row align-items-center">
+                <div class="col-md-12 col-lg-12 col-sm-12 text-center">
+                    <div class="sec-title mb-0">
+                        <h2 class="ctasectiontexct">
+                            Accelerate Growth with AI-Driven Innovation!!! Join Our Forces
+                        </h2>
+                        <div class="cta-content-text">
+                            Take your business to the next level with AI solutions from us. We design, develop, and deploy intelligent systems that automate routine tasks while increasing operational efficiency - together, we'll create more innovative, faster, and more agile processes.
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12 col-sm-12" align="center">
+                    <div class="cta-btn-box align-items-center" align="center">
+                        <a href="~/contact-us/" class="btn btn-secondary bg-white position-relative fw-bold rounded-5 overflow-hidden align-middle text-capitalize custom-btn-padding">
+                            <span class="cta-btn-title"><span class="iconify me-2" data-icon="ion:call-sharp" data-height="25"></span>GET IN TOUCH TODAY</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--let's talk section end-->
+    <!--schedule section start-->
+    <section class="developer-interview-section section-box-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-6 col-sm-3">
+                    <img src="~/assets/images/hiringpages/devloperInterview.png" alt="developer-interview" loading="lazy" class="w-100" />
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-3 mt-4">
+                    <div class="row">
+                        <div class="col-auto interview-spacing">
+                            <h3 class="schedule-interview-title">
+                                Schedule The ML Developer Interview Now
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <form id="hiringform" method="post" name="hiring_form_data" action="contact-form-handler.php">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group interview-form-input-control">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control w-100 " name="Name" id="Name" placeholder="Your name">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group interview-form-input-control">
+                                        <div class="input-group">
+                                            <input type="email" class="form-control w-100 " id="Email" name="Email" aria-describedby="emailHelp" placeholder="Enter email">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group interview-form-input-control">
+                                        <div class="input-group mobile-input" style="margin-left:4px;">
+                                            <input type="hidden" id="code" name="code" value="1">
+                                            <input type="tel" name="ContactNumber" id="phone" class="w-100 numberonly form-control contact-input" maxlength="10" placeholder=" " aria-describedby="basic-addon1" />
+                                        </div>
+
+                                        @*<input type="tel" name="ContactNumber" id="phone" class="numberonly form-control contact-input contact-input-smallUI" maxlength="10" aria-describedby="basic-addon2" style="display:none;" />*@
+                                        @*<input type="tel" class="" name="ContactNumber" id="" placeholder="123-456-7890" aria-label="Phone number" aria-describedby="basic-addon1">*@
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group interview-form-input-control">
+                                        <div class="input-group">
+                                            <textarea class="form-control w-100 " id="Message" name="Message" rows="3" placeholder="Tell us about your project"></textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="btn-box mt-3" style="margin-left: 13px">
+                                        <button type="submit" class="theme-btn btn-style-one" name="submit" id="btnSendHMail">
+                                            <span class="btn-title">
+                                                Enquire Now
+                                                <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--schadule section end-->
+    <script src="~/assets/js/swiper-bundle-min.js"></script>
+    <script>
+        // Siwper JS
+
+        let swiperCard = new Swiper(".card-content", {
+            loop: true,
+            spaceBetween: 32,
+            grabCursor: true,
+
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                dynamicBullets: true,
+            },
+
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+
+            breakpoints: {
+                768: { slidesPerView: 3 },
+                1200: { slidesPerView: 6 },
+            },
+        });
+
+        let swiperCardCombination = new Swiper(".card-content-combination", {
+            loop: true,
+            spaceBetween: 32,
+            grabCursor: true,
+
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                dynamicBullets: true,
+            },
+
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                1200: { slidesPerView: 3 },
+            },
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //var BlogType = "testing"
+            var BlogType = "Machine Learning"
+            GetSectionData(BlogType);
+        });
+
+    </script>
+    <script type="text/javascript">
+        // Ensure jQuery and jQuery Validate are loaded in the document
+        $(document).ready(function () {
+
+            var Hiringform = $("#hiringform"),
+                message = $(".contact_msg"),
+                form_data;
+
+            function done_func(response) {
+                console.log(response);
+                window.location.replace("/hire-developer-thank-you");
+                grecaptcha.reset();
+                setTimeout(function () {
+                    message.fadeOut();
+                }, 3000);
+                Hiringform.find('input:not([type="submit"]), textarea').val("");
+                $('#button-spinner').hide();
+            }
+
+            Hiringform.submit(function (e) {
+                e.preventDefault();
+
+                var countrycode = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
+                $("#code").val(countrycode);
+
+                form_data = $(this).serialize();
+
+                if (!Hiringform.valid()) {
+                    return false;
+                }
+
+                $('#button-spinner').show();
+                $('#sbmtbtn').attr("disabled", true);
+
+                var data = {
+                    Name: $("#Name").val(),
+                    Email: $("#Email").val(),
+                    PhoneNumber: $("#phone").val(),
+                    Message: $("#Message").val(),
+                    CountryCode: countrycode,
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/api/Mail/SendHiringDotNetDetails",
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                }).done(done_func);
+            });
+
+            // jQuery validation
+            $("form[name='hiring_form_data']").validate({
+                errorPlacement: function (error, element) {
+                    if ($(element).is("#phone")) {
+                        element.closest(".intl-tel-input").after(error);
+                    } else {
+                        error.insertAfter(element);
+                    }
+                },
+                rules: {
+                    Name: "required",
+                    Email: {
+                        required: true,
+                        email: true,
+                    },
+                    ContactNumber: {
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10
+                    },
+                    Message: {
+                        required: true,
+                        minlength: 25,
+                    }
+                },
+                messages: {
+                    Name: "Please enter your name",
+                    ContactNumber: {
+                        required: "Please enter your phone number",
+                        digits: "Please enter valid phone number",
+                        minlength: "Please enter valid phone number",
+                        maxlength: "Please enter valid phone number",
+                    },
+                    Email: {
+                        required: "Please enter your email address",
+                        email: "Please enter a valid email address.",
+                    },
+                    Message: {
+                        required: "Please write your message",
+                        minlength: "Please write at least 25 characters",
+                    }
+                },
+                submitHandler: function (form) {
+                    form.submit();  // Use native form submit here to avoid recursion
+                }
+            });
+
+
+
+            var Hiringform1 = $("#hiringform1"),
+                message = $(".contact_msg"),
+                form_data;
+
+            function done_func(response) {
+                console.log(response);
+                window.location.replace("/hire-developer-thank-you");
+                grecaptcha.reset();
+                setTimeout(function () {
+                    message.fadeOut();
+                }, 3000);
+                Hiringform.find('input:not([type="submit"]), textarea').val("");
+                $('#button-spinner').hide();
+            }
+
+            Hiringform1.submit(function (e) {
+                e.preventDefault();
+
+                var countrycode = $("#mobilet").intlTelInput("getSelectedCountryData").dialCode;
+                $("#code1").val(countrycode);
+
+                form_data = $(this).serialize();
+
+                if (!Hiringform1.valid()) {
+                    return false;
+                }
+
+                $('#button-spinner').show();
+                $('#sbmtbtn').attr("disabled", true);
+
+                var data = {
+                    Name: $("#Name1").val(),
+                    Email: $("#Email1").val(),
+                    PhoneNumber: $("#mobilet").val(),
+                    Message: $("#Message1").val(),
+                    CountryCode: countrycode,
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/api/Mail/SendHiringDotNetDetails",
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                }).done(done_func);
+            });
+
+            // jQuery validation
+            $("form[name='hiring_form_data1']").validate({
+                errorPlacement: function (error, element) {
+                    if ($(element).is("#mobilet")) {
+                        element.closest(".intl-tel-input").after(error);
+                    } else {
+                        error.insertAfter(element);
+                    }
+                },
+                rules: {
+                    Name1: "required",
+                    Email1: {
+                        required: true,
+                        email: true,
+                    },
+                    ContactNumber1: {
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10
+                    },
+                    Message1: {
+                        required: true,
+                        minlength: 25,
+                    }
+                },
+                messages: {
+                    Name1: "Please enter your name",
+                    ContactNumber1: {
+                        required: "Please enter your phone number",
+                        digits: "Please enter valid phone number",
+                        minlength: "Please enter valid phone number",
+                        maxlength: "Please enter valid phone number",
+                    },
+                    Email1: {
+                        required: "Please enter your email address",
+                        email: "Please enter a valid email address.",
+                    },
+                    Message1: {
+                        required: "Please write your message",
+                        minlength: "Please write at least 25 characters",
+                    }
+                },
+                submitHandler: function (form) {
+                    form.submit();  // Use native form submit here to avoid recursion
+                }
+            });
+        });
+
+    </script>
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                $("#phone").intlTelInput({
+                    initialCountry: "us",
+                    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"  // for formatting/validation
+                });
+            });
+        </script>*@
+
+    <script type="text/javascript">
+
+
+        function GetSectionData(BlogType) {
+            $.ajax({
+                type: "GET",
+                url: "/Avidclan/GetSectionDataByBlogType?BlogType=" + BlogType,
+                contentType: 'application/json; charset=utf-8',
+                dataType: "json",
+                success: function (data) {
+                    $("#demo").html("");
+                    var sectionblog = "";
+                    var paginationData = "";
+                    var imageURL = "https://cms.avidclan.com";
+
+                    $.each(data.data.ListBlog, function (k, v) {
+
+                        var options = { year: 'numeric', month: 'long', day: 'numeric' };
+                        var PostingDate = new Date(v.PostingDate);
+                        var longDt = PostingDate.toLocaleDateString("en-US", options);
+                        var Descriptionlength = v.MetaDescription.length > 80 ? v.MetaDescription.substring(0, 80) + "�" : v.MetaDescription;
+
+                        sectionblog += '<div class="col-lg-4 col-md-6 col-sm-12" style={height: 100%;}>' +
+                            '<div class="single-blog">' +
+                            '<div class="blog-img img img-fluid">' +
+                            '<a href="/blog/' + v.PageUrl + '"><img class="BlogImages" src="' + v.Image + '" alt="" style="height:216px;"></a>' +
+                            '</div> ' +
+                            '<div class="blog-content w-100">' +
+                            '<h1 class="title blog-title"><a href="/blog/' + v.PageUrl + '">' + v.Title + '</a></h1>' +
+                            '<div class="blog-meta"><span><i class="fas fa-user icon-image"></i><span class="by-separator">by</span><a href="#">' + v.PostedBy + '</a></span><span id="admindateid_36"><i class="far fa-calendar-alt"></i>' + longDt + '</span></div>' +
+                            '<div class="read-article">' +
+                            '<div class="btn-box  text-center mt-3">' +
+                            '<button onclick="window.location.href=\'' + '/blog/' + v.PageUrl + '\'"' + 'class="theme-btn btn-style-one text-center"><span class="btn-title">Read Full Article <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span></span></button>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+
+                    })
+                    onclick = "window.location.href='/services#project_inquiry_form';"
+                    $('#demo').html(sectionblog);
+
+                },
+                error: function (result) {
+                    alert("Error Ocurred!");
+                }
+            });
+        }
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+
+        // hiring dwtail submit : send mail
+
+        //var hiringform = $("#hiringform");
+        //hiringform.submit(function (e) {
+
+        //    e.preventDefault();
+
+        //    if (!$(".career_form").valid()) {
+        //        return false;
+        //    }
+
+        //    $('#button-spinner').show();
+        //    $('#btnSendEmail').attr("disabled", true);
+
+
+        //});
+
+        function SendMail() {
+
+        }
+
+    </script>
+    @Html.Partial("_Footer")
+</body>
+</html>
+
+

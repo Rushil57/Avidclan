@@ -1,0 +1,502 @@
+﻿@*@using reCAPTCHA.MVC*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/assets/images/favicon.png" type="image/x-icon" />
+    <link href="~/assets/css/swiper.min.css" rel="stylesheet" />
+    @RenderSection("AdditionalMeta", false)
+
+    <meta name="msvalidate.01" content="C6EA7291CCD22012F734D3C6649F2F3F" />
+
+    <!-- Google Tag Manager -->
+    <!-- End Google Tag Manager -->
+    @*<link href="~/assets/css/Avidclan/bootstrap5.min.css" rel="stylesheet" />*@
+    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" media="all" href="~/assets/css/Avidclan/home.css" />
+    <link href="~/assets/css/Avidclan/owl.carousel.min.css" rel="stylesheet" />
+    <style media="screen">
+        p.text.fs-5 {
+            font-size: 1.25rem;
+            margin: 1rem 0;
+            line-height: 1.5
+        }
+    </style>
+</head>
+<body>
+
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="page-wrapper">
+
+        <header class="main-header header-style-one" style="z-index: 99 !important;">
+            <nav class="navbar navbar-expand-lg bg-white custom-new-shadow w-100 position-fixed" style="z-index: 99 !important;">
+                <div class="container d-flex align-items-center justify-content-between">
+
+                    <a class="navbar-brand" href="/">
+                        <img loading="lazy" loading="lazy" height="55" width="195" src="~/assets/images/imagenew/logo (1).svg" alt="Logo">
+                    </a>
+                    <button class="navbar-toggler shadow-none rounded-circle p-2" style="border: none;" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon" id="menuToggle">
+                            <img loading="lazy" src="~/assets/images/imagenew/menu.png" alt="Menu" class="img-fluid" id="menuIcon">
+                        </span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-0 gap-xl-4 gap-lg-2 fs-lg-5 fs-6 fw-medium px-3 py-2 py-lg-0 p-lg-0">
+
+                            <li class="nav-item border_b dropdown pb-2 mb-2 mb-lg-0 position-relative">
+                                <!-- Services link (always redirects) -->
+                                <a class="d-inline-block fw-semibold nav-link active custom-fs-18" href="/services/">
+                                    Services
+                                </a>
+
+                                <!-- Mobile‐only arrow at the far right, inline with Services -->
+                                <span class="d-lg-none mobile-arrow-icon"
+                                      data-bs-toggle="dropdown"
+                                      aria-expanded="false">
+                                    <img loading="lazy" src="~/assets/images/imagenew/arrow-up-black.svg"
+                                         alt="toggle"
+                                         class="arrow-icon-img"
+                                         width="20"
+                                         height="20" />
+                                </span>
+
+
+
+                                <!-- Decorative red square -->
+                                <div class="red-square-box"></div>
+
+                                <!-- Mega-menu dropdown -->
+                                <div class="dropdown-menu sub_menu w-100 bg-white p-3 p-lg-5 pt-lg-5">
+                                    <div class="row flex-wrap w-100 row-gap-3">
+                                        <!-- Web Development -->
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold" href="/web-development-company/">Web Development</a>
+                                            </h5>
+                                            <ul>
+                                                <li><a href="/web-development-company#enterprise-solutions">Enterprise Solutions</a></li>
+                                                <li><a href="/web-development-company#ecommerce">ECommerce</a></li>
+                                                <li><a href="/web-development-company#backend">API & Backend</a></li>
+                                                <li><a href="/web-development-company#custom-development">Custom Development</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Mobile Apps -->
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold" href="/mobile-app-development-company/">Mobile Apps</a>
+                                            </h5>
+                                            <ul>
+                                                <li><a href="/mobile-app-development-company#native-ios-apps">Native iOS Apps</a></li>
+                                                <li><a href="/mobile-app-development-company#native-android-apps">Native Android Apps</a></li>
+                                                <li><a href="/mobile-app-development-company#cross-platform">Cross Platform</a></li>
+                                                <li><a href="/mobile-app-development-company#hybrid-apps">Hybrid Apps</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Design -->
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold" href="/ui-ux-design-company/">Design</a>
+                                            </h5>
+                                            <ul>
+                                                <li><a href="/ui-ux-design-company#analysis">Analysis</a></li>
+                                                <li><a href="/ui-ux-design-company#wireframe">Wireframing</a></li>
+                                                <li><a href="/ui-ux-design-company#custom-web-design">Custom Web Design</a></li>
+                                                <li><a href="/ui-ux-design-company#uiux-design">UI/UX Design</a></li>
+                                                <li><a href="/ui-ux-design-company#mobile-ui-design">Mobile UI Design</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- QA -->
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold" href="/quality-assurance-services/">QA</a>
+                                            </h5>
+                                            <ul>
+                                                <li><a href="/quality-assurance-services#manual-qa-testing">Manual QA Testing</a></li>
+                                                <li><a href="/quality-assurance-services#web-testing-automation">Web Testing Automation</a></li>
+                                                <li><a href="/quality-assurance-services#mobile-app-testing">Mobile App Testing</a></li>
+                                                <li><a href="/quality-assurance-services#performance-testing">Performance Testing</a></li>
+                                                <li><a href="/quality-assurance-services#api-testing-automation">API Testing</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- IoT -->
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold" href="/iot-service-providers/">IoT</a>
+                                            </h5>
+                                            <ul>
+                                                <li><a href="/iot-service-providers#industrial-automation">Industrial Automation</a></li>
+                                                <li><a href="/iot-service-providers#home-automation">Home Automation</a></li>
+                                                <li><a href="/iot-service-providers#smart-healthcare">Smart Healthcare</a></li>
+                                                <li><a href="/iot-service-providers#connected-devices">Connected Devices</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- AI -->
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold" href="/ai-development-company">Artificial Intelligence</a>
+                                            </h5>
+                                            <ul>
+                                                <li><a href="/ai-development-company#custom-ai-solutions">Custom AI Development</a></li>
+                                                <li><a href="/ai-development-company#machine-learning">Machine Learning Development</a></li>
+                                                <li><a href="/ai-development-company#generativeai">Generative AI</a></li>
+                                                <li><a href="/ai-development-company#ai-deployment">AI Integration and Deployment</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <li class="nav-item border_b dropdown pb-2 mb-2 mb-lg-0 position-relative">
+                                <!-- Technologies link (always redirects) -->
+                                <a class="d-inline-block fw-semibold nav-link active custom-fs-18" href="/technologies/">
+                                    Technologies
+                                </a>
+
+                                <!-- Mobile‐only arrow at the far right, inline with Technologies -->
+                                <span class="d-lg-none mobile-arrow-icon"
+                                      data-bs-toggle="dropdown"
+                                      aria-expanded="false">
+                                    <img loading="lazy" src="~/assets/images/imagenew/arrow-up-black.svg"
+                                         alt="toggle"
+                                         class="arrow-icon-img"
+                                         width="20"
+                                         height="20" />
+                                </span>
+
+                                <!-- Decorative red square -->
+                                <div class="red-square-box"></div>
+
+                                <!-- Mega-menu dropdown -->
+                                <div class="dropdown-menu sub_menu w-100 bg-white p-3 p-lg-5 pt-lg-5">
+                                    <div class="row flex-wrap w-100 row-gap-3">
+                                        <!-- Front End -->
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold" href="#">Front End</a>
+                                            </h5>
+                                            <ul>
+                                                <li><a href="/angular-development-company/">Angular</a></li>
+                                                <li><a href="/reactjs-development-services/">ReactJs</a></li>
+                                                <li><a href="/vuejs-development-company/">Vue</a></li>
+                                                <li><a href="/typescript-web-development/">TypeScript</a></li>
+                                                <li><a href="/html5-development-services/">HTML 5</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Backend -->
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold" href="#">Backend</a>
+                                            </h5>
+                                            <ul>
+                                                <li><a href="/dot-net-development-company/">.NET</a></li>
+                                                <li><a href="/java-development-company/">Java</a></li>
+                                                <li><a href="/php-development-company/">PHP</a></li>
+                                                <li><a href="/nodejs-development-company/">Node</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Mobile -->
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold" href="#">Mobile</a>
+                                            </h5>
+                                            <ul>
+                                                <li><a href="/ios-app-development-services/">iOS</a></li>
+                                                <li><a href="/android-app-development-company/">Android</a></li>
+                                                <li><a href="/react-native-app-development-company/">React Native</a></li>
+                                                <li><a href="/flutter-app-development-company/">Flutter</a></li>
+                                                <li><a href="/ionic-app-development-company/">Ionic</a></li>
+                                                <li><a href="/xamarin-development-company/">Xamarin</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Infra and DevOps -->
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold" href="#">Infra and DevOps</a>
+                                            </h5>
+                                            <ul>
+                                                <li><a href="/aws-development-services/">AWS</a></li>
+                                                <li><a href="/google-cloud-platform-services/">Google Cloud</a></li>
+                                                <li><a href="/microsoft-azure-devops/">Azure</a></li>
+                                                <li><a href="/selenium-automation-testing-services/">Selenium</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Database -->
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold" href="#">Database</a>
+                                            </h5>
+                                            <ul>
+                                                <li><a href="/microsoft-sql-server-integration-services/">MS SQL</a></li>
+                                                <li><a href="/mysql-development-company/">MySQL</a></li>
+                                                <li><a href="/postgresql-database-management/">PostgreSQL</a></li>
+                                                <li><a href="/firebase-development-company/">Firebase</a></li>
+                                                <li><a href="/mongodb-development-services/">MongoDB</a></li>
+                                                <li><a href="/redis-database-development-company/">Redis</a></li>
+                                                <li><a href="/microsoft-azure-cosmos-db/">Azure Cosmos DB</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="nav-item border_b dropdown pb-2 mb-2 mb-lg-0 position-relative">
+                                <!-- Hire Resources link -->
+                                <a class="d-inline-block fw-semibold nav-link active custom-fs-18" href="#">
+                                    Hire resources
+                                </a>
+
+                                <!-- Mobile-only arrow -->
+                                <span class="d-lg-none mobile-arrow-icon" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img loading="lazy" src="~/assets/images/imagenew/arrow-up-black.svg" alt="toggle" class="arrow-icon-img" width="20" height="20" />
+                                </span>
+
+                                <!-- Decorative red square -->
+                                <div class="red-square-box"></div>
+
+                                <!-- Dropdown menu -->
+                                <div class="dropdown-menu hire_box w-100 bg-white p-3 p-lg-3 pt-lg-3">
+                                    <h5 class="mb-0 mb-md-2">
+                                        <a class="text_dark fw-semibold" href="#">Hire Skilled Resources</a>
+                                    </h5>
+                                    <ul>
+                                        <li>
+                                            <a href="/hire-qa-automation-tester/">Hire Automation Tester</a>
+                                        </li>
+                                        <li>
+                                            <a href="/hire-dot-net-developers/">Hire .NET Developers</a>
+                                        </li>
+                                        <li>
+                                            <a href="/hire-ui-ux-designers/">Hire UI/UX Designers</a>
+                                        </li>
+                                        <li class="custom-padding-2">
+                                            <a href="/hire-ai-developers/">Hire AI Developers</a>
+                                        </li>
+                                        <li class="custom-padding-2">
+                                            <a href="/hire-angular-developers/">Hire Angular Developers</a>
+                                        </li>
+                                        <li class="custom-padding-2">
+                                            <a href="/hire-reactjs-developers/">Hire ReactJS Developers</a>
+                                        </li>
+                                        <li class="custom-padding-2">
+                                            <a href="/hire-ml-developers/">Hire Machine Learning Developers</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="nav-item border_b dropdown pb-2 mb-2 mb-lg-0 position-relative">
+                                <!-- Company link -->
+                                <a class="d-inline-block fw-semibold nav-link active custom-fs-18" href="#">
+                                    Company
+                                </a>
+
+                                <!-- Mobile-only arrow -->
+                                <span class="d-lg-none mobile-arrow-icon" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img loading="lazy" src="~/assets/images/imagenew/arrow-up-black.svg" alt="toggle" class="arrow-icon-img" width="20" height="20" />
+                                </span>
+
+                                <!-- Decorative red square -->
+                                <div class="red-square-box"></div>
+
+                                <!-- Dropdown menu -->
+                                <div class="dropdown-menu company_box w-100 bg-white p-3 p-lg-3 pt-lg-3">
+                                    <div class="row flex-wrap w-100 row-gap-3">
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold" href="/about-us/">About Us</a>
+                                            </h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="/about-us/">About Avidclan Technologies</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold" href="/career/">Careers</a>
+                                            </h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="/career#career-section/">Current Openings</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/life-at-avidclan/">Life at Avidclan Technologies</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <h5 class="mb-0 mb-md-2">
+                                                <a class="text_dark fw-semibold" href="">Resources</a>
+                                            </h5>
+                                            <ul>
+                                                <li><a href="/blog/">Blogs</a></li>
+                                                <li><a href="/case-studies/">Case Studies</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <li class="nav-item border_b pb-2 mb-2 mb-lg-0">
+                                <a class="fw-semibold nav-link active custom-fs-18" aria-current="page"
+                                   href="/portfolio/">Portfolio</a>
+                            </li>
+
+                            <li class="nav-item border_b pb-2 mb-2 mb-lg-0 d-lg-none">
+                                <a class="fw-semibold nav-link active" href="/contact-us/">Contact Us</a>
+                            </li>
+
+
+                            <li class="nav-item d-none d-lg-block ms-lg-2">
+                                <a class="nav-link btn btn-primary fw-bold rounded-5 custom-btn-padding shadow-none"
+                                   href="/contact-us/">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             aria-hidden="true" role="img" class="iconify iconify--ion me-2" width="25"
+                                             height="25" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"
+                                             data-icon="ion:call-sharp" data-height="25">
+                                            <path fill="currentColor"
+                                                  d="M478.94 370.14c-5.22-5.56-23.65-22-57.53-43.75c-34.13-21.94-59.3-35.62-66.52-38.81a3.83 3.83 0 0 0-3.92.49c-11.63 9.07-31.21 25.73-32.26 26.63c-6.78 5.81-6.78 5.81-12.33 4c-9.76-3.2-40.08-19.3-66.5-45.78s-43.35-57.55-46.55-67.3c-1.83-5.56-1.83-5.56 4-12.34c.9-1.05 17.57-20.63 26.64-32.25a3.83 3.83 0 0 0 .49-3.92c-3.19-7.23-16.87-32.39-38.81-66.52c-21.78-33.87-38.2-52.3-43.76-57.52a3.9 3.9 0 0 0-3.89-.87a322.4 322.4 0 0 0-56 25.45A338 338 0 0 0 33.35 92a3.83 3.83 0 0 0-1.26 3.74c2.09 9.74 12.08 50.4 43.08 106.72c31.63 57.48 53.55 86.93 100 133.22S252 405.21 309.54 436.84c56.32 31 97 41 106.72 43.07a3.86 3.86 0 0 0 3.75-1.26A337.7 337.7 0 0 0 454.35 430a322.7 322.7 0 0 0 25.45-56a3.9 3.9 0 0 0-.86-3.86">
+                                            </path>
+                                        </svg> Contact Us
+                                    </span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        </header>
+        @RenderBody()
+    </div>
+    @*<button id="backToTop" class="back-to-top position-fixed background-primary rounded-circle p-2" style="z-index:99;">
+            <img loading="lazy" src="~/assets/images/imagenew/arrow-up (1).svg" alt="Back to Top" class="back-to-top-img" />
+        </button>*@
+    <script defer src="~/assets/js/swiper-bundle-min.js"></script>
+    <script defer src="/assets/js/iconify.min.js" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            new Swiper(".cinkes_testimonial_spage_active", {
+                loop: true,
+                navigation: {
+                    nextEl: ".custom-swiper-next",
+                    prevEl: ".custom-swiper-prev"
+                },
+                slidesPerView: 1, // default for mobile
+                spaceBetween: 30, // spacing between slides
+                breakpoints: {
+                    768: {
+                        slidesPerView: 2 // show 2 slides on tablet & up
+                    },
+                    1200: {
+                        slidesPerView: 2 // keep 2 even on large screens
+                    }
+                }
+            });
+        });
+        // Mobile menu toggle
+        document.getElementById("menuToggle")?.addEventListener("click", () => {
+            let menuIcon = document.getElementById("menuIcon");
+            if (menuIcon) {
+                menuIcon.src = menuIcon.src.includes("menu.png")
+                    ? "/assets/images/imagenew/close.png"
+                    : "/assets/images/imagenew/menu.png";
+            }
+        });
+
+    </script>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+
+
+            const navbarCollapse = document.getElementById('navbarSupportedContent');
+            if (navbarCollapse) {
+                navbarCollapse.addEventListener('show.bs.collapse', () => {
+                    document.body.classList.add('mobile-menu-open');
+                });
+                navbarCollapse.addEventListener('hide.bs.collapse', () => {
+                    document.body.classList.remove('mobile-menu-open');
+                });
+
+                const mobileArrows = document.querySelectorAll('.mobile-arrow-icon');
+                mobileArrows.forEach(arrow => {
+                    arrow.addEventListener('click', function (e) {
+                        const img = this.querySelector('.arrow-icon-img');
+                        if (img) {
+                            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                            img.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+                            img.style.transition = 'transform 0.3s ease';
+                        }
+                    });
+                    const parentDropdown = arrow.closest('.dropdown');
+                    if (parentDropdown) {
+                        parentDropdown.addEventListener('hide.bs.dropdown', () => {
+                            const img = arrow.querySelector('.arrow-icon-img');
+                            if (img) img.style.transform = 'rotate(0deg)';
+                        });
+                    }
+                });
+            }
+
+            let filterButtons = document.querySelectorAll(".filter-tabs .filter");
+            let techItems = document.querySelectorAll(".items-container .masonry-item");
+
+            if (filterButtons.length > 0 && techItems.length > 0) {
+                filterButtons.forEach((button) => {
+                    button.addEventListener("click", function () {
+                        filterButtons.forEach((btn) => btn.classList.remove("active"));
+                        this.classList.add("active");
+                        let filterValue = this.getAttribute("data-filter");
+                        techItems.forEach((item) => {
+                            if (item.classList.contains(filterValue.substring(1))) {
+                                item.style.display = "block";
+                            } else {
+                                item.style.display = "none";
+                            }
+                        });
+                    });
+                });
+                const initialActiveFilter = document.querySelector(".filter-tabs .filter.active");
+                if (initialActiveFilter) {
+                    initialActiveFilter.click();
+                }
+            }
+
+
+
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+
+        });
+    </script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
+
+

@@ -27,6 +27,30 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
-
+        [Route("hire-ai-developers/")]
+        public ActionResult HireAIDevelopers()
+        {
+            return View();
+        }
+        [Route("hire-Angular-developers/")]
+        public ActionResult HireAngularDevelopers()
+        {
+            return View();
+        }
+        [Route("hire-reactjs-developers/")]
+        public ActionResult HireReactJSDevelopers()
+        {
+            return View();
+        }
+        [Route("hire-ml-developers/")]
+        public ActionResult HireMachineLearningDevelopers()
+        {
+            return View();
+        }
+        [Route("hire-Software-developers/")]
+        public ActionResult HireSoftwareDevelopers()
+        {
+            return View();
+        }
     }
 }

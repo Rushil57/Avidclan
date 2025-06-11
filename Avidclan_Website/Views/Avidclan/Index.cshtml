@@ -5,6 +5,7 @@
     var id = "@id";
     var graph = "@graph";
     Layout = "~/Views/Shared/_Layoutonlyhome.cshtml";
+    Layout = Layout.Trim();
 }
 
 @section AdditionalMeta
@@ -131,7 +132,6 @@
   ]
 }
     </script>
-
 }
 
 <!--start Banner Section-->
@@ -146,10 +146,9 @@
                         </h1>
                         <p class="text fs-5">
                             Avidclan Technologies is a renowned and leading web and mobile app development company
-                            with a vision to fulfill
-                            business requirements using innovative solutions.We assist our clients in a way that
-                            they can
-                            provide a superior digital experience for their clients worldwide.
+                            with a vision to fulfill business requirements using innovative solutions. We assist
+                            our clients in a way that they can provide a superior digital experience for their
+                            clients worldwide.
                         </p>
                         <div class="btn-box mt-3">
                             <a href="~/services#project_inquiry_form"
@@ -190,7 +189,7 @@
             <!-- First Column -->
             <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                 <div class="d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center bg-white custom-border-primary">
-                    <img src="~/assets/images/imagenew/clients-ic.svg" alt="Clients Served Globally" width="70" height="70" loading="lazy">
+                    <img loading="lazy" src="~/assets/images/imagenew/clients-ic.svg" alt="Clients Served Globally" width="70" height="70">
                     <div class="fs-5 fw-bold">100+</div>
                     <p class="fs-5 text-body-tertiary">Clients Served Globally</p>
                 </div>
@@ -199,7 +198,7 @@
             <!-- Second Column -->
             <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                 <div class="d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center custom-bg custom-border-primary">
-                    <img src="~/assets/images/imagenew/delivered-ic.svg" alt="Projects Accomplished" width="70" height="70" loading="lazy" />
+                    <img loading="lazy" src="~/assets/images/imagenew/delivered-ic.svg" alt="Projects Accomplished" width="70" height="70" />
                     <div class="fs-5 fw-bold">150+</div>
                     <p class="fs-5 text-body-tertiary">Projects Accomplished</p>
                 </div>
@@ -208,7 +207,7 @@
             <!-- Third Column -->
             <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                 <div class="d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center bg-white custom-border-primary">
-                    <img src="~/assets/images/imagenew/developers-ic.svg" alt="Team Strength" width="70" height="70" loading="lazy" />
+                    <img loading="lazy" src="~/assets/images/imagenew/developers-ic.svg" alt="Team Strength" width="70" height="70" />
                     <div class="fs-5 fw-bold">30+</div>
                     <p class="fs-5 text-body-tertiary">Team Strength</p>
                 </div>
@@ -217,14 +216,15 @@
             <!-- Fourth Column -->
             <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                 <div class="d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center custom-bg custom-border-primary">
-                    <img src="~/assets/images/imagenew/satisfaction-rate-ic.svg" alt="Success Ratio" width="70" height="70" loading="lazy" />
-                    <div class="fs-5 fw-bold">98+</div>
+                    <img loading="lazy" src="~/assets/images/imagenew/satisfaction-rate-ic.svg" alt="Success Ratio" width="70" height="70" />
+                    <div class="fs-5 fw-bold">99%</div>
                     <p class="fs-5 text-body-tertiary">Success Ratio</p>
                 </div>
             </div>
         </div>
 
     </div>
+</section>
 </section>
 
 <!-- About Section -->
@@ -236,7 +236,7 @@
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <p class="fw-semibold d-inline-block mb-3 primary-color fs-5">
-                    ABOUT US<img src="~/assets/images/imagenew/horizontal-line.png"
+                    ABOUT US<img loading="lazy" src="~/assets/images/imagenew/horizontal-line.png"
                                  class="ms-3 responsive-horizontal-line" height="3" width="45" alt="">
                 </p>
                 <div class="sec-title mb-3">
@@ -271,74 +271,66 @@
 </section>
 <!-- About Section end-->
 <!-- badges section -->
-<section class=" p-lg-5 p-3">
+<section class="p-lg-5 p-3">
     <div class="container text-center">
-        <!-- row -->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="text-center mb-3 mb-md-5">
                     <div class="line-heading d-flex align-items-center justify-content-center gap-3 mb-3">
                         <h5 class="primary-color fw-semibold d-inline-block text-uppercase mb-0">Trusted By</h5>
                     </div>
-                    <div class=" mb-4">
+                    <div class="mb-4">
                         <h2 class="fs-1 fw-custom pb-2 pb-md-5">Industry Recognitions and Awards</h2>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- row -->
+
         <div class="owl-carousel">
             <div class="carousel_box px-sm-4 px-2 mx-auto">
-                <a href="https://www.ambitionbox.com/overview/avidclan-technologies-overview?utm_source=employer-dashboard&utm_campaign=avidclan-technologies&utm_medium=badges" target="_blank">
+                <a href="https://www.ambitionbox.com/overview/avidclan-technologies-overview" target="_blank">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/Avidclan_Technologies_Rating_Badge_6_on_AmbitionBox.png" />
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/Avidclan_Technologies_Rating_Badge_6_on_AmbitionBox.png" alt="Badge on AmbitionBox" />
                     </div>
                 </a>
-
                 <div class="line_bottom my-3 mx-auto background-primary"></div>
-
                 <p>Follow Us on AmbitionBox</p>
             </div>
+
             <a href="https://www.designrush.com/agency/profile/avidclan" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/Design_Rush_Avidclan.png">
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/Design_Rush_Avidclan.png" alt="Company by Design Rush">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
-                    <p>
-                        Top Software Development Company by Design Rush
-                    </p>
+                    <p>Top Software Development Company by Design Rush</p>
                 </div>
             </a>
 
             <a href="https://itrate.co/developers/all" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" class="w-100 h-100" src="https://itrate.co/storage/mediakit/12-original.png?t=1652160380">
+                        <img loading="lazy" width="120" height="125" src="/assets/images/badges/itrate_top.png" alt="iTRate Development Company">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
-                    <p>
-                        Top Custom Software Development Company
-                    </p>
+                    <p>Top Custom Software Development Company</p>
                 </div>
             </a>
-
+          
             <a href="https://clutch.co/profile/avidclan-technologies" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/top_clutch.co_application_management__support_company_ahmedabad_2024.png">
+                        <img loading="lazy" width="120" height="125" src="/assets/images/badges/top_clutch.co_application_management__support_company_ahmedabad_2024.png" alt="Clutch Management Company 2024">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
-                    <p>
-                        Clutch's Top Application Management Company 2024
-                    </p>
+                    <p>Clutch's Top Application Management Company 2024</p>
                 </div>
             </a>
 
             <a href="https://techreviewer.co/companies/avidclan-technologies" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" class="w-100 h-100" src="assets/images/badges/techReview-web-developers.svg">
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/techReview-web-developers.svg" alt="TechReviewer Web Badge">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
                     <p>Top Web Design Agency 2024</p>
@@ -348,20 +340,17 @@
             <a href="https://www.topdevelopers.co/profile/avidclan-technologies" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" class="w-100 h-100" src="https://www.topdevelopers.co/assets/badges/app-2023/Mobile-App/Global/badge-top-mobile-app-developers-2023.png">
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/badge_top_mobile_app.png" alt="Mobile App Developers">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
-                    <p>
-                        Top Mobile App Developers 2023
-
-                    </p>
+                    <p>Top Mobile App Developers 2023</p>
                 </div>
             </a>
 
             <a href="https://www.pandia.com/us/sterling-va/web-design" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" class="w-100 h-100" src="https://content.pandia.com/badges/webdesign-badge5.png">
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/webdesign_badge.png" alt="Web Design Badge">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
                     <p>Top Web Design Agency 2024</p>
@@ -371,68 +360,56 @@
             <a href="https://fixthephoto.com/best-android-app-developers.html#avidclan" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" class="w-100 h-100" src="~/assets/images/badges/Fix-The-Photo-Badge.png">
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/Fix-The-Photo-Badge.png" alt="Software Developers 2025">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
-                    <p>
-                        Top Software Developers 2025 by FixThePhoto
-                    </p>
+                    <p>Top Software Developers 2025 by FixThePhoto</p>
                 </div>
             </a>
 
             <a href="https://softwareoutsourcing.com/?utm_id=so_644a362f88129" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" class="w-100 h-100" src="https://softwareoutsourcing.com/wp-content/uploads/Software-Outsourcing-Journal.png">
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/Software_Outsourcing_Journal.png" alt="Development Companies">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
-                    <p>
-                        Top Offshore Software Development Companies in India
-                    </p>
+                    <p>Top Offshore Software Development Companies in India</p>
                 </div>
             </a>
 
-            <a href="https://selectedfirms.co/companies/software-development?utm_source=avidclan_technologies&utm_medium=badge&utm_campaign=software_development&utm_term=top_software_development_company&utm_content=agency_badge&utm_marketing_tactic=badge_organic" target="_blank">
+            <a href="https://selectedfirms.co/companies/software-development" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" class="w-100 h-100" src="https://selectedfirms.co/public/assets/frontend/img/services/round/software-development.png">
+                        <img loading="lazy" width="120" height="125" src="/assets/images/badges/software-development.png" alt="Development Company 2024">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
-                    <p>
-                        Top Software Development Company 2024
-                    </p>
+                    <p>Top Software Development Company 2024</p>
                 </div>
             </a>
 
             <a href="https://www.sortlist.com/agency/avidclan-technologies" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" class="w-100 h-100" src="https://core.sortlist.com//_/apps/core/images/badges-en/badge-flag-black-dark-xl.svg">
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/badge-flag-black-dark-xl.svg" alt="Agency Badge 2024">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
-                    <p>
-                        Sortlist Verified Agency 2024
-                    </p>
+                    <p>Sortlist Verified Agency 2024</p>
                 </div>
             </a>
+
             <a href="https://technewscast.io/web-development/" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" class="w-100 h-100" src="https://www.avidclan.com/assets/images/badges/Top_Web_Development_Company_2025_by_TNC.jpg">
+                        <img loading="lazy" width="120" height="125" src="/assets/images/badges/Top_Web_Development_Company_2025.jpg" alt="Tech News Cast">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
-                    <p>
-
-                        Top Web Development Company 2025 by TNC
-
-                    </p>
+                    <p>Top Web Development Company 2025 by TNC</p>
                 </div>
             </a>
-
-
         </div>
     </div>
 </section>
+
 <!-- badges section end -->
 <!--  Process Section -->
 <section class="p-3 p-md-5">
@@ -556,7 +533,7 @@
                         <div>
                             <span><b class="fs-4">Have an idea?</b></span> Do you need some help with it? Avidclan
                             Technologies would love
-                            to help you! Kindly click on ‘Contact Us’ to reach us and share your query.
+                            to help you! Kindly click on "Contact Us" to reach us and share your query.
                         </div>
                     </div>
                 </div>
@@ -624,7 +601,7 @@
                 <div class="service-block h-100 mb-5">
                     <div class="inner-box bg-white py-3 px-5 rounded-3 h-100 d-flex flex-column">
                         <div class="image-box text-center">
-                            <img class="w-auto opacity-100 m-auto"
+                            <img loading="lazy" class="w-auto opacity-100 m-auto"
                                  src="~/assets/images/imagenew/web-dev.svg"
                                  data-src="~/assets/images/resource/image-31.jpg"
                                  alt="Web Development Service Company"
@@ -643,7 +620,7 @@
                             <!-- Wrapper for button: pushes itself down and centers the button -->
                             <div class="mt-auto text-center">
                                 <!-- Added pt-2 for spacing -->
-                                <a href="~/web-development-services/"
+                                <a href="~/web-development-company/"
                                    class="btn btn-primary fw-bold rounded-5 custom-btn-padding shadow-none btn_position">
                                     <!-- Removed mt-auto from button -->
                                     <span>
@@ -679,7 +656,7 @@
                             </div>
                             <!-- Wrapper for button -->
                             <div class="mt-auto text-center">
-                                <a href="~/design/"
+                                <a href="~/ui-ux-design-company/"
                                    class="btn btn-primary fw-bold rounded-5 custom-btn-padding shadow-none btn_position">
                                     <span>
                                         Learn About
@@ -712,7 +689,7 @@
                             </div>
                             <!-- Wrapper for button -->
                             <div class="mt-auto text-center">
-                                <a href="~/mobile-application-development/"
+                                <a href="~/mobile-app-development-company/"
                                    class="btn btn-primary fw-bold rounded-5 custom-btn-padding shadow-none btn_position">
                                     <span>
                                         Learn About
@@ -746,7 +723,7 @@
                             </div>
                             <!-- Wrapper for button -->
                             <div class="mt-auto text-center">
-                                <a href="~/internet-marketing-services/"
+                                <a href="~/digital-marketing-services/"
                                    class="btn btn-primary fw-bold rounded-5 custom-btn-padding shadow-none btn_position">
                                     <span>
                                         Learn About
@@ -840,7 +817,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="text-center mb-3 mb-md-5">
                     <div class="line-heading d-flex align-items-center justify-content-center gap-3 mb-3">
-                        <h5 class="primary-color fw-semibold d-inline-block text-uppercase mb-0">NDUSTRIES</h5>
+                        <h5 class="primary-color fw-semibold d-inline-block text-uppercase mb-0">INDUSTRIES</h5>
                     </div>
                     <div class="sec-title">
                         <h2 class="fs-1 fw-custom pb-2">Industries We Serve</h2>
@@ -857,7 +834,7 @@
                 <div class="inner-box  custom-bg rounded-3 mb-4 h-100">
                     <div class=" p-4 rounded text-center content-box">
                         <div class="icon icon-padding">
-                            <img src="~/assets/images/imagenew/POS.svg" class="img-fluid" alt="POS-and-Retail" width="346" height="220" loading="lazy" />
+                            <img loading="lazy" src="~/assets/images/imagenew/POS.svg" class="img-fluid" alt="POS-and-Retail" width="346" height="220" />
                         </div>
                         <h4 class="fs-4 mb-3 fw-semibold">POS &amp; Retail</h4>
                         <p class="text mb-0">
@@ -871,7 +848,7 @@
                 <div class="inner-box  custom-bg rounded-3 mb-4 h-100">
                     <div class=" p-4 rounded text-center content-box">
                         <div class="icon icon-padding">
-                            <img src="~/assets/images/imagenew/healthcare.svg" alt="life-and-healthcare" class="img-fluid" width="330" height="220" loading="lazy" />
+                            <img loading="lazy" src="~/assets/images/imagenew/healthcare.svg" alt="life-and-healthcare" class="img-fluid" width="330" height="220" />
                         </div>
                         <h4 class="fs-4 mb-3 fw-semibold">Life & Health Care</h4>
                         <p class="text mb-0">
@@ -885,7 +862,7 @@
                 <div class="inner-box  custom-bg rounded-3 mb-4 h-100">
                     <div class=" p-4 rounded text-center content-box">
                         <div class="icon icon-padding">
-                            <img src="~/assets/images/imagenew/petroleum.svg" alt="petroleum-industry" class="img-fluid" width="351" height="219" loading="lazy" />
+                            <img loading="lazy" src="~/assets/images/imagenew/petroleum.svg" alt="petroleum-industry" class="img-fluid" width="351" height="219" />
                         </div>
                         <h4 class="fs-4 mb-3 fw-semibold">Petroleum Industry</h4>
                         <p class="text mb-0">
@@ -899,7 +876,7 @@
                 <div class="inner-box  custom-bg rounded-3 mb-4 h-100">
                     <div class=" p-4 rounded text-center content-box">
                         <div class="icon icon-padding">
-                            <img src="~/assets/images/imagenew/ecommerce.svg" alt="ecommerce-development" class="img-fluid" width="311" height="220" loading="lazy" />
+                            <img loading="lazy" src="~/assets/images/imagenew/ecommerce.svg" alt="ecommerce-development" class="img-fluid" width="311" height="220" />
                         </div>
                         <h4 class="fs-4 mb-3 fw-semibold">ECommerce</h4>
                         <p class="text mb-0">
@@ -913,7 +890,7 @@
                 <div class="inner-box  custom-bg rounded-3 mb-4 h-100">
                     <div class=" p-4 rounded text-center content-box">
                         <div class="icon icon-padding">
-                            <img src="~/assets/images/imagenew/finance.svg" alt="finance-and-insurance-market" class="img-fluid" width="285" height="220" loading="lazy" />
+                            <img loading="lazy" src="~/assets/images/imagenew/finance.svg" alt="finance-and-insurance-market" class="img-fluid" width="285" height="220" />
                         </div>
                         <h4 class="fs-4 mb-3 fw-semibold">Finance & Insurance Market</h4>
                         <p class="text mb-0">
@@ -927,7 +904,7 @@
                 <div class="inner-box  custom-bg rounded-3 mb-4 h-100">
                     <div class=" p-4 rounded text-center content-box">
                         <div class="icon icon-padding">
-                            <img src="~/assets/images/imagenew/education.svg" alt="education-and-training" class="img-fluid" width="247" height="220" loading="lazy" />
+                            <img loading="lazy" src="~/assets/images/imagenew/education.svg" alt="education-and-training" class="img-fluid" width="247" height="220" />
                         </div>
                         <h4 class="fs-4 mb-3 fw-semibold">Education & Training</h4>
                         <p class="text mb-0">
@@ -1041,7 +1018,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/java-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" src="~/assets/images/imagenew/java.svg" alt="java-jdk-development">
+                            <img loading="lazy" src="~/assets/images/imagenew/Java-Light_logo.svg" alt="java-jdk-development">
                         </div>
                         <p class="text-decoration-none mt-2">Java</p>
                     </a>
@@ -1051,7 +1028,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/php-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" src="~/assets/images/imagenew/php.svg" alt="php-development-company">
+                            <img loading="lazy" src="~/assets/images/icons/PHP_logo_1.svg" alt="php-development-company">
                         </div>
                         <p class="text-decoration-none mt-2">PHP</p>
                     </a>
@@ -1205,10 +1182,11 @@
     </div>
 </section>
 
-<section class="p-3 p-md-5">
+
+<section class="testimonial-section-two">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="col-xl-12">
                 <div class="text-center mb-3 mb-md-5">
                     <div class="line-heading d-flex align-items-center justify-content-center gap-3 mb-3">
                         <h5 class="primary-color fw-semibold d-inline-block text-uppercase mb-0">TESTIMONIAL</h5>
@@ -1219,175 +1197,141 @@
                 </div>
             </div>
         </div>
-
-        <div class="bg-white rounded cinkes_testimonial_spage_wrapper p-2 p-md-5">
-            <div class="testimonial-slider">
-                <div class="testimonial-item">
-                    <p class="mb-lg-5 mb-2">
-                        Skillfully accomplished the complex development tasks. Team was available
-                        for discussion on changes or requests. It was a great pleasure to work
-                        with the Avidclan Technologies team.
-                    </p>
-                    <div class="d-flex flex-lg-row flex-column align-items-center gap-3 text-center text-lg-start">
-                        <!-- Image -->
-                        <img loading="lazy" width="85" height="85" class=" mt-3 rounded-circle" src="~/assets/images/user/1.jpg" />
-
-                        <!-- Info block -->
-                        <div class="w-100">
-                            <!-- For mobile: h5 and p side by side; for desktop: stacked -->
-                            <div class="d-flex flex-row flex-lg-column align-items-center align-items-lg-start justify-content-center gap-1">
-                                <h5 class="fw-semibold mb-0">Darpon K.</h5>
-                                <p class="text-gray mb-0 ms-0 ms-lg-0">CEO & Founder</p>
+        <div class="cinkes_testimonial_spage_wrapper">
+            <div class="swiper-container cinkes_testimonial_spage_active">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide testimonial-item">
+                        <div class="cinkes_testimonial_spage_content">
+                            <p class="cinkes_testimonial_spage_message">
+                                Skillfuly accomplished the complex development tasks. Team was available for discussion on changes
+                                or requests. It was a great pleasure to work with the Avidclan Technologies team.
+                            </p>
+                            <div class="cinkes_testimonial_spage_author mt-35">
+                                <span class="cinkes_testimonial_spage_author_img">
+                                    <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/1.jpg" alt="Darpon K." />
+                                </span>
+                                <div class="cinkes_testimonial_spage_author_text">
+                                    <b class="cinkes_testimonial_spage_author_name">Darpon K.</b><br />
+                                    <span class="cinkes_testimonial_spage_author_designation">CEO & Founder</span>
+                                    <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                    </div>
+                                </div>
                             </div>
-
-
-                            <!-- Stars -->
-                            <div class="d-flex justify-content-center justify-content-lg-start mt-2 gap-1">
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                        </div>
+                    </div>
+                    <div class="swiper-slide testimonial-item">
+                        <div class="cinkes_testimonial_spage_content">
+                            <p class="cinkes_testimonial_spage_message">
+                                We have worked with the team many times over different projects in the last few years, and always
+                                value having them working with us. They are great communicators and the quality of work is
+                                excellent.
+                            </p>
+                            <div class="cinkes_testimonial_spage_author mt-35">
+                                <span class="cinkes_testimonial_spage_author_img">
+                                    <img loading="lazy" width="85" height="85" class="  rounded-circle" src="~/assets/images/user/2.jpg" alt="Tom A." />
+                                </span>
+                                <div class="cinkes_testimonial_spage_author_text">
+                                    <b class="cinkes_testimonial_spage_author_name">Tom A.</b><br />
+                                    <span class="cinkes_testimonial_spage_author_designation">Technical Director</span>
+                                    <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide testimonial-item">
+                        <div class="cinkes_testimonial_spage_content">
+                            <p class="cinkes_testimonial_spage_message">
+                                Avidclan Technologies did a splendid job building our UI and frontend exactly the way we wanted. They
+                                understood the requirements very well and delivered well ahead of time.
+                            </p>
+                            <div class="cinkes_testimonial_spage_author mt-35">
+                                <span class="cinkes_testimonial_spage_author_img">
+                                    <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/3.jpg" alt="Gregoire P." />
+                                </span>
+                                <div class="cinkes_testimonial_spage_author_text">
+                                    <b class="cinkes_testimonial_spage_author_name">Gregoire P.</b><br />
+                                    <span class="cinkes_testimonial_spage_author_designation">Managing director</span>
+                                    <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide testimonial-item">
+                        <div class="cinkes_testimonial_spage_content">
+                            <p class="cinkes_testimonial_spage_message">
+                                Team communicates very well and adheres to deadlines, even getting work done early. They take time
+                                to perfect their work and made sure that we were fully satisfied with the quality of work.
+                            </p>
+                            <div class="cinkes_testimonial_spage_author mt-35">
+                                <span class="cinkes_testimonial_spage_author_img">
+                                    <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/4.jpg" alt="Nicolas P." />
+                                </span>
+                                <div class="cinkes_testimonial_spage_author_text">
+                                    <b class="cinkes_testimonial_spage_author_name">Nicolas P.</b><br />
+                                    <span class="cinkes_testimonial_spage_author_designation">Web Designer</span>
+                                    <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide testimonial-item">
+                        <div class="cinkes_testimonial_spage_content">
+                            <p class="cinkes_testimonial_spage_message">
+                                Fantastic skills and the development team has got a great eye for detail and accuracy and they
+                                were very easy to work with.
+                            </p>
+                            <div class="cinkes_testimonial_spage_author mt-35">
+                                <span class="cinkes_testimonial_spage_author_img">
+                                    <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/5.jpg" alt="Sanuka S." />
+                                </span>
+                                <div class="cinkes_testimonial_spage_author_text">
+                                    <b class="cinkes_testimonial_spage_author_name">Sanuka S.</b><br />
+                                    <span class="cinkes_testimonial_spage_author_designation">Sales Manager</span>
+                                    <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-
-
-                <div class="testimonial-item">
-                    <p class="mb-lg-5 mb-2">
-                        We have worked with the team many times over different projects in the last few years, and always
-                        value having them working with us. They are great communicators and the quality of work is
-                        excellent.
-                    </p>
-                    <div class="d-flex flex-lg-row flex-column align-items-center gap-3 text-center text-lg-start">
-                        <!-- Image -->
-                        <img loading="lazy" width="85" height="85" class="mt-3 rounded-circle" src="~/assets/images/user/2.jpg" />
-
-                        <!-- Info block -->
-                        <div class="w-100">
-                            <!-- For mobile: h5 and p side by side; for desktop: stacked -->
-                            <div class="d-flex flex-row flex-lg-column align-items-center align-items-lg-start justify-content-center gap-1">
-                                <h5 class="fw-semibold mb-0">Tom A.</h5>
-                                <p class="text-gray mb-0 ms-0 ms-lg-0">Technical Director</p>
-                            </div>
-
-                            <!-- Stars -->
-                            <div class="d-flex justify-content-center justify-content-lg-start mt-2 gap-1">
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-item">
-                    <p class="mb-lg-5 mb-2">
-                        Avidclan Technologies did a splendid job building our UI and frontend exactly the way we wanted. They
-                        understood the requirements very well and delivered well ahead of time.
-                    </p>
-                    <div class="d-flex flex-lg-row flex-column align-items-center gap-3 text-center text-lg-start">
-                        <!-- Image -->
-                        <img loading="lazy" width="85" height="85" class="mt-3 rounded-circle" src="~/assets/images/user/3.jpg" />
-
-                        <!-- Info block -->
-                        <div class="w-100">
-                            <!-- For mobile: h5 and p side by side; for desktop: stacked -->
-                            <div class="d-flex flex-row flex-lg-column align-items-center align-items-lg-start justify-content-center gap-1">
-                                <h5 class="fw-semibold mb-0">Grégoire P.</h5>
-                                <p class="text-gray mb-0 ms-0 ms-lg-0">Managing Director</p>
-                            </div>
-
-                            <!-- Stars -->
-                            <div class="d-flex justify-content-center justify-content-lg-start mt-2 gap-1">
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="testimonial-item">
-                    <p class="mb-lg-5 mb-2">
-                        Team communicates very well and adheres to deadlines, even getting work done early. They take time
-                        to perfect their work and made sure that we were fully satisfied with the quality of work.
-                    </p>
-                    <div class="d-flex flex-lg-row flex-column align-items-center gap-3 text-center text-lg-start">
-                        <!-- Image -->
-                        <img loading="lazy" width="85" height="85" class="mt-3 rounded-circle" src="~/assets/images/user/4.jpg" />
-
-                        <!-- Info block -->
-                        <div class="w-100">
-                            <!-- For mobile: h5 and p side by side; for desktop: stacked -->
-                            <div class="d-flex flex-row flex-lg-column align-items-center align-items-lg-start justify-content-center gap-1">
-                                <h5 class="fw-semibold mb-0">Nicolas P.</h5>
-                                <p class="text-gray mb-0 ms-0 ms-lg-0">Web Designer</p>
-                            </div>
-
-                            <!-- Stars -->
-                            <div class="d-flex justify-content-center justify-content-lg-start mt-2 gap-1">
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-item">
-                    <p class="mb-lg-5 mb-2">
-                        Fantastic skills and the development team has got a great eye for detail and accuracy and they
-                        were very easy to work with.
-                    </p>
-                    <div class="d-flex flex-lg-row flex-column align-items-center gap-3 text-center text-lg-start">
-                        <!-- Image -->
-                        <img loading="lazy" width="85" height="85" class="mt-3 rounded-circle" src="~/assets/images/user/5.jpg" />
-
-                        <!-- Info block -->
-                        <div class="w-100">
-                            <!-- For mobile: h5 and p side by side; for desktop: stacked -->
-                            <div class="d-flex flex-row flex-lg-column align-items-center align-items-lg-start justify-content-center gap-1">
-                                <h5 class="fw-semibold mb-0">Sanuka S.</h5>
-                                <p class="text-gray mb-0 ms-0 ms-lg-0">Sales Manager</p>
-                            </div>
-
-                            <!-- Stars -->
-                            <div class="d-flex justify-content-center justify-content-lg-start mt-2 gap-1">
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                <img src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
             <div class="slider-controls">
-                <button class="left-aroow-radius prev">❮</button>
-                <button class="right-aroow-radius next">❯</button>
+                <button class="custom-swiper-prev left-aroow-radius"><</button>
+                <button class="custom-swiper-next right-aroow-radius">></button>
             </div>
+
         </div>
-
-
-
     </div>
 </section>
 
-<style>
-</style>
 
 
 
@@ -1435,9 +1379,8 @@
 
 <script src="/assets/js/jquery.js"></script>
 <script src="~/assets/js/bootstrap.bundle.min.js"></script>
-<script src="~/assets/js/Avidclan/owl.carousel.min.js"></script>
 <script src="~/assets/js/swiper-bundle-min.min.js"></script>
-
+<script src="~/assets/js/Avidclan/owl.carousel.min.js"></script>
 <script>
     $('.owl-carousel').owlCarousel({
         loop: true,
@@ -1446,7 +1389,7 @@
         dots: true,
         navText: [
             '<img src="/assets/images/imagenew/chevron-left.svg" alt="Left" width="50">',
-            '<img src="/assets/images/imagenew/chevron-right.svg"" alt="Right" width="50">'
+            '<img src="/assets/images/imagenew/chevron-right.svg" alt="Right" width="50">'
         ],
         responsive: {
             0: {
@@ -1458,10 +1401,18 @@
             1200: {
                 items: 6
             }
-        }
+        },
+        onInitialized: addDotAriaLabels, // 🔄 Important
+        onTranslated: addDotAriaLabels    // 🔁 In case carousel re-renders
     });
 
+    function addDotAriaLabels() {
+        $('.owl-dot').each(function (index) {
+            $(this).attr('aria-label', 'Go to slide ' + (index + 1));
+        });
+    }
 </script>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -1489,6 +1440,8 @@
         });
     });
 </script>
+
+
 
 
 

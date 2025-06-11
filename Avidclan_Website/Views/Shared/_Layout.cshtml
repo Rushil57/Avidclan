@@ -9,7 +9,17 @@
     @RenderSection("AdditionalMeta", false)
 
     <meta name="msvalidate.01" content="C6EA7291CCD22012F734D3C6649F2F3F" />
-
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5HZ8ZV4Q');</script>
+    <!-- End Google Tag Manager -->
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" media="all" href="~/assets/css/Avidclan/bootstrap-custom.css" />
@@ -23,9 +33,20 @@
     <link rel="stylesheet" href="~/assets/css/jquery.fancybox.min.css" media="print" onload="this.media='all';">
     <link rel="stylesheet" media="all" href="@Styles.Url("~/Content/css")" />
     <link href="/assets/css/intlTelInput.css" rel="stylesheet" />
+    <style>
+        p.text.fs-5 {
+            font-size: 1.25rem;
+            margin: 1rem 0;
+            line-height: 1.5
+        }
+    </style>
 </head>
 <body>
-
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HZ8ZV4Q" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <div class="page-wrapper">
         <!-- Preloader -->
@@ -259,6 +280,7 @@
                                     </div>
                                 </div>
                             </li>
+
                             <li class="nav-item border_b dropdown pb-2 mb-2 mb-lg-0 position-relative">
                                 <!-- Hire Resources link -->
                                 <a class="d-inline-block fw-semibold nav-link active custom-fs-18" href="#">
@@ -288,10 +310,21 @@
                                         <li>
                                             <a href="/hire-ui-ux-designers/">Hire UI/UX Designers</a>
                                         </li>
+                                        <li class="custom-padding-2">
+                                            <a href="/hire-ai-developers/">Hire AI Developers</a>
+                                        </li>
+                                        <li class="custom-padding-2">
+                                            <a href="/hire-angular-developers/">Hire Angular Developers</a>
+                                        </li>
+                                        <li class="custom-padding-2">
+                                            <a href="/hire-reactjs-developers/">Hire ReactJS Developers</a>
+                                        </li>
+                                        <li class="custom-padding-2">
+                                            <a href="/hire-ml-developers/">Hire Machine Learning Developers</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </li>
-
 
                             <li class="nav-item border_b dropdown pb-2 mb-2 mb-lg-0 position-relative">
                                 <!-- Company link -->
@@ -322,17 +355,16 @@
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <h5 class="mb-0 mb-md-2">
-                                                <h5 class="mb-0 mb-md-2">
-                                                    <a class="text_dark fw-semibold" href="/career/">Careers</a>
-                                                </h5>
-                                                <ul>
-                                                    <li>
-                                                        <a href="/career#career-section/">Current Openings</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="/life-at-avidclan/">Life at Avidclan Technologies</a>
-                                                    </li>
-                                                </ul>
+                                                <a class="text_dark fw-semibold" href="/career/">Careers</a>
+                                            </h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="/career#career-section/">Current Openings</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/life-at-avidclan/">Life at Avidclan Technologies</a>
+                                                </li>
+                                            </ul>
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <h5 class="mb-0 mb-md-2">
@@ -705,7 +737,7 @@
 
 
          function Application_Form(response) {
-         
+
      if (response == "Sent") {
          window.location.replace("/career-thank-you");
      message.fadeIn().removeClass("alert-danger").addClass("alert-success");

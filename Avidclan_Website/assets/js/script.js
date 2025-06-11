@@ -97,65 +97,76 @@
 
 });
 
-$(window).on("load", function () {
-    (function () {
-        var e = document.querySelector(".cookies-infobar"),
-            t = document.querySelector("#cookies-infobar-close");
-        function i() {
-            e.className = e.classList.value + " cookies-infobar_accepted";
-        }
-        "1" !==
-            (function () {
-                for (var e = "cookieInfoHidden=", t = document.cookie.split(";"), i = 0; i < t.length; i++) {
-                    for (var n = t[i]; " " == n.charAt(0);) n = n.substring(1);
-                    if (0 === n.indexOf(e)) return n.substring(e.length, n.length);
-                }
-                return "";
-            })()
-            ? ((e.className = "cookies-infobar"),
-                t.addEventListener("click", function (e) {
-                    var t, n, a;
-                    e.preventDefault(), i(), (n = (t = new Date()).getTime() + 6048e5), (a = (a = new Date(t.setTime(n))).toUTCString()), (document.cookie = "cookieInfoHidden=1; expires=" + a + "; path=/");
-                }))
-            : i();
-    })(),
-        $(document).ready(function () {
-            $("#btnResetCookiePolicy").on("click", function () {
-                console.log("btn: reset"), Cookies.remove("acceptedCookiesPolicy"), $("#alertCookiePolicy").show();
-            });
-        }),
-        $("#c_openings").click(function () {
-            $("body").hasClass("mobile-menu-visible") && window.location.reload();
-        }),
-        $(function () {
-            var e = RegExp(window.location.pathname.replace(/\/$/, "") + "$");
-            $(".mobile-menu a").each(function () {
-                e.test(this.href.replace(/\/$/, "")) && $(this).addClass("active");
-            });
-        }),
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
+//$(window).on("load", function () {
+//    (function () {
+//        var e = document.querySelector(".cookies-infobar"),
+//            t = document.querySelector("#cookies-infobar-close");
+//        function i() {
+//            e.className = e.classList.value + " cookies-infobar_accepted";
+//        }
+//        "1" !==
+//            (function () {
+//                for (var e = "cookieInfoHidden=", t = document.cookie.split(";"), i = 0; i < t.length; i++) {
+//                    for (var n = t[i]; " " == n.charAt(0);) n = n.substring(1);
+//                    if (0 === n.indexOf(e)) return n.substring(e.length, n.length);
+//                }
+//                return "";
+//            })()
+//            ? ((e.className = "cookies-infobar"),
+//                t.addEventListener("click", function (e) {
+//                    var t, n, a;
+//                    e.preventDefault(), i(), (n = (t = new Date()).getTime() + 6048e5), (a = (a = new Date(t.setTime(n))).toUTCString()), (document.cookie = "cookieInfoHidden=1; expires=" + a + "; path=/");
+//                }))
+//            : i();
+//    })(),
+//        $(document).ready(function () {
+//            $("#btnResetCookiePolicy").on("click", function () {
+//                console.log("btn: reset"), Cookies.remove("acceptedCookiesPolicy"), $("#alertCookiePolicy").show();
+//            });
+//        }),
+//        $("#c_openings").click(function () {
+//            $("body").hasClass("mobile-menu-visible") && window.location.reload();
+//        }),
+//        $(function () {
+//            var e = RegExp(window.location.pathname.replace(/\/$/, "") + "$");
+//            $(".mobile-menu a").each(function () {
+//                e.test(this.href.replace(/\/$/, "")) && $(this).addClass("active");
+//            });
+//        }),
+//        $(function () {
+//            $('[data-toggle="tooltip"]').tooltip();
+//        });
+//});
+
+
+// debounce helper
+function debounce(fn, delay) {
+    let timer;
+    return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(this, args), delay);
+    };
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const backToTop = document.getElementById("backToTop");
+
+    function checkBackToTop() {
+        if (!backToTop) return;
+        backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+    }
+
+    // run once on load
+    checkBackToTop();
+
+    // then on scroll (debounced)
+    window.addEventListener("scroll", debounce(checkBackToTop, 100));
+
+    // smooth scroll on click
+    backToTop?.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
 });
-
-
-// ✅ Debounced scroll for back to top
-let scrollTimeout;
-window.addEventListener("scroll", () => {
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-        const backToTop = document.getElementById("backToTop");
-        if (backToTop) {
-            backToTop.style.display = window.scrollY > 300 ? "block" : "none";
-        }
-    }, 100);
-});
-
-// Back to top button
-document.getElementById("backToTop")?.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
 // Swiper functions
 function testimonialActive() {
     new Swiper(".cinkes_testimonial_spage_active", {

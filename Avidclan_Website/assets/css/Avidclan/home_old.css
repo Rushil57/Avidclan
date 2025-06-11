@@ -1,4 +1,4 @@
-@import url(../custom-animate.css);
+﻿@import url(../custom-animate.css);
 @import url(../owl.css);
 @import url(../jquery-ui.css);
 @import url(../scrollbar.css);
@@ -1598,8 +1598,8 @@ a:hover .nav-link .active {
 @media only screen and (max-width:1199px) {
     .process-block-one .inner-box::after, .process-block-one .inner-box::before {
         width: 34%;
-/*        left: 192px*/
-        left:-35px;
+        /*        left: 192px*/
+        left: -35px;
     }
 }
 
@@ -1750,7 +1750,7 @@ a:hover .nav-link .active {
 
 .icon-height {
     height: 18px;
-    padding-bottom:2px;
+    padding-bottom: 2px;
 }
 
 .back-to-top {
@@ -1814,7 +1814,7 @@ a:hover .nav-link .active {
         box-shadow: none !important;
         margin: 0 !important;
         padding: 5px 0 0 !important;
-        border-radius: 0;
+        border-radius: 0 !important;
         border-top: 2px solid !important
     }
 
@@ -1945,12 +1945,15 @@ a:hover .nav-link .active {
 .custom-btn-padding {
     padding: 10px 30px !important
 }
+
 .intl-tel-input {
     width: 100%;
 }
-.contact-form-section .btn-style-one:hover .btn-title{
+
+.contact-form-section .btn-style-one:hover .btn-title {
     color: white !important;
 }
+
 @media (max-width: 991.98px) {
     .mobile-arrow-icon {
         right: 3px;
@@ -1969,6 +1972,7 @@ a:hover .nav-link .active {
             transform: rotate(0deg); /* arrow-up when open */
         }
 }
+
 .w3_megamenu video, img {
     max-width: 100%;
     height: auto;
@@ -1983,4 +1987,23 @@ a:hover .nav-link .active {
 
 a.nav-link.btn.btn-primary.fw-bold.rounded-5.custom-btn-padding.shadow-none {
     padding: 10px 20px !important;
+}
+
+.cookies-infobar.cookies-infobar_accepted,
+.cookies-infobar.cookies-infobar_hide,
+.cookies-infobar.cookies-infobar_accepted,
+.cookies-infobar.cookies-infobar_hide,
+.dropdown-toggle::after,
+.dropup .dropdown-toggle::after,
+.mobile-menu .navigation li > ul,
+.mobile-menu .navigation li > ul > li > ul,
+.owl-dots,
+.process-block-one:last-child .inner-box::after,
+.process-block-one:last-child .inner-box::before,
+.technology-section .tech-info:last-child .content .devider {
+    display: none;
+}
+
+.dropdown-menu {
+    border-radius: 20px !important;
 }
