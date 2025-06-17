@@ -1124,7 +1124,7 @@ form.contact-form label.error {
 }
 
     .custom-bg, .ourfacts .count-box.even {
-        background-color: #f2f5fe
+        background-color: #f2f5fe !important;
     }
 
     .ourfacts .count-box img {
@@ -1294,8 +1294,10 @@ ul.list-unstyled li a {
 
 .dropdown-menu ul li a {
     color: #142149;
+    line-height: 1.9;
+    font-size: 16px;
     text-decoration: none;
-    transition: color .3s
+    transition: color .3s;
 }
 
 .banner-section .text, .inner-page .text, .process-block-one .text, .sec-title .text, .service-block .content .text, .text, p {
@@ -1724,7 +1726,7 @@ a:hover .nav-link .active {
             height: 25px;
             background-color: #fff !important;
             position: absolute;
-            top: 55px;
+            top: 52px;
             left: 31%;
             transform: translateX(-50%);
             z-index: 9999;

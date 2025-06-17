@@ -529,7 +529,7 @@ a:hover .nav-link .active {
             height: 25px;
             background-color: #fff !important;
             position: absolute;
-            top: 55px;
+            top: 52px;
             left: 31%;
             transform: translateX(-50%);
             z-index: 9999;
