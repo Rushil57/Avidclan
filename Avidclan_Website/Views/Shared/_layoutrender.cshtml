@@ -1,4 +1,4 @@
-﻿@*@using reCAPTCHA.MVC*@
+﻿﻿@*@using reCAPTCHA.MVC*@
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -410,16 +410,15 @@
             <img loading="lazy" src="~/assets/images/imagenew/arrow-up (1).svg" alt="Back to Top" class="back-to-top-img" />
         </button>*@
 
+    <!-- JS Dependencies (Lazy Load Type) -->
+    <script type="lazyload_int" data-src="/assets/js/jquery.js"></script>
+    <script type="lazyload_int" data-src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script type="lazyload_int" data-src="/assets/js/iconify.min.js"></script>
+    <script type="lazyload_int" data-src="/assets/js/Avidclan/owl.carousel.min.js"></script>
+    <script type="lazyload_int" data-src="/assets/js/swiper-bundle-min.js"></script>
 
-    <!-- JS Dependencies (Defer) -->
-    <script defer src="/assets/js/jquery.js"></script>
-    <script defer src="/assets/js/bootstrap.bundle.min.js"></script>
-    <script defer src="/assets/js/iconify.min.js"></script>
-    <script defer src="/assets/js/Avidclan/owl.carousel.min.js"></script>
-    <script defer src="/assets/js/swiper-bundle-min.js"></script>
-
-    <!-- Combined Script -->
-    <script>
+    <!-- Combined Lazy Init Script -->
+    <script type="lazyload_int">
         document.addEventListener("DOMContentLoaded", function () {
             // Swiper Init
             if (window.Swiper) {
@@ -457,15 +456,15 @@
                     onInitialized: addDotAriaLabels,
                     onTranslated: addDotAriaLabels
                 });
+
+                function addDotAriaLabels() {
+                    $(".owl-dot").each(function (index) {
+                        $(this).attr("aria-label", "Go to slide " + (index + 1));
+                    });
+                }
             }
 
-            function addDotAriaLabels() {
-                $(".owl-dot").each(function (index) {
-                    $(this).attr("aria-label", "Go to slide " + (index + 1));
-                });
-            }
-
-            // Mobile Menu Icon
+            // Mobile Menu Icon Toggle
             const menuToggle = document.getElementById("menuToggle");
             menuToggle?.addEventListener("click", () => {
                 const icon = document.getElementById("menuIcon");
@@ -476,7 +475,7 @@
                 }
             });
 
-            // Collapse Events
+            // Collapse Events & Dropdown Arrows
             const navbar = document.getElementById("navbarSupportedContent");
             if (navbar) {
                 navbar.addEventListener("show.bs.collapse", () => {
@@ -486,7 +485,6 @@
                     document.body.classList.remove("mobile-menu-open");
                 });
 
-                // Dropdown Arrow Toggle
                 document.querySelectorAll(".mobile-arrow-icon").forEach(icon => {
                     icon.addEventListener("click", function () {
                         const arrow = this.querySelector(".arrow-icon-img");
@@ -523,9 +521,12 @@
             }
 
             // Bootstrap Tooltips
-            document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
+            document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
+                new bootstrap.Tooltip(el);
+            });
         });
     </script>
+
 
     @RenderSection("scripts", required: false)
 

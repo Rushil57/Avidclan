@@ -1,4 +1,4 @@
-﻿﻿@{
+﻿﻿﻿@{
     ViewBag.Title = "Index_render";
     var context = "@context";
     var type = "@type";
@@ -44,7 +44,7 @@
                             <h1 class="display-3">
                                 Simplifying Business Needs Using <span class="primary-color">Technology</span>
                             </h1>
-                            <p class="text fs-5">
+                            <p class="text fs-5" fetchpriority="high">
                                 Avidclan Technologies is a renowned and leading web and mobile app development company
                                 with a vision to fulfill business requirements using innovative solutions. We assist
                                 our clients in a way that they can provide a superior digital experience for their
@@ -65,12 +65,13 @@
                     <!-- Right Image -->
                     <div class="col-lg-5 col-md-12 col-sm-12">
                         <div class="d-flex justify-content-center align-items-center">
-                            <img fetchpriority="high" src="~/assets/images/imagenew/dev.svg" width="400" height="400" alt="Website Development" class="img-fluid responsive-img-hide" />
+                            <img loading="lazy" src="/assets/images/imagenew/dev.svg" width="400" height="400" alt="Website Development" class="img-fluid responsive-img-hide">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </section>
 
 <!--End Banner Section-->
