@@ -1,4 +1,4 @@
-﻿@{
+﻿﻿@{
     ViewBag.Title = "Index_render";
     var context = "@context";
     var type = "@type";
@@ -10,6 +10,7 @@
 
 @section AdditionalMeta
 {
+    <meta name="robots" content="noindex, nofollow">
     <meta property="og:url" content="https://www.avidclan.com/" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Custom Web and Mobile App Development Company | Avidclan Technologies" />
@@ -27,151 +28,51 @@
     <link rel="canonical" href="https://www.avidclan.com/" />
 
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Corporation",
-        "name": "Avidclan Technologies",
-        "alternateName": "Avidclan Technologies",
-        "url": "https://www.avidclan.com/",
-        "logo": "https://www.avidclan.com/assets/images/logo.svg",
-        "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "955-845-0670",
-        "contactType": "sales",
-        "areaServed": "IN",
-        "availableLanguage": ["en","Hindi"]
-        },
-        "sameAs": [
-        "https://www.facebook.com/avidclan/",
-        "https://twitter.com/AvidclanT",
-        "https://www.instagram.com/avidclan_technologies/",
-        "https://www.linkedin.com/company/avidclan-technologies/",
-        "https://www.tumblr.com/blog/avidclan-technologies/"
-        ]
-    }
-    </script>
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Avidclan Technologies",
-      "image": "https://www.avidclan.com/assets/images/logo.svg",
-      "email": "solutions@avidclan.com",
-      "@id": "https://www.avidclan.com/",
-      "url": "https://www.avidclan.com/",
-      "telephone": "955-845-0670",
-      "priceRange": "$$$",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "1206, Shivalik Shilp, Iskcon Cross Roads, S.G. Highway",
-        "addressLocality": "Ahmedabad",
-        "postalCode": "380015",
-        "addressCountry": "IN"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 23.0270316,
-        "longitude": 72.5062509
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Wednesday",
-          "Tuesday",
-          "Friday",
-          "Thursday"
-        ],
-        "opens": "10:30",
-        "closes": "19:30"
-      },
-     "sameAs": [
-        "https://www.facebook.com/avidclan/",
-        "https://twitter.com/AvidclanT",
-        "https://www.instagram.com/avidclan_technologies/",
-        "https://www.linkedin.com/company/avidclan-technologies/",
-        "https://www.tumblr.com/blog/avidclan-technologies/"
-      ]
-    }
-
-    </script>
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Avidclan Technologies",
-  "alternateName": "Avidclan Technologies",
-  "url": "https://www.avidclan.com/",
-  "logo": "https://www.avidclan.com/assets/images/logo.svg",
-  "description": "Avidclan Technologies: Your custom web and mobile app development company. Empowering startups to enterprises with Web and Mobile App Development, AI/ML Services, UI/UX Design, Digital Marketing, and QA Services. Get a quote now!",
-  "founder": [{
-		"@type": "Person",
-		"name": "Rushil Bhuptani"
-	      }],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "955-845-0670",
-    "contactType": "technical support",
-    "contactOption": "TollFree",
-    "areaServed": ["US","GB","CA","AU","DE","IN"],
-    "availableLanguage": ["en","Hindi"]
-  },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "ratingCount": "89"
-},
-  "sameAs": [
-    "https://www.facebook.com/avidclan/",
-    "https://twitter.com/AvidclanT",
-    "https://www.instagram.com/avidclan_technologies/",
-    "https://www.linkedin.com/company/avidclan-technologies/",
-    "https://www.tumblr.com/blog/avidclan-technologies/"
-  ]
-}
-    </script>
 
 }
 
 <!--start Banner Section-->
-<section class="banner-section pt-5">
+<section class="banner-section pt-5" style="min-height: 80vh;">
     <div class="container">
-        <div class="content-box w-100 rounded-5 p-md-5 p-3 pt-5">
-            <div class="row d-flex flex-lg-row">
-                <div class="col-lg-7 col-md-12 col-sm-12">
-                    <div>
-                        <h1 class="display-3">
-                            Simplifying Business Needs Using <span class="primary-color">Technology</span>
-                        </h1>
-                        <p class="text fs-5">
-                            Avidclan Technologies is a renowned and leading web and mobile app development company
-                            with a vision to fulfill
-                            business requirements using innovative solutions.We assist our clients in a way that
-                            they can
-                            provide a superior digital experience for their clients worldwide.
-                        </p>
-                        <div class="btn-box mt-3">
-                            <a href="~/services#project_inquiry_form"
-                               class="btn btn-primary fw-bold rounded-5 custom-btn-padding shadow-none">
-                                <span>
-                                    Find Consultant
-                                    <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
-                                </span>
-                            </a>
+        <div class="container">
+            <div class="content-box w-100 rounded-5 p-md-5 p-3 pt-5">
+                <div class="row d-flex flex-lg-row">
+                    <!-- Left Content -->
+                    <div class="col-lg-7 col-md-12 col-sm-12">
+                        <div>
+                            <h1 class="display-3">
+                                Simplifying Business Needs Using <span class="primary-color">Technology</span>
+                            </h1>
+                            <p class="text fs-5">
+                                Avidclan Technologies is a renowned and leading web and mobile app development company
+                                with a vision to fulfill business requirements using innovative solutions. We assist
+                                our clients in a way that they can provide a superior digital experience for their
+                                clients worldwide.
+                            </p>
+                            <div class="btn-box mt-3">
+                                <a href="~/services#project_inquiry_form"
+                                   class="btn btn-primary fw-bold rounded-5 custom-btn-padding shadow-none">
+                                    <span>
+                                        Find Consultant
+                                        <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-5 col-md-12 col-sm-12">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <img loading="lazy" fetchpriority="high" src="~/assets/images/imagenew/dev.svg" width="400" height="400" alt="Website Development" class="img-fluid responsive-img-hide" />
+
+                    <!-- Right Image -->
+                    <div class="col-lg-5 col-md-12 col-sm-12">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <img fetchpriority="high" src="~/assets/images/imagenew/dev.svg" width="400" height="400" alt="Website Development" class="img-fluid responsive-img-hide" />
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
+
 <!--End Banner Section-->
 
 <section class="py-5">
@@ -191,7 +92,7 @@
             <!-- First Column -->
             <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                 <div class="d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center bg-white custom-border-primary">
-                    <img loading="lazy" src="~/assets/images/imagenew/clients-ic.svg" alt="Clients Served Globally" width="70" height="70" loading="lazy">
+                    <img loading="lazy" src="~/assets/images/imagenew/clients-ic.svg" alt="Clients Served Globally" width="70" height="70">
                     <div class="fs-5 fw-bold">100+</div>
                     <p class="fs-5 text-body-tertiary">Clients Served Globally</p>
                 </div>
@@ -200,7 +101,7 @@
             <!-- Second Column -->
             <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                 <div class="d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center custom-bg custom-border-primary">
-                    <img loading="lazy" src="~/assets/images/imagenew/delivered-ic.svg" alt="Projects Accomplished" width="70" height="70" loading="lazy" />
+                    <img loading="lazy" src="~/assets/images/imagenew/delivered-ic.svg" alt="Projects Accomplished" width="70" height="70" />
                     <div class="fs-5 fw-bold">150+</div>
                     <p class="fs-5 text-body-tertiary">Projects Accomplished</p>
                 </div>
@@ -209,7 +110,7 @@
             <!-- Third Column -->
             <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                 <div class="d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center bg-white custom-border-primary">
-                    <img loading="lazy" src="~/assets/images/imagenew/developers-ic.svg" alt="Team Strength" width="70" height="70" loading="lazy" />
+                    <img loading="lazy" src="~/assets/images/imagenew/developers-ic.svg" alt="Team Strength" width="70" height="70" />
                     <div class="fs-5 fw-bold">30+</div>
                     <p class="fs-5 text-body-tertiary">Team Strength</p>
                 </div>
@@ -218,7 +119,7 @@
             <!-- Fourth Column -->
             <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                 <div class="d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center custom-bg custom-border-primary">
-                    <img loading="lazy" src="~/assets/images/imagenew/satisfaction-rate-ic.svg" alt="Success Ratio" width="70" height="70" loading="lazy" />
+                    <img loading="lazy" src="~/assets/images/imagenew/satisfaction-rate-ic.svg" alt="Success Ratio" width="70" height="70" />
                     <div class="fs-5 fw-bold">98+</div>
                     <p class="fs-5 text-body-tertiary">Success Ratio</p>
                 </div>
@@ -233,7 +134,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12 d-lg-block d-flex justify-content-center">
-                <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/aboutus-new.png" alt="about-us-banner" class="img-fluid">
+                <img loading="lazy" src="~/assets/images/imagenew/aboutus-new.png" alt="about-us-banner" class="img-fluid">
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <p class="fw-semibold d-inline-block mb-3 primary-color fs-5">
@@ -272,74 +173,66 @@
 </section>
 <!-- About Section end-->
 <!-- badges section -->
-<section class=" p-lg-5 p-3">
+<section class="p-lg-5 p-3">
     <div class="container text-center">
-        <!-- row -->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="text-center mb-3 mb-md-5">
                     <div class="line-heading d-flex align-items-center justify-content-center gap-3 mb-3">
                         <h5 class="primary-color fw-semibold d-inline-block text-uppercase mb-0">Trusted By</h5>
                     </div>
-                    <div class=" mb-4">
+                    <div class="mb-4">
                         <h2 class="fs-1 fw-custom pb-2 pb-md-5">Industry Recognitions and Awards</h2>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- row -->
+
         <div class="owl-carousel">
             <div class="carousel_box px-sm-4 px-2 mx-auto">
-                <a href="https://www.ambitionbox.com/overview/avidclan-technologies-overview?utm_source=employer-dashboard&utm_campaign=avidclan-technologies&utm_medium=badges" target="_blank">
+                <a href="https://www.ambitionbox.com/overview/avidclan-technologies-overview" target="_blank">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" loading="lazy" class="w-100 h-100" src="/assets/images/badges/Avidclan_Technologies_Rating_Badge_6_on_AmbitionBox.png" />
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/Avidclan_Technologies_Rating_Badge_6_on_AmbitionBox.png" alt="Badge AmbitionBox" />
                     </div>
                 </a>
-
                 <div class="line_bottom my-3 mx-auto background-primary"></div>
-
                 <p>Follow Us on AmbitionBox</p>
             </div>
+
             <a href="https://www.designrush.com/agency/profile/avidclan" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" loading="lazy" class="w-100 h-100" src="/assets/images/badges/Design_Rush_Avidclan.png">
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/Design_Rush_Avidclan.png" alt="Badge DesignRush">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
-                    <p>
-                        Top Software Development Company by Design Rush
-                    </p>
+                    <p>Top Software Development Company by Design Rush</p>
                 </div>
             </a>
 
             <a href="https://itrate.co/developers/all" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" loading="lazy" class="w-100 h-100" src="~/assets/images/badges/itrate_top.png">
+                        <img loading="lazy" width="120" height="125" src="/assets/images/badges/itrate_top.webp" alt="Badge ITRate">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
-                    <p>
-                        Top Custom Software Development Company
-                    </p>
+                    <p>Top Custom Software Development Company</p>
                 </div>
             </a>
 
             <a href="https://clutch.co/profile/avidclan-technologies" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" loading="lazy" class="w-100 h-100" src="/assets/images/badges/top_clutch.co_application_management__support_company_ahmedabad_2024.png">
+                        <img loading="lazy" width="120" height="125" src="/assets/images/badges/top_clutch.co_application_management__support_company_ahmedabad_2024.webp" alt="Badge Clutch">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
-                    <p>
-                        Clutch's Top Application Management Company 2024
-                    </p>
+                    <p>Clutch's Top Application Management Company 2024</p>
                 </div>
             </a>
 
             <a href="https://techreviewer.co/companies/avidclan-technologies" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" loading="lazy" class="w-100 h-100" src="assets/images/badges/techReview-web-developers.svg">
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/techReview-web-developers.svg" alt="Badge TechReviewer">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
                     <p>Top Web Design Agency 2024</p>
@@ -349,20 +242,17 @@
             <a href="https://www.topdevelopers.co/profile/avidclan-technologies" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" loading="lazy" class="w-100 h-100" src="~/assets/images/badges/badge_top_mobile_app.png">
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/badge_top_mobile_app.png" alt="Badge TopDevelopers">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
-                    <p>
-                        Top Mobile App Developers 2023
-
-                    </p>
+                    <p>Top Mobile App Developers 2023</p>
                 </div>
             </a>
 
             <a href="https://www.pandia.com/us/sterling-va/web-design" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" loading="lazy" class="w-100 h-100" src="~/assets/images/badges/webdesign_badge.png">
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/webdesign_badge.png" alt="Badge Web">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
                     <p>Top Web Design Agency 2024</p>
@@ -372,65 +262,52 @@
             <a href="https://fixthephoto.com/best-android-app-developers.html#avidclan" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" loading="lazy" class="w-100 h-100" src="~/assets/images/badges/Fix-The-Photo-Badge.png">
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/Fix-The-Photo-Badge.png" alt="Badge FixThePhoto">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
-                    <p>
-                        Top Software Developers 2025 by FixThePhoto
-                    </p>
+                    <p>Top Software Developers 2025 by FixThePhoto</p>
                 </div>
             </a>
 
             <a href="https://softwareoutsourcing.com/?utm_id=so_644a362f88129" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" loading="lazy" class="w-100 h-100" src="~/assets/images/badges/Software_Outsourcing_Journal.png">
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/Software_Outsourcing_Journal.webp" alt="Badge SOJ">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
-                    <p>
-                        Top Offshore Software Development Companies in India
-                    </p>
+                    <p>Top Offshore Software Development Companies in India</p>
                 </div>
             </a>
 
-            <a href="https://selectedfirms.co/companies/software-development?utm_source=avidclan_technologies&utm_medium=badge&utm_campaign=software_development&utm_term=top_software_development_company&utm_content=agency_badge&utm_marketing_tactic=badge_organic" target="_blank">
+            <a href="https://selectedfirms.co/companies/software-development" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" loading="lazy" class="w-100 h-100" src="~/assets/images/badges/software-development.png">
+                        <img loading="lazy" width="120" height="125" src="/assets/images/badges/software-development.webp" alt="Badge SelectedFirm">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
-                    <p>
-                        Top Software Development Company 2024
-                    </p>
+                    <p>Top Software Development Company 2024</p>
                 </div>
             </a>
 
             <a href="https://www.sortlist.com/agency/avidclan-technologies" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" loading="lazy" class="w-100 h-100" src="~/assets/images/badges/badge-flag-black-dark-xl.svg">
+                        <img loading="lazy" class="w-100 h-100" src="/assets/images/badges/badge-flag-black-dark-xl.svg" alt="Badge Sortlist">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
-                    <p>
-                        Sortlist Verified Agency 2024
-                    </p>
+                    <p>Sortlist Verified Agency 2024</p>
                 </div>
             </a>
+
             <a href="https://technewscast.io/web-development/" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
-                        <img loading="lazy" loading="lazy" class="w-100 h-100" src="~/assets/images/badges/Top_Web_Development_Company_2025.jpg">
+                        <img loading="lazy" width="120" height="125" src="/assets/images/badges/Top_Web_Development_Company_2025.webp" alt="Badge TNC">
                     </div>
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
-                    <p>
-
-                        Top Web Development Company 2025 by TNC
-
-                    </p>
+                    <p>Top Web Development Company 2025 by TNC</p>
                 </div>
             </a>
-
-
         </div>
     </div>
 </section>
@@ -670,7 +547,7 @@
                 <div class="service-block h-100 mb-5">
                     <div class="inner-box bg-white py-3 px-5 rounded-3 h-100 d-flex flex-column">
                         <div class="image-box text-center">
-                            <img loading="lazy" loading="lazy" class="w-auto opacity-100 m-auto" src="~/assets/images/imagenew/UI-design.svg" alt="UI/UX-Design-Agency">
+                            <img loading="lazy" class="w-auto opacity-100 m-auto" src="~/assets/images/imagenew/UI-design.svg" alt="UI/UX-Design-Agency">
                         </div>
                         <div class="content py-2 pb-3 text-center d-flex flex-column flex-grow-1">
                             <h3 class="fw-bold fs-4">UI/UX Design</h3>
@@ -703,7 +580,7 @@
                 <div class="service-block h-100 mb-5">
                     <div class="inner-box bg-white py-3 px-5 rounded-3 h-100 d-flex flex-column">
                         <div class="image-box text-center">
-                            <img loading="lazy" loading="lazy" class="w-auto opacity-100 m-auto" src="~/assets/images/imagenew/mobile-app.svg" alt="mobile-app-development-company">
+                            <img loading="lazy" class="w-auto opacity-100 m-auto" src="~/assets/images/imagenew/mobile-app.svg" alt="mobile-app-development-company">
                         </div>
                         <div class="content py-2 pb-3 text-center d-flex flex-column flex-grow-1">
                             <h3 class="fw-bold fs-4">Mobile Apps</h3>
@@ -736,7 +613,7 @@
                 <div class="service-block h-100 mb-5">
                     <div class="inner-box bg-white py-3 px-5 rounded-3 h-100 d-flex flex-column">
                         <div class="image-box text-center">
-                            <img loading="lazy" loading="lazy" class="w-auto opacity-100 m-auto"
+                            <img loading="lazy" class="w-auto opacity-100 m-auto"
                                  src="~/assets/images/imagenew/Internet-marketing.svg" alt="internet-marketing-company">
                         </div>
                         <div class="content py-2 pb-3 text-center d-flex flex-column flex-grow-1">
@@ -770,7 +647,7 @@
                 <div class="service-block h-100 mb-5">
                     <div class="inner-box bg-white py-3 px-5 rounded-3 h-100 d-flex flex-column">
                         <div class="image-box text-center">
-                            <img loading="lazy" loading="lazy" class="w-auto opacity-100 m-auto" src="~/assets/images/imagenew/IoT.svg" alt="iot-internet-of-things">
+                            <img loading="lazy" class="w-auto opacity-100 m-auto" src="~/assets/images/imagenew/IoT.svg" alt="iot-internet-of-things">
                         </div>
                         <div class="content py-2 pb-3 text-center d-flex flex-column flex-grow-1">
                             <h3 class="fw-bold fs-4">IoT</h3>
@@ -803,7 +680,7 @@
                 <div class="service-block h-100 mb-5">
                     <div class="inner-box bg-white py-3 px-5 rounded-3 h-100 d-flex flex-column">
                         <div class="image-box text-center">
-                            <img loading="lazy" loading="lazy" class="w-auto opacity-100 m-auto" src="~/assets/images/imagenew/QA-services.svg" alt="qa-testing-services">
+                            <img loading="lazy" class="w-auto opacity-100 m-auto" src="~/assets/images/imagenew/QA-services.svg" alt="qa-testing-services">
                         </div>
                         <div class="content py-2 pb-3 text-center d-flex flex-column flex-grow-1">
                             <h3 class="fw-bold fs-4">QA Services</h3>
@@ -858,7 +735,7 @@
                 <div class="inner-box  custom-bg rounded-3 mb-4 h-100">
                     <div class=" p-4 rounded text-center content-box">
                         <div class="icon icon-padding">
-                            <img loading="lazy" src="~/assets/images/imagenew/POS.svg" class="img-fluid" alt="POS-and-Retail" width="346" height="220" loading="lazy" />
+                            <img loading="lazy" src="~/assets/images/imagenew/POS.svg" class="img-fluid" alt="POS-and-Retail" width="346" height="220" />
                         </div>
                         <h4 class="fs-4 mb-3 fw-semibold">POS &amp; Retail</h4>
                         <p class="text mb-0">
@@ -872,7 +749,7 @@
                 <div class="inner-box  custom-bg rounded-3 mb-4 h-100">
                     <div class=" p-4 rounded text-center content-box">
                         <div class="icon icon-padding">
-                            <img loading="lazy" src="~/assets/images/imagenew/healthcare.svg" alt="life-and-healthcare" class="img-fluid" width="330" height="220" loading="lazy" />
+                            <img loading="lazy" src="~/assets/images/imagenew/healthcare.svg" alt="life-and-healthcare" class="img-fluid" width="330" height="220" />
                         </div>
                         <h4 class="fs-4 mb-3 fw-semibold">Life & Health Care</h4>
                         <p class="text mb-0">
@@ -886,7 +763,7 @@
                 <div class="inner-box  custom-bg rounded-3 mb-4 h-100">
                     <div class=" p-4 rounded text-center content-box">
                         <div class="icon icon-padding">
-                            <img loading="lazy" src="~/assets/images/imagenew/petroleum.svg" alt="petroleum-industry" class="img-fluid" width="351" height="219" loading="lazy" />
+                            <img loading="lazy" src="~/assets/images/imagenew/petroleum.svg" alt="petroleum-industry" class="img-fluid" width="351" height="219" />
                         </div>
                         <h4 class="fs-4 mb-3 fw-semibold">Petroleum Industry</h4>
                         <p class="text mb-0">
@@ -900,7 +777,7 @@
                 <div class="inner-box  custom-bg rounded-3 mb-4 h-100">
                     <div class=" p-4 rounded text-center content-box">
                         <div class="icon icon-padding">
-                            <img loading="lazy" src="~/assets/images/imagenew/ecommerce.svg" alt="ecommerce-development" class="img-fluid" width="311" height="220" loading="lazy" />
+                            <img loading="lazy" src="~/assets/images/imagenew/ecommerce.svg" alt="ecommerce-development" class="img-fluid" width="311" height="220" />
                         </div>
                         <h4 class="fs-4 mb-3 fw-semibold">ECommerce</h4>
                         <p class="text mb-0">
@@ -914,7 +791,7 @@
                 <div class="inner-box  custom-bg rounded-3 mb-4 h-100">
                     <div class=" p-4 rounded text-center content-box">
                         <div class="icon icon-padding">
-                            <img loading="lazy" src="~/assets/images/imagenew/finance.svg" alt="finance-and-insurance-market" class="img-fluid" width="285" height="220" loading="lazy" />
+                            <img loading="lazy" src="~/assets/images/imagenew/finance.svg" alt="finance-and-insurance-market" class="img-fluid" width="285" height="220" />
                         </div>
                         <h4 class="fs-4 mb-3 fw-semibold">Finance & Insurance Market</h4>
                         <p class="text mb-0">
@@ -928,7 +805,7 @@
                 <div class="inner-box  custom-bg rounded-3 mb-4 h-100">
                     <div class=" p-4 rounded text-center content-box">
                         <div class="icon icon-padding">
-                            <img loading="lazy" src="~/assets/images/imagenew/education.svg" alt="education-and-training" class="img-fluid" width="247" height="220" loading="lazy" />
+                            <img loading="lazy" src="~/assets/images/imagenew/education.svg" alt="education-and-training" class="img-fluid" width="247" height="220" />
                         </div>
                         <h4 class="fs-4 mb-3 fw-semibold">Education & Training</h4>
                         <p class="text mb-0">
@@ -984,7 +861,7 @@
                     <a class="inner-box py-4 px-1  text-center d-block"
                        href="~/reactjs-development-services/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/react-native.svg" alt="react-native-app-development">
+                            <img loading="lazy" src="~/assets/images/imagenew/react-native.svg" alt="react-native-app-development">
                         </div>
                         <p class="text-decoration-none mt-2">React Js</p>
                     </a>
@@ -993,7 +870,7 @@
                     <a class="inner-box py-4 px-1  text-center d-block"
                        href="~/angular-development-services/">
                         <div class="image  overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/angular.svg" alt="angular-programming">
+                            <img loading="lazy" src="~/assets/images/imagenew/angular.svg" alt="angular-programming">
                         </div>
                         <p class="text-decoration-none mt-2">Angular Js</p>
                     </a>
@@ -1002,7 +879,7 @@
                     <a class="inner-box py-4 px-1  text-center d-block"
                        href="~/typescript-web-development/">
                         <div class="image  overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/typescript.svg" alt="typescript-web-development-services">
+                            <img loading="lazy" src="~/assets/images/imagenew/typescript.svg" alt="typescript-web-development-services">
                         </div>
                         <p class="text-decoration-none mt-2">Type Script</p>
                     </a>
@@ -1011,7 +888,7 @@
                     <a class="inner-box py-4 px-1  text-center d-block"
                        href="~/vuejs-development-services/">
                         <div class="image  overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/vuejs.svg" alt="vuejs-development-company">
+                            <img loading="lazy" src="~/assets/images/imagenew/vuejs.svg" alt="vuejs-development-company">
                         </div>
                         <p class="text-decoration-none mt-2">Vue</p>
                     </a>
@@ -1020,7 +897,7 @@
                     <a class="inner-box py-4 px-1  text-center d-block"
                        href="~/html5-development/">
                         <div class="image  overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/html5.svg" alt="responsive-web-design-with-html5">
+                            <img loading="lazy" src="~/assets/images/imagenew/html5.svg" alt="responsive-web-design-with-html5">
                         </div>
                         <p class="text-decoration-none mt-2">HTML 5</p>
                     </a>
@@ -1032,7 +909,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/dot-net-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/dotnet.svg" alt="dot-net-framework">
+                            <img loading="lazy" src="~/assets/images/imagenew/dotnet.svg" alt="dot-net-framework">
                         </div>
                         <p class="text-decoration-none mt-2">.NET</p>
                     </a>
@@ -1042,7 +919,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/java-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/Java-Light_logo.svg" alt="java-jdk-development">
+                            <img loading="lazy" src="~/assets/images/imagenew/Java-Light_logo.svg" alt="java-jdk-development">
                         </div>
                         <p class="text-decoration-none mt-2">Java</p>
                     </a>
@@ -1052,7 +929,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/php-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/icons/PHP_logo_1.svg" alt="php-development-company">
+                            <img loading="lazy" src="~/assets/images/icons/PHP_logo_1.svg" alt="php-development-company">
                         </div>
                         <p class="text-decoration-none mt-2">PHP</p>
                     </a>
@@ -1062,7 +939,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/nodejs-development-services/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/nodejs.svg" alt="nodejs-development">
+                            <img loading="lazy" src="~/assets/images/imagenew/nodejs.svg" alt="nodejs-development">
                         </div>
                         <p class="text-decoration-none mt-2">Node.Js</p>
                     </a>
@@ -1074,7 +951,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/ios-app-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/ios.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/ios.svg">
                         </div>
                         <p class="text-decoration-none mt-2">IOS</p>
                     </a>
@@ -1084,7 +961,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/android-app-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/android.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/android.svg">
                         </div>
                         <p class="text-decoration-none mt-2">Android</p>
                     </a>
@@ -1094,7 +971,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/react-native-app-development/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/react-native.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/react-native.svg">
                         </div>
                         <p class="text-decoration-none mt-2">React Native</p>
                     </a>
@@ -1104,7 +981,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/flutter-app-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/flutter.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/flutter.svg">
                         </div>
                         <p class="text-decoration-none mt-2">Flutter</p>
                     </a>
@@ -1114,7 +991,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/ionic-app-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/ionic.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/ionic.svg">
                         </div>
                         <p class="text-decoration-none mt-2">Ionic</p>
                     </a>
@@ -1124,7 +1001,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/xamarin-app-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/xamarin.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/xamarin.svg">
                         </div>
                         <p class="text-decoration-none mt-2">Xamarin</p>
                     </a>
@@ -1136,7 +1013,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/microsoft-sql-server-manage/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/sql-server.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/sql-server.svg">
                         </div>
                         <p class="text-decoration-none mt-2">MS SQL</p>
                     </a>
@@ -1146,7 +1023,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/mysql-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/mysql.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/mysql.svg">
                         </div>
                         <p class="text-decoration-none mt-2">MySQL</p>
                     </a>
@@ -1156,7 +1033,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/mongodb-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/mongodb.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/mongodb.svg">
                         </div>
                         <p class="text-decoration-none mt-2">Mongo DB</p>
                     </a>
@@ -1166,7 +1043,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/postgresql-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/postgresql.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/postgresql.svg">
                         </div>
                         <p class="text-decoration-none mt-2">PostgreSQL</p>
                     </a>
@@ -1176,7 +1053,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/firebase-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/firebase.svg" />
+                            <img loading="lazy" src="~/assets/images/imagenew/firebase.svg" />
                         </div>
                         <p class="text-decoration-none mt-2">Firebase</p>
                     </a>
@@ -1186,7 +1063,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/redis-development/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/redis.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/redis.svg">
                         </div>
                         <p class="text-decoration-none mt-2">Redis</p>
                     </a>
@@ -1196,7 +1073,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/microsoft-azure-cosmos-db/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" loading="lazy" src="~/assets/images/imagenew/azure-cosmos-DB.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/azure-cosmos-DB.svg">
                         </div>
                         <p class="text-decoration-none mt-2">Azure Cosmos DB</p>
                     </a>
@@ -1231,7 +1108,7 @@
                             </p>
                             <div class="cinkes_testimonial_spage_author mt-35">
                                 <span class="cinkes_testimonial_spage_author_img">
-                                    <img loading="lazy" loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/1.jpg" />
+                                    <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/1.jpg" alt="Darpon" />
                                 </span>
                                 <div class="cinkes_testimonial_spage_author_text">
                                     <b class="cinkes_testimonial_spage_author_name">Darpon K.</b><br />
@@ -1256,7 +1133,7 @@
                             </p>
                             <div class="cinkes_testimonial_spage_author mt-35">
                                 <span class="cinkes_testimonial_spage_author_img">
-                                    <img loading="lazy" loading="lazy" width="85" height="85" class="  rounded-circle" src="~/assets/images/user/2.jpg" />
+                                    <img loading="lazy" width="85" height="85" class="  rounded-circle" src="~/assets/images/user/2.jpg" alt="Tom" />
                                 </span>
                                 <div class="cinkes_testimonial_spage_author_text">
                                     <b class="cinkes_testimonial_spage_author_name">Tom A.</b><br />
@@ -1280,7 +1157,7 @@
                             </p>
                             <div class="cinkes_testimonial_spage_author mt-35">
                                 <span class="cinkes_testimonial_spage_author_img">
-                                    <img loading="lazy" loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/3.jpg" />
+                                    <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/3.jpg" alt="Gregoire" />
                                 </span>
                                 <div class="cinkes_testimonial_spage_author_text">
                                     <b class="cinkes_testimonial_spage_author_name">Gregoire P.</b><br />
@@ -1304,7 +1181,7 @@
                             </p>
                             <div class="cinkes_testimonial_spage_author mt-35">
                                 <span class="cinkes_testimonial_spage_author_img">
-                                    <img loading="lazy" loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/4.jpg" />
+                                    <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/4.jpg" alt="Nicolas" />
                                 </span>
                                 <div class="cinkes_testimonial_spage_author_text">
                                     <b class="cinkes_testimonial_spage_author_name">Nicolas P.</b><br />
@@ -1328,7 +1205,7 @@
                             </p>
                             <div class="cinkes_testimonial_spage_author mt-35">
                                 <span class="cinkes_testimonial_spage_author_img">
-                                    <img loading="lazy" loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/5.jpg" />
+                                    <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/5.jpg" alt="Sanuka" />
                                 </span>
                                 <div class="cinkes_testimonial_spage_author_text">
                                     <b class="cinkes_testimonial_spage_author_name">Sanuka S.</b><br />
@@ -1347,8 +1224,8 @@
                 </div>
             </div>
             <div class="slider-controls">
-                <button class="custom-swiper-prev left-aroow-radius">❮</button>
-                <button class="custom-swiper-next right-aroow-radius">❯</button>
+                <button class="custom-swiper-prev left-aroow-radius"><</button>
+                <button class="custom-swiper-next right-aroow-radius">></button>
             </div>
 
         </div>
@@ -1397,66 +1274,6 @@
         </div>
     </div>
 </section>
-
-<script src="/assets/js/jquery.js"></script>
-<script src="~/assets/js/bootstrap.bundle.min.js"></script>
-<script src="~/assets/js/Avidclan/owl.carousel.min.js"></script>
-<script src="~/assets/js/swiper-bundle-min.min.js"></script>
-
-<script>
-    $('.owl-carousel').owlCarousel({
-        loop: true,
-        margin: 0,
-        nav: true,
-        dots: true,
-        navText: [
-            '<img loading="lazy" src="/assets/images/imagenew/chevron-left.svg" alt="Left" width="50">',
-            '<img loading="lazy" src="/assets/images/imagenew/chevron-right.svg"" alt="Right" width="50">'
-        ],
-        responsive: {
-            0: {
-                items: 1
-            },
-            768: {
-                items: 3
-            },
-            1200: {
-                items: 6
-            }
-        }
-    });
-
-</script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        let filterButtons = document.querySelectorAll(".filter-tabs .filter");
-        let items = document.querySelectorAll(".masonry-item");
-
-        filterButtons.forEach((button) => {
-            button.addEventListener("click", function () {
-
-                filterButtons.forEach((btn) => btn.classList.remove("active"));
-                this.classList.add("active");
-
-
-                let filterValue = this.getAttribute("data-filter");
-
-
-                items.forEach((item) => {
-                    if (item.classList.contains(filterValue.substring(1))) {
-                        item.style.display = "block";
-                    } else {
-                        item.style.display = "none";
-                    }
-                });
-            });
-        });
-    });
-</script>
-
-
-
 
 @Html.Partial("_FooterWith190")
 
