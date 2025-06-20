@@ -40,10 +40,9 @@
                         </h1>
                         <p class="text fs-5">
                             Avidclan Technologies is a renowned and leading web and mobile app development company
-                            with a vision to fulfill
-                            business requirements using innovative solutions.We assist our clients in a way that
-                            they can
-                            provide a superior digital experience for their clients worldwide.
+                            with a vision to fulfill business requirements using innovative solutions. We assist
+                            our clients in a way that they can provide a superior digital experience for their
+                            clients worldwide.
                         </p>
                         <div class="btn-box mt-3">
                             <a href="~/services#project_inquiry_form"
@@ -77,15 +76,15 @@
                 </div>
 
                 <div class="mb-md-5 mb-3">
-                    <h2 class="fw-custom fs-1">Drive Growth and Efficiency with Our Custom Software Development</h2>
+                    <h2 style="min-height:95px !important;" class="fw-custom fs-1">Drive Growth and Efficiency with Our Custom Software Development</h2>
                 </div>
             </div>
         </div>
         <div class="row d-flex h-100 flex-wrap align-items-stretch">
             <!-- First Column -->
             <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-                <div class="d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center bg-white custom-border-primary">
-                    <img loading="lazy" src="~/assets/images/imagenew/clients-ic.svg" alt="Clients Served Globally" width="70" height="70">
+                <div style="min-height:180px !important;" class="box-custom-height d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center bg-white custom-border-primary">
+                    <img class="d-block" loading="lazy" src="~/assets/images/imagenew/clients-ic.svg" alt="Clients Served Globally" width="70" height="70">
                     <div class="fs-5 fw-bold">100+</div>
                     <p class="fs-5 text-body-tertiary">Clients Served Globally</p>
                 </div>
@@ -93,8 +92,8 @@
 
             <!-- Second Column -->
             <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-                <div class="d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center custom-bg custom-border-primary">
-                    <img loading="lazy" src="~/assets/images/imagenew/delivered-ic.svg" alt="Projects Accomplished" width="70" height="70" />
+                <div style="min-height:180px !important;" class="box-custom-height d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center custom-bg custom-border-primary">
+                    <img class="d-block" loading="lazy" src="~/assets/images/imagenew/delivered-ic.svg" alt="Projects Accomplished" width="70" height="70" />
                     <div class="fs-5 fw-bold">150+</div>
                     <p class="fs-5 text-body-tertiary">Projects Accomplished</p>
                 </div>
@@ -102,8 +101,8 @@
 
             <!-- Third Column -->
             <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-                <div class="d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center bg-white custom-border-primary">
-                    <img loading="lazy" src="~/assets/images/imagenew/developers-ic.svg" alt="Team Strength" width="70" height="70" />
+                <div style="min-height:180px !important;" class="box-custom-height d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center bg-white custom-border-primary">
+                    <img class="d-block" loading="lazy" src="~/assets/images/imagenew/developers-ic.svg" alt="Team Strength" width="70" height="70" />
                     <div class="fs-5 fw-bold">30+</div>
                     <p class="fs-5 text-body-tertiary">Team Strength</p>
                 </div>
@@ -111,8 +110,8 @@
 
             <!-- Fourth Column -->
             <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-                <div class="d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center custom-bg custom-border-primary">
-                    <img loading="lazy" src="~/assets/images/imagenew/satisfaction-rate-ic.svg" alt="Success Ratio" width="70" height="70" />
+                <div style="min-height:180px !important;" class="box-custom-height d-flex justify-content-center text-center h-100 p-3 flex-column rounded-4 align-items-center custom-bg custom-border-primary">
+                    <img class="d-block" loading="lazy" src="~/assets/images/imagenew/satisfaction-rate-ic.svg" alt="Success Ratio" width="70" height="70" />
                     <div class="fs-5 fw-bold">98+</div>
                     <p class="fs-5 text-body-tertiary">Success Ratio</p>
                 </div>
@@ -1269,13 +1268,38 @@
     </div>
 </section>
 <!-- Scripts (place before closing </body>) -->
-<script defer src="/assets/js/jquery.js"></script>
-<script defer src="/assets/js/bootstrap.bundle.min.js"></script>
-<script defer src="/assets/js/Avidclan/owl.carousel.min.js"></script>
+@*<script defer src="/assets/js/jquery.js"></script>
+    <script defer src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script defer src="/assets/js/Avidclan/owl.carousel.min.js"></script>
 
-<script defer>
-    document.addEventListener("DOMContentLoaded", function () { $(".owl-carousel").owlCarousel({ loop: !0, margin: 0, nav: !0, dots: !0, navText: ['<img loading="lazy" src="/assets/images/imagenew/chevron-left.svg" alt="Left" width="50">', '<img loading="lazy" src="/assets/images/imagenew/chevron-right.svg" alt="Right" width="50">'], responsive: { 0: { items: 1 }, 768: { items: 3 }, 1200: { items: 6 } }, onInitialized: e, onTranslated: e }); function e() { $(".owl-dot").each(function (e) { $(this).attr("aria-label", "Go to slide " + (e + 1)) }) } let t = document.querySelectorAll(".filter-tabs .filter"), n = document.querySelectorAll(".masonry-item"); t.forEach(e => { e.addEventListener("click", function () { t.forEach(e => e.classList.remove("active")), this.classList.add("active"); let t = this.getAttribute("data-filter").substring(1); n.forEach(e => { e.style.display = e.classList.contains(t) ? "block" : "none" }) }) }) });
-</script>
+    <script defer>
+        document.addEventListener("DOMContentLoaded", function () {
+            $(".owl-carousel").owlCarousel({
+                loop: true,
+                margin: 0,
+                nav: true,
+                dots: true,
+                navText: [
+                    '<img loading="lazy" src="/assets/images/imagenew/chevron-left.svg" alt="Left" width="50">',
+                    '<img loading="lazy" src="/assets/images/imagenew/chevron-right.svg" alt="Right" width="50">'
+                ],
+                responsive: {
+                    0: { items: 1 },
+                    768: { items: 3 },
+                    1200: { items: 6 }
+                },
+                onInitialized: addAriaLabels,
+                onTranslated: addAriaLabels
+            });
+
+            function addAriaLabels() {
+                $(".owl-dot").each(function (i) {
+                    $(this).attr("aria-label", "Go to slide " + (i + 1));
+                });
+            }
+        });
+    </script>*@
+
 
 
 
