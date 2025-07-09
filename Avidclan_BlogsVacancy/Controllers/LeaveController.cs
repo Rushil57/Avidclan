@@ -1,9 +1,4 @@
-﻿using Avidclan_BlogsVacancy.ViewModel;
-using Dapper;
-using iTextSharp.text;
-using iTextSharp.text.pdf.qrcode;
-using iTextSharp.tool.xml.html;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -11,11 +6,23 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Net;
+using System.Net.Configuration;
+using System.Net.Http;
+using System.Net.Mail;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using Avidclan_BlogsVacancy.ViewModel;
+using Dapper;
+using iTextSharp.text;
+using iTextSharp.text.pdf.qrcode;
+using iTextSharp.tool.xml.html;
+using MailKit.Net.Smtp;
+using Newtonsoft.Json;
 
 namespace Avidclan_BlogsVacancy.Controllers
 {
@@ -35,6 +42,120 @@ namespace Avidclan_BlogsVacancy.Controllers
                 return RedirectToAction("UserLogin", "BlogVacancy");
             }
             return View();
+        }
+
+        public async Task<ActionResult> SendLeaveSummary(string secretKey)
+        {
+            string validSecretKey = ConfigurationManager.AppSettings["LeaveSummarySecretKey"];
+            if (string.IsNullOrEmpty(secretKey) || secretKey != validSecretKey)
+            {
+                return new HttpStatusCodeResult(403, "Forbidden: Invalid or missing secret key.");
+            }
+
+            try
+            {
+                var leaveSummary = con.Query("SendEmployeeLeaveSummaryEmail", commandType: CommandType.StoredProcedure);
+
+                var sb = new StringBuilder();
+                sb.Append("<h3>Employee Leave Summary</h3>");
+                sb.Append("<table border='1' cellpadding='6' cellspacing='0' style='border-collapse:collapse; font-family:sans-serif; font-size:14px;'>");
+                sb.Append("<thead style='background-color:#f2f2f2;'><tr><th>Name</th><th>Paid Leave</th><th>Sick Leave</th></tr></thead><tbody>");
+
+                foreach (var row in leaveSummary)
+                {
+                    sb.Append("<tr>");
+                    sb.AppendFormat("<td>{0}</td>", row.FullName);
+                    sb.AppendFormat("<td>{0}</td>", row.PaidLeave);
+                    sb.AppendFormat("<td>{0}</td>", row.SickLeave);
+                    sb.Append("</tr>");
+                }
+
+                sb.Append("</tbody></table>");
+                string htmlBody = sb.ToString();
+
+                string toEmailsRaw = ConfigurationManager.AppSettings["LeaveSummaryRecipients"];
+                List<string> toEmails = toEmailsRaw.Split(new[] { ';', ',' }, StringSplitOptions.RemoveEmptyEntries)
+                                                   .Select(e => e.Trim())
+                                                   .ToList();
+
+                bool emailSent = await sendEmail(
+                    "info@avidclan.com",
+                    toEmails,
+                    "Leave Summary System",
+                    "Leave Summary Of Employees",
+                    htmlBody,
+                    new List<string>()
+                );
+
+                return Content(emailSent ? "Leave summary email sent." : "Email sending failed. Please check logs.");
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("SendLeaveSummary", ex.Message, ex.StackTrace);
+                return Content("Error: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public async Task<bool> sendEmail(string fromEmail, List<string> toEmails, string senderName, string subject, string message, List<string> ccEmails)
+        {
+            try
+            {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+                string apiKey = "a101ac38119207e6774e78a74701c990";
+                string apiSecret = "fc46b6850d50f957b087e2ba1bf2c0ee";
+                string apiUrl = "https://api.mailjet.com/v3.1/send";
+
+                using (HttpClient client = new HttpClient())
+                {
+                    string base64Auth = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{apiKey}:{apiSecret}"));
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", base64Auth);
+
+                    var toList = toEmails.Distinct().Select(email => new { Email = email, Name = "Avidclan Technologies" }).ToList();
+                    var ccList = (ccEmails ?? new List<string>())
+                                    .Distinct()
+                                    .Select(email => new { Email = email, Name = "" })
+                                    .ToList();
+
+                    var emailPayload = new
+                    {
+                        Messages = new[]
+                        {
+                    new
+                    {
+                        From = new { Email = fromEmail, Name = senderName },
+                        To = toList,
+                        CC = ccList,
+                        Subject = subject,
+                        HTMLPart = message
+                    }
+                }
+                    };
+
+                    string jsonPayload = JsonConvert.SerializeObject(emailPayload);
+                    StringContent content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+                    string responseContent = await response.Content.ReadAsStringAsync();
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        await ErrorLog("SendLeaveSummary", $"Mailjet error: {response.StatusCode}", responseContent);
+                        return false;
+                    }
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("SendLeaveSummary", ex.Message, ex.StackTrace);
+                return false;
+            }
         }
 
         public JsonResult LeaveDates()
