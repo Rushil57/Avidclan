@@ -21160,7 +21160,7 @@ label.required::after {
     position: relative;
 }
 
-.toggle-password, .toggle-confirm-password, .toggle-current-password, .toggle-new-password {
+.toggle-password, .toggle-confirm-password, .toggle-current-password, .toggle-new-password, .toggle-password-update, .toggle-confirm-password-update {
     position: absolute;
     top: 35px;
     right: 10px;

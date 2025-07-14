@@ -1,4 +1,5 @@
-﻿using Avidclan_BlogsVacancy.ViewModel;
+﻿using Avidclan_BlogsVacancy.Methods;
+using Avidclan_BlogsVacancy.ViewModel;
 using Dapper;
 using iTextSharp.text.pdf.qrcode;
 using MailKit;
@@ -50,20 +51,39 @@ namespace Avidclan_BlogsVacancy.Controllers
         public async Task<ActionResult> Login(UserLogin userLogin)
         {
             try
-            {
+            {                
                 var parameters = new DynamicParameters();
                 parameters.Add("@EmailId", userLogin.EmailId, DbType.String, ParameterDirection.Input);
-                parameters.Add("@Password", userLogin.Password, DbType.String, ParameterDirection.Input);
                 parameters.Add("@Mode", 1, DbType.Int32, ParameterDirection.Input);
                 var logindata = con.Query<UserLogin>("sp_User", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
                 if (logindata != null)
                 {
-                    Session["UserEmailId"] = logindata.EmailId;
-                    Session["UserId"] = logindata.Id;
-                    Session["UserJoiningDate"] = logindata.JoiningDate;
-                    Session["UserProbationPeriod"] = logindata.ProbationPeriod;
-                    Session["FirstName"] = logindata.FirstName;
-                    Session["LastName"] = logindata.LastName;
+                    string enteredPassword = userLogin.Password;
+                    string storedHash = logindata.Password;
+                    try
+                    {
+                        bool isValid = PasswordHelper.VerifyPassword(enteredPassword, storedHash);
+                        if (isValid)
+                        {
+                            Session["UserEmailId"] = logindata.EmailId;
+                            Session["UserId"] = logindata.Id;
+                            Session["UserJoiningDate"] = logindata.JoiningDate;
+                            Session["UserProbationPeriod"] = logindata.ProbationPeriod;
+                            Session["FirstName"] = logindata.FirstName;
+                            Session["LastName"] = logindata.LastName;
+                        }
+                        else
+                        {
+                            logindata = null;
+                            return Json(logindata, JsonRequestBehavior.AllowGet);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        logindata = null;
+                        return Json(logindata, JsonRequestBehavior.AllowGet);
+                    }
+                    
                 }
                 return Json(logindata, JsonRequestBehavior.AllowGet);
             }
@@ -74,6 +94,29 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
 
         }
+        [HttpPost]
+        public ActionResult UpdatePasswordById(UpdatePasswordModel userdata)
+        {
+            try
+            {
+                string passwordHash = PasswordHelper.HashPassword(userdata.Password);
+                var Id = userdata.Id;
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id", Id, DbType.Int16, ParameterDirection.Input);
+                parameters.Add("@Password", passwordHash, DbType.String, ParameterDirection.Input);
+                parameters.Add("@mode", 7, DbType.Int32, ParameterDirection.Input);
+                using (IDbConnection connection = new SqlConnection(connectionString))
+                {
+                    var UpdatePassword = connection.ExecuteScalar("sp_User", parameters, commandType: CommandType.StoredProcedure);
+                }
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                ErrorLog("UpdatePasswordById", ex.Message, ex.StackTrace).RunSynchronously();
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
+        }        
 
         public ActionResult Blog()
         {
@@ -278,13 +321,18 @@ namespace Avidclan_BlogsVacancy.Controllers
                 //if (!userRegister.OnBreak)
                 //{
                 //    userRegister.BreakMonth = "0";
-                //}
+                //}                
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id", userRegister.Id, DbType.Int32, ParameterDirection.Input);
                 parameters.Add("@FirstName", userRegister.FirstName, DbType.String, ParameterDirection.Input);
                 parameters.Add("@LastName", userRegister.LastName, DbType.String, ParameterDirection.Input);
-                parameters.Add("@EmailId", userRegister.EmailId, DbType.String, ParameterDirection.Input);
-                parameters.Add("@Password", userRegister.Password, DbType.String, ParameterDirection.Input);
+                parameters.Add("@EmailId", userRegister.EmailId, DbType.String, ParameterDirection.Input);                
+                if(mode == 2)
+                {
+                    string passwordHash = PasswordHelper.HashPassword(userRegister.Password);
+                    //parameters.Add("@Password", userRegister.Password, DbType.String, ParameterDirection.Input);
+                    parameters.Add("@Password", passwordHash, DbType.String, ParameterDirection.Input);
+                }                
                 parameters.Add("@PhoneNumber", userRegister.PhoneNumber, DbType.String, ParameterDirection.Input);
                 parameters.Add("@JoiningDate", userRegister.JoiningDate.ToShortDateString(), DbType.DateTime, ParameterDirection.Input);
                 parameters.Add("@ProbationPeriod", userRegister.ProbationPeriod, DbType.Int32, ParameterDirection.Input);
