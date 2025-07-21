@@ -367,7 +367,7 @@
                     </div>
                 </div>
 
-                <div class="d-none project-block-five masonry-item por-3 col-lg-4 col-md-6 col-sm-12">
+                <div class="project-block-five masonry-item por-3 col-lg-4 col-md-6 col-sm-12">
                     <div class="inner-box">
                         <div class="image">
                             <img src="~/assets/images/hiringpages/UI_UX_Hiring/WINQ.jpg" alt="winq" />
@@ -383,7 +383,7 @@
                     </div>
                 </div>
 
-                <div class="d-none project-block-five masonry-item por-3 col-lg-4 col-md-6 col-sm-12">
+                <div class="project-block-five masonry-item por-3 col-lg-4 col-md-6 col-sm-12">
                     <div class="inner-box">
                         <div class="image">
                             <img src="~/assets/images/hiringpages/UI_UX_Hiring/mediconnect.jpg" alt="mediconnect" />
@@ -399,7 +399,7 @@
                     </div>
                 </div>
 
-                <div class="d-none project-block-five masonry-item por-3 col-lg-4 col-md-6 col-sm-12">
+                <div class="project-block-five masonry-item por-3 col-lg-4 col-md-6 col-sm-12">
                     <div class="inner-box">
                         <div class="image">
                             <img src="~/assets/images/hiringpages/UI_UX_Hiring/FinSwipe.jpg" alt="FinSwipe" />
@@ -421,29 +421,27 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    $(document).ready(function () {
-        $('.filter').on('click', function () {
-            var filterValue = $(this).attr('data-filter');
+    $(function () {
+        // Default: sirf Web dikhe
+        $('.masonry-item').hide();   // saare hide
+        $('.por-1').show();          // Web show
+        $('.filter[data-filter=".por-1"]').addClass('active');
 
-            // Add active class to the current filter and remove from others
+        $('.filter').on('click', function () {
+            var filterValue = $(this).data('filter');   // ".por-2", ".por-3", etc.
+
             $('.filter').removeClass('active');
             $(this).addClass('active');
 
-            // Show/Hide portfolio items
             if (filterValue === 'all') {
                 $('.masonry-item').show();
-                $('.masonry-item').removeClass('d-none'); // Ensure all items are visible
             } else {
                 $('.masonry-item').hide();
-                $(filterValue).show();
-                // Also remove 'd-none' from the items with the 'por-3' class when selected
-                if (filterValue === '.por-3') {
-                    $('.por-3').removeClass('d-none');
-                }
+                $(filterValue).show();   // sirf selected category
             }
         });
     });
-
 </script>
+
 
 @Html.Partial("_Footer")

@@ -1,0 +1,342 @@
+﻿
+/* Reset and base styles */
+
+/* CSS Variables for colors */
+:root {
+    --avidclan-blue: #0e53be;
+    --avidclan-hero-bg: #eff1f5;
+    --avidclan-footer-bg: #1e293b;
+    --avidclan-text-primary: #344256;
+    --avidclan-text-secondary: #65758b;
+}
+
+/* Header Styles */
+
+
+/* Hero Section */
+.hero {
+    background-color: var(--avidclan-hero-bg);
+    padding: 120px 0 80px 0;
+}
+
+.hero-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--avidclan-text-primary);
+    margin-bottom: 24px;
+    line-height: 1.1;
+}
+
+.hero p {
+    font-size: 20px;
+    color: var(--avidclan-text-secondary);
+    margin-bottom: 40px;
+    max-width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.4;
+}
+
+.cta-button {
+    background-color: var(--avidclan-blue);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+    .cta-button:hover {
+        background-color: #142149;
+    }
+
+/* Developers Section */
+.developers {
+    background-color: white;
+    padding: 80px 0;
+}
+
+.developers-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--avidclan-text-primary);
+    margin-bottom: 40px;
+}
+
+.developers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 32px;
+}
+
+.developer-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+    transition: box-shadow 0.3s ease;
+}
+
+    .developer-card:hover {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+.developer-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.developer-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 16px;
+}
+
+.developer-info h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--avidclan-text-primary);
+}
+
+.developer-experience {
+    color: var(--avidclan-blue);
+    background-color: rgba(10, 116, 255, 0.1);
+    border-radius:20px;
+    padding:10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.developer-description {
+    color: var(--avidclan-text-secondary);
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tech-badge {
+    background-color: #f3f4f6;
+    color: var(--avidclan-text-secondary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Contact Section */
+.contact {
+    background-color: #f9fafb;
+    padding: 80px 0;
+}
+
+.contact-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0px;
+}
+
+.contact-info h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--avidclan-text-primary);
+    margin-bottom: 24px;
+}
+
+.contact-info p {
+    color: var(--avidclan-text-secondary);
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.contact-icon {
+    width: 48px;
+    height: 48px;
+    background-color: var(--avidclan-blue);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+}
+
+    .contact-icon svg {
+        width: 24px;
+        height: 24px;
+        stroke: white;
+    }
+
+.contact-details .label {
+    font-weight: 600;
+    color: var(--avidclan-text-primary);
+}
+
+.contact-details .value {
+    color: var(--avidclan-text-secondary);
+}
+
+.contact-form {
+    background: white;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-label {
+    display: block;
+    color: var(--avidclan-text-primary);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.2s ease;
+}
+
+    .form-input:focus,
+    .form-textarea:focus {
+        outline: none;
+        border-color: var(--avidclan-blue);
+    }
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: var(--avidclan-blue);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+    .submit-btn:hover {
+        background-color: #142149;
+    }
+
+/* Footer */
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .developers-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .developers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-container,
+    .hero-container,
+    .developers-container,
+    .contact-container,
+    .footer-container {
+        padding: 0 16px;
+    }
+
+    .hero {
+        padding: 120px 0 50px 0;
+    }
+
+    .developers,
+    .contact,
+    .footer {
+        padding: 40px 0;
+    }
+
+    .contact-form {
+        padding: 24px;
+    }
+}
+.widgets-section {
+    padding-top: 50px !important;
+}
+

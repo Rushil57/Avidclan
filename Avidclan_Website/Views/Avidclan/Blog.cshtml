@@ -21,7 +21,7 @@
     <div class="container">
         <div class="content-box">
             <div class="row">
-                <div class="col-md-12 col-lg-12 text-center">
+                <div class="col-md-12 col-lg-8 d-flex align-items-center">
                     <div class="pl-2">
                         <h1>Our <span class="primary-color">Blog</span></h1>
                         <div class="text mb-0">
@@ -30,6 +30,9 @@
                             provide a superior digital experience for their clients worldwide.
                         </div>
                     </div>
+                </div>
+                <div class="image col-md-12 col-lg-4 text-center">
+                    <img src="~/assets/images/Blog post-amico 1.svg" alt="dot-net-img">
                 </div>
             </div>
         </div>
@@ -40,19 +43,142 @@
 <!-- Blog Section -->
 <section class="blog-section">
     <div class="container">
-        <div class="blog-grid-wrap">
-            <div class="row" id="demo">
+        <h3 class="fs-3 primary-color text-center mb-4">Blog Categories</h3>
+
+        <!-- Chevron + Scrollable Category Buttons -->
+        <div class="position-relative mb-5 d-flex align-items-center">
+            <!-- Left Chevron -->
+            <div class="chevron-left">
+                <img src="~/assets/images/blog/Chevron_left_blog_cat.svg" alt="Left" />
+            </div>
+
+            <!-- Scrollable Button Wrapper -->
+            <!-- Wrapper with limited width -->
+            <div class="w-100 d-flex justify-content-center">
+                <!-- Scrollable category container -->
+                <div class="d-flex flex-nowrap overflow-auto px-2 category-scroll-container" id="category-buttons-scroll" style="scroll-behavior: smooth;">
+                    <div class="d-flex gap-2" id="category-buttons">
+                        <button class="category-btn active" data-category="all">All</button>
+                        <button class="category-btn" data-category=".NET Development">.NET Development</button>
+                        <button class="category-btn" data-category="Flutter App Development">Flutter App Development</button>
+                        <button class="category-btn" data-category="Artificial Intelligence">Artificial Intelligence</button>
+                        <button class="category-btn" data-category="UI/UX Design">UI/UX Design</button>
+                        <button class="category-btn" data-category="Software Development">Software Development</button>
+                        <button class="category-btn" data-category=".NET MAUI">.NET MAUI</button>
+                        <button class="category-btn" data-category="Angular Development">Angular Development</button>
+                        <button class="category-btn" data-category="Mobile Application Development">Mobile App Development</button>
+                        <button class="category-btn" data-category="Data Analytics">Data Analytics</button>
+                        <button class="category-btn" data-category="iOS App Development">iOS App Development</button>
+                        <button class="category-btn" data-category="ReactJS Development">ReactJS Development</button>
+                        <button class="category-btn" data-category="Web Development">Web Development</button>
+                        <button class="category-btn" data-category="Chatbot and Conversational AI">Chatbot and Conversational AI</button>
+                        <button class="category-btn" data-category="Machine Learning">Machine Learning</button>
+                        <button class="category-btn" data-category="React Native">React Native</button>
+                        <button class="category-btn" data-category="Automation Testing">Automation Testing</button>
+                        <button class="category-btn" data-category="Azure Development">Azure Development</button>
+                        <button class="category-btn" data-category="Selenium Automation Testing">Selenium Automation Testing</button>
+                        <button class="category-btn" data-category="ASP.NET Development">ASP.NET Development</button>
+                        <button class="category-btn" data-category="Cloud Development">Cloud Development</button>
+                        <button class="category-btn" data-category="Predictive Analytics">Predictive Analytics</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Right Chevron -->
+            <div class="chevron-right">
+                <img src="~/assets/images/blog/Chevron_Right_blog_cat.svg" alt="Right" />
             </div>
         </div>
 
-        <!-- Blog Pagination Start -->
-        <div class="blog-pagination">
-            <ul class="pagination justify-content-center" id="pagination" style="margin-top: 70px;">
-            </ul>
+        <!-- Blog Grid -->
+        <div class="blog-grid-wrap">
+            <div class="row" id="demo">
+                <!-- Blogs will be dynamically inserted here -->
+            </div>
         </div>
-        <!-- Blog Pagination End -->
+
+        <!-- Blog Pagination -->
+        <div class="blog-pagination">
+            <ul class="pagination justify-content-center" id="pagination" style="margin-top: 70px;"></ul>
+        </div>
     </div>
 </section>
+
+<!-- ✅ CSS -->
+<!-- ✅ Script -->
+@*<script>
+        // Sample blog data (replace with dynamic content if needed)
+        const blogs = [
+            { title: "How to scale your ecommerce store", category: "ecommerce" },
+            { title: "Latest Web Dev Trends 2025", category: "webdev" },
+            { title: "Inside Our Culture", category: "culture" },
+            { title: "News Update – Company Growth", category: "news" },
+            { title: "UI/UX Principles", category: "uiux" },
+            { title: "Mobile App Evolution", category: "mobile" },
+            { title: "Knowledge: APIs vs SDKs", category: "knowledge" },
+        ];
+
+        function renderBlogs(category = "all") {
+            const filtered = category === "all" ? blogs : blogs.filter(b => b.category === category);
+            const html = filtered.map(blog => `
+                <div class="col-md-4 mb-4 blog-item" data-category="${blog.category}">
+                    <div class="card shadow-sm p-3">
+                        <h5>${blog.title}</h5>
+                        <p class="mb-0 text-muted text-capitalize">Category: ${blog.category}</p>
+                    </div>
+                </div>
+            `).join("");
+            $("#demo").html(html);
+        }
+
+        function updateChevronVisibility() {
+            const scrollEl = document.getElementById('category-buttons-scroll');
+            const scrollLeft = scrollEl.scrollLeft;
+            const scrollWidth = scrollEl.scrollWidth;
+            const clientWidth = scrollEl.clientWidth;
+
+            if (scrollLeft <= 0) {
+                $('.chevron-left').hide();
+            } else {
+                $('.chevron-left').show();
+            }
+
+            if (scrollLeft + clientWidth >= scrollWidth - 1) {
+                $('.chevron-right').hide();
+            } else {
+                $('.chevron-right').show();
+            }
+        }
+
+        $(document).ready(function () {
+            renderBlogs();
+
+            $(".category-btn").on("click", function () {
+                $(".category-btn").removeClass("active");
+                $(this).addClass("active");
+
+                const selectedCategory = $(this).data("category");
+                renderBlogs(selectedCategory);
+            });
+
+            // Chevron scroll logic
+            $('.chevron-left').on('click', function () {
+                $('#category-buttons-scroll').animate({ scrollLeft: '-=200' }, 300, updateChevronVisibility);
+            });
+
+            $('.chevron-right').on('click', function () {
+                $('#category-buttons-scroll').animate({ scrollLeft: '+=200' }, 300, updateChevronVisibility);
+            });
+
+            // Scroll detection
+            $('#category-buttons-scroll').on('scroll', updateChevronVisibility);
+
+            // Initial visibility
+            updateChevronVisibility();
+        });
+    </script>*@
+
 
 
 <section class="lets-talk">
@@ -90,90 +216,159 @@
 
 
 <script type="text/javascript">
+    var selectedBlogType = window.location.pathname.split('/').pop();
+    if (!selectedBlogType || selectedBlogType === "blog" || selectedBlogType === "Blog") {
+        selectedBlogType = "all";
+    }
+
+    let currentPageNumber = 1;
+
     $(document).ready(function () {
-        GetSectionData(1);
+        GetSectionData(1, selectedBlogType);
+        updateChevronVisibility();
+
+        $(".category-btn").on("click", function () {
+            $(".category-btn").removeClass("active");
+            $(this).addClass("active");
+
+            selectedBlogType = $(this).data("category");
+            GetSectionData(1, selectedBlogType);
+        });
+
+        $(".chevron-left").click(function () {
+            let scrollAmount = window.innerWidth >= 992 ? 750 : 150;
+            $("#category-buttons-scroll").animate({ scrollLeft: `-=${scrollAmount}` }, 300, updateChevronVisibility);
+        });
+
+        $(".chevron-right").click(function () {
+            let scrollAmount = window.innerWidth >= 992 ? 750 : 150;
+            $("#category-buttons-scroll").animate({ scrollLeft: `+=${scrollAmount}` }, 300, updateChevronVisibility);
+        });
+
+        $("#category-buttons-scroll").on("scroll", updateChevronVisibility);
     });
-    function GetSectionData(id) {
+
+    $(window).on("resize", function () {
+        clearTimeout(window.resizedFinished);
+        window.resizedFinished = setTimeout(function () {
+            GetSectionData(currentPageNumber, selectedBlogType);
+        }, 200);
+    });
+
+    function updateChevronVisibility() {
+        var container = document.getElementById("category-buttons-scroll");
+        var scrollLeft = container.scrollLeft;
+        var maxScrollLeft = container.scrollWidth - container.clientWidth;
+
+        var $leftChevron = $(".chevron-left");
+        var $rightChevron = $(".chevron-right");
+        var $scrollContainer = $("#category-buttons-scroll");
+
+        var showLeft = scrollLeft > 5;
+        var showRight = scrollLeft < maxScrollLeft - 5;
+
+        $leftChevron.toggle(showLeft);
+        $rightChevron.toggle(showRight);
+
+        var marginLeft = showLeft ? "26px" : "0";
+        var marginRight = showRight ? "26px" : "0";
+        $scrollContainer.css({ "margin-left": marginLeft, "margin-right": marginRight });
+    }
+
+    function GetSectionData(page, blogType) {
+        currentPageNumber = page;
+
+        let url = blogType === "all"
+            ? `/Avidclan/GetSectionData?page=${page}`
+            : `/Avidclan/GetSectionDataByBlogTypePaginated?BlogType=${encodeURIComponent(blogType)}&page=${page}`;
+
         $.ajax({
             type: "GET",
-            url: "/Avidclan/GetSectionData?page=" + id,
+            url: url,
             contentType: 'application/json; charset=utf-8',
             dataType: "json",
             success: function (data) {
                 $("#demo").html("");
                 var sectionblog = "";
                 var paginationData = "";
-                var imageURL = "https://cms.avidclan.com";
+
                 $.each(data.data.ListBlog, function (k, v) {
                     var options = { year: 'numeric', month: 'long', day: 'numeric' };
                     var PostingDate = new Date(v.PostingDate);
                     var longDt = PostingDate.toLocaleDateString("en-US", options);
                     var Descriptionlength = v.MetaDescription.length > 80 ? v.MetaDescription.substring(0, 80) + "…" : v.MetaDescription;
 
-                    /* var url = imageURL + v.Image;*/
-                    sectionblog += '<div class="col-lg-4 col-md-6">' +
-                        '<div class="single-blog">' +
-                        '<div class="blog-img img img-fluid">' +
-                        '<a href="/blog/' + v.PageUrl + '"><img class="BlogImages" src="' + v.Image + '" alt="" style=height:216px; ></a>' +
-                        '<div class="top-meta">' +
-                        '<span class="tag" style="font-style: normal;">' + v.BlogType + '</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '<div class="blog-content">' +
-                        '<div class="blog-meta">' +
-                        '<span><i class="fas fa-user"></i> <a style="font-style: normal;" href="#">' + v.PostedBy + '</a></span>' +
-                        '<span id="admindateid_' + v.Id + '" style="font-style: normal;"><i class="far fa-calendar-alt"></i>' + longDt + '</span>' +
-                        '</div>' +
-                        '<h1 class="title blog-title"><a href="/blog/' + v.PageUrl + '" style="font-style: normal;">' + v.Title + '</a></h1>' +
-                        '<p class="blog-meta-desc">' + Descriptionlength + '</p>' +
-                        '</div>' +
-                        '<div class="blog-btn">' +
-                        '<a href="/blog/' + v.PageUrl + '" class="blog-btn-link" style="font-style: normal;")>' +
-                        'Read Full Article <i class="fas fa-long-arrow-alt-right"></i>' +
-                        '</a>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>';
-                })
+                    sectionblog += `
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-blog">
+                                <div class="blog-img img img-fluid">
+                                    <a href="/blog/${v.PageUrl}"><img class="BlogImages" src="${v.Image}" alt="" style="height:216px;"></a>
+                                    <div class="top-meta">
+                                        <span class="tag" style="font-style: normal;">${v.BlogType}</span>
+                                    </div>
+                                </div>
+                                <div class="blog-content">
+                                    <div class="blog-meta">
+                                        <span><i class="fas fa-user"></i> <a style="font-style: normal;" href="#">${v.PostedBy}</a></span>
+                                        <span id="admindateid_${v.Id}" style="font-style: normal;"><i class="far fa-calendar-alt"></i> ${longDt}</span>
+                                    </div>
+                                    <h1 class="title blog-title"><a href="/blog/${v.PageUrl}" style="font-style: normal;">${v.Title}</a></h1>
+                                    <p class="blog-meta-desc">${Descriptionlength}</p>
+                                </div>
+                                <div class="blog-btn">
+                                    <a href="/blog/${v.PageUrl}" class="blog-btn-link" style="font-style: normal;">
+                                        Read Full Article <i class="fas fa-long-arrow-alt-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>`;
+                });
+
                 $('#demo').html(sectionblog);
-                document.querySelector('.loader').style.display = 'none';
-                if (data.data.pager.EndPage > 1) {
-                    paginationData += '<ul class="pagination">'
-                    if (data.data.pager.CurrentPage > 1) {
-                        let previousPage = (data.data.pager.CurrentPage) - 1;
-                        paginationData += '<li class="page-item">' + '<a class="page-link" onclick="GetSectionData(' + previousPage + ')"  href="javascript:void(0);"><i class="fas fa-chevron-left"></i></a>' + '</li>'
+                $('.loader')?.hide();
+
+                // Responsive Pagination
+                if (data.data.pager && data.data.pager.TotalPages > 1) {
+                    const isMobile = window.innerWidth < 768;
+                    const maxPagesToShow = isMobile ? 3 : 7;
+
+                    let currentPage = data.data.pager.CurrentPage;
+                    let totalPages = data.data.pager.TotalPages;
+
+                    let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+                    let endPage = startPage + maxPagesToShow - 1;
+
+                    if (endPage > totalPages) {
+                        endPage = totalPages;
+                        startPage = Math.max(1, endPage - maxPagesToShow + 1);
                     }
-                    for (var page = data.data.pager.StartPage; page <= data.data.pager.EndPage; page++) {
-                        var isActive = (page == data.data.pager.CurrentPage) ? "active" : "";
-                        paginationData += '<li class="' + isActive + ' page-item">' +
-                            '<a class="page-link" onclick="GetSectionData(' + page + ')" href="javascript:void(0);">' + page + '</a>' +
-                            '</li>'
+
+                    paginationData += '<ul class="pagination justify-content-center">';
+
+                    if (currentPage > 1) {
+                        let prevPage = currentPage - 1;
+                        paginationData += `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="GetSectionData(${prevPage}, '${blogType}')"><i class="fas fa-chevron-left"></i></a></li>`;
                     }
-                    if (data.data.pager.CurrentPage < data.data.pager.TotalPages) {
-                        let nextPage = (data.data.pager.CurrentPage) + 1;
-                        paginationData += '<li class="page-item">' +
-                            '<a class="page-link" onclick="GetSectionData(' + nextPage + ')" href="javascript:void(0);"><i class="fas fa-chevron-right"></i></a>' +
-                            '</li>'
+
+                    for (let i = startPage; i <= endPage; i++) {
+                        let active = i === currentPage ? "active" : "";
+                        paginationData += `<li class="page-item ${active}"><a class="page-link" href="javascript:void(0);" onclick="GetSectionData(${i}, '${blogType}')">${i}</a></li>`;
                     }
-                    paginationData += '</ul>'
+
+                    if (currentPage < totalPages) {
+                        let nextPage = currentPage + 1;
+                        paginationData += `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="GetSectionData(${nextPage}, '${blogType}')"><i class="fas fa-chevron-right"></i></a></li>`;
+                    }
+
+                    paginationData += '</ul>';
                 }
+
                 $('#pagination').html(paginationData);
-
-                var uri = window.location.href.toString();
-                if (uri.indexOf("?") > 0) {
-                    var clean_uri = uri.substring(0, uri.indexOf("?"));
-                    window.history.replaceState({}, document.title, clean_uri);
-                }
-
-                if (id > 1) {
-                    var currentURL = window.location.href;
-                    var newURL = currentURL + (currentURL.indexOf('?') !== -1 ? '&' : '?') + 'page=' + id;
-                    history.pushState({ path: newURL }, '', newURL);
-                }
             },
-            error: function (result) {
-                alert("Error Ocurred!");
+            error: function () {
+                alert("Error occurred while fetching blogs!");
             }
         });
     }
 </script>
+

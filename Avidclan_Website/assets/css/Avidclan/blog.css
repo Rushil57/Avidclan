@@ -1324,3 +1324,72 @@ td {
 .blog-title a{
     font-size : 20px !important
 }
+/*.category-scroll-container {
+    width: 100%;
+    max-width: 1140px;*/ /* ❌ NO !important here */
+/*}
+
+@media (max-width: 1200px) {
+    .category-scroll-container {
+        max-width: 960px !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .category-scroll-container {
+        max-width: 720px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .category-scroll-container {
+        max-width: 100% !important;
+    }
+}*/
+.category-btn {
+    min-width: 120px;
+    height: 34px;
+    padding: 5px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    flex: 0 0 auto;
+}
+
+    .category-btn.active {
+        background-color: #0E53BE;
+        color: white;
+        border-color: #0E53BE;
+    }
+
+/* Chevron buttons */
+.chevron-left,
+.chevron-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.chevron-left {
+    left: -10px;
+}
+
+.chevron-right {
+    right: -10px;
+}
+
+/* Hide Scrollbar */
+#category-buttons-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+#category-buttons-scroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
