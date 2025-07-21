@@ -39,14 +39,14 @@
                             <label for="emaillAddress" class="required">Email Address</label>
                             <input type="email" class="form-control" name="emailaddress" id="EmailAddress" placeholder="Email Address" onfocusout="CheckExistingEmailAddress()">
                         </div>
-                        <div class="form-group password-container">
+                        <div class="edit-pwd form-group password-container">
                             <label for="passWord" class="required">Password</label>
-                            <input type="password" class="form-control" name="password" id="PassWord" placeholder="Pass Word">
+                            <input type="password" class="form-control" name="password" id="PassWord" placeholder="Password">
                             <i class="mdi mdi-eye-off toggle-password"></i>
                         </div>
-                        <div class="form-group password-container">
+                        <div class="edit-pwd form-group password-container">
                             <label for="ConfirmpassWord" class="required">Confirm Password</label>
-                            <input type="password" class="form-control" name="Confirmpassword" id="ConfirmPassWord" placeholder="Confirm PassWord">
+                            <input type="password" class="form-control" name="Confirmpassword" id="ConfirmPassWord" placeholder="Confirm Password">
                             <i class="mdi mdi-eye-off toggle-confirm-password"></i>
                         </div>
                         <div class="form-group">
@@ -94,17 +94,54 @@
 </div>
 
 
+<div class="modal" id="UpdatePasswordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width:100%">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Password</h5>
+                <button type="button" class="btn-close" aria-label="Close" onclick='$("#UpdatePasswordModal").modal("hide");'></button>
+            </div>
+            <div class="modal-body">
+                <div class="login-form">
+                    
+                        
+                        <div class="form-group password-container">
+                            <label for="passWord" class="required">Password</label>
+                            <input type="password" class="form-control" name="txt_oldPassword" id="txt_oldPassword" placeholder="Password">
+                            <i class="mdi mdi-eye-off toggle-password-update"></i>
+                        </div>
+                        <div class="form-group password-container">
+                            <label for="ConfirmpassWord" class="required">Confirm Password</label>
+                            <input type="password" class="form-control" name="txt_ConfirmPassword" id="txt_ConfirmPassword" placeholder="Confirm Password">
+                            <i class="mdi mdi-eye-off toggle-confirm-password-update"></i>
+                        </div>
+                       
+                        <br />
+                        
+                        <div class="modal-footer">
+                            <input type="hidden" id="hdn_updatepwd_id" />
+                            <button type="button" class="btn btn-secondary btn-sm" onclick='$("#UpdatePasswordModal").modal("hide");'>Close</button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="UpdatePasswordById()">Save</button>
+                        </div>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="table-responsive pt-3">
     <table id="EmployeeList" class="table table-bordered table-responsive">
         <thead>
             <tr>
                 <th> FirstName </th>
                 <th> LastName </th>
-                <th> JoiningDate </th>
-                <th> Password </th>
+                <th> JoiningDate </th>                
                 <th> ProbationPeriod </th>
                 <th> PaidLeave </th>
                 <th> SickLeave </th>
+                <th></th>
                 <th></th>
                 <th></th>
             </tr>

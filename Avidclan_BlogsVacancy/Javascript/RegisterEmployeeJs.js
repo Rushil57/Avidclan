@@ -78,6 +78,26 @@ $(function () {
         $(this).toggleClass("mdi-eye-outline");
     });
 
+    $(".toggle-password-update").click(function () {
+        var input = $("#txt_oldPassword");
+        if (input.attr("type") === "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+        $(this).toggleClass("mdi-eye-outline");
+    });
+
+    $(".toggle-confirm-password-update").click(function () {
+        var input = $("#txt_ConfirmPassword");
+        if (input.attr("type") === "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+        $(this).toggleClass("mdi-eye-outline");
+    });
+
     BindRoles();
     $('#JoiningDate').datepicker();
     $("#NoticePeriod").datepicker();
@@ -219,6 +239,7 @@ function ResetForm() {
     $("#lastWorkingDate").val("");
 }
 function ShowEmployeRegisterModel() {
+    $(".edit-pwd").show();
     $("#EmployeeModal").modal('show')
 }
 function GetEmployeeList() {
@@ -241,8 +262,7 @@ function GetEmployeeList() {
                             const dateValue = new Date(parseInt(data.substr(6)));
                             return moment(dateValue).format('DD/MM/YYYY');
                         }
-                    },
-                    { "data": "Password" },
+                    },                    
                     { "data": "ProbationPeriod" },
                     { "data": "FinalBalance" },
                     { "data": "SickLeaveFinalBalance" },
@@ -258,6 +278,13 @@ function GetEmployeeList() {
                             return '<a class="btn btn-danger btn-sm" style="color: white;" onclick=DeleteEmployee(' + data + ')><i class="mdi mdi-delete"></i></a>';
                         }
                     }
+                    ,
+                    {
+                        "data": "Id",
+                        "render": function (data, type, row) {
+                            return '<a title="Update Password" class="btn btn-info btn-sm" style="color: white;" onclick=ShowUpdatePasswordById(' + data + ')><i class="mdi mdi-lock-reset"></i></a>';
+                        }
+                    }
                 ]
             });
 
@@ -270,7 +297,53 @@ function GetEmployeeList() {
         }
     });
 }
+
+function UpdatePasswordById() {
+    var txt_password = $("#txt_oldPassword").val().trim();
+    var txt_ConfirmPassword = $("#txt_ConfirmPassword").val().trim();
+    if (txt_password == "") {
+        alert("Password cannot be empty");
+        return;
+    }
+    if (txt_ConfirmPassword == "") {
+        alert("Confirm Password cannot be empty");
+        return;
+    }
+    if (txt_password != txt_ConfirmPassword) {
+        alert("Confirm password does not match the new password.");
+        return;
+    }
+    var id = $("#hdn_updatepwd_id").val();
+    var userdata = {
+        Id: id,
+        Password: $("#txt_oldPassword").val().trim(),
+    }
+    $.ajax({
+        type: "POST",
+        url: "/BlogVacancy/UpdatePasswordById",
+        contentType: 'application/json',
+        data: JSON.stringify(userdata),
+        success: function (result) {
+            if (result == true) {
+                alert("Password updated successfully.");
+                $("#UpdatePasswordModal").modal('hide');
+            }
+            else {
+                alert(result);
+            }
+
+        },
+        error: function (result) {
+            alert("Error");
+        }
+    });
+}
+function ShowUpdatePasswordById(id) {
+    $("#hdn_updatepwd_id").val(id);
+   $("#UpdatePasswordModal").modal('show');
+}
 function GetEmployeeDetailsById(id) {
+    $(".edit-pwd").hide();    
     showSpinner();
     $("#EmployeeModal").modal('show');
     $.ajax({
@@ -284,9 +357,7 @@ function GetEmployeeDetailsById(id) {
                 $("#FirstName").val(result.FirstName);
                 $("#LastName").val(result.LastName)
                 $("#PhoneNumber").val(result.PhoneNumber)
-                $("#EmailAddress").val(result.EmailId)
-                $("#PassWord").val(result.Password)
-                $("#ConfirmPassWord").val(result.Password)
+                $("#EmailAddress").val(result.EmailId)                
                 var date = moment(result.JoiningDate).format('YYYY-MM-DD');
                 $("#JoiningDate").val(date)
                 $("#ProbationMonth").val(result.ProbationPeriod)

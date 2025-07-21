@@ -10,4 +10,10 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string MenuName { get; set; }
         public bool Status { get; set; }
     }
+
+    public class UpdatePasswordModel
+    {
+        public string Id { get; set; }
+        public string Password { get; set; }
+    }
 }

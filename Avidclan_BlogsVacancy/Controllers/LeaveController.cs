@@ -1,4 +1,12 @@
-﻿using System;
+﻿using Avidclan_BlogsVacancy.Methods;
+using Avidclan_BlogsVacancy.ViewModel;
+using Dapper;
+using iTextSharp.text;
+using iTextSharp.text.pdf.qrcode;
+using iTextSharp.tool.xml.html;
+using MailKit.Net.Smtp;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -16,13 +24,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
-using Avidclan_BlogsVacancy.ViewModel;
-using Dapper;
-using iTextSharp.text;
-using iTextSharp.text.pdf.qrcode;
-using iTextSharp.tool.xml.html;
-using MailKit.Net.Smtp;
-using Newtonsoft.Json;
 
 namespace Avidclan_BlogsVacancy.Controllers
 {
@@ -932,7 +933,8 @@ namespace Avidclan_BlogsVacancy.Controllers
             return View();
         }
 
-        public async Task<JsonResult> CheckOldPassword()
+        [HttpPost]
+        public async Task<JsonResult> CheckOldPassword(string oldPassword)
         {
             try
             {
@@ -942,8 +944,9 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@mode", 6, DbType.Int32, ParameterDirection.Input);
                 using (IDbConnection connection = new SqlConnection(connectionString))
                 {
-                    var CheckPassword = connection.ExecuteScalar("sp_User", parameters, commandType: CommandType.StoredProcedure);
-                    return Json(CheckPassword, JsonRequestBehavior.AllowGet);
+                    var storedHash = connection.ExecuteScalar("sp_User", parameters, commandType: CommandType.StoredProcedure);
+                    bool isValid = PasswordHelper.VerifyPassword(oldPassword, Convert.ToString(storedHash));
+                    return Json(isValid, JsonRequestBehavior.AllowGet);
                 }
             }
             catch (Exception ex)
@@ -957,10 +960,11 @@ namespace Avidclan_BlogsVacancy.Controllers
         {
             try
             {
+                string passwordHash = PasswordHelper.HashPassword(Password);
                 var Id = Session["UserId"];
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id", Id, DbType.Int16, ParameterDirection.Input);
-                parameters.Add("@Password", Password, DbType.String, ParameterDirection.Input);
+                parameters.Add("@Password", passwordHash, DbType.String, ParameterDirection.Input);
                 parameters.Add("@mode", 7, DbType.Int32, ParameterDirection.Input);
                 using (IDbConnection connection = new SqlConnection(connectionString))
                 {
