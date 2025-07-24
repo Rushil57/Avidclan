@@ -950,7 +950,7 @@ button {
 
 @media(max-width:1439.98px) and (min-width:1024px) {
     .banner-section {
-        padding: 60px 0;
+        padding: 140px 0;
     }
 
     .about-section .img-col img {
@@ -1036,7 +1036,7 @@ button {
 
 @media(max-width:1023.98px) and (min-width:768px) {
     .banner-section {
-        padding: 100px 0 70px 0;
+        padding: 140px 0 70px 0;
     }
 
     .about-section .img-col img {
