@@ -1554,7 +1554,7 @@ ul.list-unstyled li a {
 .owl-carousel button.owl-dot.active {
     width: 10px;
     height: 10px;
-    background-color: #2aa3df !important
+    background-color: #0E53BE !important
 }
 
 .widget-title {
@@ -2034,4 +2034,42 @@ a.nav-link.btn.btn-primary.fw-bold.rounded-5.custom-btn-padding.shadow-none {
 
 .dropdown-menu {
     border-radius: 20px !important;
+}
+
+
+@media (min-width: 1140px) {
+    .responsive-pt-adjust {
+        padding-top: 0 !important;
+    }
+}
+@media (max-width: 1138px) and (min-width: 767px) {
+    .author-section-top-padding {
+        padding-top: 100px !important;
+    }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+    .main-footer .row.pt-4.border-top > div
+
+{
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+}
+
+}
+/* Desktop only: make right side sticky */
+@media (min-width: 992px) {
+    .sticky-author-box {
+        position: sticky;
+        top: 90px;
+        z-index: 2;
+    }
+}
+
+/* Mobile/tablet: disable sticky */
+@media (max-width: 991.98px) {
+    .sticky-author-box {
+        position: static !important;
+        top: auto !important;
+    }
 }

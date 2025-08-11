@@ -17,6 +17,7 @@
     <meta property="og:title" content="@ViewBag.MetaTitle" />
     <meta property="og:description" content="@ViewBag.MetaData" />
     <meta property="og:url" content="@ViewBag.Url" />
+    <meta property="og:image" content="@ViewBag.OgImage" />
     <meta property="article:published_time" content="2024-05-17T04:45:30+00:00" />
     <meta property="article:modified_time" content="2024-05-17T04:45:30+00:00" />
     <meta name="twitter:card" content="summary" />
@@ -66,41 +67,46 @@
                         <span class="after-separator"> | </span>
                         <div id="publishDate" class="span-date font-16 text-center"></div> @*May 17, 2024*@
                         <span class="after-separator"> | </span>
-                        <div class="publisher-name">
-                            <div class="user-image">
-                                <i class="fas fa-user"></i>
+                        <div class="publisher-name d-flex align-items-center justify-content-center">
+                            <div class="me-2">
+                                <img id="AuthorImage" src="/assets/images/user/default.svg" alt="Author" class="author-img" />
                             </div>
-                            <div class="text-content d-block font-16 text-center">
+                            <div class="text-content font-16 text-center">
                                 <span>by</span>
-                                <a href="#" id="AuthorName"></a> @*Rushil Bhuptani*@
+                                <a href="#" id="AuthorName" class="ms-1">Rushil Bhuptani</a> @* Optional: Set name here if not via JS *@
                             </div>
                         </div>
                     </div>
-                    <div class="table-content sm_only">
-                        <div class="title mb-4">
-                            <img class="pe-3" src="~/assets/images/icons/toc.svg">Table of Content
+
+                    <div class="table-content sm_only position-relative blog-border-top mb-2">
+                        <div class="title toc-title-wrapper d-flex justify-content-between align-items-center pe-4" id="mobileTocToggle" style="cursor:pointer;">
+                            <div class="d-flex align-items-center">
+                                <img class="pe-3" src="~/assets/images/icons/toc.svg" alt="TOC Icon">
+                                Table of Content
+                            </div>
+
+                            <!-- Custom Arrow Icon for Mobile -->
+                            <div class="toc-arrow-icon" id="mobileTocArrow" data-expanded="false">
+                                <img class="toc-arrow-img" src="~/assets/images/imagenew/arrow-up-black.svg" alt="Dropdown Arrow">
+                            </div>
                         </div>
-                        <div class="table-content-list">
+
+                        <div class="table-content-list mt-3" id="mobileTocList" style="display: none;">
                             <ul>
                                 @{
                                     if (ViewBag.TableContent != "" && ViewBag.TableContent != null)
                                     {
-                                    @Html.Raw(ViewBag.TableContent);
+                                        @Html.Raw(ViewBag.TableContent);
                                     }
                                     else
                                     {
-                                    <li>No Data Available</li>
+                                        <li>No Data Available</li>
                                     }
                                 }
-                                @*<li>What is Predictive Analytics in Machine Learning?</li>
-                                    <li>Difference Between Data Analytics and Predictive Analytics.</li>
-                                    <li>How Big Data and Predictive Analytics Help Businesses?</li>
-                                    <li>Data mining and predictive analytics are the same?</li>
-                                    <li>Why Do We Need Predictive Analytics?</li>
-                                    <li>Conclusion</li>*@
                             </ul>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col">
                             <h1 class="blog-title-internal font-40" id="Blogtitle">
@@ -111,35 +117,94 @@
                     <div class="ql-editor">
                         @Html.Raw(ViewBag.HtmlData)
                     </div>
-                   
+
 
                     <div class="related-services sm_only">
-                        <div class="title-24 mb-4">
+                        <div class="title-24 mb-2">
                             RELATED SERVICES
                         </div>
-                        <div class="services-list">
+                        <div class="services-list blog-border-top">
                             <div class="list-item">
                                 <a href="~/web-development-company/">
-                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_arrow-long-right.svg" /></span>
+                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_new_arrow-long-right.svg" /></span>
                                     Web Development
                                 </a>
                             </div>
                             <hr />
                             <div class="list-item">
                                 <a href="~/mobile-app-development-company/">
-                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_arrow-long-right.svg" /></span>
+                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_new_arrow-long-right.svg" /></span>
                                     Mobile Application
                                 </a>
                             </div>
                             <hr />
                             <div class="list-item">
                                 <a href="~/ui-ux-design-company/">
-                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_arrow-long-right.svg" /></span>
+                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_new_arrow-long-right.svg" /></span>
                                     UI / UX Design
+                                </a>
+                            </div>
+                            <hr />
+                            <div class="list-item">
+                                <a href="~/ai-development-company/">
+                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_new_arrow-long-right.svg" /></span>
+                                    Artificial intelligence
+                                </a>
+                            </div> <hr />
+                            <div class="list-item">
+                                <a href="~/quality-assurance-services/">
+                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_new_arrow-long-right.svg" /></span>
+                                    QA
                                 </a>
                             </div>
                         </div>
                     </div>
+                    <!-- Share Top Section (outside the card box) -->
+                    <div class="d-flex justify-content-between align-items-center px-3 py-2 rounded mb-2" style="background-color:#f2f5fe;">
+                        <div class="fw-medium text-dark">Don’t miss out – share this now!</div>
+
+                        <div class="d-flex gap-2">
+                            <!-- Generic share icon (optional) -->
+                            <!-- Copy‑Link icon -->
+                            <a href="#" id="copyLinkBtn" class="bg-none social-icon-wrapper" title="Copy link">
+                                <img src="~/assets/images/imagenew/copy_link_author.svg"
+                                     alt="Copy Link" class="social-icon-img">
+                            </a>
+
+                            <!-- Toast message container -->
+                            <div id="copyToast" class="copy-toast">Link copied!</div>
+
+                            <!-- Facebook -->
+                            <a href="#" id="facebookShare" class="social-icon-wrapper" target="_blank">
+                                <img src="~/assets/images/imagenew/icons8-facebook-f (1).svg" alt="Facebook" class="social-icon-img">
+                            </a>
+
+                            <!-- LinkedIn -->
+                            <a href="#" id="linkedinShare" class="social-icon-wrapper" target="_blank">
+                                <img src="~/assets/images/imagenew/linkedin (1) (1) (1).svg" alt="LinkedIn" class="social-icon-img">
+                            </a>
+
+                            <!-- X / Twitter -->
+                            <a href="#" id="twitterShare" class="social-icon-wrapper" target="_blank">
+                                <img src="~/assets/images/imagenew/twitter-x (1).svg" alt="X" class="social-icon-img">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Author CTA Box -->
+                    <div class="author-cta-box p-3 mb-4">
+                        <div class="d-flex align-items-center">
+                            <img id="AuthorBoxImage" src="/assets/images/user/default.svg" alt="Author" class="author-img me-2">
+                            <h6 id="AuthorBoxName" class="author-name mb-0 text-primary fw-bold">Rushil Bhuptani</h6>
+                        </div>
+                        <p class="author-desc mt-3 mb-0" id="AuthorBoxBio">
+                            <em>
+                                "Rushil is a dynamic Project Orchestrator passionate about driving successful software development projects.
+                                His enriched 11 years of experience and extensive knowledge spans NodeJS, ReactJS, PHP & frameworks,
+                                PgSQL, Docker, version control, and testing/debugging."
+                            </em>
+                        </p>
+                    </div>
+
 
                     <section class="FAQ-section testimonial-section-two bg-img-none pb-0">
                         <div class="container-fluid px-0">
@@ -174,54 +239,71 @@
             </div>
             <div class="col-lg-4 col-md-4 col-xl-4 sidebar-wrap lg_only">
                 <div class="sidebar lg_only" id="sidebar">
-                    <div class="table-content">
-                        <div class="title mb-4">
-                            <img class="pe-3" src="~/assets/images/icons/toc.svg">Table of Content
+                    <div class="table-content position-relative blog-border-top mb-2">
+                        <div class="title toc-title-wrapper d-flex justify-content-between align-items-center pe-4" id="customTocToggle" style="cursor:pointer;">
+                            <div class="d-flex align-items-center">
+                                <img class="pe-3" src="~/assets/images/icons/toc.svg" alt="TOC Icon">
+                                Table of Content
+                            </div>
+
+                            <!-- Custom Arrow Icon -->
+                            <div class="toc-arrow-icon" id="customTocArrow" data-expanded="false">
+                                <img class="toc-arrow-img" src="~/assets/images/imagenew/arrow-up-black.svg" alt="Dropdown Arrow">
+                            </div>
                         </div>
-                        <div class="table-content-list">
+
+                        <div class="table-content-list mt-3" id="customTocList" style="display: none;">
                             <ul>
                                 @{
                                     if (ViewBag.TableContent != "" && ViewBag.TableContent != null)
                                     {
-                                    @Html.Raw(ViewBag.TableContent);
+                                        @Html.Raw(ViewBag.TableContent);
                                     }
                                     else
                                     {
-                                    <li>No Data Available</li>
+                                        <li>No Data Available</li>
                                     }
                                 }
-                                @*<li>What is Predictive Analytics in Machine Learning?</li>
-                                    <li>Difference Between Data Analytics and Predictive Analytics.</li>
-                                    <li>How Big Data and Predictive Analytics Help Businesses?</li>
-                                    <li>Data mining and predictive analytics are the same?</li>
-                                    <li>Why Do We Need Predictive Analytics?</li>
-                                    <li>Conclusion</li>*@
                             </ul>
                         </div>
                     </div>
+
                     <div class="related-services">
-                        <div class="title-24 mb-4">
+                        <div class="title-24 mb-2">
                             RELATED SERVICES
                         </div>
-                        <div class="services-list">
+                        <div class="services-list blog-border-top">
                             <div class="list-item">
                                 <a href="~/web-development-company/">
-                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_arrow-long-right.svg" /></span>
+                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_new_arrow-long-right.svg" /></span>
                                     Web Development
                                 </a>
                             </div>
                             <hr />
                             <div class="list-item">
                                 <a href="~/mobile-app-development-company/">
-                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_arrow-long-right.svg" /></span>
+                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_new_arrow-long-right.svg" /></span>
                                     Mobile Application
                                 </a>
                             </div>
                             <hr />
                             <div class="list-item">
                                 <a href="~/ui-ux-design-company/">
-                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_arrow-long-right.svg" /></span>
+                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_new_arrow-long-right.svg" /></span>
                                     UI / UX Design
+                                </a>
+                            </div>
+                            <hr />
+                            <div class="list-item">
+                                <a href="~/ai-development-company/">
+                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_new_arrow-long-right.svg" /></span>
+                                    Artificial intelligence
+                                </a>
+                            </div> <hr />
+                            <div class="list-item">
+                                <a href="~/quality-assurance-services/">
+                                    <span class="item-pointer"><img src="~/assets/images/icons/entypo_new_arrow-long-right.svg" /></span>
+                                    QA
                                 </a>
                             </div>
                         </div>
@@ -253,12 +335,27 @@
                     </div>
                 </div>
             </div>
-            <div class="row" id="related-blogs">
 
+            <!-- See All Button Row -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex justify-content-end align-items-center mt-2">
+                        <a href="/blog" class="text-decoration-none d-flex align-items-center">
+                            <span class="me-2 fw-semibold">See All</span>
+                            <img src="~/assets/images/icons/Vector_blog_arrow_new.svg" alt="Arrow">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blog Cards Row -->
+            <div class="row" id="related-blogs">
+                <!-- Blog cards get loaded here dynamically -->
             </div>
         </div>
     </div>
 </section>
+
 
 <section class="lets-talk" id="foot-top">
     <div class="container">
@@ -355,7 +452,8 @@
                 $("#BlogCategory").html(result.bloglist[0].BlogType)
                 $("#BlogType").html(result.bloglist[0].BlogType)
                 $("#Blogtitle").html(result.bloglist[0].Title)
-                $("#AuthorName").html(result.bloglist[0].PostedBy)
+                $("#AuthorName").html(result.bloglist[0].PostedBy);
+                setAuthorDetails(result.bloglist[0].PostedBy);
                 $('#blogImage').attr('src', result.bloglist[0].Image);
                 $("#publishDate").html(longDt)
                 var sectionblog = "";
@@ -445,8 +543,15 @@
                 $("#related-blogs").html("");
                 var incrementor = 0;
                 var sectionblog = "";
-                var paginationData = "";
-                var imageURL = "https://cms.avidclan.com";
+
+                const authorDetails = {
+                    "rushil bhuptani": "rushil-1.svg",
+                    "chintan dhrangdhariya": "chintan-dhrangdhariya.svg",
+                    "dhaval sabhaya": "dhaval-sabhaya.svg",
+                    "jimmy soni": "jimmy-soni.svg",
+                    "kirit vanani": "kirit-vanani.svg"
+                };
+
                 $.each(data.data, function (k, v) {
                     if (incrementor < 3) {
                         incrementor++;
@@ -454,6 +559,11 @@
                         var PostingDate = new Date(v.PostingDate);
                         var longDt = PostingDate.toLocaleDateString("en-US", options);
                         var Descriptionlength = v.MetaDescription.length > 80 ? v.MetaDescription.substring(0, 80) + "…" : v.MetaDescription;
+
+                        // Author image logic
+                        var authorKey = v.PostedBy ? v.PostedBy.trim().toLowerCase() : "";
+                        var authorImg = authorDetails[authorKey] ? `/assets/images/user/${authorDetails[authorKey]}` : "/assets/images/user/default.svg";
+
                         sectionblog += '<div class="col-lg-4 col-md-6">' +
                             '<div class="single-blog">' +
                             '<div class="blog-img img img-fluid">' +
@@ -461,7 +571,14 @@
                             '</div> ' +
                             '<div class="blog-content">' +
                             '<h1 class="title blog-title"><a href="/blog/' + v.PageUrl + '">' + v.Title + '</a></h1>' +
-                            '<div class="blog-meta"><span><i class="fas fa-user icon-image"></i><span class="by-separator">by</span><a href="#">' + v.PostedBy + '</a></span><span id="admindateid_36"><i class="far fa-calendar-alt"></i>' + longDt + '</span></div>' +
+                            '<div class="blog-meta">' +
+                            '<span>' +
+                            '<img src="' + authorImg + '" alt="' + v.PostedBy + '" class="author-img me-1">' +
+                            '<span class="by-separator">by</span>' +
+                            '<a href="#">' + v.PostedBy + '</a>' +
+                            '</span>' +
+                            '<span id="admindateid_36"><i class="far fa-calendar-alt"></i> ' + longDt + '</span>' +
+                            '</div>' +
                             '<div class="read-article">' +
                             '<div class="blog-btn">' +
                             '<a href="/blog/' + v.PageUrl + '" class="blog-btn-link">Read Full Article<img src="/assets/images/icons/Vector.svg" /></a>' +
@@ -471,7 +588,8 @@
                             '</div>' +
                             '</div>';
                     }
-                })
+                });
+
                 $('#related-blogs').html(sectionblog);
                 $('.loader').css("display", "none");
             },
@@ -479,5 +597,234 @@
                 console.log("Error Ocurred!");
             }
         });
+
 });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tocToggle = document.getElementById("customTocToggle");
+        const tocList = document.getElementById("customTocList");
+        const tocArrow = document.getElementById("customTocArrow");
+
+        tocToggle.addEventListener("click", function () {
+            const isExpanded = tocArrow.getAttribute("data-expanded") === "true";
+
+            // Toggle content display
+            tocList.style.display = isExpanded ? "none" : "block";
+
+            // Update arrow state
+            tocArrow.setAttribute("data-expanded", !isExpanded);
+        });
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+        const mobileTocToggle = document.getElementById("mobileTocToggle");
+        const mobileTocList = document.getElementById("mobileTocList");
+        const mobileTocArrow = document.getElementById("mobileTocArrow");
+
+        mobileTocToggle.addEventListener("click", function () {
+            const isExpanded = mobileTocArrow.getAttribute("data-expanded") === "true";
+            mobileTocList.style.display = isExpanded ? "none" : "block";
+            mobileTocArrow.setAttribute("data-expanded", !isExpanded);
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const paragraphs = document.querySelectorAll(".blog-section .blog-content p");
+
+        paragraphs.forEach(p => {
+            const hasStrong = p.querySelector("strong");
+            const hasEm = p.querySelector("em");
+
+            if (hasStrong && hasEm) {
+                p.classList.add("cta-paragraph");
+            }
+        });
+    });
+
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tables = document.querySelectorAll(".blog-section .blog-content table");
+
+        tables.forEach(table => {
+            const firstRow = table.querySelector("tr");
+            if (firstRow) {
+                const tds = firstRow.querySelectorAll("td");
+                tds.forEach(td => {
+                    if (td.querySelector("strong")) {
+                        td.classList.add("highlighted-td");
+                    }
+                });
+            }
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const paragraphs = document.querySelectorAll(".blog-section .blog-content p");
+
+        paragraphs.forEach(p => {
+            const hasImg = p.querySelector("img");
+            if (hasImg) {
+                p.classList.add("p-with-image");
+                p.classList.add("my-4"); // Bootstrap spacing (responsive)
+                p.classList.add("p-1"); // Bootstrap spacing (responsive)
+            }
+        });
+    });
+</script>
+@*
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const h2Elements = document.querySelectorAll(".blog-section .blog-content h2");
+
+            h2Elements.forEach(h2 => {
+                h2.classList.add("my-4", "my-sm-0");
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const pTags = document.querySelectorAll(".blog-section .blog-content p");
+
+            pTags.forEach(p => {
+                const hasStrong = p.querySelector("strong");
+
+                if (hasStrong) {
+                    p.classList.add("my-3", "my-sm-0");
+                } else {
+                    p.classList.add("my-2", "my-sm-0");
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const liTagsInsideOL = document.querySelectorAll(".blog-section .blog-content ol li");
+
+            liTagsInsideOL.forEach(li => {
+                li.classList.add("my-2", "my-sm-0");
+            });
+        });
+    </script>*@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const containers = document.querySelectorAll(".ql-code-block-container");
+
+        containers.forEach(container => {
+            const dropdown = container.querySelector("select.ql-ui");
+
+            if (dropdown) {
+                container.removeChild(dropdown); // Remove the dropdown
+            }
+        });
+    });
+
+</script>
+
+
+<script>
+    /* ---------- Build share links once DOM is ready ---------- */
+    const blogURL = window.location.href;
+    const encodedURL = encodeURIComponent(blogURL);
+    const encodedTitle = encodeURIComponent(document.title);   // page <title>
+
+    /* LinkedIn (already working) */
+    document.getElementById('linkedinShare').href =
+        `https://www.linkedin.com/feed/?shareActive=true&shareUrl=${encodedURL}`;
+
+    /* Facebook – simple, no app‑id needed */
+    document.getElementById('facebookShare').href =
+        `https://www.facebook.com/sharer/sharer.php?u=${encodedURL}`;
+
+    /* X (Twitter) – title + link */
+    document.getElementById('twitterShare').href =
+        `https://x.com/intent/post?url=${encodedURL}&text=${encodedTitle}`;
+</script>
+<script>
+    const copyBtn = document.getElementById('copyLinkBtn');
+    const toast = document.getElementById('copyToast');
+
+    copyBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        const url = window.location.href;
+
+        try {
+            await navigator.clipboard.writeText(url);   // modern browsers
+        } catch (err) {
+            // fallback for older browsers
+            const temp = document.createElement('textarea');
+            temp.value = url;
+            document.body.appendChild(temp);
+            temp.select(); document.execCommand('copy');
+            document.body.removeChild(temp);
+        }
+
+        // Show toast
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2200); // hide after 2.2 s
+    });
+</script>
+<script>
+    function setAuthorDetails(authorName) {
+        if (!authorName) return;
+
+        const authorDetails = {
+            "rushil bhuptani": {
+                image: "rushil-1.svg",
+                bio: `"Rushil is a dynamic Project Orchestrator passionate about driving successful software development projects.
+                His enriched 11 years of experience and extensive knowledge spans NodeJS, ReactJS, PHP & frameworks,
+                PgSQL, Docker, version control, and testing/debugging."`
+            },
+            "chintan dhrangdhariya": {
+                image: "chintan-dhrangdhariya.svg",
+                bio: `"Chintan is a UI/UX enthusiast with a design-first mindset, simplifying complex journeys into smooth digital experiences."`
+            },
+            "dhaval sabhaya": {
+                image: "dhaval-sabhaya.svg",
+                bio: `"Dhaval is a versatile Mobile App Artisan passionate about crafting seamless mobile experiences. With 10+ years of expertise, his knowledge spans Android, iOS, Flutter, Kotlin, React Native, diverse frameworks, version control, and testing/debugging for robust, user-focused mobile solutions."`
+            },
+            "jimmy soni": {
+                image: "jimmy-soni.svg",
+                bio: `"Jimmy is a tech leader with hands-on knowledge in cloud infrastructure, performance tuning, and DevOps culture."`
+            },
+            "kirit vanani": {
+                image: "kirit-vanani.svg",
+                bio: `"Kirit is a full-stack developer who bridges frontend polish with backend power, blending design and architecture."`
+            }
+        };
+
+        const key = authorName.trim().toLowerCase();
+        const author = authorDetails[key];
+
+        const imageName = author ? author.image : "default.svg";
+        const bioText = author ? author.bio : "Our author brings valuable insights and knowledge from the tech world.";
+
+        // Blog meta image
+        const authorMetaImg = document.getElementById("AuthorImage");
+        if (authorMetaImg) {
+            authorMetaImg.src = `/assets/images/user/${imageName}`;
+            authorMetaImg.alt = authorName;
+        }
+
+        // CTA Box (below blog)
+        const ctaImg = document.getElementById("AuthorBoxImage");
+        const ctaName = document.getElementById("AuthorBoxName");
+        const ctaBio = document.getElementById("AuthorBoxBio");
+
+        if (ctaImg) {
+            ctaImg.src = `/assets/images/user/${imageName}`;
+            ctaImg.alt = authorName;
+        }
+
+        if (ctaName) {
+            ctaName.textContent = authorName;
+        }
+
+        if (ctaBio) {
+            ctaBio.innerHTML = `<em>${bioText}</em>`;
+        }
+    }
 </script>

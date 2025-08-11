@@ -1,4 +1,4 @@
-This XML file does not appear to have any style information associated with it. The document tree is shown below.
+
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
 		<loc>https://www.avidclan.com/</loc>
@@ -309,6 +309,101 @@ This XML file does not appear to have any style information associated with it. 
 		<loc>https://www.avidclan.com/hire-ml-developers/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/hire-custom-software-developers/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/angular-development-company-india/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/reactjs-app-development-company-india/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/selenium-automation-testing-services-india/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/ui-ux-design-company-india/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/a-5-step-framework-for-digital-transformation-in-k-12-education/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/why-hospital-digital-transformations-fail-and-3-strategies-that-actually-work-in-2025/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/ai-powered-react-native-build-smarter-apps-with-image-recognition-nlp-and-predictive-ml/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/the-ultimate-7-step-guide-to-application-modernization-for-2025-a-complete-roadmap-for-success/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/ai-powered-self-healing-test-automation-the-future-of-qa-in-2025/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/top-10-workflow-automation-tools-every-software-developer-should-know-in-2025/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/top-2025-azure-ai-trends-how-ai-is-transforming-business-with-microsoft-azure/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/10-ai-powered-innovations-transforming-frontend-and-backend-development-in-2025/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/how-to-architect-scalable-react-apps-using-server-components-and-nextjs-14-best-practices/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/the-hidden-healthcare-tech-gaps-costing-you-millions-how-to-overcome-them-and-save-big/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/the-ultimate-guide-to-ux-ui-design-best-tools-and-practices-for-building-wireframes-and-prototypes/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/why-every-business-should-invest-in-data-driven-solutions/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/optimizing-performance-in-hybrid-apps-with-net-maui-and-blazor-best-practices-and-strategies/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/the-50-top-programming-languages-in-2025/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
 	</url>
 	<url>
 		<loc>https://www.avidclan.com/blog/7-ways-ai-and-tech-are-revolutionizing-the-future-of-learning-management-systems/</loc>

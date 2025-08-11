@@ -47,8 +47,8 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
-        [Route("hire-Software-developers/")]
-        public ActionResult HireSoftwareDevelopers()
+        [Route("hire-custom-software-developers/")]
+        public ActionResult HireCustomSoftwareDevelopers()
         {
             return View();
         }

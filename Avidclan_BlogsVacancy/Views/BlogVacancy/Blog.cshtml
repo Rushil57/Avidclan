@@ -51,6 +51,10 @@
                             <span class="ql-formats">
                                 <button class="ql-header" value="1"></button>
                                 <button class="ql-header" value="2"></button>
+                                <button class="ql-header" value="3"></button>
+                                <button class="ql-header" value="4"></button>
+                                <button class="ql-header" value="5"></button>
+                                <button class="ql-header" value="6"></button>
                                 <button class="ql-blockquote"></button>
                                 <button class="ql-code-block"></button>
                             </span>
@@ -83,8 +87,32 @@
                     </div>
                     <div class="form-group">
                         <label for="BlogType">Blog Type</label>
-                        <input type="text" class="form-control" id="BlogType" name="blogtype" placeholder="Blog Type">
+                        <select class="form-control" id="BlogType" name="blogtype">
+                            <option value=".NET Development">.NET Development</option>
+                            <option value="Flutter App Development">Flutter App Development</option>
+                            <option value="Artificial Intelligence">Artificial Intelligence</option>
+                            <option value="UI/UX Design">UI/UX Design</option>
+                            <option value="Software Development">Software Development</option>
+                            <option value=".NET MAUI">.NET MAUI</option>
+                            <option value="Angular Development">Angular Development</option>
+                            <option value="Mobile Application Development">Mobile App Development</option>
+                            <option value="Data Analytics">Data Analytics</option>
+                            <option value="iOS App Development">iOS App Development</option>
+                            <option value="ReactJS Development">ReactJS Development</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Chatbot and Conversational AI">Chatbot and Conversational AI</option>
+                            <option value="Machine Learning">Machine Learning</option>
+                            <option value="React Native">React Native</option>
+                            <option value="Automation Testing">Automation Testing</option>
+                            <option value="Azure Development">Azure Development</option>
+                            <option value="Selenium Automation Testing">Selenium Automation Testing</option>
+                            <option value="ASP.NET Development">ASP.NET Development</option>
+                            <option value="Cloud Development">Cloud Development</option>
+                            <option value="Predictive Analytics">Predictive Analytics</option>
+                            <option value="add_new" id="addNewOption">+ Add New</option>
+                        </select>
                     </div>
+
                     <div class="form-group">
                         <label for="Image">Thumbnail Image</label>
                         <input id="Image" type="file" class="form-control" name="attachmentFile" />
@@ -100,9 +128,16 @@
                         <input type="text" class="form-control" id="PostingDate" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="PostedBy">Posted By</label>
-                        <input type="text" class="form-control" id="PostedBy" name="PostedBy" placeholder="Posted By">
+                        <label for="PostedBy">Posted&nbsp;By</label>
+
+                        <select class="form-control" id="PostedBy" name="PostedBy">
+                            <option value="" disabled selected>Select author</option>
+                            <option>Rushil Bhuptani</option>
+                            <option>Chintan Dhrangdhariya</option>
+                            <option id="addPostedByOption" value="add_new">+ Add New</option>
+                        </select>
                     </div>
+
                     <div class="form-group">
                         <label for="PageUrl">PageUrl</label>
                         <input type="text" class="form-control" id="PageUrl" name="PageUrl" placeholder="Page Url" />
@@ -165,6 +200,15 @@
 <script type="text/javascript">
 
     // init quill editor.
+    const Icons = Quill.import('ui/icons');
+
+    // Custom H3 to H6 icons register
+    ['3', '4', '5', '6'].forEach(level => {
+        Icons.header[level] = `
+      <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+        <text x="2" y="13" font-size="11" font-family="sans-serif" font-weight="700">H${level}</text>
+      </svg>`;
+    });
     const quill = new Quill('#editor', {
         modules: {
             syntax: true,
@@ -189,8 +233,8 @@
                 PostedBy: { required: true, },
                 PageUrl: { required: true },
                 MetaTitle: { required: true },
-                MetaDescription: { required: true },
-                SchemaCode: {required:true}
+                MetaDescription: { required: true }
+                //SchemaCode: {required:true}
             },
             messages: {
                 title: { required: "Please enter a title", },
@@ -204,8 +248,8 @@
                 PostedBy: { required: "Please enter PostedBy", },
                 PageUrl: { required: "Please enter Url", },
                 MetaTitle: { required: "Please enter Meta Title", },
-                MetaDescription: { required: "Please enter Meta Description", },
-                SchemaCode: { required: "Please enter Schema Code", }
+                MetaDescription: { required: "Please enter Meta Description", }
+                //SchemaCode: { required: "Please enter Schema Code", }
             },
             submitHandler: function (form) {
                 SaveBlog()
@@ -580,4 +624,57 @@
         $(this).val("");
         $("#BlogDetailsImage").val("");
     });
+    // -------- Add‑New Category --------
+    $('#BlogType').on('change', function () {
+        if (this.value === 'add_new') {
+            const newCat = prompt('Enter new category name:');
+            if (newCat && newCat.trim() !== '') {
+
+                // duplicate तो नहीं?
+                const exists = Array.from(this.options)
+                    .some(o => o.value.toLowerCase() === newCat.toLowerCase());
+
+                if (!exists) {
+                    const opt = document.createElement('option');
+                    opt.value = newCat.trim();
+                    opt.textContent = newCat.trim();
+                    // "Add New…" से पहले घुसाएँ
+                    this.insertBefore(opt, document.getElementById('addNewOption'));
+                }
+                // नया या पहले‑से‑मौजूद—उसे select कर दें
+                this.value = newCat.trim();
+            } else {
+                // कुछ नहीं टाइप हुआ—dropdown रिसेट
+                this.value = '';
+            }
+        }
+    });
+    // -------- Add‑New "Posted By" --------
+    $('#PostedBy').on('change', function () {
+        if (this.value === 'add_new') {
+
+            const newName = prompt('Enter author name:').trim();
+
+            if (newName) {
+
+                // already there?
+                const exists = Array.from(this.options)
+                    .some(o => o.value.toLowerCase() === newName.toLowerCase());
+
+                if (!exists) {
+                    // insert just before the +Add‑new option
+                    const opt = document.createElement('option');
+                    opt.value = newName;
+                    opt.textContent = newName;
+                    this.insertBefore(opt, document.getElementById('addPostedByOption'));
+                }
+                // make the new / existing item selected
+                this.value = newName;
+            } else {
+                // nothing typed → reset dropdown
+                this.value = '';
+            }
+        }
+    });
+
 </script>

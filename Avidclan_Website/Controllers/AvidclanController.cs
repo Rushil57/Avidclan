@@ -54,7 +54,11 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
-
+        [Route("dedicated-resources/")]
+        public ActionResult DedicatedResources()
+        {
+            return View();
+        }
         [Route("technologies/")]
         public ActionResult Technologies()
         {
@@ -93,9 +97,20 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
+        [Route("reactjs-app-development-company-india/")]
+        public ActionResult ReactjsAppDevelopmentINDIA()
+        {
+            return View();
+        }
 
         [Route("selenium-app-development-company-usa/")]
         public ActionResult SeleniumAppDevelopmentUSA()
+        {
+            return View();
+        }
+
+        [Route("selenium-app-development-company-india/")]
+        public ActionResult SeleniumAppDevelopmentINDIA()
         {
             return View();
         }
@@ -465,6 +480,27 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
+        [Route("countries-we-serve/")]
+        public ActionResult CountriesWeServe()
+        {
+            return View();
+        }
+        [Route("author/rushil-bhuptani/")]
+        public ActionResult RushilBhuptani()
+        {
+            return View();
+        }
+
+        [Route("author/dhaval-sabhaya/")]
+        public ActionResult DhavalSabhaya()
+        {
+            return View();
+        }
+        [Route("author/chintan-dhrangdhariya/")]
+        public ActionResult ChintanDhrangdhariya()
+        {
+            return View();
+        }
 
         [Route("hire-developer-thank-you/")]
         public ActionResult HireDeveloperThankYou()
@@ -718,6 +754,54 @@ namespace Avidclan_Website.Controllers
             return Json(dynamiclist, JsonRequestBehavior.AllowGet);
         }
 
+        public string GetSectionDataByBlogTypePaginated(string BlogType, int page = 1)
+        {
+            int PageSize = 6;
+            BlogViewModel obj = new BlogViewModel();
+            List<Blog> listBlog = new List<Blog>();
+
+            con.Open();
+            var parameters = new DynamicParameters();
+            parameters.Add("@Mode", 15, DbType.Int32, ParameterDirection.Input); // ✅ new mode
+            parameters.Add("@BlogType", BlogType);
+            parameters.Add("@Offset", (page - 1) * PageSize);
+            parameters.Add("@PagingSize", PageSize);
+
+            var BlogList = con.Query<Blog>("sp_Blog", parameters, commandType: CommandType.StoredProcedure).ToList();
+            con.Close();
+
+            if (BlogList != null && BlogList.Count > 0)
+            {
+                foreach (var item in BlogList)
+                {
+                    var thumbnailImageCDN = item.Image;
+                    if (item.Image.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                    {
+                        thumbnailImageCDN = item.Image.Contains("localhost") ? item.Image : ImageServerUrl + item.Image;
+                    }
+
+                    listBlog.Add(new Blog
+                    {
+                        Id = item.Id,
+                        Title = item.Title,
+                        Description = item.Description,
+                        BlogType = item.BlogType,
+                        Image = thumbnailImageCDN,
+                        PostingDate = item.PostingDate,
+                        PostedBy = item.PostedBy,
+                        PageUrl = item.PageUrl,
+                        MetaTitle = item.MetaTitle,
+                        MetaDescription = item.MetaDescription
+                    });
+                }
+
+                var pager = new Pager(Convert.ToInt32(BlogList[0].TotalRecords), page, PageSize);
+                obj.ListBlog = listBlog;
+                obj.pager = pager;
+            }
+
+            return JsonConvert.SerializeObject(new { Isvalid = true, data = obj });
+        }
 
         [Route("flutter-app-development-company-india/")]
         public ActionResult FlutterAppDevelopmentINDIA()
@@ -730,15 +814,29 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
-
+        [Route("flutter-app-development-company-uk/")]
+        public ActionResult FlutterAppDevelopmentUK()
+        {
+            return View();
+        }
         [Route("ui-ux-design-company-usa/")]
         public ActionResult UiUxDesignCompanyUSA()
+        {
+            return View();
+        }
+        [Route("ui-ux-design-company-india/")]
+        public ActionResult UiUxDesignCompanyINDIA()
         {
             return View();
         }
 
         [Route("angular-development-company-usa/")]
         public ActionResult AngularAppDevelopmentCompanyUSA()
+        {
+            return View();
+        }
+        [Route("angular-development-company-india/")]
+        public ActionResult AngularAppDevelopmentCompanyINDIA()
         {
             return View();
         }
