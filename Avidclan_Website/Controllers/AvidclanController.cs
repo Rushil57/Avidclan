@@ -102,6 +102,11 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
+        [Route("reactjs-app-development-company-uk/")]
+        public ActionResult ReactjsAppDevelopmentUK()
+        {
+            return View();
+        }
 
         [Route("selenium-app-development-company-usa/")]
         public ActionResult SeleniumAppDevelopmentUSA()
@@ -111,6 +116,11 @@ namespace Avidclan_Website.Controllers
 
         [Route("selenium-app-development-company-india/")]
         public ActionResult SeleniumAppDevelopmentINDIA()
+        {
+            return View();
+        }
+        [Route("selenium-app-development-company-uk/")]
+        public ActionResult SeleniumAppDevelopmentUK()
         {
             return View();
         }
@@ -814,6 +824,13 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
+        
+        [Route("dot-net-app-development-company-uk/")]
+        public ActionResult DotNetAppDevelopmentUK()
+        {
+            return View();
+        }
+
         [Route("flutter-app-development-company-uk/")]
         public ActionResult FlutterAppDevelopmentUK()
         {
@@ -830,11 +847,24 @@ namespace Avidclan_Website.Controllers
             return View();
         }
 
+        [Route("ui-ux-design-company-uk/")]
+        public ActionResult UiUxDesignCompanyUK()
+        {
+            return View();
+        }
+
         [Route("angular-development-company-usa/")]
         public ActionResult AngularAppDevelopmentCompanyUSA()
         {
             return View();
         }
+        
+        [Route("angular-development-company-uk/")]
+        public ActionResult AngularAppDevelopmentCompanyUK()
+        {
+            return View();
+        }
+
         [Route("angular-development-company-india/")]
         public ActionResult AngularAppDevelopmentCompanyINDIA()
         {
