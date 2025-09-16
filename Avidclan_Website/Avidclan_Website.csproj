@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Avidclan_Website</RootNamespace>
     <AssemblyName>Avidclan_Website</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -75,6 +76,7 @@
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
@@ -98,17 +100,14 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.9\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.9\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -150,6 +149,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -203,6 +203,8 @@
     <Content Include="assets\css\Avidclan\flutter_app_development_usa.css" />
     <Content Include="assets\css\Avidclan\headernw.css" />
     <Content Include="assets\css\Avidclan\hiringpages.css" />
+    <Content Include="assets\css\Avidclan\home_old.css" />
+    <Content Include="assets\css\Avidclan\owl.carousel.min.css" />
     <Content Include="assets\css\Avidclan\responsive_image_slide.css" />
     <Content Include="assets\css\Avidclan\work.css" />
     <Content Include="assets\css\Avidclan\technologies.css" />
@@ -1770,7 +1772,6 @@
     <Content Include="assets\images\user\4.png" />
     <Content Include="assets\images\user\5.jpg" />
     <Content Include="assets\images\user\5.png" />
-    <Content Include="assets\images\user\ashvin-new.png" />
     <Content Include="assets\images\user\ashvin.png" />
     <Content Include="assets\images\user\chintan-dhrangdhariya.svg" />
     <Content Include="assets\images\user\chintan.png" />
@@ -1795,7 +1796,6 @@
     <Content Include="assets\images\user\maulik.png" />
     <Content Include="assets\images\user\rushil-1.svg" />
     <Content Include="assets\images\user\rushil.png" />
-    <Content Include="assets\images\user\rushil_author.png" />
     <Content Include="assets\images\user\rushil_author.png.png" />
     <Content Include="assets\images\vue-img.svg" />
     <Content Include="assets\images\vuejs-tech.jpg" />
