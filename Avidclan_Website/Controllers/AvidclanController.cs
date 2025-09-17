@@ -458,7 +458,7 @@ namespace Avidclan_Website.Controllers
             return RedirectToAction("AvidclanAction", "Avidclan");
         }
 
-        [Route("life-at-avidclan/")]
+        [Route("life-at-avidclan-technologies/")]
         public ActionResult LifeAtAvidclan()
         {
             return View();
