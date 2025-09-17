@@ -39,8 +39,8 @@ $(function () {
     },
     // Specify validation error messages
     messages: {
-      firstname: "Please enter your First Name",
-      lastname: "Please enter your Last Name",
+      firstname: "Please enter your first name",
+      lastname: "Please enter your last name",
       phone: {
         required: "Please enter phone number",
         digits: "Please enter valid phone number",
@@ -52,7 +52,7 @@ $(function () {
         email: "Please enter a valid email address.",
       },
       message: {
-        required: "Please write your Message",
+        required: "Please write your message",
         minlength: "Please write at least more than 25 characters",
       },
       //   fcaptcha: {
@@ -125,7 +125,7 @@ $(function () {
         //maxfilesize: "File size must not be more than 10 MB.",
       },
       message: {
-        required: "Please write your Message",
+        required: "Please write your message",
       },
     },
     // Make sure the form is submitted to the destination defined
@@ -166,7 +166,7 @@ $(function () {
       lastname: "required",
       phone: "required",
       servicename: "required",
-      email: {
+      email: { 
         required: true,
         // Specify that email should be validated
         // by the built-in "email" rule
@@ -182,16 +182,16 @@ $(function () {
     },
     // Specify validation error messages
     messages: {
-      firstname: "Please enter your First Name",
-      lastname: "Please enter your Last Name",
-      phone: "Please enter your Phone Number",
-      servicename: "Please select a Service",
-      email: "Please enter a valid Email Address",
-      budget: "Please select a valid Budget",
-      starttime: "Please select Start Time",
-      prequirement: "Please select Requirement",
+      firstname: "Please enter your first name",
+      lastname: "Please enter your last name",
+      phone: "Please enter your phone number",
+      servicename: "Please select a service",
+      email: "Please enter a valid email address",
+      budget: "Please select a valid budget",
+      starttime: "Please select start time",
+      prequirement: "Please select requirement",
       projectbrief: {
-        required: "Please write brief Project Description",
+        required: "Please write brief project description",
         minlength: "Please write at least more than 25 characters",
       },
     },
