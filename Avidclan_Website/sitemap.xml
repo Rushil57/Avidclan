@@ -190,7 +190,7 @@
 		<priority>0.60</priority>
 	</url>
 	<url>
-		<loc>https://www.avidclan.com/life-at-avidclan/</loc>
+		<loc>https://www.avidclan.com/life-at-avidclan-technologies/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.60</priority>
 	</url>
@@ -348,6 +348,36 @@
 		<loc>https://www.avidclan.com/author/chintan-dhrangdhariya/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/no-code-app-development-explained-benefits-top-platforms-and-future-trends-in-2025/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/ui-ux-outcomes-the-secret-to-aligning-business-success-with-customer-satisfaction/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/the-complete-guide-to-building-ai-powered-apps-with-genkit-and-angular/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/amazon-business-model-how-e-commerce-and-cloud-services-dominate-the-market/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/15-best-practices-for-a-seamless-database-migration/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/10-common-mobile-app-security-risks-and-how-to-avoid-them/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
 	</url>
 	<url>
 		<loc>https://www.avidclan.com/blog/why-cloud-native-apps-are-dominating-the-tech-landscape-in-2025/</loc>
