@@ -811,3 +811,19 @@
         font-weight: 500 !important;
     }
 }
+/* Mobile Image Resize */
+@media (max-width: 767px) {
+    .development-process-imgbox {
+        max-width: 300px !important; /* apni requirement ke hisab se set karein */
+        margin: 0 auto; /* center alignment */
+        display: block;
+    }
+}
+/* Large screen image resize */
+@media (min-width: 992px) {
+    .development-process-imgboxone {
+        max-width: 1000px !important; /* apni requirement ke hisab se adjust karein */
+        margin: 0 auto; /* center align */
+        display: block;
+    }
+}

@@ -1,4 +1,3 @@
-
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
 		<loc>https://www.avidclan.com/</loc>
@@ -334,6 +333,31 @@
 		<loc>https://www.avidclan.com/ui-ux-design-company-india/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/countries-we-serve/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/author/rushil-bhuptani/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/author/chintan-dhrangdhariya/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/why-cloud-native-apps-are-dominating-the-tech-landscape-in-2025/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/the-ultimate-guide-to-choosing-the-right-ecommerce-saas-platform-for-your-business/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
 	</url>
 	<url>
 		<loc>https://www.avidclan.com/blog/a-5-step-framework-for-digital-transformation-in-k-12-education/</loc>
