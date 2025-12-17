@@ -1,4 +1,7 @@
 ﻿var calendar;
+var isCompensationLeave = false;
+var leaveBalance = {};
+var userLeaveDates = [];
 
 $(function () {
     $(".chosen-select").chosen({
@@ -14,6 +17,8 @@ $(function () {
         SelectCalenderDate(),
         GetLeaveDates(),
         GetReportingPerson(),
+        GetTotalCompensationLeave(),
+        UserLeaveDates(),
         // GetPastLeaveBalance(),
         //delay(1500).then(GetTotalLeaveBalance)
     ).done(function () {
@@ -22,6 +27,19 @@ $(function () {
         hideSpinner(); // Hide spinner even if there's an error
     });
 });
+
+function GetTotalCompensationLeave() {
+    $.ajax({
+        url: '/Leave/GetTotalCompensationLeave',
+        contentType: 'application/json',
+        type: "GET",
+        success: function (compensatedata) {
+            isCompensationLeave = compensatedata.length > 0
+        },
+        error: function (result) {
+        }
+    });
+}
 
 function delay(time) {
     return new Promise(function (resolve) {
@@ -58,6 +76,7 @@ function SelectCalenderDate() {
                 $("#ApplyLeaveModel").show();
                 $("#txtFromDate").val(responseDate);
                 $("#txtToDate").val(responseDate);
+                refreshLeaveTypes();
                 SetMinDate();
             }
         },
@@ -84,6 +103,82 @@ $("#txtFromDate").on("focusin", function () {
     oldFromDate = $(this).val();  // store old value before change
 });
 
+function refreshLeaveTypes() {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const fromDateVal = $("#txtFromDate").val();
+    const toDateVal = $("#txtToDate").val();
+    const leaveType = $("#drpLeaveType");
+
+    // Reset dropdown (keep only LWP)
+    leaveType.find("option[value='PL']").remove();
+    leaveType.find("option[value='SL']").remove();
+    leaveType.find("option[value='CL']").remove();
+
+    var getJoiningDate = $('#JoiningDate').val();
+    getJoiningDate = new Date(getJoiningDate);
+
+    var getProbationMonth = $('#ProbationMonth').val();
+    getProbationMonth = parseInt(getProbationMonth, 10);
+
+    // Normalize dates (remove time)
+    getJoiningDate.setHours(0, 0, 0, 0);
+
+    var probationEndDate = new Date(getJoiningDate);
+    probationEndDate.setMonth(probationEndDate.getMonth() + getProbationMonth);
+
+    var tdate = new Date();
+    tdate.setHours(0, 0, 0, 0);
+
+    // ✅ Check if probation is over
+    var isProbationOver = tdate >= probationEndDate;
+
+    var noticePeriod = $("#NoticePeriodDate").val();
+
+    if (!fromDateVal || (noticePeriod && noticePeriod != "") || !isProbationOver) {
+        return;
+    }
+
+    const fromDate = new Date(fromDateVal);
+    fromDate.setHours(0, 0, 0, 0);
+
+    const toDate = toDateVal ? new Date(toDateVal) : new Date(fromDateVal);
+    toDate.setHours(0, 0, 0, 0);
+
+    const diffDays = Math.ceil((fromDate - today) / (1000 * 3600 * 24));
+    const totalDays = Math.ceil((toDate - fromDate) / (1000 * 3600 * 24)) + 1;
+
+    // ---------------------------
+    // Sick Leave (SL) — Logic
+    // ---------------------------
+    const diffDaysSL = Math.ceil((fromDate - today) / (1000 * 3600 * 24));
+
+    if (diffDaysSL <= 1) {
+        leaveType.append('<option value="SL">Sick Leave (SL)</option>');
+    }
+
+    // ---------------------------
+    // Paid Leave (PL) — Logic
+    // ---------------------------
+    if (totalDays === 1 && diffDays >= 7) {
+        leaveType.append('<option value="PL">Paid Leave (PL)</option>');
+    }
+    else if (totalDays >= 2 && diffDays >= 14) {
+        leaveType.append('<option value="PL">Paid Leave (PL)</option>');
+    }
+
+    // ---------------------------
+    // Compensation Leave (CL) — Same Logic as PL
+    // ---------------------------
+    if (isCompensationLeave && totalDays === 1 && diffDays >= 7) {
+        leaveType.append('<option value="CL">Compensation Leave (CL)</option>');
+    }
+    else if (isCompensationLeave && totalDays >= 2 && diffDays >= 14) {
+        leaveType.append('<option value="CL">Compensation Leave (CL)</option>');
+    }
+    validateLeaveDays();
+}
 
 function SetMinDate() {
     var start = $("#txtFromDate").datepicker('getDate');
@@ -461,9 +556,112 @@ function DateChange() {
         }
         BindLeaveTable(arr, false);
     }
+
+    refreshLeaveTypes();
 }
 
+function validateLeaveDays() {
+    $("#txtLeaveNotification").text('');
+    const start = $("#txtFromDate").datepicker('getDate');
+    const end = $("#txtToDate").datepicker('getDate');
+    let leaveType = $("#drpLeaveType").val();
+    if (leaveType == "LWP")
+        return;
+    if (!ValidateLeaveAdjacency()) {
+        $("#txtLeaveNotification").text(`You have taken leave on a day that is immediately before or after the selected dates. As per policy, the entire leave period will be considered as LWP.`);
+    }
+    else if (start && end) {
+        const diffTime = end.getTime() - start.getTime();
+        const selectedDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+        let balance = leaveBalance[leaveType] || 0;
+        if (selectedDays > balance) {
+            $("#txtLeaveNotification").text(`${leaveType} leave balance is ${balance}, so only ${balance} day(s) can be applied as ${leaveType}. Extra days will be treated as LWP.`);
+        }
+    }
+}
 
+function UserLeaveDates() {
+    $.ajax({
+        url: "/Leave/LeaveDates",
+        contentType: 'application/json',
+        type: "GET",
+        success: function (data) {
+
+            userLeaveDates = data.leavelist.map(item => {
+
+                // extract timestamp inside /Date(1705861800000)/
+                let timestamp = parseInt(item.LeaveDate.replace(/[^\d]/g, ''));
+
+                return {
+                    ...item,
+                    LeaveJsDate: new Date(timestamp)   // Converted date
+                };
+            });
+
+            console.log("Converted Leave Dates:", userLeaveDates);
+        },
+        error: function (result) {
+            alert(result.responseText);
+        }
+    });
+}
+
+function normalize(d) {
+    let dt = new Date(d);
+    dt.setHours(0, 0, 0, 0);
+    return dt;
+}
+
+function ValidateLeaveAdjacency() {
+    let fromDate = normalize($("#txtFromDate").val());
+    let toDate = normalize($("#txtToDate").val());
+
+    if (!userLeaveDates || userLeaveDates.length === 0)
+        return true;
+
+    // 1️⃣ Skip validation if leave starts after 15 days
+    let today = normalize(new Date());
+    let limitDate = new Date(today);
+    limitDate.setDate(limitDate.getDate() + 15);
+
+    if (fromDate > limitDate)
+        return true;
+
+    // 2️⃣ Adjacent dates
+    let prevT = new Date(fromDate);
+    prevT.setDate(prevT.getDate() - 1);
+
+    let nextT = new Date(toDate);
+    nextT.setDate(nextT.getDate() + 1);
+
+    // Weekend bridge
+    let fridayBefore = new Date(fromDate);
+    fridayBefore.setDate(fridayBefore.getDate() - 3);
+
+    let mondayAfter = new Date(toDate);
+    mondayAfter.setDate(mondayAfter.getDate() + 3);
+
+    let hasAdjacent = userLeaveDates.some(item => {
+        let d = normalize(item.LeaveJsDate);
+
+        return (
+            d.getTime() === prevT.getTime() ||
+            d.getTime() === nextT.getTime() ||
+            (d.getTime() === fridayBefore.getTime() && fromDate.getDay() === 1) ||
+            (d.getTime() === mondayAfter.getTime() && toDate.getDay() === 5)
+        );
+    });
+
+    return !hasAdjacent;
+}
+
+function isSameDate(date1, date2) {
+    return (
+        date1.getFullYear() === date2.getFullYear() &&
+        date1.getMonth() === date2.getMonth() &&
+        date1.getDate() === date2.getDate()
+    );
+}
 
 function getAllCalendarEventDates() {
     const events = calendar.getEvents();
@@ -632,6 +830,7 @@ function SendLeaveRequest() {
         Id: $("#LeaveId").val(),
         Fromdate: $("#txtFromDate").val(),
         Todate: $("#txtToDate").val(),
+        LeaveType: $("#drpLeaveType").val(),
         Leaves: LeaveDetails,
         ReportingPerson: $("#ReportingPersonId").val(),
         ReasonForLeave: $("#txtReason").val(),
@@ -641,7 +840,7 @@ function SendLeaveRequest() {
     showSpinner();
     $.ajax({
         type: "POST",
-        url: "/api/Admin/RequestForLeave",
+        url: "/api/Admin/RequestForLeaveNew",
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(Leavedata),
@@ -664,6 +863,29 @@ function SendLeaveRequest() {
             hideSpinner();
         },
     })
+}
+
+function GetUserLeaveBalance() {
+    var data = {
+        LeaveType: $("#drpLeaveType").val(),
+        FromDate: $("#txtFromDate").val(),
+        ToDate: $("#txtToDate").val()
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/api/Admin/GetUserLeaveBalance",
+        dataType: 'text',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(data),
+        success: function (result) {
+            leaveBalance = JSON.parse(result);
+            validateLeaveDays();
+        },
+        error: function (err) {
+            //hideSpinner();
+        }
+    });
 }
 
 function ResetModel() {

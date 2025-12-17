@@ -28,6 +28,7 @@
         <tr>
             <th class="dt-head-center">Sick Leave</th>
             <th class="dt-head-center">Paid Leave</th>
+            <th class="dt-head-center">Compensation Leave</th>
         </tr>
     </thead>
     <tbody class="TotalLeaveBalanceTableBody" style="text-align: center;">
@@ -203,6 +204,14 @@
                          },
                          {
                              "data": "FinalBalance",
+                             "render": function (data, type, row) {
+                                // var plAfterBreak = CountPaidLeave(data, row.OnBreak, row.BreakMonth);
+                                 return "<span>" + data + "</span>"
+
+                             }
+                         },
+                         {
+                             "data": "CompensationLeaveFinalBalance",
                              "render": function (data, type, row) {
                                 // var plAfterBreak = CountPaidLeave(data, row.OnBreak, row.BreakMonth);
                                  return "<span>" + data + "</span>"

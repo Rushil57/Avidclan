@@ -6,6 +6,7 @@
 <input type="hidden" id="SickLeave" />
 <input id="JoiningDate" type="hidden" value='@Session["UserJoiningDate"]' />
 <input id="ProbationMonth" type="hidden" value='@Session["UserProbationPeriod"]' />
+<input id="NoticePeriodDate" type="hidden" value='@Session["NoticePeriodDate"]' />
 
 <div id='calendar'></div>
 
@@ -26,6 +27,16 @@
                 <div class="form-group">
                     <label for="txtToDate" class="required">To Date</label>
                     <input type="text" class="form-control" name="txtToDate" id="txtToDate" placeholder="To Date" onchange="DateChange()">
+                </div>
+                <div class="form-group">
+                    <label for="drpLeaveType" class="required">Leave Type</label>
+                    <select id="drpLeaveType" name="drpLeaveType" class="form-control" onchange="GetUserLeaveBalance()">
+                        <option value="LWP"> Leave Without Pay (LWP)</option>
+                        <option value="PL">Paid Leave (PL)</option>
+                        <option value="SL">Sick Leave (SL)</option>
+                        <option value="CL">Compensation Leave (CL)</option>
+                    </select>
+                    <label id="txtLeaveNotification" style="color:forestgreen;"></label>
                 </div>
                 <div class="form-group">
                     <label for="txtReason" class="required">Reason For Leave</label>

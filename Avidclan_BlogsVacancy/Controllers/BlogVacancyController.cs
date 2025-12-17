@@ -71,6 +71,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                             Session["UserProbationPeriod"] = logindata.ProbationPeriod;
                             Session["FirstName"] = logindata.FirstName;
                             Session["LastName"] = logindata.LastName;
+                            Session["NoticePeriodDate"] = logindata.NoticePeriodDate;
                         }
                         else
                         {

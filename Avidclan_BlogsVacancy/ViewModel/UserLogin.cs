@@ -20,6 +20,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public DateTime? NoticePeriodDate { get; set; }
     }
 
     public class UserRegister
@@ -43,6 +44,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string CompOffLeave { get; set; }
         public string FinalBalance { get; set; }
         public string SickLeaveFinalBalance { get; set; }
+        public string CompensationLeaveFinalBalance { get; set; }
     }
 
     public class UseridList
