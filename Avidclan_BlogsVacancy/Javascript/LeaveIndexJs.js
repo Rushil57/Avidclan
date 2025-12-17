@@ -18,7 +18,6 @@ $(function () {
         GetLeaveDates(),
         GetReportingPerson(),
         GetTotalCompensationLeave(),
-        UserLeaveDates(),
         // GetPastLeaveBalance(),
         //delay(1500).then(GetTotalLeaveBalance)
     ).done(function () {
@@ -76,6 +75,7 @@ function SelectCalenderDate() {
                 $("#ApplyLeaveModel").show();
                 $("#txtFromDate").val(responseDate);
                 $("#txtToDate").val(responseDate);
+                UserLeaveDates();
                 refreshLeaveTypes();
                 SetMinDate();
             }
