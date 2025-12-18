@@ -567,7 +567,7 @@ function validateLeaveDays() {
     let leaveType = $("#drpLeaveType").val();
     if (leaveType == "LWP")
         return;
-    if (!ValidateLeaveAdjacency()) {
+    if (leaveType != "SL" && !ValidateLeaveAdjacency()) {
         $("#txtLeaveNotification").text(`You have taken leave on a day that is immediately before or after the selected dates. As per policy, the entire leave period will be considered as LWP.`);
     }
     else if (start && end) {

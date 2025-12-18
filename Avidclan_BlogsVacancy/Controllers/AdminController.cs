@@ -415,7 +415,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     return 0;
 
                 bool validate = ValidateLeaveAdjacency(userId, fromDate, toDate);
-                leaveType = !validate ? "LWP" : leaveType;
+                leaveType = leaveType != "SL" && !validate ? "LWP" : leaveType;
 
                 // 1️⃣ Save Leave Header
                 var (finalLeaveId, isNew) = await SaveOrUpdateLeaveHeader(
