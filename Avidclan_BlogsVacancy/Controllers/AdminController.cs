@@ -434,7 +434,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 var leaveOnly = details.Where(x => !x.WorkFromHome).ToList();
                 var wfhOnly = details.Where(x => x.WorkFromHome).ToList();
 
-                if (!validate)
+                if (leaveType == "LWP" && !validate)
                 {
                     var insertParams = new DynamicParameters();
                     insertParams.Add("@startdate", fromDate);
