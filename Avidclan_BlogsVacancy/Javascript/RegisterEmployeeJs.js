@@ -264,8 +264,8 @@ function GetEmployeeList() {
                         }
                     },                    
                     { "data": "ProbationPeriod" },
-                    { "data": "FinalBalance" },
-                    { "data": "SickLeaveFinalBalance" },
+                    //{ "data": "FinalBalance" },
+                    //{ "data": "SickLeaveFinalBalance" },
                     {
                         "data": "Id",
                         "render": function (data, type, row) {
