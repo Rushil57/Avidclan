@@ -477,7 +477,6 @@ namespace Avidclan_BlogsVacancy.Controllers
                 await SendLeaveOrWFHMailAsync(
                     leaveOnly,
                     wfhOnly,
-                    details,                      // mixed handling uses full list
                     new LeaveViewModel
                     {
                         ReasonForLeave = reasonForLeave,
@@ -499,19 +498,17 @@ namespace Avidclan_BlogsVacancy.Controllers
         private async Task SendLeaveOrWFHMailAsync(
         List<LeaveDetailsViewModel> leaveData,
         List<LeaveDetailsViewModel> wfhData,
-        List<LeaveDetailsViewModel> mixedData,
         LeaveViewModel leaveViewModel,
         string firstName,
         string lastName)
         {
-            bool hasLeave = leaveData?.Count > 0;
-            bool hasWFH = wfhData?.Count > 0;
-            bool hasMixed = mixedData?.Count > 0;
-
+            bool hasLeave = leaveData?.Any(x => !x.WorkFromHome) == true;
+            bool hasWFH = wfhData?.Any() == true;
+            leaveViewModel.ReportingPerson = new List<string>() { "gnamrata322@gmail.com" };
             // 1️⃣ Only Leave
-            if (hasLeave && !hasWFH && !hasMixed)
+            if (hasLeave && !hasWFH)
             {
-                await SendLeaveMail(
+                await SendWorkFromHomeAndLeaveMailNew(
                     leaveData,
                     leaveViewModel.ReasonForLeave,
                     leaveViewModel.ReportingPerson,
@@ -522,32 +519,45 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
 
             // 2️⃣ Only WFH
-            if (!hasLeave && hasWFH && !hasMixed)
+            if (!hasLeave && hasWFH)
             {
-                await SendWorkFromHomeMail(
+                await SendWorkFromHomeAndLeaveMailNew(
                     wfhData,
-                    leaveViewModel.ReportingPerson,
                     leaveViewModel.ReasonForLeave,
+                    leaveViewModel.ReportingPerson,
                     firstName,
                     lastName
                 );
                 return;
             }
 
-            // 3️⃣ Mixed scenario → Combine and send one mixed mail
-            var combined = new List<LeaveDetailsViewModel>();
+            // 3️⃣ Mixed (Leave + WFH)
+            if (hasLeave && hasWFH)
+            {
+                var pureLeave = leaveData
+                    .Where(x => !x.WorkFromHome)
+                    .ToList();
 
-            if (hasLeave) combined.AddRange(leaveData);
-            if (hasWFH) combined.AddRange(wfhData);
-            if (hasMixed) combined.AddRange(mixedData);
+                var combined = pureLeave
+                    .Concat(wfhData)
+                    .GroupBy(x => new
+                    {
+                        x.LeaveDate,
+                        x.Halfday,
+                        x.WorkFromHome,
+                        x.WorkAndHalfLeave
+                    })
+                    .Select(g => g.First())
+                    .ToList();
 
-            await SendWorkFromHomeAndLeaveMail(
-                combined,
-                leaveViewModel.ReasonForLeave,
-                leaveViewModel.ReportingPerson,
-                firstName,
-                lastName
-            );
+                await SendWorkFromHomeAndLeaveMailNew(
+                    combined,
+                    leaveViewModel.ReasonForLeave,
+                    leaveViewModel.ReportingPerson,
+                    firstName,
+                    lastName
+                );
+            }
         }
 
         public async Task<int> SaveWFHHeaderAsync(
@@ -1679,6 +1689,112 @@ namespace Avidclan_BlogsVacancy.Controllers
             catch (Exception ex)
             {
                 await ErrorLog("AdminController - SendWorkFromHomeAndLeaveMail", ex.Message, ex.StackTrace);
+            }
+        }
+
+        public async Task SendWorkFromHomeAndLeaveMailNew(
+        List<LeaveDetailsViewModel> leaveDetailsViews,
+        string reasonForLeave,
+        List<string> reportingPerson,
+        string firstName,
+        string lastName)
+        {
+
+            try
+            {
+                bool hasWFH = leaveDetailsViews.Any(x => x.WorkFromHome);
+                bool hasLeave = leaveDetailsViews.Any(x => !x.WorkFromHome || x.WorkAndHalfLeave);
+
+                string requestText =
+                    hasWFH && hasLeave
+                        ? "would like to request leave & Work From Home for the following day(s)."
+                        : hasWFH
+                            ? "would like to request Work From Home for the following day(s)."
+                            : "would like to request leave for the following day(s).";
+
+                var mailbody =
+                    $"<p>Hello Ma'am/Sir,<br><br>" +
+                    $"{firstName} {lastName} {requestText}<br>" +
+                    $"<b>Reason :</b> {reasonForLeave}<br><br></p>" +
+                    "<html><body>" +
+                    "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
+                    "<thead>" +
+                    "<tr style='background:#eee;'>" +
+                    "<th>Date</th>" +
+                    "<th>Day</th>" +
+                    "<th>Work From Home</th>" +
+                    "<th>WFH Half Day</th>" +
+                    "<th>Leave</th>" +
+                    "</tr></thead><tbody>";
+
+                foreach (var d in leaveDetailsViews
+                    .GroupBy(x => new { x.LeaveDate, x.Halfday, x.WorkFromHome, x.WorkAndHalfLeave })
+                    .Select(g => g.First()))
+                {
+                    string workFromHome = "";
+                    string wfhHalfDay = "";
+                    string leaveText = "";
+
+                    // 🔹 WFH Only
+                    if (d.WorkFromHome && !d.WorkAndHalfLeave)
+                    {
+                        workFromHome = "Yes";
+                        wfhHalfDay = d.Halfday ?? "";
+                    }
+                    // 🔹 WFH + Half Leave
+                    else if (d.WorkFromHome && d.WorkAndHalfLeave)
+                    {
+                        workFromHome = "Yes";
+                        wfhHalfDay = d.Halfday;
+
+                        leaveText = d.Halfday == "FirstHalf"
+                            ? "Second Half Leave"
+                            : "First Half Leave";
+                    }
+                    // 🔹 Leave Only
+                    else
+                    {
+                        leaveText = string.IsNullOrEmpty(d.Halfday)
+                            ? "Full Day Leave"
+                            : $"{d.Halfday} Leave";
+                    }
+
+                    mailbody +=
+                        $"<tr>" +
+                        $"<td>{d.LeaveDate:dd/MM/yyyy}</td>" +
+                        $"<td>{d.LeaveDate.DayOfWeek}</td>" +
+                        $"<td>{workFromHome}</td>" +
+                        $"<td>{wfhHalfDay}</td>" +
+                        $"<td>{leaveText}</td>" +
+                        $"</tr>";
+                }
+
+                mailbody +=
+                    "</tbody></table><br><br>" +
+                    $"<p>Yours Sincerely,<br>{firstName} {lastName}</p>" +
+                    "</body></html>";
+
+                string subject =
+                    hasWFH && hasLeave
+                        ? "Request For Leave and Work From Home"
+                        : hasWFH
+                            ? "Request For Work From Home"
+                            : "Request For Leave";
+
+                await ReadConfiguration();
+
+                await sendEmail(
+                    senderEmail,
+                    senderEmail,
+                    $"{firstName} {lastName}",
+                    subject,
+                    mailbody,
+                    reportingPerson
+                );
+            }
+            catch (Exception ex)
+            {
+                await ErrorLog("SendWorkFromHomeAndLeaveMail", ex.Message, ex.StackTrace);
             }
         }
 
