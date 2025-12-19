@@ -504,7 +504,7 @@ namespace Avidclan_BlogsVacancy.Controllers
         {
             bool hasLeave = leaveData?.Any(x => !x.WorkFromHome) == true;
             bool hasWFH = wfhData?.Any() == true;
-            leaveViewModel.ReportingPerson = new List<string>() { "gnamrata322@gmail.com" };
+
             // 1️⃣ Only Leave
             if (hasLeave && !hasWFH)
             {
@@ -723,12 +723,16 @@ namespace Avidclan_BlogsVacancy.Controllers
         double appliedSL,
         double appliedLWP)
         {
-            double leaveUnits = item.Halfday != null ? 0.5 : 1.0;
-
+            double leaveUnits = !string.IsNullOrEmpty(item.Halfday) ? 0.5 : 1.0;
+            string halfdayLeave = item.Halfday;
+            if (!string.IsNullOrEmpty(item.Halfday))
+            {
+                halfdayLeave = item.Halfday == "FirstHalf" ? "SecondHalf" : "FirstHalf";
+            }
             var insertParams = new DynamicParameters();
             insertParams.Add("@LeaveId", finalLeaveId);
             insertParams.Add("@LeaveDate", item.LeaveDate);
-            insertParams.Add("@Halfday", item.Halfday);
+            insertParams.Add("@Halfday", halfdayLeave);
             insertParams.Add("@UserId", userId);
             insertParams.Add("@Mode", 1);
             insertParams.Add("@CreatedDate", DateTime.Now, DbType.DateTime);
