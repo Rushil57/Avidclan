@@ -414,8 +414,12 @@ namespace Avidclan_BlogsVacancy.Controllers
                 if (details == null || details.Count == 0)
                     return 0;
 
-                bool validate = ValidateLeaveAdjacency(userId, fromDate, toDate);
-                leaveType = leaveType != "SL" && !validate ? "LWP" : leaveType;
+                bool validate = true;
+                if (leaveType != "SL")
+                {
+                    validate = ValidateLeaveAdjacency(userId, fromDate, toDate);
+                    leaveType = !validate ? "LWP" : leaveType;
+                }
 
                 // 1️⃣ Save Leave Header
                 var (finalLeaveId, isNew) = await SaveOrUpdateLeaveHeader(
@@ -431,7 +435,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 double appliedPL = 0, appliedSL = 0, appliedLWP = 0, appliedCL = 0;
 
                 // 5️⃣ Split details into Leave-only and WFH-only
-                var leaveOnly = details.Where(x => !x.WorkFromHome).ToList();
+                var leaveOnly = details.Where(x => !x.WorkFromHome || x.WorkAndHalfLeave).ToList();
                 var wfhOnly = details.Where(x => x.WorkFromHome).ToList();
 
                 if (leaveType == "LWP" && !validate)
