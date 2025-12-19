@@ -674,7 +674,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@startdate", StartDate, DbType.DateTime, ParameterDirection.Input);
                 parameters.Add("@enddate", EndDate, DbType.DateTime, ParameterDirection.Input);
                 var EmployeeData = con.Query<LeaveViewModel>("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure).ToList();
-                if (EmployeeData.Count > 0)
+                if (EmployeeData != null && EmployeeData.Count > 0)
                 {
                     var groupedData = EmployeeData
                        .GroupBy(e => e.Id)
@@ -682,11 +682,11 @@ namespace Avidclan_BlogsVacancy.Controllers
                        {
                            Id = g.Key,
                            Leaves = g
-            .OrderByDescending(e =>
-                (e.LeaveDate != DateTime.MinValue ? e.LeaveDate :
-                 e.WFHDates != DateTime.MinValue ? e.WFHDates : DateTime.MinValue)
-            )
-            .ToList()
+                        .OrderByDescending(e =>
+                            (e.LeaveDate != DateTime.MinValue ? e.LeaveDate :
+                                e.WFHDates != DateTime.MinValue ? e.WFHDates : DateTime.MinValue)
+                        )
+                        .ToList()
                        })
                        .ToList();
                     return Json(groupedData, JsonRequestBehavior.AllowGet);
@@ -696,7 +696,11 @@ namespace Avidclan_BlogsVacancy.Controllers
             catch (Exception ex)
             {
                 await ErrorLog("BlogVacancyController - GetAllEmployeesLeaveDates", ex.Message, ex.StackTrace);
-                return null;
+                return Json(new
+                {
+                    Message = ex.Message,
+                    StackTrace = ex.StackTrace
+                }, JsonRequestBehavior.AllowGet);
             }
         }
 
