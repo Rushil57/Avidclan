@@ -81,9 +81,10 @@ function SelectCalenderDate() {
             }
         },
         events: [],
-        eventClick: function (info) {
+        eventClick: function (info) {            
             var StartTime = moment(info.event.start).format('MM/DD/YYYY');
             var Eventlist = calendar.getEvents();
+            refreshLeaveTypes();
             EditLeaves(info.event.id, StartTime);
         }
     });
