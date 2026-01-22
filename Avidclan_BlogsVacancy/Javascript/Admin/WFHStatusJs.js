@@ -36,7 +36,8 @@ function GetWfhList() {
                             return moment(dateValue).format('DD/MM/YYYY');
                         }
                     },
-                    { "data": "WFHStatus" }
+                    { "data": "WFHStatus" },
+                    { "data": "WFHDays" }
                 ]
             });
 

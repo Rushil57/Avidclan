@@ -8,7 +8,7 @@
     <form name="CommpOffRequestForm">
         <div class="form-group">
             <label for="noofDays" class="required">Number of Days : </label>
-            <input type="text" class="form-control" name="noofDays" id="NoOfDays" placeholder="Enter Number of Days" style="width:20%">
+            <input type="text" class="form-control" step="0.5" min="0.5" name="noofDays" id="NoOfDays" placeholder="Enter Number of Days" style="width:20%">
         </div>
 
         <div class="form-group">
@@ -22,10 +22,31 @@
 </div>
 
 <script type="text/javascript">
+
+    $("#NoOfDays").on("input", function () {
+        let value = this.value;
+
+        // Allow digits and only one decimal point
+        value = value.replace(/[^0-9.]/g, '');
+
+        // Prevent more than one decimal
+        if ((value.match(/\./g) || []).length > 1) {
+            value = value.substring(0, value.length - 1);
+        }
+
+        this.value = value;
+    });
+    $.validator.addMethod("halfDay", function (value, element) {
+        if (value === "") return false;
+
+        let num = parseFloat(value);
+        return !isNaN(num) && num > 0 && (num * 2) % 1 === 0;
+    }, "Please enter valid days like 0.5, 1, 1.5, 2, 2.5");
+
     $(function () {
         validator = $("form[name='CommpOffRequestForm']").validate({
             rules: {
-                noofDays: { required: true, },
+                noofDays: { required: true, halfDay: true },
                 reason: { required: true, },
             },
             messages: {
@@ -37,9 +58,9 @@
             }
         });
 
-        $("#NoOfDays").on("input", function () {
-            this.value = this.value.replace(/[^0-9]/g, ''); // Allow only numbers
-        });
+        //$("#NoOfDays").on("input", function () {
+        //    this.value = this.value.replace(/[^0-9]/g, ''); // Allow only numbers
+        //});
 
     });
 

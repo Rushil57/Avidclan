@@ -20,6 +20,7 @@
             <th>From Date</th>
             <th>To Date</th>
             <th>Status</th>
+            <th>Days</th>
         </tr>
     </thead>
     <tbody class="LeaveTableBody">
@@ -110,7 +111,8 @@
                                 return moment(dateValue).format('DD/MM/YYYY');
                             }
                         },
-                        {"data": "LeaveStatus"}
+                        { "data": "LeaveStatus" },
+                        { "data": "LeaveDays" }
                     ]
               });
 

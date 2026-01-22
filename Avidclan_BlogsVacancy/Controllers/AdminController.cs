@@ -727,7 +727,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             string halfdayLeave = item.Halfday;
             if (!string.IsNullOrEmpty(item.Halfday))
             {
-                halfdayLeave = item.Halfday == "FirstHalf" ? "SecondHalf" : "FirstHalf";
+                halfdayLeave = item.Halfday == "FirstHalf" ? "FirstHalf" : "SecondHalf";
             }
             var insertParams = new DynamicParameters();
             insertParams.Add("@LeaveId", finalLeaveId);

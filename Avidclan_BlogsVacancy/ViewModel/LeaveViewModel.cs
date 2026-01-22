@@ -51,6 +51,8 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string FinalBalance { get; set; }
         public string SickLeaveFinalBalance { get; set; }
         public string LeaveType { get; set; }
+        public string LeaveDays { get; set; }
+        public string WFHDays { get; set; }
     }
 
     public class LeaveDetails

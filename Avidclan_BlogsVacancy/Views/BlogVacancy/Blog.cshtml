@@ -2,6 +2,26 @@
     Layout = "~/Views/Shared/_AdminTemplate.cshtml";
 }
 
+<style>
+    .main-container {
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<style>
+    .grid-cell {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #aaa;
+        cursor: pointer;
+    }
+
+        .grid-cell.active {
+            background: #3b82f6;
+        }
+</style>
+
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-target="#exampleModal" id="AddBlog">
     Add New Blog
@@ -77,9 +97,42 @@
                             <span class="ql-formats">
                                 <button class="ql-clean"></button>
                             </span>
+                            <span class="ql-formats">
+                                <button type="button" id="ql-view-source">Source</button>
+                            </span>
+                            @*<span class="ql-formats">
+                                    <button class="ql-better-table"></button>
+                                </span>*@
+
+
                         </div>
-                        <div id="editor" style="height:250px;">
+                        <div id="editor" style="height:250px;"></div>
+
+                        <textarea id="html-editor"
+                                  style="display:none;width:100%;height:250px;
+                        font-family:Consolas,monospace;"></textarea>
+                        <button type="button" id="table-btn">Table</button>
+
+
+                        <div id="table-popup" style="
+  display:none;
+  position:absolute;
+  background:#fff;
+  border:1px solid #ccc;
+  padding:8px;
+  z-index:9999;
+">
+                            <div id="grid" style="display:grid;grid-template-columns:repeat(10,20px);gap:2px;"></div>
+                            <div id="grid-info" style="margin-top:6px;font-size:12px;">0 × 0</div>
                         </div>
+
+
+
+
+                        <!-- Textarea to replace with editor -->
+                        @*<div class="main-container">
+                                <textarea name="Description" id="Description"></textarea>
+                            </div>*@
                     </div>
                     <div class="form-group">
                         <label for="ShortTitle">Short Title</label>
@@ -196,18 +249,165 @@
         </thead>
     </table>
 </div>
+@*<script>
+        CKEDITOR.replace('Description', {
+            height: 300,
+            removeButtons: '',
+            extraPlugins: 'sourcearea',
+            toolbarGroups: [
+                { name: 'document', groups: ['mode'] },
+                { name: 'clipboard', groups: ['clipboard', 'undo'] },
+                { name: 'editing', groups: ['find', 'selection'] },
+                { name: 'insert' },
+                { name: 'forms' },
+                { name: 'tools' },
+                { name: 'styles' },
+                { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
+                { name: 'paragraph', groups: ['list', 'indent', 'align'] },
+                { name: 'links' },
+                { name: 'colors' }
+            ]
+        });
+    </script>*@
+<script>
+
+    const sourceBtn = document.getElementById('ql-view-source');
+    const htmlEditor = document.getElementById('html-editor');
+    const quillEditor = document.getElementById('editor');
+
+    let sourceMode = false;
+
+    sourceBtn.addEventListener('click', function () {
+        if (!sourceMode) {
+            // Switch to HTML source
+            htmlEditor.value = quill.root.innerHTML;
+            quillEditor.style.display = 'none';
+            htmlEditor.style.display = 'block';
+            sourceBtn.innerText = 'Editor';
+        } else {
+            // Back to visual editor
+            quill.root.innerHTML = htmlEditor.value;
+            htmlEditor.style.display = 'none';
+            quillEditor.style.display = 'block';
+            sourceBtn.innerText = 'Source';
+        }
+        sourceMode = !sourceMode;
+    });
+
+
+</script>
+@*<script>
+        const tableBtn = document.getElementById('table-btn');
+        const popup = document.getElementById('table-popup');
+        const grid = document.getElementById('grid');
+        const info = document.getElementById('grid-info');
+
+        const MAX = 10;
+
+        // Create grid
+        for (let i = 0; i < MAX * MAX; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'grid-cell';
+            grid.appendChild(cell);
+        }
+
+        // Show popup near button
+        tableBtn.onclick = (e) => {
+            popup.style.display = 'block';
+            popup.style.top = (e.target.offsetTop + 30) + 'px';
+            popup.style.left = e.target.offsetLeft + 'px';
+        };
+
+        let rows = 0, cols = 0;
+
+        grid.addEventListener('mouseover', e => {
+            if (!e.target.classList.contains('grid-cell')) return;
+
+            const index = [...grid.children].indexOf(e.target);
+            rows = Math.floor(index / MAX) + 1;
+            cols = (index % MAX) + 1;
+
+            info.innerText = `${rows} × ${cols}`;
+
+            [...grid.children].forEach((c, i) => {
+                c.classList.toggle(
+                    'active',
+                    Math.floor(i / MAX) < rows && (i % MAX) < cols
+                );
+            });
+        });
+
+        // Insert table on click
+        grid.addEventListener('click', () => {
+            let html = `<table border="1" style="border-collapse:collapse;width:100%">`;
+            for (let r = 0; r < rows; r++) {
+                html += '<tr>';
+                for (let c = 0; c < cols; c++) {
+                    html += '<td>&nbsp;</td>';
+                }
+                html += '</tr>';
+            }
+            html += '</table><p><br></p>';
+
+            quill.clipboard.dangerouslyPasteHTML(
+                quill.getSelection()?.index || 0,
+                html
+            );
+
+            popup.style.display = 'none';
+        });
+
+    </script>*@
+<script>
+    /* =======================
+       QUILL INITIALIZATION
+    ======================== */
+    //const quill = new Quill('#editor', {
+    //    theme: 'snow',
+    //    modules: {
+    //        toolbar: [
+    //            ['bold', 'italic', 'underline'],
+    //            [{ list: 'ordered' }, { list: 'bullet' }],
+    //            ['code-block'],
+    //            ['clean']
+    //        ]
+    //    }
+    //});
+
+
+</script>
 
 <script type="text/javascript">
 
-    // init quill editor.
+    ////// init quill editor.
+    //const Icons = Quill.import('ui/icons');
+
+    //// Custom H3 to H6 icons register
+    //['3', '4', '5', '6'].forEach(level => {
+    //    Icons.header[level] = `
+    //  <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+    //    <text x="2" y="13" font-size="11" font-family="sans-serif" font-weight="700">H${level}</text>
+    //  </svg>`;
+    //});
+    //const quill = new Quill('#editor', {
+    //    modules: {
+    //        syntax: true,
+    //        toolbar: '#toolbar-container',
+    //    },
+    //    placeholder: 'Compose an epic...',
+    //    theme: 'snow',
+    //});
+
+
+
     const Icons = Quill.import('ui/icons');
 
     // Custom H3 to H6 icons register
     ['3', '4', '5', '6'].forEach(level => {
         Icons.header[level] = `
-      <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-        <text x="2" y="13" font-size="11" font-family="sans-serif" font-weight="700">H${level}</text>
-      </svg>`;
+    <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+      <text x="2" y="13" font-size="11" font-family="sans-serif" font-weight="700">H${level}</text>
+    </svg>`;
     });
     const quill = new Quill('#editor', {
         modules: {
@@ -218,463 +418,558 @@
         theme: 'snow',
     });
 
-    var validator;
-    $(function () {
-         validator = $("form[name='BlogDetails']").validate({
-            rules: {
-                title: { required: true, },
-                description: { required: true, },
-                ShortTitle: {
-                    required: true,
-                    maxlength: 30,
-                },
-                blogtype: { required: true, },
-                attachmentFile: { required: true, },
-                PostedBy: { required: true, },
-                PageUrl: { required: true },
-                MetaTitle: { required: true },
-                MetaDescription: { required: true }
-                //SchemaCode: {required:true}
-            },
-            messages: {
-                title: { required: "Please enter a title", },
-                description: { required: "Please enter description", },
-                ShortTitle: {
-                    required: "Please enter short title",
-                    maxlength: "Title must be less than 30 characters..",
-                },
-                blogtype: { required: "Please enter blogtype", },
-                attachmentFile: { required: "Please choose a file", },
-                PostedBy: { required: "Please enter PostedBy", },
-                PageUrl: { required: "Please enter Url", },
-                MetaTitle: { required: "Please enter Meta Title", },
-                MetaDescription: { required: "Please enter Meta Description", }
-                //SchemaCode: { required: "Please enter Schema Code", }
-            },
-            submitHandler: function (form) {
-                SaveBlog()
-            }
+    /* =======================
+       HTML SOURCE TOGGLE
+    ======================== */
+    //const toggleBtn = document.getElementById('toggleBtn');
+    //const editorDiv = document.getElementById('editor');
+    //const sourceEditor = document.getElementById('sourceEditor');
+    ///*let sourceMode = false;*/
+
+    //toggleBtn.addEventListener('click', () => {
+    //    if (!sourceMode) {
+    //        sourceEditor.value = quill.root.innerHTML;
+    //        editorDiv.style.display = 'none';
+    //        sourceEditor.style.display = 'block';
+    //        toggleBtn.innerText = 'Back to Editor';
+    //    } else {
+    //        const range = quill.getSelection(true);
+    //        const index = range ? range.index : quill.getLength();
+
+    //        quill.clipboard.dangerouslyPasteHTML(index, sourceEditor.value, 'user');
+    //        quill.setSelection(index + 1);
+
+    //        sourceEditor.style.display = 'none';
+    //        editorDiv.style.display = 'block';
+    //        toggleBtn.innerText = 'View HTML';
+    //    }
+    //    sourceMode = !sourceMode;
+    //});
+
+    /* =======================
+       TABLE GRID LOGIC
+    ======================== */
+    const tableBtn = document.getElementById('table-btn');
+    const popup = document.getElementById('table-popup');
+    const grid = document.getElementById('grid');
+    const info = document.getElementById('grid-info');
+
+    const MAX = 10;
+    let rows = 0, cols = 0;
+
+    // Create grid
+    for (let i = 0; i < MAX * MAX; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'grid-cell';
+        grid.appendChild(cell);
+    }
+
+    // Show popup near button
+    tableBtn.onclick = (e) => {
+        popup.style.display = 'block';
+        popup.style.top = (e.target.offsetTop + 30) + 'px';
+        popup.style.left = e.target.offsetLeft + 'px';
+    };
+
+    // Highlight grid on hover
+    grid.addEventListener('mouseover', (e) => {
+        if (!e.target.classList.contains('grid-cell')) return;
+
+        const index = [...grid.children].indexOf(e.target);
+        rows = Math.floor(index / MAX) + 1;
+        cols = (index % MAX) + 1;
+
+        info.innerText = `${rows} × ${cols}`;
+
+        [...grid.children].forEach((c, i) => {
+            c.classList.toggle(
+                'active',
+                Math.floor(i / MAX) < rows && (i % MAX) < cols
+            );
         });
-
-        //var Postingdate = new Date();
-        //var FormatPostingDate = moment(Postingdate).format('MM/DD/YYYY HH:mm:ss');
-        //var FormatPostingDate = (new Date()).toISOString().split('T')[0];
-        //$("#PostingDate").val(FormatPostingDate);
-
-        GetBlogStatusByName();
-        GetBlogList();
     });
 
-    $('#AddBlog').click(function () {
-        var Postingdate = new Date();
-        var FormatPostingDate = moment(Postingdate).format('MM/DD/YYYY HH:mm:ss');
-        //var FormatPostingDate = (new Date()).toISOString().split('T')[0];
-        $("#PostingDate").val(FormatPostingDate);
-        $("#AddNewBlogModal").modal('show');
-    });
+    // INSERT TABLE AT CURSOR
+    grid.addEventListener('click', () => {
+        const range = quill.getSelection(true);
+        const index = range ? range.index : quill.getLength();
 
-    function SaveBlog() {
-        var Blogs = new Array();
-        $("#tblFaqs tbody tr").each(function () {
-            var row = $(this);
-            var Blog = {};
-            Blog.Questions = row.find(".clsfaqQuestion").val();
-            Blog.Answers = row.find(".clsfaqAnswers").val();
-            Blogs.push(Blog);
-        });
-
-        var Id = $("#BlogId").val();
-        var Title = $("#Title").val();
-        var ShortTitle = $('#ShortTitle').val();
-        //var Description = CKEDITOR.instances['Description'].getData();
-        var Description = quill.root.innerHTML;
-        var BlogType = $("#BlogType").val();
-        var PostingDate = $("#PostingDate").val();
-        var Resume = $("#Image").get(0);
-        var files = Resume.files;
-
-        var BlogDetailImage = $("#BlogDetailsImage").get(0);
-        var BlogFile = BlogDetailImage.files;
-
-        var PostedBy = $("#PostedBy").val();
-        var ImageUrl = $("#ImageUrl").val();
-        var PageUrl = $("#PageUrl").val();
-        var MetaTitle = $("#MetaTitle").val();
-        var MetaDescription = $("#MetaDescription").val();
-        var SchemaCode = $("#SchemaCode").val();
-        var BlogDetailUrl = $("#BlogDetailImageUrl").val();
-
-        var fileData = new FormData();
-        fileData.append("Id",Id);
-        fileData.append("Image", files[0]);
-        fileData.append('Description', Description);
-        fileData.append('ShortTitle', ShortTitle);
-        fileData.append('BlogType', BlogType);
-        fileData.append('PostingDate', PostingDate);
-        fileData.append('PostedBy', PostedBy);
-        fileData.append('Title', Title);
-        fileData.append('ImageUrl', ImageUrl);
-        fileData.append('BlogDetailImage', BlogFile[0]);
-        fileData.append('PageUrl', PageUrl);
-        fileData.append('MetaTitle', MetaTitle);
-        fileData.append('MetaDescription', MetaDescription);
-        fileData.append('SchemaCode', SchemaCode);
-        fileData.append('BlogDetailImageUrl', BlogDetailUrl);
-        fileData.append('BlogFaqs', JSON.stringify(Blogs));
-
-        $.ajax({
-            type: "POST",
-            url: "/api/Admin/SaveBlog",
-            data: fileData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (result) {
-                alert("success");
-                GetBlogList();
-                ResetBlogData();
-                $("#AddNewBlogModal").modal('hide');
-            },
-            error: function (result) {
-                alert(result.responseText);
+        let html = `<table border="1" style="border-collapse:collapse;width:100%">`;
+        for (let r = 0; r < rows; r++) {
+            html += '<tr>';
+            for (let c = 0; c < cols; c++) {
+                html += '<td>&nbsp;</td>';
             }
-        });
-    }
-
-    function GetBlogList() {
-        $.ajax({
-            type: "Get",
-             url: "@Url.Action("GetBlogList", "BlogVacancy")",
-            success: function (result) {
-                $('#BlogList').dataTable({
-                    destroy: true,
-                    data: result,
-                    "columns": [
-                        {
-                            "data": "Title",
-                            "render": function (data, type, row) {
-                                var reviewName = data.length > 35 ? data.substring(0, 35) + "..." : data;
-                                return "<span title='" + data + "'>" + reviewName + "</span>";
-                            }
-                        },
-                        {"data": "BlogType"},
-                        {
-                            "data": "PostingDate",
-                            "render": function (data) {
-                                const dateValue = new Date(parseInt(data.substr(6)));
-                                return moment(dateValue).format('DD/MM/YYYY HH:mm');
-                            }
-                        },
-                        { "data": "PostedBy" },
-                        {
-                            "data": "Id",
-                            "render": function (data, type, row) {
-                                return '<a class="btn btn-info btn-sm" style="color: white;" onclick="GetBlogDetailsById(' + data + ')"><i class="mdi mdi-pencil"></i></a>';
-                            }
-                        },
-                        {
-                            "data": "Id",
-                            "render": function (data, type, row) {
-                                return '<a class="btn btn-danger btn-sm" style="color: white;" onclick=DeleteBlog(' +data +')><i class="mdi mdi-delete"></i></a>';
-                            }
-                        }
-                    ]
-                });
-
-
-            },
-            error: function (result) {
-                alert(result.responseText);
-            }
-        });
-    }
-
-    function DeleteBlog(id) {
-        if (confirm('Are you sure want to delete Blog?')) {
-            $.ajax({
-                url: '@Url.Action("DeleteBlog", "BlogVacancy")',
-                contentType: 'application/json',
-                data: { Id: id },
-                type: "GET",
-                success: function (result) {
-                    GetBlogList();
-                    alert('Delete Successully!');
-
-                },
-                error: function (result) {
-                    alert(result.responseText);
-                }
-            });
+            html += '</tr>';
         }
-        else {
-            return;
-        }
-    }
+        html += '</table><p><br></p>';
 
-    function GetBlogDetailsById(id) {
-        $("#AddNewBlogModal").modal('show');
-        $.ajax({
-            url: '@Url.Action("GetBlogById", "BlogVacancy")',
-            contentType: 'application/json',
-            data: { Id: id },
-            type: "GET",
-            success: function (result) {
-                $("#BlogId").val(result.bloglist[0].Id);
-                $("#Title").val(result.bloglist[0].Title);
-                //CKEDITOR.instances['Description'].setData(result.bloglist[0].Description);
-                quill.root.innerHTML = result.bloglist[0].Description;
+        quill.clipboard.dangerouslyPasteHTML(index, html, 'user');
+        quill.setSelection(index + 1);
 
-                $("#ShortTitle").val(result.bloglist[0].ShortTitle);
-                $("#BlogType").val(result.bloglist[0].BlogType);
-                loadURLToInputFiled(result.bloglist[0].ImageName);
-                $("#preview").find("span").first().remove();
-                $('#preview').show();
-                var span = document.createElement('span');
-                span.innerHTML =
-                    ['<img class="thumb" src="', result.bloglist[0].Image, '"/><span class="remove_img_preview"></span>']
-                        .join('');
-                document.getElementById('preview').insertBefore(span, null);
-                var date = moment(result.bloglist[0].PostingDate).format('MM/DD/YYYY HH:mm:ss');
-                $("#PostingDate").val(date);
-                $("#PostedBy").val(result.bloglist[0].PostedBy);
-                $("#ImageUrl").val(result.bloglist[0].Image);
-                $("#PageUrl").val(result.bloglist[0].PageUrl);
-                $("#BlogDetailImageUrl").val(result.bloglist[0].BlogDetailImage);
-                $("#MetaTitle").val(result.bloglist[0].MetaTitle);
-                $("#MetaDescription").val(result.bloglist[0].MetaDescription);
-                $("#SchemaCode").val(result.bloglist[0].SchemaCode);
-                $("#BlogDetailImagepreview").find("span").first().remove();
-                $('#BlogDetailImagepreview').show();
-                var span = document.createElement('span');
-                span.innerHTML =
-                    ['<img class="BlogImage" src="', result.bloglist[0].BlogDetailImage, '"/><span class="remove_BlogDetailimg_preview"></span>']
-                        .join('');
-                document.getElementById('BlogDetailImagepreview').insertBefore(span, null);
-                addNameToFile(result.bloglist[0].BlogDetailImageName);
-
-                $.each(result.blogfaqslist, function (key, val) {
-                    AddNewRows(val.Questions, val.Answers);
-                });
-            },
-            error: function (result) {
-                alert(result.responseText);
-            }
-        });
-    }
-
-
-    function loadURLToInputFiled(url) {
-        getImgURL(url, (imgBlob) => {
-            let file = new File([imgBlob], url, { type: "image/jpeg", lastModified: new Date().getTime() }, 'utf-8');
-            let container = new DataTransfer();
-            container.items.add(file);
-            document.querySelector('#Image').files = container.files;
-        })
-    }
-
-    function addNameToFile(url) {
-        getImgURL(url, (imgBlob) => {
-            let file = new File([imgBlob], url, { type: "image/jpeg", lastModified: new Date().getTime() }, 'utf-8');
-            let container = new DataTransfer();
-            container.items.add(file);
-            document.querySelector('#BlogDetailsImage').files = container.files;
-        })
-    }
-
-    function getImgURL(url, callback) {
-        var xhr = new XMLHttpRequest();
-        xhr.onload = function () {
-            callback(xhr.response);
-        };
-        xhr.open('GET', url);
-        xhr.responseType = 'blob';
-        xhr.send();
-    }
-
-    function ResetBlogData() {
-        validator.resetForm();
-        $("#AddNewBlogModal").modal('hide');
-        $("#BlogId").val('');
-        $("#ShortTitle").val('');
-        $("#Title").val('');
-        quill.setText();
-        $("#BlogType").val('');
-        $("#PostingDate").val('');
-        $(".thumb").attr('src', '');
-        $('#preview').hide();
-        $("#Image").val('');
-        $("#BlogDetailsImage").val('');
-        $("#PostedBy").val('');
-        $("#ImageUrl").val('');
-        $("#PageUrl").val('');
-        $("#tblFaqs .FaqTableclass").html("");
-        $("#MetaDescription").val("");
-        $("#MetaTitle").val("");
-        $(".BlogImage").attr('src', '');
-        $("#BlogDetailImagepreview").hide()
-        $("#BlogDetailImageUrl").val("");
-        $("#SchemaCode").val("");
-        console.clear();
-    }
-
-    function handleFileSelect(event) {
-        console.log(event)
-        $("#ImageUrl").val('');
-        var input = this;
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            console.log(reader)
-            reader.onload = (function (e) {
-                $("#preview").find("span").first().remove();
-                $('#preview').show();
-                var span = document.createElement('span');
-                span.innerHTML =
-                    ['<img class="thumb" src="', e.target.result, '" title="', escape(e.name), '"/><span class="remove_img_preview"></span>']
-                        .join('');
-                document.getElementById('preview').insertBefore(span, null);
-            });
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    $('#Image').change(handleFileSelect);
-    $('#preview').on('click', '.remove_img_preview', function () {
-        $(this).parent('span').remove();
-        $(this).val("");
-        $("#Image").val("");
-    });
-    $('.BlogStatus input[type="checkbox"]').on('change', function () {
-        var status = $("#switchCheckbox").is(':checked');
-        var menu = {
-            MenuName: "blog",
-            Status: status
-        }
-        $.ajax({
-            type: "POST",
-                url: '@Url.Action("BlogStatus", "BlogVacancy")',
-             contentType: 'application/json',
-             data: JSON.stringify(menu),
-                success: function (result) {
-                    alert('Status Update Successully!');
-
-                },
-                error: function () {
-                    alert(result.responseText);
-                }
-            });
-    });
-    function GetBlogStatusByName() {
-         $.ajax({
-            url: '@Url.Action("GetBlogStatusByName", "BlogVacancy")',
-            contentType: 'application/json',
-             data: { name: "blog" },
-            type: "GET",
-             success: function (result) {
-                if (result != null) {
-                    if (result.Status) {
-                        $("#switchCheckbox").prop("checked", true);
-                    }
-                }
-
-            },
-            error: function (result) {
-                alert(result.responseText);
-            }
-        });
-    }
-
-    var count = 1;
-    function AddNewRows(Questions,Answers) {
-        var addcontrols = '<tr id="RowId_' +count+ '>" + count + ">'
-        addcontrols += '<td><textarea type="text" class="form-control clsfaqQuestion" name="faqTitle" placeholder="Add question">' + Questions +'</textarea></td>'
-        addcontrols += '<td><textarea type="text" class="form-control clsfaqAnswers" name="faqTitle" placeholder="Add answer"/>'+Answers+'</textarea></td>'
-        addcontrols += "<td><input type='button' id='btnDelete' class='btn btn-danger btn-sm deleteFaqquestion' Value='Delete'></td>"
-        addcontrols += "</tr>";
-        count++;
-        $("table .FaqTableclass").append(addcontrols);
-    }
-    $("table .FaqTableclass").on('click', '.deleteFaqquestion', function () {
-        $(this).closest('tr').remove();
+        popup.style.display = 'none';
     });
 
 
-    $("#BlogDetailsImage").change(AddBogDetailImage);
-    function AddBogDetailImage(event) {
-        $("#BlogDetailImageUrl").val("");
-        var input = this;
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            console.log(reader)
-            reader.onload = (function (e) {
-                $("#BlogDetailImagepreview").find("span").first().remove();
-                $('#BlogDetailImagepreview').show();
-                var span = document.createElement('span');
-                span.innerHTML =
-                    ['<img class="BlogImage" src="', e.target.result, '" title="', escape(e.name), '"/><span class="remove_BlogDetailimg_preview"></span>']
-                        .join('');
-                document.getElementById('BlogDetailImagepreview').insertBefore(span, null);
-            });
 
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    $('#BlogDetailImagepreview').on('click', '.remove_BlogDetailimg_preview', function () {
-        $(this).parent('span').remove();
-        $(this).val("");
-        $("#BlogDetailsImage").val("");
-    });
-    // -------- Add‑New Category --------
-    $('#BlogType').on('change', function () {
-        if (this.value === 'add_new') {
-            const newCat = prompt('Enter new category name:');
-            if (newCat && newCat.trim() !== '') {
+                                var validator;
+                                $(function () {
+                                     validator = $("form[name='BlogDetails']").validate({
+                                        rules: {
+                                            title: { required: true, },
+                                            description: { required: true, },
+                                            ShortTitle: {
+                                                required: true,
+                                                maxlength: 30,
+                                            },
+                                            blogtype: { required: true, },
+                                            attachmentFile: { required: true, },
+                                            PostedBy: { required: true, },
+                                            PageUrl: { required: true },
+                                            MetaTitle: { required: true },
+                                            MetaDescription: { required: true }
+                                            //SchemaCode: {required:true}
+                                        },
+                                        messages: {
+                                            title: { required: "Please enter a title", },
+                                            description: { required: "Please enter description", },
+                                            ShortTitle: {
+                                                required: "Please enter short title",
+                                                maxlength: "Title must be less than 30 characters..",
+                                            },
+                                            blogtype: { required: "Please enter blogtype", },
+                                            attachmentFile: { required: "Please choose a file", },
+                                            PostedBy: { required: "Please enter PostedBy", },
+                                            PageUrl: { required: "Please enter Url", },
+                                            MetaTitle: { required: "Please enter Meta Title", },
+                                            MetaDescription: { required: "Please enter Meta Description", }
+                                            //SchemaCode: { required: "Please enter Schema Code", }
+                                        },
+                                        submitHandler: function (form) {
+                                            SaveBlog()
+                                        }
+                                    });
 
-                // duplicate तो नहीं?
-                const exists = Array.from(this.options)
-                    .some(o => o.value.toLowerCase() === newCat.toLowerCase());
+                                    //var Postingdate = new Date();
+                                    //var FormatPostingDate = moment(Postingdate).format('MM/DD/YYYY HH:mm:ss');
+                                    //var FormatPostingDate = (new Date()).toISOString().split('T')[0];
+                                    //$("#PostingDate").val(FormatPostingDate);
 
-                if (!exists) {
-                    const opt = document.createElement('option');
-                    opt.value = newCat.trim();
-                    opt.textContent = newCat.trim();
-                    // "Add New…" से पहले घुसाएँ
-                    this.insertBefore(opt, document.getElementById('addNewOption'));
-                }
-                // नया या पहले‑से‑मौजूद—उसे select कर दें
-                this.value = newCat.trim();
-            } else {
-                // कुछ नहीं टाइप हुआ—dropdown रिसेट
-                this.value = '';
-            }
-        }
-    });
-    // -------- Add‑New "Posted By" --------
-    $('#PostedBy').on('change', function () {
-        if (this.value === 'add_new') {
+                                    GetBlogStatusByName();
+                                    GetBlogList();
+                                });
 
-            const newName = prompt('Enter author name:').trim();
+                                $('#AddBlog').click(function () {
+                                    var Postingdate = new Date();
+                                    var FormatPostingDate = moment(Postingdate).format('MM/DD/YYYY HH:mm:ss');
+                                    //var FormatPostingDate = (new Date()).toISOString().split('T')[0];
+                                    $("#PostingDate").val(FormatPostingDate);
+                                    $("#AddNewBlogModal").modal('show');
+                                });
 
-            if (newName) {
+                                function SaveBlog() {
+                                    var Blogs = new Array();
+                                    $("#tblFaqs tbody tr").each(function () {
+                                        var row = $(this);
+                                        var Blog = {};
+                                        Blog.Questions = row.find(".clsfaqQuestion").val();
+                                        Blog.Answers = row.find(".clsfaqAnswers").val();
+                                        Blogs.push(Blog);
+                                    });
 
-                // already there?
-                const exists = Array.from(this.options)
-                    .some(o => o.value.toLowerCase() === newName.toLowerCase());
+                                    var Id = $("#BlogId").val();
+                                    var Title = $("#Title").val();
+                                    var ShortTitle = $('#ShortTitle').val();
+                                    //var Description = CKEDITOR.instances['Description'].getData();
+                                    var Description = quill.root.innerHTML;
+                                    var BlogType = $("#BlogType").val();
+                                    var PostingDate = $("#PostingDate").val();
+                                    var Resume = $("#Image").get(0);
+                                    var files = Resume.files;
 
-                if (!exists) {
-                    // insert just before the +Add‑new option
-                    const opt = document.createElement('option');
-                    opt.value = newName;
-                    opt.textContent = newName;
-                    this.insertBefore(opt, document.getElementById('addPostedByOption'));
-                }
-                // make the new / existing item selected
-                this.value = newName;
-            } else {
-                // nothing typed → reset dropdown
-                this.value = '';
-            }
-        }
-    });
+                                    var BlogDetailImage = $("#BlogDetailsImage").get(0);
+                                    var BlogFile = BlogDetailImage.files;
+
+                                    var PostedBy = $("#PostedBy").val();
+                                    var ImageUrl = $("#ImageUrl").val();
+                                    var PageUrl = $("#PageUrl").val();
+                                    var MetaTitle = $("#MetaTitle").val();
+                                    var MetaDescription = $("#MetaDescription").val();
+                                    var SchemaCode = $("#SchemaCode").val();
+                                    var BlogDetailUrl = $("#BlogDetailImageUrl").val();
+
+                                    var fileData = new FormData();
+                                    fileData.append("Id",Id);
+                                    fileData.append("Image", files[0]);
+                                    fileData.append('Description', Description);
+                                    fileData.append('ShortTitle', ShortTitle);
+                                    fileData.append('BlogType', BlogType);
+                                    fileData.append('PostingDate', PostingDate);
+                                    fileData.append('PostedBy', PostedBy);
+                                    fileData.append('Title', Title);
+                                    fileData.append('ImageUrl', ImageUrl);
+                                    fileData.append('BlogDetailImage', BlogFile[0]);
+                                    fileData.append('PageUrl', PageUrl);
+                                    fileData.append('MetaTitle', MetaTitle);
+                                    fileData.append('MetaDescription', MetaDescription);
+                                    fileData.append('SchemaCode', SchemaCode);
+                                    fileData.append('BlogDetailImageUrl', BlogDetailUrl);
+                                    fileData.append('BlogFaqs', JSON.stringify(Blogs));
+
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/api/Admin/SaveBlog",
+                                        data: fileData,
+                                        cache: false,
+                                        contentType: false,
+                                        processData: false,
+                                        success: function (result) {
+                                            alert("success");
+                                            GetBlogList();
+                                            ResetBlogData();
+                                            $("#AddNewBlogModal").modal('hide');
+                                        },
+                                        error: function (result) {
+                                            alert(result.responseText);
+                                        }
+                                    });
+                                }
+
+                                function GetBlogList() {
+                                    $.ajax({
+                                        type: "Get",
+                                         url: "@Url.Action("GetBlogList", "BlogVacancy")",
+                                        success: function (result) {
+                                            $('#BlogList').dataTable({
+                                                destroy: true,
+                                                data: result,
+                                                "columns": [
+                                                    {
+                                                        "data": "Title",
+                                                        "render": function (data, type, row) {
+                                                            var reviewName = data.length > 35 ? data.substring(0, 35) + "..." : data;
+                                                            return "<span title='" + data + "'>" + reviewName + "</span>";
+                                                        }
+                                                    },
+                                                    {"data": "BlogType"},
+                                                    {
+                                                        "data": "PostingDate",
+                                                        "render": function (data) {
+                                                            const dateValue = new Date(parseInt(data.substr(6)));
+                                                            return moment(dateValue).format('DD/MM/YYYY HH:mm');
+                                                        }
+                                                    },
+                                                    { "data": "PostedBy" },
+                                                    {
+                                                        "data": "Id",
+                                                        "render": function (data, type, row) {
+                                                            return '<a class="btn btn-info btn-sm" style="color: white;" onclick="GetBlogDetailsById(' + data + ')"><i class="mdi mdi-pencil"></i></a>';
+                                                        }
+                                                    },
+                                                    {
+                                                        "data": "Id",
+                                                        "render": function (data, type, row) {
+                                                            return '<a class="btn btn-danger btn-sm" style="color: white;" onclick=DeleteBlog(' +data +')><i class="mdi mdi-delete"></i></a>';
+                                                        }
+                                                    }
+                                                ]
+                                            });
+
+
+                                        },
+                                        error: function (result) {
+                                            alert(result.responseText);
+                                        }
+                                    });
+                                }
+
+                                function DeleteBlog(id) {
+                                    if (confirm('Are you sure want to delete Blog?')) {
+                                        $.ajax({
+                                            url: '@Url.Action("DeleteBlog", "BlogVacancy")',
+                                            contentType: 'application/json',
+                                            data: { Id: id },
+                                            type: "GET",
+                                            success: function (result) {
+                                                GetBlogList();
+                                                alert('Delete Successully!');
+
+                                            },
+                                            error: function (result) {
+                                                alert(result.responseText);
+                                            }
+                                        });
+                                    }
+                                    else {
+                                        return;
+                                    }
+                                }
+
+                                function GetBlogDetailsById(id) {
+                                    $("#AddNewBlogModal").modal('show');
+                                    $.ajax({
+                                        url: '@Url.Action("GetBlogById", "BlogVacancy")',
+                                        contentType: 'application/json',
+                                        data: { Id: id },
+                                        type: "GET",
+                                        success: function (result) {
+                                            $("#BlogId").val(result.bloglist[0].Id);
+                                            $("#Title").val(result.bloglist[0].Title);
+                                            //CKEDITOR.instances['Description'].setData(result.bloglist[0].Description);
+                                            quill.root.innerHTML = result.bloglist[0].Description;
+
+                                            $("#ShortTitle").val(result.bloglist[0].ShortTitle);
+                                            $("#BlogType").val(result.bloglist[0].BlogType);
+                                            loadURLToInputFiled(result.bloglist[0].ImageName);
+                                            $("#preview").find("span").first().remove();
+                                            $('#preview').show();
+                                            var span = document.createElement('span');
+                                            span.innerHTML =
+                                                ['<img class="thumb" src="', result.bloglist[0].Image, '"/><span class="remove_img_preview"></span>']
+                                                    .join('');
+                                            document.getElementById('preview').insertBefore(span, null);
+                                            var date = moment(result.bloglist[0].PostingDate).format('MM/DD/YYYY HH:mm:ss');
+                                            $("#PostingDate").val(date);
+                                            $("#PostedBy").val(result.bloglist[0].PostedBy);
+                                            $("#ImageUrl").val(result.bloglist[0].Image);
+                                            $("#PageUrl").val(result.bloglist[0].PageUrl);
+                                            $("#BlogDetailImageUrl").val(result.bloglist[0].BlogDetailImage);
+                                            $("#MetaTitle").val(result.bloglist[0].MetaTitle);
+                                            $("#MetaDescription").val(result.bloglist[0].MetaDescription);
+                                            $("#SchemaCode").val(result.bloglist[0].SchemaCode);
+                                            $("#BlogDetailImagepreview").find("span").first().remove();
+                                            $('#BlogDetailImagepreview').show();
+                                            var span = document.createElement('span');
+                                            span.innerHTML =
+                                                ['<img class="BlogImage" src="', result.bloglist[0].BlogDetailImage, '"/><span class="remove_BlogDetailimg_preview"></span>']
+                                                    .join('');
+                                            document.getElementById('BlogDetailImagepreview').insertBefore(span, null);
+                                            addNameToFile(result.bloglist[0].BlogDetailImageName);
+
+                                            $.each(result.blogfaqslist, function (key, val) {
+                                                AddNewRows(val.Questions, val.Answers);
+                                            });
+                                        },
+                                        error: function (result) {
+                                            alert(result.responseText);
+                                        }
+                                    });
+                                }
+
+
+                                function loadURLToInputFiled(url) {
+                                    getImgURL(url, (imgBlob) => {
+                                        let file = new File([imgBlob], url, { type: "image/jpeg", lastModified: new Date().getTime() }, 'utf-8');
+                                        let container = new DataTransfer();
+                                        container.items.add(file);
+                                        document.querySelector('#Image').files = container.files;
+                                    })
+                                }
+
+                                function addNameToFile(url) {
+                                    getImgURL(url, (imgBlob) => {
+                                        let file = new File([imgBlob], url, { type: "image/jpeg", lastModified: new Date().getTime() }, 'utf-8');
+                                        let container = new DataTransfer();
+                                        container.items.add(file);
+                                        document.querySelector('#BlogDetailsImage').files = container.files;
+                                    })
+                                }
+
+                                function getImgURL(url, callback) {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.onload = function () {
+                                        callback(xhr.response);
+                                    };
+                                    xhr.open('GET', url);
+                                    xhr.responseType = 'blob';
+                                    xhr.send();
+                                }
+
+                                function ResetBlogData() {
+                                    validator.resetForm();
+                                    $("#AddNewBlogModal").modal('hide');
+                                    $("#BlogId").val('');
+                                    $("#ShortTitle").val('');
+                                    $("#Title").val('');
+                                    quill.setText();
+                                    //CKEDITOR.instances.Description.setData('');
+                                    $("#BlogType").val('');
+                                    $("#PostingDate").val('');
+                                    $(".thumb").attr('src', '');
+                                    $('#preview').hide();
+                                    $("#Image").val('');
+                                    $("#BlogDetailsImage").val('');
+                                    $("#PostedBy").val('');
+                                    $("#ImageUrl").val('');
+                                    $("#PageUrl").val('');
+                                    $("#tblFaqs .FaqTableclass").html("");
+                                    $("#MetaDescription").val("");
+                                    $("#MetaTitle").val("");
+                                    $(".BlogImage").attr('src', '');
+                                    $("#BlogDetailImagepreview").hide()
+                                    $("#BlogDetailImageUrl").val("");
+                                    $("#SchemaCode").val("");
+                                    console.clear();
+                                }
+
+                                function handleFileSelect(event) {
+                                    console.log(event)
+                                    $("#ImageUrl").val('');
+                                    var input = this;
+                                    if (input.files && input.files[0]) {
+                                        var reader = new FileReader();
+                                        console.log(reader)
+                                        reader.onload = (function (e) {
+                                            $("#preview").find("span").first().remove();
+                                            $('#preview').show();
+                                            var span = document.createElement('span');
+                                            span.innerHTML =
+                                                ['<img class="thumb" src="', e.target.result, '" title="', escape(e.name), '"/><span class="remove_img_preview"></span>']
+                                                    .join('');
+                                            document.getElementById('preview').insertBefore(span, null);
+                                        });
+
+                                        reader.readAsDataURL(input.files[0]);
+                                    }
+                                }
+
+                                $('#Image').change(handleFileSelect);
+                                $('#preview').on('click', '.remove_img_preview', function () {
+                                    $(this).parent('span').remove();
+                                    $(this).val("");
+                                    $("#Image").val("");
+                                });
+                                $('.BlogStatus input[type="checkbox"]').on('change', function () {
+                                    var status = $("#switchCheckbox").is(':checked');
+                                    var menu = {
+                                        MenuName: "blog",
+                                        Status: status
+                                    }
+                                    $.ajax({
+                                        type: "POST",
+                                            url: '@Url.Action("BlogStatus", "BlogVacancy")',
+                                         contentType: 'application/json',
+                                         data: JSON.stringify(menu),
+                                            success: function (result) {
+                                                alert('Status Update Successully!');
+
+                                            },
+                                            error: function () {
+                                                alert(result.responseText);
+                                            }
+                                        });
+                                });
+                                function GetBlogStatusByName() {
+                                     $.ajax({
+                                        url: '@Url.Action("GetBlogStatusByName", "BlogVacancy")',
+                                        contentType: 'application/json',
+                                         data: { name: "blog" },
+                                        type: "GET",
+                                         success: function (result) {
+                                            if (result != null) {
+                                                if (result.Status) {
+                                                    $("#switchCheckbox").prop("checked", true);
+                                                }
+                                            }
+
+                                        },
+                                        error: function (result) {
+                                            alert(result.responseText);
+                                        }
+                                    });
+                                }
+
+                                var count = 1;
+                                function AddNewRows(Questions,Answers) {
+                                    var addcontrols = '<tr id="RowId_' +count+ '>" + count + ">'
+                                    addcontrols += '<td><textarea type="text" class="form-control clsfaqQuestion" name="faqTitle" placeholder="Add question">' + Questions +'</textarea></td>'
+                                    addcontrols += '<td><textarea type="text" class="form-control clsfaqAnswers" name="faqTitle" placeholder="Add answer"/>'+Answers+'</textarea></td>'
+                                    addcontrols += "<td><input type='button' id='btnDelete' class='btn btn-danger btn-sm deleteFaqquestion' Value='Delete'></td>"
+                                    addcontrols += "</tr>";
+                                    count++;
+                                    $("table .FaqTableclass").append(addcontrols);
+                                }
+                                $("table .FaqTableclass").on('click', '.deleteFaqquestion', function () {
+                                    $(this).closest('tr').remove();
+                                });
+
+
+                                $("#BlogDetailsImage").change(AddBogDetailImage);
+                                function AddBogDetailImage(event) {
+                                    $("#BlogDetailImageUrl").val("");
+                                    var input = this;
+                                    if (input.files && input.files[0]) {
+                                        var reader = new FileReader();
+                                        console.log(reader)
+                                        reader.onload = (function (e) {
+                                            $("#BlogDetailImagepreview").find("span").first().remove();
+                                            $('#BlogDetailImagepreview').show();
+                                            var span = document.createElement('span');
+                                            span.innerHTML =
+                                                ['<img class="BlogImage" src="', e.target.result, '" title="', escape(e.name), '"/><span class="remove_BlogDetailimg_preview"></span>']
+                                                    .join('');
+                                            document.getElementById('BlogDetailImagepreview').insertBefore(span, null);
+                                        });
+
+                                        reader.readAsDataURL(input.files[0]);
+                                    }
+                                }
+                                $('#BlogDetailImagepreview').on('click', '.remove_BlogDetailimg_preview', function () {
+                                    $(this).parent('span').remove();
+                                    $(this).val("");
+                                    $("#BlogDetailsImage").val("");
+                                });
+                                // -------- Add‑New Category --------
+                                $('#BlogType').on('change', function () {
+                                    if (this.value === 'add_new') {
+                                        const newCat = prompt('Enter new category name:');
+                                        if (newCat && newCat.trim() !== '') {
+
+                                            // duplicate तो नहीं?
+                                            const exists = Array.from(this.options)
+                                                .some(o => o.value.toLowerCase() === newCat.toLowerCase());
+
+                                            if (!exists) {
+                                                const opt = document.createElement('option');
+                                                opt.value = newCat.trim();
+                                                opt.textContent = newCat.trim();
+                                                // "Add New…" से पहले घुसाएँ
+                                                this.insertBefore(opt, document.getElementById('addNewOption'));
+                                            }
+                                            // नया या पहले‑से‑मौजूद—उसे select कर दें
+                                            this.value = newCat.trim();
+                                        } else {
+                                            // कुछ नहीं टाइप हुआ—dropdown रिसेट
+                                            this.value = '';
+                                        }
+                                    }
+                                });
+                                // -------- Add‑New "Posted By" --------
+                                $('#PostedBy').on('change', function () {
+                                    if (this.value === 'add_new') {
+
+                                        const newName = prompt('Enter author name:').trim();
+
+                                        if (newName) {
+
+                                            // already there?
+                                            const exists = Array.from(this.options)
+                                                .some(o => o.value.toLowerCase() === newName.toLowerCase());
+
+                                            if (!exists) {
+                                                // insert just before the +Add‑new option
+                                                const opt = document.createElement('option');
+                                                opt.value = newName;
+                                                opt.textContent = newName;
+                                                this.insertBefore(opt, document.getElementById('addPostedByOption'));
+                                            }
+                                            // make the new / existing item selected
+                                            this.value = newName;
+                                        } else {
+                                            // nothing typed → reset dropdown
+                                            this.value = '';
+                                        }
+                                    }
+                                });
 
 </script>

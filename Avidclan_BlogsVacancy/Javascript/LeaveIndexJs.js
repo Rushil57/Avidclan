@@ -52,7 +52,7 @@ function SelectCalenderDate() {
         selectable: true,
         dateClick: function (info) {
             var responseDate = moment(info.dateStr).format('MM/DD/YYYY');
-          
+
 
             var Eventlist = calendar.getEvents();
             if (Eventlist.length > 0) {
@@ -81,7 +81,7 @@ function SelectCalenderDate() {
             }
         },
         events: [],
-        eventClick: function (info) {            
+        eventClick: function (info) {
             var StartTime = moment(info.event.start).format('MM/DD/YYYY');
             var Eventlist = calendar.getEvents();
             refreshLeaveTypes();
@@ -780,6 +780,29 @@ function WorkFromHomecheckboxchecked(id) {
         $(".WorkAndLeave_" + id).hide();
         $("#WFHHalfLeave_" + id).text("")
     }
+
+    DisableLeaveTypeWhenAllWFHSelect();
+}
+
+function DisableLeaveTypeWhenAllWFHSelect() {
+
+    const $allWFH = $("input[name='WorkFromHomecheck']");
+    const total = $allWFH.length;
+    const checked = $allWFH.filter(":checked").length;
+
+    const disable = total > 0 && total === checked && !$("input[id='WFHHalfLeave']").is(":checked");
+    //$("#drpLeaveType").prop("disabled", disable);
+    if (disable) {
+        $("#drpLeaveType").hide();
+        $("label[for='drpLeaveType']").hide();
+        $("#txtLeaveNotification").text('');
+    } else {
+        $("#drpLeaveType").show();
+        $("label[for='drpLeaveType']").show();
+        validateLeaveDays();
+
+    }
+
 }
 
 function SendLeaveRequest() {
@@ -1064,6 +1087,7 @@ function CheckWfhRadioButton(id) {
     if (checked) {
         $("#error_" + id).css("display", "none");
     }
+    DisableLeaveTypeWhenAllWFHSelect();
 }
 
 function GetReportingPerson() {
@@ -1336,7 +1360,7 @@ function OpenEmployeeEditDetails(leaveId) {
 
                 oldFromDate = fromdate;
                 oldToDate = todate;
-               
+
             }
             else if (data.wfhdetaillist.length > 0) {
                 var fromdate = moment(record.Fromdate).format('MM/DD/YYYY');
@@ -1363,7 +1387,7 @@ function OpenEmployeeEditDetails(leaveId) {
                 oldToDate = todate;
             }
 
-           
+
             // Check leave edit restrictions if applicable
             if (isLeave) {
                 var differenceDay = checkedEditedLeavesday(fromdate);
@@ -1569,3 +1593,25 @@ function DeleteWFHandLeaveDetailsOfEmployee(wfhdetailId, leaveApplicationId) {
         });
     }
 }
+
+// On checkbox change
+$("#chkAllGroup").on("change", function () {
+
+    const isChecked = $(this).is(":checked");
+    const $dropdown = $("#ddlGroup");
+
+    if ($dropdown.length) {
+        if (isChecked) {
+            $("#drpLeaveType").hide();
+            $("label[for='drpLeaveType']").hide();
+            $("#txtLeaveNotification").text('');
+        } else {
+            $("#drpLeaveType").show();
+            $("label[for='drpLeaveType']").show();
+            validateLeaveDays();
+
+        }
+
+        //$dropdown.prop("disabled", isChecked);
+    }
+});
