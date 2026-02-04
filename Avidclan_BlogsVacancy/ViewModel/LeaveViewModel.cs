@@ -45,11 +45,13 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string PersonalLeaves { get; set; }
         public string SickLeaves { get; set; }
         public string Lwp { get; set; }
+        public string CompOffLeave { get; set; }
         public string HalfDay { get; set; }
         public string WfhHalfDay { get; set; }
 
         public string FinalBalance { get; set; }
         public string SickLeaveFinalBalance { get; set; }
+        public string CompOffBalance { get; set; }
         public string LeaveType { get; set; }
         public string LeaveDays { get; set; }
         public string WFHDays { get; set; }

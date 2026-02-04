@@ -44,6 +44,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string BlogDetailImageName { get; set; }
 
         public string SchemaCode { get; set; }
+        public string Status { get; set; }
 
     }
 

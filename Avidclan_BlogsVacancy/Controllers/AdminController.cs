@@ -88,6 +88,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 var SchemaCode = HttpContext.Current.Request["SchemaCode"];
                 var BlogDetailImage = HttpContext.Current.Request.Files["BlogDetailImage"];
                 var BlogDetailImageString = HttpContext.Current.Request["BlogDetailImageUrl"];
+                var Status = HttpContext.Current.Request["Status"];
 
                 DateTime dt = DateTime.ParseExact(PostingDt, "MM/dd/yyyy HH:mm:ss", null);
                 System.Data.SqlTypes.SqlDateTime PostingDate = System.Data.SqlTypes.SqlDateTime.Parse(dt.ToString("yyyy/MM/dd"));
@@ -189,6 +190,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@BlogDetailImage", BlogDetailImageUrl, DbType.String, ParameterDirection.Input);
                 parameters.Add("@BlogDetailImageName", BlogDetailImageName, DbType.String, ParameterDirection.Input);
                 parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@Status", Status, DbType.String, ParameterDirection.Input);
                 using (IDbConnection connection = new SqlConnection(connectionString))
                 {
                     var SaveBlogDetails = connection.ExecuteScalar("sp_Blog", parameters, commandType: CommandType.StoredProcedure);
@@ -201,13 +203,15 @@ namespace Avidclan_BlogsVacancy.Controllers
                         SaveBlogDetails = BlogId;
                         await SaveBlogFaqs(Faqarr, SaveBlogDetails);
                     }
+                    return "success";
                 }
             }
             catch (Exception ex)
             {
                 await ErrorLog("AdminController - SaveBlog", ex.Message, ex.StackTrace);
+                return "fail";
             }
-            return "";
+           
         }
 
         [Route("api/Admin/SaveJobPosition")]
@@ -438,15 +442,17 @@ namespace Avidclan_BlogsVacancy.Controllers
                 var leaveOnly = details.Where(x => !x.WorkFromHome || x.WorkAndHalfLeave).ToList();
                 var wfhOnly = details.Where(x => x.WorkFromHome).ToList();
 
-                if (leaveType == "LWP" && !validate)
-                {
-                    var insertParams = new DynamicParameters();
-                    insertParams.Add("@startdate", fromDate);
-                    insertParams.Add("@enddate", toDate);
-                    insertParams.Add("@UserId", userId);
-                    insertParams.Add("@Mode", 28);
-                    await con.ExecuteScalarAsync("sp_LeaveApplicationDetails",insertParams,commandType: CommandType.StoredProcedure);
-                }
+                /* START Remove logic when user allready applied one leave before week and then applied another leave then the first leave will not be considered as LWP now */
+                //if (leaveType == "LWP" && !validate)
+                //{
+                //    var insertParams = new DynamicParameters();
+                //    insertParams.Add("@startdate", fromDate);
+                //    insertParams.Add("@enddate", toDate);
+                //    insertParams.Add("@UserId", userId);
+                //    insertParams.Add("@Mode", 28);
+                //    await con.ExecuteScalarAsync("sp_LeaveApplicationDetails",insertParams,commandType: CommandType.StoredProcedure);
+                //}
+                /* END Remove logic when user allready applied one leave before week and then applied another leave then the first leave will not be considered as LWP now */
 
                 // 6️⃣ Process LEAVE Entries First
                 foreach (var item in leaveOnly)

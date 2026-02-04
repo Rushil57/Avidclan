@@ -42,10 +42,12 @@
                 <th> SL Taken</th>
                 <th> PL Taken </th>
                 <th> LWP </th>
+                <th> Comp Off </th>
                 <th> Total Leave Taken </th>
                 <th> WFH Dates </th>
                 <th> SL Balance </th>
                 <th> PL Balance </th>
+                <th> CompOff Balance </th>
 
             </tr>
         </thead>
@@ -115,8 +117,8 @@
 
         // Step 1: Calculate first and last day of previous month
         const now = new Date();
-        const firstDayLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-        const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        const firstDayLastMonth = new Date(now.getFullYear(), now.getMonth() , 1);
+        const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
 
         // Format to yyyy-MM-dd for input fields
         const formatDate = date => date.toISOString().split('T')[0];
@@ -245,7 +247,8 @@
                             (
                                 (leave.PersonalLeaves && leave.PersonalLeaves !== "0") ||
                                 (leave.SickLeaves && leave.SickLeaves !== "0") ||
-                                (leave.Lwp && leave.Lwp !== "0")
+                                (leave.Lwp && leave.Lwp !== "0") || 
+                                (leave.CompOffLeave && leave.CompOffLeave !== "0")
                             )
                         );
 
@@ -253,11 +256,12 @@
                         const hasWfh = emp.Leaves.some(leave => leave.WFHDates != null);
 
 
-
+                        debugger
                         const firstName = emp.Leaves[0].FirstName || '';
                         const lastName = emp.Leaves[0].LastName || '';
                         const sickLeaveBalance = emp.Leaves[0]?.SickLeaveFinalBalance || 0;
                         const paidLeaveBalance = emp.Leaves[0]?.FinalBalance || 0;
+                        const CompOffBalance = emp.Leaves[0]?.CompOffBalance || 0;
 
 
 
@@ -266,6 +270,7 @@
                         let totalPL = 0;
                         let totalSL = 0;
                         let totalLWP = 0;
+                        let totalCompOffLeave = 0;
 
                         // after change
                         emp.Leaves.forEach(leave => {
@@ -291,6 +296,10 @@
                                 let lwp = parseFloat(leave.Lwp);
                                 totalLWP += lwp;
                                 leaveAmount = lwp;
+                            } else if (leave.CompOffLeave && leave.CompOffLeave !== "0") {
+                                let CompOffLeave = parseFloat(leave.CompOffLeave);
+                                totalCompOffLeave += CompOffLeave;
+                                leaveAmount = CompOffLeave;
                             }
 
 
@@ -327,6 +336,7 @@
                                   <td>${totalSL}</td>
                                  <td>${totalPL}</td>
                                  <td>${totalLWP}</td>
+                                 <td>${totalCompOffLeave}</td>
                                  <td>${totalLeave}</td>
                                  <td>
                                     ${hasWfh ? `
@@ -337,6 +347,7 @@
 
                                <td>${sickLeaveBalance}</td>
                                <td>${paidLeaveBalance}</td>
+                               <td>${CompOffBalance}</td>
                         </tr>
                     `;
                     });
@@ -454,7 +465,10 @@
                             leaveTypeLabel = `PL: ${item.PersonalLeaves}`;
                         } else if (item.SickLeaves != "0" && item.SickLeaves != null) {
                             leaveTypeLabel = `SL: ${item.SickLeaves}`;
-                        } else {
+                        } else if (item.CompOffLeave != "0" && item.CompOffLeave != null) {
+                            leaveTypeLabel = `Comp Off: ${item.CompOffLeave}`;
+                        }
+                        else {
                             leaveTypeLabel = `LWP: ${item.Lwp || 0}`;
                         }
 
