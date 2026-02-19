@@ -290,6 +290,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BalanaceLeaveViewModel.cs" />
     <Compile Include="ViewModel\Blog.cs" />
+    <Compile Include="ViewModel\BlogCategoryModel.cs" />
     <Compile Include="ViewModel\Careers.cs" />
     <Compile Include="ViewModel\CompOffViewModel.cs" />
     <Compile Include="ViewModel\HeaderMenu.cs" />

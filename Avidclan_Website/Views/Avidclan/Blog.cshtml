@@ -58,7 +58,7 @@
                 <!-- Scrollable category container -->
                 <div class="d-flex flex-nowrap overflow-auto px-2 category-scroll-container" id="category-buttons-scroll" style="scroll-behavior: smooth;">
                     <div class="d-flex gap-2" id="category-buttons">
-                        <button class="category-btn active" data-category="all">All</button>
+                        @*<button class="category-btn active" data-category="all">All</button>
                         <button class="category-btn" data-category=".NET Development">.NET Development</button>
                         <button class="category-btn" data-category="Flutter App Development">Flutter App Development</button>
                         <button class="category-btn" data-category="Artificial Intelligence">Artificial Intelligence</button>
@@ -79,7 +79,7 @@
                         <button class="category-btn" data-category="Selenium Automation Testing">Selenium Automation Testing</button>
                         <button class="category-btn" data-category="ASP.NET Development">ASP.NET Development</button>
                         <button class="category-btn" data-category="Cloud Development">Cloud Development</button>
-                        <button class="category-btn" data-category="Predictive Analytics">Predictive Analytics</button>
+                        <button class="category-btn" data-category="Predictive Analytics">Predictive Analytics</button>*@
                     </div>
                 </div>
             </div>
@@ -224,10 +224,19 @@
     let currentPageNumber = 1;
 
     $(document).ready(function () {
+        loadCategories();
         GetSectionData(1, selectedBlogType);
-        updateChevronVisibility();
+        
 
-        $(".category-btn").on("click", function () {
+        //$(".category-btn").on("click", function () {
+        //    debugger
+        //    $(".category-btn").removeClass("active");
+        //    $(this).addClass("active");
+
+        //    selectedBlogType = $(this).data("category");
+        //    GetSectionData(1, selectedBlogType);
+        //});
+        $(document).on("click", ".category-btn", function () {
             $(".category-btn").removeClass("active");
             $(this).addClass("active");
 
@@ -244,7 +253,7 @@
             let scrollAmount = window.innerWidth >= 992 ? 750 : 150;
             $("#category-buttons-scroll").animate({ scrollLeft: `+=${scrollAmount}` }, 300, updateChevronVisibility);
         });
-
+       
         $("#category-buttons-scroll").on("scroll", updateChevronVisibility);
     });
 
@@ -275,12 +284,12 @@
         $scrollContainer.css({ "margin-left": marginLeft, "margin-right": marginRight });
     }
 
-    function GetSectionData(page, blogType) {
+    function GetSectionData(page, BlogCategoryId) {
         currentPageNumber = page;
 
-        let url = blogType === "all"
+        let url = BlogCategoryId === "all"
             ? `/Avidclan/GetSectionData?page=${page}`
-            : `/Avidclan/GetSectionDataByBlogTypePaginated?BlogType=${encodeURIComponent(blogType)}&page=${page}`;
+            : `/Avidclan/GetSectionDataByBlogTypePaginated?BlogCategoryId=${encodeURIComponent(BlogCategoryId)}&page=${page}`;
 
         $.ajax({
             type: "GET",
@@ -347,17 +356,17 @@
 
                     if (currentPage > 1) {
                         let prevPage = currentPage - 1;
-                        paginationData += `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="GetSectionData(${prevPage}, '${blogType}')"><i class="fas fa-chevron-left"></i></a></li>`;
+                        paginationData += `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="GetSectionData(${prevPage}, '${BlogCategoryId}')"><i class="fas fa-chevron-left"></i></a></li>`;
                     }
 
                     for (let i = startPage; i <= endPage; i++) {
                         let active = i === currentPage ? "active" : "";
-                        paginationData += `<li class="page-item ${active}"><a class="page-link" href="javascript:void(0);" onclick="GetSectionData(${i}, '${blogType}')">${i}</a></li>`;
+                        paginationData += `<li class="page-item ${active}"><a class="page-link" href="javascript:void(0);" onclick="GetSectionData(${i}, '${BlogCategoryId}')">${i}</a></li>`;
                     }
 
                     if (currentPage < totalPages) {
                         let nextPage = currentPage + 1;
-                        paginationData += `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="GetSectionData(${nextPage}, '${blogType}')"><i class="fas fa-chevron-right"></i></a></li>`;
+                        paginationData += `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="GetSectionData(${nextPage}, '${BlogCategoryId}')"><i class="fas fa-chevron-right"></i></a></li>`;
                     }
 
                     paginationData += '</ul>';
@@ -370,5 +379,33 @@
             }
         });
     }
+
+    function loadCategories() {
+        $.ajax({
+            url: '/Avidclan/GetBlogCategories',
+            type: 'GET',
+            success: function (data) {
+
+                var container = $('#category-buttons');
+                container.empty();
+
+                // 🔹 Default "All" button
+                container.append(
+                    '<button class="category-btn active" data-category="all">All</button>'
+                );
+
+                $.each(data, function (i, item) {
+                    container.append(
+                        `<button class="category-btn" data-category="${item.Id}">
+                        ${item.BlogCategory}
+                     </button>`
+
+                    );
+                });
+                updateChevronVisibility();
+            }
+        });
+    }
+
 </script>
 

@@ -7,6 +7,7 @@ using MimeKit.Cryptography;
 using Org.BouncyCastle.Asn1.Ocsp;
 using Org.BouncyCastle.Bcpg;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -51,7 +52,7 @@ namespace Avidclan_BlogsVacancy.Controllers
         public async Task<ActionResult> Login(UserLogin userLogin)
         {
             try
-            {                
+            {
                 var parameters = new DynamicParameters();
                 parameters.Add("@EmailId", userLogin.EmailId, DbType.String, ParameterDirection.Input);
                 parameters.Add("@Mode", 1, DbType.Int32, ParameterDirection.Input);
@@ -84,7 +85,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                         logindata = null;
                         return Json(logindata, JsonRequestBehavior.AllowGet);
                     }
-                    
+
                 }
                 return Json(logindata, JsonRequestBehavior.AllowGet);
             }
@@ -117,7 +118,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 ErrorLog("UpdatePasswordById", ex.Message, ex.StackTrace).RunSynchronously();
                 return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
-        }        
+        }
 
         public ActionResult Blog()
         {
@@ -125,6 +126,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             {
                 return RedirectToAction("UserLogin");
             }
+            Session.Timeout = 120; // minutes
             return View();
         }
 
@@ -143,6 +145,36 @@ namespace Avidclan_BlogsVacancy.Controllers
             parameters.Add("@Mode", 4, DbType.Int32, ParameterDirection.Input);
             var BlogList = con.Query<Blog>("sp_Blog", parameters, commandType: CommandType.StoredProcedure).ToList();
             return Json(BlogList, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public async Task<ActionResult> GetBlogCategories()
+        {
+            var list = new List<BlogCategoryModel>();
+
+            string sql = @"SELECT Id, BlogCategory 
+                       FROM BlogCategoryTbl 
+                       ORDER BY [OrderBy]";
+
+            list = con.Query<BlogCategoryModel>(sql).ToList();
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        // ADD NEW CATEGORY
+        [HttpPost]
+        public async Task<ActionResult> AddBlogCategory(string categoryName)
+        {
+            int newId;
+            string sql = @"
+            INSERT INTO BlogCategoryTbl (BlogCategory, [OrderBy])
+            VALUES (@BlogCategory,
+                   ISNULL((SELECT MAX([OrderBy]) FROM BlogCategoryTbl), 0) + 1);
+            SELECT CAST(SCOPE_IDENTITY() AS INT);
+        ";
+
+            newId = con.ExecuteScalar<int>(sql, new { BlogCategory = categoryName });
+
+            return Json(new { success = true, id = newId }, JsonRequestBehavior.AllowGet);
         }
         public ActionResult GetJobPositionList()
         {
@@ -327,13 +359,13 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@Id", userRegister.Id, DbType.Int32, ParameterDirection.Input);
                 parameters.Add("@FirstName", userRegister.FirstName, DbType.String, ParameterDirection.Input);
                 parameters.Add("@LastName", userRegister.LastName, DbType.String, ParameterDirection.Input);
-                parameters.Add("@EmailId", userRegister.EmailId, DbType.String, ParameterDirection.Input);                
-                if(mode == 2)
+                parameters.Add("@EmailId", userRegister.EmailId, DbType.String, ParameterDirection.Input);
+                if (mode == 2)
                 {
                     string passwordHash = PasswordHelper.HashPassword(userRegister.Password);
                     //parameters.Add("@Password", userRegister.Password, DbType.String, ParameterDirection.Input);
                     parameters.Add("@Password", passwordHash, DbType.String, ParameterDirection.Input);
-                }                
+                }
                 parameters.Add("@PhoneNumber", userRegister.PhoneNumber, DbType.String, ParameterDirection.Input);
                 parameters.Add("@JoiningDate", userRegister.JoiningDate.ToShortDateString(), DbType.DateTime, ParameterDirection.Input);
                 parameters.Add("@ProbationPeriod", userRegister.ProbationPeriod, DbType.Int32, ParameterDirection.Input);
@@ -808,7 +840,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                         return Json(new { success = false, message = "A holiday with the same name or date already exists." });
                     }
                 }
-                 var mode = 0;
+                var mode = 0;
                 var successMessage = "";
                 if (holidayViewModel.Id == 0)
                 {
@@ -933,18 +965,18 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
         }
 
-        
+
         public async Task<JsonResult> GetEmployeeStatusWise(HolidayViewModel holidayViewModel)
         {
             try
             {
                 int status = Convert.ToInt16(holidayViewModel.Status);
-                if(status == 0)
+                if (status == 0)
                 {
                     var parameters = new DynamicParameters();
                     parameters.Add("@Mode", 18, DbType.Int32, ParameterDirection.Input);
                     var inactiveuserData = con.Query<UserRegister>("sp_User", parameters, commandType: CommandType.StoredProcedure).ToList();
-                    return Json(new { success = true, data = inactiveuserData});
+                    return Json(new { success = true, data = inactiveuserData });
                 }
                 else
                 {

@@ -560,6 +560,16 @@ namespace Avidclan_Website.Controllers
             }
             return View(obj);
         }
+        public JsonResult GetBlogCategories()
+        {
+            List<BlogCategoryModel> categories = new List<BlogCategoryModel>();
+            categories = con.Query<BlogCategoryModel>(
+             @"SELECT Id, BlogCategory 
+              FROM BlogCategoryTbl 
+              ORDER BY OrderBy").ToList();
+
+            return Json(categories, JsonRequestBehavior.AllowGet);
+        }
 
         public string GetSectionData(int page = 1)
         {
@@ -764,7 +774,7 @@ namespace Avidclan_Website.Controllers
             return Json(dynamiclist, JsonRequestBehavior.AllowGet);
         }
 
-        public string GetSectionDataByBlogTypePaginated(string BlogType, int page = 1)
+        public string GetSectionDataByBlogTypePaginated(string BlogCategoryId, int page = 1)
         {
             int PageSize = 6;
             BlogViewModel obj = new BlogViewModel();
@@ -773,7 +783,7 @@ namespace Avidclan_Website.Controllers
             con.Open();
             var parameters = new DynamicParameters();
             parameters.Add("@Mode", 15, DbType.Int32, ParameterDirection.Input); // ✅ new mode
-            parameters.Add("@BlogType", BlogType);
+            parameters.Add("@BlogCategoryId", BlogCategoryId);
             parameters.Add("@Offset", (page - 1) * PageSize);
             parameters.Add("@PagingSize", PageSize);
 

@@ -77,6 +77,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 var Description = HttpContext.Current.Request["Description"];
                 var ShortTitle = HttpContext.Current.Request["ShortTitle"];
                 var BlogType = HttpContext.Current.Request["BlogType"];
+                var BlogCategoryId = string.IsNullOrEmpty(HttpContext.Current.Request["BlogCategoryId"]) ? "0" : HttpContext.Current.Request["BlogCategoryId"];
                 var PostingDt = HttpContext.Current.Request["PostingDate"].ToString();
                 //DateTime PostingDt = DateTime.Parse(HttpContext.Current.Request["PostingDate"]);
                 var PostedBy = HttpContext.Current.Request["PostedBy"];
@@ -128,21 +129,23 @@ namespace Avidclan_BlogsVacancy.Controllers
                             int res = await RemoveImage(blogDetails.ImageName, thumbnailImageFolder);
                         }
                     }
-
-                    //Fetch the File.
-                    HttpPostedFile thumbnailImage = HttpContext.Current.Request.Files["Image"];
-                    var FilePath = await UploadImage(thumbnailImage, thumbnailImageFolder);
-                    if (FilePath != null && FilePath != "")
+                    if (Images != null && Images.ContentLength > 0)
                     {
-                        ImageUrl = FilePath;
+                        ImageName = Path.GetFileNameWithoutExtension(Images.FileName) + "_bn_" + DateTime.Now.Ticks + Path.GetExtension(Images.FileName);
+                        //Fetch the File.
+                        //HttpPostedFile thumbnailImage = HttpContext.Current.Request.Files["Image"];
+                        var FilePath = await UploadImage(Images, thumbnailImageFolder);
+                        if (FilePath != null && FilePath != "")
+                        {
+                            ImageUrl = FilePath;
 
+                        }
                     }
                 }
 
                 if (BlogDetailImage != null && BlogDetailImageUrl == "")
                 {
                     BlogDetailImageName = BlogDetailImage.FileName;
-
                     if (mode == 7)
                     {
                         var Dparameters = new DynamicParameters();
@@ -155,15 +158,17 @@ namespace Avidclan_BlogsVacancy.Controllers
                             int res = await RemoveImage(blogDetails.BlogDetailImageName, blogDetailImagesFolder);
                         }
                     }
-
-                    //Fetch the File.
-                    HttpPostedFile BlogDetailsImage = HttpContext.Current.Request.Files["BlogDetailImage"];
-                    var FilePath = await UploadImage(BlogDetailsImage, blogDetailImagesFolder);
-                    if (FilePath != null && FilePath != "")
+                    if (BlogDetailImage != null && BlogDetailImage.ContentLength > 0)
                     {
-                        BlogDetailImageUrl = FilePath;
+                        BlogDetailImageName = Path.GetFileNameWithoutExtension(BlogDetailImage.FileName) + "_hd_" + DateTime.Now.Ticks + Path.GetExtension(BlogDetailImage.FileName); ;
+                        //Fetch the File.
+                        //HttpPostedFile BlogDetailsImage = HttpContext.Current.Request.Files["BlogDetailImage"];
+                        var FilePath = await UploadImage(BlogDetailImage, blogDetailImagesFolder);
+                        if (FilePath != null && FilePath != "")
+                        {
+                            BlogDetailImageUrl = FilePath;
+                        }
                     }
-
                 }
 
                 if (mode == 7)
@@ -191,19 +196,29 @@ namespace Avidclan_BlogsVacancy.Controllers
                 parameters.Add("@BlogDetailImageName", BlogDetailImageName, DbType.String, ParameterDirection.Input);
                 parameters.Add("@mode", mode, DbType.Int32, ParameterDirection.Input);
                 parameters.Add("@Status", Status, DbType.String, ParameterDirection.Input);
+                parameters.Add("@BlogCategoryId", BlogCategoryId, DbType.String, ParameterDirection.Input);
                 using (IDbConnection connection = new SqlConnection(connectionString))
                 {
-                    var SaveBlogDetails = connection.ExecuteScalar("sp_Blog", parameters, commandType: CommandType.StoredProcedure);
-                    if (SaveBlogDetails != null)
+                    try
                     {
-                        await SaveBlogFaqs(Faqarr, SaveBlogDetails);
+                        var SaveBlogDetails = connection.ExecuteScalar("sp_Blog", parameters, commandType: CommandType.StoredProcedure);
+                        if (SaveBlogDetails != null)
+                        {
+                            await SaveBlogFaqs(Faqarr, SaveBlogDetails);
+                        }
+                        else
+                        {
+                            SaveBlogDetails = BlogId;
+                            await SaveBlogFaqs(Faqarr, SaveBlogDetails);
+                        }
+                        return "success";
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        SaveBlogDetails = BlogId;
-                        await SaveBlogFaqs(Faqarr, SaveBlogDetails);
+                        await ErrorLog("AdminController - SaveBlogDetails", ex.Message, ex.StackTrace);
+                        return "fail";
                     }
-                    return "success";
+
                 }
             }
             catch (Exception ex)
@@ -211,7 +226,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 await ErrorLog("AdminController - SaveBlog", ex.Message, ex.StackTrace);
                 return "fail";
             }
-           
+
         }
 
         [Route("api/Admin/SaveJobPosition")]
@@ -255,29 +270,46 @@ namespace Avidclan_BlogsVacancy.Controllers
 
             return "";
         }
-
         public async Task<string> UploadImage(HttpPostedFile imageFile, string folder)
         {
             try
             {
-                //Get Directory Path.
-                string dirPath = HttpContext.Current.Server.MapPath("~/" + folder + "/");
+                // Ensure folder name is clean
+                folder = folder?.Trim().Replace("..", "");
+
+                // Get absolute path inside application root
+                string dirPath = HttpContext.Current.Server.MapPath($"~/{folder}/");
+
+                // Create directory if it does not exist
                 if (!Directory.Exists(dirPath))
                 {
-                    //Create directory if it does't exists..
                     Directory.CreateDirectory(dirPath);
                 }
 
-                //Fetch the Image File Name.
+                // Get only file name (avoid full path issues)
                 string fileName = Path.GetFileName(imageFile.FileName);
 
-                var filePath = Path.Combine(dirPath, fileName);
+                // OPTIONAL: Make filename unique (Recommended)
+                string uniqueFileName = $"{Guid.NewGuid()}_{fileName}";
 
-                //Save the File.
-                imageFile.SaveAs(filePath);
+                string filePath = Path.Combine(dirPath, uniqueFileName);
 
-                var imageUrl = Url.Content($"~/{folder}/{fileName}");
+                // If file somehow exists, delete first
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
+
+                // Save file
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    imageFile.InputStream.CopyTo(fileStream);
+                }
+
+                // Return URL
+                var imageUrl = Url.Content($"~/{folder}/{uniqueFileName}");
                 return imageUrl;
+
             }
             catch (Exception ex)
             {
@@ -341,7 +373,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 var firstName = HttpContext.Current.Session["FirstName"]?.ToString() ?? string.Empty;
                 var lastName = HttpContext.Current.Session["LastName"]?.ToString() ?? string.Empty;
                 await SaveFullLeaveApplicationAsync(0, leaveViewModel.Fromdate, leaveViewModel.Todate, leaveViewModel.ReasonForLeave, leaveViewModel.Leaves, leaveViewModel.ReportingPerson, userId, 0, leaveViewModel.LeaveType, firstName, lastName);
-                
+
                 return "Request Sent Successfully!";
             }
             catch (Exception ex)
@@ -478,7 +510,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     int wfhId = await SaveWFHHeaderAsync(finalLeaveId, userId, fromDate, toDate, reasonForLeave);
                     await AddWorkFromHomeAsync(wfhOnly, wfhId, userId, finalLeaveId);
                 }
-                
+
                 // 8️⃣ Send Email (Only Leave, Only WFH, or Combined)
                 await SendLeaveOrWFHMailAsync(
                     leaveOnly,
@@ -1360,7 +1392,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                             await con.ExecuteScalarAsync("sp_LeaveApplicationDetails", insertParams, commandType: CommandType.StoredProcedure);
                         }
 
-                        if(existingRecord != null && !checkLeaveAndWfh && wfhId != null)
+                        if (existingRecord != null && !checkLeaveAndWfh && wfhId != null)
                         {
                             await DeleteWorkFromDetailsParameter(item, wfhId);
                         }
@@ -1412,7 +1444,7 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public async Task DeleteWorkFromDetailsParameter(LeaveDetailsViewModel item, object wfhId)
         {
-           
+
             try
             {
                 var parameters = new DynamicParameters();
@@ -1497,7 +1529,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     saveWFH = saveWFH == null ? wfhId : saveWFH;
                     //if (!leaveandWfh)
                     //{
-                        if (mode == 8) await DeleteWfhDetailsAsync(saveWFH, 9);
+                    if (mode == 8) await DeleteWfhDetailsAsync(saveWFH, 9);
                     //}
 
                     foreach (var item in leaveViewModel)
@@ -1981,7 +2013,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     userParams.Add("@Mode", 16, DbType.Int32, ParameterDirection.Input);
 
                     userDetails = con.Query<UserRegister>("sp_User", userParams, commandType: CommandType.StoredProcedure).FirstOrDefault();
-                    if(userDetails != null)
+                    if (userDetails != null)
                     {
                         double totalPlUsed = 0;
                         foreach (var item in leaveViewModel.Leaves)
@@ -2031,8 +2063,8 @@ namespace Avidclan_BlogsVacancy.Controllers
 
                         }
                     }
-                  
-                    
+
+
                 }
 
                 await SendMailForLeaveByAdmin(leaveViewModel.Leaves, userDetails, SaveLeave);

@@ -117,6 +117,7 @@
                             </svg>&nbsp;Table
                         </button>
 
+
                         <div id="table-popup" style="
   display:none;
   position:absolute;
@@ -128,9 +129,6 @@
                             <div id="grid" style="display:grid;grid-template-columns:repeat(10,20px);gap:2px;"></div>
                             <div id="grid-info" style="margin-top:6px;font-size:12px;">0 × 0</div>
                         </div>
-
-
-
 
                         <!-- Textarea to replace with editor -->
                         @*<div class="main-container">
@@ -144,39 +142,39 @@
                     <div class="form-group">
                         <label for="BlogType">Blog Type</label>
                         <select class="form-control" id="BlogType" name="blogtype">
-                            <option value=".NET Development">.NET Development</option>
-                            <option value="Flutter App Development">Flutter App Development</option>
-                            <option value="Artificial Intelligence">Artificial Intelligence</option>
-                            <option value="UI/UX Design">UI/UX Design</option>
-                            <option value="Software Development">Software Development</option>
-                            <option value=".NET MAUI">.NET MAUI</option>
-                            <option value="Angular Development">Angular Development</option>
-                            <option value="Mobile Application Development">Mobile App Development</option>
-                            <option value="Data Analytics">Data Analytics</option>
-                            <option value="iOS App Development">iOS App Development</option>
-                            <option value="ReactJS Development">ReactJS Development</option>
-                            <option value="Web Development">Web Development</option>
-                            <option value="Chatbot and Conversational AI">Chatbot and Conversational AI</option>
-                            <option value="Machine Learning">Machine Learning</option>
-                            <option value="React Native">React Native</option>
-                            <option value="Automation Testing">Automation Testing</option>
-                            <option value="Azure Development">Azure Development</option>
-                            <option value="Selenium Automation Testing">Selenium Automation Testing</option>
-                            <option value="ASP.NET Development">ASP.NET Development</option>
-                            <option value="Cloud Development">Cloud Development</option>
-                            <option value="Predictive Analytics">Predictive Analytics</option>
-                            <option value="add_new" id="addNewOption">+ Add New</option>
+                            @*<option value=".NET Development">.NET Development</option>
+                                <option value="Flutter App Development">Flutter App Development</option>
+                                <option value="Artificial Intelligence">Artificial Intelligence</option>
+                                <option value="UI/UX Design">UI/UX Design</option>
+                                <option value="Software Development">Software Development</option>
+                                <option value=".NET MAUI">.NET MAUI</option>
+                                <option value="Angular Development">Angular Development</option>
+                                <option value="Mobile Application Development">Mobile App Development</option>
+                                <option value="Data Analytics">Data Analytics</option>
+                                <option value="iOS App Development">iOS App Development</option>
+                                <option value="ReactJS Development">ReactJS Development</option>
+                                <option value="Web Development">Web Development</option>
+                                <option value="Chatbot and Conversational AI">Chatbot and Conversational AI</option>
+                                <option value="Machine Learning">Machine Learning</option>
+                                <option value="React Native">React Native</option>
+                                <option value="Automation Testing">Automation Testing</option>
+                                <option value="Azure Development">Azure Development</option>
+                                <option value="Selenium Automation Testing">Selenium Automation Testing</option>
+                                <option value="ASP.NET Development">ASP.NET Development</option>
+                                <option value="Cloud Development">Cloud Development</option>
+                                <option value="Predictive Analytics">Predictive Analytics</option>
+                                <option value="add_new" id="addNewOption">+ Add New</option>*@
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="Image">Thumbnail Image</label>
-                        <input id="Image" type="file" class="form-control" name="attachmentFile" />
+                        <input id="Image" type="file" class="form-control" name="attachmentFile" accept=".jpg,.jpeg,.png,.webp" />
                         <div id="preview"></div>
                     </div>
                     <div class="form-group">
                         <label for="Image">Banner Image</label>
-                        <input id="BlogDetailsImage" type="file" class="form-control" name="BlogDetailsImage" />
+                        <input id="BlogDetailsImage" type="file" class="form-control" name="BlogDetailsImage" accept=".jpg,.jpeg,.png,.webp" />
                         <div id="BlogDetailImagepreview"></div>
                     </div>
                     <div class="form-group">
@@ -229,8 +227,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" onclick="ResetBlogData()">Close</button>
-                        <button type="submit" class="btn btn-primary">Save as Draft</button>
-                        <button type="button" onclick="SaveBlog('Published')" class="btn btn-primary">Publish</button>
+                        <button type="button" onclick="SaveBlog('Draft')" class="btn btn-primary">Save as Draft</button>
+                        <button type="submit" class="btn btn-primary">Publish</button>
+
                     </div>
                 </form>
             </div>
@@ -423,6 +422,7 @@
         theme: 'snow',
     });
 
+
     /* =======================
        HTML SOURCE TOGGLE
     ======================== */
@@ -516,6 +516,7 @@
     });
 
 
+
     $.validator.addMethod("filesize", function (value, element, param) {
 
         // if no file selected → valid
@@ -573,7 +574,7 @@
                                             //SchemaCode: { required: "Please enter Schema Code", }
                                         },
                                         submitHandler: function (form) {
-                                            SaveBlog('Draft')
+                                            SaveBlog('Published')
                                         }
                                     });
 
@@ -585,7 +586,7 @@
                                     GetBlogStatusByName();
                                     GetBlogList();
                                 });
-                                    
+
                                 $('#AddBlog').click(function () {
                                     var Postingdate = new Date();
                                     var FormatPostingDate = moment(Postingdate).format('MM/DD/YYYY HH:mm:ss');
@@ -610,7 +611,8 @@
                                     var ShortTitle = $('#ShortTitle').val();
                                     //var Description = CKEDITOR.instances['Description'].getData();
                                     var Description = quill.root.innerHTML;
-                                    var BlogType = $("#BlogType").val();
+                                    var BlogType = $("#BlogType").val() != "0" ? $("#BlogType option:selected").text() : "";
+                                    var BlogCategoryId = $("#BlogType").val();
                                     var PostingDate = $("#PostingDate").val();
                                     var Resume = $("#Image").get(0);
                                     var files = Resume.files;
@@ -627,16 +629,22 @@
                                     var BlogDetailUrl = $("#BlogDetailImageUrl").val();
 
                                     var fileData = new FormData();
-                                    fileData.append("Id",Id);
-                                    fileData.append("Image", files[0]);
+                                    fileData.append("Id", Id);
+                                    if (files && files.length > 0) {
+                                        fileData.append("Image", files[0]);
+                                    }
                                     fileData.append('Description', Description);
                                     fileData.append('ShortTitle', ShortTitle);
                                     fileData.append('BlogType', BlogType);
+                                    fileData.append('BlogCategoryId', BlogCategoryId);
                                     fileData.append('PostingDate', PostingDate);
                                     fileData.append('PostedBy', PostedBy);
                                     fileData.append('Title', Title);
                                     fileData.append('ImageUrl', ImageUrl);
-                                    fileData.append('BlogDetailImage', BlogFile[0]);
+                                    if (BlogFile && BlogFile.length > 0) {
+                                        fileData.append("BlogDetailImage", BlogFile[0]);
+                                    }
+                                    //fileData.append('BlogDetailImage', BlogFile[0]);
                                     fileData.append('PageUrl', PageUrl);
                                     fileData.append('MetaTitle', MetaTitle);
                                     fileData.append('MetaDescription', MetaDescription);
@@ -757,7 +765,7 @@
                                             quill.root.innerHTML = result.bloglist[0].Description;
 
                                             $("#ShortTitle").val(result.bloglist[0].ShortTitle);
-                                            $("#BlogType").val(result.bloglist[0].BlogType);
+                                            $("#BlogType").val(result.bloglist[0].BlogCategoryId);
                                             loadURLToInputFiled(result.bloglist[0].ImageName);
                                             $("#preview").find("span").first().remove();
                                             $('#preview').show();
@@ -957,31 +965,31 @@
                                     $(this).val("");
                                     $("#BlogDetailsImage").val("");
                                 });
-                                // -------- Add‑New Category --------
-                                $('#BlogType').on('change', function () {
-                                    if (this.value === 'add_new') {
-                                        const newCat = prompt('Enter new category name:');
-                                        if (newCat && newCat.trim() !== '') {
+                                //// -------- Add‑New Category --------
+                                //$('#BlogType').on('change', function () {
+                                //    if (this.value === 'add_new') {
+                                //        const newCat = prompt('Enter new category name:');
+                                //        if (newCat && newCat.trim() !== '') {
 
-                                            // duplicate तो नहीं?
-                                            const exists = Array.from(this.options)
-                                                .some(o => o.value.toLowerCase() === newCat.toLowerCase());
+                                //            // duplicate तो नहीं?
+                                //            const exists = Array.from(this.options)
+                                //                .some(o => o.value.toLowerCase() === newCat.toLowerCase());
 
-                                            if (!exists) {
-                                                const opt = document.createElement('option');
-                                                opt.value = newCat.trim();
-                                                opt.textContent = newCat.trim();
-                                                // "Add New…" से पहले घुसाएँ
-                                                this.insertBefore(opt, document.getElementById('addNewOption'));
-                                            }
-                                            // नया या पहले‑से‑मौजूद—उसे select कर दें
-                                            this.value = newCat.trim();
-                                        } else {
-                                            // कुछ नहीं टाइप हुआ—dropdown रिसेट
-                                            this.value = '';
-                                        }
-                                    }
-                                });
+                                //            if (!exists) {
+                                //                const opt = document.createElement('option');
+                                //                opt.value = newCat.trim();
+                                //                opt.textContent = newCat.trim();
+                                //                // "Add New…" से पहले घुसाएँ
+                                //                this.insertBefore(opt, document.getElementById('addNewOption'));
+                                //            }
+                                //            // नया या पहले‑से‑मौजूद—उसे select कर दें
+                                //            this.value = newCat.trim();
+                                //        } else {
+                                //            // कुछ नहीं टाइप हुआ—dropdown रिसेट
+                                //            this.value = '';
+                                //        }
+                                //    }
+                                //});
                                 // -------- Add‑New "Posted By" --------
                                 $('#PostedBy').on('change', function () {
                                     if (this.value === 'add_new') {
@@ -1014,3 +1022,97 @@
 
 
 </script>
+<script>
+    $(document).ready(function () {
+        loadCategories("0");
+
+        function loadCategories(selectedId) {
+            $.ajax({
+                url: '/BlogVacancy/GetBlogCategories',
+                type: 'GET',
+                success: function (data) {
+                    var ddl = $('#BlogType');
+                    ddl.empty();
+                    ddl.append('<option value="0">-- Select --</option>');
+
+                    $.each(data, function (i, item) {
+                        ddl.append('<option value="' + item.Id + '">' + item.BlogCategory + '</option>');
+                    });
+
+                    ddl.append('<option value="add_new">+ Add New</option>');
+
+                    if (selectedId === null || selectedId === undefined || selectedId === "") {
+                        ddl.val("0");   // selects "-- Select --"
+                    } else {
+                        ddl.val(selectedId);
+                    }
+                }
+            });
+        }
+
+        //$('#BlogType').change(function () {
+        //    if ($(this).val() === 'add_new') {
+        //        $('#newCategory, #btnSaveCategory').show();
+        //    } else {
+        //        $('#newCategory, #btnSaveCategory').hide();
+        //    }
+        //});
+
+        // -------- Add‑New Category --------
+        $('#BlogType').on('change', function () {
+            if (this.value === 'add_new') {
+                const newCat = prompt('Enter new category name:');
+                if (newCat && newCat.trim() !== '') {
+
+                    // duplicate तो नहीं?
+                    const exists = Array.from(this.options)
+                        .some(o => o.value.toLowerCase() === newCat.toLowerCase());
+
+                    if (!exists) {
+
+                        $.ajax({
+                            url: '/BlogVacancy/AddBlogCategory',
+                            type: 'POST',
+                            data: { categoryName: newCat },
+                            success: function (res) {
+                                if (res.success) {
+                                    loadCategories(res.id); // reload and select new
+                                }
+                            }
+                        });
+                        //const opt = document.createElement('option');
+                        //opt.value = newCat.trim();
+                        //opt.textContent = newCat.trim();
+                        //// "Add New…" से पहले घुसाएँ
+                        //this.insertBefore(opt, document.getElementById('addNewOption'));
+                    }
+                    // नया या पहले‑से‑मौजूद—उसे select कर दें
+                    //this.value = newCat.trim();
+                } else {
+                    // कुछ नहीं टाइप हुआ—dropdown रिसेट
+                    this.value = '';
+                }
+            }
+        });
+
+        //function SaveCategory(categoryName) {
+
+        //    //if (categoryName === '') {
+        //    //    alert('Please enter category name');
+        //    //    return;
+        //    //}
+
+        //    $.ajax({
+        //        url: '/Blog/AddBlogCategory',
+        //        type: 'POST',
+        //        data: { categoryName: categoryName },
+        //        success: function (res) {
+        //            if (res.success) {
+        //                loadCategories(res.id); // reload and select new
+        //            }
+        //        }
+        //    });
+        //}
+    });
+</script>
+
