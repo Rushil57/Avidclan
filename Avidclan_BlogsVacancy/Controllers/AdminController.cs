@@ -2314,6 +2314,7 @@ namespace Avidclan_BlogsVacancy.Controllers
         {
             string apiKey = "a101ac38119207e6774e78a74701c990";
             string apiSecret = "fc46b6850d50f957b087e2ba1bf2c0ee";
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             string apiUrl = "https://api.mailjet.com/v3.1/send";
             using (HttpClient client = new HttpClient())
             {
