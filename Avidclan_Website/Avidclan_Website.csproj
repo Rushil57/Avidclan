@@ -185,6 +185,7 @@
     <Compile Include="Models\HeaderMenu.cs" />
     <Compile Include="Models\HiringCandidateDetails.cs" />
     <Compile Include="Models\ProjectDetail.cs" />
+    <Compile Include="Models\RecaptchaResponse.cs" />
     <Compile Include="Models\UserDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

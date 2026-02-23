@@ -30,13 +30,15 @@
 
         <title>Hire Dedicated ReactJS Developer Team | Custom ReactJS Solutions</title>
         <meta name="description" content="Looking for powerful custom ReactJS solutions? Hire our dedicated ReactJS developer team that delivers innovative and user-centric applications design as per your needs." />
-        <link rel="canonical" href="https://www.avidclan.com/hire-reactjs-developers" />
+        @*<link rel="canonical" href="https://www.avidclan.com/hire-reactjs-developers" />*@
 
         <link href="~/assets/css/swiper-bundle-min.css" rel="stylesheet" />
         <link href="~/assets/css/Avidclan/hiringpages.css" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
         <script src="~/assets/js/jquery.validate.min.js"></script>
+        <script src="https://www.google.com/recaptcha/api.js?render=@System.Configuration.ConfigurationManager.AppSettings["reCaptchaPublicKey"]"></script>
+
 
         <!-- Include intlTelInput -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
@@ -2089,35 +2091,39 @@
                 $('#button-spinner').hide();
             }
 
-            Hiringform1.submit(function (e) {
+                Hiringform1.submit(function (e) {
                 e.preventDefault();
-
-                var countrycode = $("#mobilet").intlTelInput("getSelectedCountryData").dialCode;
-                $("#code1").val(countrycode);
-
-                form_data = $(this).serialize();
 
                 if (!Hiringform1.valid()) {
                     return false;
                 }
 
-                $('#button-spinner').show();
-                $('#sbmtbtn').attr("disabled", true);
+                grecaptcha.ready(function () {
+                    grecaptcha.execute('@System.Configuration.ConfigurationManager.AppSettings["reCaptchaPublicKey"]', { action: 'hire_form' })
+                        .then(function (token) {
 
-                var data = {
-                    Name: $("#Name1").val(),
-                    Email: $("#Email1").val(),
-                    PhoneNumber: $("#mobilet").val(),
-                    Message: $("#Message1").val(),
-                    CountryCode: countrycode,
-                };
+                            var countrycode = $("#mobilet").intlTelInput("getSelectedCountryData").dialCode;
+                            $("#code1").val(countrycode);
 
-                $.ajax({
-                    type: "POST",
-                    url: "/api/Mail/SendHiringDotNetDetails",
-                    contentType: 'application/json',
-                    data: JSON.stringify(data),
-                }).done(done_func);
+                            var data = {
+                                Name: $("#Name1").val(),
+                                Email: $("#Email1").val(),
+                                PhoneNumber: $("#mobilet").val(),
+                                Message: $("#Message1").val(),
+                                CountryCode: countrycode,
+                                RecaptchaToken: token
+                            };
+
+                            $.ajax({
+                                type: "POST",
+                                url: "/api/Mail/SendHiringDotNetDetails",
+                                contentType: 'application/json',
+                                data: JSON.stringify(data),
+                            }).done(done_func);
+
+                        });
+                });
+
             });
 
             // jQuery validation

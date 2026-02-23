@@ -6,9 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="~/assets/images/favicon.png" type="image/x-icon" />
     <link rel="icon" href="~/assets/images/favicon.png" type="image/x-icon" />
+    <script src="https://www.google.com/recaptcha/api.js?render=@System.Configuration.ConfigurationManager.AppSettings["reCaptchaPublicKey"]"></script>
+
+
+    @{
+        // 1. Get the URL without the query string (e.g. ignores ?gad_source=1)
+        string cleanCanonical = Request.Url.GetLeftPart(UriPartial.Path);
+        // 2. Ensure the canonical URL ends with a slash
+        if (!cleanCanonical.EndsWith("/"))
+        {
+            cleanCanonical += "/";
+        }
+    }
+    <link rel="canonical" href="@cleanCanonical" />
     @RenderSection("AdditionalMeta", false)
 
     <meta name="msvalidate.01" content="C6EA7291CCD22012F734D3C6649F2F3F" />
+
     <!-- Google Tag Manager -->
     @*<script>
         (function (w, d, s, l, i) {
@@ -20,11 +34,9 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-5HZ8ZV4Q');</script>*@
     <!-- End Google Tag Manager -->
-
-
     <!-- Google Tag Manager -->
     <script>
-    (function (w, d, s, l, i) {
+        (function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
                 'gtm.start':
                     new Date().getTime(), event: 'gtm.js'
@@ -63,7 +75,7 @@
     <!-- End Google Tag Manager (noscript) -->
     <!-- Google Tag Manager (noscript) -->
     <noscript>
-            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HZ8ZV4Q"
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HZ8ZV4Q"
                 height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
@@ -621,45 +633,50 @@
 
      }
 
-     Contactform.submit(function (e) {
+         Contactform.submit(function (e) {
+             e.preventDefault();
 
-     e.preventDefault();
-     var countrycode = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
-     $("#code").val(countrycode);
+             var countrycode = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
+             $("#code").val(countrycode);
 
-     form_data = $(this).serialize();
+             if (!$(".contact_form").valid()) {
+                 return false;
+             }
 
-     if (!$(".contact_form").valid()) {
-     return false;
-     }
-     //var response = grecaptcha.getResponse();
-     //if (response.length == 0) {
-     ////reCaptcha not verified
-     //alert("Please Verify Captcha!");
-     //e.preventDefault();
-     //return false;
-     //}
+             $('#button-spinner').show();
+             $('#sbmtbtn').attr("disabled", true);
+
+             grecaptcha.ready(function () {
+                 grecaptcha.execute('@System.Configuration.ConfigurationManager.AppSettings["reCaptchaPublicKey"]', { action: 'contact_form' })
+                     .then(function (token) {
+
+                         var data = {
+                             FirstName: $("#firstname").val(),
+                             LastName: $("#lastname").val(),
+                             Email: $("#email").val(),
+                             Phoneumber: $("#phone").val(),
+                             Message: $("#message").val(),
+                             CountryCode: countrycode,
+                             RecaptchaToken: token
+                         };
+
+                         $.ajax({
+                             type: "POST",
+                             url: "/api/Mail/SendContactDetails",
+                             contentType: 'application/json',
+                             data: JSON.stringify(data),
+                         }).done(done_func)
+                             .fail(function () {
+                                 alert("Error submitting form.");
+                                 $('#button-spinner').hide();
+                                 $('#sbmtbtn').attr("disabled", false);
+                             });
+
+                     });
+             });
+         });
 
 
-     $('#button-spinner').show();
-     $('#sbmtbtn').attr("disabled", true);
-     var data = {
-     FirstName: $("#firstname").val(),
-     LastName: $("#lastname").val(),
-     Email: $("#email").val(),
-     Phoneumber: $("#phone").val(),
-     Message: $("#message").val(),
-     CountryCode: countrycode,
-     }
-
-
-     $.ajax({
-     type: "POST",
-     url: "/api/Mail/SendContactDetails",
-     contentType: 'application/json',
-     data: JSON.stringify(data),
-     }).done(done_func);
-     });
 
      $("form[name='contactinfo']").validate({
      errorPlacement: function (error, element) {
@@ -851,48 +868,49 @@
      $('#button-spinner').hide();
      }
 
-     Candidateform.submit(function (e) {
+         Candidateform.submit(function (e) {
+             e.preventDefault();
 
-     e.preventDefault();
+             if (!$(".career_form").valid()) {
+                 return false;
+             }
 
-     if (!$(".career_form").valid()) {
-     return false;
-     }
+             grecaptcha.ready(function () {
+                 grecaptcha.execute('@System.Configuration.ConfigurationManager.AppSettings["reCaptchaPublicKey"]', { action: 'career_form' })
+                     .then(function (token) {
 
-     //var response = grecaptcha.getResponse();
-     //if (response.length == 0) {
-     //alert("Please Verify Captcha!");
-     //evt.preventDefault();
-     //return false;
-     //}
-     $('#button-spinner').show();
-     $('#btnSendEmail').attr("disabled",true);
-     //var Position = $("#caseOption").val();
-     var Position = $("#caseOption option:selected").text();
-     var Name = $("#name").val();
-     var Email = $("#email").val();
-     var ContactNumber = $("#contactno").val();
-     var Resume = $("#attachmentFile").get(0);
-     var files = Resume.files;
-     var Message = $("#message").val();
+                         $('#button-spinner').show();
+                         $('#btnSendEmail').attr("disabled", true);
 
-     var fileData = new FormData();
-     fileData.append("Resume", files[0]);
-     fileData.append('Name', Name);
-     fileData.append('Email', Email);
-     fileData.append('ContactNumber', ContactNumber);
-     fileData.append('Message', Message);
-     fileData.append('Position', Position);
+                         var Position = $("#caseOption option:selected").text();
+                         var Name = $("#name").val();
+                         var Email = $("#email").val();
+                         var ContactNumber = $("#contactno").val();
+                         var Resume = $("#attachmentFile").get(0);
+                         var files = Resume.files;
+                         var Message = $("#message").val();
 
-     return $.ajax({
-     type: "POST",
-     url: "/api/Mail/SendCandidateDetails",
-     data: fileData,
-     cache: false,
-     contentType: false,
-     processData: false,
-     }).done(Application_Form);
-     });
+                         var fileData = new FormData();
+                         fileData.append("Resume", files[0]);
+                         fileData.append("Name", Name);
+                         fileData.append("Email", Email);
+                         fileData.append("ContactNumber", ContactNumber);
+                         fileData.append("Message", Message);
+                         fileData.append("Position", Position);
+
+                         fileData.append("RecaptchaToken", token);
+
+                         $.ajax({
+                             type: "POST",
+                             url: "/api/Mail/SendCandidateDetails",
+                             data: fileData,
+                             cache: false,
+                             contentType: false,
+                             processData: false
+                         }).done(Application_Form);
+                     });
+             });
+         });
 
      $("form[name='career_form_data']").validate({
      errorPlacement: function (error, element) {
@@ -978,46 +996,54 @@
      $('#button-spinner').hide();
      }
 
-     Projectform.submit(function (e) {
-     e.preventDefault();
+         Projectform.on("submit", function (e) {
 
-     var code = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
-     $("#scode").val(code);
+             e.preventDefault();
 
-     form_data = $(this).serialize();
-     if (!$(".project_form").valid()) {
-     return false;
-     }
-     //var response = grecaptcha.getResponse();
-     //if (response.length == 0) {
-     ////reCaptcha not verified
-     //alert("Please Verify Captcha!");
-     //evt.preventDefault();
-     //return false;
-     //}
+             var code = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
+             $("#scode").val(code);
 
-     $('#button-spinner').show();
-     $('#btnSendEmail').attr("disabled", true);
-     var Projectdata = {
-     FirstName: $("#firstname").val(),
-     LastName: $("#lastname").val(),
-     Email: $("#email").val(),
-     Phone: $("#phone").val(),
-     Service: $("#servicename").val(),
-     Budget: $("#budget").val(),
-     StartDate: $("#starttime").val(),
-     Requirement: $("#prequirement").val(),
-     ProjectDetails: $("#projectbrief").val(),
-     CountryCode: code,
-     }
+             if (!$(".project_form").valid()) {
+                 return false;
+             }
 
-     $.ajax({
-     type: "POST",
-     url: "/api/Mail/SendProjectDetails",
-     contentType: 'application/json',
-     data: JSON.stringify(Projectdata),
-     }).done(ProjectSuccess);
-     });
+             grecaptcha.ready(function () {
+                 grecaptcha.execute('@System.Configuration.ConfigurationManager.AppSettings["reCaptchaPublicKey"]', { action: 'project_form' })
+                     .then(function (token) {
+
+                         $('#button-spinner').show();
+                         $('#btnSendEmail').attr("disabled", true);
+
+                         var Projectdata = {
+                             FirstName: $("#firstname").val(),
+                             LastName: $("#lastname").val(),
+                             Email: $("#email").val(),
+                             Phone: $("#phone").val(),
+                             Service: $("#servicename").val(),
+                             Budget: $("#budget").val(),
+                             StartDate: $("#starttime").val(),
+                             Requirement: $("#prequirement").val(),
+                             ProjectDetails: $("#projectbrief").val(),
+                             CountryCode: code,
+                             RecaptchaToken: token
+                         };
+
+                         $.ajax({
+                             type: "POST",
+                             url: "/api/Mail/SendProjectDetails",
+                             contentType: "application/json",
+                             data: JSON.stringify(Projectdata),
+                         }).done(ProjectSuccess)
+                             .fail(function (err) {
+                                 console.log(err);
+                                 $('#button-spinner').hide();
+                                 $('#btnSendEmail').attr("disabled", false);
+                             });
+
+                     });
+             });
+
+         });
 
 
      $("form[name='project_form_data']").validate({

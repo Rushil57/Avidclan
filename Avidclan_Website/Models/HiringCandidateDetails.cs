@@ -13,5 +13,7 @@ namespace Avidclan_Website.Models
         public string Message { get; set; }
 
         public int CountryCode { get; set; }
+        public string RecaptchaToken { get; set; } 
+
     }
 }

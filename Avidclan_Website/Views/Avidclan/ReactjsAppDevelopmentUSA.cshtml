@@ -11,11 +11,13 @@
 {
     <title>Custom ReactJS App Development Company USA | Top ReactJS Company</title>
     <meta name="description" content="Looking for a top ReactJS company? Our custom ReactJS app development services in the USA deliver robust and elegant web applications that empower your brand." />
-    <link rel="canonical" href="https://www.avidclan.com/reactjs-app-development-company-usa/" />
+    @*<link rel="canonical" href="https://www.avidclan.com/reactjs-app-development-company-usa/" />*@
 
     @*<link href="~/assets/css/Avidclan/flutter_app_development_usa.css" rel="stylesheet" />*@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="~/assets/js/jquery.validate.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=@System.Configuration.ConfigurationManager.AppSettings["reCaptchaPublicKey"]"></script>
+
     <link href="~/assets/css/Avidclan/dotnet_development_locationPage.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/assets/css/intlTelInput.css" />
 
@@ -389,7 +391,7 @@
                             </a>
                         </div>
                     </div>
-                </div>  
+                </div>
             </div>
         </div>
     </div>
@@ -774,7 +776,7 @@
                         </h2>
                         <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body accordion-bodyContent">
-                               The time required to develop a ReactJS application depends on the overall complexity, features, and requirements of the project. A simple application may take a few weeks, whereas a more comprehensive and feature-rich application might take half a year or even more. We work in close tandem with clients in defining the timeline and ensuring that the milestones in the development process are crossed efficiently.
+                                The time required to develop a ReactJS application depends on the overall complexity, features, and requirements of the project. A simple application may take a few weeks, whereas a more comprehensive and feature-rich application might take half a year or even more. We work in close tandem with clients in defining the timeline and ensuring that the milestones in the development process are crossed efficiently.
 
                             </div>
                         </div>
@@ -896,70 +898,70 @@
                 </div>
             </div>
         </div>
-      
-    <div class="row">
-        <div class="col-lg-7">
-            <div class="sec-title">
-                <div class="text sub_title-18 description-18 gap-25_description">
-                    <div>
-                        Avidclan Technologies is home to top ReactJS developers in the USA, ready to bring any app vision to reality.
-                    </div>
-                    <div>
-                        We provide flexible, scalable development teams tailored to fit your project’s scope and timeline. With a commitment to innovation, our developers stay on the cutting edge of ReactJS technology through continuous training.
-                    </div>
-                    <div>
-                        At Avidclan Technologies, transparency and communication are key. You’ll have a dedicated project manager to keep you informed with regular updates, ensuring your app development is always on track. We specialize in creating globally-compatible ReactJS applications that run seamlessly across regions. Additionally, our team offers adaptable working hours to align with your time zone for smooth collaboration.
+
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="sec-title">
+                    <div class="text sub_title-18 description-18 gap-25_description">
+                        <div>
+                            Avidclan Technologies is home to top ReactJS developers in the USA, ready to bring any app vision to reality.
+                        </div>
+                        <div>
+                            We provide flexible, scalable development teams tailored to fit your project’s scope and timeline. With a commitment to innovation, our developers stay on the cutting edge of ReactJS technology through continuous training.
+                        </div>
+                        <div>
+                            At Avidclan Technologies, transparency and communication are key. You’ll have a dedicated project manager to keep you informed with regular updates, ensuring your app development is always on track. We specialize in creating globally-compatible ReactJS applications that run seamlessly across regions. Additionally, our team offers adaptable working hours to align with your time zone for smooth collaboration.
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-5 d-md-none d-flex justify-content-center align-items-center img-col contact_form-col">
+                <form method="post"
+                      @*action="contact-form-handler.php"*@
+                      class="form_contact contact-form location_form dark-blue-bg w-100"
+                      name="locationforminfo"
+                      id="location_form">
+                    <div class="row" style="flex-direction:column;">
+                        <div class="col form-group">
+                            <div class="input-group">
+                                <input type="text" name="firstname" class="contact_input px-0" id="firstname" placeholder="Full Name" />
+                            </div>
+                        </div>
+
+                        <div class="col form-group">
+                            <div class="input-group">
+                                <input type="email" name="email" class="contact_input px-0" id="email" placeholder="Email" />
+                            </div>
+                        </div>
+
+                        <div class="col form-group">
+                            <div class="input-group d-block">
+                                <input id="CountryCode" value="CountryCode" type="hidden" name="CountryCode" />
+                                <input type="tel" name="phone" class="contact_input numberonly py-0" id="phone" maxlength="10" placeholder="Mobile" autocomplete="off" />
+                            </div>
+                        </div>
+
+                        <div class="col form-group">
+                            <textarea name="message" id="message" class="contact_input px-0 contact_msg" placeholder="Message..." maxlength="500"></textarea>
+                        </div>
+
+                        <div class="col form-group">
+                            <div class="btn-box mt-3">
+                                @*<a href="https://www.avidclan.com/services#project_inquiry_form" class="theme-btn">*@
+                                <button type="submit" name="submit" id="btnSubmit" class="theme-btn">
+                                    <span class="btn-title">
+                                        Send Message
+                                        <span class="iconify ms-1" data-icon="line-md:email" data-height="25"></span>
+                                        <div id="button-spinner" style="margin-left: 10px; width: 15px; height: 15px; display: none" class="spinner-border"></div>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
         </div>
-        <div class="col-lg-5 d-md-none d-flex justify-content-center align-items-center img-col contact_form-col">
-            <form method="post"
-                  @*action="contact-form-handler.php"*@
-                  class="form_contact contact-form location_form dark-blue-bg w-100"
-                  name="locationforminfo"
-                  id="location_form">
-                <div class="row" style="flex-direction:column;">
-                    <div class="col form-group">
-                        <div class="input-group">
-                            <input type="text" name="firstname" class="contact_input px-0" id="firstname" placeholder="Full Name" />
-                        </div>
-                    </div>
-
-                    <div class="col form-group">
-                        <div class="input-group">
-                            <input type="email" name="email" class="contact_input px-0" id="email" placeholder="Email" />
-                        </div>
-                    </div>
-
-                    <div class="col form-group">
-                        <div class="input-group d-block">
-                            <input id="CountryCode" value="CountryCode" type="hidden" name="CountryCode" />
-                            <input type="tel" name="phone" class="contact_input numberonly py-0" id="phone" maxlength="10" placeholder="Mobile" autocomplete="off" />
-                        </div>
-                    </div>
-
-                    <div class="col form-group">
-                        <textarea name="message" id="message" class="contact_input px-0 contact_msg" placeholder="Message..." maxlength="500"></textarea>
-                    </div>
-
-                    <div class="col form-group">
-                        <div class="btn-box mt-3">
-                            @*<a href="https://www.avidclan.com/services#project_inquiry_form" class="theme-btn">*@
-                            <button type="submit" name="submit" id="btnSubmit" class="theme-btn">
-                                <span class="btn-title">
-                                    Send Message
-                                    <span class="iconify ms-1" data-icon="line-md:email" data-height="25"></span>
-                                    <div id="button-spinner" style="margin-left: 10px; width: 15px; height: 15px; display: none" class="spinner-border"></div>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-
-        </div>
-    </div>
     </div>
 </section>
 @Html.Partial("_Footer")
@@ -987,40 +989,38 @@
 
     Contactform.submit(function (e) {
         e.preventDefault();
-        var countrycode = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
-        $("#code").val(countrycode);
-
-        form_data = $(this).serialize();
 
         if (!$(".location_form").valid()) {
             return false;
         }
-        //var response = grecaptcha.getResponse();
-        //if (response.length == 0) {
-        ////reCaptcha not verified
-        //alert("Please Verify Captcha!");
-        //e.preventDefault();
-        //return false;
-        //}
 
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@System.Configuration.ConfigurationManager.AppSettings["reCaptchaPublicKey"]', { action: 'contact_form' })
+                .then(function (token) {
 
-        $('#button-spinner').show();
-        $('#sbmtbtn').attr("disabled", true);
-        var data = {
-            FirstName: $("#firstname").val(),
-            LastName: $("#lastname").val(),
-            Email: $("#email").val(),
-            Phoneumber: $("#phone").val(),
-            Message: $("#message").val(),
-            CountryCode: countrycode,
-        }
+                    var countrycode = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
 
-        $.ajax({
-            type: "POST",
-            url: "/api/Mail/SendLocationPageDetails",
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-        }).done(done_func);
+                    $('#button-spinner').show();
+                    $('#sbmtbtn').attr("disabled", true);
+
+                    var data = {
+                        FirstName: $("#firstname").val(),
+                        LastName: $("#lastname").val(),
+                        Email: $("#email").val(),
+                        Phoneumber: $("#phone").val(),
+                        Message: $("#message").val(),
+                        CountryCode: countrycode,
+                        RecaptchaToken: token
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/api/Mail/SendLocationPageDetails",
+                        contentType: 'application/json',
+                        data: JSON.stringify(data),
+                    }).done(done_func);
+                });
+        });
     });
 
     $("form[name='locationforminfo']").validate({

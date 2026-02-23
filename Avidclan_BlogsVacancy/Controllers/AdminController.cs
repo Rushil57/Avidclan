@@ -109,7 +109,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     mode = 7;
                     BlogId = Convert.ToInt32(Id);
                     ImageUrl = ImageUrls;
-                    ImageName = Images.FileName;
+                    ImageName = Images?.FileName;
                     BlogDetailImageUrl = BlogDetailImageString;
                 }
                 if (Images != null && ImageUrls == "")

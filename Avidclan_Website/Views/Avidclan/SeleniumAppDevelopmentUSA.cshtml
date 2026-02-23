@@ -11,17 +11,18 @@
 
 @section AdditionalMeta
 {
-    
+
     <title>Selenium Automation Testing Services USA | QA Automation Company</title>
     <meta name="description" content="As a top QA automation company, we provide expert Selenium automation testing services in the USA to ensure efficient, bug-free software without compromising quality." />
-    <link rel="canonical" href="https://www.avidclan.com/selenium-app-development-company-usa/" />
+    @*<link rel="canonical" href="https://www.avidclan.com/selenium-app-development-company-usa/" />*@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="~/assets/js/jquery.validate.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=@System.Configuration.ConfigurationManager.AppSettings["reCaptchaPublicKey"]"></script>
 
     <link href="~/assets/css/Avidclan/dotnet_development_locationPage.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/assets/css/intlTelInput.css" />
-    
+
 }
 
 <section class="banner-section banner-bg">
@@ -117,8 +118,8 @@
                         Your Ultimate Selenium Testing Partner in the USA
                     </h2>
                     @*<span class="sub-text">
-                Avidclan Technologies has been providing software development services for over 4 successful years.
-            </span>*@
+                            Avidclan Technologies has been providing software development services for over 4 successful years.
+                        </span>*@
                     <div class="text description-18 my-0 gap-25_description">
                         <div>
                             <div>
@@ -195,7 +196,7 @@
                         <p class="description-16">
                             Our test automation solution is designed for your requirements using Selenium's full range of comprehensive capabilities for the efficient, reliable and scalable testing of online applications.
                         </p>
-                      
+
                     </div>
                 </div>
             </div>
@@ -394,7 +395,7 @@
                         </div>
                         <div class="description-16">
                             @*<span class="b-txt description-18">
-            <b>Are you ready to create a stunning and user-friendly app on all phones?</b></span>*@
+                                <b>Are you ready to create a stunning and user-friendly app on all phones?</b></span>*@
                             Use our skilled Selenium solutions to transform your testing process. Partner with Avidclan Technologies to achieve the greatest quality in your applications. Are you ready to boost your testing? Contact us immediately!
                             <br />
                             <span class="b-txt description-18">
@@ -1027,40 +1028,38 @@
 
     Contactform.submit(function (e) {
         e.preventDefault();
-        var countrycode = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
-        $("#code").val(countrycode);
-
-        form_data = $(this).serialize();
 
         if (!$(".location_form").valid()) {
             return false;
         }
-        //var response = grecaptcha.getResponse();
-        //if (response.length == 0) {
-        ////reCaptcha not verified
-        //alert("Please Verify Captcha!");
-        //e.preventDefault();
-        //return false;
-        //}
 
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@System.Configuration.ConfigurationManager.AppSettings["reCaptchaPublicKey"]', { action: 'contact_form' })
+                .then(function (token) {
 
-        $('#button-spinner').show();
-        $('#sbmtbtn').attr("disabled", true);
-        var data = {
-            FirstName: $("#firstname").val(),
-            LastName: $("#lastname").val(),
-            Email: $("#email").val(),
-            Phoneumber: $("#phone").val(),
-            Message: $("#message").val(),
-            CountryCode: countrycode,
-        }
+                    var countrycode = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
 
-        $.ajax({
-            type: "POST",
-            url: "/api/Mail/SendLocationPageDetails",
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-        }).done(done_func);
+                    $('#button-spinner').show();
+                    $('#sbmtbtn').attr("disabled", true);
+
+                    var data = {
+                        FirstName: $("#firstname").val(),
+                        LastName: $("#lastname").val(),
+                        Email: $("#email").val(),
+                        Phoneumber: $("#phone").val(),
+                        Message: $("#message").val(),
+                        CountryCode: countrycode,
+                        RecaptchaToken: token
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/api/Mail/SendLocationPageDetails",
+                        contentType: 'application/json',
+                        data: JSON.stringify(data),
+                    }).done(done_func);
+                });
+        });
     });
 
     $("form[name='locationforminfo']").validate({

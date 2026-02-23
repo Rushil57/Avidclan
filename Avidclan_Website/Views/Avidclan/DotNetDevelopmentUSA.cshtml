@@ -25,16 +25,17 @@
 
     <title>.NET Development Company USA | .NET Software Development Services</title>
     <meta name="description" content="Your business challenges demand a powerful solution. As a .NET development company in the USA, we engineer robust software platforms that drive your mission." />
-    <link rel="canonical" href="https://www.avidclan.com/dot-net-development-company-usa/" />
+    @*<link rel="canonical" href="https://www.avidclan.com/dot-net-development-company-usa/" />*@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="~/assets/js/jquery.validate.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=@System.Configuration.ConfigurationManager.AppSettings["reCaptchaPublicKey"]"></script>
 
     <link href="~/assets/css/Avidclan/dotnet_development_locationPage.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="~/assets/css/intlTelInput.css" />
-    
+
 }
 
 <section class="banner-section banner-bg">
@@ -133,8 +134,8 @@
                 <div class="sec-title">
                     <h2 class="lg_only">Your Preferred .NET Development Partner in the USA</h2>
                     @*<span class="sub-text">
-                Avidclan Technologies has been providing software development services for over 4 successful years.
-            </span>*@
+                            Avidclan Technologies has been providing software development services for over 4 successful years.
+                        </span>*@
                     <div class="text description-18 my-0 gap-25_description">
                         <div>
                             <div>Consider a digital solution that not merely meets your business demands but even anticipates them. At Avidclan Technologies, we offer years of experience in .NET development, helping companies reach their objectives with unique solutions that are both efficient and effective, therefore providing unmatched performance and scalability.</div>
@@ -329,14 +330,14 @@
                         </ul>
                     </div>
                     <div class="btn-box mt-3">
-    <a href="~/about-us/"
-       class="btn btn-primary fw-bold rounded-5 custom-btn-padding shadow-none">
-        <span>
-            Discover More
-            <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
-        </span>
-    </a>
-</div>
+                        <a href="~/about-us/"
+                           class="btn btn-primary fw-bold rounded-5 custom-btn-padding shadow-none">
+                            <span>
+                                Discover More
+                                <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="col-4 d-lg-flex d-md-flex d-xl-flex img-col">
@@ -839,7 +840,7 @@
                 <div class="inner-box bg1">
                     <div class="content-box">
                         <a class="icon" href="/blog/top-features-of-dot-net-7-what-is-new-and-improved/" target="_blank">
-                            <img src="~/assets/images/locations/SVGThumbnail -Top Features of .NET 7_ What's New and Improved- Avidclan Technologies.jpg" class="img-fluid" alt="Blog Thumbnail NET 7"/>
+                            <img src="~/assets/images/locations/SVGThumbnail -Top Features of .NET 7_ What's New and Improved- Avidclan Technologies.jpg" class="img-fluid" alt="Blog Thumbnail NET 7" />
                         </a>
                     </div>
                 </div>
@@ -848,7 +849,7 @@
                 <div class="inner-box bg2">
                     <div class="content-box">
                         <a class="icon" href="/blog/the-advantages-of-choosing-dot-net-core-for-modern-web-applications/" target="_blank">
-                            <img src="~/assets/images/locations/SVGThumbnail-The Advantages of Choosing .NET Core for Modern Web Applications.jpg" class="img-fluid" alt="Blog Thumbnail NET Core"/>
+                            <img src="~/assets/images/locations/SVGThumbnail-The Advantages of Choosing .NET Core for Modern Web Applications.jpg" class="img-fluid" alt="Blog Thumbnail NET Core" />
                         </a>
                     </div>
                 </div>
@@ -857,7 +858,7 @@
                 <div class="inner-box bg3">
                     <div class="content-box">
                         <a class="icon" href="/blog/net-core-vs-net-framework-understand-them-for-modern-web-development/" target="_blank">
-                            <img src="~/assets/images/locations/SVGThumbnail - .NET Core vs .NET Framework_ Understand Them for Modern Web Development.jpg" class="img-fluid" alt="Blog Thumbnail NET Framework"/>
+                            <img src="~/assets/images/locations/SVGThumbnail - .NET Core vs .NET Framework_ Understand Them for Modern Web Development.jpg" class="img-fluid" alt="Blog Thumbnail NET Framework" />
                         </a>
                     </div>
                 </div>
@@ -896,53 +897,53 @@
                 </div>
             </div>
             <div class="col-lg-5 d-md-none d-flex justify-content-center align-items-center img-col contact_form-col">
-               
-                    
-                        <form method="post"
-                              @*action="contact-form-handler.php"*@
-                              class="form_contact contact-form location_form dark-blue-bg w-100"
-                              name="locationforminfo"
-                              id="location_form">
-                            <div class="row" style="flex-direction:column ;">
-                                <div class="col form-group">
-                                    <div class="input-group">
-                                        <input type="text" name="firstname" class="contact_input px-0" id="firstname" placeholder="Full Name" />
-                                    </div>
-                                </div>
 
-                                <div class="col form-group">
-                                    <div class="input-group">
-                                        <input type="email" name="email" class="contact_input px-0" id="email" placeholder="Email" />
-                                    </div>
-                                </div>
 
-                                <div class="col form-group">
-                                    <div class="input-group d-block">
-                                        <input id="CountryCode" value="CountryCode" type="hidden" name="CountryCode" />
-                                        <input type="tel" name="phone" class="contact_input numberonly py-0" id="phone" placeholder="Mobile" maxlength="10" autocomplete="off" />
-                                    </div>
-                                </div>
-
-                                <div class="col form-group">
-                                    <textarea name="message" id="message" class="contact_input px-0 contact_msg" placeholder="Message..." maxlength="500"></textarea>
-                                </div>
-
-                                <div class="col form-group">
-                                    <div class="btn-box mt-3">
-                                        @*<a href="https://www.avidclan.com/services#project_inquiry_form" class="theme-btn">*@
-                                        <button type="submit" name="submit" id="btnSubmit" class="theme-btn">
-                                            <span class="btn-title">
-                                                Send Message
-                                                <span class="iconify ms-1" data-icon="line-md:email" data-height="25"></span>
-                                                <div id="button-spinner" style="margin-left: 10px; width: 15px; height: 15px; display: none" class="spinner-border"></div>
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
+                <form method="post"
+                      @*action="contact-form-handler.php"*@
+                      class="form_contact contact-form location_form dark-blue-bg w-100"
+                      name="locationforminfo"
+                      id="location_form">
+                    <div class="row" style="flex-direction:column ;">
+                        <div class="col form-group">
+                            <div class="input-group">
+                                <input type="text" name="firstname" class="contact_input px-0" id="firstname" placeholder="Full Name" />
                             </div>
-                        </form>
-                    
-               
+                        </div>
+
+                        <div class="col form-group">
+                            <div class="input-group">
+                                <input type="email" name="email" class="contact_input px-0" id="email" placeholder="Email" />
+                            </div>
+                        </div>
+
+                        <div class="col form-group">
+                            <div class="input-group d-block">
+                                <input id="CountryCode" value="CountryCode" type="hidden" name="CountryCode" />
+                                <input type="tel" name="phone" class="contact_input numberonly py-0" id="phone" placeholder="Mobile" maxlength="10" autocomplete="off" />
+                            </div>
+                        </div>
+
+                        <div class="col form-group">
+                            <textarea name="message" id="message" class="contact_input px-0 contact_msg" placeholder="Message..." maxlength="500"></textarea>
+                        </div>
+
+                        <div class="col form-group">
+                            <div class="btn-box mt-3">
+                                @*<a href="https://www.avidclan.com/services#project_inquiry_form" class="theme-btn">*@
+                                <button type="submit" name="submit" id="btnSubmit" class="theme-btn">
+                                    <span class="btn-title">
+                                        Send Message
+                                        <span class="iconify ms-1" data-icon="line-md:email" data-height="25"></span>
+                                        <div id="button-spinner" style="margin-left: 10px; width: 15px; height: 15px; display: none" class="spinner-border"></div>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
             </div>
         </div>
     </div>
@@ -972,42 +973,39 @@
 
     Contactform.submit(function (e) {
         e.preventDefault();
-        var countrycode = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
-        $("#code").val(countrycode);
-
-        form_data = $(this).serialize();
 
         if (!$(".location_form").valid()) {
             return false;
         }
-        //var response = grecaptcha.getResponse();
-        //if (response.length == 0) {
-        ////reCaptcha not verified
-        //alert("Please Verify Captcha!");
-        //e.preventDefault();
-        //return false;
-        //}
 
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@System.Configuration.ConfigurationManager.AppSettings["reCaptchaPublicKey"]', { action: 'contact_form' })
+                .then(function (token) {
 
-        $('#button-spinner').show();
-        $('#sbmtbtn').attr("disabled", true);
-        var data = {
-            FirstName: $("#firstname").val(),
-            LastName: $("#lastname").val(),
-            Email: $("#email").val(),
-            Phoneumber: $("#phone").val(),
-            Message: $("#message").val(),
-            CountryCode: countrycode,
-        }
+                    var countrycode = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
 
-        $.ajax({
-            type: "POST",
-            url: "/api/Mail/SendLocationPageDetails",
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-        }).done(done_func);
+                    $('#button-spinner').show();
+                    $('#sbmtbtn').attr("disabled", true);
+
+                    var data = {
+                        FirstName: $("#firstname").val(),
+                        LastName: $("#lastname").val(),
+                        Email: $("#email").val(),
+                        Phoneumber: $("#phone").val(),
+                        Message: $("#message").val(),
+                        CountryCode: countrycode,
+                        RecaptchaToken: token
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/api/Mail/SendLocationPageDetails",
+                        contentType: 'application/json',
+                        data: JSON.stringify(data),
+                    }).done(done_func);
+                });
+        });
     });
-
     $("form[name='locationforminfo']").validate({
         errorPlacement: function (error, element) {
             if ($(element).is("#phone")) {

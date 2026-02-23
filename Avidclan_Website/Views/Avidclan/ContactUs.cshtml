@@ -1,5 +1,4 @@
-﻿@using reCAPTCHA.MVC
-@{
+﻿@{
     ViewBag.Title = "ContactUs";
 }
 
@@ -7,10 +6,11 @@
 {
     <title>Contact Avidclan Technologies Now For New Journey of Digital Innovation</title>
     <meta name="description" content="Have a project? Hire Avidclan Technologies' developers. Explore our development services and discuss your next big idea. Our dedicated team is ready to help. Contact us now!" />
-    <link rel="canonical" href="https://www.avidclan.com/contact-us/" />
+    @*<link rel="canonical" href="https://www.avidclan.com/contact-us/" />*@
     <link rel="stylesheet" href="~/assets/css/intlTelInput.css" />
     <link rel="stylesheet" href="~/assets/css/Avidclan/contactus.css" />
-   
+    <script src="https://www.google.com/recaptcha/api.js?render=@System.Configuration.ConfigurationManager.AppSettings["reCaptchaPublicKey"]"></script>
+
 }
 
 <section class="inner-page contact-section">
@@ -98,11 +98,11 @@
                                     <textarea name="message" id="message" maxlength="500"></textarea>
                                 </div>
 
-                                <div class="col-md-12 form-group">
-                                    <label for="captcha">Please verify you are a human</label>
-                                    @Html.Recaptcha()
+                                @*<div class="col-md-12 form-group">*@
+                                    @*<label for="captcha">Please verify you are a human</label>*@
+                                    @*@Html.Recaptcha()*@
                                     @*<div class="g-recaptcha" data-sitekey="6LeWHTseAAAAAMQvKFnHOU1KCsIeAhX4LF7EhrCk"></div>*@
-                                </div>
+                                @*</div>*@
 
                                 <div class="col-md-12 form-group mb-0 text-center">
                                     <div class="">

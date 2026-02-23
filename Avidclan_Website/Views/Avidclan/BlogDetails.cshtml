@@ -8,7 +8,7 @@
 {
     <title>Blog - Avidclan Technologies</title>
     <meta name="description" content="Discover the latest news, valuable tips, and insightful content on web and mobile app development, IoT, QA, and Internet marketing in the Avidclan Technologies blog. Stay ahead of the curve." />
-    <link rel="canonical" href="https://www.avidclan.com/blog/" />
+    @*<link rel="canonical" href="https://www.avidclan.com/blog/" />*@
     <link rel="stylesheet" href="~/assets/css/Avidclan/blog.css" />
 }
 <section class="blog-section">
@@ -75,6 +75,7 @@
         GetBlogDetails();
     });
     function GetBlogDetails() {
+        debugger;
         var id;
         let searchParams = new URLSearchParams(window.location.search)
         if (searchParams.has('Id')) {

@@ -37,8 +37,8 @@ namespace Avidclan_Website.Controllers
             //ViewBag.HtmlData = MetaDetails.Description;
             ViewBag.MetaData = MetaDetails.MetaDescription;
             ViewBag.MetaTitle = MetaDetails.MetaTitle;
-            var CanonicalUrl = "https://www.avidclan.com/blog/" + id + "/";
-            ViewBag.Url = CanonicalUrl;
+            //var CanonicalUrl = "https://www.avidclan.com/blog/" + id + "/";
+            //ViewBag.Url = CanonicalUrl;
 
             //CreateFAQs(MetaDetails.Id);
 

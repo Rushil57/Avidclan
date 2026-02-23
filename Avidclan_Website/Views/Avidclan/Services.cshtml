@@ -7,9 +7,10 @@
 {
     <title>Our IT Services - Software, Web, Mobile, and More for Business</title>
     <meta name="description" content="Explore our IT services, covering custom software, web, mobile apps, UI/UX design, QA, and AI/ML solutions for business. Get high-quality IT solutions today." />
-    <link rel="canonical" href="https://www.avidclan.com/services/" />
+    @*<link rel="canonical" href="https://www.avidclan.com/services/" />*@
     <link rel="stylesheet" href="~/assets/css/Avidclan/services.css" />
     <link rel="stylesheet" href="~/assets/css/intlTelInput.css" />
+    <script src="https://www.google.com/recaptcha/api.js?render=@System.Configuration.ConfigurationManager.AppSettings["reCaptchaPublicKey"]"></script>
 }
 <section class="inner-page">
     <div class="container">
@@ -506,11 +507,10 @@
                             <textarea name="projectbrief" placeholder="" rows="10" id="projectbrief" maxlength="800"></textarea>
                         </div>
 
-                        <div class="col-md-4 form-group">
-                            <label>Please verify you are a human</label>
-                            @Html.Recaptcha()
-                            @*<div class="g-recaptcha" data-sitekey="6Lc7VFgjAAAAAJQuEw_pFI_HgbdU6SVsO5uc4QIt"></div>*@
-                        </div>
+                        @*<div class="col-md-4 form-group">
+                                <label>Please verify you are a human</label>
+                                @Html.Recaptcha()
+                            </div>*@
 
                         <div class="col-md-6 form-group my-auto text-end">
                             <button class="theme-btn btn-style-one" type="submit" name="submit" id="btnSendEmail">
