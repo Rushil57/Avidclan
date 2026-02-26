@@ -33,6 +33,11 @@ namespace Avidclan_Website.Controllers
             parameters.Add("@Mode", 9, DbType.Int32, ParameterDirection.Input);
             parameters.Add("@PageUrl", id, DbType.String, ParameterDirection.Input);
             var MetaDetails = con.Query<Blog>("sp_Blog", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            ViewBag.BlogStatus = MetaDetails.Status;
+            if (ViewBag.BlogStatus == "Draft" && MetaDetails.PageUrl.ToLower() != "ai-water-consumption-500ml-cost")
+            {
+                return HttpNotFound(); // returns 404
+            }
             ViewBag.BlogId = MetaDetails.Id;
             //ViewBag.HtmlData = MetaDetails.Description;
             ViewBag.MetaData = MetaDetails.MetaDescription;

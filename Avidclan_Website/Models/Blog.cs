@@ -24,6 +24,9 @@ namespace Avidclan_Website.Models
 
         public string Questions { get; set; }
         public string Answers { get; set; }
+        public string Status { get; set; }
+
+
     }
     public class BlogViewModel
     {
