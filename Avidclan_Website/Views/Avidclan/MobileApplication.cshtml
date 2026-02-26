@@ -1,6 +1,8 @@
 ﻿
 @{
     ViewBag.Title = "MobileApplication";
+    var context = "@context";
+    var type = "@type";
 }
 @*<title>Mobile App Development Company, Hire Developer</title>*@
 @section AdditionalMeta
@@ -12,7 +14,32 @@
           content="As a hybrid mobile app development company, we deliver enterprise mobile app development services across iOS, Android, and cross-platform for various industries." />
     @*<link rel="canonical" href="https://www.avidclan.com/mobile-app-development-company/" />*@
     <link rel="stylesheet" href="~/assets/css/Avidclan/services.css" />
-
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.avidclan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://www.avidclan.com/services/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Mobile Apps",
+      "item": "https://www.avidclan.com/mobile-app-development-company/"
+    }
+  ]
+}
+    </script>
 }
 <section class="inner-page">
     <div class="container">
@@ -25,7 +52,7 @@
                             Build mobile apps that perform, engage, and scale with confidence.
                         </div>
                         <div class="text mb-3">
-                            Our end-to-end mobile app development services cover strategy, design, development, and post-launch support. You can hire dedicated mobile app developers to bring your product to life with speed, precision, and quality.
+                            As a leading mobile app development company, we create user-centric iOS, Android, and cross-platform applications that combine clean design with powerful functionality.
                         </div>
                         <div class="text mb-3">
                             Our end-to-end mobile app development services cover strategy, design, development, and post-launch support. You can hire dedicated mobile app developers to bring your product to life with speed, precision, and quality.
@@ -73,7 +100,7 @@
                             </ul>
                         </div>
 
-                        
+
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -112,7 +139,7 @@
                             </ul>
                         </div>
 
-                        
+
                     </div>
                 </div>
             </div>
@@ -142,7 +169,7 @@
                             </ul>
                         </div>
 
-                        
+
                     </div>
                 </div>
                 <div class="col-lg-6">

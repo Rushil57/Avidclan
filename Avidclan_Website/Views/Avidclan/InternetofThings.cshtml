@@ -1,6 +1,8 @@
 ﻿
 @{
     ViewBag.Title = "InternetofThings";
+    var context = "@context";
+    var type = "@type";
 }
 
 @*<title>Hire UI/UX Designer from Top Design Company</title>*@
@@ -11,6 +13,32 @@
           content="Choose our IoT development company for custom IoT development services that are both secure and scalable. We build smart solutions that integrate devices and data." />
     @*<link rel="canonical" href="https://www.avidclan.com/iot-service-providers/" />*@
     <link rel="stylesheet" href="~/assets/css/Avidclan/services.css" />
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.avidclan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://www.avidclan.com/services/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "IoT",
+      "item": "https://www.avidclan.com/iot-service-providers/"
+    }
+  ]
+}
+    </script>
 }
 <section class="inner-page">
     <div class="container">
@@ -251,13 +279,13 @@
                     </div>
                 </div>
                 @*<div class="case-block-one masonry-item fe-tech col-4 col-sm-4 col-md-3 col-lg-2">
-                    <div class="inner-box">
-                        <div class="image">
-                            <img src="~/assets/images/icons/cucumber.svg" alt="cucumber" />
+                        <div class="inner-box">
+                            <div class="image">
+                                <img src="~/assets/images/icons/cucumber.svg" alt="cucumber" />
+                            </div>
+                            <h5 class="mt-2 fs-6">HomeKit ios</h5>
                         </div>
-                        <h5 class="mt-2 fs-6">HomeKit ios</h5>
-                    </div>
-                </div>*@
+                    </div>*@
                 <div class="case-block-one masonry-item mobile-tech col-4 col-sm-4 col-md-3 col-lg-2">
                     <div class="inner-box">
                         <div class="image">

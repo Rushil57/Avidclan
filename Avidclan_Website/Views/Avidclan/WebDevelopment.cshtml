@@ -1,6 +1,8 @@
 ﻿
 @{
     ViewBag.Title = "WebDevelopment";
+    var context = "@context";
+    var type = "@type";
 }
 @section AdditionalMeta
 {
@@ -10,6 +12,32 @@
     @*<link rel="canonical" href="https://www.avidclan.com/web-development-company/" />*@
     <link rel="stylesheet" href="~/assets/css/Avidclan/services.css" />
     <link href="~/assets/css/Avidclan/home_old.css" rel="stylesheet" />
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.avidclan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://www.avidclan.com/services/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Web Development",
+      "item": "https://www.avidclan.com/web-development-company/"
+    }
+  ]
+}
+    </script>
 }
 <section class="inner-page">
     <div class="container">
@@ -97,7 +125,7 @@
                             We offer full-stack development services that cover both front-end and back-end—ensuring complete control over your web application. As a custom web development company, we build robust, scalable solutions using modern frameworks, APIs, and databases. <a class="fw-semibold primary-color" href="/hire-custom-software-developers/">Hire our custom software developers </a>to ensure seamless integration, high performance, and scalability—delivering reliable digital solutions that meet complex business needs.
 
                         </p>
-                        
+
                         <div class="service-list">
                             <ul>
                                 <li>Frontend & Backend Development</li>
@@ -161,7 +189,7 @@
                             PWAs combine the best of web and mobile apps—fast, reliable, and installable across any device. As a professional web development company, we build progressive web apps that work offline, load instantly, and deliver a native-app-like experience. Ideal for businesses that want speed, reach, and user engagement without the cost of traditional mobile development.
 
                         </p>
-                      
+
                         <div class="service-list">
                             <ul>
                                 <li> Offline-First Web Applications</li>
@@ -225,7 +253,7 @@
                             Content should move as fast as your business. We develop custom CMS solutions that are flexible, secure, and easy to manage—giving your team full control without relying on developers. From marketing websites to large-scale content platforms, our CMS development services streamline publishing and support growth across multiple channels.
 
                         </p>
-                        
+
                         <div class="service-list">
                             <ul>
                                 <li>Custom CMS Architecture & Development</li>

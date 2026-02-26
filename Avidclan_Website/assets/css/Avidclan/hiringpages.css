@@ -1775,7 +1775,7 @@ label.error {
     display: flex;
     align-items: flex-start;
     padding: 4px 12px;
-    /*align-items: center;*/
+    align-items: center;
     gap: 12px;
     border-radius: 8px;
     background: var(--Secondary, #142149);

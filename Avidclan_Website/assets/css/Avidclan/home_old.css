@@ -1465,8 +1465,8 @@ ul.list-unstyled li a {
 }
 
 .company_box {
-    width: 600px !important;
-    transform: translate(-280px)
+    width: 720px !important;
+    transform: translate(-370px)
 }
 
 .owl-next, .owl-prev {
@@ -2042,20 +2042,19 @@ a.nav-link.btn.btn-primary.fw-bold.rounded-5.custom-btn-padding.shadow-none {
         padding-top: 0 !important;
     }
 }
+
 @media (max-width: 1138px) and (min-width: 767px) {
     .author-section-top-padding {
         padding-top: 100px !important;
     }
 }
+
 @media (max-width: 991px) and (min-width: 768px) {
-    .main-footer .row.pt-4.border-top > div
-
-{
-    width: 100% !important;
-    flex: 0 0 100% !important;
-    max-width: 100% !important;
-}
-
+    .main-footer .row.pt-4.border-top > div {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
 }
 /* Desktop only: make right side sticky */
 @media (min-width: 992px) {
@@ -2071,5 +2070,17 @@ a.nav-link.btn.btn-primary.fw-bold.rounded-5.custom-btn-padding.shadow-none {
     .sticky-author-box {
         position: static !important;
         top: auto !important;
+    }
+}
+
+.custom-padding-top-pr2025 {
+    /* Default: small to 1139.99px */
+    padding-top: 100px;
+}
+
+@media (min-width: 1140px) {
+    /* 1140px and bigger */
+    .custom-padding-top-pr2025 {
+        padding-top: 30px;
     }
 }

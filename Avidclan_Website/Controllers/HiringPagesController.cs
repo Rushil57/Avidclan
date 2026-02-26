@@ -9,7 +9,7 @@ namespace Avidclan_Website.Controllers
     public class HiringPagesController : Controller
     {
         // GET: HiringPages
-       
+
         [Route("hire-dot-net-developers/")]
         public ActionResult HiredotNetDevelopers()
         {
@@ -49,6 +49,18 @@ namespace Avidclan_Website.Controllers
         }
         [Route("hire-custom-software-developers/")]
         public ActionResult HireCustomSoftwareDevelopers()
+        {
+            return View();
+        }
+
+        [Route("hire-mobile-app-developers/")]
+        public ActionResult HireMobileAppDevelopers()
+        {
+            return View();
+        }
+
+        [Route("hire-web-app-developers/")]
+        public ActionResult HireWebAppDevelopers()
         {
             return View();
         }

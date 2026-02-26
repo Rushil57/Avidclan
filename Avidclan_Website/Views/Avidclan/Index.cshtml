@@ -4,37 +4,50 @@
     var type = "@type";
     var id = "@id";
     var graph = "@graph";
+    var twitterHandle = "@AvidclanT";
     Layout = "~/Views/Shared/_Layoutonlyhome.cshtml";
     Layout = Layout.Trim();
 }
 
 @section AdditionalMeta
 {
-    <meta property="og:url" content="https://www.avidclan.com/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Software and Website Development Company | Avidclan Technologies" />
-    <meta property="og:description" content="As a dedicated software and website development company, we delivers custom software, web and mobile app development, UI/UX design, QA, IoT, and AI/ML solutions." />
-    <meta property="og:image" content="https://www.avidclan.com/assets/images/logo.svg" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://twitter.com/AvidclanT" />
-    <meta name="twitter:title" content="Software and Website Development Company | Avidclan Technologies" />
-    <meta name="twitter:description" content="As a dedicated software and website development company, we delivers custom software, web and mobile app development, UI/UX design, QA, IoT, and AI/ML solutions." />
-    <meta name="twitter:image" content=" https://twitter.com/AvidclanT/header_photo " />
-
     <title>Software and Website Development Company | Avidclan Technologies</title>
-    <meta name="description" content="As a dedicated software and website development company, we delivers custom software, web and mobile app development, UI/UX design, QA, IoT, and AI/ML solutions." />
+    <meta name="description" content="As a dedicated software and website development company, we deliver custom software, web and mobile app development, UI/UX design, QA, IoT, and AI/ML solutions." />
     <link rel="canonical" href="https://www.avidclan.com/" />
+    <meta name="robots" content="index,follow">
 
+    <!-- Open Graph -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Avidclan Technologies">
+    <meta property="og:title" content="Software and Website Development Company | Avidclan Technologies">
+    <meta property="og:description" content="As a dedicated software and website development company, we deliver custom software, web and mobile app development, UI/UX design, QA, IoT, and AI/ML solutions.">
+    <meta property="og:url" content="https://www.avidclan.com/">
+    <meta property="og:image" content="https://www.avidclan.com/assets/images/avidclan_logo.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Avidclan Technologies">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://x.com/AvidclanT" />
+    <meta name="twitter:site" content="@twitterHandle">
+    <meta name="twitter:title" content="Software and Website Development Company | Avidclan Technologies">
+    <meta name="twitter:description" content="As a dedicated software and website development company, we deliver custom software, web and mobile app development, UI/UX design, QA, IoT, and AI/ML solutions.">
+    <meta name="twitter:image" content="https://x.com/AvidclanT/header_photo">
+
+    <!-- Schema Codes-->
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-        "@context": "https://schema.org",
         "@type": "Corporation",
         "name": "Avidclan Technologies",
         "alternateName": "Avidclan Technologies",
         "url": "https://www.avidclan.com/",
-        "logo": "https://www.avidclan.com/assets/images/logo.svg",
+        "logo": "https://www.avidclan.com/assets/images/avidclan_logo.svg",
         "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "955-845-0670",
@@ -44,20 +57,16 @@
         },
         "sameAs": [
         "https://www.facebook.com/avidclan/",
-        "https://twitter.com/AvidclanT",
+        "https://x.com/AvidclanT",
         "https://www.instagram.com/avidclan_technologies/",
         "https://www.linkedin.com/company/avidclan-technologies/",
         "https://www.tumblr.com/blog/avidclan-technologies/"
         ]
-    }
-    </script>
-
-    <script type="application/ld+json">
+    },
     {
-      "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Avidclan Technologies",
-      "image": "https://www.avidclan.com/assets/images/logo.svg",
+      "image": "https://www.avidclan.com/assets/images/avidclan_logo.svg",
       "email": "solutions@avidclan.com",
       "@id": "https://www.avidclan.com/",
       "url": "https://www.avidclan.com/",
@@ -65,7 +74,7 @@
       "priceRange": "$$$",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "1206, Shivalik Shilp, Iskcon Cross Roads, S.G. Highway",
+        "streetAddress": "1314, Shivalik Shilp, Iskcon Cross Roads, S.G. Highway",
         "addressLocality": "Ahmedabad",
         "postalCode": "380015",
         "addressCountry": "IN"
@@ -89,22 +98,18 @@
       },
      "sameAs": [
         "https://www.facebook.com/avidclan/",
-        "https://twitter.com/AvidclanT",
+        "https://x.com/AvidclanT",
         "https://www.instagram.com/avidclan_technologies/",
         "https://www.linkedin.com/company/avidclan-technologies/",
         "https://www.tumblr.com/blog/avidclan-technologies/"
       ]
-    }
-
-    </script>
-    <script type="application/ld+json">
+    },
 {
-  "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Avidclan Technologies",
   "alternateName": "Avidclan Technologies",
   "url": "https://www.avidclan.com/",
-  "logo": "https://www.avidclan.com/assets/images/logo.svg",
+  "logo": "https://www.avidclan.com/assets/images/avidclan_logo.svg",
   "description": "As a dedicated software and website development company, we delivers custom software, web and mobile app development, UI/UX design, QA, IoT, and AI/ML solutions.",
   "founder": [{
 		"@type": "Person",
@@ -125,13 +130,72 @@
 },
   "sameAs": [
     "https://www.facebook.com/avidclan/",
-    "https://twitter.com/AvidclanT",
+    "https://x.com/AvidclanT",
     "https://www.instagram.com/avidclan_technologies/",
     "https://www.linkedin.com/company/avidclan-technologies/",
     "https://www.tumblr.com/blog/avidclan-technologies/"
   ]
+
+},
+
+     {
+      "@type": "Service",
+      "@id": "https://www.avidclan.com/web-development-company/",
+      "name": "Web Development",
+      "serviceType": "Custom Web Development Services",
+      "url": "https://www.avidclan.com/web-development-company/",
+      "description": "As a leading custom web development company, we offer top website development services. Get high-performance, responsive, and visually stunning websites and apps."
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://www.avidclan.com/mobile-app-development-company/",
+      "name": "Mobile Apps",
+      "serviceType": "iOS and Android Mobile Application Development",
+      "url": "https://www.avidclan.com/mobile-app-development-company/",
+      "description": "As a hybrid mobile app development company, we deliver enterprise mobile app development services across iOS, Android, and cross-platform for various industries."
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://www.avidclan.com/ui-ux-design-company/",
+      "name": "UI/UX Design",
+      "serviceType": "Product UI/UX Design and Prototyping",
+      "url": "https://www.avidclan.com/ui-ux-design-company/",
+      "description": "As the best UI/UX design company, we specialize in mobile app UI/UX design services. We create seamless, engaging, and visually stunning interfaces for applications."
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://www.avidclan.com/quality-assurance-services/",
+      "name": "QA",
+      "serviceType": "Manual and Automation QA Testing",
+      "url": "https://www.avidclan.com/quality-assurance-services/",
+      "description": "As a trusted quality assurance company, we deliver top-tier manual and automated software testing services. Ensure your software is bug-free, and performs flawlessly."
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://www.avidclan.com/iot-service-providers/",
+      "name": "IoT",
+      "serviceType": "Internet of Things Solutions",
+      "url": "https://www.avidclan.com/iot-service-providers/",
+      "description": "Choose our IoT development company for custom IoT development services that are both secure and scalable. We build smart solutions that integrate devices and data."
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://www.avidclan.com/ai-development-company",
+      "name": "Artificial Intelligence",
+      "serviceType": "AI Engineering and Automation",
+      "url": "https://www.avidclan.com/ai-development-company",
+      "description": "Looking for a top AI development company? Our custom AI development services use machine learning, computer vision, and NLP to transform your business."
+    }
+
+  ]
 }
     </script>
+
 }
 
 <!--start Banner Section-->
@@ -164,7 +228,7 @@
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12">
                     <div class="d-flex justify-content-center align-items-center">
-                        <img loading="lazy" decoding="async" src="~/assets/images/imagenew/dev.svg" width="400" height="400" alt="Website Development" class="img-fluid responsive-img-hide" />
+                        <img decoding="async" src="~/assets/images/imagenew/dev.svg" width="400" height="400" alt="Website Development" class="img-fluid responsive-img-hide" />
                     </div>
                 </div>
             </div>
@@ -173,7 +237,7 @@
 </section>
 <!--End Banner Section-->
 
-<section class="py-5">
+<section class="pt-5 pb-4">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center mb-4">
@@ -318,6 +382,16 @@
                 </div>
             </a>
 
+            <a href="https://businessfirms.co/company/avidclan-technologies" target="_blank">
+                <div class="carousel_box px-sm-4 px-2 mx-auto">
+                    <div width="160" class="mx-auto slider_height bg-white shadow-sm">
+                        <img loading="lazy" width="120" height="125" src="~/assets/images/badges/bfirms-certified.png" alt="BFirms Compony" />
+                    </div>
+                    <div class="line_bottom my-3 mx-auto background-primary"></div>
+                    <p>BusinessFirms Verified Company 2025</p>
+                </div>
+            </a>
+
             <a href="https://clutch.co/profile/avidclan-technologies" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
@@ -337,7 +411,7 @@
                     <p>Top Web Design Agency 2024</p>
                 </div>
             </a>
-            
+
             <a href="https://www.topdevelopers.co/profile/avidclan-technologies" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
@@ -398,7 +472,7 @@
                 </div>
             </a>
 
-            <a href="https://technewscast.io/web-development/" target="_blank">
+            <a href="https://technewscast.io/company/avidclan/" target="_blank">
                 <div class="carousel_box px-sm-4 px-2 mx-auto">
                     <div width="160" class="mx-auto slider_height bg-white shadow-sm">
                         <img loading="lazy" width="120" height="125" src="/assets/images/badges/Top_Web_Development_Company_2025.jpg" alt="Badge TNC">
@@ -415,7 +489,7 @@
                     <div class="line_bottom my-3 mx-auto background-primary"></div>
                     <p>Follow Us on Intently</p>
                 </div>
-            </a>    
+            </a>
         </div>
     </div>
 </section>
@@ -548,7 +622,7 @@
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-4 col-xl-5 text-center text-lg-end">
-                 
+
                     <div class="btn-box mt-3">
                         <a href="~/contact-us/"
                            target="_blank"
@@ -572,7 +646,7 @@
     </div>
 </section>
 
-<section class="services-section-four custom-bg homesec">
+<section class="services-section-four custom-bg homesec" style="padding-top:150px;">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
@@ -592,7 +666,7 @@
             </div>
         </div>
         <div class="row d-flex flex-wrap">
-            <div class="col-md-6 col-lg-4 col-sm-12 mb-5">
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-md-5">
                 <div class="service-block h-100 mb-5">
                     <div class="inner-box bg-white py-3 px-5 rounded-3 h-100 d-flex flex-column">
                         <div class="image-box text-center">
@@ -638,7 +712,7 @@
 
             <!-- Repeat similar structure for other 5 cards -->
 
-            <div class="col-md-6 col-lg-4 col-sm-12 mb-5">
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-md-5">
                 <div class="service-block h-100 mb-5">
                     <div class="inner-box bg-white py-3 px-5 rounded-3 h-100 d-flex flex-column">
                         <div class="image-box text-center">
@@ -672,7 +746,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-4 col-sm-12 mb-5">
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-md-5">
                 <div class="service-block h-100 mb-5">
                     <div class="inner-box bg-white py-3 px-5 rounded-3 h-100 d-flex flex-column">
                         <div class="image-box text-center">
@@ -706,7 +780,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-4 col-sm-12 mb-5">
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-md-5">
                 <div class="service-block h-100 mb-5">
                     <div class="inner-box bg-white py-3 px-5 rounded-3 h-100 d-flex flex-column">
                         <div class="image-box text-center">
@@ -741,7 +815,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-4 col-sm-12 mb-5">
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-md-5">
                 <div class="service-block h-100 mb-5">
                     <div class="inner-box bg-white py-3 px-5 rounded-3 h-100 d-flex flex-column">
                         <div class="image-box text-center">
@@ -775,7 +849,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-4 col-sm-12 mb-5">
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-md-5">
                 <div class="service-block h-100 mb-5">
                     <div class="inner-box bg-white py-3 px-5 rounded-3 h-100 d-flex flex-column">
                         <div class="image-box text-center">
@@ -812,7 +886,7 @@
     </div>
 </section>
 
-<section class="industry-serve py-5">
+<section class="industry-serve py-4">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
@@ -961,7 +1035,7 @@
                     <a class="inner-box py-4 px-1  text-center d-block"
                        href="~/reactjs-development-services/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" src="~/assets/images/imagenew/react-native.svg" alt="react-native-app-development">
+                            <img loading="lazy" src="~/assets/images/imagenew/react-native.svg" alt="react-js-development">
                         </div>
                         <p class="text-decoration-none mt-2">React Js</p>
                     </a>
@@ -1051,7 +1125,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/ios-app-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" src="~/assets/images/imagenew/ios.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/ios.svg" alt="ios mobile">
                         </div>
                         <p class="text-decoration-none mt-2">IOS</p>
                     </a>
@@ -1061,7 +1135,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/android-app-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" src="~/assets/images/imagenew/android.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/android.svg" alt="android-app-development">
                         </div>
                         <p class="text-decoration-none mt-2">Android</p>
                     </a>
@@ -1071,7 +1145,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/react-native-app-development/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" src="~/assets/images/imagenew/react-native.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/react-native.svg" alt="react-native-app-development">
                         </div>
                         <p class="text-decoration-none mt-2">React Native</p>
                     </a>
@@ -1081,7 +1155,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/flutter-app-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" src="~/assets/images/imagenew/flutter.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/flutter.svg" alt="flutter-development">
                         </div>
                         <p class="text-decoration-none mt-2">Flutter</p>
                     </a>
@@ -1091,7 +1165,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/ionic-app-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" src="~/assets/images/imagenew/ionic.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/ionic.svg" alt="ionic-development">
                         </div>
                         <p class="text-decoration-none mt-2">Ionic</p>
                     </a>
@@ -1101,7 +1175,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/xamarin-app-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" src="~/assets/images/imagenew/xamarin.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/xamarin.svg" alt="xamarin-development">
                         </div>
                         <p class="text-decoration-none mt-2">Xamarin</p>
                     </a>
@@ -1113,7 +1187,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/microsoft-sql-server-manage/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" src="~/assets/images/imagenew/sql-server.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/sql-server.svg" alt="mssql-development">
                         </div>
                         <p class="text-decoration-none mt-2">MS SQL</p>
                     </a>
@@ -1123,7 +1197,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/mysql-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" src="~/assets/images/imagenew/mysql.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/mysql.svg" alt="mysql database">
                         </div>
                         <p class="text-decoration-none mt-2">MySQL</p>
                     </a>
@@ -1133,7 +1207,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/mongodb-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" src="~/assets/images/imagenew/mongodb.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/mongodb.svg" alt="mongo db img">
                         </div>
                         <p class="text-decoration-none mt-2">Mongo DB</p>
                     </a>
@@ -1143,7 +1217,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/postgresql-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" src="~/assets/images/imagenew/postgresql.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/postgresql.svg" alt="PostgreSQL-development">
                         </div>
                         <p class="text-decoration-none mt-2">PostgreSQL</p>
                     </a>
@@ -1153,7 +1227,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/firebase-development-company/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" src="~/assets/images/imagenew/firebase.svg" />
+                            <img loading="lazy" src="~/assets/images/imagenew/firebase.svg" alt="ios mobile" />
                         </div>
                         <p class="text-decoration-none mt-2">Firebase</p>
                     </a>
@@ -1163,7 +1237,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/redis-development/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" src="~/assets/images/imagenew/redis.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/redis.svg" alt="redis-development">
                         </div>
                         <p class="text-decoration-none mt-2">Redis</p>
                     </a>
@@ -1173,7 +1247,7 @@
                     <a class="inner-box py-4 px-1 text-center d-block"
                        href="~/microsoft-azure-cosmos-db/">
                         <div class="image overflow-hidden rounded">
-                            <img loading="lazy" src="~/assets/images/imagenew/azure-cosmos-DB.svg">
+                            <img loading="lazy" src="~/assets/images/imagenew/azure-cosmos-DB.svg" alt="azure cosmos">
                         </div>
                         <p class="text-decoration-none mt-2">Azure Cosmos DB</p>
                     </a>
@@ -1183,8 +1257,158 @@
     </div>
 </section>
 
-<section class="testimonial-section-two">
+@*<section class="testimonial-section-two">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="text-center mb-3 mb-md-5">
+                        <div class="line-heading d-flex align-items-center justify-content-center gap-3 mb-3">
+                            <h5 class="primary-color fw-semibold d-inline-block text-uppercase mb-0">TESTIMONIAL</h5>
+                        </div>
+                        <div class="sec-title">
+                            <h2 class="fs-1 fw-custom pb-2 pb-md-3">What Our Clients Say</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cinkes_testimonial_spage_wrapper">
+                <div class="swiper-container cinkes_testimonial_spage_active">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide testimonial-item">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    Skillfuly accomplished the complex development tasks. Team was available for discussion on changes
+                                    or requests. It was a great pleasure to work with the Avidclan Technologies team.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/1.jpg" alt="Darpon" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Darpon K.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">CEO & Founder</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide testimonial-item">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    We have worked with the team many times over different projects in the last few years, and always
+                                    value having them working with us. They are great communicators and the quality of work is
+                                    excellent.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img loading="lazy" width="85" height="85" class="  rounded-circle" src="~/assets/images/user/2.jpg" alt="Tom" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Tom A.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">Technical Director</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide testimonial-item">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    Avidclan Technologies did a splendid job building our UI and frontend exactly the way we wanted. They
+                                    understood the requirements very well and delivered well ahead of time.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/3.jpg" alt="Gregoire" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Gregoire P.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">Managing director</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide testimonial-item">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    Team communicates very well and adheres to deadlines, even getting work done early. They take time
+                                    to perfect their work and made sure that we were fully satisfied with the quality of work.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/4.jpg" alt="Nicolas" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Nicolas P.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">Web Designer</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide testimonial-item">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    Fantastic skills and the development team has got a great eye for detail and accuracy and they
+                                    were very easy to work with.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/5.jpg" alt="Sanuka" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Sanuka S.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">Sales Manager</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                            <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <button class="custom-swiper-prev left-aroow-radius"><</button>
+                    <button class="custom-swiper-next right-aroow-radius">></button>
+                </div>
+
+            </div>
+        </div>
+    </section>*@
+
+<section class="testimonial-section-two py-5">
     <div class="container">
+
         <div class="row">
             <div class="col-xl-12">
                 <div class="text-center mb-3 mb-md-5">
@@ -1197,140 +1421,187 @@
                 </div>
             </div>
         </div>
-        <div class="cinkes_testimonial_spage_wrapper">
-            <div class="swiper-container cinkes_testimonial_spage_active">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide testimonial-item">
-                        <div class="cinkes_testimonial_spage_content">
-                            <p class="cinkes_testimonial_spage_message">
-                                Skillfuly accomplished the complex development tasks. Team was available for discussion on changes
-                                or requests. It was a great pleasure to work with the Avidclan Technologies team.
-                            </p>
-                            <div class="cinkes_testimonial_spage_author mt-35">
-                                <span class="cinkes_testimonial_spage_author_img">
-                                    <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/1.jpg" alt="Darpon" />
-                                </span>
-                                <div class="cinkes_testimonial_spage_author_text">
-                                    <b class="cinkes_testimonial_spage_author_name">Darpon K.</b><br />
-                                    <span class="cinkes_testimonial_spage_author_designation">CEO & Founder</span>
-                                    <div class="cinkes_testimonial_spage_author_rating text-primary">
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+        <div class="row g-4">
+
+            <!-- Video 1 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                <div class="video-card">
+
+                    <!-- PLAY IMAGE -->
+                    <div class="video-play-overlay">
+                        <img src="~/assets/videos/play.svg" alt="Play" class="play-img">
                     </div>
-                    <div class="swiper-slide testimonial-item">
-                        <div class="cinkes_testimonial_spage_content">
-                            <p class="cinkes_testimonial_spage_message">
-                                We have worked with the team many times over different projects in the last few years, and always
-                                value having them working with us. They are great communicators and the quality of work is
-                                excellent.
-                            </p>
-                            <div class="cinkes_testimonial_spage_author mt-35">
-                                <span class="cinkes_testimonial_spage_author_img">
-                                    <img loading="lazy" width="85" height="85" class="  rounded-circle" src="~/assets/images/user/2.jpg" alt="Tom" />
-                                </span>
-                                <div class="cinkes_testimonial_spage_author_text">
-                                    <b class="cinkes_testimonial_spage_author_name">Tom A.</b><br />
-                                    <span class="cinkes_testimonial_spage_author_designation">Technical Director</span>
-                                    <div class="cinkes_testimonial_spage_author_rating text-primary">
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide testimonial-item">
-                        <div class="cinkes_testimonial_spage_content">
-                            <p class="cinkes_testimonial_spage_message">
-                                Avidclan Technologies did a splendid job building our UI and frontend exactly the way we wanted. They
-                                understood the requirements very well and delivered well ahead of time.
-                            </p>
-                            <div class="cinkes_testimonial_spage_author mt-35">
-                                <span class="cinkes_testimonial_spage_author_img">
-                                    <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/3.jpg" alt="Gregoire" />
-                                </span>
-                                <div class="cinkes_testimonial_spage_author_text">
-                                    <b class="cinkes_testimonial_spage_author_name">Gregoire P.</b><br />
-                                    <span class="cinkes_testimonial_spage_author_designation">Managing director</span>
-                                    <div class="cinkes_testimonial_spage_author_rating text-primary">
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide testimonial-item">
-                        <div class="cinkes_testimonial_spage_content">
-                            <p class="cinkes_testimonial_spage_message">
-                                Team communicates very well and adheres to deadlines, even getting work done early. They take time
-                                to perfect their work and made sure that we were fully satisfied with the quality of work.
-                            </p>
-                            <div class="cinkes_testimonial_spage_author mt-35">
-                                <span class="cinkes_testimonial_spage_author_img">
-                                    <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/4.jpg" alt="Nicolas" />
-                                </span>
-                                <div class="cinkes_testimonial_spage_author_text">
-                                    <b class="cinkes_testimonial_spage_author_name">Nicolas P.</b><br />
-                                    <span class="cinkes_testimonial_spage_author_designation">Web Designer</span>
-                                    <div class="cinkes_testimonial_spage_author_rating text-primary">
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide testimonial-item">
-                        <div class="cinkes_testimonial_spage_content">
-                            <p class="cinkes_testimonial_spage_message">
-                                Fantastic skills and the development team has got a great eye for detail and accuracy and they
-                                were very easy to work with.
-                            </p>
-                            <div class="cinkes_testimonial_spage_author mt-35">
-                                <span class="cinkes_testimonial_spage_author_img">
-                                    <img loading="lazy" width="85" height="85" class="rounded-circle" src="~/assets/images/user/5.jpg" alt="Sanuka" />
-                                </span>
-                                <div class="cinkes_testimonial_spage_author_text">
-                                    <b class="cinkes_testimonial_spage_author_name">Sanuka S.</b><br />
-                                    <span class="cinkes_testimonial_spage_author_designation">Sales Manager</span>
-                                    <div class="cinkes_testimonial_spage_author_rating text-primary">
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                        <img loading="lazy" src="~/assets/images/imagenew/star-fill (1).svg" alt="Star" width="17" height="17" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    <video class="w-100 rounded-4 custom-video"
+                           controls
+                           preload="none"
+                           poster="~/assets/videos/Clinton L review.png">
+                        <source src="~/assets/videos/Clinton L review.mp4" type="video/mp4">
+                    </video>
+
+                    <div class="video-click-layer"></div>
                 </div>
             </div>
-            <div class="slider-controls">
-                <button class="custom-swiper-prev left-aroow-radius"><</button>
-                <button class="custom-swiper-next right-aroow-radius">></button>
+
+            <!-- Video 2 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                <div class="video-card">
+
+                    <div class="video-play-overlay">
+                        <img src="~/assets/videos/Play.svg" alt="Play" class="play-img">
+                    </div>
+
+                    <video class="w-100 rounded-4 custom-video"
+                           controls
+                           preload="none"
+                           poster="~/assets/videos/Dave M review.jpg">
+                        <source src="~/assets/videos/Dave M review.mp4" type="video/mp4">
+                    </video>
+
+                    <div class="video-click-layer"></div>
+                </div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                <div class="video-card">
+
+                    <div class="video-play-overlay">
+                        <img src="~/assets/videos/Play.svg" alt="Play" class="play-img">
+                    </div>
+
+                    <video class="w-100 rounded-4 custom-video"
+                           controls
+                           preload="none"
+                           poster="~/assets/videos/Alec R review.jpg">
+                        <source src="~/assets/videos/Alec R review.mp4" type="video/mp4">
+                    </video>
+
+                    <div class="video-click-layer"></div>
+                </div>
             </div>
 
         </div>
     </div>
 </section>
+
+
+<!-- CSS -->
+<style>
+    .video-card {
+        background: #fff;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        position: relative;
+    }
+
+        .video-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+
+        .video-card video {
+            display: block;
+            cursor: pointer;
+        }
+
+    .video-click-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        z-index: 5;
+        background: transparent;
+    }
+
+    .custom-video {
+        position: relative;
+        z-index: 10;
+    }
+
+    /* Play Image Overlay */
+    .video-play-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 20;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+    }
+
+        .video-play-overlay .play-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0.95;
+        }
+
+        .video-play-overlay.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+</style>
+
+
+<!-- JS -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const cards = document.querySelectorAll('.video-card');
+
+        cards.forEach(card => {
+            const video = card.querySelector('.custom-video');
+            const layer = card.querySelector('.video-click-layer');
+            const playImage = card.querySelector('.video-play-overlay');
+
+            const showPlay = () => {
+                playImage.classList.remove('hide');
+            };
+
+            const hidePlay = () => {
+                playImage.classList.add('hide');
+            };
+
+            layer.addEventListener('click', function () {
+                if (video.paused) {
+                    video.play();
+                    hidePlay();
+                } else {
+                    video.pause();
+                    showPlay();
+                }
+            });
+
+            playImage.addEventListener('click', function () {
+                video.play();
+                hidePlay();
+            });
+
+            video.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                if (video.paused) {
+                    video.play();
+                    hidePlay();
+                } else {
+                    video.pause();
+                    showPlay();
+                }
+            });
+
+            video.addEventListener('ended', function () {
+                showPlay();
+            });
+        });
+
+    });
+</script>
 
 
 
