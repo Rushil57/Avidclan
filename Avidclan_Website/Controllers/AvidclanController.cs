@@ -24,7 +24,7 @@ namespace Avidclan_Website.Controllers
 
         string connectionString = ConfigurationManager.ConnectionStrings["DbEntities"].ToString();
         SqlConnection con;
-        private static string ImageServerUrl = "https://images.weserv.nl/?url=";
+        //private static string ImageServerUrl = "https://images.weserv.nl/?url=";
         public AvidclanController()
         {
             con = new SqlConnection(connectionString);
@@ -541,7 +541,7 @@ namespace Avidclan_Website.Controllers
                     //thumbnailImageString.StartsWith("http")
                     if (thumbnailImageString.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                     {
-                        thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString : ImageServerUrl + thumbnailImageString;
+                        thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString :  thumbnailImageString;
                     }
 
                     Blog blog = new Blog();
@@ -592,7 +592,7 @@ namespace Avidclan_Website.Controllers
                     var thumbnailImageCDN = thumbnailImageString;
                     if (thumbnailImageString.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                     {
-                        thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString : ImageServerUrl + thumbnailImageString;
+                        thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString : thumbnailImageString;
                     }
 
                     Blog blog = new Blog();
@@ -636,7 +636,7 @@ namespace Avidclan_Website.Controllers
                     var thumbnailImageCDN = thumbnailImageString;
                     if (thumbnailImageString.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                     {
-                        thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString : ImageServerUrl + thumbnailImageString;
+                        thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString : thumbnailImageString;
                     }
 
                     Blog blog = new Blog();
@@ -680,7 +680,7 @@ namespace Avidclan_Website.Controllers
                     var thumbnailImageCDN = thumbnailImageString;
                     if (thumbnailImageString.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                     {
-                        thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString : ImageServerUrl + thumbnailImageString;
+                        thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString : thumbnailImageString;
                     }
 
                     Blog blog = new Blog();
@@ -760,7 +760,7 @@ namespace Avidclan_Website.Controllers
 
                     if (thumbnailImageString.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                     {
-                        thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString : ImageServerUrl + thumbnailImageString;
+                        thumbnailImageCDN = thumbnailImageString.Contains("localhost") ? thumbnailImageString :  thumbnailImageString;
                     }
                     bloglist[i].Image = thumbnailImageCDN;
                 }
@@ -797,7 +797,7 @@ namespace Avidclan_Website.Controllers
                     var thumbnailImageCDN = item.Image;
                     if (item.Image.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                     {
-                        thumbnailImageCDN = item.Image.Contains("localhost") ? item.Image : ImageServerUrl + item.Image;
+                        thumbnailImageCDN = item.Image.Contains("localhost") ? item.Image : item.Image;
                     }
 
                     listBlog.Add(new Blog
