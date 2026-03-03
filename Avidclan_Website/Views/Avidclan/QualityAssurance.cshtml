@@ -1,15 +1,45 @@
 ﻿
 @{
     ViewBag.Title = "QualityAssurance";
+    var context = "@context";
+    var type = "@type";
+}
 }
 @*<title>Hire UI/UX Designer from Top Design Company</title>*@
 @section AdditionalMeta
 {
-    <title>Automated Software Testing Services | Quality Assurance Company</title>
+    <title>Automated Software Testing & QA Services</title>
+
     <meta name="description"
           content="As a trusted quality assurance company, we deliver top-tier manual and automated software testing services. Ensure your software is bug-free, and performs flawlessly." />
     @*<link rel="canonical" href="https://www.avidclan.com/quality-assurance-services/" />*@
     <link rel="stylesheet" href="~/assets/css/Avidclan/services.css" />
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.avidclan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://www.avidclan.com/services/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "QA",
+      "item": "https://www.avidclan.com/quality-assurance-services/"
+    }
+  ]
+}
+    </script>
 }
 <section class="inner-page">
     <div class="container">

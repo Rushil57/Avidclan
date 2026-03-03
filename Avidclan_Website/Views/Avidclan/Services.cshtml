@@ -1,16 +1,38 @@
 ﻿@using reCAPTCHA.MVC
 @{
     ViewBag.Title = "Services";
+    var context = "@context";
+    var type = "@type";
 }
 @*<title>Top Software, Web & Mobile App Development Company in India</title>*@
 @section AdditionalMeta
 {
-    <title>Our IT Services - Software, Web, Mobile, and More for Business</title>
+    <title>IT Services: Software, Web & Mobile Solutions</title>
     <meta name="description" content="Explore our IT services, covering custom software, web, mobile apps, UI/UX design, QA, and AI/ML solutions for business. Get high-quality IT solutions today." />
     @*<link rel="canonical" href="https://www.avidclan.com/services/" />*@
     <link rel="stylesheet" href="~/assets/css/Avidclan/services.css" />
     <link rel="stylesheet" href="~/assets/css/intlTelInput.css" />
     <script src="https://www.google.com/recaptcha/api.js?render=@System.Configuration.ConfigurationManager.AppSettings["reCaptchaPublicKey"]"></script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.avidclan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://www.avidclan.com/services/"
+    }
+  ]
+}
+    </script>
 }
 <section class="inner-page">
     <div class="container">
@@ -354,7 +376,7 @@
         <div class="section-view">
             <div class="row g-0">
                 <div class="col-lg-6">
-                    <img src="~/assets/images/Ai-ML-development.png" class="img-fluid ser_img" alt="ai-ml-development-company" />
+                    <img src="~/assets/images/Ai-ML-development.webp" class="img-fluid ser_img" alt="ai-ml-development-company" />
                 </div>
                 <div class="col-lg-6">
                     <div class="sec-title ps-5 pe-5 pt-5">
@@ -512,7 +534,7 @@
                                 @Html.Recaptcha()
                             </div>*@
 
-                        <div class="col-md-6 form-group my-auto text-end">
+                        <div class="col-md-12 form-group my-auto text-center">
                             <button class="theme-btn btn-style-one" type="submit" name="submit" id="btnSendEmail">
                                 <span class="btn-title">
                                     Let's Talk

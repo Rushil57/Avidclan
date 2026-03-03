@@ -1,55 +1,76 @@
 ﻿
 @{
     ViewBag.Title = "LifeAtAvidclan";
+    var placeholder = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
 }
 
-@*<title>Top Software, Web & Mobile App Development Company in India</title>*@
 @section AdditionalMeta
 {
-    <title>A Glimpse of Life at Avidclan Technologies | Join Our Innovative Team</title>
-    <meta name="description" content="Explore the vibrant work culture at Avidclan Technologies, where growth, creativity, collaboration, and enjoyment drive our endeavors. Take your career to new heights with us." />
+    <title>Life at Avidclan: Join Our Innovative Team</title>
+
+    <meta name="description"
+          content="Explore the vibrant work culture at Avidclan Technologies. Growth, creativity, and collaboration drive our endeavors. Take your career to new heights with us." />
+
     @*<link rel="canonical" href="https://www.avidclan.com/life-at-avidclan-technologies/" />*@
-    <link rel="stylesheet" href="~/assets/css/Avidclan/career.css" />
-    <link rel="stylesheet" href="~/assets/css/Avidclan/casestudy.css" />
 
+    <!-- 🔥 LCP IMAGE PRELOAD -->
+    <link rel="preload"
+          as="image"
+          href="/assets/images/lifeatavidclan-main.png"
+          fetchpriority="high">
+
+    <!-- 🔥 NON-BLOCKING CSS -->
+    <link rel="preload"
+          href="/assets/css/Avidclan/career.css"
+          as="style"
+          onload="this.onload=null;this.rel='stylesheet'">
+
+    <link rel="preload"
+          href="/assets/css/Avidclan/casestudy.css"
+          as="style"
+          onload="this.onload=null;this.rel='stylesheet'">
+
+    <noscript>
+        <link rel="stylesheet" href="~/assets/css/Avidclan/career.css" />
+        <link rel="stylesheet" href="~/assets/css/Avidclan/casestudy.css" />
+    </noscript>
 }
-<style>
 
-    .borderradius20{
-        border-radius:20px;
+<style>
+    /* Page-specific styles (OK to inline) */
+
+    .borderradius20 {
+        border-radius: 20px;
     }
+
     .modal-backdrop {
         position: relative !important;
     }
 
         .modal-backdrop.show {
-            background: rgba(0, 0, 0, 0.7); /* opacity adjust */
+            background: rgba(0, 0, 0, 0.7);
         }
 
     .modal {
-        margin: 0px;
+        margin: 0;
         background: rgba(0, 0, 0, 0.7);
     }
-    /* White box wrapper */
+
     .gallery-box {
         background: #fff;
         border-radius: 10px;
-        padding: 15px; /* thoda jyada space */
-        max-width: 500px; /* pehle 400px tha, ab 800px */
-        max-height: 90vh; /* screen ke hisaab se height */
-        overflow-y: auto; /* agar content jyada ho to scroll aa jaye */
+        padding: 15px;
+        max-width: 500px;
+        max-height: 90vh;
+        overflow-y: auto;
         box-shadow: 0 8px 20px rgba(0,0,0,0.25);
     }
 
-
-
-
-    /* Custom close button */
     .custom-close {
         position: absolute;
-        top: 0px;
-        right: 0px;
-        color: white;
+        top: 0;
+        right: 0;
+        color: #fff;
         border-radius: 50%;
         opacity: 0.9;
         transition: 0.3s;
@@ -57,35 +78,31 @@
 
         .custom-close:hover {
             background: rgba(255,255,255,0.9);
-            color: black;
+            color: #000;
         }
 
-
-    /* Custom arrow buttons */
-    /* Custom arrow buttons */
     .custom-control {
         width: 30px;
         height: 30px;
         top: 60%;
         transform: translateY(-50%);
-        border-radius: 0%;
-        background: rgba(0, 0, 0, 0.3); /* no solid bg */
-        backdrop-filter: blur(6px); /* blur effect behind */
+        background: rgba(0,0,0,0.3);
+        backdrop-filter: blur(6px);
         border: none;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #fff; /* pure white icon */
+        color: #fff;
         font-size: 20px;
         opacity: 1;
     }
 
-        /* Hover effect remove */
         .custom-control:hover {
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0,0,0,0.2);
             color: #fff;
         }
 </style>
+
 <!-- Career Section -->
 <section class="inner-page contact-section">
     <div class="container">
@@ -101,7 +118,13 @@
                     </div>
                 </div>
                 <div class="image col-md-4">
-                    <img src="~/assets/images/lifeatavidclan-main.png" alt="contact-us-img" class="img-fluid" />
+                    <img src="/assets/images/lifeatavidclan-main.png"
+                         loading="eager"
+                         fetchpriority="high"
+                         alt="contact-us-img"
+                         width="1200"
+                         height="600">
+
                 </div>
             </div>
         </div>
@@ -114,7 +137,7 @@
 
         <div class="row my-4">
             <div class="col-lg-6 col-md-12 col-12 p-2 oahidimg">
-                <img src="~/assets/images/our team avidclan.png" class="img-fluid" />
+                <img src="~/assets/images/our team avidclan.png" alt="our team" loading="lazy" class="img-fluid" />
             </div>
 
             <div class="col-lg-6 col-md-12 col-12 ourapp pt-lg-0">
@@ -123,7 +146,7 @@
                             <h2 style="border-bottom: 1px solid #ccc;">Our Approach</h2>
                         </div>Sxrf
                     </div>*@
-                <img class="img-border oashwimg img-fluid" src="~/assets/images/casestudy/goolgoal/choose_team.png" />
+                <img class="img-border oashwimg img-fluid" src="~/assets/images/our team avidclan.png" alt="our team" />
                 <p class="fw-semibold d-inline-block mb-2 primary-color fs-5 pt-5 pt-sm-0">
                     ABOUT US<img loading="lazy" src="/assets/images/imagenew/horizontal-line.png" class="ms-3 responsive-horizontal-line" height="3" width="45" alt="Blue Line">
                 </p>
@@ -159,7 +182,7 @@
                         </h5>
                     </div>
                     <div class="mb-4">
-                        <h2 class="fw-custom pb-3">Traits We Value Most</h2> 
+                        <h2 class="fw-custom pb-3">Traits We Value Most</h2>
                     </div>
                 </div>
             </div>
@@ -258,12 +281,12 @@
 
 
             <div class="col-lg-6 col-md-12 col-12 ourapp pt-lg-0">-->
-                @*<div class="avidclan_section_title text-left mb-50">
-                        <div class="case-title">
-                            <h2 style="border-bottom: 1px solid #ccc;">Our Approach</h2>
-                        </div>Sxrf
-                    </div>*@
-                <!--<img class="img-border oashwimg img-fluid" src="~/assets/images/casestudy/goolgoal/choose_team.png" />
+@*<div class="avidclan_section_title text-left mb-50">
+        <div class="case-title">
+            <h2 style="border-bottom: 1px solid #ccc;">Our Approach</h2>
+        </div>Sxrf
+    </div>*@
+<!--<img class="img-border oashwimg img-fluid" src="~/assets/images/casestudy/goolgoal/choose_team.png" />
                 <p class="fw-semibold d-inline-block mb-2 primary-color fs-5 pt-5 pt-sm-0">
                     Our Policies<img loading="lazy" src="/assets/images/imagenew/horizontal-line.png" class="ms-3 responsive-horizontal-line" height="3" width="45" alt="Blue Line">
                 </p>
@@ -304,7 +327,7 @@
                     <div class="mb-4">
                         <h2 class="fs-1 fw-custom pb-0">
                             Life at Avidclan Technologies
-                        </h2> 
+                        </h2>
                     </div>
                 </div>
             </div>
@@ -315,7 +338,7 @@
 
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="rounded-4 custom-bg h-100" data-bs-toggle="modal" data-bs-target="#ganpatiModal">
-                    <img src="~/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy main.png"
+                    <img src="~/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy main.webp" loading="lazy"
                          class="borderradius20 card-img-top p-2"
                          alt="Birthday Celebration">
                     <div class="card-body d-flex justify-content-between align-items-center">
@@ -340,62 +363,62 @@
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content bg-transparent border-0 shadow-none">
                         <div class="modal-body p-0 position-relative">
-
-                            <!-- Close button -->
-                            <!-- White Box with Carousel -->
                             <div class="gallery-box mx-auto">
                                 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                                     <div>
                                         <h5 class="primary-color fw-semibold mb-1">Ganesh Chaturthy</h5>
                                         <h6 class="text-muted mb-2">2025</h6>
-                                        <!-- Custom Close Button with Image -->
                                         <button type="button" class="bg-none custom-close" data-bs-dismiss="modal" aria-label="Close">
                                             <img src="~/assets/images/icons/close icon memories.svg" alt="Close" class="close-img">
                                         </button>
-
-
                                     </div>
+
                                     <div class="carousel-inner text-center">
 
                                         <!-- Image 1 -->
                                         <div class="carousel-item active">
-                                            <img src="~/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy 1.png" class="borderradius20" alt="Birthday Celebration">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy 1.webp" class="borderradius20 lazy-modal-img" alt="Ganesh Chaturthy">
                                         </div>
-                                        
-                                        <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy 2.png" class="borderradius20" alt="Birthday Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item ">
-                                            <img src="~/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy 3.png" class="borderradius20" alt="Birthday Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item ">
-                                            <img src="~/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy 4.png" class="borderradius20" alt="Birthday Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item ">
-                                            <img src="~/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy 5.png" class="borderradius20" alt="Birthday Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item ">
-                                            <img src="~/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy 6.png" class="borderradius20" alt="Birthday Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item ">
-                                            <img src="~/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy 7.png" class="borderradius20" alt="Birthday Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item ">
-                                            <img src="~/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy 8.png" class="borderradius20" alt="Birthday Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item ">
-                                            <img src="~/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy 9.png" class="borderradius20" alt="Birthday Celebration">
-                                        </div>
-                                        
-                                        
 
+                                        <!-- Image 2 -->
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy 2.webp" class="borderradius20 lazy-modal-img" alt="Ganesh Chaturthy">
+                                        </div>
+
+                                        <!-- Image 3 -->
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy 3.webp" class="borderradius20 lazy-modal-img" alt="Ganesh Chaturthy">
+                                        </div>
+
+                                        <!-- Image 4 -->
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy 4.webp" class="borderradius20 lazy-modal-img" alt="Ganesh Chaturthy">
+                                        </div>
+
+                                        <!-- Image 5 -->
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy 5.webp" class="borderradius20 lazy-modal-img" alt="Ganesh Chaturthy">
+                                        </div>
+
+                                        <!-- Image 6 -->
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy 6.webp" class="borderradius20 lazy-modal-img" alt="Ganesh Chaturthy">
+                                        </div>
+
+                                        <!-- Image 7 -->
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy 7.webp" class="borderradius20 lazy-modal-img" alt="Ganesh Chaturthy">
+                                        </div>
+
+                                        <!-- Image 8 -->
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy 8.webp" class="borderradius20 lazy-modal-img" alt="Ganesh Chaturthy">
+                                        </div>
+
+                                        <!-- Image 9 -->
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Ganesh Chaturthy/Ganesh Chaturthy 9.webp" class="borderradius20 lazy-modal-img" alt="Ganesh Chaturthy">
+                                        </div>
                                     </div>
 
                                     <!-- Controls -->
@@ -407,7 +430,6 @@
                                     </button>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -415,7 +437,7 @@
 
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="rounded-4 custom-bg h-100" data-bs-toggle="modal" data-bs-target="#birthdayModal">
-                    <img src="~/assets/images/lifeatavidclan/birthday/bday main.png"
+                    <img src="~/assets/images/lifeatavidclan/birthday/bday main.webp" loading="lazy"
                          class="borderradius20 card-img-top p-2"
                          alt="Birthday Celebration">
                     <div class="card-body d-flex justify-content-between align-items-center">
@@ -441,60 +463,68 @@
                     <div class="modal-content bg-transparent border-0 shadow-none">
                         <div class="modal-body p-0 position-relative">
 
-                            <!-- Close button -->
                             <!-- White Box with Carousel -->
                             <div class="gallery-box mx-auto">
                                 <div id="carouselBirthday" class="carousel slide" data-bs-ride="carousel">
                                     <div>
                                         <h5 class="primary-color fw-semibold mb-1">Birthday Celebration</h5>
                                         <h6 class="text-muted mb-2">2025</h6>
-                                        <!-- Custom Close Button with Image -->
+                                        <!-- Custom Close Button -->
                                         <button type="button" class="bg-none custom-close" data-bs-dismiss="modal" aria-label="Close">
                                             <img src="~/assets/images/icons/close icon memories.svg" alt="Close" class="close-img">
                                         </button>
-
-
                                     </div>
+
                                     <div class="carousel-inner text-center">
 
+                                        <!-- Image 1 -->
                                         <div class="carousel-item active">
-                                            <img src="~/assets/images/lifeatavidclan/birthday/bday 1.png" class="borderradius20" alt="Birthday Celebration">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/birthday/bday 1.webp" class="borderradius20 lazy-modal-img" alt="Birthday Celebration">
                                         </div>
 
+                                        <!-- Image 2 -->
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/birthday/Bday 2.jpg" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/birthday/Bday 2.jpg" class="borderradius20 lazy-modal-img" alt="Team Outing">
                                         </div>
 
+                                        <!-- Image 3 -->
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/birthday/Bday img 3.jpg" class="borderradius20" alt="Event Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/birthday/Bday img 4.jpg" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/birthday/Bday img 3.jpg" class="borderradius20 lazy-modal-img" alt="Event Celebration">
                                         </div>
 
+                                        <!-- Image 4 -->
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/birthday/bday 5.png" class="borderradius20" alt="Event Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/birthday/bday 6.png" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/birthday/Bday img 4.jpg" class="borderradius20 lazy-modal-img" alt="Team Outing">
                                         </div>
 
+                                        <!-- Image 5 -->
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/birthday/bday 7.png" class="borderradius20" alt="Event Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/birthday/bday 8.png" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/birthday/bday 5.webp" class="borderradius20 lazy-modal-img" alt="Event Celebration">
                                         </div>
 
+                                        <!-- Image 6 -->
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/birthday/Bday img 9.jpg" class="borderradius20" alt="Event Celebration">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/birthday/bday 6.webp" class="borderradius20 lazy-modal-img" alt="Team Outing">
                                         </div>
-                                        
+
+                                        <!-- Image 7 -->
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/birthday/Bday img 10.jpg" class="borderradius20" alt="Event Celebration">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/birthday/bday 7.webp" class="borderradius20 lazy-modal-img" alt="Event Celebration">
+                                        </div>
+
+                                        <!-- Image 8 -->
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/birthday/bday 8.webp" class="borderradius20 lazy-modal-img" alt="Team Outing">
+                                        </div>
+
+                                        <!-- Image 9 -->
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/birthday/Bday img 9.jpg" class="borderradius20 lazy-modal-img" alt="Event Celebration">
+                                        </div>
+
+                                        <!-- Image 10 -->
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/birthday/Bday img 10.jpg" class="borderradius20 lazy-modal-img" alt="Event Celebration">
                                         </div>
 
                                     </div>
@@ -518,7 +548,7 @@
 
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="rounded-4 custom-bg h-100 " data-bs-toggle="modal" data-bs-target="#funModal">
-                    <img src="~/assets/images/lifeatavidclan/Fun Friday/Fun Friday main.png" class="borderradius20 card-img-top p-2" alt="Birthday Celebration">
+                    <img src="~/assets/images/lifeatavidclan/Fun Friday/Fun Friday main.webp" loading="lazy" class="borderradius20 card-img-top p-2" alt="Birthday Celebration">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <!-- Left content -->
                         <div>
@@ -541,65 +571,66 @@
                     <div class="modal-content bg-transparent border-0 shadow-none">
                         <div class="modal-body p-0 position-relative">
 
-                            <!-- Close button -->
                             <!-- White Box with Carousel -->
                             <div class="gallery-box mx-auto">
                                 <div id="carouselFunFriday" class="carousel slide" data-bs-ride="carousel">
                                     <div>
                                         <h5 class="primary-color fw-semibold mb-1">Fun Friday</h5>
                                         <h6 class="text-muted mb-2">2025</h6>
-                                        <!-- Custom Close Button with Image -->
+                                        <!-- Custom Close Button -->
                                         <button type="button" class="bg-none custom-close" data-bs-dismiss="modal" aria-label="Close">
                                             <img src="~/assets/images/icons/close icon memories.svg" alt="Close" class="close-img">
                                         </button>
-
-
                                     </div>
+
                                     <div class="carousel-inner text-center">
 
                                         <div class="carousel-item active">
-                                            <img src="~/assets/images/lifeatavidclan/Fun Friday/Fun Friday 1.jpg" class="borderradius20" alt="Birthday Celebration">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Fun Friday/Fun Friday 1.webp" class="borderradius20 lazy-modal-img" alt="Fun Friday">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/Fun Friday/Fun Friday 2.jpg" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Fun Friday/Fun Friday 2.jpg" class="borderradius20 lazy-modal-img" alt="Fun Friday">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/Fun Friday/Fun Friday 3.png" class="borderradius20" alt="Event Celebration">
-                                        </div>
-                                        <div class="carousel-item ">
-                                            <img src="~/assets/images/lifeatavidclan/Fun Friday/Fun Friday 4.png" class="borderradius20" alt="Birthday Celebration">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Fun Friday/Fun Friday 3.webp" class="borderradius20 lazy-modal-img" alt="Fun Friday">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/Fun Friday/Fun Friday 5.png" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Fun Friday/Fun Friday 4.webp" class="borderradius20 lazy-modal-img" alt="Fun Friday">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/Fun Friday/Fun Friday 6.png" class="borderradius20" alt="Event Celebration">
-                                        </div>
-                                        <div class="carousel-item ">
-                                            <img src="~/assets/images/lifeatavidclan/Fun Friday/Fun Friday 7.png" class="borderradius20" alt="Birthday Celebration">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Fun Friday/Fun Friday 5.webp" class="borderradius20 lazy-modal-img" alt="Fun Friday">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/Fun Friday/Fun Friday 8.png" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Fun Friday/Fun Friday 6.webp" class="borderradius20 lazy-modal-img" alt="Fun Friday">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/Fun Friday/Fun Friday 9.png" class="borderradius20" alt="Event Celebration">
-                                        </div>
-                                        <div class="carousel-item ">
-                                            <img src="~/assets/images/lifeatavidclan/Fun Friday/Fun Friday 10.jpg" class="borderradius20" alt="Birthday Celebration">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Fun Friday/Fun Friday 7.webp" class="borderradius20 lazy-modal-img" alt="Fun Friday">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/Fun Friday/Fun Friday 11.png" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Fun Friday/Fun Friday 8.webp" class="borderradius20 lazy-modal-img" alt="Fun Friday">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/Fun Friday/Fun Friday 12.png" class="borderradius20" alt="Event Celebration">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Fun Friday/Fun Friday 9.webp" class="borderradius20 lazy-modal-img" alt="Fun Friday">
+                                        </div>
+
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Fun Friday/Fun Friday 10.jpg" class="borderradius20 lazy-modal-img" alt="Fun Friday">
+                                        </div>
+
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Fun Friday/Fun Friday 11.webp" class="borderradius20 lazy-modal-img" alt="Fun Friday">
+                                        </div>
+
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Fun Friday/Fun Friday 12.webp" class="borderradius20 lazy-modal-img" alt="Fun Friday">
                                         </div>
 
                                     </div>
@@ -621,7 +652,7 @@
 
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="rounded-4 custom-bg h-100 " data-bs-toggle="modal" data-bs-target="#navratriModal">
-                    <img src="~/assets/images/lifeatavidclan/picnic 2025/picnic mian.png" class="card-img-top p-2 borderradius20" alt="Birthday Celebration">
+                    <img src="~/assets/images/lifeatavidclan/picnic 2025/picnic mian.webp" loading="lazy" class="card-img-top p-2 borderradius20" alt="Birthday Celebration">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <!-- Left content -->
                         <div>
@@ -644,91 +675,87 @@
                     <div class="modal-content bg-transparent border-0 shadow-none">
                         <div class="modal-body p-0 position-relative">
 
-                            <!-- Close button -->
                             <!-- White Box with Carousel -->
                             <div class="gallery-box mx-auto">
                                 <div id="carouselPicnic" class="carousel slide" data-bs-ride="carousel">
                                     <div>
                                         <h5 class="primary-color fw-semibold mb-1">Picnic</h5>
                                         <h6 class="text-muted mb-2">2025</h6>
-                                        <!-- Custom Close Button with Image -->
+                                        <!-- Custom Close Button -->
                                         <button type="button" class="bg-none custom-close" data-bs-dismiss="modal" aria-label="Close">
                                             <img src="~/assets/images/icons/close icon memories.svg" alt="Close" class="close-img">
                                         </button>
-
-
                                     </div>
-                                    <div class="carousel-inner text-center">
 
+                                    <div class="carousel-inner text-center">
                                         <!-- Image 1 -->
                                         <div class="carousel-item active">
-                                            <img src="~/assets/images/lifeatavidclan/picnic 2025/trip 1.png" class="borderradius20" alt="Birthday Celebration">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/picnic 2025/trip 1.webp" class="borderradius20 lazy-modal-img" alt="Picnic">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/picnic 2025/trip 2.png" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/picnic 2025/trip 2.png" class="borderradius20 lazy-modal-img" alt="Picnic">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/picnic 2025/trip 3.png" class="borderradius20" alt="Event Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/picnic 2025/trip 4.png" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/picnic 2025/trip 3.webp" class="borderradius20 lazy-modal-img" alt="Picnic">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/picnic 2025/trip 5.png" class="borderradius20" alt="Event Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/picnic 2025/trip 6.png" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/picnic 2025/trip 4.webp" class="borderradius20 lazy-modal-img" alt="Picnic">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/picnic 2025/trip 7.png" class="borderradius20" alt="Event Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/picnic 2025/trip 8.png" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/picnic 2025/trip 5.webp" class="borderradius20 lazy-modal-img" alt="Picnic">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/picnic 2025/trip 9.png" class="borderradius20" alt="Event Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/picnic 2025/trip 10.png" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/picnic 2025/trip 6.webp" class="borderradius20 lazy-modal-img" alt="Picnic">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/picnic 2025/trip 11.png" class="borderradius20" alt="Event Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/picnic 2025/trip 12.png" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/picnic 2025/trip 7.webp" class="borderradius20 lazy-modal-img" alt="Picnic">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/picnic 2025/trip 13.png" class="borderradius20" alt="Event Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/picnic 2025/trip 14.png" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/picnic 2025/trip 8.webp" class="borderradius20 lazy-modal-img" alt="Picnic">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/picnic 2025/trip 15.png" class="borderradius20" alt="Event Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/picnic 2025/trip 16.png" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/picnic 2025/trip 9.png" class="borderradius20 lazy-modal-img" alt="Picnic">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/picnic 2025/trip 17.png" class="borderradius20" alt="Event Celebration">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/picnic 2025/trip 10.webp" class="borderradius20 lazy-modal-img" alt="Picnic">
                                         </div>
 
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/picnic 2025/trip 11.webp" class="borderradius20 lazy-modal-img" alt="Picnic">
+                                        </div>
+
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/picnic 2025/trip 12.webp" class="borderradius20 lazy-modal-img" alt="Picnic">
+                                        </div>
+
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/picnic 2025/trip 13.webp" class="borderradius20 lazy-modal-img" alt="Picnic">
+                                        </div>
+
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/picnic 2025/trip 14.png" class="borderradius20 lazy-modal-img" alt="Picnic">
+                                        </div>
+
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/picnic 2025/trip 15.png" class="borderradius20 lazy-modal-img" alt="Picnic">
+                                        </div>
+
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/picnic 2025/trip 16.webp" class="borderradius20 lazy-modal-img" alt="Picnic">
+                                        </div>
+
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/picnic 2025/trip 17.png" class="borderradius20 lazy-modal-img" alt="Picnic">
+                                        </div>
                                     </div>
 
                                     <!-- Controls -->
@@ -748,7 +775,7 @@
 
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="rounded-4 custom-bg h-100 " data-bs-toggle="modal" data-bs-target="#lunchModal">
-                    <img src="~/assets/images/lifeatavidclan/Dinner 2025/dinner main.png" class="borderradius20 card-img-top p-2" alt="Birthday Celebration">
+                    <img src="~/assets/images/lifeatavidclan/Dinner 2025/dinner main.webp" loading="lazy" class="borderradius20 card-img-top p-2" alt="Birthday Celebration">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <!-- Left content -->
                         <div>
@@ -771,40 +798,38 @@
                     <div class="modal-content bg-transparent border-0 shadow-none">
                         <div class="modal-body p-0 position-relative">
 
-                            <!-- Close button -->
                             <!-- White Box with Carousel -->
                             <div class="gallery-box mx-auto">
                                 <div id="carouselDinner" class="carousel slide" data-bs-ride="carousel">
                                     <div>
                                         <h5 class="primary-color fw-semibold mb-1">Lunch-Dinner </h5>
                                         <h6 class="text-muted mb-2">2025</h6>
-                                        <!-- Custom Close Button with Image -->
+                                        <!-- Custom Close Button -->
                                         <button type="button" class="bg-none custom-close" data-bs-dismiss="modal" aria-label="Close">
                                             <img src="~/assets/images/icons/close icon memories.svg" alt="Close" class="close-img">
                                         </button>
-
-
                                     </div>
+
                                     <div class="carousel-inner text-center">
 
                                         <div class="carousel-item active">
-                                            <img src="~/assets/images/lifeatavidclan/Dinner 2025/dinner 1.png" class="borderradius20" alt="Birthday Celebration">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Dinner 2025/dinner 1.png" class="borderradius20 lazy-modal-img" alt="Lunch-Dinner">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/Dinner 2025/dinner 2.png" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Dinner 2025/dinner 2.webp" class="borderradius20 lazy-modal-img" alt="Lunch-Dinner">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/Dinner 2025/dinner 3.png" class="borderradius20" alt="Event Celebration">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Dinner 2025/dinner 3.webp" class="borderradius20 lazy-modal-img" alt="Lunch-Dinner">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/Dinner 2025/dinner 4.png" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Dinner 2025/dinner 4.png" class="borderradius20 lazy-modal-img" alt="Lunch-Dinner">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/Dinner 2025/dinner 5.png" class="borderradius20" alt="Event Celebration">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/Dinner 2025/dinner 5.webp" class="borderradius20 lazy-modal-img" alt="Lunch-Dinner">
                                         </div>
 
                                     </div>
@@ -826,7 +851,7 @@
 
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="rounded-4 custom-bg h-100 " data-bs-toggle="modal" data-bs-target="#diwaliModal">
-                    <img src="~/assets/images/lifeatavidclan/RNR 2025/rnr main.png" class="borderradius20 card-img-top p-2" alt="Birthday Celebration">
+                    <img src="~/assets/images/lifeatavidclan/RNR 2025/rnr main.png" loading="lazy" class="borderradius20 card-img-top p-2" alt="Birthday Celebration">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <!-- Left content -->
                         <div>
@@ -849,52 +874,57 @@
                     <div class="modal-content bg-transparent border-0 shadow-none">
                         <div class="modal-body p-0 position-relative">
 
-                            <!-- Close button -->
                             <!-- White Box with Carousel -->
                             <div class="gallery-box mx-auto">
                                 <div id="carouselRNR" class="carousel slide" data-bs-ride="carousel">
                                     <div>
                                         <h5 class="primary-color fw-semibold mb-1">RNR</h5>
                                         <h6 class="text-muted mb-2">2025</h6>
-                                        <!-- Custom Close Button with Image -->
+                                        <!-- Custom Close Button -->
                                         <button type="button" class="bg-none custom-close" data-bs-dismiss="modal" aria-label="Close">
                                             <img src="~/assets/images/icons/close icon memories.svg" alt="Close" class="close-img">
                                         </button>
-
-
                                     </div>
+
                                     <div class="carousel-inner text-center">
-
+                                        <!-- Image 1 -->
                                         <div class="carousel-item active">
-                                            <img src="~/assets/images/lifeatavidclan/RNR 2025/rnr 1.png" class="borderradius20" alt="Birthday Celebration">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/RNR 2025/rnr 1.webp" class="borderradius20 lazy-modal-img" alt="RNR Celebration">
                                         </div>
 
+                                        <!-- Image 2 -->
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/RNR 2025/rnr 2.png" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/RNR 2025/rnr 2.png" class="borderradius20 lazy-modal-img" alt="Team Outing">
                                         </div>
 
+                                        <!-- Image 3 -->
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/RNR 2025/rnr 3.png" class="borderradius20" alt="Event Celebration">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/RNR 2025/rnr 3.webp" class="borderradius20 lazy-modal-img" alt="Event Celebration">
                                         </div>
 
+                                        <!-- Image 4 -->
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/RNR 2025/rnr 5.png" class="borderradius20" alt="Event Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/RNR 2025/rnr 6.png" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/RNR 2025/rnr 5.webp" class="borderradius20 lazy-modal-img" alt="Event Celebration">
                                         </div>
 
+                                        <!-- Image 5 -->
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/RNR 2025/rnr 7.png" class="borderradius20" alt="Event Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/RNR 2025/rnr 8.png" class="borderradius20" alt="Team Outing">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/RNR 2025/rnr 6.webp" class="borderradius20 lazy-modal-img" alt="Team Outing">
                                         </div>
 
+                                        <!-- Image 6 -->
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/RNR 2025/rnr 9.png" class="borderradius20" alt="Event Celebration">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/RNR 2025/rnr 7.webp" class="borderradius20 lazy-modal-img" alt="Event Celebration">
+                                        </div>
+
+                                        <!-- Image 7 -->
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/RNR 2025/rnr 8.webp" class="borderradius20 lazy-modal-img" alt="Team Outing">
+                                        </div>
+
+                                        <!-- Image 8 -->
+                                        <div class="carousel-item">
+                                            <img src="@placeholder" data-src="/assets/images/lifeatavidclan/RNR 2025/rnr 9.png" class="borderradius20 lazy-modal-img" alt="Event Celebration">
                                         </div>
 
                                     </div>
@@ -918,14 +948,13 @@
                 <div class="rounded-4 custom-bg h-100 " data-bs-toggle="modal" data-bs-target="#christmasModal">
                     <img src="~/assets/images/lifeatavidclan/chrismas memories.png" class="card-img-top p-2" alt="Birthday Celebration">
                     <div class="card-body d-flex justify-content-between align-items-center">-->
-                        <!-- Left content -->
-                        <!--<div>
-                            <h6 class="primary-color fw-semibold mb-1">Christmas Celebration</h6>
-                            <small class="text-muted">2025</small>
-                        </div>-->
-
-                        <!-- Right icon -->
-                        <!--<div>
+            <!-- Left content -->
+            <!--<div>
+                <h6 class="primary-color fw-semibold mb-1">Christmas Celebration</h6>
+                <small class="text-muted">2025</small>
+            </div>-->
+            <!-- Right icon -->
+            <!--<div>
                             <img src="~/assets/images/icons/memories arrow icon.svg"
                                  alt="Go"
                                  class="img-fluid">
@@ -938,41 +967,36 @@
                 <div class="modal-dialog modal-dialog-centered modal-xl">
                     <div class="modal-content bg-transparent border-0 shadow-none">
                         <div class="modal-body p-0 position-relative">-->
+            <!-- Close button -->
+            <!-- White Box with Carousel -->
+            <!--<div class="gallery-box mx-auto">
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <div>
+                        <h5 class="primary-color fw-semibold mb-1">Christmas Celebration</h5>
+                        <h6 class="text-muted mb-2">2025</h6>-->
+            <!-- Custom Close Button with Image -->
+            <!--<button type="button" class="bg-none custom-close" data-bs-dismiss="modal" aria-label="Close">
+                    <img src="~/assets/images/icons/close icon memories.svg" alt="Close" class="close-img">
+                </button>
 
-                            <!-- Close button -->
-                            <!-- White Box with Carousel -->
-                            <!--<div class="gallery-box mx-auto">
-                                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                                    <div>
-                                        <h5 class="primary-color fw-semibold mb-1">Christmas Celebration</h5>
-                                        <h6 class="text-muted mb-2">2025</h6>-->
-                                        <!-- Custom Close Button with Image -->
-                                        <!--<button type="button" class="bg-none custom-close" data-bs-dismiss="modal" aria-label="Close">
-                                            <img src="~/assets/images/icons/close icon memories.svg" alt="Close" class="close-img">
-                                        </button>
 
-
-                                    </div>
-                                    <div class="carousel-inner text-center">-->
-
-                                        <!-- Image 1 -->
-                                        <!--<div class="carousel-item active">
-                                            <img src="~/assets/images/lifeatavidclan/birthday celebration 656.png" alt="Birthday Celebration">
-                                        </div>-->
-
-                                        <!-- Image 2 -->
-                                        <!--<div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/birthday celebration 656.png" alt="Team Outing">
-                                        </div>-->
-
-                                        <!-- Image 3 -->
-                                        <!--<div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/birthday celebration 656.png" alt="Event Celebration">
-                                        </div>
-                                    </div>-->
-
-                                    <!-- Controls -->
-                                    <!--<button class="carousel-control-prev custom-control" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            </div>
+            <div class="carousel-inner text-center">-->
+            <!-- Image 1 -->
+            <!--<div class="carousel-item active">
+                <img src="~/assets/images/lifeatavidclan/birthday celebration 656.png" alt="Birthday Celebration">
+            </div>-->
+            <!-- Image 2 -->
+            <!--<div class="carousel-item">
+                <img src="~/assets/images/lifeatavidclan/birthday celebration 656.png" alt="Team Outing">
+            </div>-->
+            <!-- Image 3 -->
+            <!--<div class="carousel-item">
+                    <img src="~/assets/images/lifeatavidclan/birthday celebration 656.png" alt="Event Celebration">
+                </div>
+            </div>-->
+            <!-- Controls -->
+            <!--<button class="carousel-control-prev custom-control" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                                         <i class="fa fa-chevron-left"></i>
                                     </button>
                                     <button class="carousel-control-next custom-control" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
@@ -990,14 +1014,13 @@
                 <div class="rounded-4 custom-bg h-100 " data-bs-toggle="modal" data-bs-target="#republicModal">
                     <img src="~/assets/images/lifeatavidclan/republic memories.png" class="card-img-top p-2" alt="Birthday Celebration">
                     <div class="card-body d-flex justify-content-between align-items-center">-->
-                        <!-- Left content -->
-                        <!--<div>
-                            <h6 class="primary-color fw-semibold mb-1">26-jan Republic Day </h6>
-                            <small class="text-muted">2025</small>
-                        </div>-->
-
-                        <!-- Right icon -->
-                        <!--<div>
+            <!-- Left content -->
+            <!--<div>
+                <h6 class="primary-color fw-semibold mb-1">26-jan Republic Day </h6>
+                <small class="text-muted">2025</small>
+            </div>-->
+            <!-- Right icon -->
+            <!--<div>
                             <img src="~/assets/images/icons/memories arrow icon.svg"
                                  alt="Go"
                                  class="img-fluid">
@@ -1010,41 +1033,36 @@
                 <div class="modal-dialog modal-dialog-centered modal-xl">
                     <div class="modal-content bg-transparent border-0 shadow-none">
                         <div class="modal-body p-0 position-relative">-->
+            <!-- Close button -->
+            <!-- White Box with Carousel -->
+            <!--<div class="gallery-box mx-auto">
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <div>
+                        <h5 class="primary-color fw-semibold mb-1"> Republic Day </h5>
+                        <h6 class="text-muted mb-2">2025</h6>-->
+            <!-- Custom Close Button with Image -->
+            <!--<button type="button" class="bg-none custom-close" data-bs-dismiss="modal" aria-label="Close">
+                    <img src="~/assets/images/icons/close icon memories.svg" alt="Close" class="close-img">
+                </button>
 
-                            <!-- Close button -->
-                            <!-- White Box with Carousel -->
-                            <!--<div class="gallery-box mx-auto">
-                                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                                    <div>
-                                        <h5 class="primary-color fw-semibold mb-1"> Republic Day </h5>
-                                        <h6 class="text-muted mb-2">2025</h6>-->
-                                        <!-- Custom Close Button with Image -->
-                                        <!--<button type="button" class="bg-none custom-close" data-bs-dismiss="modal" aria-label="Close">
-                                            <img src="~/assets/images/icons/close icon memories.svg" alt="Close" class="close-img">
-                                        </button>
 
-
-                                    </div>
-                                    <div class="carousel-inner text-center">-->
-
-                                        <!-- Image 1 -->
-                                        <!--<div class="carousel-item active">
-                                            <img src="~/assets/images/lifeatavidclan/birthday celebration 656.png" alt="Birthday Celebration">
-                                        </div>-->
-
-                                        <!-- Image 2 -->
-                                        <!--<div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/birthday celebration 656.png" alt="Team Outing">
-                                        </div>-->
-
-                                        <!-- Image 3 -->
-                                        <!--<div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/birthday celebration 656.png" alt="Event Celebration">
-                                        </div>
-                                    </div>-->
-
-                                    <!-- Controls -->
-                                    <!--<button class="carousel-control-prev custom-control" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            </div>
+            <div class="carousel-inner text-center">-->
+            <!-- Image 1 -->
+            <!--<div class="carousel-item active">
+                <img src="~/assets/images/lifeatavidclan/birthday celebration 656.png" alt="Birthday Celebration">
+            </div>-->
+            <!-- Image 2 -->
+            <!--<div class="carousel-item">
+                <img src="~/assets/images/lifeatavidclan/birthday celebration 656.png" alt="Team Outing">
+            </div>-->
+            <!-- Image 3 -->
+            <!--<div class="carousel-item">
+                    <img src="~/assets/images/lifeatavidclan/birthday celebration 656.png" alt="Event Celebration">
+                </div>
+            </div>-->
+            <!-- Controls -->
+            <!--<button class="carousel-control-prev custom-control" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                                         <i class="fa fa-chevron-left"></i>
                                     </button>
                                     <button class="carousel-control-next custom-control" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
@@ -1060,7 +1078,7 @@
 
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="rounded-4 custom-bg h-100 " data-bs-toggle="modal" data-bs-target="#holiModal">
-                    <img src="~/assets/images/lifeatavidclan/holi 2025/holi main.png" class="borderradius20 card-img-top p-2" alt="Birthday Celebration">
+                    <img src="~/assets/images/lifeatavidclan/holi 2025/holi main.webp" loading="lazy" class="borderradius20 card-img-top p-2" alt="Birthday Celebration">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <!-- Left content -->
                         <div>
@@ -1100,23 +1118,23 @@
                                     <div class="carousel-inner text-center">
 
                                         <div class="carousel-item active">
-                                            <img src="~/assets/images/lifeatavidclan/holi 2025/holi 1.png" class="borderradius20" alt="Birthday Celebration">
+                                            <img src="~/assets/images/lifeatavidclan/holi 2025/holi 1.webp" loading="lazy" class="borderradius20" alt="Birthday Celebration">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/holi 2025/holi 2.png" class="borderradius20" alt="Team Outing">
+                                            <img src="~/assets/images/lifeatavidclan/holi 2025/holi 2.png" loading="lazy" class="borderradius20" alt="Team Outing">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/holi 2025/holi 3.png" class="borderradius20" alt="Event Celebration">
-                                        </div>
-                                        
-                                        <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/holi 2025/holi 4.png" class="borderradius20" alt="Team Outing">
+                                            <img src="~/assets/images/lifeatavidclan/holi 2025/holi 3.webp" loading="lazy" class="borderradius20" alt="Event Celebration">
                                         </div>
 
                                         <div class="carousel-item">
-                                            <img src="~/assets/images/lifeatavidclan/holi 2025/holi 5.png" class="borderradius20" alt="Event Celebration">
+                                            <img src="~/assets/images/lifeatavidclan/holi 2025/holi 4.webp" loading="lazy" class="borderradius20" alt="Team Outing">
+                                        </div>
+
+                                        <div class="carousel-item">
+                                            <img src="~/assets/images/lifeatavidclan/holi 2025/holi 5.webp" loading="lazy" class="borderradius20" alt="Event Celebration">
                                         </div>
 
                                     </div>
@@ -1304,4 +1322,20 @@
         </div>
     </div>
 </section>
+<script>
+    $(document).ready(function () {
+        // Jab koi bhi modal khulega
+        $('.modal').on('show.bs.modal', function () {
+            var modal = $(this);
+            // Modal ke andar ki sabhi images jinme 'lazy-modal-img' class hai
+            modal.find('img.lazy-modal-img').each(function () {
+                var actualSource = $(this).attr('data-src');
+                if (actualSource) {
+                    $(this).attr('src', actualSource); // data-src se link utha kar src mein daal do
+                    $(this).removeAttr('data-src'); // data-src attribute ab delete kar do
+                }
+            });
+        });
+    });
+</script>
 @Html.Partial("_Footer")

@@ -1,0 +1,747 @@
+﻿@{
+    ViewBag.Title = "Index_render";
+    // This is new file
+    Layout = "~/Views/Shared/MarketingLayout.cshtml";
+    //Layout = Layout.Trim();
+}
+
+<meta name="robots" content="noindex, nofollow" />
+
+
+<!-- HERO SECTION -->
+<section class="hero-section">
+    <div class="container hero-grid">
+        <!-- Left Text -->
+        <div class="text-center text-center-md-left">
+            <div class="badge">
+                <!-- Star Icon -->
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                Top Rated .NET Agency
+            </div>
+
+            <h1 class="hero-title">
+                Hire Expert .NET Developers in India
+            </h1>
+
+            <h2 class="hero-price">
+                Starts at <span>&#8377;799/hr</span>
+            </h2>
+
+            <div class="feature-list" style="display: inline-flex; align-items: flex-start;">
+                <div class="feature-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    No Upfront Payment
+                </div>
+                <div class="feature-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    6+ Years Average Experience
+                </div>
+                <div class="feature-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    14-Day Risk-Free Trial
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <button onclick="navigateToSection('form')" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.125rem;">
+                    GET PROFILES
+                    <!-- Arrow Right -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+                <a href="tel:+919558450670" class="btn btn-outline desktop-cta" style="padding: 1rem 2rem; display: none;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    +91 95584 50670
+                </a>
+            </div>
+
+            <!-- Mobile Only Text Link -->
+            <div style="display: block; margin-bottom: 1.5rem;" class="mobile-icons">
+                <a href="tel:+919558450670" style="color: var(--secondary-blue); font-weight: 600; text-decoration: underline;">Or Call Us: +91 95584 50670</a>
+            </div>
+
+
+            <!-- Trusted By (Top Center) -->
+            <div style="width:100%; display:flex; align-items:center; gap:4px; margin-bottom:6px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#6b7280" stroke="none">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <span style="font-weight:700;">Trusted By</span>
+            </div>
+            <div class="trust-strip">
+
+
+
+                <!-- Logos (Same as before) -->
+                <img class="logo-width" src="~/assets/src/images/relince.svg" alt="Reliance" />
+                <img class="logo-width" src="~/assets/src/images/manappuram.svg" alt="Mannapuram Finance" />
+                <img class="logo-width" src="~/assets/src/images/bajaj.svg" alt="Bajaj Allianz" />
+                <img class="logo-width" src="~/assets/src/images/rocketfuel.svg" alt="RocketFuel" />
+                <img class="logo-width" src="~/assets/src/images/tennessee.svg" alt="TVA" />
+
+            </div>
+
+        </div>
+
+
+
+
+        <!-- Right Visual (Desktop Only) -->
+        <div class="desktop-visual-container">
+            <!-- PLACEHOLDER IMAGE FOR DEVELOPER VISUAL -->
+            <!-- Replace src with your actual image file -->
+            <img src="~/assets/src/images/developer.jpg" alt="Developer Visual Placeholder" class="desktop-visual-img" />
+
+            <!-- Floating Badges Over Image -->
+            <div class="float-badge" style="bottom: -20px; left: -20px;">
+                <div class="fb-icon" style="background: #dbeafe;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                </div>
+                <div>
+                    <div style="font-weight: 700; font-size: 0.875rem;">Dedicated</div>
+                    <div style="font-size: 0.75rem; color: #6b7280;">Resource</div>
+                </div>
+            </div>
+
+            <div class="float-badge" style="top: -20px; right: -20px;">
+                <div class="fb-icon" style="background: #ffedd5;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                </div>
+                <div>
+                    <div style="font-weight: 700; font-size: 0.875rem;">Fast</div>
+                    <div style="font-size: 0.75rem; color: #6b7280;">Onboarding</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="section-pricing">
+    <div class="container">
+        <div class="text-center">
+            <h2 style="font-size: 2rem; color: var(--primary-blue); font-weight: 700; margin-bottom: 0.5rem;">Transparent Pricing. No Hidden Costs.</h2>
+            <p style="color: var(--text-muted); padding-bottom: 16px;">No hidden costs. Scale up or down.</p>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Hourly -->
+            <div class="pricing-card">
+                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-muted);">Hourly</h3>
+                <div class="price-tag">&#8377;799 <span style="font-size: 0.875rem; font-weight: 400; color: var(--text-muted);">/Hr</span></div>
+                <ul class="pricing-features">
+                    <li><div class="dot-bullet"></div> Pay As You Go</li>
+                    <li><div class="dot-bullet"></div> Weekly Billing</li>
+                    <li><div class="dot-bullet"></div> Best for Maintenance</li>
+                </ul>
+                <button onclick="navigateToSection('form')" class="btn btn-outline" style="width: 100%;">Inquire Now</button>
+            </div>
+
+            <!-- Monthly (Recommended) -->
+            <div class="pricing-card popular">
+                <div class="popular-badge">Most Popular</div>
+                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-muted);">Monthly</h3>
+                <div class="price-tag">&#8377;1.5 Lac <span style="font-size: 0.875rem; font-weight: 400; color: var(--text-muted);">/Mo</span></div>
+                <ul class="pricing-features">
+                    <li style="font-weight: 700; color: var(--primary-blue);">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        Dedicated Developer
+                    </li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> 160 Hours Guaranteed</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Direct Control</li>
+                </ul>
+                <button onclick="navigateToSection('form')" class="btn btn-secondary" style="width: 100%; background-color: var(--primary-blue);">Start 14-Day Trial</button>
+            </div>
+
+            <!-- Fixed -->
+            <div class="pricing-card">
+                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-muted);">Fixed Cost</h3>
+                <div class="price-tag">Custom</div>
+                <ul class="pricing-features">
+                    <li><div class="dot-bullet"></div> Project Based</li>
+                    <li><div class="dot-bullet"></div> Milestone Payments</li>
+                    <li><div class="dot-bullet"></div> Defined Scope</li>
+                </ul>
+                <button onclick="navigateToSection('form')" class="btn btn-outline" style="width: 100%;">Get Quote</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TECH STACK -->
+<!--<section id="tech" style="padding: 3rem 0; background: white;">
+    <div class="container">
+        <div class="text-center">
+            <h3 style="font-size: 1.75rem; color: var(--primary-blue); font-weight: 700;">We Expertly Manage Only .NET</h3>
+        </div>
+        <div class="tech-grid">-->
+<!-- .NET Core -->
+<!--<div class="tech-item">
+    <img src="~/assets/src/images/netcore.png"
+         alt=".NET Core"
+         class="tech-icon-img" />
+    <span class="tech-desc">Cross-platform development for high-performance cloud apps.</span>
+</div>-->
+<!-- MVC -->
+<!--<div class="tech-item">
+    <img src="~/assets/src/images/netmvc.png"
+         alt="ASP.NET MVC"
+         class="tech-icon-img" />
+    <span class="tech-desc">Robust model-view-controller architecture for web apps.</span>
+</div>-->
+<!-- C# -->
+<!--<div class="tech-item">
+    <img src="~/assets/src/images/c_sharp.svg"
+         alt="C#"
+         class="tech-icon-img" />
+    <span class="tech-desc">Modern, object-oriented language for enterprise solutions.</span>
+</div>-->
+<!-- Azure -->
+<!--<div class="tech-item">
+    <img src="~/assets/src/images/react.png"
+         alt="React"
+         class="tech-icon-img" />
+    <span class="tech-desc">Seamless cloud integration and scalable infrastructure.</span>
+</div>-->
+<!-- SQL -->
+<!--<div class="tech-item">
+    <img src="~/assets/src/images/angular.svg"
+         alt="Angular"
+         class="tech-icon-img" />
+    <span class="tech-desc">High-performance relational database management.</span>
+</div>-->
+<!-- Blazor -->
+<!--<div class="tech-item">
+    <img src="~/assets/src/images/odata.svg"
+         alt="OData"
+         class="tech-icon-img" />
+    <span class="tech-desc">Interactive client-side web UIs using C# instead of JS.</span>
+</div>-->
+<!-- Xamarin -->
+<!--<div class="tech-item">
+    <img src="~/assets/src/images/devexpress.svg"
+         alt="DevExpress"
+         class="tech-icon-img" />
+    <span class="tech-desc">Native mobile apps for iOS and Android from one codebase.</span>
+</div>-->
+<!-- Microservices -->
+<!--<div class="tech-item">
+                <img src="~/assets/src/images/sql_server.png"
+                     alt="SQL Server"
+                     class="tech-icon-img" />
+                <span class="tech-desc">Decoupled architecture for agility and easier maintenance.</span>
+            </div>
+
+        </div>
+    </div>
+</section>-->
+<style>
+    .tech-icon-img {
+        object-fit: contain;
+        margin-bottom: 0.75rem;
+    }
+</style>
+
+<!-- TECH STACK -->
+<section id="tech" style="padding: 3rem 0; background: white;">
+    <div class="container">
+        <div class="text-center">
+            <h3 style="font-size: 1.75rem; color: var(--primary-blue); font-weight: 700;">We Expertly Manage Only .NET</h3>
+        </div>
+        <div class="tech-grid">
+            <!-- .NET Core -->
+            <div class="tech-item">
+                <img src="~/assets/src/images/netcore.png" alt=".NET Core" class="tech-icon-img" />
+                <span class="tech-label">.NET Core</span>
+                <span class="tech-desc">Cross-platform development for high-performance cloud apps.</span>
+            </div>
+
+            <!-- MVC -->
+            <div class="tech-item">
+                <img src="~/assets/src/images/netmvc.svg" alt="ASP.NET MVC" class="tech-icon-img" />
+                <span class="tech-label">ASP.NET MVC</span>
+                <span class="tech-desc">Robust model-view-controller architecture for web apps.</span>
+            </div>
+
+            <!-- C# -->
+            <div class="tech-item">
+                <img src="~/assets/src/images/c_sharp.svg" alt="C#" class="tech-icon-img" />
+                <span class="tech-label">C#</span>
+                <span class="tech-desc">Modern, object-oriented language for enterprise solutions.</span>
+            </div>
+
+            <!-- Azure -->
+            <div class="tech-item">
+                <img src="~/assets/src/images/azure.svg" alt="Azure" class="tech-icon-img" />
+                <span class="tech-label">Azure</span>
+                <span class="tech-desc">Seamless cloud integration and scalable infrastructure.</span>
+            </div>
+
+            <!-- SQL Server -->
+            <div class="tech-item">
+                <img src="~/assets/src/images/sql_server.svg" alt="SQL Server" class="tech-icon-img" />
+                <span class="tech-label">SQL Server</span>
+                <span class="tech-desc">High-performance relational database management.</span>
+            </div>
+
+            <!-- Blazor -->
+            <div class="tech-item">
+                <img src="~/assets/src/images/blazor.svg" alt="Blazor" class="tech-icon-img" />
+                <span class="tech-label">Blazor</span>
+                <span class="tech-desc">Interactive client-side web UIs using C# instead of JS.</span>
+            </div>
+
+            <!-- Xamarin -->
+            <div class="tech-item">
+                <img src="~/assets/src/images/odata.svg" alt="Xamarin" class="tech-icon-img" />
+                <span class="tech-label">OData</span>
+                <span class="tech-desc">Native mobile apps for iOS and Android from one codebase.</span>
+            </div>
+
+            <!-- Microservices -->
+            <div class="tech-item">
+                <img src="~/assets/src/images/devexpress.svg" alt="Microservices" class="tech-icon-img" />
+                <span class="tech-label">DevExpress</span>
+                <span class="tech-desc">Decoupled architecture for agility and easier maintenance.</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TECH STACK -->
+<!--<section id="tech" style="padding: 3rem 0; background: white;">
+    <div class="container">
+        <div class="text-center">
+            <h3 style="font-size: 1.75rem; color: var(--primary-blue); font-weight: 700;">We Expertly Manage Only .NET</h3>
+        </div>
+        <div class="tech-grid">-->
+<!-- .NET Core -->
+<!--<div class="tech-item">
+    <svg class="tech-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+    <span class="tech-label">.NET Core</span>
+    <span class="tech-desc">Cross-platform development for high-performance cloud apps.</span>
+</div>-->
+<!-- MVC -->
+<!--<div class="tech-item">
+    <svg class="tech-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+    <span class="tech-label">MVC</span>
+    <span class="tech-desc">Robust model-view-controller architecture for web apps.</span>
+</div>-->
+<!-- C# -->
+<!--<div class="tech-item">
+    <svg class="tech-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+    <span class="tech-label">C#</span>
+    <span class="tech-desc">Modern, object-oriented language for enterprise solutions.</span>
+</div>-->
+<!-- Azure -->
+<!--<div class="tech-item">
+    <svg class="tech-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+    <span class="tech-label">React</span>
+    <span class="tech-desc">Seamless cloud integration and scalable infrastructure.</span>
+</div>-->
+<!-- SQL -->
+<!--<div class="tech-item">
+    <svg class="tech-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+    <span class="tech-label">Angular</span>
+    <span class="tech-desc">High-performance relational database management.</span>
+</div>-->
+<!-- Blazor -->
+<!--<div class="tech-item">
+    <svg class="tech-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+    <span class="tech-label">OData</span>
+    <span class="tech-desc">Interactive client-side web UIs using C# instead of JS.</span>
+</div>-->
+<!-- Xamarin -->
+<!--<div class="tech-item">
+    <svg class="tech-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+    <span class="tech-label">DevExpress</span>
+    <span class="tech-desc">Native mobile apps for iOS and Android from one codebase.</span>
+</div>-->
+<!-- Microservices -->
+<!--<div class="tech-item">
+                <svg class="tech-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                <span class="tech-label">SQL Server</span>
+                <span class="tech-desc">Decoupled architecture for agility and easier maintenance.</span>
+            </div>
+        </div>
+    </div>
+</section>-->
+<!-- PROCESS -->
+<!--<section id="process" class="process-section">
+    <div class="container">
+        <div class="text-center">
+            <h2 style="font-size: 2rem; color: var(--primary-blue); font-weight: 700;">Hire in 4 Simple Steps</h2>
+            <p style="color: var(--text-muted);">Streamlined process to get you coding faster.</p>
+        </div>
+
+        <div class="process-grid">
+            <div class="process-item">
+                <div class="step-num">1</div>
+                <div>
+                    <h4 style="font-weight: 700;">Share Requirements</h4>
+                    <p style="font-size: 0.875rem; color: var(--text-muted);">Tell us what you need</p>
+                </div>
+            </div>
+            <div class="process-item">
+                <div class="step-num">2</div>
+                <div>
+                    <h4 style="font-weight: 700;">Review CVs</h4>
+                    <p style="font-size: 0.875rem; color: var(--text-muted);">Get top 3 profiles in 24h</p>
+                </div>
+            </div>
+            <div class="process-item">
+                <div class="step-num">3</div>
+                <div>
+                    <h4 style="font-weight: 700;">Interview</h4>
+                    <p style="font-size: 0.875rem; color: var(--text-muted);">Assess skills yourself</p>
+                </div>
+            </div>
+            <div class="process-item">
+                <div class="step-num">4</div>
+                <div>
+                    <h4 style="font-weight: 700;">Start Trial</h4>
+                    <p style="font-size: 0.875rem; color: var(--text-muted);">14-Day risk-free period</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>-->
+
+<section id="process" class="process-section">
+    <div class="container">
+        <div class="text-center" style="margin-bottom:20px;">
+            <h2 class="section-title">Hire in 4 Simple Steps</h2>
+            <p class="section-subtitle">Streamlined process to get you coding faster.</p>
+        </div>
+
+        <div class="process-wrapper">
+            <!-- Step 1 -->
+            <div class="process-card">
+                <div class="icon-container">
+                    <img src="~/assets/src/images/message-search.svg" alt="Share requirements" class="step-icon">
+                </div>
+                <div class="card-text">
+                    <h4>Share requirements</h4>
+                    <p>Tell us what you need</p>
+                </div>
+            </div>
+
+            <div class="process-arrow"><img src="~/assets/src/images/right-qrrow-lp.svg" alt=""></div>
+
+            <!-- Step 2 -->
+            <div class="process-card">
+                <div class="icon-container">
+                    <img src="~/assets/src/images/file-cv.svg" alt="Share requirements" class="step-icon">
+                </div>
+                <div class="card-text">
+                    <h4>Review CVs</h4>
+                    <p>Get top 3 profiles in 24h</p>
+                </div>
+            </div>
+
+            <div class="process-arrow"><img src="~/assets/src/images/right-qrrow-lp.svg" alt=""></div>
+
+            <!-- Step 3 -->
+            <div class="process-card">
+                <div class="icon-container">
+                    <img src="~/assets/src/images/video-minus.svg" alt="Share requirements" class="step-icon">
+                </div>
+                <div class="card-text">
+                    <h4>Interview</h4>
+                    <p>Assess skills yourself</p>
+                </div>
+            </div>
+
+            <div class="process-arrow"><img src="~/assets/src/images/right-qrrow-lp.svg" alt=""></div>
+
+            <!-- Step 4 -->
+            <div class="process-card">
+                <div class="icon-container">
+                    <img src="~/assets/src/images/coin-off.svg" alt="Share requirements" class="step-icon">
+                </div>
+                <div class="card-text">
+                    <h4>Start Trial</h4>
+                    <p>14-Day risk-free period</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- WHY US -->
+<section id="why" class="why-us-section">
+    <div class="why-us-bg-pattern"></div>
+    <div class="container">
+        <h2 class="text-center" style="font-size: 2rem; font-weight: 700; margin-bottom: 2rem; position: relative; z-index: 2;">Why 150+ Clients Trust Us</h2>
+        <div class="features-grid">
+            <div class="feature-box">
+                <div class="feature-icon-box">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+                </div>
+                <div>
+                    <h4 style="font-weight: 700; font-size: 1.25rem; margin-bottom: 0.5rem;">Top 5% Talent</h4>
+                    <p style="color: #bfdbfe; font-size: 0.9rem;">We screen thousands to hire the best. Our rigorous vetting process ensures you only get senior-level developers with proven track records.</p>
+                </div>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon-box">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+                <div>
+                    <h4 style="font-weight: 700; font-size: 1.25rem; margin-bottom: 0.5rem;">48-Hour Onboarding</h4>
+                    <p style="color: #bfdbfe; font-size: 0.9rem;">Don't wait weeks. Start in 2 days. We maintain a bench of pre-vetted developers ready to deploy to your project instantly.</p>
+                </div>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon-box">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>
+                </div>
+                <div>
+                    <h4 style="font-weight: 700; font-size: 1.25rem; margin-bottom: 0.5rem;">IP Protection</h4>
+                    <p style="color: #bfdbfe; font-size: 0.9rem;">Full NDA signed before we start. Your code, data, and intellectual property are legally protected under international laws.</p>
+                </div>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon-box">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                </div>
+                <div>
+                    <h4 style="font-weight: 700; font-size: 1.25rem; margin-bottom: 0.5rem;">Global Time Zone</h4>
+                    <p style="color: #bfdbfe; font-size: 0.9rem;">We work during your business hours. Flexible shifting ensures meaningful overlap for daily standups.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- CLIENT REVIEWS -->
+<section id="reviews" class="reviews-section">
+    <div class="container">
+        <h2 class="text-center" style="font-size: 2rem; color: var(--primary-blue); font-weight: 700; margin-bottom: 0.5rem;">Client Feedback</h2>
+        <p class="text-center" style="color: var(--text-muted); margin-bottom: 2rem;">See what our partners say about us.</p>
+
+        <div class="testimonials-grid">
+            <!-- Review 1 -->
+            <div class="testimonial-card">
+                <div class="quote-icon-bg">"</div>
+                <div class="testimonial-content">
+                    <p class="testimonial-text">"Attentive to our needs, handling modifications right away."</p>
+                    <div class="client-info">
+                        <div class="client-name">Hassan Azhar</div>
+                        <div class="client-role">Founder, epicX</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="testimonial-card">
+                <div class="quote-icon-bg">"</div>
+                <div class="testimonial-content">
+                    <p class="testimonial-text">"Delivered a robust and scalable solution for our billing needs."</p>
+                    <div class="client-info">
+                        <div class="client-name">Mikaela Pomren</div>
+                        <div class="client-role">CEO, Hotel Helka</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 3 (Desktop Only) -->
+            <div class="testimonial-card">
+                <div class="quote-icon-bg">"</div>
+                <div class="testimonial-content">
+                    <p class="testimonial-text">"Managed the project efficiently, delivering everything on time."</p>
+                    <div class="client-info">
+                        <div class="client-name">Stephen Orefice</div>
+                        <div class="client-role">CEO, FIXIN TO WINDOWS & DOORS</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 4 (Desktop Only) -->
+            <div class="testimonial-card">
+                <div class="quote-icon-bg">"</div>
+                <div class="testimonial-content">
+                    <p class="testimonial-text">"Highly responsive, adapting quickly to changes and feedback."</p>
+                    <div class="client-info">
+                        <div class="client-name">Jim Darte</div>
+                        <div class="client-role">CEO, Sandpiper Hospitality</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- LEAD FORM -->
+<section id="form" class="form-section">
+    <div class="container form-layout">
+
+        <!-- Left Content -->
+        <div class="form-context hidden" style="display:none;">
+            <h2 style="font-size:2.25rem;font-weight:700;color:var(--primary-blue);margin-bottom:1.5rem;">
+                Start your 14-day free trial with a Top .NET Developer
+            </h2>
+            <p style="padding-bottom: 16px; font-size:18px;">Before you commit, let our actions speak for themselves.</p>
+            <p style="padding-bottom: 18px; font-size: 18px;">
+                Whether modernizing a legacy .NET system or building a new one,
+                utilise our .NET expert for 14 days into your workflow to tackle a key challenge.
+            </p>
+            <h4 style="display:flex; padding-bottom:30px;">
+                <img src="~/assets/src/images/Info two.svg" alt="info" style="padding-right: 8px;">No Upfront Payment
+            </h4>
+            <div style="display:flex; gap: 20px;">
+                <img src="~/assets/src/images/Vetted Talent one.svg" alt="Feature 1">
+                <img src="~/assets/src/images/Onboarding one.svg" alt="Feature 2">
+                <img src="~/assets/src/images/Avg. Experience one.svg" alt="Feature 3">
+            </div>
+        </div>
+
+        <!-- Right Form -->
+        <div class="form-container">
+            <h2 style="text-align:center;font-size:1.5rem;color:var(--primary-blue);margin-bottom:0.5rem;font-weight:700;">
+                Get Your Free Profiles Now
+            </h2>
+            <p style="text-align:center;font-size:0.875rem;color:var(--text-muted);margin-bottom:0.5rem;">
+                Share your requirements. We'll send 3 profiles in 24h.
+            </p>
+
+            <form id="myForm" class="contact-form">
+
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label class="form-label"></label>
+                        <input type="text"
+                               id="formname"
+                               name="formname"
+                               class="form-input"
+                               placeholder="Your Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label"></label>
+                        <input type="email"
+                               id="formemail"
+                               name="formemail"
+                               class="form-input"
+                               placeholder="Work Email Address">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label"></label>
+                    <input type="number"
+                           id="formnumber"
+                           name="formnumber"
+                           class="form-input"
+                           placeholder="Phone Number">
+                </div>
+                <div class="form-grid-2">
+                    <!-- Services Dropdown -->
+                    <div class="form-group">
+                        <label class="form-label"></label>
+                        <select id="formservice"
+                                name="formservice"
+                                class="form-input">
+                            <option value="" disabled selected>Services You Need</option>
+                            <option>Custom Software Solution</option>
+                            <option>Website Design/Development</option>
+                            <option>Web App Development</option>
+                            <option>Mobile App Development</option>
+                            <option>UX/UI Design</option>
+                            <option>Quality Assurance</option>
+                            <option>AI/ML Solution</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Budget Dropdown -->
+                    <div class="form-group">
+                        <label class="form-label"></label>
+                        <select id="formbudget"
+                                name="formbudget"
+                                class="form-input">
+                            <option value="" disabled selected>Budget</option>
+                            <option>No Idea</option>
+                            <option>Less than 25,000 INR</option>
+                            <option>25,000 to 50,000 INR</option>
+                            <option>50,000 to 1,00,000 INR</option>
+                            <option>1,00,000 to 5,00,000 INR</option>
+                            <option>5,00,000 to 10,00,000 INR</option>
+                            <option>10,00,000+ INR</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label"></label>
+                    <textarea id="formtextarea"
+                              name="formtextarea"
+                              class="form-textarea"
+                              rows="4"
+                              placeholder="Describe your requirements"></textarea>
+                </div>
+
+                <button id="btnInquire"
+                        type="submit"
+                        class="btn btn-primary"
+                        style="width:100%;font-size:1.125rem; margin-top:20px;">
+                    SHOW ME PROFILES
+                </button>
+
+                <p style="text-align:center;font-size:0.75rem;color:#9ca3af;margin-top:1rem;display:flex;justify-content:center;gap:4px;align-items:center;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        <path d="M9 12l2 2 4-4"></path>
+                    </svg>
+                    100% Secure. We never spam.
+                </p>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+
+<!-- FAQ -->
+<section id="faqs" class="section-pricing" style="background: white;">
+    <div class="container" style="max-width: 800px;">
+        <h2 class="text-center" style="font-size: 2rem; color: var(--primary-blue); font-weight: 700; margin-bottom: 2rem;">Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <button class="faq-btn" onclick="toggleFaq(this)">
+                Can I interview the developers?
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-content">
+                Yes, you can conduct as many rounds of interviews as you like. We believe you should be 100% confident in the developer's skills before hiring.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-btn" onclick="toggleFaq(this)">
+                What if I am not satisfied during the trial?
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-content">
+                You can cancel immediately. You only pay if you are satisfied and decide to continue. There are no hidden exit fees.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-btn" onclick="toggleFaq(this)">
+                Do you work in my time zone?
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-content">
+                Yes, our developers work in Global Standard Time but can overlap with your hours if needed (typically 3-5 hours of overlap).
+            </div>
+        </div>
+    </div>
+</section>
+<!-- MOBILE STICKY BAR -->
+<div class="mobile-sticky-bar">
+    <a href="https://wa.me/919558450670" class="sticky-btn sticky-whatsapp">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        WhatsApp
+    </a>
+    <button onclick="navigateToSection('form')" class="sticky-btn sticky-inquire">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+        Inquire Now
+    </button>
+</div>

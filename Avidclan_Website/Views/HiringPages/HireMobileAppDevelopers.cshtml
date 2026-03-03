@@ -1,0 +1,2301 @@
+﻿
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @*<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">*@
+
+    @{
+        ViewBag.Title = "HireMobileAppDevelopers";
+        var context = "@context";
+        var type = "@type";
+        var id = "@id";
+        var graph = "@graph";
+    }
+
+    @section AdditionalMeta
+{
+        <meta property="og:url" content="https://www.avidclan.com/hire-mobile-app-developers/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Hire iOS & Android Mobile App Developers" />
+        <meta property="og:description" content="Want an app that goes viral? Hire mobile app developers specializing in high-performance custom ios & android development. Get your app right the first time." />
+        <meta property="og:image" content="https://www.avidclan.com/assets/images/logo.svg" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://twitter.com/AvidclanT" />
+        <meta name="twitter:title" content="Hire iOS & Android Mobile App Developers" />
+        <meta name="twitter:description" content="Want an app that goes viral? Hire mobile app developers specializing in high-performance custom ios & android development. Get your app right the first time." />
+        <meta name="twitter:image" content=" https://twitter.com/AvidclanT/header_photo " />
+
+        <title>Hire iOS & Android Mobile App Developers</title>
+        <meta name="description" content="Want an app that goes viral? Hire mobile app developers specializing in high-performance custom ios & android development. Get your app right the first time." />
+        <link rel="canonical" href="https://www.avidclan.com/hire-mobile-app-developers/" />
+
+        <link href="~/assets/css/swiper-bundle-min.css" rel="stylesheet" />
+        <link href="~/assets/css/Avidclan/hiringpages.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="~/assets/js/jquery.validate.min.js"></script>
+
+        <!-- Include intlTelInput -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+        <!-- Optional: Include the utils script if you need it -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
+
+        <link rel="stylesheet" href="~/assets/css/intlTelInput.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="~/assets/css/Avidclan/blog.css" />
+        <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Homepage",
+        "item": "https://www.avidclan.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Hire Mobile App Developer",
+        "item": "https://www.avidclan.com/hire-mobile-app-developers/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What types of mobile apps can I develop with your team?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our dedicated mobile developers build Android, iOS, and cross-platform apps, including business, enterprise, eCommerce, social, educational, and healthcare applications. Each solution is scalable, secure, and tailored to your requirements, delivering seamless performance, intuitive UI/UX, and long-term maintainability for your business or end-users."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I hire dedicated mobile app developers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hiring is simple. Share your project requirements, select the engagement model, onboard our skilled developers, and start collaboration. We offer flexible options like full-time, part-time, or team augmentation, ensuring the right expertise for your mobile app development needs, aligned with timelines, budget, and business objectives."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What platforms do your mobile developers specialize in?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our mobile app developers specialize in native Android (Kotlin, Java), native iOS (Swift, Objective-C), and cross-platform frameworks like Flutter, React Native, and Xamarin. This ensures your applications are optimized for performance, scalability, and user experience across multiple devices, operating systems, and environments."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does it take to develop a mobile app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The development timeline varies based on complexity, platform, features, and design. Simple apps may take 6–8 weeks, while complex cross-platform or enterprise apps may require several months. Our developers provide clear roadmaps, milestones, and progress updates to ensure timely delivery without compromising quality or functionality."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I scale my development team as needed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Our hiring process allows flexible team augmentation, enabling you to scale up or down based on project requirements. You can hire dedicated mobile developers for specific tasks or expand the team for full-cycle development, ensuring your project stays on schedule and aligned with business goals."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What kind of post-launch support do you provide?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We offer end-to-end maintenance and support, including bug fixes, performance optimization, feature updates, and security enhancements. Our mobile app development company ensures your applications remain stable, secure, and compatible with the latest OS versions, providing seamless user experiences and long-term value for your business."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you ensure app quality and security?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Quality is ensured through rigorous testing, including functional, performance, usability, and security testing. Our mobile developers follow best practices for secure coding, data protection, and compliance standards, delivering robust, error-free applications. Regular updates, monitoring, and automated testing further maintain app reliability and security post-launch."
+        }
+      }
+    ]
+  }
+]
+        </script>
+
+
+
+
+        <script type="text/javascript">
+            $('#btngetstarted').click(function () {
+                $('#btnpricing').fadeOut(250).fadeIn(250);
+            });
+        </script>
+    }
+    <style>
+        ul.custom-list {
+            list-style: none;
+            padding: 0;
+        }
+
+            ul.custom-list li {
+                position: relative;
+                padding-left: 1.2em;
+            }
+
+                ul.custom-list li::before {
+                    content: "\2022";
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    color: #333;
+                }
+    </style>
+
+    <!-- Banner Section -->
+    <section class="inner-page banner-section-two banner-section-box" style="padding-top:50px;">
+        <div class="container banner-section-margin">
+            <div class="row">
+                <div class="col-lg-7 order-lg-2  order-sm-3 order-2">
+                    <div class="pl-3">
+                        <h1>Hire Dedicated Mobile App Developers</h1>
+                        <h2 class="hiring-section-subtittle"> Build High-Performance Android, iOS & Cross-Platform Apps</h2>
+                        <p class="text">
+                            Unlock the power of mobile innovation with Avidclan Technologies — your trusted mobile app development company. Hire dedicated mobile developers to design, develop, and scale world-class applications. From native iOS and Android to Flutter-powered cross-platform apps, our expert team ensures engaging, secure, and scalable mobile solutions tailored to your business needs.
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 d-flex flex-column flex-md-row">
+                            <div class="btn-box mt-0">
+                                <a href="~/services#project_inquiry_form" class="btn btn-primary fw-bold rounded-5 custom-btn-padding shadow-none">
+                                    <span>
+                                        Hire Mobile Developers
+                                        <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="btn-box btn-check-price mb-2">
+                                <button onclick="scrollToSection('pricing_section')" class="btn-banner-title btn-title-font">
+                                    Check Our Pricing Plans
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 order-md-2 order-sm-3 order-md-1 order-1 text-center">
+                    @*<img src="~/assets/images/hiringpages/Illustration.png" class="img-fluid" alt="development" />*@
+
+                    @*<div class="row">
+                            <div class="col-auto" style="margin-left:12px;">
+                                <h3 class="schedule-interview-title">
+                                    Schedule a Developer Interview Now
+                                </h3>
+                            </div>
+                        </div>*@
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="card-title">Schedule The Mobile App Developer Interview Now</h3>
+                                    <form id="hiringform1" method="post" name="hiring_form_data1" action="contact-form-handler.php">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group interview-form-input-control">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control w-100 " name="Name1" id="Name1" placeholder="Your name">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group interview-form-input-control">
+                                                <div class="input-group">
+                                                    <input type="email" class="form-control w-100 " id="Email1" name="Email1" aria-describedby="emailHelp" placeholder="Enter email">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group interview-form-input-control">
+                                                <div class="input-group mobile-input mobilet" style="margin-left:4px;">
+                                                    <input type="hidden" id="code1" name="code1" value="1">
+                                                    <input type="tel" name="ContactNumber1" id="mobilet" class="w-100 numberonly form-control contact-input" maxlength="10" placeholder=" " aria-describedby="basic-addon1" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group interview-form-input-control">
+                                                <div class="input-group">
+                                                    <textarea class="form-control w-100 " id="Message1" name="Message1" rows="3" placeholder="Tell us about your project"></textarea>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="btn-box mt-3" style="margin-left: 13px">
+                                                <button type="submit" class="theme-btn btn-style-one" name="submit" id="btnSendHMail1">
+                                                    <span class="btn-title">
+                                                        Enquire Now
+                                                        <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!--End Banner Section-->
+    <!--Avidclan Banner div Section-->
+    <section id="badges" style="background-image: none !important; background: var(--Avidclan_CLR-Dark-Blue-dark-blue-700, #0E1734);">
+        <div class="sec-title">
+            <h2 style="font-family: Poppins !important; padding-bottom: 0; color: #FFF; text-align: center; padding-top: 30px">Awards and Achievement </h2>
+            <hr class="hr-cls center-block" />
+        </div>
+        <div class="container text-center" style="background-image:none !important;">
+            <!-- row -->
+            <div class="row badges-row swiper">
+                <div class="card-content">
+                    <div class="swiper-wrapper">
+                        <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                            <div class="badge-card badgecard-overflow">
+                                <div class="body">
+                                    <hr class="bottom-bar" />
+                                    <div class="text-center">
+                                        <p class="subtitle badge-box-p m-0">
+                                            Top-Rated Custom Software Development Company
+                                        </p>
+                                    </div>
+                                    <hr class="top-bar" />
+                                    <a href="https://www.appfutura.com/companies/avidclan-technologies" target="_blank" class="stretched-link">
+                                        <img src="~/assets/images/hiringpages/appfutura.png" alt="Sortlist Verified Agency" title="Top-Rated Custom Software Development Company" class="icon badge-box-img" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                            <div class="badge-card badgecard-overflow">
+                                <div class="body">
+                                    <hr class="bottom-bar" />
+                                    <div class="text-center">
+                                        <p class="subtitle badge-box-p m-0">
+                                            Top Software Development Company by Design Rush
+                                        </p>
+                                    </div>
+                                    <hr class="top-bar" />
+                                    <a href="https://www.designrush.com/agency/profile/avidclantechnologies" target="_blank" class="stretched-link">
+                                        <img src="~/assets/images/hiringpages/designrush.png" class="icon badge-box-img" alt="Badge Designrush" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                            <div class="badge-card badgecard-overflow">
+                                <div class="body">
+                                    <hr class="bottom-bar" />
+                                    <div class="text-center">
+                                        <p class="subtitle badge-box-p m-0">
+                                            Top Custom Software Development Company
+                                        </p>
+                                    </div>
+                                    <hr class="top-bar" />
+                                    <a href="https://itrate.co/developers/all" target="_blank" class="stretched-link">
+                                        <img src="~/assets/images/hiringpages/itrateco.png" class="icon badge-box-img" alt="Custom Software Development">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                            <div class="badge-card badgecard-overflow">
+                                <div class="body">
+                                    <hr class="bottom-bar" />
+                                    <div class="text-center">
+                                        <p class="subtitle badge-box-p m-0">
+                                            Clutch's Top Application Management Company 2024
+                                        </p>
+                                    </div>
+                                    <hr class="top-bar" />
+                                    <a href="https://clutch.co/profile/avidclan-technologies" target="_blank" class="stretched-link">
+                                        <img alt="Top Application Management & Support Company" src="~/assets/images/hiringpages/clutch.png" class="icon badge-box-img" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                            <div class="badge-card badgecard-overflow">
+                                <div class="body">
+                                    <hr class="bottom-bar" />
+                                    <div class="text-center">
+                                        <p class="subtitle badge-box-p m-0">
+                                            Top Web Development Company 2024
+                                        </p>
+                                    </div>
+                                    <hr class="top-bar" />
+                                    <a href="https://techreviewer.co/companies/avidclan-technologies" target="_blank" class="stretched-link">
+                                        <img src="~/assets/images/hiringpages/webdevelopmentcompany.png" alt="flag" class="icon badge-box-img" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-lg-2 col-xl-2 pb-md-4 swiper-slide">
+                            <div class="badge-card badgecard-overflow">
+                                <div class="body">
+                                    <hr class="bottom-bar" />
+                                    <div class="text-center">
+                                        <p class="subtitle badge-box-p m-0">
+                                            Top Mobile App Developers 2024
+                                        </p>
+                                    </div>
+                                    <hr class="top-bar" />
+                                    <a href="https://www.topdevelopers.co/profile/avidclan-technologies" target="_blank" class="stretched-link">
+                                        <img src="~/assets/images/hiringpages/mobileapp_developer.png" alt="Mobile App Development Companies" title="Mobile App Development Companies" class="icon badge-box-img">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        @* end badges *@
+                    </div><!-- end of row -->
+                </div>
+                <!-- Navigation Buttons -->
+                <div class="swiper-button-next bg-none" id="swiper-next" style="display:none;">
+                    <i class="ri-arrow-right-s-line"></i>
+                </div>
+
+                <div class="swiper-button-prev bg-none" id="swiper-prev" style="display:none;">
+                    <i class="ri-arrow-left-s-line"></i>
+                </div>
+
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!--End Avidclan div Section-->
+    <!--    our services Section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Hire Our Expert Mobile Developers to Build Scalable, High-Performance Apps</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">
+                                    Avidclan Technologies, a trusted mobile app development company, helps businesses create Android, iOS, and cross-platform apps. Hire developers to build secure, scalable, and user-friendly applications tailored to your business goals.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h3 class="service-card-subtitle">Custom Mobile App Development</h3>
+                        <p class="custom-card-content">
+                            Hire dedicated mobile app developers to build tailored applications that perfectly align with your business needs. Our app development company ensures scalability, high performance, and seamless integration, empowering your digital presence with secure, user-friendly mobile solutions.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h3 class="service-card-subtitle">Android App Development</h3>
+                        <p class="custom-card-content">
+                            Hire mobile application developers with expertise in building secure, scalable, and feature-rich Android apps. Our mobile app development services cover smartphones, tablets, and wearables, ensuring compatibility, exceptional performance, and intuitive user experiences across diverse Android platforms.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h3 class="service-card-subtitle">iOS App Development</h3>
+                        <p class="custom-card-content">
+                            As a reliable iOS development company, we deliver custom iPhone and iPad apps that are secure, high-performing, and visually engaging. Hire app developers skilled in Apple’s ecosystem to create intuitive mobile experiences tailored for premium users.
+
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h3 class="service-card-subtitle">Cross-Platform App Development</h3>
+                        <p class="custom-card-content">
+                            Hire dedicated mobile developers to build apps with Flutter and React Native. As a leading Flutter development company, we ensure cost-effective, scalable, and seamless mobile solutions that work flawlessly across Android and iOS platforms.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 mt-2">
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h3 class="service-card-subtitle">Enterprise Mobile Solutions</h3>
+                        <p class="custom-card-content">
+                            Our mobile app development company builds secure, enterprise-grade applications designed to streamline business workflows and boost efficiency. Hire dedicated mobile app developers for robust, scalable solutions that enhance productivity and support complex organizational processes.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h3 class="service-card-subtitle">App UI/UX Design</h3>
+                        <p class="custom-card-content">
+                            Hire mobile developers who deliver intuitive app UI/UX design. We create engaging, responsive, and user-focused interfaces that elevate customer satisfaction. Our app development company ensures seamless user journeys across Android, iOS, and cross-platform applications.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h3 class="service-card-subtitle">App Maintenance & Support</h3>
+                        <p class="custom-card-content">
+                            Hire dedicated mobile developers for ongoing app maintenance and support. Our experts provide regular updates, bug fixes, and performance enhancements, ensuring your mobile applications remain secure, optimized, and aligned with the latest market trends.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="custom-card-box">
+                        <h3 class="service-card-subtitle">App Migration & Upgrade</h3>
+                        <p class="custom-card-content">
+                            Modernize outdated apps with our app development company. Hire application developers to migrate legacy systems or upgrade features, ensuring enhanced performance, security, and scalability for Android, iOS, and cross-platform mobile applications.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- our services Section end-->
+    <!-- CTA Section start-->
+    <section class="ctasection section-box-spacing section-box-spacing-mobile-ui">
+        <div class="container" style="background: var(--color-primary) !important; ">
+            <div class="row align-items-center">
+                <div class="col-md-12 col-lg-12 col-sm-12 text-center">
+                    <div class="sec-title mb-0">
+                        <h3 class="ctasectiontexct">Develop High-Performance Mobile Apps with our Experts</h3>
+                        <div class="cta-content-text">
+                            Our expert developers build fast, scalable, and secure apps for Android, iOS, and cross-platform environments—carefully designed to match your unique business goals and drive long-term success.
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row  align-items-center">
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="cta-btn-box align-items-center">
+                        <a href="~/contact-us/" class="btn btn-secondary bg-white position-relative fw-bold rounded-5 overflow-hidden align-middle text-capitalize custom-btn-padding" style="padding-left: 10px; padding-right: 10px;">
+                            <span class="cta-btn-title"><span class="iconify me-2" data-icon="ion:call-sharp" data-height="25"></span>Hire Mobile Developers</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CTA Section end-->
+    <!--Technologies section start-->
+    <section class="techsection">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Technologies</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">We harness the power of advanced mobile development frameworks and tools to deliver high-performance, scalable, and secure Android, iOS, and cross-platform applications.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
+                <div class="col-md-2 col-lg-2 col-sm-4 my-auto pt-2 pt-md-0">
+                    <div class="tech-title-box tech-box" style="float: left;">
+                        <h3>Frameworks</h3>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-12 col-sm-12 my-auto tech-row-mobile-ui">
+                    <div class="tech-box pb-2 pb-md-0">
+                        <ul class=" inline-list">
+                            <li class="inline-list-li tech-li-text"><span>Android </span></li>
+                            <li class="inline-list-li tech-li-text"><span>iOS </span></li>
+                            <li class="inline-list-li tech-li-text"><span>Cross-Platform  </span></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
+                <div class="col-md-2 col-lg-2 my-auto pt-2 pt-md-0">
+                    <div class="tech-title-box tech-box" style="float: left;">
+                        <h3>Libraries</h3>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-9 my-auto tech-row-mobile-ui">
+                    <div class="tech-box pb-2 pb-md-0">
+                        <ul class="inline-list">
+                            <li class="inline-list-li tech-li-text"><span>Retrofit</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Alamofire</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Jetpack Compose</span></li>
+                            <li class="inline-list-li tech-li-text"><span>UIKit</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Redux</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Provider</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Bloc</span></li>
+                            <li class="inline-list-li tech-li-text"><span>RxSwift </span></li>
+
+
+
+
+                        </ul>
+                        <ul class=" inline-list">
+                            <li class="inline-list-li tech-li-text"><span>SDK </span></li>
+                            <li class="inline-list-li tech-li-text"><span>Firebase  </span></li>
+                            <li class="inline-list-li tech-li-text"><span>Lottie  </span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
+                <div class="col-md-2 col-lg-2 my-auto pt-2 pt-md-0">
+                    <div class="tech-title-box tech-box" style="float: left;">
+                        <h3>Databases</h3>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-9 my-auto tech-row-mobile-ui">
+                    <div class="tech-box pb-2 pb-md-0">
+                        <ul class="inline-list">
+                            <li class="inline-list-li tech-li-text"><span>SQLite</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Realm</span></li>
+                            <li class="inline-list-li tech-li-text"><span> Core Data</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Firebase</span></li>
+                            <li class="inline-list-li tech-li-text"><span>MongoDB</span></li>
+                            <li class="inline-list-li tech-li-text"><span>PostgreSQL</span></li>
+                            <li class="inline-list-li tech-li-text"><span>MySQL</span></li>
+
+
+                        </ul>
+                        <ul class="inline-list">
+                            <li class="inline-list-li tech-li-text"><span>DynamoDB</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
+                <div class="col-md-2 col-lg-2 my-auto pt-2 pt-md-0">
+                    <div class="tech-title-box tech-box" style="float: left;">
+                        <h3>Tools & Utilities</h3>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-9 my-auto tech-row-mobile-ui">
+                    <div class="tech-box pb-2 pb-md-0">
+                        <ul class="inline-list">
+                            <li class="inline-list-li tech-li-text"><span>Git</span></li>
+                            <li class="inline-list-li tech-li-text"><span>GitHub</span></li>
+                            <li class="inline-list-li tech-li-text"><span>GitLab</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Jenkins</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Fastlane</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Appium</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Jira</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Firebase Crashlytics</span></li>
+
+
+
+
+                        </ul>
+                        <ul class="inline-list">
+                            <li class="inline-list-li tech-li-text"><span>Postman</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Docker</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Bitbucket</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Visual Studio</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row sec-tech-titlediv section-box-spacing-mobile-ui">
+                <div class="col-md-2 col-lg-2 my-auto pt-2 pt-md-0">
+                    <div class="tech-title-box tech-box" style="float: left;">
+                        <h3>APIs & Cloud</h3>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-9 my-auto tech-row-mobile-ui">
+                    <div class="tech-box pb-2 pb-md-0">
+                        <ul class="inline-list">
+                            <li class="inline-list-li tech-li-text"><span>REST</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Firebase</span></li>
+                            <li class="inline-list-li tech-li-text"><span>AWS</span></li>
+                            <li class="inline-list-li tech-li-text"><span>Azure</span></li>
+                            <li class="inline-list-li tech-li-text"><span>GCP</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="btn-box text-center mt-3">
+                    <a href="~/services#project_inquiry_form" class="btn btn-primary fw-bold rounded-5 custom-btn-padding shadow-none">
+                        <span>
+                            Schedule a Developer Interview
+                            <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Technologies section end-->
+    <!--Technologies combination section end-->
+    <section class="badges-section" id="badges" style="background-image:none;">
+        <div class="container text-center">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Technologies Combinations</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">We use advanced mobile development frameworks, libraries, and tools to deliver high-performance apps across Android, iOS, and cross-platform platforms.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row badges-row  swiper">
+                <div class="card-content-combination tech-combination-container">
+                    <div class="swiper-wrapper">
+                        <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4 taech-combintion-tab-ui pb-md-4 swiper-slide">
+                            <div class="badge-card tech-combination-box">
+                                <div class="tech-box-icon-combination mvc-azure">
+                                    <img src="~/assets/images/hiringpages/flutter_logo.svg" alt="angular svgrepo" /> <h2 class="tech-combination-h1">+</h2>
+                                    <img src="~/assets/images/hiringpages/React_js/Technology_Combination/Firebase_Dark_logo.svg" alt="NodeJS" /><h2 class="tech-combination-h1">+</h2>
+                                    <img src="~/assets/images/hiringpages/React_js/Technology_Combination/Redux_logo.svg" alt="NodeJS" />
+                                </div>
+                                <p class="tech-combination-title tech-combination-span tech-combination">Flutter + Firebase + Redux</p>
+                                <p class="tech-combination-p tech-combination-content">
+                                    Build fast, scalable, cross-platform apps with Flutter’s UI toolkit, Firebase backend, and Redux state management for seamless performance and real-time data handling.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4 pb-md-4 taech-combintion-tab-ui swiper-slide">
+                            <div class="badge-card tech-combination-box">
+                                <div class="tech-box-icon-combination">
+                                    <img src="~/assets/images/hiringpages/swift_logo.svg" alt="angular svgrepo" />
+                                    <h2 class="tech-combination-h1">+</h2>
+                                    <img src="~/assets/images/hiringpages/alamofire_logo.svg" alt="angular svgrepo" />
+                                </div>
+                                <span class="tech-combination-title tech-combination-span tech-combination">Swift + Alamofire</span>
+                                <p class="tech-combination-p tech-combination-span tech-combination-text"> Develop high-performance iOS applications using Swift, store and manage data efficiently with Core Data, and integrate APIs seamlessly using Alamofire.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4 taech-combintion-tab-ui pb-md-4 swiper-slide">
+                            <div class="badge-card tech-combination-box">
+                                <div class="tech-box-icon-combination core-react">
+                                    <img src="~/assets/images/hiringpages/Kotlin_logo.svg" alt="angular svgrepo" /><h2 class="tech-combination-h1">+</h2>
+                                    <img src="~/assets/images/hiringpages/Jetpackcompose_logo.svg" alt="angular svgrepo" />
+                                </div>
+                                <span class="tech-combination-title tech-combination-span tech-combination">Kotlin + Jetpack Compose </span>
+                                <p class="tech-combination-p tech-combination-span tech-combination-text"> Create feature-rich Android apps with Kotlin, design modern interfaces via Jetpack Compose, and handle network requests efficiently with Retrofit.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4 taech-combintion-tab-ui pb-md-4 swiper-slide">
+                            <div class="badge-card tech-combination-box">
+                                <div class="tech-box-icon-combination web-assembly">
+                                    <img src="~/assets/images/hiringpages/React_js/Technology_Combination/React-Light_logo.svg" alt="angular svgrepo" /> <h2 class="tech-combination-h1">+</h2>
+                                    <img src="~/assets/images/hiringpages/React_js/Technology_Combination/Redux_logo.svg" alt="Django" /><h2 class="tech-combination-h1">+</h2>
+                                    <img src="~/assets/images/hiringpages/React_js/Technology_Combination/Firebase_Dark_logo.svg" alt="Django" />
+                                </div>
+                                <span class="tech-combination-title tech-combination-span tech-combination">React Native + Redux + Firebase</span>
+                                <p class="tech-combination-p tech-combination-span tech-combination-content"> Deliver seamless multi-platform mobile solutions using React Native for cross-platform UIs, Redux for state management, and Firebase for backend services.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4 taech-combintion-tab-ui pb-md-4 swiper-slide">
+                            <div class="badge-card tech-combination-box">
+                                <div class="tech-box-icon-combination docker-dotnetcore">
+                                    <img src="~/assets/images/hiringpages/Xamarin_logo.svg" alt="angular svgrepo" /><h2 class="tech-combination-h1">+</h2>
+                                    <img src="~/assets/images/hiringpages/Ai_page/Technologies_Combination/sqlite_logo.svg" alt="FastAPI" />
+                                    <h2 class="tech-combination-h1">+</h2>
+                                    <img src="~/assets/images/hiringpages/appcenterms-icon.svg" alt="angular svgrepo" />
+                                </div>
+                                <span class="tech-combination-title tech-combination-span tech-combination">Xamarin + SQLite + App Center</span>
+                                <p class="tech-combination-p tech-combination-span tech-combination-content">Develop enterprise-grade cross-platform applications with Xamarin, manage local data using SQLite, testing, and distribution through App Center.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4 taech-combintion-tab-ui pb-md-4 swiper-slide">
+                            <div class="badge-card tech-combination-box">
+                                <div class="tech-box-icon-combination">
+                                    <img src="~/assets/images/hiringpages/React_js/Technology_Combination/React-Light_logo.svg" alt="angular svgrepo" /><h2 class="tech-combination-h1">+</h2>
+                                    <img src="~/assets/images/imagenew/typescript.svg" alt=".NET" />
+                                    <h2 class="tech-combination-h1">+</h2>
+                                    <img src="~/assets/images/hiringpages/fastlane_logo.svg" alt="angular svgrepo" />
+                                </div>
+                                <span class="tech-combination-title tech-combination-span tech-combination">React Native + TypeScript + Fastlane</span>
+                                <p class="tech-combination-p tech-combination-span">Build robust, type-safe cross-platform apps with React Native, streamline development with TypeScript, and automate deployment pipelines using Fastlane for faster releases.</p>
+                            </div>
+                        </div>
+
+                        @* end badges *@
+                    </div><!-- end of row -->
+                </div>
+                <!-- Navigation Buttons -->
+                <div class="swiper-button-next bg-none" id="swiper-next">
+                    <i class="ri-arrow-right-s-line right-arrow"></i>
+                </div>
+
+                <div class="swiper-button-prev bg-none" id="swiper-prev">
+                    <i class="ri-arrow-left-s-line left-arrow "></i>
+                </div>
+
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+    <!--Technologies combination section end-->
+    <!--company success section start-->
+    <section id="about-us-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-6 mt-3">
+                    <div class="about-us-text-box">
+                        <h2 class="about-us-text-box-h2">Who are we?</h2>
+                        <hr class="hr-cls">
+                        <span class="about-avidclan-text-span">
+                            A mindful team of tech innovators transforming bold ideas into digital masterpieces. We at Avidclan Technologies fuse creativity with technology, crafting user-centric solutions that captivate and drive the success of global leaders.
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-dark-box">
+                        <img src="~/assets/images/hiringpages/Office Team.svg" alt="office-team" />
+                        <span class="about-us-dark-box-client-span">100+</span>
+                        <p class="about-us-dark-box-client-p">Clients Served Globally</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-light">
+                        <img class="about-us-light-box-project-icon" src="/assets/images/hiringpages/Delivered.svg" alt="delivered" />
+                        <span class="about-us-light-project-span">150+</span>
+                        <p class="about-us-light-project-p">Projects Delivered</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-lg-6 mt-3">
+                    <div class="about-us-img-box">
+                        <img src="~/assets/images/hiringpages/working_people.jpg" alt="detail-content" class="detail-content-img w-100" />
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-light">
+                        <img src="~/assets/images/hiringpages/Team.svg" alt="team" />
+                        <span class="about-us-light-project-span">40+</span>
+                        <p class="about-us-light-project-p">Developers</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-dark-box">
+                        <img src="~/assets/images/hiringpages/Satisfaction.svg" alt="satisfaction" />
+                        <span class="about-us-dark-box-client-span">99%</span>
+                        <p class="about-us-dark-box-client-p">Satisfaction Rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="about-us-section-tablet" style="display:none !important;">
+        <div class="container">
+            <div class="row">
+                <!-- Text Column -->
+                <div class="col-md-12 col-lg-6 mt-3 order-1 order-lg-1">
+                    <div class="about-us-text-box">
+                        <h2 class="about-us-text-box-h2">Who are we?</h2>
+                        <hr class="hr-cls">
+                        <span class="about-avidclan-text-span">
+                            A mindful team of tech innovators transforming bold ideas into digital masterpieces. We at Avidclan Technologies fuse creativity with technology, crafting user-centric solutions that captivate and drive the success of global leaders.
+                        </span>
+                    </div>
+                </div>
+                <!-- Image Column -->
+                <div class="col-md-12 col-lg-6 mt-3 order-2 order-lg-2">
+                    <div class="about-us-img-box">
+                        <img src="~/assets/images/hiringpages/working_people.jpg" alt="detail-content" class="w-100 detail-content-img" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- First Row: 100+ and 150+ in one line -->
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-dark-box">
+                        <img src="~/assets/images/hiringpages/Office Team.svg" alt="office-team" />
+                        <span class="about-us-dark-box-client-span">100+</span>
+                        <p class="about-us-dark-box-client-p">Clients Served Globally</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-light">
+                        <img class="about-us-light-box-project-icon" src="/assets/images/hiringpages/Delivered.svg" alt="delivered" />
+                        <span class="about-us-light-project-span">150+</span>
+                        <p class="about-us-light-project-p">Projects Delivered</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Row: 30+ and 90% in one line -->
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-light">
+                        <img src="~/assets/images/hiringpages/Team.svg" alt="team" />
+                        <span class="about-us-light-project-span">40+</span>
+                        <p class="about-us-light-project-p">Developers</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mt-3">
+                    <div class="about-us-dark-box">
+                        <img src="~/assets/images/hiringpages/Satisfaction.svg" alt="satisfaction" />
+                        <span class="about-us-dark-box-client-span">99%</span>
+                        <p class="about-us-dark-box-client-p">Satisfaction Rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-us-section-for-mobile-ui" style="display:none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 mt-5">
+                    <div class="about-us-text-box">
+                        <h2 class="about-us-text-box-h2">Who are we?</h2>
+                        <hr class="hr-cls">
+                        <span class="about-avidclan-text-span">
+                            A mindful team of tech innovators transforming bold ideas into digital masterpieces. We at Avidclan Technologies fuse creativity with technology, crafting user-centric solutions that captivate and drive the success of global leaders.
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 mt-5">
+                    <div class="about-us-img-box">
+                        <img src="~/assets/images/hiringpages/working_people.jpg" alt="detail-content" class="w-100 detail-content-img" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 mt-5">
+                    <div class="about-us-dark-box">
+                        <img src="~/assets/images/hiringpages/Office Team.svg" alt="office-team" />
+                        <span class="about-us-dark-box-client-span">100+</span>
+                        <p class="about-us-dark-box-client-p">Clients Served Globally</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 mt-5">
+                    <div class="about-us-light">
+                        <img class="about-us-light-box-project-icon" src="/assets/images/hiringpages/Delivered.svg" alt="delivered" />
+                        <span class="about-us-light-project-span">150+</span>
+                        <p class="about-us-light-project-p">Projects Delivered</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 mt-5">
+                    <div class="about-us-dark-box">
+                        <img src="~/assets/images/hiringpages/Satisfaction.svg" alt="satisfaction" />
+                        <span class="about-us-dark-box-client-span">99%</span>
+                        <p class="about-us-dark-box-client-p">Satisfaction Rate</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 mt-5">
+                    <div class="about-us-light">
+                        <img src="~/assets/images/hiringpages/Team.svg" alt="team" />
+                        <span class="about-us-light-project-span">40+</span>
+                        <p class="about-us-light-project-p">Developers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--company sucess section end-->
+    <!--hire from avidclan section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Why Hire from Avidclan Technologies?</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">
+                                    Avidclan Technologies combines creativity and technical expertise to deliver scalable, high-performance mobile applications that empower businesses across industries with reliable, user-focused solutions.
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card">
+                    <div class="why-hire-content-box why-hire-contentbox-mobileui">
+                        <div class="why-hire-header-box">
+                            <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/Angular_js/Hire_from_Avidclan_Technologies/Mobile_Expertise.svg" alt="Expert AngularJS Developers" />
+                            <span class="why-hire-title-box-span">Mobile App Development Expertise</span>
+                        </div>
+                        <p class="why-hire-content-text-p">
+                            At Avidclan Technologies, we specialize in Android, iOS, and cross-platform development. Hire mobile app developers who craft tailored, engaging, and scalable applications that fit your business needs.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card">
+                    <div class="why-hire-content-box why-hire-contentbox-mobileui">
+                        <div class="why-hire-header-box">
+                            <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/Angular_js/Hire_from_Avidclan_Technologies/Web_Expertise.svg" alt="Agile Methodology" />
+                            <span class="why-hire-title-box-span">Advanced Mobile Frameworks</span>
+                        </div>
+                        <p class="why-hire-content-text-p">
+                            We leverage powerful frameworks like Flutter, React Native, Kotlin, and Swift, ensuring seamless, high-quality mobile apps optimized for performance and user experience.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card our-pricing-tab-ui">
+                    <div class="why-hire-content-box why-hire-contentbox-mobileui">
+                        <div class="why-hire-header-box">
+                            <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/Angular_js/Hire_from_Avidclan_Technologies/Cross_platform.svg" alt="Rapid Development" />
+                            <span class="why-hire-title-box-span">Faster Time-to-Market</span>
+                        </div>
+                        <p class="why-hire-content-text-p"> Hire dedicated mobile developers to accelerate app delivery with agile development, efficient coding practices, and CI/CD integration for rapid, reliable deployments.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card mt-4">
+                    <div class="why-hire-content-box why-hire-contentbox-mobileui">
+                        <div class="why-hire-header-box">
+                            <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/Angular_js/Hire_from_Avidclan_Technologies/Cost-Effective_mobile.svg" alt="Scalable Solutions" />
+                            <span class="why-hire-title-box-span">
+                                Cost-Effective Solutions
+                            </span>
+                        </div>
+                        <p class="why-hire-content-text-p">
+                            Our app development company offers flexible hiring models, ensuring you get expert mobile app development services that balance quality, performance, and budget.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card mt-4">
+                    <div class="why-hire-content-box why-hire-contentbox-mobileui">
+                        <div class="why-hire-header-box">
+                            <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/Angular_js/Hire_from_Avidclan_Technologies/Cross-Platform_mobile.svg" alt="Performance Optimization" />
+                            <span class="why-hire-title-box-span">Cross-Platform Development</span>
+                        </div>
+                        <p class="why-hire-content-text-p">Hire application developers skilled in cross-platform tools to create apps that work smoothly across Android, iOS, and hybrid environments with minimal cost and maximum reach.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 why-hire-card mt-4 our-pricing-tab-ui">
+                    <div class="why-hire-content-box why-hire-contentbox-mobileui">
+                        <div class="why-hire-header-box">
+                            <img class="why-hire-content-icon-box" src="~/assets/images/hiringpages/Angular_js/Hire_from_Avidclan_Technologies/Tailored_mobile.svg" alt="Proven Track Record" />
+                            <span class="why-hire-title-box-span">Tailored Development Strategies</span>
+                        </div>
+                        <p class="why-hire-content-text-p">
+                            From concept to launch, we design customized development strategies to meet unique business requirements, ensuring every app delivers exceptional performance and user engagement.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!--hire from avidclan section end-->
+    <!--our pricing section start-->
+    <section class="section-box-spacing" id="pricing_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Our Pricing Plans</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">
+                                    Explore our flexible pricing plans and choose the one that fits your needs.
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-plan-box">
+                        <div class="pricing-plan-h2-box">
+                            <h2 class="pricing-plan-title">Hourly</h2>
+                        </div>
+                        <div class="pricing-plan-content-box">
+                            <ul>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" alt="tick" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Skilled and experienced developers will
+                                        be allocated 4-8 hours per day according to your needs
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" alt="tick" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Flexible scope and timeline
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" alt="tick" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Ideal for projects with uncertain requirements
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pricing-plan-detail-box text-center hourly-span" style="margin-top: 29px;">
+                            <span class="pricing-plan-detail-span">
+                                $18/hour <br /> (USD)
+                            </span>
+                            <button onclick="window.location.href='/services#project_inquiry_form';" class="theme-btn btn-style-one mt-3">
+                                <span class="btn-title" style="padding: 10px 20px!important;">
+                                    Hire Developers on Hourly Basis
+                                    <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 rating-box-mobile-ui">
+                    <div class="pricing-plan-box">
+                        <div class="pricing-plan-h2-box">
+                            <h2 class="pricing-plan-title">Monthly</h2>
+                        </div>
+                        <div class="pricing-plan-content-box">
+                            <ul>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" alt="tick" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Skilled and experienced developers will
+                                        be allocated full-time for 160 hours per month
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li price-m-top">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" alt="tick" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Predictable resource allocation
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" alt="tick" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Suitable for long-term projects
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pricing-plan-detail-box text-center pricing-box">
+                            <span class="pricing-plan-detail-span">
+                                $2,500/month <br /> (USD)
+                            </span>
+                            <button onclick="window.location.href='/services#project_inquiry_form';" class="theme-btn btn-style-one mt-3">
+                                <span class="btn-title" style="padding: 10px 20px!important;">
+                                    Hire Developers on Monthly Basis
+                                    <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 rating-box-mobile-ui our-pricing-tab-ui">
+                    <div class="pricing-plan-box">
+                        <div class="pricing-plan-h2-box">
+                            <h2 class="pricing-plan-title">Build a team</h2>
+                        </div>
+                        <div class="pricing-plan-content-box">
+                            <ul>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" alt="tick" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Hire a professional and dedicated mobile team of Project Managers, Designers, Developers, and QA
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" alt="tick" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Easy to upscale and downscale
+                                    </p>
+                                </li>
+                                <li class="pricing-plan-content-li">
+                                    <img src="~/assets/images/hiringpages/tick (1).svg" alt="tick" class="pricing-icon-img-web" />
+                                    <p class="pricing-plan-content-span pricing-p">
+                                        Suitable for complete project development from scratch
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pricing-plan-detail-box text-center pricing-box2">
+                            <span class="pricing-plan-detail-span">
+                                $10,000/month (USD)
+                            </span>
+                            <div class="btn-box  text-center mt-3">
+                                <button onclick="window.location.href='/services#project_inquiry_form';" class="theme-btn btn-style-one">
+                                    <span class="btn-title" style="padding: 10px 20px!important;">
+                                        Hire Dedicated Team
+                                        <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--benefits of hiring section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Benefits of Hiring Dedicated Mobile App Developers</h2>
+                                <hr class="center-block" style="width: 500px;" />
+                                <p class="text m-0 header_description">
+                                    Unlock the benefits of hiring skilled mobile developers for scalable, high-performance apps.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
+                    <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/acute.png" alt="Access to Skilled Experts" />
+                    <span class="benefits-of-hiring-text">Access to Skilled Experts</span>
+                </div>
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
+                    <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/perm_contact_calendar.png" alt="Custom Web Solutions" />
+                    <span class="benefits-of-hiring-text">Custom Web Solutions</span>
+                </div>
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
+                    <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/architecture.png" alt="Cross-Platform Expertise" />
+                    <span class="benefits-of-hiring-text">Cross-Platform Expertise</span>
+                </div>
+            </div>
+            <div class="row text-center mt-sm-5 mt-0">
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
+                    <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/integration_instructions.png" alt="Cross-Browser & Device Compatibility" />
+                    <span class="benefits-of-hiring-text">Cross-Browser & Device Compatibility</span>
+                </div>
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
+                    <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/category_FILL0_wght400_GRAD0_opsz24.png" alt="End-to-End Services" />
+                    <span class="benefits-of-hiring-text">End-to-End Services</span>
+                </div>
+                <div class="col-md-4 d-flex flex-column align-items-center benefits-icon-box">
+                    <img class="benefits-of-hiring-img mb-2" src="~/assets/images/hiringpages/payments.png" alt="Faster Time-to-Market" />
+                    <span class="benefits-of-hiring-text">Faster Time-to-Market</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!--benefits of hiring section end-->
+    <!--development process section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Our Development Process</h2>
+                                <hr class="center-block" style="width: 500px;" />
+                                <p class="text m-0 header_description">Our 4-stage process for mobile app development ensures seamless delivery with top-notch quality, covering everything from requirement analysis and design to development and ongoing support for a flawless final product.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12" style="border:none;" id="develoment-process-div">
+                    <img src="~/assets/images/locations/Hire .NET Developers-com.svg" class="development-process-imgbox img-fluid w-100" alt="Development Process" />
+                </div>
+                <div class="col-md-12 col-sm-12" style="border:none;display:none;" id="develoment-process-div-mobile">
+                    <img src="~/assets/images/locations/net_mobile-com.svg" class="development-process-imgbox img-fluid w-100" alt="Development Process" />
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!--development process section end-->
+    <!--Hiring process section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row center-block">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Hiring Process of Mobile App Developer</h2>
+                                <hr class="hr-cls center-block" />
+                                <p class="text m-0 header_description">
+                                    We provide dedicated mobile app developers delivering scalable applications for your business.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1 col-lg-1"></div>
+                <div class="col-md-1 col-lg-1 d-flex flex-column align-items-center hiringprocess-content-box hiring-process-icon">
+                    <div class="d-flex align-items-center ">
+                        @*hiring-process-icon-mobile-ui*@
+                        <img class="hiringprocess-img-box" src="~/assets/images/hiringpages/QA_Automation/Hiring_Process/Requirement-Analysis.svg" alt="requirement-analysis" />
+                    </div>
+                    <span class="hiringprocess-text-box text-wrap mt-3 hiringprocess-text-box-mobile-ui">Requirement Analysis</span>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="arrow-icon mt-5" src="~/assets/images/hiringpages/arrow.svg" alt="arrow" />
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="hiringprocess-img-box " src="~/assets/images/hiringpages/QA_Automation/Hiring_Process/Pricing.svg" alt="pricing" />
+                    </div>
+                    <span class="hiringprocess-text-box text-wrap mt-3 hiringprocess-text-box-mobile-ui">
+                        Initial Consultation & Pricing
+                    </span>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="arrow-icon mt-5" src="~/assets/images/hiringpages/arrow.svg" alt="arrow" />
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="hiringprocess-img-box" src="~/assets/images/hiringpages/QA_Automation/Hiring_Process/Onboarding.svg" alt="onboarding" />
+                    </div>
+                    <span class="hiringprocess-text-box text-wrap mt-3 hiringprocess-text-box-mobile-ui"> Onboarding & Team Augmentation</span>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="arrow-icon mt-5" src="~/assets/images/hiringpages/arrow.svg" alt="arrow" />
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="hiringprocess-img-box " src="~/assets/images/hiringpages/QA_Automation/Hiring_Process/Automation-setup.svg" alt="automation-setup" />
+                    </div>
+                    <span class="hiringprocess-text-box text-wrap mt-3 hiringprocess-text-box-mobile-ui">
+                        Automation Process Setup
+                    </span>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="arrow-icon mt-5" src="~/assets/images/hiringpages/arrow.svg" alt="arrow" />
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-1  d-flex flex-column align-items-center hiringprocess-content-box">
+                    <div class="d-flex align-items-center">
+                        <img class="hiringprocess-img-box " src="~/assets/images/hiringpages/QA_Automation/Hiring_Process/Testing.svg" alt="testing" />
+                    </div>
+                    <span class="hiringprocess-text-box text-wrap mt-3 hiringprocess-text-box-mobile-ui">Development & Delivery</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--HiringProces section end-->
+    <!--our work section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Our Work</h2>
+                                <hr class="center-block" style="width:250px;" />
+                                <p class="text m-0 header_description">
+                                    We craft Android, iOS, and cross-platform mobile applications that deliver exceptional performance, intuitive UI/UX, and scalable solutions tailored to your business goals.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="project-block-five masonry-item por-1 col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image">
+                            <a href="https://www.avidclan.com/portfolio/" class="image">
+                                <img src="~/assets/images/gallery/e-shala-portfolio.jpg" alt="
+                                     ventory-portfolio" />
+                            </a>
+                        </div>
+                        <div class="lower-content">
+                            <div class="content">
+                                <h3>
+                                    E-Shala
+                                </h3>
+                                <p>
+                                    School management app used by teachers and students to manage attendance, assignments and more activities.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-block-five masonry-item por-1 col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image">
+                            <a href="https://www.avidclan.com/portfolio/" class="image">
+                                <img src="~/assets/images/gallery/bladeportM-portfolio.jpg" alt="catina-portfolio" />
+                            </a>
+                        </div>
+                        <div class="lower-content">
+                            <div class="content">
+                                <h3>Bladeport</h3>
+                                <p>
+                                    Bladeport is an application used internally for task management, emails and live conversation among the team members.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-block-five masonry-item por-1 col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image">
+                            <a href="https://www.avidclan.com/portfolio/" class="image">
+                                <img src="~/assets/images/gallery/prizai-portfolio.jpg" alt="clf-portfolio" />
+                            </a>
+                        </div>
+                        <div class="lower-content">
+                            <div class="content">
+                                <h3>
+                                    Prizai
+                                </h3>
+                                <p>
+                                    App used by customers wanting to get salon services online by getting benefit of various referral programs.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--our work section end-->
+    <!--Industry section start-->
+    <section class="section-box-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="avidclan_section_title text-center mb-50">
+                            <div class="sec-title">
+                                <h2 style="font-family: Poppins !important; padding-bottom: 0">Industries we serve</h2>
+                                <hr class="center-block" style="width: 350px;" />
+                                <p class="text m-0 header_description">
+                                    Mobile app solutions for diverse industries, driving innovation, scalability, engagement, and seamless digital experiences for businesses.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-1 d-flex flex-column align-items-center"></div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/Banking.svg" alt="banking" />
+                    <span class="industries-text">Finance and Banking</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/Healthcare.svg" alt="healthcare" />
+                    <span class="industries-text">Healthcare</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box" src="~/assets/images/hiringpages/eCommerce.svg" alt="e-commerce" />
+                    <span class="industries-text">E-commerce</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box" src="~/assets/images/hiringpages/engineering.svg" alt="engineering" />
+                    <span class="industries-text">Manufacturing</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/Education.svg" alt="Education" />
+                    <span class="industries-text">Education</span>
+                </div>
+                <div class="col-md-1 d-flex flex-column align-items-center"></div>
+            </div>
+            <div class="row text-center mt-3">
+                <div class="col-md-1 d-flex flex-column align-items-center"></div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/Government.svg" alt="Government" />
+                    <span class="industries-text">Government</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/IOT.svg" alt="IOT" />
+                    <span class="industries-text">IOT</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/oil_barrel.svg" alt="Petroleum-Industry" />
+                    <span class="industries-text">Petroleum Industry</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/Logistics.svg" alt="logistics" />
+                    <span class="industries-text">Logistics</span>
+                </div>
+                <div class="col-md-2 d-flex flex-column align-items-center">
+                    <img class="industries-img-box mb-2" src="~/assets/images/hiringpages/UI_UX_Hiring/real-estate.svg" alt="Real Estate" />
+                    <span class="industries-text">Real-estate</span>
+                </div>
+                <div class="col-md-1 d-flex flex-column align-items-center"></div>
+            </div>
+
+        </div>
+    </section>
+    <!--Industry section end-->
+    <!--testimonials section start-->
+    <section class="bg-img-none">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="detail-section-div">
+                            <div class="avidclan_section_title text-wrap">
+                                <div class="sec-title center-block">
+                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Client Testimonials</h2>
+                                    <hr class="center-block" style="width: 366px;" />
+                                    <p class="detail-content m-0  text-wrap" style="text-align: center">
+                                        Success Stories Shared
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cinkes_testimonial_spage_wrapper">
+                <div class="swiper-container cinkes_testimonial_spage_active">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    Skillfuly accomplished the complex development tasks. Team was available for discussion on changes
+                                    or requests. It was a great pleasure to work with the Avidclan Technologies team.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img src="~/assets/images/user/1.jpg" alt="darpon-k" srcset="~/assets/images/user/1.jpg 100w, ~/assets/images/user/1.jpg 1080w" sizes="100vw" width="100" height="100" class="lazyload" loading="lazy" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Darpon K.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">CEO & Founder</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    We have worked with the team many times over different projects in the last few years, and always
+                                    value having them working with us. They are great communicators and the quality of work is
+                                    excellent.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img src="~/assets/images/user/2.jpg" srcset="~/assets/images/user/2.jpg 100w, ~/assets/images/user/2.jpg 1080w" sizes="100vw" alt="Tom-A-technical-director" width="100" height="100" class="lazyload" loading="lazy" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Tom A.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">Technical Director</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    Avidclan Technologies did a splendid job building our UI and frontend exactly the way we wanted. They
+                                    understood the requirements very well and delivered well ahead of time.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img src="~/assets/images/user/3.jpg" alt="gregoire-p-managibg-director" srcset="~/assets/images/user/3.jpg 100w, ~/assets/images/user/3.jpg 1080w" sizes="100vw" width="100" height="100" class="lazyload" loading="lazy" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Gregoire P.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">Managing director</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    Team communicates very well and adheres to deadlines, even getting work done early. They take time
+                                    to perfect their work and made sure that we were fully satisfied with the quality of work.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img src="~/assets/images/user/4.jpg" alt="nicholas-p-web-designer" srcset="~/assets/images/user/4.jpg 100w, ~/assets/images/user/4.jpg 1080w" sizes="100vw" width="100" height="100" class="lazyload" loading="lazy" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Nicolas P.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">Web Designer</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cinkes_testimonial_spage_content">
+                                <p class="cinkes_testimonial_spage_message">
+                                    Fantastic skills and the development team has got a great eye for detail and accuracy and they
+                                    were very easy to work with.
+                                </p>
+                                <div class="cinkes_testimonial_spage_author mt-35">
+                                    <span class="cinkes_testimonial_spage_author_img">
+                                        <img src="~/assets/images/user/5.jpg" alt="sanuka-s-sales-manager" srcset="~/assets/images/user/5.jpg 100w, ~/assets/images/user/5.jpg 1080w" sizes="100vw" width="100" height="100" class="lazyload" loading="lazy" />
+                                    </span>
+                                    <div class="cinkes_testimonial_spage_author_text">
+                                        <b class="cinkes_testimonial_spage_author_name">Sanuka S.</b><br />
+                                        <span class="cinkes_testimonial_spage_author_designation">Sales Manager</span>
+                                        <div class="cinkes_testimonial_spage_author_rating text-primary">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cinkes_testimonial_spage_navigation text-center mt-35">
+                    <div class="cinkes_testimonial_spage_prev"><i class="fas fa-long-arrow-alt-left"></i></div>
+                    <div class="cinkes_testimonial_spage_next"><i class="fas fa-long-arrow-alt-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--testimonials section end-->
+    @*<div id="testimonials">
+            @Html.Partial("_ClientFeedback")
+        </div>*@
+    <!--frequently asked question section start-->
+    <section class="FAQ-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="detail-section-div">
+                            <div class="avidclan_section_title text-wrap">
+                                <div class="sec-title center-block">
+                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Frequently Asked Questions (FAQs)</h2>
+                                    <hr class="center-block" style="width: 682px;" />
+                                    <p class="detail-content m-0  text-wrap" style="text-align: center">
+                                        Answers to common questions about hiring dedicated mobile developers, app development process, pricing, and engagement models.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne"
+                                        aria-expanded="true"
+                                        aria-controls="collapseOne">
+                                    What types of mobile apps can I develop with your team?
+                                </button>
+                            </h2>
+                            <div id="collapseOne"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingOne"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Our dedicated mobile developers build Android, iOS, and cross-platform apps, including business, enterprise, eCommerce, social, educational, and healthcare applications. Each solution is scalable, secure, and tailored to your requirements, delivering seamless performance, intuitive UI/UX, and long-term maintainability for your business or end-users.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo"
+                                        aria-expanded="false"
+                                        aria-controls="collapseTwo">
+                                    How do I hire dedicated mobile app developers?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingTwo"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Hiring is simple. Share your project requirements, select the engagement model, onboard our skilled developers, and start collaboration. We offer flexible options like full-time, part-time, or team augmentation, ensuring the right expertise for your mobile app development needs, aligned with timelines, budget, and business objectives.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree"
+                                        aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                    What platforms do your mobile developers specialize in?
+                                </button>
+                            </h2>
+                            <div id="collapseThree"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingThree"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Our mobile app developers specialize in native Android (Kotlin, Java), native iOS (Swift, Objective-C), and cross-platform frameworks like Flutter, React Native, and Xamarin. This ensures your applications are optimized for performance, scalability, and user experience across multiple devices, operating systems, and environments.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseFour"
+                                        aria-expanded="false"
+                                        aria-controls="collapseFour">
+                                    How long does it take to develop a mobile app?
+                                </button>
+                            </h2>
+                            <div id="collapseFour"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingFour"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    The development timeline varies based on complexity, platform, features, and design. Simple apps may take 6–8 weeks, while complex cross-platform or enterprise apps may require several months. Our developers provide clear roadmaps, milestones, and progress updates to ensure timely delivery without compromising quality or functionality.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseFive"
+                                        aria-expanded="false"
+                                        aria-controls="collapseFive">
+                                    Can I scale my development team as needed?
+                                </button>
+                            </h2>
+                            <div id="collapseFive"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingFive"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Yes. Our hiring process allows flexible team augmentation, enabling you to scale up or down based on project requirements. You can hire dedicated mobile developers for specific tasks or expand the team for full-cycle development, ensuring your project stays on schedule and aligned with business goals.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingSix">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseSix"
+                                        aria-expanded="false"
+                                        aria-controls="collapseSix">
+                                    What kind of post-launch support do you provide?
+                                </button>
+                            </h2>
+                            <div id="collapseSix"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingSix"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    We offer end-to-end maintenance and support, including bug fixes, performance optimization, feature updates, and security enhancements. Our mobile app development company ensures your applications remain stable, secure, and compatible with the latest OS versions, providing seamless user experiences and long-term value for your business.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingSeven">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseSeven"
+                                        aria-expanded="false"
+                                        aria-controls="collapseSeven">
+                                    How do you ensure app quality and security?
+                                </button>
+                            </h2>
+                            <div id="collapseSeven"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="headingSeven"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Quality is ensured through rigorous testing, including functional, performance, usability, and security testing. Our mobile developers follow best practices for secure coding, data protection, and compliance standards, delivering robust, error-free applications. Regular updates, monitoring, and automated testing further maintain app reliability and security post-launch.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--frequently asked question section end-->
+    <!-- Blog Section -->
+    <section class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="service-block">
+                        <div class="detail-section-div">
+                            <div class="avidclan_section_title text-wrap">
+                                <div class="sec-title center-block">
+                                    <h2 class="detail-title" style="padding-bottom: 0px !important; text-align: center;">Related Blogs</h2>
+                                    <hr class="center-block" style="width: 250px;" />
+                                    <p class="detail-content m-0  text-wrap" style="text-align: center">
+                                        Explore insights, trends, and tips on mobile development
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="blog-grid-wrap">
+                <div class="row" id="demo">
+                </div>
+            </div>
+            <!-- Blog Pagination Start -->
+
+            <div class="blog-pagination">
+                <ul class="pagination justify-content-center" id="pagination" style="margin-top: 70px;">
+                </ul>
+            </div>
+            <!-- Blog Pagination End -->
+        </div>
+    </section>
+    <!-- Blog Section -->
+    <!--let's talk section start-->
+    <section class="lets-talk section-box-spacing" id="lets_talk_section_webUI">
+        <div class="container">
+            <div class="row align-items-center inner-block">
+                <div class="col-md-12 col-lg-8 col-xl-7">
+                    <div class="mb-0">
+                        <h2 class="lets-talk-title">
+                            Hire Expert Mobile Developers for Your Next App
+                        </h2>
+                        <div class="lets-talk-content mt-3">
+                            Accelerate your mobile app project with Avidclan Technologies. Hire dedicated mobile app developers to build secure, scalable, and high-performance Android, iOS, and cross-platform applications that meet your business goals.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4 col-xl-5 text-center text-lg-end">
+                    <div class="btn-box mt-lg-0 mt-4">
+                        <a href="/contact-us/" class="btn btn-secondary bg-white position-relative fw-bold rounded-5 overflow-hidden align-middle text-capitalize custom-btn-padding">
+                            <span class="btn-title">
+                                <span class="btn-title" style="color: #142149;"><img src="~/assets/images/hiringpages/ion_call-sharp.png" alt="call-icon" style="width: 22px; height: 22px; margin-right:5px;" />Hire Mobile Developers</span>
+
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="ctasection section-box-spacing section-box-spacing-mobile-ui" id="lets_talk_section_mobileUI" style="display:none;">
+        <div class="container" style="background: var(--color-primary) !important; ">
+            <div class="row align-items-center">
+                <div class="col-md-12 col-lg-12 col-sm-12 text-center">
+                    <div class="sec-title mb-0">
+                        <h2 class="ctasectiontexct">
+                            Accelerate Growth with AI-Driven Innovation!!! Join Our Forces
+                        </h2>
+                        <div class="cta-content-text">
+                            Take your business to the next level with AI solutions from us. We design, develop, and deploy intelligent systems that automate routine tasks while increasing operational efficiency - together, we'll create more innovative, faster, and more agile processes.
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12 col-sm-12" align="center">
+                    <div class="cta-btn-box align-items-center" align="center">
+                        <a href="~/contact-us/" class="btn btn-secondary bg-white position-relative fw-bold rounded-5 overflow-hidden align-middle text-capitalize custom-btn-padding">
+                            <span class="cta-btn-title"><span class="iconify me-2" data-icon="ion:call-sharp" data-height="25"></span>GET IN TOUCH TODAY</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--let's talk section end-->
+    <!--schedule section start-->
+    <section class="developer-interview-section section-box-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-6 col-sm-3">
+                    <img src="~/assets/images/hiringpages/devloperInterview-1.png" alt="developer-interview" loading="lazy" class="w-100" />
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-3 mt-4">
+                    <div class="row">
+                        <div class="col-auto interview-spacing">
+                            <h3 class="schedule-interview-title">
+                                Schedule The Mobile App Developer Interview Now
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <form id="hiringform" method="post" name="hiring_form_data" action="contact-form-handler.php">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group interview-form-input-control">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control w-100 " name="Name" id="Name" placeholder="Your name">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group interview-form-input-control">
+                                        <div class="input-group">
+                                            <input type="email" class="form-control w-100 " id="Email" name="Email" aria-describedby="emailHelp" placeholder="Enter email">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group interview-form-input-control">
+                                        <div class="input-group mobile-input" style="margin-left:4px;">
+                                            <input type="hidden" id="code" name="code" value="1">
+                                            <input type="tel" name="ContactNumber" id="phone" class="w-100 numberonly form-control contact-input" maxlength="10" placeholder=" " aria-describedby="basic-addon1" />
+                                        </div>
+
+                                        @*<input type="tel" name="ContactNumber" id="phone" class="numberonly form-control contact-input contact-input-smallUI" maxlength="10" aria-describedby="basic-addon2" style="display:none;" />*@
+                                        @*<input type="tel" class="" name="ContactNumber" id="" placeholder="123-456-7890" aria-label="Phone number" aria-describedby="basic-addon1">*@
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group interview-form-input-control">
+                                        <div class="input-group">
+                                            <textarea class="form-control w-100 " id="Message" name="Message" rows="3" placeholder="Tell us about your project"></textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="btn-box mt-3" style="margin-left: 13px">
+                                        <button type="submit" class="theme-btn btn-style-one" name="submit" id="btnSendHMail">
+                                            <span class="btn-title">
+                                                Enquire Now
+                                                <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--schadule section end-->
+    <script src="~/assets/js/swiper-bundle-min.js"></script>
+    <script>
+        // Siwper JS
+
+        let swiperCard = new Swiper(".card-content", {
+            loop: true,
+            spaceBetween: 32,
+            grabCursor: true,
+
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                dynamicBullets: true,
+            },
+
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+
+            breakpoints: {
+                768: { slidesPerView: 3 },
+                1200: { slidesPerView: 6 },
+            },
+        });
+
+        let swiperCardCombination = new Swiper(".card-content-combination", {
+            loop: true,
+            spaceBetween: 32,
+            grabCursor: true,
+
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                dynamicBullets: true,
+            },
+
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                1200: { slidesPerView: 3 },
+            },
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //var BlogType = "testing"
+            var BlogType = "Mobile App"
+            GetSectionData(BlogType);
+        });
+
+    </script>
+    <script type="text/javascript">
+        // Ensure jQuery and jQuery Validate are loaded in the document
+        $(document).ready(function () {
+
+            var Hiringform = $("#hiringform"),
+                message = $(".contact_msg"),
+                form_data;
+
+            function done_func(response) {
+                console.log(response);
+                window.location.replace("/hire-developer-thank-you");
+                grecaptcha.reset();
+                setTimeout(function () {
+                    message.fadeOut();
+                }, 3000);
+                Hiringform.find('input:not([type="submit"]), textarea').val("");
+                $('#button-spinner').hide();
+            }
+
+            Hiringform.submit(function (e) {
+                e.preventDefault();
+
+                var countrycode = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
+                $("#code").val(countrycode);
+
+                form_data = $(this).serialize();
+
+                if (!Hiringform.valid()) {
+                    return false;
+                }
+
+                $('#button-spinner').show();
+                $('#sbmtbtn').attr("disabled", true);
+
+                var data = {
+                    Name: $("#Name").val(),
+                    Email: $("#Email").val(),
+                    PhoneNumber: $("#phone").val(),
+                    Message: $("#Message").val(),
+                    CountryCode: countrycode,
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/api/Mail/SendHiringDotNetDetails",
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                }).done(done_func);
+            });
+
+            // jQuery validation
+            $("form[name='hiring_form_data']").validate({
+                errorPlacement: function (error, element) {
+                    if ($(element).is("#phone")) {
+                        element.closest(".intl-tel-input").after(error);
+                    } else {
+                        error.insertAfter(element);
+                    }
+                },
+                rules: {
+                    Name: "required",
+                    Email: {
+                        required: true,
+                        email: true,
+                    },
+                    ContactNumber: {
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10
+                    },
+                    Message: {
+                        required: true,
+                        minlength: 25,
+                    }
+                },
+                messages: {
+                    Name: "Please enter your name",
+                    ContactNumber: {
+                        required: "Please enter your phone number",
+                        digits: "Please enter valid phone number",
+                        minlength: "Please enter valid phone number",
+                        maxlength: "Please enter valid phone number",
+                    },
+                    Email: {
+                        required: "Please enter your email address",
+                        email: "Please enter a valid email address.",
+                    },
+                    Message: {
+                        required: "Please write your message",
+                        minlength: "Please write at least 25 characters",
+                    }
+                },
+                submitHandler: function (form) {
+                    form.submit();  // Use native form submit here to avoid recursion
+                }
+            });
+
+
+
+            var Hiringform1 = $("#hiringform1"),
+                message = $(".contact_msg"),
+                form_data;
+
+            function done_func(response) {
+                console.log(response);
+                window.location.replace("/hire-developer-thank-you");
+                grecaptcha.reset();
+                setTimeout(function () {
+                    message.fadeOut();
+                }, 3000);
+                Hiringform.find('input:not([type="submit"]), textarea').val("");
+                $('#button-spinner').hide();
+            }
+
+            Hiringform1.submit(function (e) {
+                e.preventDefault();
+
+                var countrycode = $("#mobilet").intlTelInput("getSelectedCountryData").dialCode;
+                $("#code1").val(countrycode);
+
+                form_data = $(this).serialize();
+
+                if (!Hiringform1.valid()) {
+                    return false;
+                }
+
+                $('#button-spinner').show();
+                $('#sbmtbtn').attr("disabled", true);
+
+                var data = {
+                    Name: $("#Name1").val(),
+                    Email: $("#Email1").val(),
+                    PhoneNumber: $("#mobilet").val(),
+                    Message: $("#Message1").val(),
+                    CountryCode: countrycode,
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/api/Mail/SendHiringDotNetDetails",
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                }).done(done_func);
+            });
+
+            // jQuery validation
+            $("form[name='hiring_form_data1']").validate({
+                errorPlacement: function (error, element) {
+                    if ($(element).is("#mobilet")) {
+                        element.closest(".intl-tel-input").after(error);
+                    } else {
+                        error.insertAfter(element);
+                    }
+                },
+                rules: {
+                    Name1: "required",
+                    Email1: {
+                        required: true,
+                        email: true,
+                    },
+                    ContactNumber1: {
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10
+                    },
+                    Message1: {
+                        required: true,
+                        minlength: 25,
+                    }
+                },
+                messages: {
+                    Name1: "Please enter your name",
+                    ContactNumber1: {
+                        required: "Please enter your phone number",
+                        digits: "Please enter valid phone number",
+                        minlength: "Please enter valid phone number",
+                        maxlength: "Please enter valid phone number",
+                    },
+                    Email1: {
+                        required: "Please enter your email address",
+                        email: "Please enter a valid email address.",
+                    },
+                    Message1: {
+                        required: "Please write your message",
+                        minlength: "Please write at least 25 characters",
+                    }
+                },
+                submitHandler: function (form) {
+                    form.submit();  // Use native form submit here to avoid recursion
+                }
+            });
+        });
+
+    </script>
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                $("#phone").intlTelInput({
+                    initialCountry: "us",
+                    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"  // for formatting/validation
+                });
+            });
+        </script>*@
+
+    <script type="text/javascript">
+
+
+        function GetSectionData(BlogType) {
+            $.ajax({
+                type: "GET",
+                url: "/Avidclan/GetSectionDataByBlogType?BlogType=" + BlogType,
+                contentType: 'application/json; charset=utf-8',
+                dataType: "json",
+                success: function (data) {
+                    $("#demo").html("");
+                    var sectionblog = "";
+                    var paginationData = "";
+                    var imageURL = "https://cms.avidclan.com";
+
+                    $.each(data.data.ListBlog, function (k, v) {
+
+                        var options = { year: 'numeric', month: 'long', day: 'numeric' };
+                        var PostingDate = new Date(v.PostingDate);
+                        var longDt = PostingDate.toLocaleDateString("en-US", options);
+                        var Descriptionlength = v.MetaDescription.length > 80 ? v.MetaDescription.substring(0, 80) + "�" : v.MetaDescription;
+
+                        sectionblog += '<div class="col-lg-4 col-md-6 col-sm-12" style={height: 100%;}>' +
+                            '<div class="single-blog">' +
+                            '<div class="blog-img img img-fluid">' +
+                            '<a href="/blog/' + v.PageUrl + '"><img class="BlogImages" src="' + v.Image + '" alt="" style="height:216px;"></a>' +
+                            '</div> ' +
+                            '<div class="blog-content w-100">' +
+                            '<h1 class="title blog-title"><a href="/blog/' + v.PageUrl + '">' + v.Title + '</a></h1>' +
+                            '<div class="blog-meta"><span><i class="fas fa-user icon-image"></i><span class="by-separator">by</span><a href="#">' + v.PostedBy + '</a></span><span id="admindateid_36"><i class="far fa-calendar-alt"></i>' + longDt + '</span></div>' +
+                            '<div class="read-article">' +
+                            '<div class="btn-box  text-center mt-3">' +
+                            '<button onclick="window.location.href=\'' + '/blog/' + v.PageUrl + '\'"' + 'class="theme-btn btn-style-one text-center"><span class="btn-title">Read Full Article <span class="iconify ms-2" data-icon="entypo:arrow-long-right" data-height="25"></span></span></button>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+
+                    })
+                    onclick = "window.location.href='/services#project_inquiry_form';"
+                    $('#demo').html(sectionblog);
+
+                },
+                error: function (result) {
+                    alert("Error Ocurred!");
+                }
+            });
+        }
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+
+        // hiring dwtail submit : send mail
+
+        //var hiringform = $("#hiringform");
+        //hiringform.submit(function (e) {
+
+        //    e.preventDefault();
+
+        //    if (!$(".career_form").valid()) {
+        //        return false;
+        //    }
+
+        //    $('#button-spinner').show();
+        //    $('#btnSendEmail').attr("disabled", true);
+
+
+        //});
+
+        function SendMail() {
+
+        }
+
+    </script>
+    @Html.Partial("_Footer")
+
+
+

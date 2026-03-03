@@ -90,7 +90,7 @@
             </div>*@
         <!-- Main Header -->
         <header class="main-header header-upper header-style-one" style="z-index: 99 !important;">
-            <nav class="navbar navbar-expand-lg bg-white custom-new-shadow w-100 position-fixed" style="z-index: 99 !important;">
+            <nav class="navbar navbar-expand-lg bg-white custom-new-shadow w-100 position-fixed" style="z-index: 99 !important; top: 0">
                 <div class="container d-flex align-items-center justify-content-between">
 
                     <a class="navbar-brand" href="/">
@@ -1112,18 +1112,24 @@
 
 
 
-     })(jQuery);
-     function CareerOption() {
-     $.ajax({
-     url: "/Avidclan/GetCareerOption",
-     type: "GET",
-     dataType: "json",
-     success: function (data) {
-     $.each(data, function (index, item) {
-     var opt = new Option(item.JobTitle, item.Id);
-     $('.dropdownjobtitle').append(opt);
+        })(jQuery);
+        function CareerOption(jobId) {
+            $.ajax({
+                url: "/Avidclan/GetCareerOption",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    $('.dropdownjobtitle').empty();
+                    $.each(data, function (index, item) {
 
-     });
+                        var opt = new Option(item.JobTitle, item.Id);
+                        $('.dropdownjobtitle').append(opt);
+
+                    });
+
+                    setTimeout(function () {
+                        $('.dropdownjobtitle').val(jobId).trigger('change');
+                    }, 300)
      }
      })
      }
@@ -1158,7 +1164,38 @@
 
 
     </script>
+    <script>
 
+        /**
+
+         * AVIDCLAN ENHANCED CONVERSION TRACKING
+
+         * This script listens for user input in any of the specific email fields
+
+         * (email, Email1, formemail) and saves the value to browser memory.
+
+         */
+
+        (function () {
+
+            // Array of all Email Input IDs found on the website forms
+
+            var targetEmailIds = ['email', 'Email1', 'formemail'];
+
+            document.addEventListener('input', function (event) {
+
+                // Check if the user is typing in one of our target email fields
+
+                if (targetEmailIds.includes(event.target.id)) {
+
+                    localStorage.setItem("avid_user_email_storage", event.target.value);
+
+                }
+
+            });
+
+        })();
+    </script>
 
     @RenderSection("scripts", required: false)
 

@@ -1,5 +1,18 @@
 ﻿@using reCAPTCHA.MVC
+<style>
+    .modal-backdrop {
+        background-color: rgba(0, 0, 0, 0) !important;
+        pointer-events: none;
+    }
 
+    .modal {
+        z-index: 1050;
+    }
+
+    .ModalApplyJob {
+        background-color: rgba(0, 0, 0, 0.5) !important;
+    }
+</style>
 <div class="modal fade ModalApplyJob"
      id="ModalApplyJob"
      tabindex="-1"
@@ -72,7 +85,7 @@
                                 <label>Please verify you are a human</label>
                                 @Html.Recaptcha()
                             </div>*@
-                            <div class="col-md-6 form-group my-auto text-center">
+                            <div class="col-md-12 form-group my-auto text-center">
                                 <button type="submit" class="theme-btn btn-style-one" name="submit" id="btnSendEmail">
                                     <span class="btn-title">
                                         Apply Now

@@ -102,28 +102,69 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
+        [Route("reactjs-app-development-company-australia/")]
+        public ActionResult ReactjsAppDevelopmentAustralia()
+        {
+            return View();
+        }
         [Route("reactjs-app-development-company-uk/")]
         public ActionResult ReactjsAppDevelopmentUK()
         {
             return View();
         }
 
+        // ---------- Selenium - USA ----------
         [Route("selenium-app-development-company-usa/")]
-        public ActionResult SeleniumAppDevelopmentUSA()
+        public ActionResult RedirectSeleniumOldUSA()
+        {
+            return RedirectPermanent("/selenium-automation-testing-services-usa/");
+        }
+
+        [Route("selenium-automation-testing-services-usa/")]
+        public ActionResult SeleniumAutomationTestingServicesUSA()
         {
             return View();
         }
 
+        // ---------- Selenium - India ----------
         [Route("selenium-app-development-company-india/")]
-        public ActionResult SeleniumAppDevelopmentINDIA()
+        public ActionResult RedirectSeleniumOldIndia()
+        {
+            return RedirectPermanent("/selenium-automation-testing-services-india/");
+        }
+
+        [Route("selenium-automation-testing-services-india/")]
+        public ActionResult SeleniumAutomationTestingServicesINDIA()
         {
             return View();
         }
+
+        // ---------- Selenium - UK ----------
         [Route("selenium-app-development-company-uk/")]
-        public ActionResult SeleniumAppDevelopmentUK()
+        public ActionResult RedirectSeleniumOldUK()
+        {
+            return RedirectPermanent("/selenium-automation-testing-services-uk/");
+        }
+
+        [Route("selenium-automation-testing-services-uk/")]
+        public ActionResult SeleniumAutomationTestingServicesUK()
         {
             return View();
         }
+
+        // ---------- Selenium - Australia ----------
+        [Route("selenium-app-development-company-australia/")]
+        public ActionResult RedirectSeleniumOldAustralia()
+        {
+            return RedirectPermanent("/selenium-automation-testing-services-australia/");
+        }
+
+        [Route("selenium-automation-testing-services-australia/")]
+        public ActionResult SeleniumAutomationTestingServicesAustralia()
+        {
+            return View();
+        }
+
 
         [Route("dot-net-development-company-usa/")]
         public ActionResult DotNetDevelopmentUSA()
@@ -463,6 +504,11 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
+        [Route("life-at-avidclan/")]
+        public ActionResult RedirectOldLifeAtAvidclan()
+        {
+            return RedirectPermanent("/life-at-avidclan-technologies/");
+        }
 
         [Route("thankyou")]
         public ActionResult ThankYou()
@@ -517,6 +563,36 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
+        [Route("terms-of-service/")]
+        public ActionResult TermsofService()
+        {
+            return View();
+        }
+
+        [Route("privacy-policy/")]
+        public ActionResult PrivacyPolicy()
+        {
+            return View();
+        }
+
+        [Route("company-news/top-logistics-software-development-company-2025-by-techreviewer/")]
+        public ActionResult CompanyNews()
+        {
+            return View();
+        }
+
+        [Route("company-news/")]
+        public ActionResult RedirectCompanyNews()
+        {
+            return RedirectPermanent("company-news/top-logistics-software-development-company-2025-by-techreviewer/");
+        }
+
+        [Route("marketing/")]
+        public ActionResult MarketingLanding()
+        {
+            return View("~/Views/Avidclan_marketing/index.cshtml");
+        }
+
 
         [Route("blog/")]
         public ActionResult Blog(int page = 1)
@@ -828,24 +904,53 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
+        [Route("flutter-app-development-company-australia/")]
+        public ActionResult FlutterAppDevelopmentAustralia()
+        {
+            return View();
+        }
 
         [Route("dot-net-app-development-company-india/")]
-        public ActionResult DotNetAppDevelopmentINDIA()
+        public ActionResult RedirectDotNetOldIndia()
         {
-            return View();
-        }
-        
-        [Route("dot-net-app-development-company-uk/")]
-        public ActionResult DotNetAppDevelopmentUK()
-        {
-            return View();
+            return RedirectPermanent("/dot-net-development-company-india/");
         }
 
-        [Route("flutter-app-development-company-uk/")]
-        public ActionResult FlutterAppDevelopmentUK()
+        // New route — actual page render karega
+        [Route("dot-net-development-company-india/")]
+        public ActionResult DotNetDevelopmentIndia()
         {
-            return View();
+            return View("DotNetDevelopmentIndia");
         }
+
+        [Route("dot-net-app-development-company-australia/")]
+        public ActionResult RedirectDotNetOldAustralia()
+        {
+            return RedirectPermanent("/dot-net-development-company-australia/");
+        }
+
+        // New route — actual page render karega
+        [Route("dot-net-development-company-australia/")]
+        public ActionResult DotNetDevelopmentAustralia()
+        {
+            return View("DotNetDevelopmentAustralia");
+        }
+
+        // Old route — redirect karega new route par
+        [Route("dot-net-app-development-company-uk/")]
+        public ActionResult RedirectDotNetOldUK()
+        {
+            return RedirectPermanent("/dot-net-development-company-uk/");
+        }
+
+        // New route — actual page render karega
+        [Route("dot-net-development-company-uk/")]
+        public ActionResult DotNetDevelopmentUK()
+        {
+            return View("DotNetDevelopmentUK");
+        }
+
+
         [Route("ui-ux-design-company-usa/")]
         public ActionResult UiUxDesignCompanyUSA()
         {
@@ -862,6 +967,11 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
+        [Route("ui-ux-design-company-australia/")]
+        public ActionResult UiUxDesignCompanyAustralia()
+        {
+            return View();
+        }
 
         [Route("angular-development-company-usa/")]
         public ActionResult AngularAppDevelopmentCompanyUSA()
@@ -875,16 +985,91 @@ namespace Avidclan_Website.Controllers
             return View();
         }
 
-        [Route("angular-development-company-india/")]
-        public ActionResult AngularAppDevelopmentCompanyINDIA()
+        [Route("angular-development-company-australia/")]
+        public ActionResult AngularAppDevelopmentCompanyAustralia()
         {
             return View();
         }
+
         [Route("indexrender/")]
         public ActionResult IndexRender()
         {
             return View("indexrender");
         }
+        [Route("new-hire-lp/")]
+        public ActionResult NewHirelp()
+        {
+            return View("newhirelp");
+        }
+
+    }
+    [RoutePrefix("lp")]
+    public class lpController : Controller
+    {
+
+        [Route("hire-dot-net-developer-india/")]
+        public ActionResult IndexRender()
+        {
+            return View("indexrender");
+        }
+        [Route("thank-you/")]
+        public ActionResult MarketingThankYou()
+        {
+            return View("marketingthankyou");
+        }
+        [Route("new-hire-lp/")]
+        public ActionResult NewHirelp()
+        {
+            return View("newhirelp");
+        }
+
+        //[HttpPost]
+        //[Route("SubmitInquiry")]
+        //public JsonResult SubmitInquiry(string name, string email, string phone, string requirements)
+        //{
+        //    try
+        //    {
+        //        try
+        //        {
+        //            await ReadConfiguration("other");
+        //            var messagebody = "<html><body>" +
+        //                                "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
+        //                                "<tr style='background: #eee;'><td colspan='2'><strong>Contact Inquiry Details</strong></td></tr>" +
+        //                                "<tr style='background: #fff;'><td><strong>FirstName:</strong> </td><td>" + obj.FirstName + " </td></tr>" +
+        //                                "<tr style='background: #fff;'><td><strong>LastName:</strong> </td><td>" + obj.LastName + " </td></tr>" +
+        //                                "<tr style='background: #fff;'><td><strong>Email:</strong> </td><td>" + obj.Email + " </td></tr>" +
+        //                                "<tr style='background: #fff;'><td><strong>Mobile/Phone:</strong> </td><td>" + "+" + obj.CountryCode + "&nbsp;" + obj.Phoneumber + " </td></tr>" +
+        //                                "<tr style='background: #fff;'><td><strong>Comment/Message:</strong> </td><td>" + obj.Message + " </td></tr>" +
+        //                               "</table>" +
+        //                               "</body></html>";
+
+
+
+        //            await sendEmail(senderEmail, receiverEmail, (obj.FirstName + " " + obj.LastName), "Contact Inquiry From Avidclan Technologies", messagebody);
+
+        //            //mail send on solutions@avidclan.com
+        //            await ReadConfiguration("solution");
+        //            await sendEmail(senderEmail, receiverEmail, (obj.FirstName + " " + obj.LastName), "Contact Inquiry From Avidclan Technologies", messagebody);
+
+        //            ErrorLog("Mail", "Execution Success", "Success");
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            ErrorLog("Mail", ex.Message.ToString() + ex.InnerException, ex.StackTrace.ToString());
+        //            return "Error: " + ex.Message.ToString() + " " + ex.StackTrace.ToString();
+        //            throw ex.InnerException;
+        //        }
+        //        return "Sent";
+        //        return Json(new { success = true, message = "Thank you! Your inquiry has been submitted successfully." });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Log the exception
+        //        return Json(new { success = false, message = "Error occurred while submitting your inquiry." });
+        //    }
+        //}
+
+
 
     }
 }

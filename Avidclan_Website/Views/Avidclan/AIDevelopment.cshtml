@@ -1,6 +1,8 @@
 ﻿
 @{
     ViewBag.Title = "AIDevelopment";
+    var context = "@context";
+    var type = "@type";
 }
 @section AdditionalMeta
 {
@@ -20,6 +22,32 @@
     <meta name="description" content="Looking for a top AI development company? Our custom AI development services use machine learning, computer vision, and NLP to transform your business." />
     @*<link rel="canonical" href="https://www.avidclan.com/ai-development-company" />*@
     <link rel="stylesheet" href="~/assets/css/Avidclan/services.css" />
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.avidclan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://www.avidclan.com/services/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Artificial Intelligence",
+      "item": "https://www.avidclan.com/ai-development-company/"
+    }
+  ]
+}
+    </script>
 }
 <section class="inner-page" style="height:min-content;">
     <div class="container">

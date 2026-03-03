@@ -11,6 +11,12 @@
 
 @section AdditionalMeta
 {
+    @{
+        if (ViewBag.BlogStatus == "Draft")
+        {
+            <meta name="robots" content="noindex, nofollow">
+        }
+    }
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Avidclan Technologies" />
     <meta property="og:type" content="article" />
@@ -38,7 +44,7 @@
             <!-- Blog Details Post Start -->
             <div class="col blog-details-post">
                 <!-- Single Blog Start -->
-                <div class="single-blog">
+                <div class="single-blog" style="display: none;">
                     @*<h1 class="title" id="Blogtitle"></h1>*@
                     <div class="blog-img">
                         <a href="#">
