@@ -5,14 +5,9 @@
 		<priority>1.00</priority>
 	</url>
 	<url>
-		<loc>https://www.avidclan.com/about-us/</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.60</priority>
-	</url>
-	<url>
 		<loc>https://www.avidclan.com/services/</loc>
 		<changefreq>weekly</changefreq>
-		<priority>0.80</priority>
+		<priority>0.60</priority>
 	</url>
 	<url>
 		<loc>https://www.avidclan.com/web-development-company/</loc>
@@ -36,6 +31,16 @@
 	</url>
 	<url>
 		<loc>https://www.avidclan.com/iot-service-providers/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/ai-development-company/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/digital-marketing-services/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
@@ -135,12 +140,12 @@
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>https://www.avidclan.com/microsoft-sql-server-integration-services/</loc>
+		<loc>https://www.avidclan.com/selenium-automation-testing-services/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>https://www.avidclan.com/selenium-automation-testing-services/</loc>
+		<loc>https://www.avidclan.com/microsoft-sql-server-integration-services/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
@@ -175,57 +180,17 @@
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>https://www.avidclan.com/portfolio/</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.60</priority>
-	</url>
-	<url>
-		<loc>https://www.avidclan.com/blog/</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.60</priority>
-	</url>
-	<url>
-		<loc>https://www.avidclan.com/career/</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.60</priority>
-	</url>
-	<url>
-		<loc>https://www.avidclan.com/life-at-avidclan-technologies/</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.60</priority>
-	</url>
-	<url>
-		<loc>https://www.avidclan.com/contact-us/</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.60</priority>
-	</url>
-	<url>
-		<loc>https://www.avidclan.com/digital-marketing-services/</loc>
+		<loc>https://www.avidclan.com/hire-custom-software-developers/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>https://www.avidclan.com/flutter-app-development-company-usa/</loc>
+		<loc>https://www.avidclan.com/hire-web-app-developers/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>https://www.avidclan.com/ui-ux-design-company-usa/</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.80</priority>
-	</url>
-	<url>
-		<loc>https://www.avidclan.com/flutter-app-development-company-india/</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.80</priority>
-	</url>
-	<url>
-		<loc>https://www.avidclan.com/ai-development-company/</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.80</priority>
-	</url>
-	<url>
-		<loc>https://www.avidclan.com/dot-net-development-company-usa/</loc>
+		<loc>https://www.avidclan.com/hire-mobile-app-developers/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
@@ -240,22 +205,72 @@
 		<priority>0.80</priority>
 	</url>
 	<url>
+		<loc>https://www.avidclan.com/hire-ai-developers/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/hire-angular-developers/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/hire-reactjs-developers/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/hire-ml-developers/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
 		<loc>https://www.avidclan.com/hire-qa-automation-tester/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>https://www.avidclan.com/selenium-app-development-company-usa/</loc>
+		<loc>https://www.avidclan.com/about-us/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>https://www.avidclan.com/reactjs-app-development-company-usa/</loc>
+		<loc>https://www.avidclan.com/countries-we-serve/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/career/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/life-at-avidclan-technologies/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
 	<url>
 		<loc>https://www.avidclan.com/case-studies/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/company-news/top-logistics-software-development-company-2025-by-techreviewer/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/portfolio/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/contact-us/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
@@ -290,27 +305,77 @@
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>https://www.avidclan.com/hire-angular-developers/</loc>
+		<loc>https://www.avidclan.com/dot-net-development-company-usa/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>https://www.avidclan.com/hire-reactjs-developers/</loc>
+		<loc>https://www.avidclan.com/flutter-app-development-company-usa/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>https://www.avidclan.com/hire-ai-developers/</loc>
+		<loc>https://www.avidclan.com/ui-ux-design-company-usa/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>https://www.avidclan.com/hire-ml-developers/</loc>
+		<loc>https://www.avidclan.com/angular-development-company-usa/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>https://www.avidclan.com/hire-custom-software-developers/</loc>
+		<loc>https://www.avidclan.com/reactjs-app-development-company-usa/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/selenium-automation-testing-services-usa/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/dot-net-development-company-australia/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/flutter-app-development-company-australia/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/ui-ux-design-company-australia/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/angular-development-company-australia/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/reactjs-app-development-company-australia/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/selenium-automation-testing-services-australia/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/dot-net-development-company-india/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/flutter-app-development-company-india/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/ui-ux-design-company-india/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
@@ -330,12 +395,32 @@
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>https://www.avidclan.com/ui-ux-design-company-india/</loc>
+		<loc>https://www.avidclan.com/dot-net-development-company-uk/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>https://www.avidclan.com/countries-we-serve/</loc>
+		<loc>https://www.avidclan.com/flutter-app-development-company-uk/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/ui-ux-design-company-uk/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/angular-development-company-uk/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/reactjs-app-development-company-uk/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/selenium-automation-testing-services-uk/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
@@ -348,6 +433,101 @@
 		<loc>https://www.avidclan.com/author/chintan-dhrangdhariya/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/the-super-app-shift-will-2026-redefine-mobile-app-development/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/the-ultimate-2026-tech-stack-guide-how-to-choose-the-best-tools-for-your-product/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/the-rise-of-vibe-coding-what-developers-need-to-know-in-2026/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/angular-v20-vs-angular-v21-major-differences-features-and-performance-upgrades/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/a-deep-dive-into-angular-21-latest-features-faster-performance-and-modern-architecture/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/agent-lightning-framework-microsofts-open-source-rl-tool-for-multi-agent-ai-training/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/gemini-3-launch-everything-you-need-to-know-about-googles-most-advanced-ai-model-yet/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/top-15-saas-integration-problems-businesses-face-and-how-to-solve-them/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/google-ai-mode-how-it-is-redefining-modern-software-projects-in-2025/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/from-strategy-to-execution-10-ai-use-cases-every-business-can-apply/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/how-to-enable-native-aot-in-dot-net-8-a-step-by-step-guide-with-performance-benchmark/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/building-enterprise-apps-with-flutter-architecture-ci-cd-and-scalability-best-practices/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/top-ui-ux-design-errors-that-lower-conversion-rates-and-how-to-fix-them/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/nextjs-16-released-ai-powered-debugging-explicit-caching-and-faster-turbopack-builds-explained/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/how-to-build-a-compliant-ai-healthcare-app-strategy-development-and-deployment-guide/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/top-10-ai-innovations-driving-quality-assurance-in-modern-software-development/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/building-a-full-stack-react-app-with-nextjs-14-turbopack-and-drizzle-orm/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/top-azure-devops-features-you-need-to-know-for-faster-deployment/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/net-aspire-and-net-10-shaping-the-future-of-app-development/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
 	</url>
 	<url>
 		<loc>https://www.avidclan.com/blog/no-code-app-development-explained-benefits-top-platforms-and-future-trends-in-2025/</loc>
@@ -675,6 +855,11 @@
 		<priority>0.60</priority>
 	</url>
 	<url>
+		<loc>https://www.avidclan.com/blog/whats-new-in-angular-19-a-guide-to-the-latest-features/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
 		<loc>https://www.avidclan.com/blog/nine-essential-features-every-effective-website-homepage-should-have/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.60</priority>
@@ -946,6 +1131,66 @@
 	</url>
 	<url>
 		<loc>https://www.avidclan.com/blog/a-guide-to-integrate-your-ml-models-into-your-dot-net-applications/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/90-percent-chances-that-google-will-beat-all-companies-in-ai-race-for-all-time/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/why-your-cheap-ai-strategy-is-bankrupting-you-silently/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/why-everyone-is-shifting-from-c-and-c-plus-to-rust/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/aws-vs-azure-and-gcp-the-executive-guide-for-2026/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/2026-developer-rates-cost-breakdown/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/syntax-to-agents-see-how-ai-agents-are-destroying-developers-jobs/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/these-22-google-ai-tools-are-killing-87-percent-competitors/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/angularjs-2026-security-migration-guide/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/india-ai-impact-summit-2026-analysis/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/ai-water-consumption-500ml-cost/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/sarvam-ai-sovereign-language-tax/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/net-11-the-complete-architecture-guide-runtime-async-2026-eol/</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.60</priority>
 	</url>
