@@ -66,23 +66,63 @@
             <!-- Blog Details Post End -->
         </div>
         <div class="row" id="blogContent">
-            <div class="col-lg-8 col-md-8 col-xl-8">
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <div id="BlogType" class="blog-type font-20 text-center"></div> @*Predictive and Date Analytics*@
-                        <span class="after-separator"> | </span>
-                        <div id="publishDate" class="span-date font-16 text-center"></div> @*May 17, 2024*@
-                        <span class="after-separator"> | </span>
-                        <div class="publisher-name d-flex align-items-center justify-content-center">
-                            <div class="me-2">
-                                <img id="AuthorImage" src="/assets/images/user/default.svg" alt="Author" class="author-img" />
-                            </div>
-                            <div class="text-content font-16 text-center">
-                                <span>by</span>
-                                <a href="#" id="AuthorName" class="ms-1">Rushil Bhuptani</a> @* Optional: Set name here if not via JS *@
-                            </div>
+            <div class="col-lg-12 col-md-12 col-xl-12">
+                <div class="blog-meta">
+
+                    <div class="span-date font-16 text-center">
+                        <span class="fw-bold">Category :</span>
+                        <span id="BlogType"></span>
+                    </div>
+                    <span class="after-separator"> | </span>
+
+                    <div class="span-date font-16 text-center">
+                        <span class="fw-bold">Posted On :</span>
+                        <span id="publishDate"></span>
+                    </div>
+
+                    <span class="after-separator"> | </span>
+
+                    <div class="span-date font-16 text-center">
+                        <span class="fw-bold">Modified On :</span>
+                        <span id="modifiedDate"></span>
+                    </div>
+
+                    <span class="after-separator"> | </span>
+
+                    <div class="d-flex align-items-center">
+                        <img id="AuthorImage"
+                             src="/assets/images/user/default.svg"
+                             alt="Author"
+                             class="author-img me-2">
+
+                        <div class="text-content font-16">
+                            <span>by</span>
+                            <a href="#" id="AuthorName" class="ms-1">Rushil Bhuptani</a>
                         </div>
                     </div>
+
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-xl-8">
+                <div class="blog-content">
+                    <!--<div class="blog-meta">
+            <div id="BlogType" class="blog-type font-20 text-center"></div>-->
+                    @*Predictive and Date Analytics*@
+                    <!--<span class="after-separator"> | </span>
+            <div id="publishDate" class="span-date font-16 text-center"></div>-->
+                    @*May 17, 2024*@
+                    <!--<span class="after-separator"> | </span>
+            <div class="publisher-name d-flex align-items-center justify-content-center">
+                <div class="me-2">
+                    <img id="AuthorImage" src="/assets/images/user/default.svg" alt="Author" class="author-img" />
+                </div>
+                <div class="text-content font-16 text-center">
+                    <span>by</span>
+                    <a href="#" id="AuthorName" class="ms-1">Rushil Bhuptani</a>-->
+                    @* Optional: Set name here if not via JS *@
+                    <!--</div>
+                </div>
+            </div>-->
 
                     <div class="table-content sm_only position-relative blog-border-top mb-2">
                         <div class="title toc-title-wrapper d-flex justify-content-between align-items-center pe-4" id="mobileTocToggle" style="cursor:pointer;">
@@ -447,12 +487,16 @@
         contentType: 'application/json',
         data: { Id: id },
         type: "GET",
+        cache: false,
         success: function (result) {
             if (result != null) {
                 var fromdate = moment(result.bloglist[0].PostingDate).format('MM/DD/YYYY  HH:mm:ss');
+                var modifieddate = moment(result.bloglist[0].ModifyDate).format('MM/DD/YYYY  HH:mm:ss');
                 var options = { year: 'numeric', month: 'long', day: 'numeric' };
                 var PostingDate = new Date(fromdate);
+                var ModifiedDate = new Date(modifieddate);
                 var longDt = PostingDate.toLocaleDateString("en-US", options);
+                var longModDt = ModifiedDate.toLocaleDateString("en-US", options);
 
                 $("#ShortTitle").html(result.bloglist[0].ShortTitle)
                 $("#BlogCategory").html(result.bloglist[0].BlogType)
@@ -462,6 +506,8 @@
                 setAuthorDetails(result.bloglist[0].PostedBy);
                 $('#blogImage').attr('src', result.bloglist[0].Image);
                 $("#publishDate").html(longDt)
+                $("#modifiedDate").html(longModDt)
+                
                 var sectionblog = "";
                 var count = 1;
                 if (result.blogfaqslist == 0) {
