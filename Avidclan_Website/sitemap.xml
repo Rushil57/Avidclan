@@ -1199,4 +1199,9 @@
 		<changefreq>weekly</changefreq>
 		<priority>0.60</priority>
 	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/the-new-cognitive-react-js-architecture-guide/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
 </urlset>
