@@ -245,6 +245,7 @@
                 <th> Title </th>
                 <th> Blog Type </th>
                 <th> PostingDate </th>
+                <th> ModifiedDate </th>
                 <th> PostBy </th>
                 <th> Status </th>
                 <th></th>
@@ -417,11 +418,74 @@
         modules: {
             syntax: true,
             toolbar: '#toolbar-container',
+            formula:true
         },
         placeholder: 'Compose an epic...',
         theme: 'snow',
     });
 
+    // attach custom handler AFTER initialization
+    const toolbar = quill.getModule('toolbar');
+    toolbar.addHandler('image', imageHandler);
+
+    function imageHandler() {
+
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = "image/*";
+        input.click();
+
+        input.onchange = function () {
+
+            const file = input.files[0];
+            if (!file) return;
+
+            convertToWebpBase64(file, function (webpBase64) {
+
+                const range = quill.getSelection(true);
+                quill.insertEmbed(range.index, "image", webpBase64);
+            });
+        };
+    }
+
+    function convertToWebpBase64(file, callback) {
+
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+
+            const img = new Image();
+
+            img.onload = function () {
+
+                const canvas = document.createElement("canvas");
+                const ctx = canvas.getContext("2d");
+
+                let width = img.width;
+                let height = img.height;
+
+                const maxWidth = 1200;
+
+                if (width > maxWidth) {
+                    height = height * (maxWidth / width);
+                    width = maxWidth;
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+
+                ctx.drawImage(img, 0, 0, width, height);
+
+                const webpBase64 = canvas.toDataURL("image/webp", 0.75);
+
+                callback(webpBase64);
+            };
+
+            img.src = event.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    }
 
     /* =======================
        HTML SOURCE TOGGLE
@@ -684,44 +748,57 @@
                                         type: "Get",
                                          url: "@Url.Action("GetBlogList", "BlogVacancy")",
                                         success: function (result) {
-                                            $('#BlogList').dataTable({
+                                            // Add search input in each column
+                                           
+                                            var table = $('#BlogList').DataTable({
                                                 destroy: true,
                                                 data: result,
-                                                "columns": [
+                                                ordering: true,
+                                                //searching: true,
+                                                columnDefs: [
+                                                    { targets: [6, 7], orderable: false, searchable: false }
+                                                ],
+                                                columns: [
                                                     {
-                                                        "data": "Title",
-                                                        "render": function (data, type, row) {
+                                                        data: "Title",
+                                                        render: function (data) {
                                                             var reviewName = data.length > 35 ? data.substring(0, 35) + "..." : data;
                                                             return "<span title='" + data + "'>" + reviewName + "</span>";
                                                         }
                                                     },
-                                                    {"data": "BlogType"},
+                                                    { data: "BlogType" },
                                                     {
-                                                        "data": "PostingDate",
-                                                        "render": function (data) {
+                                                        data: "PostingDate",
+                                                        render: function (data) {
                                                             const dateValue = new Date(parseInt(data.substr(6)));
                                                             return moment(dateValue).format('DD/MM/YYYY HH:mm');
                                                         }
                                                     },
-                                                    { "data": "PostedBy" },
-                                                    { "data": "Status" },
                                                     {
-                                                        "data": "Id",
-                                                        "render": function (data, type, row) {
-                                                            return '<a class="btn btn-info btn-sm" style="color: white;" onclick="GetBlogDetailsById(' + data + ')"><i class="mdi mdi-pencil"></i></a>';
+                                                        data: "ModifyDate",
+                                                        render: function (data) {
+                                                            const dateValue = new Date(parseInt(data.substr(6)));
+                                                            return moment(dateValue).format('DD/MM/YYYY HH:mm');
+                                                        }
+                                                    },
+                                                    { data: "PostedBy" },
+                                                    { data: "Status" },
+                                                    {
+                                                        data: "Id",
+                                                        render: function (data) {
+                                                            return '<a class="btn btn-info btn-sm" onclick="GetBlogDetailsById(' + data + ')"><i class="mdi mdi-pencil"></i></a>';
                                                         }
                                                     },
                                                     {
-                                                        "data": "Id",
-                                                        "render": function (data, type, row) {
-                                                            return '<a class="btn btn-danger btn-sm" style="color: white;" onclick=DeleteBlog(' +data +')><i class="mdi mdi-delete"></i></a>';
+                                                        data: "Id",
+                                                        render: function (data) {
+                                                            return '<a class="btn btn-danger btn-sm" onclick="DeleteBlog(' + data + ')"><i class="mdi mdi-delete"></i></a>';
                                                         }
                                                     }
-                                                ],
-                                                ordering: false
+                                                ]
                                             });
 
-
+                                            
                                         },
                                         error: function (result) {
                                             alert(result.responseText);
@@ -1113,6 +1190,11 @@
         //        }
         //    });
         //}
+
+
+
+       
+
     });
 </script>
 

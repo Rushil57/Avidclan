@@ -17,6 +17,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string BlogType { get; set; }
         public string Image { get; set; }
         public DateTime PostingDate { get; set; }
+        public DateTime ModifyDate { get; set; }
         public string PostedBy { get; set; }
 
         public string ImageName { get; set; }
