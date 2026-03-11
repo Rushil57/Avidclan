@@ -675,6 +675,7 @@
                                     var ShortTitle = $('#ShortTitle').val();
                                     //var Description = CKEDITOR.instances['Description'].getData();
                                     var Description = quill.root.innerHTML;
+                                    Description = Description.replace(/\uFEFF/g, "");
                                     var BlogType = $("#BlogType").val() != "0" ? $("#BlogType option:selected").text() : "";
                                     var BlogCategoryId = $("#BlogType").val();
                                     var PostingDate = $("#PostingDate").val();
