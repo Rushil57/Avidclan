@@ -51,8 +51,8 @@ namespace Avidclan_BlogsVacancy.Controllers
         int port = 0;
         string receiverEmail = "";
 
-        private static string thumbnailImageFolder = "Image";
-        private static string blogDetailImagesFolder = "BlogDetailImages";
+        private static string thumbnailImageFolder = "NewCMSBlogFiles/Image";
+        private static string blogDetailImagesFolder = "NewCMSBlogFiles/BlogDetailImages";
 
         string ApiKey = WebConfigurationManager.AppSettings["SendGridMailApiKey"];
         string connectionString = ConfigurationManager.ConnectionStrings["DbEntities"].ToString();
@@ -274,42 +274,35 @@ namespace Avidclan_BlogsVacancy.Controllers
         {
             try
             {
-                // Ensure folder name is clean
                 folder = folder?.Trim().Replace("..", "");
 
-                // Get absolute path inside application root
-                string dirPath = HttpContext.Current.Server.MapPath($"~/{folder}/");
+                //string mainDomainRoot = @"G:\PleskVhosts\avidclan.com\";   
+                string mainDomainRoot = System.Configuration.ConfigurationManager.AppSettings["BlogImagePath"];
 
-                // Create directory if it does not exist
+                string dirPath = Path.Combine(mainDomainRoot, folder);
+
                 if (!Directory.Exists(dirPath))
                 {
                     Directory.CreateDirectory(dirPath);
                 }
 
-                // Get only file name (avoid full path issues)
                 string fileName = Path.GetFileName(imageFile.FileName);
-
-                // OPTIONAL: Make filename unique (Recommended)
                 string uniqueFileName = $"{Guid.NewGuid()}_{fileName}";
-
                 string filePath = Path.Combine(dirPath, uniqueFileName);
 
-                // If file somehow exists, delete first
                 if (System.IO.File.Exists(filePath))
                 {
                     System.IO.File.Delete(filePath);
                 }
 
-                // Save file
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
                     imageFile.InputStream.CopyTo(fileStream);
                 }
 
-                // Return URL
-                var imageUrl = Url.Content($"~/{folder}/{uniqueFileName}");
-                return imageUrl;
+                string imageUrl = $"https://avidclan.com/{folder}/{uniqueFileName}";
 
+                return imageUrl;
             }
             catch (Exception ex)
             {
@@ -317,7 +310,6 @@ namespace Avidclan_BlogsVacancy.Controllers
                 return "";
             }
         }
-
         public async Task<int> RemoveImage(string fileName, string folder)
         {
             try
