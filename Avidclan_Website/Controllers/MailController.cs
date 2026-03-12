@@ -106,6 +106,55 @@ namespace Avidclan_Website.Controllers
                 return "Error: " + ex.Message;
             }
         }
+        [Route("api/Mail/SendEmailMarketingPage")]
+        [HttpPost]
+        public async Task<string> SendEmailMarketingPage(UserDetail obj)
+        {
+            try
+            {
+                await ReadConfiguration("other");
+                var messagebody = "<html><body>" +
+                                    "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +
+                                    "<tr style='background: #eee;'><td colspan='2'><strong>Contact Inquiry Details</strong></td></tr>" +
+                                    "<tr style='background: #fff;'><td><strong>Gclid:</strong> </td><td>" + obj.Gclid + " </td></tr>" +
+                                    "<tr style='background: #fff;'><td><strong>Name:</strong> </td><td>" + obj.FirstName + " </td></tr>" +
+                                    //"<tr style='background: #fff;'><td><strong>LastName:</strong> </td><td>" + obj.LastName + " </td></tr>" +
+                                    "<tr style='background: #fff;'><td><strong>Email:</strong> </td><td>" + obj.Email + " </td></tr>" +
+                                    "<tr style='background: #fff;'><td><strong>Mobile/Phone:</strong> </td><td>" + "+" + obj.Phoneumber + " </td></tr>" +
+                                    "<tr style='background: #fff;'><td><strong>Requirements:</strong> </td><td>" + obj.Message + " </td></tr>" +
+                                    "<tr style='background: #fff;'><td><strong>Service:</strong> </td><td>" + obj.Service + " </td></tr>" +
+                                    "<tr style='background: #fff;'><td><strong>Budget:</strong> </td><td>" + obj.Budget + " </td></tr>" +
+                                   "</table>" +
+                                   "</body></html>";
+
+                //MailMessage mail = new MailMessage();
+                //mail.To.Add(receiverEmail);
+                //mail.From = new MailAddress(senderEmail);
+                //mail.Subject = "Contact Inquiry From Avidclan Technologies";
+                //mail.Body = messagebody;
+                //mail.IsBodyHtml = true;
+                //SmtpClient smtp = new SmtpClient(host, port);
+                //smtp.EnableSsl = true;
+                //smtp.UseDefaultCredentials = false;
+                //smtp.Credentials = new NetworkCredential(senderEmail, senderEmailPassword);
+                //smtp.Send(mail);
+
+                await sendEmail(senderEmail, receiverEmail, (obj.FirstName + " " + obj.LastName), "Contact Inquiry From Avidclan Technologies", messagebody);
+
+                //mail send on solutions@avidclan.com
+                await ReadConfiguration("solution");
+                await sendEmail(senderEmail, receiverEmail, (obj.FirstName + " " + obj.LastName), "Contact Inquiry From Avidclan Technologies", messagebody);
+
+                ErrorLog("Mail", "Execution Success", "Success");
+            }
+            catch (Exception ex)
+            {
+                ErrorLog("Mail", ex.Message.ToString() + ex.InnerException, ex.StackTrace.ToString());
+                return "Error: " + ex.Message.ToString() + " " + ex.StackTrace.ToString();
+                throw ex.InnerException;
+            }
+            return "Sent";
+        }
         [Route("api/Mail/SendProjectDetails")]
         [HttpPost]
         public async Task<string> SendProjectDetails(ProjectDetail projectDetail)
