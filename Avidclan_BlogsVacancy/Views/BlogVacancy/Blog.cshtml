@@ -755,6 +755,7 @@
                                                 destroy: true,
                                                 data: result,
                                                 ordering: true,
+                                                order: [[5, "asc"]],
                                                 //searching: true,
                                                 columnDefs: [
                                                     { targets: [6, 7], orderable: false, searchable: false }
@@ -770,16 +771,32 @@
                                                     { data: "BlogType" },
                                                     {
                                                         data: "PostingDate",
-                                                        render: function (data) {
+                                                        render: function (data, type, row) {
+
+                                                            if (!data) return "";
+
                                                             const dateValue = new Date(parseInt(data.substr(6)));
-                                                            return moment(dateValue).format('DD/MM/YYYY HH:mm');
+
+                                                            if (type === 'display' || type === 'filter') {
+                                                                return moment(dateValue).format('DD/MM/YYYY HH:mm');
+                                                            }
+
+                                                            return dateValue.getTime(); // used for sorting
                                                         }
                                                     },
                                                     {
                                                         data: "ModifyDate",
-                                                        render: function (data) {
+                                                        render: function (data, type, row) {
+
+                                                            if (!data) return "";
+
                                                             const dateValue = new Date(parseInt(data.substr(6)));
-                                                            return moment(dateValue).format('DD/MM/YYYY HH:mm');
+
+                                                            if (type === 'display' || type === 'filter') {
+                                                                return moment(dateValue).format('DD/MM/YYYY HH:mm');
+                                                            }
+
+                                                            return dateValue.getTime(); // used for sorting
                                                         }
                                                     },
                                                     { data: "PostedBy" },
