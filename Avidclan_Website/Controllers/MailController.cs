@@ -80,6 +80,7 @@ namespace Avidclan_Website.Controllers
                     }
                 }
 
+                // Mail to info@avidclan.com
                 await ReadConfiguration("other");
 
                 var messagebody = "<html><body>" +
@@ -90,6 +91,14 @@ namespace Avidclan_Website.Controllers
                                   "<tr><td><strong>Mobile:</strong></td><td>+" + obj.CountryCode + " " + obj.Phoneumber + "</td></tr>" +
                                   "<tr><td><strong>Message:</strong></td><td>" + obj.Message + "</td></tr>" +
                                   "</table></body></html>";
+
+                await sendEmail(senderEmail, receiverEmail,
+                    obj.FirstName + " " + obj.LastName,
+                    "Contact Inquiry From Avidclan Technologies",
+                    messagebody);
+
+                // Mail to solution@avidclan.com
+                await ReadConfiguration("solution");
 
                 await sendEmail(senderEmail, receiverEmail,
                     obj.FirstName + " " + obj.LastName,
@@ -381,6 +390,17 @@ namespace Avidclan_Website.Controllers
                                   "<strong>Email:</strong> " + obj.Email + "<br/>" +
                                   "<strong>Phone:</strong> +" + obj.CountryCode + " " + obj.PhoneNumber +
                                   "</p></body></html>";
+
+                // Mail to info@avidclan.com
+                await ReadConfiguration("other");
+
+                await sendEmail(senderEmail, receiverEmail,
+                    obj.Name,
+                    "Inquiry for Hiring .Net Developers",
+                    messagebody);
+
+                // Mail to solution@avidclan.com
+                await ReadConfiguration("solution");
 
                 await sendEmail(senderEmail, receiverEmail,
                     obj.Name,
