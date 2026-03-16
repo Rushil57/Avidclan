@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -43,10 +44,25 @@ namespace Avidclan_Website.Controllers
             ViewBag.MetaData = MetaDetails.MetaDescription;
             ViewBag.MetaTitle = MetaDetails.MetaTitle;
             //var CanonicalUrl = "https://www.avidclan.com/blog/" + id + "/";
-            //ViewBag.Url = CanonicalUrl;
-
+            ViewBag.Url = "https://www.avidclan.com/blog/" + id + "/";
             //CreateFAQs(MetaDetails.Id);
+            ViewBag.OgImage = MetaDetails.Image;
+            if (!string.IsNullOrEmpty(MetaDetails.Image))
+            {
+                ViewBag.OgImageType = "image/" + Path.GetExtension(MetaDetails.Image).Replace(".", "").ToLower();
+            }
+            else
+            {
+                ViewBag.OgImageType = "image/jpeg"; 
+            }
+            string imageName = MetaDetails.ImageName;
 
+            // Remove extension
+            string nameWithoutExtension = System.IO.Path.GetFileNameWithoutExtension(imageName);
+
+            // Remove "Thumbnail - "
+            string finalName = nameWithoutExtension.Replace("Thumbnail - ", "");
+            ViewBag.Ogalt = finalName;
             string blogContent = MetaDetails.Description;
 
             // For Listing Table Content.
@@ -78,7 +94,7 @@ namespace Avidclan_Website.Controllers
                 sb.Append(blank_space); sb.Append("\"@type\": \"ListItem\",\n");
                 sb.Append(blank_space); sb.Append("\"position\": \"3\",\n");
                 sb.Append(blank_space); sb.Append("\"name\": \"" + MetaDetails.MetaTitle + "\",\n");
-                sb.Append(blank_space); sb.Append("\"item\": \"" + MetaDetails.MetaDescription + "\"}\n");
+                sb.Append(blank_space); sb.Append("\"item\": \"" + "https://www.avidclan.com/blog/" + id + "/" + "\"}\n");
 
                 sb.Append(blank_space); sb.Append("]}\n");
                 sb.Append(blank_space); sb.Append("</script>\n");

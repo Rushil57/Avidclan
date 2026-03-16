@@ -677,6 +677,7 @@ namespace Avidclan_Website.Controllers
                     blog.Description = BlogList[i].Description;
                     blog.BlogType = BlogList[i].BlogType;
                     blog.Image = thumbnailImageCDN;
+                    blog.ImageName = BlogList[i].ImageName;
                     blog.PostingDate = BlogList[i].PostingDate;
                     blog.PostedBy = BlogList[i].PostedBy;
                     blog.PageUrl = BlogList[i].PageUrl;

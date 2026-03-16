@@ -68,6 +68,7 @@
 
     <!-- CSS -->
     <link href="~/assets/css/marketing_style.css" rel="stylesheet" />
+    <script src="https://www.google.com/recaptcha/api.js?render=@System.Configuration.ConfigurationManager.AppSettings["reCaptchaPublicKey"]"></script>
     <script>
         (function () {
             const params = new URLSearchParams(window.location.search);
@@ -286,40 +287,48 @@
 
                 const gclid = sessionStorage.getItem("gclid");
 
-                var data = {
-                    FirstName: $("#formname").val(),
-                    Email: $("#formemail").val(),
-                    Phoneumber: $("#formnumber").val(),
-                    Service: $("#formservice").val(),
-                    Budget: $("#formbudget").val(),
-                    Message: $("#formtextarea").val(),
-                    Gclid: gclid
-                };
 
 
-                $.ajax({
-                    type: "POST",
-                    url: "/api/Mail/SendEmailMarketingPage",
-                    contentType: "application/json",
-                    data: JSON.stringify(data),
-                    success: function (response) {
-                        if (response === "Sent" || response?.status === "Sent") {
-                            window.location.href = "/lp/thank-you/";
-                        } else {
-                            alert("Something went wrong. Please try again.");
-                        }
-                        $("#myForm")[0].reset();
-                    },
-                    error: function () {
-                        alert("Something went wrong. Please try again later.");
-                    },
-                    complete: function () {
-                        $("#btnInquire")
-                            .text("SHOW ME PROFILES")
-                            .removeClass("btn-loading")
-                            .prop("disabled", false);
+                 grecaptcha.ready(function () {
+        grecaptcha.execute('@System.Configuration.ConfigurationManager.AppSettings["reCaptchaPublicKey"]', { action: 'marketing_form' }).then(function (token) {
+
+            var data = {
+                FirstName: $("#formname").val(),
+                Email: $("#formemail").val(),
+                Phoneumber: $("#formnumber").val(),
+                Service: $("#formservice").val(),
+                Budget: $("#formbudget").val(),
+                Message: $("#formtextarea").val(),
+                Gclid: gclid,
+                RecaptchaToken: token
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/api/Mail/SendEmailMarketingPage",
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (response) {
+                    if (response === "Sent" || response?.status === "Sent") {
+                        window.location.href = "/lp/thank-you/";
+                    } else {
+                        alert("Something went wrong. Please try again.");
                     }
-                });
+                    $("#myForm")[0].reset();
+                },
+                error: function () {
+                    alert("Something went wrong. Please try again later.");
+                },
+                complete: function () {
+                    $("#btnInquire")
+                        .text("SHOW ME PROFILES")
+                        .removeClass("btn-loading")
+                        .prop("disabled", false);
+                }
+            });
+
+        });
+    });
             });
 
         });

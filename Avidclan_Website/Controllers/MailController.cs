@@ -121,6 +121,33 @@ namespace Avidclan_Website.Controllers
         {
             try
             {
+                if (obj == null || string.IsNullOrEmpty(obj.RecaptchaToken))
+                    return "Invalid request.";
+
+                var secretKey = ConfigurationManager.AppSettings["reCaptchaPrivateKey"];
+
+                using (var client = new HttpClient())
+                {
+                    var values = new Dictionary<string, string>
+            {
+                { "secret", secretKey },
+                { "response", obj.RecaptchaToken }
+            };
+
+                    var content = new FormUrlEncodedContent(values);
+                    var response = await client.PostAsync("https://www.google.com/recaptcha/api/siteverify", content);
+                    var responseString = await response.Content.ReadAsStringAsync();
+
+                    var captchaResult = JsonConvert.DeserializeObject<RecaptchaResponse>(responseString);
+
+                    if (!captchaResult.success || captchaResult.score < 0.5)
+                    {
+                        ErrorLog("LocationForm", "reCAPTCHA Failed", responseString);
+                        return "reCAPTCHA validation failed.";
+                    }
+                }
+
+
                 await ReadConfiguration("other");
                 var messagebody = "<html><body>" +
                                     "<table rules='all' style='border:1px solid #666;' cellpadding='10'>" +

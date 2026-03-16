@@ -24,6 +24,10 @@
     <meta property="og:description" content="@ViewBag.MetaData" />
     <meta property="og:url" content="@ViewBag.Url" />
     <meta property="og:image" content="@ViewBag.OgImage" />
+    <meta property="og:image:width" content="1640" />
+    <meta property="og:image:height" content="988" />
+    <meta property="og:image:alt" content="@ViewBag.Ogalt" />
+    <meta property="og:image:type" content="@ViewBag.OgImageType" />
     <meta property="article:published_time" content="2024-05-17T04:45:30+00:00" />
     <meta property="article:modified_time" content="2024-05-17T04:45:30+00:00" />
     <meta name="twitter:card" content="summary" />
@@ -106,23 +110,23 @@
             <div class="col-lg-8 col-md-8 col-xl-8">
                 <div class="blog-content">
                     <!--<div class="blog-meta">
-            <div id="BlogType" class="blog-type font-20 text-center"></div>-->
+                    <div id="BlogType" class="blog-type font-20 text-center"></div>-->
                     @*Predictive and Date Analytics*@
                     <!--<span class="after-separator"> | </span>
-            <div id="publishDate" class="span-date font-16 text-center"></div>-->
+                    <div id="publishDate" class="span-date font-16 text-center"></div>-->
                     @*May 17, 2024*@
                     <!--<span class="after-separator"> | </span>
-            <div class="publisher-name d-flex align-items-center justify-content-center">
-                <div class="me-2">
-                    <img id="AuthorImage" src="/assets/images/user/default.svg" alt="Author" class="author-img" />
-                </div>
-                <div class="text-content font-16 text-center">
-                    <span>by</span>
-                    <a href="#" id="AuthorName" class="ms-1">Rushil Bhuptani</a>-->
+                    <div class="publisher-name d-flex align-items-center justify-content-center">
+                        <div class="me-2">
+                            <img id="AuthorImage" src="/assets/images/user/default.svg" alt="Author" class="author-img" />
+                        </div>
+                        <div class="text-content font-16 text-center">
+                            <span>by</span>
+                            <a href="#" id="AuthorName" class="ms-1">Rushil Bhuptani</a>-->
                     @* Optional: Set name here if not via JS *@
                     <!--</div>
-                </div>
-            </div>-->
+                        </div>
+                    </div>-->
 
                     <div class="table-content sm_only position-relative blog-border-top mb-2">
                         <div class="title toc-title-wrapper d-flex justify-content-between align-items-center pe-4" id="mobileTocToggle" style="cursor:pointer;">
@@ -507,7 +511,7 @@
                 $('#blogImage').attr('src', result.bloglist[0].Image);
                 $("#publishDate").html(longDt)
                 $("#modifiedDate").html(longModDt)
-                
+
                 var sectionblog = "";
                 var count = 1;
                 if (result.blogfaqslist == 0) {

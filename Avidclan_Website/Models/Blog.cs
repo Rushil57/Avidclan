@@ -13,6 +13,8 @@ namespace Avidclan_Website.Models
         public string ShortTitle { get; set; }
         public string BlogType { get; set; }
         public string Image { get; set; }
+
+        public string ImageName { get; set; }
         public DateTime PostingDate { get; set; }
         public DateTime ModifyDate { get; set; }
         public string PostedBy { get; set; }
