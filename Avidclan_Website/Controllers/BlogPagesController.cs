@@ -55,14 +55,18 @@ namespace Avidclan_Website.Controllers
             {
                 ViewBag.OgImageType = "image/jpeg"; 
             }
-            string imageName = MetaDetails.ImageName;
+            if (!string.IsNullOrEmpty(MetaDetails.ImageName))
+            {
+                string imageName = MetaDetails.ImageName;
 
-            // Remove extension
-            string nameWithoutExtension = System.IO.Path.GetFileNameWithoutExtension(imageName);
+                // Remove extension
+                string nameWithoutExtension = System.IO.Path.GetFileNameWithoutExtension(imageName);
 
-            // Remove "Thumbnail - "
-            string finalName = nameWithoutExtension.Replace("Thumbnail - ", "");
-            ViewBag.Ogalt = finalName;
+                // Remove "Thumbnail - "
+                string finalName = nameWithoutExtension.Replace("Thumbnail - ", "");
+                ViewBag.Ogalt = finalName;
+            }
+                
             string blogContent = MetaDetails.Description;
 
             // For Listing Table Content.
