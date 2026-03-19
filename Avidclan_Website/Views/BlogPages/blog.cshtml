@@ -74,20 +74,20 @@
                 <div class="blog-meta">
 
                     <div class="span-date font-16 text-center">
-                        <span class="fw-bold">Category :</span>
+                        <span class="fw-bold">Category:</span>
                         <span id="BlogType"></span>
                     </div>
                     <span class="after-separator"> | </span>
 
                     <div class="span-date font-16 text-center">
-                        <span class="fw-bold">Posted On :</span>
+                        <span class="fw-bold">Posted On:</span>
                         <span id="publishDate"></span>
                     </div>
 
                     <span class="after-separator"> | </span>
 
                     <div class="span-date font-16 text-center">
-                        <span class="fw-bold">Modified On :</span>
+                        <span class="fw-bold">Modified On:</span>
                         <span id="modifiedDate"></span>
                     </div>
 
@@ -297,12 +297,12 @@
                             </div>
 
                             <!-- Custom Arrow Icon -->
-                            <div class="toc-arrow-icon" id="customTocArrow" data-expanded="false">
+                            <div class="toc-arrow-icon" id="customTocArrow" data-expanded="true">
                                 <img class="toc-arrow-img" src="~/assets/images/imagenew/arrow-up-black.svg" alt="Dropdown Arrow">
                             </div>
                         </div>
 
-                        <div class="table-content-list mt-3" id="customTocList" style="display: none;">
+                        <div class="table-content-list mt-3" id="customTocList" style="display: block;">
                             <ul>
                                 @{
                                     if (ViewBag.TableContent != "" && ViewBag.TableContent != null)
