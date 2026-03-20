@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Avidclan_Website.Models.Blog>
+@model IEnumerable<Avidclan_Website.Models.Blog>
 @{
     var context = "@context";
     var type = "@type";
@@ -101,7 +101,7 @@
 
                         <div class="text-content font-16">
                             <span>by</span>
-                            <a href="#" id="AuthorName" class="ms-1">Rushil Bhuptani</a>
+                            <a href="#" id="AuthorName" class="ms-1"></a>
                         </div>
                     </div>
 
@@ -478,6 +478,7 @@
             }
         });
         $('.table-content-list ul li a').click(function (event) {
+            event.preventDefault(); // Avoid URL hash navigation; we scroll manually
             var divId = $(this).attr('href');
             $('html, body').animate({
                 scrollTop: $(divId).offset().top - 110
@@ -501,6 +502,7 @@
                 var ModifiedDate = new Date(modifieddate);
                 var longDt = PostingDate.toLocaleDateString("en-US", options);
                 var longModDt = ModifiedDate.toLocaleDateString("en-US", options);
+                var authorName = result.bloglist[0].PostedBy.trim().toLowerCase();
 
                 $("#ShortTitle").html(result.bloglist[0].ShortTitle)
                 $("#BlogCategory").html(result.bloglist[0].BlogType)
@@ -511,6 +513,21 @@
                 $('#blogImage').attr('src', result.bloglist[0].Image);
                 $("#publishDate").html(longDt)
                 $("#modifiedDate").html(longModDt)
+                let authorPage = "#"
+
+                // Use absolute paths so links don't become relative when this view is loaded at /blog/{id}/
+                if (authorName === "rushil bhuptani") {
+                    authorPage = "/author/rushil-bhuptani/";
+                }
+                else if (authorName === "chintan dhrangdhariya") {
+                    authorPage = "/author/chintan-dhrangdhariya/";
+                }
+                else if (authorName === "dhaval sabhaya") {
+                    authorPage = "#";
+                }
+
+                // Apply href (assuming AuthorName is a link)
+                $("#AuthorName").attr("href", authorPage);
 
                 var sectionblog = "";
                 var count = 1;
@@ -614,7 +631,7 @@
                         var options = { year: 'numeric', month: 'long', day: 'numeric' };
                         var PostingDate = new Date(v.PostingDate);
                         var longDt = PostingDate.toLocaleDateString("en-US", options);
-                        var Descriptionlength = v.MetaDescription.length > 80 ? v.MetaDescription.substring(0, 80) + "…" : v.MetaDescription;
+                        //var Descriptionlength = v.MetaDescription.length > 80 ? v.MetaDescription.substring(0, 80) + "…" : v.MetaDescription;
 
                         // Author image logic
                         var authorKey = v.PostedBy ? v.PostedBy.trim().toLowerCase() : "";
@@ -655,6 +672,45 @@
         });
 
 });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tocLists = document.querySelectorAll(".table-content-list ul");
+
+        tocLists.forEach(ul => {
+            const allLis = Array.from(ul.querySelectorAll("li"));
+
+            // Remove empty items (including ones that only contain spaces)
+            allLis.forEach(li => {
+                if (!li.textContent || !li.textContent.trim()) {
+                    li.remove();
+                }
+            });
+
+            const remainingLis = Array.from(ul.querySelectorAll("li")).filter(li => li.textContent && li.textContent.trim());
+            if (remainingLis.length === 0) {
+                return;
+            }
+
+            // For TOC items that are numbered (e.g., "1. Title", "1) Title", "(1) Title")
+            // or contain the word "Conclusion", hide the bullet for that item only.
+            const numberPattern = /^\s*(?:\(\s*\d+\s*\)|\d+\s*[.\)])\s*/;
+
+            remainingLis.forEach(li => {
+                const text = li.textContent ? li.textContent.trim() : "";
+                const isNumbered = numberPattern.test(text);
+                const isConclusion = /\bconclusion(?:s)?\b/i.test(text);
+
+                if (isNumbered || isConclusion) {
+                    li.classList.add("no-bullet");
+                    // Override any other CSS that forces bullets (the site uses `!important`).
+                    li.style.setProperty("list-style", "none", "important");
+                    li.style.setProperty("margin-left", "0", "important");
+                }
+            });
+        });
+    });
 </script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {

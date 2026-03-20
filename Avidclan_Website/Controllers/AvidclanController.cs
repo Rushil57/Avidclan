@@ -557,7 +557,7 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
-
+      
         [Route("hire-developer-thank-you/")]
         public ActionResult HireDeveloperThankYou()
         {
@@ -674,15 +674,15 @@ namespace Avidclan_Website.Controllers
                     Blog blog = new Blog();
                     blog.Id = BlogList[i].Id;
                     blog.Title = BlogList[i].Title;
-                    blog.Description = BlogList[i].Description;
+                    //blog.Description = BlogList[i].Description;
                     blog.BlogType = BlogList[i].BlogType;
                     blog.Image = thumbnailImageCDN;
-                    blog.ImageName = BlogList[i].ImageName;
+                   // blog.ImageName = BlogList[i].ImageName;
                     blog.PostingDate = BlogList[i].PostingDate;
                     blog.PostedBy = BlogList[i].PostedBy;
                     blog.PageUrl = BlogList[i].PageUrl;
-                    blog.MetaTitle = BlogList[i].MetaTitle;
-                    blog.MetaDescription = BlogList[i].MetaDescription;
+                    //blog.MetaTitle = BlogList[i].MetaTitle;
+                    //blog.MetaDescription = BlogList[i].MetaDescription;
                     listBlog.Add(blog);
                 }
 
