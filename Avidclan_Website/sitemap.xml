@@ -1204,4 +1204,24 @@
 		<changefreq>weekly</changefreq>
 		<priority>0.60</priority>
 	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/stop-buying-scammy-ai-tools/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/openclaw-autonomous-ai-agent/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/labor-arbitrage-2-ai-development-costs/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/gemini-3-1-pro-review-65k-output-limit/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
 </urlset>
