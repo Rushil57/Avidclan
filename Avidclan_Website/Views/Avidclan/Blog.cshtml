@@ -1,4 +1,4 @@
-﻿@model Avidclan_Website.Models.BlogViewModel
+@model Avidclan_Website.Models.BlogViewModel
 
 @{
     ViewBag.Title = "Blog";
@@ -225,7 +225,11 @@
 
     $(document).ready(function () {
         loadCategories();
-        GetSectionData(1, selectedBlogType);
+        const params = new URLSearchParams(window.location.search);
+        const initialPage = parseInt(params.get('page') || '1', 10);
+        currentPageNumber = Number.isFinite(initialPage) && initialPage > 0 ? initialPage : 1;
+        // On refresh with ?page!=1, keep user near the top of the category section.
+        GetSectionData(currentPageNumber, selectedBlogType, currentPageNumber !== 1);
         
 
         //$(".category-btn").on("click", function () {
@@ -241,7 +245,8 @@
             $(this).addClass("active");
 
             selectedBlogType = $(this).data("category");
-            GetSectionData(1, selectedBlogType);
+            // Reset to page 1 for category change
+            GetSectionData(1, selectedBlogType, true);
         });
 
         $(".chevron-left").click(function () {
@@ -284,8 +289,29 @@
         $scrollContainer.css({ "margin-left": marginLeft, "margin-right": marginRight });
     }
 
-    function GetSectionData(page, BlogCategoryId) {
+    function updateUrlWithPage(page) {
+        try {
+            const url = new URL(window.location.href);
+            url.searchParams.set('page', page);
+            // Keep same path; only bind pagination state to URL.
+            history.replaceState(null, "", url.toString());
+        } catch (e) {
+            // no-op
+        }
+    }
+
+    function scrollToBlogCategories() {
+        const heading = document.querySelector('h3.fs-3.primary-color.text-center.mb-4');
+        if (!heading) return;
+
+        const offset = 110; // account for sticky header if present
+        const top = heading.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+    }
+
+    function GetSectionData(page, BlogCategoryId, shouldScroll = false) {
         currentPageNumber = page;
+        updateUrlWithPage(page);
 
         let url = BlogCategoryId === "all"
             ? `/Avidclan/GetSectionData?page=${page}`
@@ -306,24 +332,23 @@
                     var options = { year: 'numeric', month: 'long', day: 'numeric' };
                     var PostingDate = new Date(v.PostingDate);
                     var longDt = PostingDate.toLocaleDateString("en-US", options);
-                    var Descriptionlength = v.MetaDescription.length > 80 ? v.MetaDescription.substring(0, 80) + "…" : v.MetaDescription;
+                   // var Descriptionlength = v.MetaDescription.length > 80 ? v.MetaDescription.substring(0, 80) + "…" : v.MetaDescription;
 
                     sectionblog += `
                         <div class="col-lg-4 col-md-6">
                             <div class="single-blog">
                                 <div class="blog-img img img-fluid">
-                                    <a href="/blog/${v.PageUrl}"><img class="BlogImages" src="${v.Image}" alt="" style="height:247px;"></a>
+                                    <a href="/blog/${v.PageUrl}"><img loading="lazy" class="BlogImages" src="${v.Image}" alt="" style="height:247px;"></a>
                                     <div class="top-meta">
                                         <span class="tag" style="font-style: normal;">${v.BlogType}</span>
                                     </div>
                                 </div>
                                 <div class="blog-content">
                                     <div class="blog-meta">
-                                        <span><i class="fas fa-user"></i> <a style="font-style: normal;" href="#">${v.PostedBy}</a></span>
+                                        <span><i class="fas fa-user"></i> <a style="font-style: normal;" href="/blog/${v.PageUrl}">${v.PostedBy}</a></span>
                                         <span id="admindateid_${v.Id}" style="font-style: normal;"><i class="far fa-calendar-alt"></i> ${longDt}</span>
                                     </div>
                                     <h1 class="title blog-title"><a href="/blog/${v.PageUrl}" style="font-style: normal;">${v.Title}</a></h1>
-                                    <p class="blog-meta-desc">${Descriptionlength}</p>
                                 </div>
                                 <div class="blog-btn">
                                     <a href="/blog/${v.PageUrl}" class="blog-btn-link" style="font-style: normal;">
@@ -357,23 +382,27 @@
 
                     if (currentPage > 1) {
                         let prevPage = currentPage - 1;
-                        paginationData += `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="GetSectionData(${prevPage}, '${BlogCategoryId}')"><i class="fas fa-chevron-left"></i></a></li>`;
+                        paginationData += `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="GetSectionData(${prevPage}, '${BlogCategoryId}', true)"><i class="fas fa-chevron-left"></i></a></li>`;
                     }
 
                     for (let i = startPage; i <= endPage; i++) {
                         let active = i === currentPage ? "active" : "";
-                        paginationData += `<li class="page-item ${active}"><a class="page-link" href="javascript:void(0);" onclick="GetSectionData(${i}, '${BlogCategoryId}')">${i}</a></li>`;
+                        paginationData += `<li class="page-item ${active}"><a class="page-link" href="javascript:void(0);" onclick="GetSectionData(${i}, '${BlogCategoryId}', true)">${i}</a></li>`;
                     }
 
                     if (currentPage < totalPages) {
                         let nextPage = currentPage + 1;
-                        paginationData += `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="GetSectionData(${nextPage}, '${BlogCategoryId}')"><i class="fas fa-chevron-right"></i></a></li>`;
+                        paginationData += `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="GetSectionData(${nextPage}, '${BlogCategoryId}', true)"><i class="fas fa-chevron-right"></i></a></li>`;
                     }
 
                     paginationData += '</ul>';
                 }
 
                 $('#pagination').html(paginationData);
+
+                if (shouldScroll) {
+                    scrollToBlogCategories();
+                }
             },
             error: function () {
                 alert("Error occurred while fetching blogs!");

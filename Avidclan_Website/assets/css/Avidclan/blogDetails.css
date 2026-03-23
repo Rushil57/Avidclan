@@ -1,4 +1,4 @@
-﻿/*-----------------------------------------------------------------
+/*-----------------------------------------------------------------
             Blog Section
 -------------------------------------------------------------------
 */
@@ -362,6 +362,7 @@
 .blog-meta-desc {
     display: -webkit-box;
     -webkit-line-clamp: 1;
+    line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     width: 100%;
@@ -923,9 +924,21 @@ td {
     padding: 0;
 }
 
+#mobileTocList{
+    max-height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
 .table-content-list ul li {
     margin: 0 0 0 20px;
     list-style: disc !important;
+}
+
+.table-content-list ul li.no-bullet {
+    list-style: none !important;
+    margin-left: 0;
 }
 
 .table-content-list ul li a {
