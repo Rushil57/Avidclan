@@ -51,6 +51,16 @@
                 contentType: 'application/json',
                 data: JSON.stringify(Userdata),
                 success: function (result) {
+                    debugger;
+                    //var cleanDate = formatDotNetDate(result.JoiningDate);
+                    localStorage.setItem("userEmail", result.EmailId);
+                    localStorage.setItem("userId", result.Id);
+                    localStorage.setItem("role", result.RoleName);
+                    localStorage.setItem("firstName", result.FirstName);
+                    localStorage.setItem("lastName", result.LastName);
+                    localStorage.setItem("probationPeriod", result.ProbationPeriod);
+                    localStorage.setItem("NoticePeriodDate", result.NoticePeriodDate);
+                     localStorage.setItem("JoiningDate",  result.JoiningDate);
                     if (result.RoleName == "Admin") {
                         window.location.href = '/BlogVacancy/blog'
                     }
@@ -68,7 +78,12 @@
             });
             }
         });
+//        function formatDotNetDate(dotNetDate) {
+//    var timestamp = parseInt(dotNetDate.replace(/[^0-9]/g, ''));
+//    var date = new Date(timestamp);
 
+//    return date.toLocaleDateString('en-GB'); // dd/mm/yyyy
+//}
       $(".toggle-password").click(function() {
             var input = $("#Password");
             if (input.attr("type") === "password") {

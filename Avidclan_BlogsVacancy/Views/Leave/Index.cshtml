@@ -1,12 +1,13 @@
 ﻿@{
     Layout = "~/Views/Shared/_LeaveTemplate.cshtml";
+
 }
 
 <input type="hidden" id="PersonalLeave" />
 <input type="hidden" id="SickLeave" />
-<input id="JoiningDate" type="hidden" value='@Session["UserJoiningDate"]' />
-<input id="ProbationMonth" type="hidden" value='@Session["UserProbationPeriod"]' />
-<input id="NoticePeriodDate" type="hidden" value='@Session["NoticePeriodDate"]' />
+<input id="JoiningDate" type="hidden"  />
+<input id="ProbationMonth" type="hidden" />
+<input id="NoticePeriodDate" type="hidden"  />
 
 <div id='calendar'></div>
 
@@ -76,4 +77,36 @@
 </div>
 @*MODAL END FOR APPLY LEAVE*@
 
+<script>
+    $(document).ready(function () {
+
+        // Get values from localStorage
+        var joiningDate = localStorage.getItem("JoiningDate");
+        var rawDate = joiningDate;
+        var formattedDate = parseDotNetDate(rawDate);
+        var probationMonth = localStorage.getItem("ProbationMonth");
+        var noticePeriodDate = localStorage.getItem("NoticePeriodDate");
+
+        // Set into hidden fields
+        $("#JoiningDate").val(formattedDate);
+        $("#ProbationMonth").val(probationMonth);
+        $("#NoticePeriodDate").val(noticePeriodDate);
+
+        function parseDotNetDate(dotNetDate) {
+            if (!dotNetDate) return null;
+
+            var ticks = parseInt(dotNetDate.replace(/[^0-9]/g, ''));
+            var date = new Date(ticks);
+
+            var year = date.getFullYear();
+            var month = ("0" + (date.getMonth() + 1)).slice(-2);
+            var day = ("0" + date.getDate()).slice(-2);
+
+            return `${year}-${month}-${day}`; // ✅ YYYY-MM-DD
+        }
+
+    });
+
+
+</script>
 <script src="~/Javascript/LeaveIndexJs.js"></script>

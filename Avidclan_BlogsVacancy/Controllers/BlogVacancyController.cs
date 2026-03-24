@@ -3,6 +3,7 @@ using Avidclan_BlogsVacancy.ViewModel;
 using Dapper;
 using iTextSharp.text.pdf.qrcode;
 using MailKit;
+using Microsoft.AspNetCore.Http.Authentication;
 using MimeKit.Cryptography;
 using Org.BouncyCastle.Asn1.Ocsp;
 using Org.BouncyCastle.Bcpg;
@@ -14,6 +15,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
@@ -67,13 +69,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                         bool isValid = PasswordHelper.VerifyPassword(enteredPassword, storedHash);
                         if (isValid)
                         {
-                            Session["UserEmailId"] = logindata.EmailId;
-                            Session["UserId"] = logindata.Id;
-                            Session["UserJoiningDate"] = logindata.JoiningDate;
-                            Session["UserProbationPeriod"] = logindata.ProbationPeriod;
-                            Session["FirstName"] = logindata.FirstName;
-                            Session["LastName"] = logindata.LastName;
-                            Session["NoticePeriodDate"] = logindata.NoticePeriodDate;
+                            return Json(logindata, JsonRequestBehavior.AllowGet);
                         }
                         else
                         {
@@ -123,20 +119,20 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult Blog()
         {
-            if (Session["UserEmailId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserEmailId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             Session.Timeout = 120; // minutes
             return View();
         }
 
         public ActionResult Careers()
         {
-            if (Session["UserEmailId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserEmailId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             return View();
         }
 
@@ -309,28 +305,28 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult LeaveStatus()
         {
-            if (Session["UserEmailId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserEmailId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             return View();
         }
 
         public ActionResult WFHStatus()
         {
-            if (Session["UserEmailId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserEmailId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             return View();
         }
 
         public ActionResult SalarySlips()
         {
-            if (Session["UserEmailId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserEmailId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             return View();
         }
 
@@ -458,10 +454,10 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult BalanaceLeave()
         {
-            if (Session["UserId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             return View();
         }
 
@@ -530,19 +526,19 @@ namespace Avidclan_BlogsVacancy.Controllers
         }
         public ActionResult RegisterEmployee()
         {
-            if (Session["UserId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             return View();
         }
 
         public ActionResult GetAllEmployees()
         {
-            if (Session["UserId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             var parameters = new DynamicParameters();
             parameters.Add("@Mode", 8, DbType.Int32, ParameterDirection.Input);
             var EmployeeList = con.Query<UserRegister>("sp_User", parameters, commandType: CommandType.StoredProcedure).ToList();
@@ -551,10 +547,10 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult GetEmployeeById(int Id)
         {
-            if (Session["UserId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             var parameters = new DynamicParameters();
             parameters.Add("@Id", Id, DbType.Int32, ParameterDirection.Input);
             parameters.Add("@Mode", 9, DbType.Int32, ParameterDirection.Input);
@@ -564,10 +560,10 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult DeleteEmployee(int id)
         {
-            if (Session["UserId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             var parameters = new DynamicParameters();
             parameters.Add("@Id", id, DbType.Int32, ParameterDirection.Input);
             parameters.Add("@Mode", 12, DbType.Int32, ParameterDirection.Input);
@@ -577,19 +573,19 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult ReportingPerson()
         {
-            if (Session["UserId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             return View();
         }
 
         public ActionResult LeaveBalance()
         {
-            if (Session["UserId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             return View();
         }
 
@@ -628,10 +624,10 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult GetListOfReportingPerson()
         {
-            if (Session["UserId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             var parameters = new DynamicParameters();
             parameters.Add("@Mode", 4, DbType.Int32, ParameterDirection.Input);
             var ReportingpersonList = con.Query<ReportingPersons>("sp_LeaveReportingPerson", parameters, commandType: CommandType.StoredProcedure).ToList();
@@ -640,10 +636,10 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult DeleteReportingPerson(int id)
         {
-            if (Session["UserId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             var parameters = new DynamicParameters();
             parameters.Add("@Id", id, DbType.Int32, ParameterDirection.Input);
             parameters.Add("@Mode", 5, DbType.Int32, ParameterDirection.Input);
@@ -653,10 +649,10 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult GetReportingPersonById(int id)
         {
-            if (Session["UserId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             var parameters = new DynamicParameters();
             parameters.Add("@Id", id, DbType.Int32, ParameterDirection.Input);
             parameters.Add("@Mode", 6, DbType.Int32, ParameterDirection.Input);
@@ -666,19 +662,19 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult EmployeeLeave()
         {
-            if (Session["UserEmailId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserEmailId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             return View();
         }
 
         public ActionResult EmployeeReport()
         {
-            if (Session["UserEmailId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserEmailId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             return View();
         }
 
@@ -778,10 +774,10 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult LeaveConvert()
         {
-            if (Session["UserEmailId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserEmailId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             return View();
         }
 
@@ -789,28 +785,28 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult CompensationLeave()
         {
-            if (Session["UserEmailId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserEmailId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             return View();
         }
 
         public ActionResult ReminderMail()
         {
-            if (Session["UserEmailId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserEmailId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             return View();
         }
 
         public ActionResult Holiday()
         {
-            if (Session["UserEmailId"] == null)
-            {
-                return RedirectToAction("UserLogin");
-            }
+            //if (Session["UserEmailId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin");
+            //}
             return View();
         }
 

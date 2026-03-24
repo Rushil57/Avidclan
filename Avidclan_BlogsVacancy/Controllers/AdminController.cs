@@ -234,18 +234,18 @@ namespace Avidclan_BlogsVacancy.Controllers
         public async Task<string> SaveJobPosition(Careers data)
         {
             //  var userName = Request.Headers.GetCookies("EmailId").FirstOrDefault()?["EmailId"].Value;
-            var userName = HttpContext.Current.Session["FirstName"].ToString();
+            //var userName = HttpContext.Current.Session["FirstName"].ToString();
             var mode = 0;
             var parameters = new DynamicParameters();
             if (data.Id == 0)
             {
                 mode = 1;
-                parameters.Add("@AddedBy", userName, DbType.String, ParameterDirection.Input);
+                parameters.Add("@AddedBy", data.FirstName, DbType.String, ParameterDirection.Input);
             }
             else
             {
                 mode = 6;
-                parameters.Add("@UpdatedBy", userName, DbType.String, ParameterDirection.Input);
+                parameters.Add("@UpdatedBy", data.FirstName, DbType.String, ParameterDirection.Input);
             }
 
             parameters.Add("@Id", data.Id, DbType.Int32, ParameterDirection.Input);
@@ -361,10 +361,10 @@ namespace Avidclan_BlogsVacancy.Controllers
         {
             try
             {
-                var userId = HttpContext.Current.Session["UserId"];
-                var firstName = HttpContext.Current.Session["FirstName"]?.ToString() ?? string.Empty;
-                var lastName = HttpContext.Current.Session["LastName"]?.ToString() ?? string.Empty;
-                await SaveFullLeaveApplicationAsync(0, leaveViewModel.Fromdate, leaveViewModel.Todate, leaveViewModel.ReasonForLeave, leaveViewModel.Leaves, leaveViewModel.ReportingPerson, userId, 0, leaveViewModel.LeaveType, firstName, lastName);
+                //var userId = HttpContext.Current.Session["UserId"];
+                //var firstName = HttpContext.Current.Session["FirstName"]?.ToString() ?? string.Empty;
+                //var lastName = HttpContext.Current.Session["LastName"]?.ToString() ?? string.Empty;
+                await SaveFullLeaveApplicationAsync(0, leaveViewModel.Fromdate, leaveViewModel.Todate, leaveViewModel.ReasonForLeave, leaveViewModel.Leaves, leaveViewModel.ReportingPerson, leaveViewModel.UserId, 0, leaveViewModel.LeaveType, leaveViewModel.FirstName, leaveViewModel.LastName);
 
                 return "Request Sent Successfully!";
             }
@@ -1177,14 +1177,14 @@ namespace Avidclan_BlogsVacancy.Controllers
         {
             try
             {
-                var FirstName = HttpContext.Current.Session["FirstName"].ToString();
-                var LastName = HttpContext.Current.Session["FirstName"].ToString();
+                //var FirstName = HttpContext.Current.Session["FirstName"].ToString();
+                //var LastName = HttpContext.Current.Session["FirstName"].ToString();
 
                 await ReadConfiguration();
                 var subject = "FeedBack For Avidclan Technology";
 
                 List<string> reportingPerson = new List<string>();
-                await sendEmail(senderEmail, senderEmail, FirstName + "&nbsp;" + LastName, subject, feedback.Feedback, reportingPerson);
+                await sendEmail(senderEmail, senderEmail, feedback.FirstName + "&nbsp;" + feedback.LastName, subject, feedback.Feedback, reportingPerson);
                 return "FeedBack Send Succesfully !";
             }
             catch (Exception ex)
@@ -1913,7 +1913,7 @@ namespace Avidclan_BlogsVacancy.Controllers
             };
             try
             {
-                var userId = HttpContext.Current.Session["UserId"];
+                var userId = leaveDetails.UserId;
                 if (userId == null)
                     return leaveBalances;
 
@@ -2119,7 +2119,8 @@ namespace Avidclan_BlogsVacancy.Controllers
         {
             try
             {
-                var userIdObj = HttpContext.Current.Session["UserId"];
+                //var userIdObj = HttpContext.Current.Session["UserId"];
+                var userIdObj = compOffViewModel.UserId;
                 if (userIdObj == null)
                 {
                     return "User is not logged in.";
@@ -2373,6 +2374,10 @@ namespace Avidclan_BlogsVacancy.Controllers
         public int Id { get; set; }
         public string Feedback { get; set; }
         public int UserId { get; set; }
+
+        public string FirstName { get; set; }
+
+       public string LastName { get; set; }
     }
 
 }

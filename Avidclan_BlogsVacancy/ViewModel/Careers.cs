@@ -14,6 +14,7 @@ namespace Avidclan_BlogsVacancy.ViewModel
         public string NoOfPosition { get; set; }
         public string Responsibilities { get; set; }
         public string Qualification { get; set; }
+        public string FirstName { get; set; }
         public string AddedBy { get; set; }
       
         public string UpdatedBy { get; set; }

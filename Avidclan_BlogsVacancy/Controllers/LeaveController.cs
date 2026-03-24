@@ -38,10 +38,10 @@ namespace Avidclan_BlogsVacancy.Controllers
         // GET: Leave
         public ActionResult Index()
         {
-            if (Session["UserEmailId"] == null)
-            {
-                return RedirectToAction("UserLogin", "BlogVacancy");
-            }
+            //if (Session["UserEmailId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin", "BlogVacancy");
+            //}
             return View();
         }
 
@@ -159,11 +159,11 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
         }
 
-        public JsonResult LeaveDates()
+        public JsonResult LeaveDates(string userId)
         {
-            var UserId = Session["UserId"];
+            //var UserId = Session["UserId"];
             var parameters = new DynamicParameters();
-            parameters.Add("@Id", UserId, DbType.Int64, ParameterDirection.Input);
+            parameters.Add("@Id", userId, DbType.Int64, ParameterDirection.Input);
             parameters.Add("@Mode", 2, DbType.Int32, ParameterDirection.Input);
             //var GetLeaveDates = con.Query<LeaveDetailsViewModel>("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure);
             var reader = con.QueryMultiple("sp_LeaveApplication", parameters, commandType: CommandType.StoredProcedure);
@@ -190,10 +190,10 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult LeaveStatus()
         {
-            if (Session["UserEmailId"] == null)
-            {
-                return RedirectToAction("UserLogin", "BlogVacancy");
-            }
+            //if (Session["UserEmailId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin", "BlogVacancy");
+            //}
             return View();
         }
 
@@ -207,27 +207,27 @@ namespace Avidclan_BlogsVacancy.Controllers
         }
         public ActionResult TotalLeaves()
         {
-            if (Session["UserEmailId"] == null)
-            {
-                return RedirectToAction("UserLogin", "BlogVacancy");
-            }
+            //if (Session["UserEmailId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin", "BlogVacancy");
+            //}
             return View();
         }
 
         public ActionResult FeedBack()
         {
-            if (Session["UserEmailId"] == null)
-            {
-                return RedirectToAction("UserLogin", "BlogVacancy");
-            }
+            //if (Session["UserEmailId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin", "BlogVacancy");
+            //}
             return View();
         }
 
-        public JsonResult GetTotalLeaveList()
+        public JsonResult GetTotalLeaveList(string userId)
         {
-            var UserId = Session["UserId"];
+            //var UserId = Session["UserId"];
             var parameters = new DynamicParameters();
-            parameters.Add("@UserId", UserId, DbType.String, ParameterDirection.Input);
+            parameters.Add("@UserId", userId, DbType.String, ParameterDirection.Input);
             parameters.Add("@Mode", 5, DbType.Int32, ParameterDirection.Input);
             var LeaveList = con.Query<TypeOfLeave>("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure);
             return Json(LeaveList, JsonRequestBehavior.AllowGet);
@@ -879,21 +879,21 @@ namespace Avidclan_BlogsVacancy.Controllers
         }
 
         #endregion compoffleave
-        public async Task<JsonResult> GetTotalLeaveBalanaceList()
+        public async Task<JsonResult> GetTotalLeaveBalanaceList(string userId, string joiningDate)
         {
             try
             {
-                var UserId = Session["UserId"];
-                var joiningDate = ((DateTime)Session["UserJoiningDate"]).ToString("yyyy-MM-dd");
+                //var UserId = Session["UserId"];
+                //var joiningDate = ((DateTime)Session["UserJoiningDate"]).ToString("yyyy-MM-dd");
 
                 var parameters = new DynamicParameters();
-                parameters.Add("@UserId", UserId, DbType.String, ParameterDirection.Input);
+                parameters.Add("@UserId", userId, DbType.String, ParameterDirection.Input);
                 parameters.Add("@JoiningDate", joiningDate, DbType.String, ParameterDirection.Input);
                 parameters.Add("@Mode", 22, DbType.Int32, ParameterDirection.Input);
                 var totalLeaveList = con.Query<TypeOfLeave>("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
 
                 var breakparameters = new DynamicParameters();
-                breakparameters.Add("@Id", UserId, DbType.String, ParameterDirection.Input);
+                breakparameters.Add("@Id", userId, DbType.String, ParameterDirection.Input);
                 breakparameters.Add("@Mode", 15, DbType.Int32, ParameterDirection.Input);
                 var userData = con.Query<UserRegister>("sp_User", breakparameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
 
@@ -906,13 +906,13 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
         }
 
-        public async Task<JsonResult> GetTotalPastBalanaceList()
+        public async Task<JsonResult> GetTotalPastBalanaceList(string userId)
         {
             try
             {
-                var UserId = Session["UserId"];
+                //var UserId = Session["UserId"];
                 var parameters = new DynamicParameters();
-                parameters.Add("@UserId", UserId, DbType.String, ParameterDirection.Input);
+                parameters.Add("@UserId", userId, DbType.String, ParameterDirection.Input);
                 parameters.Add("@Mode", 1, DbType.Int32, ParameterDirection.Input);
                 var TotalPastList = con.Query<TypeOfLeave>("sp_PastLeaves", parameters, commandType: CommandType.StoredProcedure);
                 return Json(TotalPastList, JsonRequestBehavior.AllowGet);
@@ -926,21 +926,21 @@ namespace Avidclan_BlogsVacancy.Controllers
 
         public ActionResult ChangePassword()
         {
-            if (Session["UserEmailId"] == null)
-            {
-                return RedirectToAction("UserLogin", "BlogVacancy");
-            }
+            //if (Session["UserEmailId"] == null)
+            //{
+            //    return RedirectToAction("UserLogin", "BlogVacancy");
+            //}
             return View();
         }
 
         [HttpPost]
-        public async Task<JsonResult> CheckOldPassword(string oldPassword)
+        public async Task<JsonResult> CheckOldPassword(string oldPassword, string userId)
         {
             try
             {
-                var Id = Session["UserId"];
+                //var Id = Session["UserId"];
                 var parameters = new DynamicParameters();
-                parameters.Add("@Id", Id, DbType.Int16, ParameterDirection.Input);
+                parameters.Add("@Id", userId, DbType.Int16, ParameterDirection.Input);
                 parameters.Add("@mode", 6, DbType.Int32, ParameterDirection.Input);
                 using (IDbConnection connection = new SqlConnection(connectionString))
                 {
@@ -956,14 +956,14 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
         }
 
-        public async Task UpdatePassword(string Password)
+        public async Task UpdatePassword(string Password, string userId)
         {
             try
             {
                 string passwordHash = PasswordHelper.HashPassword(Password);
-                var Id = Session["UserId"];
+                //var Id = Session["UserId"];
                 var parameters = new DynamicParameters();
-                parameters.Add("@Id", Id, DbType.Int16, ParameterDirection.Input);
+                parameters.Add("@Id", userId, DbType.Int16, ParameterDirection.Input);
                 parameters.Add("@Password", passwordHash, DbType.String, ParameterDirection.Input);
                 parameters.Add("@mode", 7, DbType.Int32, ParameterDirection.Input);
                 using (IDbConnection connection = new SqlConnection(connectionString))
@@ -981,10 +981,10 @@ namespace Avidclan_BlogsVacancy.Controllers
         {
             try
             {
-                var UserId = Session["UserId"];
-                await SaveTotalCompOffLeave(UserId);
+                //var UserId = Session["UserId"];
+                await SaveTotalCompOffLeave(userRegister.Id);
                 var parameters = new DynamicParameters();
-                parameters.Add("@Id", UserId, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@Id", userRegister.Id, DbType.Int32, ParameterDirection.Input);
                 parameters.Add("@PaidLeave", userRegister.PaidLeave, DbType.String, ParameterDirection.Input);
                 parameters.Add("@SickLeave", userRegister.SickLeave, DbType.String, ParameterDirection.Input);
                 parameters.Add("@mode", 13, DbType.Int32, ParameterDirection.Input);
@@ -1031,16 +1031,16 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
         }
 
-        public async Task<ActionResult> GetUserLeaveBalance()
+        [HttpGet]
+        public async Task<ActionResult> GetUserLeaveBalance(string userId, DateTime JoiningDate)
         {
             try
             {
-                var UserId = Session["UserId"];
-                var joiningDate = ((DateTime)Session["UserJoiningDate"]).ToString("yyyy-MM-dd");
-
+                //var UserId = Session["UserId"];
+                var joiningDate = JoiningDate.ToString("yyyy-MM-dd");
 
                 var parameters = new DynamicParameters();
-                parameters.Add("@UserId", UserId, DbType.String, ParameterDirection.Input);
+                parameters.Add("@UserId", userId, DbType.String, ParameterDirection.Input);
                 parameters.Add("@JoiningDate", joiningDate, DbType.String, ParameterDirection.Input);
                 parameters.Add("@Mode", 22, DbType.Int32, ParameterDirection.Input);
                 var Leavebalance = con.Query<UserRegister>("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure);
@@ -1121,9 +1121,9 @@ namespace Avidclan_BlogsVacancy.Controllers
             }
         }
 
-        public JsonResult GetEmployeeLeaveDetails(string Id)
+        public JsonResult GetEmployeeLeaveDetails(string Id, string userId)
         {
-            var UserId = Session["UserId"];
+            //var UserId = Session["UserId"];
             if (Id != null)
             {
                 var splitId = Id.Split('_');
@@ -1134,7 +1134,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 {
                     var parameters = new DynamicParameters();
                     parameters.Add("@Id", typeId, DbType.Int64, ParameterDirection.Input);
-                    parameters.Add("@UserId", UserId, DbType.Int64, ParameterDirection.Input);
+                    parameters.Add("@UserId", userId, DbType.Int64, ParameterDirection.Input);
                     parameters.Add("@Mode", 20, DbType.Int32, ParameterDirection.Input);
 
                     using (var reader = con.QueryMultiple("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure))
@@ -1158,7 +1158,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                 {
                     var parameters = new DynamicParameters();
                     parameters.Add("@Id", typeId, DbType.Int64, ParameterDirection.Input);
-                    parameters.Add("@UserId", UserId, DbType.Int64, ParameterDirection.Input);
+                    parameters.Add("@UserId", userId, DbType.Int64, ParameterDirection.Input);
                     parameters.Add("@Mode", 21, DbType.Int32, ParameterDirection.Input);
 
                     using (var reader = con.QueryMultiple("sp_LeaveApplicationDetails", parameters, commandType: CommandType.StoredProcedure))
@@ -1365,11 +1365,11 @@ namespace Avidclan_BlogsVacancy.Controllers
             return Json(GetcommpOffData, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetTotalCompensationLeave()
+        public JsonResult GetTotalCompensationLeave(string userId)
         {
-            var UserId = Session["UserId"];
+            //var UserId = Session["UserId"];
             var parameters = new DynamicParameters();
-            parameters.Add("@UserId", UserId, DbType.Int16, ParameterDirection.Input);
+            parameters.Add("@UserId", userId, DbType.Int16, ParameterDirection.Input);
             parameters.Add("@Mode", 5, DbType.Double, ParameterDirection.Input);
             var GetcommpOffData = con.Query<CompOffViewModel>("sp_CompensationLeave", parameters, commandType: CommandType.StoredProcedure);
             return Json(GetcommpOffData, JsonRequestBehavior.AllowGet);

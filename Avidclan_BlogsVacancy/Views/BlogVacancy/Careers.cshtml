@@ -112,6 +112,7 @@
             $("<label id='Responsibility-error' class='error' for='Responsibilty'>Please enter Responsibilties</label>").insertAfter("#cke_Responsibilities");
             return
         }
+        var firstName = localStorage.getItem("firstName");
         var data = {
             Id: $("#CareerId").val(),
             JobTitle: $("#JobTitle").val(),
@@ -120,6 +121,7 @@
             NoOfPosition: $("#NoOfPosition").val(),
             Responsibilities: CKEDITOR.instances['Responsibilities'].getData(),
             Qualification: $("#Qualification").val(),
+            FirstName: firstName
         }
 
         $.ajax({

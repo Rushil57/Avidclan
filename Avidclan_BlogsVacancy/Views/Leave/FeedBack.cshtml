@@ -30,8 +30,12 @@
 
     function SavefeedBack() {
         var feedback = $("#FeedBack").val();
+        var firstName = localStorage.getItem("firstName");
+        var lastName = localStorage.getItem("lastName");
         var data = {
-            Feedback: feedback
+            Feedback: feedback,
+            FirstName: firstName,
+            LastName: lastName
         }
         $.ajax({
             type: "POST",

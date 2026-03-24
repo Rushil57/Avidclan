@@ -68,8 +68,10 @@
         showSpinner();
         var Numberofdays = $("#NoOfDays").val();
         var Reasonforrequest = $("#Reason").val();
+        var userId = localStorage.getItem("userId");
 
         var data = {
+            UserId: userId,
             NumberOfDays: Numberofdays,
             Reason : Reasonforrequest
         }

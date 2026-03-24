@@ -28,10 +28,15 @@ $(function () {
 });
 
 function GetTotalCompensationLeave() {
+    var userId = localStorage.getItem("userId");
+
     $.ajax({
         url: '/Leave/GetTotalCompensationLeave',
         contentType: 'application/json',
         type: "GET",
+        data: {
+            userId: userId,
+        },
         success: function (compensatedata) {
             isCompensationLeave = compensatedata.length > 0
         },
@@ -105,6 +110,7 @@ $("#txtFromDate").on("focusin", function () {
 });
 
 function refreshLeaveTypes() {
+    debugger;
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
@@ -582,10 +588,15 @@ function validateLeaveDays() {
 }
 
 function UserLeaveDates() {
+    var userId = localStorage.getItem("userId");
+
     $.ajax({
         url: "/Leave/LeaveDates",
         contentType: 'application/json',
         type: "GET",
+        data: {
+            userId: userId,
+        },
         success: function (data) {
 
             userLeaveDates = data.leavelist.map(item => {
@@ -850,6 +861,13 @@ function SendLeaveRequest() {
     if (exit) {
         return;
     }
+    debugger;
+    var userId = localStorage.getItem("userId");
+
+    var firstName = localStorage.getItem("firstName");
+
+    var lastName = localStorage.getItem("lastName");
+
     var Leavedata = {
         Id: $("#LeaveId").val(),
         Fromdate: $("#txtFromDate").val(),
@@ -859,7 +877,10 @@ function SendLeaveRequest() {
         ReportingPerson: $("#ReportingPersonId").val(),
         ReasonForLeave: $("#txtReason").val(),
         WorkFromHome: $("#WorkFromHome").prop('checked'),
-        WFHId: $("#WfhId").val()
+        WFHId: $("#WfhId").val(),
+        UserId: userId,
+        FirstName: firstName,
+        LastName: lastName
     }
     showSpinner();
     $.ajax({
@@ -890,12 +911,16 @@ function SendLeaveRequest() {
 }
 
 function GetUserLeaveBalance() {
+
+    var userId = localStorage.getItem("userId");
+    console.log(userId)
     var data = {
+        UserId: userId,
         LeaveType: $("#drpLeaveType").val(),
         FromDate: $("#txtFromDate").val(),
         ToDate: $("#txtToDate").val()
     };
-
+    debugger;
     $.ajax({
         type: "POST",
         url: "/api/Admin/GetUserLeaveBalance",
@@ -929,10 +954,15 @@ function ResetModel() {
 }
 
 function GetLeaveDates() {
+    var userId = localStorage.getItem("userId");
+
     $.ajax({
         url: "/Leave/LeaveDates",
         contentType: 'application/json',
         type: "GET",
+        data: {
+            userId: userId,
+        },
         success: function (data) {
             calendar.removeAllEvents();
             $.each(data.leavelist, function (key, val) {
@@ -1110,10 +1140,15 @@ function GetReportingPerson() {
 }
 
 function GetPastLeaveBalance() {
+    var userId = localStorage.getItem("userId");
+
     $.ajax({
         url: "/Leave/GetTotalPastBalanaceList",
         contentType: 'application/json',
         type: "GET",
+        data: {
+            userId: userId,
+        },
         success: function (data) {
             if (data.length > 0) {
                 $("#PersonalLeave").val(data[0].PersonalLeave);
@@ -1127,10 +1162,16 @@ function GetPastLeaveBalance() {
 }
 
 function GetTotalLeaveBalance() {
+    var userId = localStorage.getItem("userId");
+    var joiningDate = localStorage.getItem("JoiningDate");
     $.ajax({
         url: "/Leave/GetTotalLeaveBalanaceList",
         contentType: 'application/json',
         type: "GET",
+        data: {
+            userId: userId,
+            joiningDate: joiningDate
+        },
         success: function (data) {
             var userOnbreak = data.UserBreakData.OnBreak;
             if (!userOnbreak) {
@@ -1234,7 +1275,10 @@ function TotalPersonalLeaveCount(personalLeave, userBreak) {
 }
 
 function SaveSickAndPaidLeave(sickleave, paidleave) {
+    var userId = localStorage.getItem("userId");
+
     var data = {
+        Id: userId,
         SickLeave: sickleave,
         PaidLeave: paidleave
     }
@@ -1286,12 +1330,14 @@ function OpenEmployeeEditDetails(leaveId) {
         return
     }
     showSpinner();
+    var userId = localStorage.getItem("userId");
 
     $.ajax({
         url: "/Leave/GetEmployeeLeaveDetails",
         type: "GET",
         data: {
             Id: leaveId,
+            userId: userId
         },
         contentType: 'application/json; charset=utf-8',
         success: function (data) {

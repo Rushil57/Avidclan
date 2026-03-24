@@ -218,6 +218,14 @@
         function LogOut() {
             ///* $.removeCookie("EmailId")*/
             //sessionStorage.removeItem("EmailId");
+            localStorage.removeItem("userEmail");
+                localStorage.removeItem("userId");
+                localStorage.removeItem("role");
+                localStorage.removeItem("firstName");
+                localStorage.removeItem("lastName");
+                localStorage.removeItem("probationPeriod");
+                 localStorage.removeItem("NoticePeriodDate");
+                 localStorage.removeItem("JoiningDate");
             $.ajax({
                 url: "/BlogVacancy/Logout",
                 type: "GET",

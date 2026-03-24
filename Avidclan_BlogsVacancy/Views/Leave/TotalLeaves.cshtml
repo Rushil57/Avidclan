@@ -52,13 +52,19 @@
 
 <input type="hidden" id="PersonalLeave" />
 <input type="hidden" id="SickLeave" />
-<input id="JoiningDate" type="hidden" value='@Session["UserJoiningDate"]' />
-<input id="ProbationMonth" type="hidden" value='@Session["UserProbationPeriod"]' />
+<input id="JoiningDate" type="hidden"  />
+<input id="ProbationMonth" type="hidden"  />
 
 <script>
     $(function () {
         showSpinner();
+        var joiningDate =  localStorage.getItem("JoiningDate");
+        var rawDate = joiningDate;
+        var formattedDate = parseDotNetDate(rawDate);
+        var probationMonth = localStorage.getItem("ProbationMonth");
 
+        $("#JoiningDate").val(formattedDate);
+        $("#ProbationMonth").val(probationMonth);
         // Wrap setTimeout in a promise
         function delay(time) {
             return new Promise(function (resolve) {
@@ -79,11 +85,16 @@
     });
 
 
-   function GetTotalCurrentYearLeave() {
+    function GetTotalCurrentYearLeave() {
+        var userId = localStorage.getItem("userId");
+
     $.ajax({
         url: '@Url.Action("GetTotalLeaveList", "Leave")',
         contentType: 'application/json',
         type: "GET",
+        data: {
+            userId: userId,
+        },
         success: function (data) {
             $('#TotalLeaveTable').DataTable({
                 destroy: true,
@@ -162,11 +173,16 @@
         return months[monthNumber - 1];
     }
 
-     function GetPastLeaveBalance() {
+    function GetPastLeaveBalance() {
+        var userId = localStorage.getItem("userId");
+
         $.ajax({
             url: "@Url.Action("GetTotalPastBalanaceList", "Leave")",
             contentType: 'application/json',
-             type: "GET",
+            type: "GET",
+            data: {
+                userId: userId,
+            },
             success: function (data) {
                 if (data.length > 0) {
                     $("#PersonalLeave").val(data[0].PersonalLeave);
@@ -180,10 +196,20 @@
     }
 
     function GetLeaveBalance() {
+        var userId = localStorage.getItem("userId");
+        var joiningDate = localStorage.getItem("JoiningDate");
+        var rawDate = joiningDate;
+        var formattedDate = parseDotNetDate(rawDate);
+
+        console.log("Formatted:", formattedDate);
+
          $.ajax({
              url: '/Leave/GetUserLeaveBalance',
-             contentType: 'application/json',
              type: "GET",
+             data: {
+                 userId: userId,
+                 JoiningDate: formattedDate
+             },
              success: function (data) {
 
                  $('#TotalLeaveBalanceTable').DataTable({
@@ -226,7 +252,18 @@
              }
          });
     }
+    function parseDotNetDate(dotNetDate) {
+        if (!dotNetDate) return null;
 
+        var ticks = parseInt(dotNetDate.replace(/[^0-9]/g, ''));
+        var date = new Date(ticks);
+
+        var year = date.getFullYear();
+        var month = ("0" + (date.getMonth() + 1)).slice(-2);
+        var day = ("0" + date.getDate()).slice(-2);
+
+        return `${year}-${month}-${day}`; // ✅ YYYY-MM-DD
+    }
     function CountSickLeave(sl, userbreak, breakMonth) {
 
         var SickLeavePerMonth = 0.5;
@@ -275,11 +312,16 @@
         }
     }
 
-function GetTotalCompensationLeave() {
+    function GetTotalCompensationLeave() {
+        var userId = localStorage.getItem("userId");
+
     $.ajax({
         url: '@Url.Action("GetTotalCompensationLeave", "Leave")',
         contentType: 'application/json',
         type: "GET",
+        data: {
+            userId: userId
+        },
         success: function (compensatedata) {
             console.log("Received Data:", compensatedata); // Debugging
 
