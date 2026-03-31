@@ -143,7 +143,7 @@ function refreshLeaveTypes() {
 
     var noticePeriod = $("#NoticePeriodDate").val();
 
-    if (!fromDateVal || (noticePeriod && noticePeriod != "") || !isProbationOver) {
+    if (!fromDateVal || (noticePeriod && noticePeriod != "" && noticePeriod !== "null") || !isProbationOver) {
         return;
     }
 

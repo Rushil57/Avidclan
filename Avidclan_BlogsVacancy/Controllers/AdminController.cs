@@ -216,7 +216,7 @@ namespace Avidclan_BlogsVacancy.Controllers
                     catch (Exception ex)
                     {
                         await ErrorLog("AdminController - SaveBlogDetails", ex.Message, ex.StackTrace);
-                        return "fail";
+                        return ex.Message;
                     }
 
                 }
