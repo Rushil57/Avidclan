@@ -1244,4 +1244,24 @@
 		<changefreq>weekly</changefreq>
 		<priority>0.60</priority>
 	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/git-github-and-gitlab/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/top-8-databases-for-web-development-companies-in-2026/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/explore-the-future-of-virtual-reality-in-app-development/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+	<loc>https://www.avidclan.com/blog/best-chatgpt-alternatives-2026-guide/</loc>
+	<changefreq>weekly</changefreq>
+	<priority>0.60</priority>
+</url>
 </urlset>
