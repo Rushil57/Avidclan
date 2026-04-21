@@ -1269,4 +1269,9 @@
 		<changefreq>weekly</changefreq>
 		<priority>0.60</priority>
 	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/what-is-node-js-and-uses/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
 </urlset>
