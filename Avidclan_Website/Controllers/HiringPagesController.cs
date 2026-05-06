@@ -32,7 +32,7 @@ namespace Avidclan_Website.Controllers
         {
             return View();
         }
-        [Route("hire-Angular-developers/")]
+        [Route("hire-angular-developers/")]
         public ActionResult HireAngularDevelopers()
         {
             return View();
