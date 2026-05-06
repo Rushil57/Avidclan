@@ -36,12 +36,14 @@ namespace Avidclan_Website.Controllers
         }
 
         // GET: Avidclan
-        [Route("home/")]
+        //[Route("home/")]
+        //[Route("index/")]
         public ActionResult Index()
         {
-            //return View();
-            return RedirectToAction("AvidclanAction", "Avidclan");
+            return View();
+            //return RedirectToAction("AvidclanAction", "Avidclan");
         }
+
 
         [Route("about-us/")]
         public ActionResult AboutUs()

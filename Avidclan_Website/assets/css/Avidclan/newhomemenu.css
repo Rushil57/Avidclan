@@ -1,0 +1,230 @@
+/* =========================================================
+   NEW HOME MENU — Desktop Only (min-width: 992px)
+   for mobile use old dropdown (sub_menu)
+   ========================================================= */
+
+
+@media (min-width: 992px) {
+
+    /* --- Container & Margin/Padding Utilities --- */
+    .p20 {
+        padding: 20px;
+    }
+
+    .pb20 {
+        padding-bottom: 20px;
+    }
+
+    .mb20 {
+        margin-bottom: 20px;
+    }
+
+    .me12 {
+        margin-right: 12px;
+    }
+
+    .fs18 {
+        font-size: 18px;
+    }
+
+    .custombrl {
+        border-bottom-left-radius: 8px !important;
+    }
+
+    .custombrr {
+        border-bottom-right-radius: 8px !important;
+    }
+
+    .custombr {
+        border-radius: 8px !important;
+    }
+
+    /* --- Mega Menu Main Container --- */
+    .nhm-main-container {
+        position: fixed !important;
+        top: 65px;
+        /* navbar height */
+        left: 50% !important;
+        transform: translateX(-50%);
+        width: 1320px !important;
+        max-width: 96% !important;
+        /* Responsive width for smaller desktop screens */
+        margin: 0 !important;
+        border: none !important;
+        border-radius: 0 0 8px 8px !important;
+        background: #fff;
+        display: none;
+        z-index: 9998;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+    }
+
+    /* Adjustments for medium screens (Laptops) */
+    @media (max-width: 1400px) {
+        .nhm-main-container {
+            width: 1140px !important;
+        }
+    }
+
+    @media (max-width: 1200px) {
+        .nhm-main-container {
+            width: 960px !important;
+        }
+
+        .nhm-title-text {
+            font-size: 18px !important;
+        }
+
+        .nhm-service-link {
+            font-size: 16px !important;
+        }
+
+        .nhm-nav-item {
+            font-size: 15px !important;
+            padding: 8px 12px !important;
+        }
+    }
+
+    .nav-item:hover .nhm-main-container {
+        display: block !important;
+    }
+
+    /* --- Sidebar Styling --- */
+    .nhm-sidebar-bg {
+        background-color: #F8F8F8;
+/*        min-height: 360px;*/
+        border-bottom-left-radius: 8px;
+    }
+
+    /* Right content panel — minimum height consistent */
+    .nhm-main-container .col-lg-9 {
+/*        min-height: 360px;*/
+        border-bottom-right-radius: 8px;
+    }
+
+    /* Tab content — consistent height */
+    .nhm-tab-content {
+/*        min-height: 360px;*/
+    }
+
+    .nhm-main-container {
+/*        min-height: 400px;*/
+    }
+
+    .nhm-nav-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 16px;
+        color: #444 !important;
+        text-decoration: none !important;
+        font-weight: 500;
+        border-radius: 8px;
+        border: 1px solid transparent !important;
+        transition: 0.3s;
+        background-color: transparent !important;
+    }
+
+    /* --- HOVER & ACTIVE STATE (Blue BG, White Text) --- */
+    .nhm-nav-item:hover,
+    .nhm-nav-item.active {
+        background-color: #0b53c1 !important;
+        color: #ffffff !important;
+        border: 1px solid #0b53c1 !important;
+    }
+
+    /* --- Arrow Toggle Logic --- */
+    .nhm-arrow {
+        display: flex;
+        align-items: center;
+    }
+
+    .arrow-white,
+    .arrow-blue {
+        display: none !important;
+        width: 18px;
+        height: auto;
+    }
+
+    /* white arrow on hover and active */
+    .nhm-nav-item:hover .arrow-white,
+    .nhm-nav-item.active .arrow-white {
+        display: block !important;
+    }
+
+    /* --- Content Area Styling --- */
+    .nhm-title-text {
+        font-weight: 700;
+        color: #111;
+        margin-left: 12px;
+        font-size: 22px;
+        transition: color 0.3s ease;
+    }
+
+    .nhm-content-header a {
+        text-decoration: none !important;
+    }
+
+    .nhm-content-header a:hover .nhm-title-text {
+        color: #0b53c1 !important;
+    }
+
+    .nhm-icon-box {
+        border: 0.8px solid #DBEAFE;
+        background-color: #EFF6FF;
+        border-radius: 6px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nhm-icon-box img {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+        display: block;
+    }
+
+    .nhm-service-box {
+        position: relative;
+    }
+
+    .nhm-service-link {
+        display: block;
+        font-weight: 700;
+        font-size: 18px;
+        color: #171717 !important;
+        text-decoration: none !important;
+        margin-bottom: 2px;
+        transition: color 0.3s ease;
+    }
+
+    /* Stretched link to make the entire box clickable */
+    .nhm-service-link::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+    }
+
+    .nhm-service-box:hover .nhm-service-link {
+        color: #0b53c1 !important;
+    }
+
+    .nhm-service-desc {
+        font-size: 14px;
+        color: #525252;
+        line-height: 1.5;
+    }
+
+    .nhm-service-link:hover {
+        color: #0b53c1 !important;
+    }
+
+}
+
+/* end @media (min-width: 992px) */

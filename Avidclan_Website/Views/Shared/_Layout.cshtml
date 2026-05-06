@@ -1,4 +1,4 @@
-﻿@*@using reCAPTCHA.MVC*@
+@*@using reCAPTCHA.MVC*@
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,7 +68,8 @@
             line-height: 1.5
         }
     </style>
-</head>
+<link rel="stylesheet" media="all" href="~/assets/css/Avidclan/newhomemenu.css" />
+    </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
     @*<noscript>
@@ -119,7 +120,7 @@
                                 <span class="d-lg-none mobile-arrow-icon"
                                       data-bs-toggle="dropdown"
                                       aria-expanded="false">
-                                    <img src="~/assets/images/imagenew/arrow-up-black.svg"
+                                    <img loading="lazy" src="~/assets/images/imagenew/arrow-up-black.svg"
                                          alt="toggle"
                                          class="arrow-icon-img"
                                          width="20"
@@ -131,116 +132,435 @@
                                 <!-- Decorative red square -->
                                 <div class="red-square-box"></div>
 
-                                <!-- Mega-menu dropdown -->
-                                <div class="dropdown-menu sub_menu w-100 bg-white p-3 p-lg-5 pt-lg-5">
-                                    <div class="row flex-wrap w-100 row-gap-3">
-                                        <!-- Web Development -->
-                                        <div class="col-lg-3 col-md-6 col-sm-12">
-                                            <h5 class="mb-0 mb-md-2">
-                                                <a class="text_dark fw-semibold" href="/web-development-company/">Web Development</a>
-                                            </h5>
-                                            <ul>
-                                                <li><a href="/web-development-company#custom-web-application-development">Custom Development</a></li>
-                                                <li><a href="/web-development-company#full-stack-development">Full Stack Development</a></li>
-                                                <li><a href="/web-development-company#enterprise-web-solutions">Enterprise Web Solutions</a></li>
-                                                <li><a href="/web-development-company#progressive-web-app-development">PWA Development</a></li>
-                                                <li><a href="/web-development-company#modern-e-commerce-solutionst">E-Commerce Development</a></li>
-                                                <li><a href="/web-development-company#cms-development">CMS Development</a></li>
-                                            </ul>
+                                <!-- ===== DESKTOP ONLY: New Mega-menu ===== -->
+                                <div class="d-none d-lg-block">
+                                <div class="nhm-main-container border-0 p-0" style="border-top-right-radius: 8px !important; border-top-left-radius:8px !important ;">
+                                    <div class="row g-0">
+
+                                        <!-- LEFT SIDEBAR (25% Width) -->
+                                        <div class="col-lg-3 nhm-sidebar-bg">
+                                            <div class="d-flex flex-column p20 custombrl gap-2">
+                                                <a class="nhm-nav-item active fs18" data-target="web-dev" href="javascript:void(0);">
+                                                    Web Development
+                                                    <span class="nhm-arrow">
+                                                        <img src="~/assets/images/newmenu/right_arrow.svg" alt="arrow" class="arrow-white" />
+                                                        <img src="~/assets/images/newmenu/right_arrow_blue.svg" alt="arrow" class="arrow-blue" />
+                                                    </span>
+                                                </a>
+                                                <a class="nhm-nav-item fs18" data-target="mobile-apps" href="javascript:void(0);">
+                                                    Mobile Apps
+                                                    <span class="nhm-arrow">
+                                                        <img src="~/assets/images/newmenu/right_arrow.svg" alt="arrow" class="arrow-white" />
+                                                        <img src="~/assets/images/newmenu/right_arrow_blue.svg" alt="arrow" class="arrow-blue" />
+                                                    </span>
+                                                </a>
+                                                <a class="nhm-nav-item fs18" data-target="design" href="javascript:void(0);">
+                                                    Design
+                                                    <span class="nhm-arrow">
+                                                        <img src="~/assets/images/newmenu/right_arrow.svg" alt="arrow" class="arrow-white" />
+                                                        <img src="~/assets/images/newmenu/right_arrow_blue.svg" alt="arrow" class="arrow-blue" />
+                                                    </span>
+                                                </a>
+                                                <a class="nhm-nav-item fs18" data-target="ai" href="javascript:void(0);">
+                                                    Artificial Intelligence
+                                                    <span class="nhm-arrow">
+                                                        <img src="~/assets/images/newmenu/right_arrow.svg" alt="arrow" class="arrow-white" />
+                                                        <img src="~/assets/images/newmenu/right_arrow_blue.svg" alt="arrow" class="arrow-blue" />
+                                                    </span>
+                                                </a>
+                                                <a class="nhm-nav-item fs18" data-target="qa" href="javascript:void(0);">
+                                                    QA
+                                                    <span class="nhm-arrow">
+                                                        <img src="~/assets/images/newmenu/right_arrow.svg" alt="arrow" class="arrow-white" />
+                                                        <img src="~/assets/images/newmenu/right_arrow_blue.svg" alt="arrow" class="arrow-blue" />
+                                                    </span>
+                                                </a>
+                                                <a class="nhm-nav-item fs18" data-target="iot" href="javascript:void(0);">
+                                                    IoT
+                                                    <span class="nhm-arrow">
+                                                        <img src="~/assets/images/newmenu/right_arrow.svg" alt="arrow" class="arrow-white" />
+                                                        <img src="~/assets/images/newmenu/right_arrow_blue.svg" alt="arrow" class="arrow-blue" />
+                                                    </span>
+                                                </a>
+                                            </div>
                                         </div>
 
-                                        <!-- Mobile Apps -->
-                                        <div class="col-lg-3 col-md-6 col-sm-12">
-                                            <h5 class="mb-0 mb-md-2">
-                                                <a class="text_dark fw-semibold" href="/mobile-app-development-company/">Mobile Apps</a>
-                                            </h5>
-                                            <ul>
-                                                <li><a href="/mobile-app-development-company#custom-mobile-app-development">Custom App Development</a></li>
-                                                <li><a href="/mobile-app-development-company#ios-app-development">iOS App Development</a></li>
-                                                <li><a href="/mobile-app-development-company#android-app-development">Android App Development</a></li>
-                                                <li><a href="/mobile-app-development-company#cross-platform-development">Cross-Platform App</a></li>
-                                                <li><a href="/mobile-app-development-company#flutter-app-development">Flutter App Development</a></li>
-                                                <li><a href="/mobile-app-development-company#react-native-app-development">React Native App </a></li>
-                                                <li><a href="/mobile-app-development-company#app-modernization-&-maintenance">App Modernization</a></li>
-                                            </ul>
+                                        <!-- RIGHT CONTENT (75% Width) -->
+                                        <div class="col-lg-9 bg-white p20 custombrr">
+                                            <div id="web-dev" class="nhm-tab-content">
+                                                <!-- Header Section -->
+                                                <div class="nhm-content-header d-flex align-items-center mb20 pb20 border-bottom">
+                                                    <div class="nhm-icon-box me12">
+                                                        <img src="~/assets/images/newmenu/services/Web_Development.svg" alt="web-icon" />
+                                                    </div>
+                                                    <a href="/web-development-company/"><h4 class="nhm-title-text m-0">Web Development</h4></a>
+                                                </div>
+
+                                                <!-- Services Grid using Bootstrap Columns -->
+                                                <div class="row g-4">
+                                                    <!-- Column 1 -->
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/web-development-company#custom-web-application-development" class="nhm-service-link mb-0">Custom Development</a>
+                                                            <p class="nhm-service-desc">Tailored web solutions built for unique business needs.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/web-development-company#progressive-web-app-development" class="nhm-service-link mb-0">PWA Development</a>
+                                                            <p class="nhm-service-desc">Fast, reliable web apps with a native mobile experience.</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Column 2 -->
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/web-development-company#full-stack-development" class="nhm-service-link mb-0">Full Stack Development</a>
+                                                            <p class="nhm-service-desc">Comprehensive end-to-end frontend and backend solutions.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/web-development-company#modern-e-commerce-solutionst" class="nhm-service-link mb-0">E-Commerce Development</a>
+                                                            <p class="nhm-service-desc">Feature-rich online stores designed to boost sales.</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Column 3 -->
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/web-development-company#enterprise-web-solutions" class="nhm-service-link mb-0">Enterprise Web Solutions</a>
+                                                            <p class="nhm-service-desc">Scalable and secure platforms for large-scale operations.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/web-development-company#cms-development" class="nhm-service-link mb-0">CMS Development</a>
+                                                            <p class="nhm-service-desc">Flexible systems to manage your content with ease.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Header Section -->
+                                            <div id="mobile-apps" class="nhm-tab-content" style="display:none;">
+                                                <div class="nhm-content-header d-flex align-items-center mb20 pb20 border-bottom">
+                                                    <div class="nhm-icon-box me12">
+                                                        <img src="~/assets/images/newmenu/services/Mobile Apps.svg" alt="mobile-icon" />
+                                                    </div>
+                                                    <a href="/mobile-app-development-company/"><h4 class="nhm-title-text m-0">Mobile Apps</h4></a>
+                                                </div>
+
+                                                <!-- Services Grid -->
+                                                <div class="row g-4">
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/mobile-app-development-company#custom-mobile-app-development" class="nhm-service-link mb-0">Custom App Development</a>
+                                                            <p class="nhm-service-desc">Tailored mobile apps designed for unique business requirements.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/mobile-app-development-company#cross-platform-development" class="nhm-service-link mb-0">Cross-Platform App</a>
+                                                            <p class="nhm-service-desc">Single-codebase solutions that work seamlessly on both iOS and Android.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/mobile-app-development-company#app-modernization-&-maintenance" class="nhm-service-link mb-0">App Modernization</a>
+                                                            <p class="nhm-service-desc">Upgrading legacy applications with modern features and improved performance.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/mobile-app-development-company#ios-app-development" class="nhm-service-link mb-0">iOS App Development</a>
+                                                            <p class="nhm-service-desc">High-performance, secure applications built specifically for the Apple ecosystem.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/mobile-app-development-company#flutter-app-development" class="nhm-service-link mb-0">Flutter App Development</a>
+                                                            <p class="nhm-service-desc">Fast and beautiful native-quality apps built with Google's UI toolkit.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/mobile-app-development-company#android-app-development" class="nhm-service-link mb-0">Android App Development</a>
+                                                            <p class="nhm-service-desc">Scalable and robust mobile apps optimized for all Android devices.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/mobile-app-development-company#react-native-app-development" class="nhm-service-link mb-0">React Native App</a>
+                                                            <p class="nhm-service-desc">Efficient mobile apps with a native look and feel using JavaScript.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="design" class="nhm-tab-content" style="display:none;">
+                                                <div class="nhm-content-header d-flex align-items-center mb20 pb20 border-bottom">
+                                                    <div class="nhm-icon-box me12">
+                                                        <img src="~/assets/images/newmenu/services/Design.svg" alt="design-icon" />
+                                                    </div>
+                                                    <a href="/ui-ux-design-company/"><h4 class="nhm-title-text m-0">Design</h4></a>
+                                                </div>
+
+                                                <div class="row g-4">
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/ui-ux-design-company#user-research-&-analysis" class="nhm-service-link mb-0">User Research & Analytics</a>
+                                                            <p class="nhm-service-desc">Deep insights into user behavior to drive data-backed design decisions.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/ui-ux-design-company#custom-uiux-design" class="nhm-service-link mb-0">Custom UI/UX Design</a>
+                                                            <p class="nhm-service-desc">Crafting unique, intuitive, and visually stunning interfaces for any digital product.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/ui-ux-design-company#uiux-modernization-&-redesign" class="nhm-service-link mb-0">Modernization & Redesign</a>
+                                                            <p class="nhm-service-desc">Transforming outdated interfaces into modern, user-centric digital experiences.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/ui-ux-design-company#wireframing-&-prototyping" class="nhm-service-link mb-0">Wireframing & Prototyping</a>
+                                                            <p class="nhm-service-desc">Creating structural blueprints and interactive models to visualize user flow.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/ui-ux-design-company#mobile-uiux-design" class="nhm-service-link mb-0">Mobile UI/UX Design</a>
+                                                            <p class="nhm-service-desc">Designing touch-friendly and engaging experiences specifically for mobile users.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/ui-ux-design-company#ux-strategy-&-consulting" class="nhm-service-link mb-0">UX Strategy & Consulting</a>
+                                                            <p class="nhm-service-desc">Strategic planning to align user experience with core business goals.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/ui-ux-design-company#web-app-uiux-design" class="nhm-service-link mb-0">Web App UI/UX Design</a>
+                                                            <p class="nhm-service-desc">Optimized and responsive layouts for complex web applications and portals.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="qa" class="nhm-tab-content" style="display:none;">
+                                                <div class="nhm-content-header d-flex align-items-center mb20 pb20 border-bottom">
+                                                    <div class="nhm-icon-box me12">
+                                                        <img src="~/assets/images/newmenu/services/QA.svg" alt="qa-icon" />
+                                                    </div>
+                                                    <a href="/quality-assurance-services/"><h4 class="nhm-title-text m-0">QA</h4></a>
+                                                </div>
+
+                                                <div class="row g-4">
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/quality-assurance-services#manual-software-testing" class="nhm-service-link mb-0">Manual Software Testing</a>
+                                                            <p class="nhm-service-desc">Rigorous human testing for seamless bug-free user experiences.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/quality-assurance-services#api-testing-automation" class="nhm-service-link mb-0">API Testing Automation</a>
+                                                            <p class="nhm-service-desc">Verifying secure data integrity between complex software components.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/quality-assurance-services#outsourced-qa-&-managed-services" class="nhm-service-link mb-0">Testing</a>
+                                                            <p class="nhm-service-desc">Complete end-to-end checks for all functional business requirements.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/quality-assurance-services#mobile-qa-services" class="nhm-service-link mb-0">Mobile QA Services</a>
+                                                            <p class="nhm-service-desc">Comprehensive testing across all modern mobile devices and OS.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/quality-assurance-services#outsourced-qa-&-managed-services" class="nhm-service-link mb-0">Outsource QA Services</a>
+                                                            <p class="nhm-service-desc">Dedicated expert teams for reliable project quality support.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/quality-assurance-services#web-automation-testing" class="nhm-service-link mb-0">Web Automation Testing</a>
+                                                            <p class="nhm-service-desc">Advanced automated tools for faster, consistent quality assurance.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/quality-assurance-services#performance-&-load-testing" class="nhm-service-link mb-0">Performance & Load</a>
+                                                            <p class="nhm-service-desc">Stress-testing for peak stability under high user traffic.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="ai" class="nhm-tab-content" style="display:none;">
+                                                <div class="nhm-content-header d-flex align-items-center mb20 pb20 border-bottom">
+                                                    <div class="nhm-icon-box me12">
+                                                        <img src="~/assets/images/newmenu/services/ai.svg" alt="ai-icon" />
+                                                    </div>
+                                                    <a href="/ai-development-company/"><h4 class="nhm-title-text m-0">Artificial Intelligence</h4></a>
+                                                </div>
+
+                                                <div class="row g-4">
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/ai-development-company#custom-ai-solutions-development" class="nhm-service-link mb-0">Custom AI Solutions</a>
+                                                            <p class="nhm-service-desc">Bespoke AI models designed to solve specific and complex business challenges.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/ai-development-company#ai-integration-and-deployment" class="nhm-service-link mb-0">Integrations & Deployment</a>
+                                                            <p class="nhm-service-desc">Seamlessly embedding AI capabilities into your existing software and workflows.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/ai-development-company#end-to-end-ai-system-development" class="nhm-service-link mb-0">End-to-End Development</a>
+                                                            <p class="nhm-service-desc">Comprehensive AI lifecycle management from data processing to model deployment.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/ai-development-company#machine-learning-solutions" class="nhm-service-link mb-0">Machine Learning Solutions</a>
+                                                            <p class="nhm-service-desc">Advanced algorithms that analyze data to provide predictive insights and automation.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/ai-development-company#generative-ai-solutions" class="nhm-service-link mb-0">Generative AI Solutions</a>
+                                                            <p class="nhm-service-desc">Leveraging LLMs and creative AI to automate content and enhance productivity.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/ai-development-company#ai-powered-chatbots-&-virtual-assistants" class="nhm-service-link mb-0">Chatbot Development</a>
+                                                            <p class="nhm-service-desc">Intelligent, NLP-driven virtual assistants for automated and human-like interactions.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="iot" class="nhm-tab-content" style="display:none;">
+                                                <div class="nhm-content-header d-flex align-items-center mb20 pb20 border-bottom">
+                                                    <div class="nhm-icon-box me12">
+                                                        <img src="~/assets/images/newmenu/services/IoT.svg" alt="iot-icon" />
+                                                    </div>
+                                                    <a href="/iot-service-providers/"><h4 class="nhm-title-text m-0">IoT</h4></a>
+                                                </div>
+
+                                                <div class="row g-4">
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/iot-service-providers#iot-device-integration" class="nhm-service-link mb-0">IoT Devices Integration</a>
+                                                            <p class="nhm-service-desc">Seamlessly connecting smart hardware devices with advanced software ecosystems.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/iot-service-providers#industrial-iot-solutions" class="nhm-service-link mb-0">Industrial IoT Solutions</a>
+                                                            <p class="nhm-service-desc">Optimizing complex industrial workflows with smart data-driven automation sensors.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/iot-service-providers#iot-mobile-app-development" class="nhm-service-link mb-0">IoT App Development</a>
+                                                            <p class="nhm-service-desc">Building custom mobile applications for real-time remote device monitoring.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/iot-service-providers#iot-security-&-compliance" class="nhm-service-link mb-0">IoT Security & Compliance</a>
+                                                            <p class="nhm-service-desc">Implementing rigorous security protocols to protect sensitive connected data.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/iot-service-providers#iot-cloud-&-data-management" class="nhm-service-link mb-0">IoT Cloud Management</a>
+                                                            <p class="nhm-service-desc">Securely managing large-scale device data on robust cloud platforms.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
                                         </div>
 
-                                        <!-- Design -->
-                                        <div class="col-lg-3 col-md-6 col-sm-12">
-                                            <h5 class="mb-0 mb-md-2">
-                                                <a class="text_dark fw-semibold" href="/ui-ux-design-company/">Design</a>
-                                            </h5>
-                                            <ul>
-                                                <li><a href="/ui-ux-design-company#user-research-&-analysis">User Research & Analysis</a></li>
-                                                <li><a href="/ui-ux-design-company#wireframing-&-prototyping">Wireframing & Prototyping</a></li>
-                                                <li><a href="/ui-ux-design-company#ux-strategy-&-consulting">UX Strategy & Consulting </a></li>
-                                                <li><a href="/ui-ux-design-company#custom-uiux-design">Custom UI/UX Design</a></li>
-                                                <li><a href="/ui-ux-design-company#mobile-uiux-design">Mobile UI/UX Design</a></li>
-                                                <li><a href="/ui-ux-design-company#web-app-uiux-design">Web App UI/UX Design</a></li>
-                                                <li><a href="/ui-ux-design-company#uiux-modernization-&-redesign">Modernization & Redesign</a></li>
-                                            </ul>
                                         </div>
+                                </div>
+                                </div>
+                                <!-- END Desktop-only mega-menu wrapper -->
 
-                                        <!-- QA -->
-                                        <div class="col-lg-3 col-md-6 col-sm-12">
-                                            <h5 class="mb-0 mb-md-2">
-                                                <a class="text_dark fw-semibold" href="/quality-assurance-services/">QA</a>
-                                            </h5>
-                                            <ul>
-                                                <li><a href="/quality-assurance-services#manual-software-testing">Manual Software Testing</a></li>
-                                                <li><a href="/quality-assurance-services#mobile-qa-services">Mobile QA Services</a></li>
-                                                <li><a href="/quality-assurance-services#web-automation-testing">Web Automation Testing</a></li>
-                                                <li><a href="/quality-assurance-services#api-testing-automation">API Testing Automation</a></li>
-
-                                                <li><a href="/quality-assurance-services#outsourced-qa-&-managed-services">Outsourced QA Services</a></li>
-                                                <li><a href="/quality-assurance-services#performance-&-load-testing">Performance & Load Testing</a></li>
-                                            </ul>
-                                        </div>
-
-                                        <!-- IoT -->
-                                        <div class="col-lg-3 col-md-6 col-sm-12">
-                                            <h5 class="mb-0 mb-md-2">
-                                                <a class="text_dark fw-semibold" href="/iot-service-providers/">IoT</a>
-                                            </h5>
-                                            <ul>
-                                                <li><a href="/iot-service-providers#iot-device-integration">IoT Device Integration</a></li>
-                                                <li><a href="/iot-service-providers#iot-mobile-app-development">IoT App Development</a></li>
-                                                <li><a href="/iot-service-providers#iot-cloud-&-data-management">IoT Cloud Management</a></li>
-                                                <li><a href="/iot-service-providers#industrial-iot-solutions">Industrial IoT Solutions</a></li>
-                                                <li><a href="/iot-service-providers#iot-security-&-compliance">IoT Security & Compliance</a></li>
-                                            </ul>
-                                        </div>
-
-                                        <!-- AI -->
-                                        <div class="col-lg-3 col-md-6 col-sm-12">
-                                            <h5 class="mb-0 mb-md-2">
-                                                <a class="text_dark fw-semibold" href="/ai-development-company">Artificial Intelligence</a>
-                                            </h5>
-                                            <ul>
-                                                <li><a href="/ai-development-company#custom-ai-solutions-development">Custom AI Solutions</a></li>
-                                                <li><a href="/ai-development-company#end-to-end-ai-system-development">End-to-End Development</a></li>
-                                                <li><a href="/ai-development-company#generative-ai-solutions">Generative AI Solutions</a></li>
-                                                <li><a href="/ai-development-company#ai-integration-and-deployment">Integration & Deployment </a></li>
-                                                <li><a href="/ai-development-company#machine-learning-solutions">Machine Learning Solutions</a></li>
-                                                <li><a href="/ai-development-company#ai-powered-chatbots-&-virtual-assistants">Chatbot Development </a></li>
-                                            </ul>
+                                <!-- ===== MOBILE ONLY: Purana Simple Services Dropdown ===== -->
+                                <div class="d-block d-lg-none">
+                                    <div class="dropdown-menu sub_menu w-100 bg-white p-3">
+                                        <div class="row flex-wrap w-100 row-gap-3">
+                                            <div class="col-12">
+                                                <h5 class="mb-0 mb-md-2">
+                                                    <a class="text_dark fw-semibold" href="/web-development-company/">Web Development</a>
+                                                </h5>
+                                                <ul>
+                                                    <li><a href="/web-development-company#custom-web-application-development">Custom Development</a></li>
+                                                    <li><a href="/web-development-company#full-stack-development">Full Stack Development</a></li>
+                                                    <li><a href="/web-development-company#enterprise-web-solutions">Enterprise Web Solutions</a></li>
+                                                    <li><a href="/web-development-company#progressive-web-app-development">PWA Development</a></li>
+                                                    <li><a href="/web-development-company#modern-e-commerce-solutionst">E-Commerce Development</a></li>
+                                                    <li><a href="/web-development-company#cms-development">CMS Development</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12">
+                                                <h5 class="mb-0 mb-md-2">
+                                                    <a class="text_dark fw-semibold" href="/mobile-app-development-company/">Mobile Apps</a>
+                                                </h5>
+                                                <ul>
+                                                    <li><a href="/mobile-app-development-company#custom-mobile-app-development">Custom App Development</a></li>
+                                                    <li><a href="/mobile-app-development-company#ios-app-development">iOS App Development</a></li>
+                                                    <li><a href="/mobile-app-development-company#android-app-development">Android App Development</a></li>
+                                                    <li><a href="/mobile-app-development-company#cross-platform-development">Cross-Platform App</a></li>
+                                                    <li><a href="/mobile-app-development-company#flutter-app-development">Flutter App Development</a></li>
+                                                    <li><a href="/mobile-app-development-company#react-native-app-development">React Native App</a></li>
+                                                    <li><a href="/mobile-app-development-company#app-modernization-&-maintenance">App Modernization</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12">
+                                                <h5 class="mb-0 mb-md-2">
+                                                    <a class="text_dark fw-semibold" href="/ui-ux-design-company/">Design</a>
+                                                </h5>
+                                                <ul>
+                                                    <li><a href="/ui-ux-design-company#user-research-&-analysis">User Research & Analysis</a></li>
+                                                    <li><a href="/ui-ux-design-company#wireframing-&-prototyping">Wireframing & Prototyping</a></li>
+                                                    <li><a href="/ui-ux-design-company#ux-strategy-&-consulting">UX Strategy & Consulting</a></li>
+                                                    <li><a href="/ui-ux-design-company#custom-uiux-design">Custom UI/UX Design</a></li>
+                                                    <li><a href="/ui-ux-design-company#mobile-uiux-design">Mobile UI/UX Design</a></li>
+                                                    <li><a href="/ui-ux-design-company#web-app-uiux-design">Web App UI/UX Design</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12">
+                                                <h5 class="mb-0 mb-md-2">
+                                                    <a class="text_dark fw-semibold" href="/quality-assurance-services/">QA</a>
+                                                </h5>
+                                                <ul>
+                                                    <li><a href="/quality-assurance-services#manual-software-testing">Manual Software Testing</a></li>
+                                                    <li><a href="/quality-assurance-services#mobile-qa-services">Mobile QA Services</a></li>
+                                                    <li><a href="/quality-assurance-services#web-automation-testing">Web Automation Testing</a></li>
+                                                    <li><a href="/quality-assurance-services#api-testing-automation">API Testing Automation</a></li>
+                                                    <li><a href="/quality-assurance-services#outsourced-qa-&-managed-services">Outsourced QA Services</a></li>
+                                                    <li><a href="/quality-assurance-services#performance-&-load-testing">Performance & Load Testing</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12">
+                                                <h5 class="mb-0 mb-md-2">
+                                                    <a class="text_dark fw-semibold" href="/ai-development-company/">Artificial Intelligence</a>
+                                                </h5>
+                                                <ul>
+                                                    <li><a href="/ai-development-company#custom-ai-solutions-development">Custom AI Solutions</a></li>
+                                                    <li><a href="/ai-development-company#end-to-end-ai-system-development">End-to-End Development</a></li>
+                                                    <li><a href="/ai-development-company#generative-ai-solutions">Generative AI Solutions</a></li>
+                                                    <li><a href="/ai-development-company#ai-integration-and-deployment">Integration & Deployment</a></li>
+                                                    <li><a href="/ai-development-company#machine-learning-solutions">Machine Learning Solutions</a></li>
+                                                    <li><a href="/ai-development-company#ai-powered-chatbots-&-virtual-assistants">Chatbot Development</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12">
+                                                <h5 class="mb-0 mb-md-2">
+                                                    <a class="text_dark fw-semibold" href="/iot-service-providers/">IoT</a>
+                                                </h5>
+                                                <ul>
+                                                    <li><a href="/iot-service-providers#iot-device-integration">IoT Device Integration</a></li>
+                                                    <li><a href="/iot-service-providers#iot-mobile-app-development">IoT App Development</a></li>
+                                                    <li><a href="/iot-service-providers#iot-cloud-&-data-management">IoT Cloud Management</a></li>
+                                                    <li><a href="/iot-service-providers#industrial-iot-solutions">Industrial IoT Solutions</a></li>
+                                                    <li><a href="/iot-service-providers#iot-security-&-compliance">IoT Security & Compliance</a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- END Mobile-only dropdown -->
                             </li>
-
-
                             <li class="nav-item border_b dropdown pb-2 mb-2 mb-lg-0 position-relative">
                                 <!-- Technologies link (always redirects) -->
                                 <a class="d-inline-block fw-semibold nav-link active custom-fs-18" href="/technologies/">
                                     Technologies
                                 </a>
 
-                                <!-- Mobile‐only arrow at the far right, inline with Technologies -->
+                                <!-- Mobile‐only arrow -->
                                 <span class="d-lg-none mobile-arrow-icon"
                                       data-bs-toggle="dropdown"
                                       aria-expanded="false">
-                                    <img src="~/assets/images/imagenew/arrow-up-black.svg"
+                                    <img loading="lazy" src="~/assets/images/imagenew/arrow-up-black.svg"
                                          alt="toggle"
                                          class="arrow-icon-img"
                                          width="20"
@@ -250,82 +570,321 @@
                                 <!-- Decorative red square -->
                                 <div class="red-square-box"></div>
 
-                                <!-- Mega-menu dropdown -->
-                                <div class="dropdown-menu sub_menu w-100 bg-white p-3 p-lg-5 pt-lg-5">
-                                    <div class="row flex-wrap w-100 row-gap-3">
-                                        <!-- Front End -->
-                                        <div class="col-lg-3 col-md-6 col-sm-12">
-                                            <h5 class="mb-0 mb-md-2">
-                                                <a class="text_dark fw-semibold" href="#">Front End</a>
-                                            </h5>
-                                            <ul>
-                                                <li><a href="/angular-development-company/">Angular</a></li>
-                                                <li><a href="/reactjs-development-services/">ReactJs</a></li>
-                                                <li><a href="/vuejs-development-company/">Vue</a></li>
-                                                <li><a href="/typescript-web-development/">TypeScript</a></li>
-                                                <li><a href="/html5-development-services/">HTML 5</a></li>
-                                            </ul>
+                                <!-- ===== DESKTOP ONLY: Technologies Mega-menu ===== -->
+                                <div class="d-none d-lg-block">
+                                <div class="nhm-main-container border-0 p-0" style="border-top-right-radius: 8px !important; border-top-left-radius:8px !important ;">
+                                    <div class="row g-0">
+
+                                        <!-- LEFT SIDEBAR -->
+                                        <div class="col-lg-3 nhm-sidebar-bg">
+                                            <div class="d-flex flex-column p20 custombrl gap-2">
+                                                <a class="nhm-nav-item active fs18" data-target="tech-frontend" href="javascript:void(0);">
+                                                    Front End
+                                                    <span class="nhm-arrow">
+                                                        <img src="~/assets/images/newmenu/right_arrow.svg" alt="arrow" class="arrow-white" />
+                                                        <img src="~/assets/images/newmenu/right_arrow_blue.svg" alt="arrow" class="arrow-blue" />
+                                                    </span>
+                                                </a>
+                                                <a class="nhm-nav-item fs18" data-target="tech-backend" href="javascript:void(0);">
+                                                    Backend
+                                                    <span class="nhm-arrow">
+                                                        <img src="~/assets/images/newmenu/right_arrow.svg" alt="arrow" class="arrow-white" />
+                                                        <img src="~/assets/images/newmenu/right_arrow_blue.svg" alt="arrow" class="arrow-blue" />
+                                                    </span>
+                                                </a>
+                                                <a class="nhm-nav-item fs18" data-target="tech-mobile" href="javascript:void(0);">
+                                                    Mobile
+                                                    <span class="nhm-arrow">
+                                                        <img src="~/assets/images/newmenu/right_arrow.svg" alt="arrow" class="arrow-white" />
+                                                        <img src="~/assets/images/newmenu/right_arrow_blue.svg" alt="arrow" class="arrow-blue" />
+                                                    </span>
+                                                </a>
+                                                <a class="nhm-nav-item fs18" data-target="tech-infra" href="javascript:void(0);">
+                                                    Infra and DevOps
+                                                    <span class="nhm-arrow">
+                                                        <img src="~/assets/images/newmenu/right_arrow.svg" alt="arrow" class="arrow-white" />
+                                                        <img src="~/assets/images/newmenu/right_arrow_blue.svg" alt="arrow" class="arrow-blue" />
+                                                    </span>
+                                                </a>
+                                                <a class="nhm-nav-item fs18" data-target="tech-database" href="javascript:void(0);">
+                                                    Database
+                                                    <span class="nhm-arrow">
+                                                        <img src="~/assets/images/newmenu/right_arrow.svg" alt="arrow" class="arrow-white" />
+                                                        <img src="~/assets/images/newmenu/right_arrow_blue.svg" alt="arrow" class="arrow-blue" />
+                                                    </span>
+                                                </a>
+                                            </div>
                                         </div>
 
-                                        <!-- Backend -->
-                                        <div class="col-lg-3 col-md-6 col-sm-12">
-                                            <h5 class="mb-0 mb-md-2">
-                                                <a class="text_dark fw-semibold" href="#">Backend</a>
-                                            </h5>
-                                            <ul>
-                                                <li><a href="/dot-net-development-company/">.NET</a></li>
-                                                <li><a href="/java-development-company/">Java</a></li>
-                                                <li><a href="/php-development-company/">PHP</a></li>
-                                                <li><a href="/nodejs-development-company/">Node</a></li>
-                                            </ul>
-                                        </div>
+                                        <!-- RIGHT CONTENT -->
+                                        <div class="col-lg-9 bg-white p20 custombrr">
 
-                                        <!-- Mobile -->
-                                        <div class="col-lg-3 col-md-6 col-sm-12">
-                                            <h5 class="mb-0 mb-md-2">
-                                                <a class="text_dark fw-semibold" href="#">Mobile</a>
-                                            </h5>
-                                            <ul>
-                                                <li><a href="/ios-app-development-services/">iOS</a></li>
-                                                <li><a href="/android-app-development-company/">Android</a></li>
-                                                <li><a href="/react-native-app-development-company/">React Native</a></li>
-                                                <li><a href="/flutter-app-development-company/">Flutter</a></li>
-                                                <li><a href="/ionic-app-development-company/">Ionic</a></li>
-                                                <li><a href="/xamarin-development-company/">Xamarin</a></li>
-                                            </ul>
-                                        </div>
+                                            <!-- Front End -->
+                                            <div id="tech-frontend" class="nhm-tab-content">
+                                                <div class="nhm-content-header d-flex align-items-center mb20 pb20 border-bottom">
+                                                    <div class="nhm-icon-box me12">
+                                                        <img src="~/assets/images/newmenu/technologies/Front End.svg" alt="frontend-icon" />
+                                                    </div>
+                                                    <h4 class="nhm-title-text m-0">Front End</h4>
+                                                </div>
+                                                <div class="row g-4">
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/angular-development-company/" class="nhm-service-link mb-0">Angular</a>
+                                                            <p class="nhm-service-desc">Building scalable, high-performance SPAs with robust framework capabilities.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/typescript-web-development/" class="nhm-service-link mb-0">TypeScript</a>
+                                                            <p class="nhm-service-desc">Ensuring secure, maintainable code for large-scale frontend apps.</p>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/reactjs-development-services/" class="nhm-service-link mb-0">ReactJs</a>
+                                                            <p class="nhm-service-desc">Creating dynamic, interactive interfaces with modern component architecture.</p>
+                                                        </div>
 
-                                        <!-- Infra and DevOps -->
-                                        <div class="col-lg-3 col-md-6 col-sm-12">
-                                            <h5 class="mb-0 mb-md-2">
-                                                <a class="text_dark fw-semibold" href="#">Infra and DevOps</a>
-                                            </h5>
-                                            <ul>
-                                                <li><a href="/aws-development-services/">AWS</a></li>
-                                                <li><a href="/google-cloud-platform-services/">Google Cloud</a></li>
-                                                <li><a href="/microsoft-azure-devops/">Azure</a></li>
-                                                <li><a href="/selenium-automation-testing-services/">Selenium</a></li>
-                                            </ul>
-                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/html5-development-services/" class="nhm-service-link mb-0">HTML 5</a>
+                                                            <p class="nhm-service-desc">Crafting responsive, feature-rich websites with latest web standards.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/vuejs-development-company/" class="nhm-service-link mb-0">Vue</a>
+                                                            <p class="nhm-service-desc">Developing lightweight, flexible, and high-speed web applications.</p>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                        <!-- Database -->
-                                        <div class="col-lg-3 col-md-6 col-sm-12">
-                                            <h5 class="mb-0 mb-md-2">
-                                                <a class="text_dark fw-semibold" href="#">Database</a>
-                                            </h5>
-                                            <ul>
-                                                <li><a href="/microsoft-sql-server-integration-services/">MS SQL</a></li>
-                                                <li><a href="/mysql-development-company/">MySQL</a></li>
-                                                <li><a href="/postgresql-database-management/">PostgreSQL</a></li>
-                                                <li><a href="/firebase-development-company/">Firebase</a></li>
-                                                <li><a href="/mongodb-development-services/">MongoDB</a></li>
-                                                <li><a href="/redis-database-development-company/">Redis</a></li>
-                                                <li><a href="/microsoft-azure-cosmos-db/">Azure Cosmos DB</a></li>
-                                            </ul>
+                                            <!-- Backend -->
+                                            <div id="tech-backend" class="nhm-tab-content" style="display:none;">
+                                                <div class="nhm-content-header d-flex align-items-center mb20 pb20 border-bottom">
+                                                    <div class="nhm-icon-box me12">
+                                                        <img src="~/assets/images/newmenu/technologies/Backend.svg" alt="backend-icon" />
+                                                    </div>
+                                                    <h4 class="nhm-title-text m-0">Backend</h4>
+                                                </div>
+                                                <div class="row g-4">
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/dot-net-development-company/" class="nhm-service-link mb-0">.NET</a>
+                                                            <p class="nhm-service-desc">Developing secure, scalable, and high-performance enterprise-grade backend systems.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/nodejs-development-company/" class="nhm-service-link mb-0">Node</a>
+                                                            <p class="nhm-service-desc">Powering fast, real-time, and scalable applications with event-driven architecture.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/java-development-company/" class="nhm-service-link mb-0">Java</a>
+                                                            <p class="nhm-service-desc">Building robust, multi-platform server-side applications for complex business operations.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/php-development-company/" class="nhm-service-link mb-0">PHP</a>
+                                                            <p class="nhm-service-desc">Creating dynamic, cost-effective web solutions with flexible backend architectures.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Mobile -->
+                                            <div id="tech-mobile" class="nhm-tab-content" style="display:none;">
+                                                <div class="nhm-content-header d-flex align-items-center mb20 pb20 border-bottom">
+                                                    <div class="nhm-icon-box me12">
+                                                        <img src="~/assets/images/newmenu/technologies/Mobile.svg" alt="mobile-icon" />
+                                                    </div>
+                                                    <h4 class="nhm-title-text m-0">Mobile</h4>
+                                                </div>
+                                                <div class="row g-4">
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/ios-app-development-services/" class="nhm-service-link mb-0">iOS</a>
+                                                            <p class="nhm-service-desc">Building high-performance, secure applications specifically for the Apple ecosystem.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/flutter-app-development-company/" class="nhm-service-link mb-0">Flutter</a>
+                                                            <p class="nhm-service-desc">Fast, beautiful native-quality apps built with Google's versatile UI toolkit.</p>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/android-app-development-company/" class="nhm-service-link mb-0">Android</a>
+                                                            <p class="nhm-service-desc">Developing scalable, robust apps optimized for all modern Android devices.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/ionic-app-development-company/" class="nhm-service-link mb-0">Ionic</a>
+                                                            <p class="nhm-service-desc">Developing flexible, web-based cross-platform apps for mobile and web.</p>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/react-native-app-development-company/" class="nhm-service-link mb-0">React Native</a>
+                                                            <p class="nhm-service-desc">Creating efficient, native-like mobile apps using a single JavaScript codebase.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/xamarin-development-company/" class="nhm-service-link mb-0">Xamarin</a>
+                                                            <p class="nhm-service-desc">Building high-quality, native-standard applications using the powerful .NET framework.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Infra and DevOps -->
+                                            <div id="tech-infra" class="nhm-tab-content" style="display:none;">
+                                                <div class="nhm-content-header d-flex align-items-center mb20 pb20 border-bottom">
+                                                    <div class="nhm-icon-box me12">
+                                                        <img src="~/assets/images/newmenu/technologies/Infra and DevOps.svg" alt="infra-icon" />
+                                                    </div>
+                                                    <h4 class="nhm-title-text m-0">Infra and DevOps</h4>
+                                                </div>
+                                                <div class="row g-4">
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/aws-development-services/" class="nhm-service-link mb-0">AWS</a>
+                                                            <p class="nhm-service-desc">Scalable cloud infrastructure and services on Amazon Web Services.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/selenium-automation-testing-services/" class="nhm-service-link mb-0">Selenium</a>
+                                                            <p class="nhm-service-desc">Automated web testing frameworks for robust quality assurance.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/google-cloud-platform-services/" class="nhm-service-link mb-0">Google Cloud</a>
+                                                            <p class="nhm-service-desc">High-performance computing and data solutions on Google Cloud Platform.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/microsoft-azure-devops/" class="nhm-service-link mb-0">Azure</a>
+                                                            <p class="nhm-service-desc">Enterprise-grade cloud solutions, deployment, and DevOps management.</p>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Database -->
+                                            <div id="tech-database" class="nhm-tab-content" style="display:none;">
+                                                <div class="nhm-content-header d-flex align-items-center mb20 pb20 border-bottom">
+                                                    <div class="nhm-icon-box me12">
+                                                        <img src="~/assets/images/newmenu/technologies/Database.svg" alt="database-icon" />
+                                                    </div>
+                                                    <h4 class="nhm-title-text m-0">Database</h4>
+                                                </div>
+                                                <div class="row g-4">
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/microsoft-sql-server-integration-services/" class="nhm-service-link mb-0">MS SQL</a>
+                                                            <p class="nhm-service-desc">Robust relational database management and integration services.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/firebase-development-company/" class="nhm-service-link mb-0">Firebase</a>
+                                                            <p class="nhm-service-desc">Real-time database solutions for responsive applications.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/microsoft-azure-cosmos-db/" class="nhm-service-link mb-0">Azure Cosmos DB</a>
+                                                            <p class="nhm-service-desc">Globally distributed, multi-model database for enterprise scale.</p>
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/mysql-development-company/" class="nhm-service-link mb-0">MySQL</a>
+                                                            <p class="nhm-service-desc">Scalable and secure open-source relational database systems.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/mongodb-development-services/" class="nhm-service-link mb-0">MongoDB</a>
+                                                            <p class="nhm-service-desc">Flexible NoSQL systems to manage unstructured data seamlessly.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/postgresql-database-management/" class="nhm-service-link mb-0">PostgreSQL</a>
+                                                            <p class="nhm-service-desc">Advanced object-relational database for complex operations.</p>
+                                                        </div>
+                                                        <div class="nhm-service-box mb20">
+                                                            <a href="/redis-database-development-company/" class="nhm-service-link mb-0">Redis</a>
+                                                            <p class="nhm-service-desc">In-memory data structure stores for ultra-fast performance.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                                </div>
+                                <!-- END Desktop-only Technologies mega-menu -->
+
+                                <!-- ===== MOBILE ONLY: Technologies Simple Dropdown ===== -->
+                                <div class="d-block d-lg-none">
+                                    <div class="dropdown-menu sub_menu w-100 bg-white p-3">
+                                        <div class="row flex-wrap w-100 row-gap-3">
+                                            <div class="col-12">
+                                                <h5 class="mb-0 mb-md-2"><a class="text_dark fw-semibold" href="#">Front End</a></h5>
+                                                <ul>
+                                                    <li><a href="/angular-development-company/">Angular</a></li>
+                                                    <li><a href="/reactjs-development-services/">ReactJs</a></li>
+                                                    <li><a href="/vuejs-development-company/">Vue</a></li>
+                                                    <li><a href="/typescript-web-development/">TypeScript</a></li>
+                                                    <li><a href="/html5-development-services/">HTML 5</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12">
+                                                <h5 class="mb-0 mb-md-2"><a class="text_dark fw-semibold" href="#">Backend</a></h5>
+                                                <ul>
+                                                    <li><a href="/dot-net-development-company/">.NET</a></li>
+                                                    <li><a href="/java-development-company/">Java</a></li>
+                                                    <li><a href="/php-development-company/">PHP</a></li>
+                                                    <li><a href="/nodejs-development-company/">Node</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12">
+                                                <h5 class="mb-0 mb-md-2"><a class="text_dark fw-semibold" href="#">Mobile</a></h5>
+                                                <ul>
+                                                    <li><a href="/ios-app-development-services/">iOS</a></li>
+                                                    <li><a href="/android-app-development-company/">Android</a></li>
+                                                    <li><a href="/react-native-app-development-company/">React Native</a></li>
+                                                    <li><a href="/flutter-app-development-company/">Flutter</a></li>
+                                                    <li><a href="/ionic-app-development-company/">Ionic</a></li>
+                                                    <li><a href="/xamarin-development-company/">Xamarin</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12">
+                                                <h5 class="mb-0 mb-md-2"><a class="text_dark fw-semibold" href="#">Infra and DevOps</a></h5>
+                                                <ul>
+                                                    <li><a href="/aws-development-services/">AWS</a></li>
+                                                    <li><a href="/google-cloud-platform-services/">Google Cloud</a></li>
+                                                    <li><a href="/microsoft-azure-devops/">Azure</a></li>
+                                                    <li><a href="/selenium-automation-testing-services/">Selenium</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12">
+                                                <h5 class="mb-0 mb-md-2"><a class="text_dark fw-semibold" href="#">Database</a></h5>
+                                                <ul>
+                                                    <li><a href="/microsoft-sql-server-integration-services/">MS SQL</a></li>
+                                                    <li><a href="/mysql-development-company/">MySQL</a></li>
+                                                    <li><a href="/postgresql-database-management/">PostgreSQL</a></li>
+                                                    <li><a href="/firebase-development-company/">Firebase</a></li>
+                                                    <li><a href="/mongodb-development-services/">MongoDB</a></li>
+                                                    <li><a href="/redis-database-development-company/">Redis</a></li>
+                                                    <li><a href="/microsoft-azure-cosmos-db/">Azure Cosmos DB</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>            <!-- END Mobile-only Technologies dropdown -->
 
                             <li class="nav-item border_b dropdown pb-2 mb-2 mb-lg-0 position-relative">
                                 <!-- Hire Resources link -->
@@ -335,51 +894,135 @@
 
                                 <!-- Mobile-only arrow -->
                                 <span class="d-lg-none mobile-arrow-icon" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="~/assets/images/imagenew/arrow-up-black.svg" alt="toggle" class="arrow-icon-img" width="20" height="20" />
+                                    <img loading="lazy" src="~/assets/images/imagenew/arrow-up-black.svg" alt="toggle" class="arrow-icon-img" width="20" height="20" />
                                 </span>
 
                                 <!-- Decorative red square -->
                                 <div class="red-square-box"></div>
 
-                                <!-- Dropdown menu -->
-                                <div class="dropdown-menu hire_box w-100 bg-white p-3 p-lg-3 pt-lg-3">
-                                    <h5 class="mb-0 mb-md-2">
-                                        <a class="text_dark fw-semibold" href="#">Hire Skilled Resources</a>
-                                    </h5>
-                                    <ul>
-                                        <li>
-                                            <a href="/hire-custom-software-developers/">Hire Custom Software Developers</a>
-                                        </li>
-                                        <li>
-                                            <a href="/hire-web-app-developers/">Hire Web App Developer</a>
-                                        </li>
-                                        <li>
-                                            <a href="/hire-mobile-app-developers/">Hire Mobile App Developer</a>
-                                        </li>
-                                        <li>
-                                            <a href="/hire-dot-net-developers/">Hire .NET Developers</a>
-                                        </li>
-                                        <li>
-                                            <a href="/hire-ui-ux-designers/">Hire UI/UX Designers</a>
-                                        </li>
-                                        <li class="custom-padding-2">
-                                            <a href="/hire-ai-developers/">Hire AI Developers</a>
-                                        </li>
-                                        <li class="custom-padding-2">
-                                            <a href="/hire-angular-developers/">Hire Angular Developers</a>
-                                        </li>
-                                        <li class="custom-padding-2">
-                                            <a href="/hire-reactjs-developers/">Hire ReactJS Developers</a>
-                                        </li>
-                                        <li class="custom-padding-2">
-                                            <a href="/hire-ml-developers/">Hire Machine Learning Developers</a>
-                                        </li>
-                                        <li>
-                                            <a href="/hire-qa-automation-tester/">Hire Automation Tester</a>
-                                        </li>
+                                <!-- ===== DESKTOP ONLY: Hire Resources Mega-menu (No Sidebar) ===== -->
+                                <div class="d-none d-lg-block">
+                                    <div class="nhm-main-container border-0 p-0" style="border-top-right-radius: 8px!important; border-top-left-radius:8px !important;">
+                                        <div class="bg-white custombr">
+                                            <!-- Header -->
+                                            <div class="nhm-content-header d-flex align-items-center mb20 p20 border-bottom">
+                                                <div class="nhm-icon-box me12">
+                                                    <img src="~/assets/images/newmenu/Hire Skilled Resources.svg" alt="hire-icon" />
+                                                </div>
+                                                <h4 class="nhm-title-text m-0">Hire Skilled Resources</h4>
+                                            </div>
 
-                                    </ul>
+                                            <!-- Masonry Grid Content -->
+                                            <style>
+                                                .nhm-masonry-grid {
+                                                    display: grid;
+                                                    grid-template-columns: repeat(2, 1fr);
+                                                    gap: 20px;
+                                                }
+                                                @@media (min-width: 992px) {
+                                                    .nhm-masonry-grid {
+                                                        grid-template-columns: repeat(3, 1fr);
+                                                    }
+                                                }
+                                                @@media (min-width: 1400px) {
+                                                    .nhm-masonry-grid {
+                                                        grid-template-columns: repeat(4, 1fr);
+                                                    }
+                                                }
+                                                .nhm-masonry-grid .nhm-service-box {
+                                                    width: 100%;
+                                                    margin-bottom: 0 !important;
+                                                }
+                                            </style>
+                                            <div class="nhm-masonry-grid p20 pt-0">
+                                                <div class="nhm-service-box mb20">
+                                                    <a href="/hire-custom-software-developers/" class="nhm-service-link mb-0">Hire Custom Software Developers</a>
+                                                    <p class="nhm-service-desc mb-0">Dedicated teams for robust, end-to-end software solutions.</p>
+                                                </div>
+                                                <div class="nhm-service-box mb20">
+                                                    <a href="/hire-ui-ux-designers/" class="nhm-service-link mb-0">Hire UI/UX Designers</a>
+                                                    <p class="nhm-service-desc mb-0">Creative professionals crafting intuitive and engaging interfaces.</p>
+                                                </div>
+                                                <div class="nhm-service-box mb20">
+                                                    <a href="/hire-ml-developers/" class="nhm-service-link mb-0">Hire Machine Learning Developers</a>
+                                                    <p class="nhm-service-desc mb-0">Experts in building intelligent, data-driven algorithms.</p>
+                                                </div>
+                                                <div class="nhm-service-box mb20">
+                                                    <a href="/hire-web-app-developers/" class="nhm-service-link mb-0">Hire Web App Developers</a>
+                                                    <p class="nhm-service-desc mb-0">Skilled coders for high-performance, scalable web applications.</p>
+                                                </div>
+                                                <div class="nhm-service-box mb20">
+                                                    <a href="/hire-ai-developers/" class="nhm-service-link mb-0">Hire AI Developers</a>
+                                                    <p class="nhm-service-desc mb-0">Innovators creating smart solutions for complex business needs.</p>
+                                                </div>
+                                                <div class="nhm-service-box mb20">
+                                                    <a href="/hire-qa-automation-tester/" class="nhm-service-link mb-0">Hire Automation Tester</a>
+                                                    <p class="nhm-service-desc mb-0">Specialists ensuring flawless performance with automated testing.</p>
+                                                </div>
+                                                <div class="nhm-service-box mb20">
+                                                    <a href="/hire-mobile-app-developers/" class="nhm-service-link mb-0">Hire Mobile App Developers</a>
+                                                    <p class="nhm-service-desc mb-0">Experienced creators of seamless iOS and Android applications.</p>
+                                                </div>
+                                                <div class="nhm-service-box mb20">
+                                                    <a href="/hire-angular-developers/" class="nhm-service-link mb-0">Hire Angular Developers</a>
+                                                    <p class="nhm-service-desc mb-0">Frontend specialists for dynamic, high-performance SPAs.</p>
+                                                </div>
+                                                <div class="nhm-service-box mb20">
+                                                    <a href="/hire-dot-net-developers/" class="nhm-service-link mb-0">Hire .NET Developers</a>
+                                                    <p class="nhm-service-desc mb-0">Backend experts for secure, scalable enterprise applications.</p>
+                                                </div>
+                                                <div class="nhm-service-box mb20">
+                                                    <a href="/hire-reactjs-developers/" class="nhm-service-link mb-0">Hire ReactJS Developers</a>
+                                                    <p class="nhm-service-desc mb-0">UI engineers building interactive, component-driven interfaces.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                <!-- END Desktop-only Hire Resources mega-menu -->
+
+                                <!-- ===== MOBILE ONLY: Hire Resources Simple Dropdown ===== -->
+                                <div class="d-block d-lg-none">
+                                    <div class="dropdown-menu hire_box w-100 bg-white p-3 p-lg-3 pt-lg-3">
+                                        <h5 class="mb-0 mb-md-2">
+                                            <a class="text_dark fw-semibold" href="#">Hire Skilled Resources</a>
+                                        </h5>
+                                        <ul>
+                                            <li class="custom-padding-2">
+                                                <a href="/hire-custom-software-developers/">Hire Custom Software Developers</a>
+                                            </li>
+                                            <li>
+                                                <a href="/hire-web-app-developers/">Hire Web App Developer</a>
+                                            </li>
+                                            <li>
+                                                <a href="/hire-mobile-app-developers/">Hire Mobile App Developer</a>
+                                            </li>
+                                            <li>
+                                                <a href="/hire-dot-net-developers/">Hire .NET Developers</a>
+                                            </li>
+                                            <li>
+                                                <a href="/hire-ui-ux-designers/">Hire UI/UX Designers</a>
+                                            </li>
+                                            <li class="custom-padding-2">
+                                                <a href="/hire-ai-developers/">Hire AI Developers</a>
+                                            </li>
+                                            <li class="custom-padding-2">
+                                                <a href="/hire-angular-developers/">Hire Angular Developers</a>
+                                            </li>
+                                            <li class="custom-padding-2">
+                                                <a href="/hire-reactjs-developers/">Hire ReactJS Developers</a>
+                                            </li>
+                                            <li class="custom-padding-2">
+                                                <a href="/hire-ml-developers/">Hire Machine Learning Developers</a>
+                                            </li>
+                                            <li>
+                                                <a href="/hire-qa-automation-tester/">Hire Automation Tester</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- END Mobile-only Hire Resources dropdown -->
+
                             </li>
 
                             <li class="nav-item border_b dropdown pb-2 mb-2 mb-lg-0 position-relative">
@@ -390,53 +1033,164 @@
 
                                 <!-- Mobile-only arrow -->
                                 <span class="d-lg-none mobile-arrow-icon" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="~/assets/images/imagenew/arrow-up-black.svg" alt="toggle" class="arrow-icon-img" width="20" height="20" />
+                                    <img loading="lazy" src="~/assets/images/imagenew/arrow-up-black.svg" alt="toggle" class="arrow-icon-img" width="20" height="20" />
                                 </span>
 
                                 <!-- Decorative red square -->
                                 <div class="red-square-box"></div>
 
-                                <!-- Dropdown menu -->
-                                <div class="dropdown-menu company_box w-100 bg-white p-3 p-lg-3 pt-lg-3">
-                                    <div class="row flex-wrap w-100 row-gap-3">
-                                        <div class="col-lg-4 col-md-6 col-sm-12">
-                                            <h5 class="mb-0 mb-md-2">
-                                                <a class="text_dark fw-semibold" href="/about-us/">About Us</a>
-                                            </h5>
-                                            <ul>
-                                                <li>
-                                                    <a href="/about-us/">About Avidclan Technologies</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/countries-we-serve/">Countries We Serve</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-12">
-                                            <h5 class="mb-0 mb-md-2">
-                                                <a class="text_dark fw-semibold" href="/career/">Careers</a>
-                                            </h5>
-                                            <ul>
-                                                <li>
-                                                    <a href="/career#career-section/">Current Openings</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/life-at-avidclan-technologies/">Life at Avidclan Technologies</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-12">
-                                            <h5 class="mb-0 mb-md-2">
-                                                <a class="text_dark fw-semibold" href="">Resources</a>
-                                            </h5>
-                                            <ul>
-                                                <li><a href="/blog/">Blogs</a></li>
-                                                <li><a href="/case-studies/">Case Studies</a></li>
-                                                <li><a href="/company-news/top-logistics-software-development-company-2025-by-techreviewer/">Company News</a></li>
-                                            </ul>
+                                <!-- ===== DESKTOP ONLY: Company Mega-menu ===== -->
+                                <div class="d-none d-lg-block">
+                                    <div class="nhm-main-container border-0 p-0" style="border-top-right-radius: 8px!important; border-top-left-radius:8px !important;">
+                                        <div class="row g-0">
+
+                                            <!-- LEFT SIDEBAR -->
+                                            <div class="col-lg-3 nhm-sidebar-bg">
+                                                <div class="d-flex flex-column p20 custombrl gap-2">
+                                                    <a class="nhm-nav-item active fs18" data-target="comp-about" href="javascript:void(0);">
+                                                        About Us
+                                                        <span class="nhm-arrow">
+                                                            <img src="~/assets/images/newmenu/right_arrow.svg" alt="arrow" class="arrow-white" />
+                                                            <img src="~/assets/images/newmenu/right_arrow_blue.svg" alt="arrow" class="arrow-blue" />
+                                                        </span>
+                                                    </a>
+                                                    <a class="nhm-nav-item fs18" data-target="comp-careers" href="javascript:void(0);">
+                                                        Careers
+                                                        <span class="nhm-arrow">
+                                                            <img src="~/assets/images/newmenu/right_arrow.svg" alt="arrow" class="arrow-white" />
+                                                            <img src="~/assets/images/newmenu/right_arrow_blue.svg" alt="arrow" class="arrow-blue" />
+                                                        </span>
+                                                    </a>
+                                                    <a class="nhm-nav-item fs18" data-target="comp-resources" href="javascript:void(0);">
+                                                        Resources
+                                                        <span class="nhm-arrow">
+                                                            <img src="~/assets/images/newmenu/right_arrow.svg" alt="arrow" class="arrow-white" />
+                                                            <img src="~/assets/images/newmenu/right_arrow_blue.svg" alt="arrow" class="arrow-blue" />
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <!-- RIGHT CONTENT -->
+                                            <div class="col-lg-9 bg-white p20 custombrr">
+
+                                                <!-- About Us -->
+                                                <div id="comp-about" class="nhm-tab-content">
+                                                    <div class="nhm-content-header d-flex align-items-center mb20 pb20 border-bottom">
+                                                        <div class="nhm-icon-box me12">
+                                                            <img src="~/assets/images/newmenu/company/About Us.svg" alt="about-icon" />
+                                                        </div>
+                                                        <h4 class="nhm-title-text m-0">About Us</h4>
+                                                    </div>
+                                                    <div class="row g-4">
+                                                        <div class="col-lg-6 col-xl-4">
+                                                            <div class="nhm-service-box mb20">
+                                                                <a href="/about-us/" class="nhm-service-link mb-0">About Avidclan Technologies</a>
+                                                                <p class="nhm-service-desc">Learn about our vision, mission, and the experts behind our success.</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-xl-4">
+                                                            <div class="nhm-service-box mb20">
+                                                                <a href="/countries-we-serve/" class="nhm-service-link mb-0">Countries We Serve</a>
+                                                                <p class="nhm-service-desc">Discover our global presence and international delivery capabilities.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Careers -->
+                                                <div id="comp-careers" class="nhm-tab-content" style="display:none;">
+                                                    <div class="nhm-content-header d-flex align-items-center mb20 pb20 border-bottom">
+                                                        <div class="nhm-icon-box me12">
+                                                            <img src="~/assets/images/newmenu/company/Careers.svg" alt="careers-icon" />
+                                                        </div>
+                                                        <h4 class="nhm-title-text m-0">Careers</h4>
+                                                    </div>
+                                                    <div class="row g-4">
+                                                        <div class="col-lg-6 col-xl-4">
+                                                            <div class="nhm-service-box mb20">
+                                                                <a href="/career#career-section/" class="nhm-service-link mb-0">Current Openings</a>
+                                                                <p class="nhm-service-desc">Explore exciting opportunities to join our innovative technology team.</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-xl-4">
+                                                            <div class="nhm-service-box mb20">
+                                                                <a href="/life-at-avidclan-technologies/" class="nhm-service-link mb-0">Life at Avidclan Technologies</a>
+                                                                <p class="nhm-service-desc">Experience our vibrant culture, employee benefits, and core values.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Resources -->
+                                                <div id="comp-resources" class="nhm-tab-content" style="display:none;">
+                                                    <div class="nhm-content-header d-flex align-items-center mb20 pb20 border-bottom">
+                                                        <div class="nhm-icon-box me12">
+                                                            <img src="~/assets/images/newmenu/company/Resources.svg" alt="resources-icon" />
+                                                        </div>
+                                                        <h4 class="nhm-title-text m-0">Resources</h4>
+                                                    </div>
+                                                    <div class="row g-4">
+                                                        <div class="col-lg-4">
+                                                            <div class="nhm-service-box mb20">
+                                                                <a href="/blog/" class="nhm-service-link mb-0">Blogs</a>
+                                                                <p class="nhm-service-desc">Read our latest insights, tutorials, and industry thought leadership.</p>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <div class="nhm-service-box mb20">
+                                                                <a href="/case-studies/" class="nhm-service-link mb-0">Case Studies</a>
+                                                                <p class="nhm-service-desc">Explore how we solved complex challenges for our global clients.</p>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <div class="nhm-service-box mb20">
+                                                                <a href="/company-news/top-logistics-software-development-company-2025-by-techreviewer/" class="nhm-service-link mb-0">Company News</a>
+                                                                <p class="nhm-service-desc">Stay updated on our recent awards, milestones, and achievements.</p>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- END Desktop-only Company mega-menu -->
+
+                                <!-- ===== MOBILE ONLY: Company Simple Dropdown ===== -->
+                                <div class="d-block d-lg-none">
+                                    <div class="dropdown-menu company_box w-100 bg-white p-3">
+                                        <div class="row flex-wrap w-100 row-gap-3">
+                                            <div class="col-12">
+                                                <h5 class="mb-0 mb-md-2"><a class="text_dark fw-semibold" href="/about-us/">About Us</a></h5>
+                                                <ul>
+                                                    <li><a href="/about-us/">About Avidclan Technologies</a></li>
+                                                    <li><a href="/countries-we-serve/">Countries We Serve</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12">
+                                                <h5 class="mb-0 mb-md-2"><a class="text_dark fw-semibold" href="/career/">Careers</a></h5>
+                                                <ul>
+                                                    <li><a href="/career#career-section/">Current Openings</a></li>
+                                                    <li><a href="/life-at-avidclan-technologies/">Life at Avidclan Technologies</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12">
+                                                <h5 class="mb-0 mb-md-2"><a class="text_dark fw-semibold" href="">Resources</a></h5>
+                                                <ul>
+                                                    <li><a href="/blog/">Blogs</a></li>
+                                                    <li><a href="/case-studies/">Case Studies</a></li>
+                                                    <li><a href="/company-news/top-logistics-software-development-company-2025-by-techreviewer/">Company News</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END Mobile-only Company dropdown -->
+
                             </li>
 
 
@@ -446,7 +1200,7 @@
                             </li>
 
                             <li class="nav-item border_b pb-2 mb-2 mb-lg-0 d-lg-none">
-                                <a class="fw-semibold nav-link active" href="/contact-us/">Contact Us</a>
+                                <a class="fw-semibold nav-link active" style="font-size: 18px;" href="/contact-us/">Contact Us</a>
                             </li>
 
 
@@ -1198,7 +1952,39 @@
 
         })();
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const navItems = document.querySelectorAll('.nhm-nav-item');
 
+            navItems.forEach(item => {
+                item.addEventListener('mouseenter', function (e) {
+                    e.preventDefault();
+
+                    // Find the parent container to scope the changes
+                    const container = this.closest('.nhm-main-container');
+                    if (!container) return;
+
+                    // 1. Sidebar se 'active' class sirf is container ke andar hatao
+                    container.querySelectorAll('.nhm-nav-item').forEach(nav => nav.classList.remove('active'));
+
+                    // 2. Jis par hover kiya usse 'active' karo
+                    this.classList.add('active');
+
+                    // 3. Right side ke saare content sections sirf is container ke andar hide karo
+                    container.querySelectorAll('.nhm-tab-content').forEach(content => {
+                        content.style.display = 'none';
+                    });
+
+                    // 4. Targeted section ko show karo
+                    const targetId = this.getAttribute('data-target');
+                    const targetElement = container.querySelector('#' + targetId);
+                    if (targetElement) {
+                        targetElement.style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
     @RenderSection("scripts", required: false)
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -206,6 +206,7 @@
     <Content Include="assets\css\Avidclan\headernw.css" />
     <Content Include="assets\css\Avidclan\hiringpages.css" />
     <Content Include="assets\css\Avidclan\home_old.css" />
+    <Content Include="assets\css\Avidclan\newhomemenu.css" />
     <Content Include="assets\css\Avidclan\owl.carousel.min.css" />
     <Content Include="assets\css\Avidclan\responsive_image_slide.css" />
     <Content Include="assets\css\Avidclan\work.css" />
@@ -1679,6 +1680,21 @@
     <Content Include="assets\images\mysql-tech.jpg" />
     <Content Include="assets\images\mysql-tech.png" />
     <Content Include="assets\images\mysql.svg" />
+    <Content Include="assets\images\newmenu\company\About Us.svg" />
+    <Content Include="assets\images\newmenu\company\Careers.svg" />
+    <Content Include="assets\images\newmenu\company\Resources.svg" />
+    <Content Include="assets\images\newmenu\Hire Skilled Resources.svg" />
+    <Content Include="assets\images\newmenu\services\ai.svg" />
+    <Content Include="assets\images\newmenu\services\Design.svg" />
+    <Content Include="assets\images\newmenu\services\IoT.svg" />
+    <Content Include="assets\images\newmenu\services\Mobile Apps.svg" />
+    <Content Include="assets\images\newmenu\services\QA.svg" />
+    <Content Include="assets\images\newmenu\services\Web_Development.svg" />
+    <Content Include="assets\images\newmenu\technologies\Backend.svg" />
+    <Content Include="assets\images\newmenu\technologies\Database.svg" />
+    <Content Include="assets\images\newmenu\technologies\Front End.svg" />
+    <Content Include="assets\images\newmenu\technologies\Infra and DevOps.svg" />
+    <Content Include="assets\images\newmenu\technologies\Mobile.svg" />
     <Content Include="assets\images\no-contract.svg" />
     <Content Include="assets\images\node-img.svg" />
     <Content Include="assets\images\nodejs-tech.jpg" />
@@ -1966,6 +1982,7 @@
     <Content Include="Views\Avidclan\TermsofService.cshtml" />
     <Content Include="Views\Avidclan\UiUxDesignCompanyAustralia.cshtml" />
     <None Include="Views\Shared\_Layouthome.cshtml" />
+    <Content Include="Views\web.config" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

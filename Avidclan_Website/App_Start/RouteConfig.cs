@@ -24,7 +24,8 @@ namespace Avidclan_Website
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Avidclan", action = "AvidclanAction", id = UrlParameter.Optional }
+                //defaults: new { controller = "Avidclan", action = "AvidclanAction", id = UrlParameter.Optional }
+                defaults: new { controller = "Avidclan", action = "index", id = UrlParameter.Optional }
             );
         }
     }
