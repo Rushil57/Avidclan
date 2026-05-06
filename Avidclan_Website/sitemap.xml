@@ -1274,4 +1274,14 @@
 		<changefreq>weekly</changefreq>
 		<priority>0.60</priority>
 	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/Gestalt-principles-in-ui-ux-design/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
+	<url>
+		<loc>https://www.avidclan.com/blog/saas-vs-custom-software-find-your-ideal-solution-for-2026/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.60</priority>
+	</url>
 </urlset>
